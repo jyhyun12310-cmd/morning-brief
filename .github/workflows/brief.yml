@@ -1,0 +1,82 @@
+name: 조간 시황 브리핑
+
+on:
+  schedule:
+    # UTC 22:00 = KST 익일 07:00. 일~목(UTC) = 월~금(KST)
+    - cron: "0 22 * * 0-4"
+  workflow_dispatch:          # 수동 실행 버튼
+
+permissions:
+  contents: write             # docs/ 커밋 + GitHub Pages 반영
+
+concurrency:
+  group: morning-brief
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: 의존성 설치
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: 한글 폰트 설치
+        # 웹폰트(Pretendard)가 CDN에서 안 내려올 때를 대비한 안전장치
+        run: sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+
+      - name: 카드 생성
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PAGES_BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: PYTHONPATH=src python src/build.py
+
+      - name: GitHub Pages 에 커밋
+        run: |
+          git config user.name  "morning-brief-bot"
+          git config user.email "actions@github.com"
+          git add docs
+          git diff --staged --quiet || git commit -m "브리핑 $(date -u -d '+9 hours' +%Y-%m-%d)"
+          git push
+
+      - name: 카톡 · 인스타 발송
+        env:
+          KAKAO_REST_API_KEY:  ${{ secrets.KAKAO_REST_API_KEY }}
+          KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
+          KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
+          IG_USER_ID:          ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN:     ${{ secrets.IG_ACCESS_TOKEN }}
+        run: PYTHONPATH=src python src/publish.py
+
+      - name: 갱신된 토큰 다시 저장
+        # 액션은 상태가 없어서, 회전된 토큰을 시크릿에 되쓰지 않으면
+        # 두 달 뒤 조용히 멈춥니다. 여기가 이 프로젝트의 유일한 함정입니다.
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          [ -f out/tokens/kakao_refresh_token.txt ] && \
+            gh secret set KAKAO_REFRESH_TOKEN < out/tokens/kakao_refresh_token.txt
+          [ -f out/tokens/ig_access_token.txt ] && \
+            gh secret set IG_ACCESS_TOKEN < out/tokens/ig_access_token.txt
+          exit 0
+
+      - name: 실패 시 디버깅용 결과물 업로드
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug
+          path: |
+            out/
+            docs/cards/
+          retention-days: 5
