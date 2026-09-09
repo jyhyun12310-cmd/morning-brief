@@ -1,9 +1,18 @@
-"""인스타그램 게시 (Instagram API with Instagram Login).
+"""인스타그램 캐러셀(5장 한 게시물) 게시.
 
-- 페이스북 페이지 연결이 필요 없습니다.
-- 본인 계정에만 올리면 앱 심사도 필요 없습니다 (개발 모드 + Instagram Tester).
+Instagram Content Publishing API 의 캐러셀 흐름 (2026년 기준, graph.instagram.com):
+  1) 이미지마다 "자식 컨테이너"를 만든다 (is_carousel_item=true) — 이 상태로는 게시 안 됨
+  2) 각 자식 컨테이너가 FINISHED 될 때까지 기다린다
+  3) 자식 id 들을 모아 "부모(캐러셀) 컨테이너"를 만든다 (media_type=CAROUSEL)
+  4) 부모 컨테이너도 FINISHED 될 때까지 기다린다
+  5) 부모 컨테이너를 게시한다 (media_publish)
+
+캐러셀은 2~10장이 가능하고, 전부 첫 장의 가로세로 비율에 맞춰 잘리므로
+5장 모두 1080x1350 으로 통일해야 합니다 (render.py 가 이미 그렇게 만듭니다).
+
 - 파일 업로드가 불가능합니다. 이미지가 공개 HTTPS URL 에 먼저 올라가 있어야 합니다.
 - JPEG 만 받습니다. PNG 는 실패합니다.
+- 본인 계정에만 올리면 앱 심사가 필요 없습니다 (개발 모드 + Instagram Tester, 또는 라이브 전환).
 """
 
 from __future__ import annotations
@@ -41,7 +50,7 @@ def refresh_long_lived_token(token: str) -> str | None:
     return None
 
 
-def _wait_until_public(url: str, attempts: int = 20, delay: int = 10) -> None:
+def _wait_until_public(url: str, attempts: int = 15, delay: int = 8) -> None:
     """GitHub Pages 배포 반영을 기다립니다.
 
     푸시 직후 바로 게시하면 인스타그램이 이미지를 못 읽어 실패합니다.
@@ -50,7 +59,6 @@ def _wait_until_public(url: str, attempts: int = 20, delay: int = 10) -> None:
         try:
             r = requests.head(url, timeout=10, allow_redirects=True)
             if r.status_code == 200:
-                log.info("이미지 URL 확인 완료 (%d초)", i * delay)
                 return
         except Exception:
             pass
@@ -58,51 +66,81 @@ def _wait_until_public(url: str, attempts: int = 20, delay: int = 10) -> None:
     raise RuntimeError(f"이미지 URL이 공개되지 않았습니다: {url}")
 
 
-def publish(*, image_url: str, caption: str, token_dir: str) -> str:
+def _wait_finished(container_id: str, token: str, attempts: int = 20, delay: int = 5) -> None:
+    """미디어 컨테이너가 FINISHED 될 때까지 대기 (자식·부모 컨테이너 공통)."""
+    for _ in range(attempts):
+        r = requests.get(
+            f"{BASE}/{container_id}",
+            params={"fields": "status_code", "access_token": token},
+            timeout=20,
+        )
+        status = r.json().get("status_code") if r.status_code == 200 else None
+        if status == "FINISHED":
+            return
+        if status == "ERROR":
+            raise RuntimeError(f"컨테이너 처리 오류 ({container_id}): {r.text}")
+        time.sleep(delay)
+    raise RuntimeError(f"컨테이너 처리 시간 초과: {container_id}")
+
+
+def _create_child_container(image_url: str, token: str, user_id: str) -> str:
+    r = requests.post(
+        f"{BASE}/{user_id}/media",
+        data={"image_url": image_url, "is_carousel_item": "true", "access_token": token},
+        timeout=60,
+    )
+    if r.status_code != 200:
+        raise RuntimeError(f"자식 컨테이너 생성 실패 ({image_url}) {r.status_code}: {r.text}")
+    return r.json()["id"]
+
+
+def publish_carousel(*, image_urls: list[str], caption: str, token_dir: str) -> str:
+    if not (2 <= len(image_urls) <= 10):
+        raise ValueError(f"캐러셀은 2~10장만 가능합니다 (받은 장 수: {len(image_urls)})")
+
     token = os.environ["IG_ACCESS_TOKEN"]
     user_id = os.environ["IG_USER_ID"]
 
-    _wait_until_public(image_url)
+    for url in image_urls:
+        _wait_until_public(url)
 
-    # 1단계 — 미디어 컨테이너 생성
+    # 1) 자식 컨테이너 5개 생성
+    child_ids = [_create_child_container(url, token, user_id) for url in image_urls]
+    log.info("자식 컨테이너 %d개 생성", len(child_ids))
+
+    # 2) 전부 FINISHED 대기 — 하나라도 먼저 부모를 만들면 invalid_children 에러가 납니다
+    for cid in child_ids:
+        _wait_finished(cid, token)
+
+    # 3) 부모(캐러셀) 컨테이너 생성
     r = requests.post(
         f"{BASE}/{user_id}/media",
         data={
-            "image_url": image_url,
+            "media_type": "CAROUSEL",
+            "children": ",".join(child_ids),
             "caption": caption[:CAPTION_LIMIT],
             "access_token": token,
         },
         timeout=60,
     )
     if r.status_code != 200:
-        raise RuntimeError(f"컨테이너 생성 실패 {r.status_code}: {r.text}")
-    creation_id = r.json()["id"]
+        raise RuntimeError(f"캐러셀 컨테이너 생성 실패 {r.status_code}: {r.text}")
+    carousel_id = r.json()["id"]
 
-    # 2단계 — 컨테이너가 준비될 때까지 대기
-    for _ in range(12):
-        s = requests.get(
-            f"{BASE}/{creation_id}",
-            params={"fields": "status_code", "access_token": token},
-            timeout=20,
-        )
-        status = s.json().get("status_code") if s.status_code == 200 else None
-        if status == "FINISHED":
-            break
-        if status == "ERROR":
-            raise RuntimeError(f"컨테이너 처리 오류: {s.text}")
-        time.sleep(5)
+    # 4) 부모 컨테이너도 FINISHED 대기
+    _wait_finished(carousel_id, token)
 
-    # 3단계 — 게시
+    # 5) 게시
     p = requests.post(
         f"{BASE}/{user_id}/media_publish",
-        data={"creation_id": creation_id, "access_token": token},
+        data={"creation_id": carousel_id, "access_token": token},
         timeout=60,
     )
     if p.status_code != 200:
         raise RuntimeError(f"게시 실패 {p.status_code}: {p.text}")
 
     media_id = p.json()["id"]
-    log.info("인스타그램 게시 완료: %s", media_id)
+    log.info("인스타그램 캐러셀 게시 완료: %s (%d장)", media_id, len(image_urls))
 
     # 토큰 연장
     new_token = refresh_long_lived_token(token)

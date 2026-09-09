@@ -13,190 +13,116 @@
     --up: #FF4D42;
     --down: #4C8DFF;
     --flat: #7E8D9E;
+    --accent: #FFB020;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html, body {
-    width: 1080px;
-    height: 1350px;
-  }
+  html, body { width: 1080px; height: 1350px; }
 
   body {
     background: var(--ground);
     color: var(--ink);
     font-family: Pretendard, "Noto Sans CJK KR", "Noto Sans KR", sans-serif;
-    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     font-variant-numeric: tabular-nums;
     display: flex;
     flex-direction: column;
-    padding: 64px 68px 56px;
+    padding: 58px 64px 48px;
+    overflow: hidden;
   }
 
   .up   { color: var(--up); }
   .down { color: var(--down); }
   .flat { color: var(--flat); }
 
-  /* ── 상단 날짜 줄 ───────────────────────────── */
+  .clamp-1 { display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+  .clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+
+  /* ── 공통 상단 바 (전 카드 동일) ────────────── */
   .datebar {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-size: 26px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 22px; font-weight: 500; color: var(--muted); letter-spacing: -0.01em;
   }
   .datebar .day { color: var(--ink); font-weight: 700; }
+  .datebar .pageno { font-weight: 700; color: var(--ink); }
 
-  /* ── 히어로: 오늘 한국장 방향 ────────────────── */
-  .hero { margin-top: 52px; }
-  .hero .lede {
-    font-size: 30px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: -0.02em;
-  }
-  .hero .direction {
-    margin-top: 10px;
-    font-size: 108px;
-    font-weight: 900;
-    line-height: 1.02;
-    letter-spacing: -0.045em;
-  }
-  .hero .headline {
-    margin-top: 14px;
-    font-size: 44px;
-    font-weight: 700;
-    line-height: 1.28;
-    letter-spacing: -0.035em;
-  }
-  .hero .reason {
-    margin-top: 18px;
-    font-size: 29px;
-    font-weight: 400;
-    line-height: 1.55;
-    color: var(--muted);
-    max-width: 900px;
-    letter-spacing: -0.02em;
+  .card-head {
+    margin-top: 30px; font-size: 26px; font-weight: 700;
+    color: var(--muted); letter-spacing: -0.01em;
   }
 
-  /* ── 지수 스트립 ────────────────────────────── */
-  .strip {
-    margin-top: 48px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-  }
-  .strip .cell {
-    background: var(--ground);
-    padding: 26px 8px 26px 0;
-  }
-  .strip .name {
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .strip .value {
-    margin-top: 8px;
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -0.035em;
-  }
-  .strip .delta {
-    margin-top: 2px;
-    font-size: 27px;
-    font-weight: 600;
-    letter-spacing: -0.025em;
+  /* ── 카드 1: 표지 ───────────────────────────── */
+  .cover { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .cover-lede { font-size: 28px; font-weight: 500; color: var(--muted); letter-spacing: -0.02em; }
+  .cover-direction { margin-top: 10px; font-size: 150px; font-weight: 900; line-height: 0.95; letter-spacing: -0.04em; }
+  .cover-headline { margin-top: 22px; font-size: 46px; font-weight: 700; line-height: 1.28; letter-spacing: -0.03em; }
+  .cover-reason { margin-top: 18px; font-size: 28px; font-weight: 400; line-height: 1.5; color: var(--muted); max-width: 900px; letter-spacing: -0.02em; }
+  .swipe-hint {
+    font-size: 20px; color: var(--muted); text-align: center;
+    padding-top: 22px; border-top: 1px solid var(--rule); letter-spacing: -0.01em;
   }
 
-  /* ── 미국장 이슈 ────────────────────────────── */
-  .issues { margin-top: 42px; flex: 1; }
-  .section-title {
-    font-size: 25px;
-    font-weight: 700;
-    color: var(--muted);
-    letter-spacing: -0.02em;
-    margin-bottom: 22px;
+  /* ── 카드 2 / 4 공용: 2열 스탯 그리드 ─────────── */
+  .stat2 {
+    margin-top: 26px; display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px; background: var(--rule); border: 1px solid var(--rule);
   }
-  .issue { display: flex; gap: 20px; margin-bottom: 26px; }
-  .issue .mark {
-    flex: 0 0 4px;
-    height: 100%;
-    min-height: 62px;
-    background: var(--rule);
-    border-radius: 2px;
-  }
-  .issue .body { flex: 1; }
-  .issue .title {
-    font-size: 33px;
-    font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: -0.032em;
-  }
-  .issue .detail {
-    margin-top: 7px;
-    font-size: 26px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--muted);
-    letter-spacing: -0.02em;
+  .stat2-cell { background: var(--ground); padding: 34px 22px; }
+  .stat2-name { font-size: 23px; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; }
+  .stat2-value { margin-top: 10px; font-size: 54px; font-weight: 800; letter-spacing: -0.03em; }
+  .stat2-delta { margin-top: 6px; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+
+  .summary-line {
+    margin-top: 26px; font-size: 26px; line-height: 1.55; color: var(--ink);
+    padding: 22px 24px; background: var(--surface); border-radius: 14px; letter-spacing: -0.02em;
   }
 
-  /* ── 하단 매크로 ────────────────────────────── */
-  .footer {
-    margin-top: 20px;
-    border-top: 1px solid var(--rule);
-    padding-top: 26px;
+  /* ── 카드 3: 미국장 이슈 (번호 카드) ──────────── */
+  .issue-lg { display: flex; gap: 18px; margin-top: 32px; }
+  .issue-lg:first-of-type { margin-top: 30px; }
+  .issue-num {
+    flex: 0 0 50px; height: 50px; border-radius: 50%; background: var(--surface);
+    border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800; color: var(--accent);
   }
-  .macro {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 16px;
-  }
-  .macro .item { display: flex; align-items: baseline; gap: 12px; }
-  .macro .k {
-    font-size: 23px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: -0.02em;
-  }
-  .macro .v {
-    font-size: 27px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+  .issue-lg-title { font-size: 32px; font-weight: 800; line-height: 1.3; letter-spacing: -0.03em; }
+  .issue-lg-detail { margin-top: 8px; font-size: 25px; line-height: 1.5; color: var(--muted); letter-spacing: -0.015em; }
+
+  /* ── 카드 4: 수급 · 특징주 ──────────────────── */
+  .flow-lg { margin-top: 18px; display: flex; gap: 14px; }
+  .flow-lg-item { flex: 1; background: var(--surface); border-radius: 12px; padding: 16px; text-align: center; }
+  .flow-lg-k { font-size: 19px; color: var(--muted); letter-spacing: -0.01em; }
+  .flow-lg-v { margin-top: 6px; font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+
+  .movers-lg { margin-top: 28px; }
+  .movers-lg-title { font-size: 23px; font-weight: 700; color: var(--muted); margin-bottom: 12px; letter-spacing: -0.01em; }
+  .movers-lg-grid { display: flex; gap: 22px; }
+  .movers-lg-grid > div { flex: 1; }
+  .cap { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+  .mv-row {
+    display: flex; justify-content: space-between; font-size: 25px; font-weight: 700;
+    padding: 7px 0; border-bottom: 1px solid var(--rule); letter-spacing: -0.02em;
   }
 
-  .watch {
-    margin-top: 26px;
-    border-top: 1px solid var(--rule);
-    padding-top: 22px;
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
+  /* ── 카드 5: 매크로 · 오늘 볼 것 · 마무리 ─────── */
+  .macro-lg { margin-top: 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .macro-lg-item { background: var(--surface); border-radius: 12px; padding: 18px 20px; }
+  .macro-lg-k { font-size: 19px; color: var(--muted); letter-spacing: -0.01em; }
+  .macro-lg-v { margin-top: 5px; font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
+
+  .watch-lg { margin-top: 26px; }
+  .watch-lg-title { font-size: 23px; font-weight: 700; color: var(--muted); margin-bottom: 12px; letter-spacing: -0.01em; }
+  .watch-lg ul { list-style: none; }
+  .watch-lg li {
+    font-size: 24px; font-weight: 500; line-height: 1.6; letter-spacing: -0.02em;
+    padding-left: 18px; position: relative;
   }
-  .watch .label {
-    flex: 0 0 auto;
-    font-size: 23px;
-    font-weight: 700;
-    color: var(--muted);
-    letter-spacing: -0.02em;
-    padding-top: 3px;
-  }
-  .watch ul { list-style: none; }
-  .watch li {
-    font-size: 25px;
-    font-weight: 500;
-    line-height: 1.45;
-    letter-spacing: -0.025em;
+  .watch-lg li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+
+  .disclaimer {
+    margin-top: auto; padding-top: 18px; border-top: 1px solid var(--rule);
+    font-size: 15px; line-height: 1.6; color: #5E6C7C; letter-spacing: -0.01em;
   }
 </style>
 </head>
@@ -204,58 +130,102 @@
 
   <div class="datebar">
     <span class="day">{{ date_kr }} ({{ weekday_kr }})</span>
-    <span>조간 시황</span>
+    <span class="pageno">{{ card_num }}/5</span>
   </div>
 
-  <div class="hero">
-    <div class="lede">오늘 코스피</div>
-    <div class="direction {{ dir_class }}">{{ s.kr_direction }}</div>
-    <div class="headline">{{ s.kr_headline }}</div>
-    <div class="reason">{{ s.kr_reason }}</div>
+  {% if card_num == 1 %}
+  <div class="cover">
+    <div class="cover-lede">오늘 코스피</div>
+    <div class="cover-direction {{ dir_class }}">{{ s.kr_direction }}</div>
+    <div class="cover-headline clamp-2">{{ s.kr_headline }}</div>
+    <div class="cover-reason clamp-3">{{ s.kr_reason }}</div>
   </div>
+  <div class="swipe-hint">옆으로 넘기면 어젯밤 미국장부터 오늘 체크포인트까지 →</div>
 
-  <div class="strip">
+  {% elif card_num == 2 %}
+  <div class="card-head">어젯밤 미국 지수</div>
+  <div class="stat2">
     {% for i in indices %}
-    <div class="cell">
-      <div class="name">{{ i.label }}</div>
-      <div class="value">{{ i.fmt_last }}</div>
-      <div class="delta {{ i.cls }}">{{ i.fmt_pct }}</div>
+    <div class="stat2-cell">
+      <div class="stat2-name">{{ i.label }}</div>
+      <div class="stat2-value">{{ i.fmt_last }}</div>
+      <div class="stat2-delta {{ i.cls }}">{{ i.fmt_pct }}</div>
     </div>
     {% endfor %}
   </div>
+  {% if s.us_summary_line %}
+  <div class="summary-line clamp-3">{{ s.us_summary_line }}</div>
+  {% endif %}
 
-  <div class="issues">
-    <div class="section-title">어젯밤 미국장</div>
-    {% for it in s.us_issues %}
-    <div class="issue">
-      <div class="mark"></div>
-      <div class="body">
-        <div class="title">{{ it.title }}</div>
-        <div class="detail">{{ it.detail }}</div>
-      </div>
+  {% elif card_num == 3 %}
+  <div class="card-head">어젯밤 미국장 핵심 이슈</div>
+  {% for it in s.us_issues %}
+  <div class="issue-lg">
+    <div class="issue-num">{{ loop.index }}</div>
+    <div>
+      <div class="issue-lg-title clamp-2">{{ it.title }}</div>
+      <div class="issue-lg-detail clamp-3">{{ it.detail }}</div>
+    </div>
+  </div>
+  {% endfor %}
+
+  {% elif card_num == 4 %}
+  <div class="card-head">오늘 한국시장 체크</div>
+  {% if korea_idx %}
+  <div class="stat2">
+    {% for i in korea_idx %}
+    <div class="stat2-cell">
+      <div class="stat2-name">{{ i.label }}</div>
+      <div class="stat2-value">{{ i.fmt_last }}</div>
+      <div class="stat2-delta {{ i.cls }}">{{ i.fmt_pct }}</div>
     </div>
     {% endfor %}
   </div>
-
-  <div class="footer">
-    <div class="macro">
-      {% for m in macro %}
-      <div class="item">
-        <span class="k">{{ m.label }}</span>
-        <span class="v {{ m.cls }}">{{ m.fmt_last }}</span>
-      </div>
-      {% endfor %}
+  {% endif %}
+  {% if korea_flow %}
+  <div class="flow-lg">
+    {% for f in korea_flow %}
+    <div class="flow-lg-item">
+      <div class="flow-lg-k">{{ f.label }} 순매수</div>
+      <div class="flow-lg-v {{ f.cls }}">{{ f.fmt }}</div>
     </div>
-
-    {% if s.watch %}
-    <div class="watch">
-      <div class="label">오늘 볼 것</div>
-      <ul>
-        {% for w in s.watch %}<li>{{ w }}</li>{% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+    {% endfor %}
   </div>
+  {% endif %}
+  {% if movers_up or movers_down %}
+  <div class="movers-lg">
+    <div class="movers-lg-title">특징주 (반도체·빅테크)</div>
+    <div class="movers-lg-grid">
+      <div>
+        <div class="cap up">상승</div>
+        {% for m in movers_up %}<div class="mv-row"><span>{{ m.ticker }}</span><span class="up">{{ m.fmt_pct }}</span></div>{% endfor %}
+      </div>
+      <div>
+        <div class="cap down">하락</div>
+        {% for m in movers_down %}<div class="mv-row"><span>{{ m.ticker }}</span><span class="down">{{ m.fmt_pct }}</span></div>{% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% elif card_num == 5 %}
+  <div class="card-head">오늘의 체크포인트</div>
+  <div class="macro-lg">
+    {% for m in macro %}
+    <div class="macro-lg-item">
+      <div class="macro-lg-k">{{ m.label }}</div>
+      <div class="macro-lg-v {{ m.cls }}">{{ m.fmt_last }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% if s.watch %}
+  <div class="watch-lg">
+    <div class="watch-lg-title">오늘 볼 일정</div>
+    <ul>{% for w in s.watch %}<li>{{ w }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+  <div class="disclaimer">자동 생성된 시황 정리입니다. 특정 종목의 매수·매도를 권유하지 않으며,<br>투자 판단과 책임은 본인에게 있습니다.</div>
+  {% endif %}
 
 </body>
 </html>

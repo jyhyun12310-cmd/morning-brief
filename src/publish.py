@@ -31,13 +31,7 @@ def main() -> int:
 
     if os.environ.get("KAKAO_REFRESH_TOKEN"):
         try:
-            publish_kakao.publish(
-                title=state["kakao_title"],
-                description=state["kakao_text"],
-                image_url=state["image_url"],
-                link_url=state["link_url"],
-                token_dir=TOKEN_DIR,
-            )
+            publish_kakao.publish_series(state["kakao_cards"], token_dir=TOKEN_DIR)
         except Exception as e:
             log.exception("카카오 발송 실패")
             failures.append(f"kakao: {e}")
@@ -46,8 +40,8 @@ def main() -> int:
 
     if os.environ.get("IG_ACCESS_TOKEN"):
         try:
-            publish_instagram.publish(
-                image_url=state["image_url"],
+            publish_instagram.publish_carousel(
+                image_urls=state["instagram_image_urls"],
                 caption=state["instagram_caption"],
                 token_dir=TOKEN_DIR,
             )
