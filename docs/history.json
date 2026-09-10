@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-11",
+  "ticker": "COO",
+  "name": "The Cooper Companies, Inc.",
+  "pct": -14.67,
+  "rvol": 7.95
+ },
+ {
   "date": "2026-09-10",
   "ticker": "AVAV",
   "name": "AeroVironment, Inc.",
