@@ -16,49 +16,56 @@ log = logging.getLogger(__name__)
 
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
 
-SYSTEM = """당신은 국내 증권사에서 뉴욕 증시 마감 직후 작성하는 조간 데스크 노트 애널리스트입니다.
-독자는 두 부류입니다: (1) 코스피·코스닥에 투자하는 국내 투자자, (2) 미국 주식에 직접 투자하는
-한국인 투자자 — 이 중에는 전업 트레이더도 포함됩니다. 두 독자군 모두 "무슨 일이 있었다"는
-나열이 아니라 "왜 그렇게 움직였고, 그래서 무엇이 달라지는지"를 원합니다.
+SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 전문 애널리스트입니다.
+독자는 (1) 미국주식에 직접 투자하는 한국인, (2) 코스피 투자자입니다.
+매일 그날 가장 주목할 미국 종목 하나를 골라 5장짜리 카드뉴스로 정리합니다.
+
+절대 원칙 — 데이터 신뢰성:
+- 제공된 JSON 에 있는 수치만 인용합니다. 목표주가, PER, EPS, 매출, 등락률 등
+  모든 숫자는 반드시 데이터에 존재하는 값이어야 합니다.
+- 밸류체인은 "밸류체인" 배열에 있는 종목만 언급합니다. 거기 없는 기업명을
+  임의로 끌어오지 마세요. 각 종목의 실제 당일 등락률을 함께 언급해 근거를 만듭니다.
+- 증권사 투자의견은 "투자의견변경" 배열에 있는 것만 씁니다. 없으면 목표주가
+  컨센서스만 언급하고 특정 증권사 이름을 지어내지 않습니다.
+- 데이터에 없으면 그 항목은 비워두거나 짧게 처리합니다. 추측을 사실처럼 쓰지 않습니다.
 
 분석 원칙:
-- 사실을 나열하지 말고 인과관계로 연결합니다. "고용지표 둔화 → 금리 인하 기대 강화 →
-  국채금리 하락 → 밸류에이션 부담 완화된 성장주 매수" 처럼, 하나의 촉매가 자산군을 타고
-  어떻게 전이됐는지 짧게라도 짚습니다.
-- "시장은 혼조세를 보였다", "투자심리가 개선됐다" 같은 모호한 표현은 쓰지 않습니다. 구체적
-  수치(등락률, 금리 수준, %p 변화)와 촉매(어떤 지표·발언·실적)를 반드시 명시합니다.
-- 가능하면 자산군 간 상대적 움직임을 짚습니다 (성장주 vs 가치주, 국채금리와 주가의 관계,
-  달러 강약과 신흥국 자금 흐름, VIX 수준이 시사하는 위험 선호도 등).
-- 뉴스 헤드라인을 그대로 옮기지 말고 데이터와 종합해 하나의 일관된 시장 내러티브로 재구성합니다.
+- 사실 나열이 아니라 인과로 연결합니다. 무엇이 왜 일어났고 그래서 무엇이 달라지는지.
+- "혼조세", "투자심리 개선" 같은 모호한 표현 금지. 구체적 수치와 촉매를 명시합니다.
+- 향후 전개는 조건부로 씁니다. "~하면 ~할 수 있음" 형태로 근거와 함께.
+- 매수·매도를 권유하지 않습니다. 판단 재료를 제공하는 데서 멈춥니다.
 
-사실과 전망의 구분 (중요):
-- 이 브리핑은 코스피 개장(오전 9시) 전에 발송됩니다. 미국 지수·환율·금리 등은 이미 마감된
-  "사실"이지만, 코스피 관련 내용은 전부 "아직 일어나지 않은 전망"입니다.
-- kr_direction, kr_headline, kr_reason 은 반드시 전망의 어조로 씁니다. "~로 예상", "~할 전망",
-  "~할 가능성이 높음" 같은 표현을 쓰고, 이미 일어난 일처럼 단정하지 않습니다.
-- 미국 시장(us_issues, us_summary_line)은 이미 마감된 사실이므로 단정형으로 써도 됩니다.
+톤:
+- 한국어 개조식. 존댓말 없이 ("~했습니다" 대신 "~함", "~기록")
+- 과장된 찌라시 표현 금지. 숫자와 사실로 후킹합니다.
+- 글자 수 제한을 반드시 지킵니다. 카드에 들어가므로 넘치면 잘립니다.
+- 한 항목당 하나의 메시지만 담습니다. 여러 내용을 쉼표로 이어붙이지 않습니다.
 
-작성 규칙:
-- 한국어 존댓말 없이 간결한 개조식으로 씁니다. ("~했습니다" 대신 "~함", "~강세")
-- 매수·매도를 권유하는 표현은 절대 쓰지 않습니다. 사실 정리와 시장 해석까지만 합니다.
-- 데이터에 없는 수치는 지어내지 않습니다. 자료가 부족하면 그 항목을 짧게 씁니다.
-- 글자 수 제한을 반드시 지킵니다. 카드 이미지에 들어가므로 넘치면 잘립니다.
-
-반드시 아래 JSON 만 출력합니다. 코드펜스, 설명, 서론 없이 JSON 객체 하나만 출력합니다.
+반드시 아래 JSON 만 출력합니다. 코드펜스, 설명, 서론 없이 JSON 객체 하나만.
 
 {
-  "kr_direction": "상승" | "보합" | "하락",
-  "kr_headline": "12자 이내. 전망 대상이므로 단정 대신 묘사에 집중. 예: 반도체 훈풍 이어받나",
-  "kr_reason": "40~80자. 반드시 전망 어조('~할 전망', '~로 예상'). 전일 외국인·기관 수급이 뚜렷하면 반영할 것.",
-  "us_summary_line": "35~55자. 어젯밤 미국장을 관통한 핵심 동인 한 줄. 사실이므로 단정형 가능. 예: 고용 둔화가 금리 인하 기대를 키우며 성장주 주도 강세",
-  "us_issues": [
-    {"title": "16자 이내 이슈 제목", "detail": "70~110자. 무엇이 왜 일어났고 시장이 어떻게 반응했는지 인과관계로 설명"},
-    {"title": "...", "detail": "..."},
-    {"title": "...", "detail": "..."}
-  ],
-  "watch": ["오늘 확인할 일정·이벤트 20자 이내", "...", "..."],
-  "kakao_text": "카톡 알림용 요약. 150자 이내. 줄바꿈 2개까지 허용.",
-  "instagram_caption": "인스타 캐러셀 전체에 붙는 캡션 하나. 400자 이내. 5장 구성을 간단히 안내하고 마지막 줄에 해시태그 5~7개."
+  "hook_headline": "22자 이내. 원인이 드러나는 전문 헤드라인. 숫자는 큰 글씨로 따로 표시되므로 등락률은 넣지 말 것. 예: 젠슨 황 한마디에 불붙은 AI 랠리",
+  "hook_highlight": "위 hook_headline 안에 그대로 들어있는 핵심 키워드 2~7자. 형광 배경으로 강조됩니다. 반드시 hook_headline 의 부분 문자열이어야 함. 예: AI 랠리",
+  "hook_oneline": "12자 이내. 오늘 이슈의 결론 선공개. 예: AI 수요 재확인",
+  "hook_tag": "8자 이내 이슈 성격 태그. 예: 실적 서프라이즈 / 가이던스 상향 / 규제 리스크",
+
+  "macro_line": "70~100자. S&P·나스닥·VIX·10년물을 엮어 간밤 시장 전체 분위기를 설명. 사실이므로 단정형.",
+  "driver_title": "16자 이내. 이 종목이 움직인 근본 원인.",
+  "facts": ["팩트 1문장 32자 이내. 수치 포함", "팩트 2", "팩트 3"],
+
+  "fundamental_note": "70~100자. 실적과 밸류에이션 수치를 해석. 비싼지 싼지, 성장이 뒷받침되는지.",
+  "chart_note": "45~70자. 지지·저항선과 현재 위치를 근거로 주가 위치를 서술. 매매 권유 금지.",
+
+  "chain_note": "70~100자. 밸류체인 배열의 종목들이 실제로 어떻게 움직였는지와 그 의미.",
+  "wallst_note": "60~90자. 목표주가 컨센서스 대비 현재가 위치, 투자의견 변경이 있으면 함께.",
+  "risks": ["리스크 1 (30자 이내)", "리스크 2", "리스크 3"],
+
+  "summary3": ["결론 1줄 (38자 이내)", "결론 2줄", "결론 3줄"],
+  "cta_question": "35자 이내 댓글 유도 질문. 매수 권유가 아닌 의견 묻기 형태.",
+
+  "kr_line": "50~70자. 이 이슈가 오늘 한국 증시·관련주에 미칠 영향. 반드시 전망 어조('~할 전망','~가능성').",
+  "kakao_text": "카톡 알림용 요약. 150자 이내.",
+  "instagram_caption": "인스타 캡션. 400자 이내. 핵심을 먼저 쓰고 마지막 줄에 해시태그 6~8개."
 }"""
 
 
@@ -76,51 +83,83 @@ def _extract_json(text: str) -> dict:
 
 
 def _fallback(data: dict) -> dict:
-    """API 가 실패해도 빈 카드는 나오도록."""
-    idx = data.get("us", {}).get("indices", [])
-    spx = next((i for i in idx if i["ticker"] == "^GSPC"), None)
-    pct = spx.get("pct") if spx else None
-    direction = "보합"
-    if pct is not None:
-        direction = "상승" if pct > 0.3 else "하락" if pct < -0.3 else "보합"
+    """API 가 실패해도 카드가 비지 않도록 원본 수치로 최소한을 채웁니다."""
+    f = data.get("focus", {})
+    idx = data.get("market", {}).get("indices", [])
+    tk = f.get("ticker", "")
+    pct = f.get("pct")
+
+    head = f"{tk} {pct:+.2f}%" if tk and pct is not None else "간밤 뉴욕증시"
+    idx_line = ", ".join(
+        f"{r['label']} {r['pct']:+.2f}%" for r in idx if r.get("pct") is not None
+    )
+
     return {
-        "kr_direction": direction,
-        "kr_headline": "미국장 흐름 반영",
-        "kr_reason": "요약 생성에 실패해 지수 등락만 반영한 자동 판단입니다.",
-        "us_summary_line": "요약 생성에 실패해 지수 데이터만 표시합니다.",
-        "us_issues": [{"title": i["label"], "detail": f"{i['last']} ({i['pct']:+.2f}%)"} for i in idx[:3]],
-        "watch": [],
-        "kakao_text": "오늘 브리핑 요약 생성에 실패했습니다. 카드의 지수 데이터만 확인해 주세요.",
+        "hook_headline": head,
+        "hook_oneline": "데이터 확인",
+        "hook_tag": "시황",
+        "macro_line": idx_line or "지수 데이터를 불러오지 못했습니다.",
+        "driver_title": "요약 생성 실패",
+        "facts": [],
+        "fundamental_note": "요약 생성에 실패해 원본 수치만 표시합니다.",
+        "chart_note": "",
+        "chain_note": "",
+        "wallst_note": "",
+        "risks": [],
+        "summary3": [],
+        "cta_question": "",
+        "kr_line": "",
+        "kakao_text": "오늘 브리핑 요약 생성에 실패했습니다. 카드의 지표만 확인해 주세요.",
         "instagram_caption": "",
     }
+
+
+_LIST_LIMITS = {"facts": 3, "risks": 3, "summary3": 3}
 
 
 def summarize(data: dict) -> dict:
     client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
+    f = data.get("focus", {})
+    market = data.get("market", {})
     payload = {
         "날짜": data["date_kr"],
-        "미국지수": data["us"]["indices"],
-        "매크로": data["us"]["macro"],
-        "한국ETF_EWY": data["us"]["korea_proxy"],
-        "상승상위": data["us"]["top_gainers"],
-        "하락상위": data["us"]["top_losers"],
+        "오늘의종목": {
+            "티커": f.get("ticker"),
+            "종목명": f.get("name"),
+            "섹터": f.get("sector_kr"),
+            "현재가": f.get("last"),
+            "등락률": f.get("pct"),
+            "시가총액": f.get("market_cap"),
+            "밸류에이션": f.get("valuation"),
+            "성장률": f.get("growth"),
+            "직전실적": f.get("earnings"),
+            "분기매출추이": f.get("revenue_history"),
+            "목표주가": f.get("analyst"),
+            "투자의견변경": f.get("actions"),
+            "기술적수준": f.get("levels"),
+            "52주": f.get("w52"),
+        },
+        "경쟁사": f.get("peers"),
+        "밸류체인": f.get("chain"),
+        "미국지수": market.get("indices"),
+        "시장지표_VIX금리달러유가": market.get("gauges"),
+        "CNN공포탐욕지수": data.get("fear_greed", {}),
+        "한국투자자참고": market.get("kr_context"),
         "전일한국증시": data.get("korea", {}),
-        "뉴스헤드라인": data["news"],
+        "상승상위": data.get("top_gainers"),
+        "하락상위": data.get("top_losers"),
+        "뉴스헤드라인": data.get("news"),
     }
 
     try:
         resp = client.messages.create(
             model=MODEL,
-            max_tokens=2000,
+            max_tokens=3000,
             system=SYSTEM,
             messages=[
-                {
-                    "role": "user",
-                    "content": json.dumps(payload, ensure_ascii=False, indent=1),
-                },
-                # 프리필로 JSON 만 나오게 강제
-                {"role": "assistant", "content": "{"},
+                {"role": "user", "content": json.dumps(payload, ensure_ascii=False, indent=1)},
+                {"role": "assistant", "content": "{"},  # 프리필로 JSON 강제
             ],
         )
         text = "{" + "".join(b.text for b in resp.content if b.type == "text")
@@ -129,10 +168,9 @@ def summarize(data: dict) -> dict:
         log.exception("요약 생성 실패 — 폴백 사용")
         return _fallback(data)
 
-    # 필수 키 채우기
     base = _fallback(data)
     for k, v in base.items():
         result.setdefault(k, v)
-    result["us_issues"] = (result.get("us_issues") or base["us_issues"])[:3]
-    result["watch"] = (result.get("watch") or [])[:3]
+    for key, limit in _LIST_LIMITS.items():
+        result[key] = (result.get(key) or [])[:limit]
     return result

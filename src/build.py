@@ -32,62 +32,79 @@ def is_market_holiday(now: dt.datetime) -> bool:
         return False
 
 
+def load_history() -> list[dict]:
+    """최근 선정 이력. 같은 종목이 반복되지 않도록 쿨다운에 씁니다."""
+    p = Path(cfg.HISTORY_FILE)
+    if not p.exists():
+        return []
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        log.warning("선정 이력을 읽지 못했습니다 — 새로 시작합니다")
+        return []
+
+
+def save_history(history: list[dict], entry: dict) -> None:
+    p = Path(cfg.HISTORY_FILE)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    merged = [entry] + [h for h in history if h.get("date") != entry["date"]]
+    p.write_text(
+        json.dumps(merged[: cfg.HISTORY_KEEP], ensure_ascii=False, indent=1),
+        encoding="utf-8",
+    )
+
+
 def _fmt_pct(pct: float | None) -> str:
     return f"{pct:+.2f}%" if pct is not None else "—"
 
 
 def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_url: str) -> list[dict]:
-    """카드 5장 각각에 대응하는 카카오 메시지(제목+설명)를 실제 데이터로 구성합니다.
+    """카드 5장에 대응하는 카카오 메시지. 숫자는 원본 데이터에서 직접 만듭니다."""
+    f = data.get("focus", {})
+    market = data.get("market", {})
+    tk = f.get("ticker", "")
+    pct = f.get("pct")
+    tk_txt = f"{tk} {pct:+.2f}%" if tk and pct is not None else "오늘의 종목"
 
-    숫자가 들어가는 설명은 요약 JSON 이 아니라 원본 데이터에서 직접 만들어
-    카드 이미지에 찍힌 숫자와 어긋나지 않게 합니다.
-    """
-    date_kr = data["date_kr"]
-    korea = data.get("korea", {})
+    def _line(rows, n=4):
+        return " · ".join(
+            f"{r['label']} {r['pct']:+.2f}%" for r in (rows or [])[:n] if r.get("pct") is not None
+        )
 
-    titles = [it["title"] for it in summary["us_issues"]]
-    issues_desc = " · ".join(titles) if titles else "핵심 이슈 3건"
+    val = f.get("valuation") or {}
+    val_bits = []
+    if val.get("per") is not None:
+        val_bits.append(f"PER {val['per']:.1f}")
+    if val.get("pbr") is not None:
+        val_bits.append(f"PBR {val['pbr']:.1f}")
+    ern = f.get("earnings") or {}
+    if ern.get("surprise") is not None:
+        val_bits.append(f"EPS {'Beat' if ern.get('beat') else 'Miss'} {ern['surprise']:+.1f}%")
 
-    kospi = korea.get("코스피")
-    kosdaq = korea.get("코스닥")
-    flow = korea.get("수급", {})
-    kr_bits = []
-    if kospi:
-        kr_bits.append(f"코스피 {_fmt_pct(kospi.get('pct'))}")
-    if kosdaq:
-        kr_bits.append(f"코스닥 {_fmt_pct(kosdaq.get('pct'))}")
-    if "외국인" in flow:
-        kr_bits.append(f"외국인 {flow['외국인']:+,}억")
-    kr_desc = " · ".join(kr_bits) if kr_bits else "국내증시 데이터 확인"
-
-    watch_desc = " · ".join(summary.get("watch", [])) or "특이 일정 없음"
+    a = f.get("analyst") or {}
+    tgt_txt = (
+        f"목표가 평균 ${a['target_mean']:,.0f}"
+        + (f" · 상승여력 {a['upside']:+.1f}%" if a.get("upside") is not None else "")
+        if a.get("target_mean") else summary.get("wallst_note", "")
+    )
 
     cards = [
-        {
-            "title": f"{date_kr} 조간 시황 · 코스피 {summary['kr_direction']} 전망",
-            "description": summary["kakao_text"],
-        },
-        {
-            "title": "어젯밤 미국 지수 마감",
-            "description": summary.get("us_summary_line") or "지수 데이터는 카드에서 확인해 주세요.",
-        },
-        {
-            "title": "어젯밤 미국장 핵심 이슈",
-            "description": issues_desc,
-        },
-        {
-            "title": "오늘 한국시장 체크",
-            "description": kr_desc,
-        },
-        {
-            "title": "오늘의 체크포인트",
-            "description": watch_desc,
-        },
+        {"title": f"{data['date_kr']} · {tk_txt}",
+         "description": summary.get("kakao_text", "")},
+        {"title": "간밤 시장 맥락",
+         "description": _line(market.get("indices")) or summary.get("macro_line", "")},
+        {"title": f"{tk} 펀더멘털",
+         "description": " · ".join(val_bits) or summary.get("fundamental_note", "")},
+        {"title": "밸류체인 · 월가 시각",
+         "description": tgt_txt or summary.get("chain_note", "")},
+        {"title": "오늘의 3줄 요약",
+         "description": " / ".join(summary.get("summary3", [])) or summary.get("kr_line", "")},
     ]
     for card, url in zip(cards, image_urls):
         card["image_url"] = url
         card["link_url"] = link_url
     return cards
+
 
 
 def main() -> int:
@@ -102,7 +119,13 @@ def main() -> int:
     slug = now.strftime("%Y-%m-%d")
 
     log.info("데이터 수집 중")
-    data = collect_all()
+    history = load_history()
+    data = collect_all(history)
+
+    focus = data.get("focus", {})
+    if not focus.get("ticker"):
+        log.error("오늘의 종목을 선정하지 못했습니다.")
+        return 1
 
     log.info("요약 생성 중")
     summary = summarize(data)
@@ -133,7 +156,15 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    log.info("완료: 카드 %d장 (%s ...)", len(card_paths), card_paths[0])
+    save_history(history, {
+        "date": slug,
+        "ticker": focus["ticker"],
+        "name": focus.get("name", ""),
+        "pct": focus.get("pct"),
+        "rvol": focus.get("rvol"),
+    })
+
+    log.info("완료: %s · 카드 %d장", focus["ticker"], len(card_paths))
     return 0
 
 

@@ -1,14 +1,12 @@
-"""5장짜리 카드뉴스(JPEG)와 GitHub Pages 상세 페이지를 만듭니다.
+"""5장 카드뉴스(JPEG)와 GitHub Pages 상세 페이지를 만듭니다.
 
 인스타그램은 PNG 를 안 받습니다. 반드시 JPEG 로 저장합니다.
-카러셀은 이미지 2~10장을 지원하며, 첫 장의 가로세로 비율에 맞춰 나머지가
-잘리므로 5장 모두 1080x1350 로 통일합니다.
+캐러셀은 첫 장 비율에 맞춰 나머지가 잘리므로 5장 모두 1080x1350 로 통일합니다.
 """
 
 from __future__ import annotations
 
 import html
-import os
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -18,73 +16,322 @@ import config as cfg
 
 SRC = Path(__file__).parent
 CARD_COUNT = 5
+UP, DOWN, FLAT, GOLD = "#EF4444", "#3B82F6", "#94A3B8", "#FACC15"
+
+CARD_LABELS = {
+    1: "오늘의 종목",
+    2: "시장 맥락",
+    3: "펀더멘털",
+    4: "인사이트",
+    5: "요약",
+}
+
+
+# ══ 포맷터 ══════════════════════════════════════════════
+
+def _arrow(pct: float | None) -> str:
+    """등락 방향을 기호로. 색맹이어도 방향이 읽히도록 색과 함께 씁니다."""
+    if pct is None:
+        return ""
+    return "\u25b2" if pct > 0 else "\u25bc" if pct < 0 else "\u2015"
+
+
+def _split_highlight(text: str, keyword: str) -> list[dict]:
+    """헤드라인을 [일반, 강조, 일반] 조각으로 나눕니다.
+
+    키워드가 실제로 헤드라인 안에 없으면(모델이 잘못 뽑으면) 강조 없이 통째로 반환합니다.
+    """
+    text = (text or "").strip()
+    keyword = (keyword or "").strip()
+    if not text:
+        return []
+    if not keyword or keyword not in text:
+        return [{"t": text, "hl": False}]
+    head, _, tail = text.partition(keyword)
+    parts = []
+    if head:
+        parts.append({"t": head, "hl": False})
+    parts.append({"t": keyword, "hl": True})
+    if tail:
+        parts.append({"t": tail, "hl": False})
+    return parts
 
 
 def _cls(pct: float | None) -> str:
     if pct is None:
-        return "flat"
-    return "up" if pct > 0 else "down" if pct < 0 else "flat"
+        return "fl"
+    return "up" if pct > 0 else "dn" if pct < 0 else "fl"
 
 
-def _fmt_num(v: float) -> str:
-    return f"{v:,.2f}" if abs(v) < 1000 else f"{v:,.0f}"
+def _hex(pct: float | None) -> str:
+    return {"up": UP, "dn": DOWN, "fl": FLAT}[_cls(pct)]
+
+
+def _fmt_num(v: float, ticker: str = "") -> str:
+    a = abs(v)
+    if ticker in ("^TNX", "^VIX"):
+        return f"{v:,.2f}"
+    if ticker.startswith("^"):
+        return f"{v:,.0f}" if a >= 100 else f"{v:,.2f}"
+    if a >= 10000:
+        return f"{v:,.0f}"
+    if a >= 1000:
+        return f"{v:,.1f}"
+    if a >= 10:
+        return f"{v:,.2f}"
+    return f"{v:,.3f}"
+
+
+def _fmt_cap(v: float | None) -> str:
+    """시가총액을 조/억 달러 단위로 축약."""
+    if v is None:
+        return "—"
+    if v >= 1e12:
+        return f"{v / 1e12:.2f}T"
+    if v >= 1e9:
+        return f"{v / 1e9:.0f}B"
+    return f"{v / 1e6:.0f}M"
+
+
+def _fmt_ratio(v: float | None, suffix: str = "") -> str:
+    return f"{v:,.1f}{suffix}" if v is not None else "—"
+
+
+def _spark(series: list[float], width: int = 120, height: int = 26) -> str:
+    pts = [float(v) for v in (series or []) if v is not None]
+    if len(pts) < 3:
+        return ""
+    lo, hi = min(pts), max(pts)
+    span = (hi - lo) or 1.0
+    pad, n = 3, len(pts)
+    return " ".join(
+        f"{i / (n - 1) * width:.1f},{height - pad - (v - lo) / span * (height - pad * 2):.1f}"
+        for i, v in enumerate(pts)
+    )
 
 
 def _decorate(rows: list[dict]) -> list[dict]:
     out = []
     for r in rows:
         pct = r.get("pct")
-        out.append(
-            {
-                **r,
-                "cls": _cls(pct),
-                "fmt_last": _fmt_num(r["last"]),
-                "fmt_pct": f"{pct:+.2f}%" if pct is not None else "—",
-            }
-        )
+        out.append({
+            **r,
+            "cls": _cls(pct),
+            "hex": _hex(pct),
+            "fmt_last": _fmt_num(r["last"], r.get("ticker", "")),
+            "fmt_pct": f"{pct:+.2f}%" if pct is not None else "—",
+            "arrow": _arrow(pct),
+            "spark": _spark(r.get("series")),
+        })
     return out
 
 
-# pykrx 수급 딕셔너리 키 → 카드에 표시할 라벨 (기관합계는 "기관"으로 축약)
-_FLOW_LABELS = (("외국인", "외국인"), ("기관합계", "기관"), ("개인", "개인"))
+# ══ 페이지별 가공 ═══════════════════════════════════════
+
+def _focus_ctx(focus: dict) -> dict:
+    """주인공 종목의 표시용 값. 티커 길이에 따라 마크 폰트 크기를 조절합니다."""
+    if not focus:
+        return {"ticker": "", "name": "", "fmt_pct": "—", "fmt_last": "—",
+                "cls": "fl", "hex": FLAT, "mark_size": 40, "earnings": {}}
+    pct = focus.get("pct")
+    tk = focus.get("ticker", "")
+    mark = {1: 62, 2: 58, 3: 50, 4: 40, 5: 33}.get(len(tk), 30)
+
+    e = dict(focus.get("earnings") or {})
+    if e.get("surprise") is not None:
+        e["fmt_surprise"] = f"{e['surprise']:+.1f}%"
+    elif e:
+        e["fmt_surprise"] = "—"
+
+    return {
+        **focus,
+        "cls": _cls(pct),
+        "hex": _hex(pct),
+        "fmt_pct": f"{pct:+.2f}%" if pct is not None else "—",
+        "arrow": _arrow(pct),
+        "fmt_last": _fmt_num(focus.get("last", 0)),
+        "mark_size": mark,
+        "earnings": e,
+    }
 
 
-def _decorate_flow(flow: dict) -> list[dict]:
-    """외국인·기관·개인 순매수(억원)를 카드용으로 가공."""
-    out = []
-    for key, label in _FLOW_LABELS:
-        if key not in flow:
+def _p1_chips(data: dict) -> list[dict]:
+    """표지 하단 4칸: 주요 지수 2 + VIX + 공포탐욕지수."""
+    chips = []
+    for i in data.get("market", {}).get("indices", [])[:2]:
+        if i.get("pct") is None:
             continue
-        v = flow[key]
-        out.append({"label": label, "cls": _cls(v), "fmt": f"{v:+,}억"})
-    return out
+        chips.append({"label": i["label"], "val": f"{i['pct']:+.2f}%", "cls": _cls(i["pct"])})
+    for g in data.get("market", {}).get("gauges", []):
+        if g["ticker"] == "^VIX" and g.get("pct") is not None:
+            chips.append({"label": "VIX", "val": _fmt_num(g["last"], "^VIX"), "cls": _cls(g["pct"])})
+            break
+    fg = data.get("fear_greed", {})
+    if fg.get("score") is not None:
+        chips.append({"label": "공포탐욕", "val": f"{fg['score']} {fg['label']}", "cls": "fl"})
+    return chips[:4]
 
 
-def _korea_indices(korea: dict) -> list[dict]:
-    """collect.fetch_korea() 결과에서 코스피·코스닥만 뽑아 지수 스트립 포맷으로."""
-    rows = [{"label": k, **korea[k]} for k in ("코스피", "코스닥") if k in korea]
-    return _decorate(rows)
+def _val_cells(focus: dict) -> list[dict]:
+    """밸류에이션 4칸. 값이 없는 지표는 아예 넣지 않습니다."""
+    v = focus.get("valuation") or {}
+    g = focus.get("growth") or {}
+    cands = [
+        ("PER", _fmt_ratio(v.get("per"))),
+        ("선행 PER", _fmt_ratio(v.get("forward_per"))),
+        ("PBR", _fmt_ratio(v.get("pbr"))),
+        ("EV/EBITDA", _fmt_ratio(v.get("ev_ebitda"))),
+        ("영업이익률", f"{v['margin'] * 100:.1f}%" if v.get("margin") is not None else "—"),
+        ("매출성장", f"{g['revenue'] * 100:+.1f}%" if g.get("revenue") is not None else "—"),
+        ("FCF", _fmt_cap(v.get("fcf"))),
+    ]
+    return [{"k": k, "v": val} for k, val in cands if val != "—"][:4]
+
+
+def _rev_bars(focus: dict) -> list[dict]:
+    """분기 매출 막대. 최소값도 보이도록 하한 22%를 둡니다."""
+    hist = focus.get("revenue_history") or []
+    vals = [h["value"] for h in hist if h.get("value")]
+    if len(vals) < 2:
+        return []
+    hi = max(vals)
+    return [
+        {"period": h["period"], "h": round(22 + (h["value"] / hi) * 78, 1)}
+        for h in hist if h.get("value")
+    ]
+
+
+def _peers(focus: dict) -> list[dict]:
+    """경쟁사 비교표. 주인공을 맨 위에 두고 하이라이트합니다."""
+    rows = []
+    me = {
+        "ticker": focus.get("ticker", ""),
+        "pct": focus.get("pct"),
+        "per": (focus.get("valuation") or {}).get("per"),
+        "market_cap": focus.get("market_cap"),
+        "is_me": True,
+    }
+    if me["ticker"]:
+        rows.append(me)
+    for p in (focus.get("peers") or [])[:4]:
+        rows.append({**p, "is_me": False})
+    return [
+        {
+            **r,
+            "cls": _cls(r.get("pct")),
+            "fmt_pct": f"{r['pct']:+.2f}%" if r.get("pct") is not None else "—",
+            "fmt_per": _fmt_ratio(r.get("per")),
+            "fmt_cap": _fmt_cap(r.get("market_cap")),
+        }
+        for r in rows
+    ]
+
+
+def _target(focus: dict) -> dict | None:
+    """목표주가 게이지. 최저~최고 구간에서 현재가 위치를 표시합니다."""
+    a = focus.get("analyst") or {}
+    lo, hi, mean = a.get("target_low"), a.get("target_high"), a.get("target_mean")
+    cur = focus.get("last")
+    if not (lo and hi and mean and cur) or hi <= lo:
+        return None
+    pin = (cur - lo) / (hi - lo) * 100
+    fill = (mean - lo) / (hi - lo) * 100
+    cnt = a.get("count")
+    return {
+        "mean": f"{mean:,.0f}" if mean >= 100 else f"{mean:,.1f}",
+        "low": f"{lo:,.0f}" if lo >= 100 else f"{lo:,.1f}",
+        "high": f"{hi:,.0f}" if hi >= 100 else f"{hi:,.1f}",
+        "cur": f"{cur:,.0f}" if cur >= 100 else f"{cur:,.1f}",
+        "upside": f"{a['upside']:+.1f}" if a.get("upside") is not None else "",
+        "count": int(cnt) if cnt else None,
+        "pin": round(max(0, min(100, pin)), 1),
+        "fill": round(max(0, min(100, fill)), 1),
+    }
+
+
+def _actions(focus: dict) -> list[dict]:
+    return [
+        {**a, "cls": "up" if a["dir"] == "up" else "dn" if a["dir"] == "down" else "fl"}
+        for a in (focus.get("actions") or [])[:3]
+    ]
+
+
+def _chain(focus: dict) -> list[dict]:
+    return [
+        {**c, "cls": _cls(c.get("pct")), "arrow": _arrow(c.get("pct")),
+         "fmt_pct": f"{c['pct']:+.2f}%" if c.get("pct") is not None else "—"}
+        for c in (focus.get("chain") or [])
+    ]
+
+
+def _sector_rotation(rows: list[dict]) -> list[dict]:
+    """섹터 ETF 등락을 좌우 발산 바로. 최대 절대값을 기준으로 폭을 맞춥니다."""
+    if not rows:
+        return []
+    peak = max(abs(r["pct"]) for r in rows) or 1.0
+    return [
+        {
+            "label": r["label"],
+            "cls": _cls(r["pct"]),
+            "fmt_pct": f"{r['pct']:+.2f}%",
+            "arrow": _arrow(r["pct"]),
+            "bar": round(min(abs(r["pct"]) / peak, 1.0) * 50, 1),
+        }
+        for r in rows
+    ]
+
+
+def _rvol_badge(focus: dict) -> dict | None:
+    """상대거래량. 평소 대비 몇 배가 터졌는지 — 그날 뉴스가 있었다는 신호."""
+    rv = focus.get("rvol")
+    if not rv:
+        return None
+    if rv >= 3:
+        tone, txt = "hot", "거래량 폭증"
+    elif rv >= 1.8:
+        tone, txt = "warm", "거래량 급증"
+    elif rv >= 1.2:
+        tone, txt = "warm", "거래량 증가"
+    else:
+        tone, txt = "calm", "평소 수준"
+    return {"val": f"{rv:.1f}x", "txt": txt, "tone": tone}
 
 
 def _template_context(data: dict, summary: dict) -> dict:
-    """5장 모두가 공유하는 렌더링 컨텍스트를 한 번만 계산합니다."""
-    korea = data.get("korea", {})
+    focus = data.get("focus", {})
+    market = data.get("market", {})
     return {
         "date_kr": data["date_kr"],
         "weekday_kr": data["weekday_kr"],
         "s": summary,
-        "dir_class": {"상승": "up", "하락": "down"}.get(summary["kr_direction"], "flat"),
-        "indices": _decorate(data["us"]["indices"]),
-        "macro": _decorate(data["us"]["macro"]),
-        "korea_idx": _korea_indices(korea),
-        "korea_flow": _decorate_flow(korea.get("수급", {})),
-        "movers_up": _decorate(data["us"]["top_gainers"][:2]),
-        "movers_down": _decorate(data["us"]["top_losers"][:2]),
+        "f": _focus_ctx(focus),
+        "p1_chips": _p1_chips(data),
+        "hook_parts": _split_highlight(
+            summary.get("hook_headline", ""), summary.get("hook_highlight", "")
+        ),
+        "indices": _decorate(market.get("indices", [])),
+        "gauges": _decorate(market.get("gauges", [])),
+        "val_cells": _val_cells(focus),
+        "rev_bars": _rev_bars(focus),
+        "peers": _peers(focus),
+        "tgt": _target(focus),
+        "actions": _actions(focus),
+        "chain": _chain(focus),
+        "chain_kind": focus.get("chain_kind", "밸류체인"),
+        "sectors": _sector_rotation(data.get("sector_rotation", [])),
+        "rvol": _rvol_badge(focus),
+        "w52": focus.get("w52") or {},
+        "runners": [
+            {**r, "cls": _cls(r.get("pct")),
+             "fmt_pct": f"{r['pct']:+.2f}%" if r.get("pct") is not None else "—"}
+            for r in (data.get("runners_up") or [])[:3]
+        ],
     }
 
 
+# ══ 렌더링 ══════════════════════════════════════════════
+
 def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> list[str]:
-    """카드 1~5 를 렌더링해 JPEG 5장의 경로 리스트를 반환합니다."""
     env = Environment(loader=FileSystemLoader(SRC), autoescape=select_autoescape(["html"]))
     tpl = env.get_template("card.html")
     ctx = _template_context(data, summary)
@@ -101,127 +348,104 @@ def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> l
             viewport={"width": cfg.CARD_WIDTH, "height": cfg.CARD_HEIGHT},
             device_scale_factor=1,
         )
-        # 폰트는 첫 페이지에서만 기다리면 이후 goto 에서도 캐시되어 재사용됩니다
         first = True
         for n in range(1, CARD_COUNT + 1):
-            page_html = tpl.render(card_num=n, **ctx)
             tmp = tmp_dir / f"_card-{n}.html"
-            tmp.write_text(page_html, encoding="utf-8")
-
+            tmp.write_text(tpl.render(card_num=n, card_label=CARD_LABELS[n], **ctx), encoding="utf-8")
             page.goto(tmp.resolve().as_uri())
             page.wait_for_load_state("networkidle")
             if first:
-                page.evaluate("document.fonts.ready")  # 웹폰트 로딩 대기 — 안 하면 한글이 깨집니다
-                page.wait_for_timeout(500)
+                page.evaluate("document.fonts.ready")  # 웹폰트 대기 — 안 하면 한글이 깨집니다
+                page.wait_for_timeout(600)
                 first = False
             else:
                 page.wait_for_timeout(150)
-
             out_path = str(out_dir / f"{slug}-{n}.jpg")
             page.screenshot(path=out_path, type="jpeg", quality=92, full_page=False)
             paths.append(out_path)
-
         browser.close()
-
     return paths
 
 
 DETAIL_TPL = """<!DOCTYPE html>
 <html lang="ko"><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{date} 조간 시황</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{date} {ticker} 브리핑</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-  body {{ margin:0; background:#0F1720; color:#E9EEF4;
-         font-family:Pretendard,"Noto Sans KR",sans-serif;
-         font-variant-numeric:tabular-nums; }}
-  .wrap {{ max-width:720px; margin:0 auto; padding:28px 22px 72px; }}
-  .cards {{ display:flex; flex-direction:column; gap:14px; }}
-  img {{ width:100%; border-radius:14px; display:block; }}
-  h2 {{ font-size:20px; font-weight:700; color:#7E8D9E; margin:38px 0 14px;
-        letter-spacing:-.02em; }}
-  .row {{ display:flex; justify-content:space-between; padding:13px 0;
-          border-bottom:1px solid #26333F; font-size:17px; letter-spacing:-.02em; }}
-  .row b {{ font-weight:700; }}
-  .up {{ color:#FF4D42; }} .down {{ color:#4C8DFF; }} .flat {{ color:#7E8D9E; }}
-  p {{ font-size:17px; line-height:1.7; color:#B9C5D2; letter-spacing:-.02em; }}
-  li {{ font-size:17px; line-height:1.75; letter-spacing:-.02em; }}
-  footer {{ margin-top:44px; font-size:14px; color:#5E6C7C; line-height:1.7; }}
+  body{{margin:0;background:#05070D;color:#F2F6FC;font-family:Pretendard,"Noto Sans KR",sans-serif;font-variant-numeric:tabular-nums}}
+  .wrap{{max-width:720px;margin:0 auto;padding:28px 22px 72px}}
+  .cards{{display:flex;flex-direction:column;gap:14px}}
+  img{{width:100%;border-radius:14px;display:block}}
+  h2{{font-size:20px;font-weight:800;margin:40px 0 14px;letter-spacing:-.03em}}
+  .row{{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #1C2840;font-size:17px}}
+  .n{{font-family:'IBM Plex Mono',monospace;font-weight:600}}
+  .up{{color:#FF4D3D}}.dn{{color:#3D8BFF}}.fl{{color:#94A3BC}}
+  p{{font-size:17px;line-height:1.75;color:#94A3BC}}
+  li{{font-size:17px;line-height:1.8}}
+  footer{{margin-top:44px;font-size:13px;color:#5A6B87;line-height:1.7}}
 </style></head><body><div class="wrap">
 <div class="cards">{card_imgs}</div>
-<h2>어젯밤 미국장</h2>
-{issues}
-<h2>지수</h2>
-{quotes}
-{korea_section}
-{movers_section}
-<h2>오늘 볼 것</h2>
-<ul>{watch}</ul>
-<footer>자동 생성된 개인용 시황 정리입니다. 투자 판단의 근거로 삼기 위한 자료가 아니며,
-어떤 종목의 매수·매도도 권유하지 않습니다.</footer>
+<h2>{headline}</h2>
+<p>{macro_line}</p>
+{facts}
+<h2>펀더멘털</h2>
+{val_rows}
+<p>{fundamental_note}</p>
+<h2>밸류체인</h2>
+{chain_rows}
+<p>{chain_note}</p>
+<h2>월가 시각</h2>
+<p>{wallst_note}</p>
+<h2>리스크</h2>
+<ul>{risks}</ul>
+<h2>3줄 요약</h2>
+<ul>{summary3}</ul>
+<footer>본 콘텐츠는 공개된 시장 데이터를 자동 정리한 투자 참고용 자료입니다.
+특정 종목의 매수·매도를 권유하지 않으며, 투자 결과에 대한 책임은 본인에게 있습니다.</footer>
 </div></body></html>"""
 
 
 def render_detail_page(data: dict, summary: dict, slug: str) -> str:
     e = html.escape
-    korea = data.get("korea", {})
+    focus = data.get("focus", {})
+    ctx = _template_context(data, summary)
 
     card_imgs = "".join(
-        f'<img src="cards/{slug}-{n}.jpg" alt="{e(data["date_kr"])} 시황 카드 {n}">'
-        for n in range(1, CARD_COUNT + 1)
+        f'<img src="cards/{slug}-{n}.jpg" alt="브리핑 {n}">' for n in range(1, CARD_COUNT + 1)
     )
-
-    issues = "".join(
-        f"<p><b>{e(i['title'])}</b><br>{e(i['detail'])}</p>" for i in summary["us_issues"]
+    facts = "".join(f"<p>{e(t)}</p>" for t in summary.get("facts", []))
+    val_rows = "".join(
+        f'<div class="row"><span>{e(c["k"])}</span><span class="n">{e(c["v"])}</span></div>'
+        for c in ctx["val_cells"]
     )
-    quotes = "".join(
-        f'<div class="row"><span>{e(r["label"])}</span>'
-        f'<span class="{r["cls"]}"><b>{r["fmt_last"]}</b>  {r["fmt_pct"]}</span></div>'
-        for r in _decorate(data["us"]["indices"] + data["us"]["macro"])
+    chain_rows = "".join(
+        f'<div class="row"><span>{e(c["ticker"])} · {e(c["relation"])}</span>'
+        f'<span class="n {c["cls"]}">{c["fmt_pct"]}</span></div>'
+        for c in ctx["chain"]
     )
-
-    korea_rows = _korea_indices(korea)
-    flow_rows = _decorate_flow(korea.get("수급", {}))
-    korea_section = ""
-    if korea_rows or flow_rows:
-        idx_html = "".join(
-            f'<div class="row"><span>{e(r["label"])}</span>'
-            f'<span class="{r["cls"]}"><b>{r["fmt_last"]}</b>  {r["fmt_pct"]}</span></div>'
-            for r in korea_rows
-        )
-        flow_html = "".join(
-            f'<div class="row"><span>{e(r["label"])} 순매수</span>'
-            f'<span class="{r["cls"]}"><b>{r["fmt"]}</b></span></div>'
-            for r in flow_rows
-        )
-        korea_section = f"<h2>전일 국내증시</h2>{idx_html}{flow_html}"
-
-    up = _decorate(data["us"]["top_gainers"][:3])
-    down = _decorate(data["us"]["top_losers"][:3])
-    movers_section = ""
-    if up or down:
-        rows = "".join(
-            f'<div class="row"><span>{e(r["ticker"])}</span>'
-            f'<span class="{r["cls"]}"><b>{r["fmt_pct"]}</b></span></div>'
-            for r in up + down
-        )
-        movers_section = f"<h2>특징주</h2>{rows}"
-
-    watch = "".join(f"<li>{e(w)}</li>" for w in summary["watch"]) or "<li>특이 일정 없음</li>"
+    risks = "".join(f"<li>{e(r)}</li>" for r in summary.get("risks", [])) or "<li>—</li>"
+    summary3 = "".join(f"<li>{e(t)}</li>" for t in summary.get("summary3", [])) or "<li>—</li>"
 
     page = DETAIL_TPL.format(
         date=data["date_kr"],
-        slug=slug,
+        ticker=e(focus.get("ticker", "")),
         card_imgs=card_imgs,
-        issues=issues,
-        quotes=quotes,
-        korea_section=korea_section,
-        movers_section=movers_section,
-        watch=watch,
+        headline=e(summary.get("hook_headline", "")),
+        macro_line=e(summary.get("macro_line", "")),
+        facts=facts,
+        val_rows=val_rows,
+        fundamental_note=e(summary.get("fundamental_note", "")),
+        chain_rows=chain_rows,
+        chain_note=e(summary.get("chain_note", "")),
+        wallst_note=e(summary.get("wallst_note", "")),
+        risks=risks,
+        summary3=summary3,
     )
     docs = Path(cfg.DOCS_DIR)
     docs.mkdir(parents=True, exist_ok=True)
     (docs / f"{slug}.html").write_text(page, encoding="utf-8")
-    (docs / "index.html").write_text(page, encoding="utf-8")  # 최신본
+    (docs / "index.html").write_text(page, encoding="utf-8")
+    (docs / "cards").mkdir(parents=True, exist_ok=True)
     return str(docs / f"{slug}.html")

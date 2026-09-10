@@ -3,281 +3,383 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <style>
-  :root {
-    --ground: #0B1220;
-    --ground-2: #101B30;
-    --rule: #223350;
-    --ink: #EDF2F7;
-    --muted: #7C8BA1;
-    --up: #FF5A4E;
-    --down: #4F8FFF;
-    --flat: #7C8BA1;
-    --accent: #F5C445;
-    --mono: 'IBM Plex Mono', ui-monospace, monospace;
-    --sans: Pretendard, "Noto Sans CJK KR", "Noto Sans KR", sans-serif;
+  :root{
+    --bg:#0F172A; --bg2:#152238; --line:#25334D; --line2:#35486B;
+    --tx:#FFFFFF; --tx2:#94A3B8; --tx3:#64748B;
+    --up:#EF4444; --dn:#3B82F6; --fl:#94A3B8; --hl:#FACC15;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --sans:Pretendard,"Noto Sans CJK KR","Noto Sans KR",sans-serif;
+
+    /* 4면 안전지대: 가로 104px(9.6%), 세로 100px */
+    --pad-x:104px; --pad-y:100px;
+
+    /* 2배 법칙 타이포 스케일 */
+    --f-hero:150px; --f-h1:56px; --f-h2:32px; --f-body:24px; --f-cap:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px}
+  body{
+    position:relative;background:var(--bg);color:var(--tx);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+    display:flex;flex-direction:column;
+    padding:var(--pad-y) var(--pad-x);overflow:hidden;
+  }
+  body::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:radial-gradient(820px 560px at 88% -12%,rgba(59,130,246,.13),transparent 60%),
+               linear-gradient(180deg,var(--bg2) 0%,var(--bg) 55%);
+  }
+  body>*{position:relative;z-index:1}
+  .up{color:var(--up)}.dn{color:var(--dn)}.fl{color:var(--fl)}
+  .mono{font-family:var(--mono)}
+  .c1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .c2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .c3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* ── 스와이프 유도: 1~4p 우하단 화살표 ─────── */
+  .swipe{
+    position:absolute;right:var(--pad-x);bottom:52px;z-index:3;
+    display:flex;align-items:center;gap:11px;
+    font-size:19px;font-weight:700;color:var(--tx3);letter-spacing:-.01em;
+  }
+  .swipe .arw{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--hl);color:#1A1400;
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:900;line-height:1;
+  }
+  /* 화면 분할 컷: 우측 끝에 걸치는 링 */
+  .bleed{position:absolute;z-index:0;border-radius:50%;border:2px solid rgba(250,204,21,.16)}
+
+  /* ── 상단 크롬 ─────────────────────────── */
+  .rail{display:flex;gap:6px}
+  .rail i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+  .rail i.on{background:var(--hl)}
+  .meta{margin-top:16px;display:flex;justify-content:space-between;align-items:baseline;
+        font-size:var(--f-cap);color:var(--tx3)}
+  .meta .d{font-family:var(--mono);color:var(--tx2)}
+
+  .h1{margin-top:34px;font-size:var(--f-h1);font-weight:900;letter-spacing:-.04em;line-height:1.1}
+  .h2sub{margin-top:10px;font-size:var(--f-cap);font-weight:500;color:var(--tx3);letter-spacing:-.01em}
+
+  /* ══ P1: 3-Zone (20 / 60 / 20) ══════════ */
+  .z1{height:20%;display:flex;flex-direction:column;justify-content:flex-start}
+  .z2{height:60%;display:flex;flex-direction:column;justify-content:center}
+  .z3{height:20%;display:flex;flex-direction:column;justify-content:flex-end}
+
+  .cat{
+    display:inline-flex;align-self:flex-start;align-items:center;gap:10px;
+    margin-top:28px;padding:11px 20px;border-radius:8px;
+    background:var(--hl);color:#1A1400;
+    font-size:22px;font-weight:900;letter-spacing:-.01em;
+  }
+  .cat .dot{width:8px;height:8px;border-radius:50%;background:#1A1400}
+
+  .hero{display:flex;align-items:baseline;gap:20px}
+  .hero .pc{font-family:var(--mono);font-size:var(--f-hero);font-weight:700;
+             line-height:.86;letter-spacing:-.055em}
+  .hero .ar{font-size:64px;line-height:1;font-weight:700}
+  .tk{margin-top:22px;display:flex;align-items:center;gap:16px}
+  .tk .sym{font-family:var(--mono);font-size:44px;font-weight:700;letter-spacing:-.03em}
+  .tk .nm{font-size:var(--f-h2);font-weight:500;color:var(--tx2);letter-spacing:-.02em;
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hook{
+    margin-top:34px;font-size:52px;font-weight:900;line-height:1.3;letter-spacing:-.04em;
+  }
+  .hook .mk{
+    background:var(--hl);color:#1A1400;
+    padding:2px 12px;border-radius:6px;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  }
+  .oneline{margin-top:26px;font-size:var(--f-h2);font-weight:700;color:var(--hl);letter-spacing:-.03em}
+
+  .badges{display:flex;gap:10px}
+  .badge{
+    flex:1;background:rgba(255,255,255,.05);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;
+  }
+  .badge .k{font-size:15px;color:var(--tx3);font-weight:500}
+  .badge .v{margin-top:6px;font-family:var(--mono);font-size:26px;font-weight:700}
+
+  /* ══ 공통 데이터 행 ═══════════════════════ */
+  .rows{margin-top:22px}
+  .row{display:flex;align-items:center;gap:18px;padding:19px 0;border-bottom:1px solid var(--line)}
+  .row:first-child{border-top:1px solid var(--line)}
+  .row .nm{flex:0 0 200px;font-size:var(--f-body);font-weight:700;letter-spacing:-.02em}
+  .row .sp{flex:1;height:26px;opacity:.8}
+  .row .vl{flex:0 0 150px;text-align:right;font-family:var(--mono);font-size:28px;font-weight:600}
+  .row .dt{flex:0 0 128px;text-align:right;font-family:var(--mono);font-size:21px;font-weight:700}
+
+  .note{
+    margin-top:26px;padding:22px 24px;border-radius:14px;
+    background:rgba(255,255,255,.04);border-left:4px solid var(--hl);
+    font-size:var(--f-body);line-height:1.6;font-weight:500;letter-spacing:-.018em;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 1080px; height: 1350px; }
+  /* ── P2 ─────────────────────────────── */
+  .sec{margin-top:22px}
+  .sec .r{display:flex;align-items:center;gap:14px;padding:9px 0}
+  .sec .k{flex:0 0 132px;font-size:21px;font-weight:600;letter-spacing:-.02em}
+  .sec .t{flex:1;position:relative;height:18px}
+  .sec .t::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line2)}
+  .sec .b{position:absolute;top:3px;height:12px;border-radius:3px}
+  .sec .b.up{left:50%;background:linear-gradient(90deg,rgba(239,68,68,.5),var(--up))}
+  .sec .b.dn{right:50%;background:linear-gradient(270deg,rgba(59,130,246,.5),var(--dn))}
+  .sec .v{flex:0 0 104px;text-align:right;font-family:var(--mono);font-size:19px;font-weight:700}
 
-  body {
-    position: relative;
-    background: linear-gradient(180deg, var(--ground) 0%, var(--ground-2) 100%);
-    color: var(--ink);
-    font-family: var(--sans);
-    -webkit-font-smoothing: antialiased;
-    font-variant-numeric: tabular-nums;
-    display: flex;
-    flex-direction: column;
-    padding: 54px 64px 46px;
-    overflow: hidden;
-  }
+  .drv{margin-top:26px;padding:24px 26px;border-radius:14px;
+       background:rgba(250,204,21,.10);border:1px solid rgba(250,204,21,.3)}
+  .drv .k{font-size:16px;font-weight:800;color:var(--hl);letter-spacing:.02em}
+  .drv .v{margin-top:9px;font-size:38px;font-weight:900;letter-spacing:-.035em;line-height:1.2}
 
-  .up   { color: var(--up); }
-  .down { color: var(--down); }
-  .flat { color: var(--flat); }
-  .mono { font-family: var(--mono); }
+  .facts{margin-top:24px}
+  .fct{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+  .fct .n{flex:0 0 auto;font-family:var(--mono);font-size:17px;font-weight:700;color:var(--hl);padding-top:4px}
+  .fct .t{font-size:var(--f-body);line-height:1.45;font-weight:500;letter-spacing:-.02em}
 
-  .clamp-1 { display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
-  .clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  /* ── P3 ─────────────────────────────── */
+  .eps{margin-top:24px;display:flex;gap:12px}
+  .eps .box{flex:1;border-radius:14px;padding:20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .eps .box.on{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.36)}
+  .eps .box.off{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.36)}
+  .eps .k{font-size:15px;color:var(--tx3);font-weight:500}
+  .eps .v{margin-top:7px;font-family:var(--mono);font-size:32px;font-weight:700}
+  .val{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .val .cell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:15px 16px}
+  .val .k{font-size:14px;color:var(--tx3)}
+  .val .v{margin-top:5px;font-family:var(--mono);font-size:25px;font-weight:700}
+  .revbar{margin-top:24px;display:flex;align-items:flex-end;gap:14px;height:116px}
+  .revbar .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+  .revbar .bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--hl),rgba(250,204,21,.3))}
+  .revbar .lb{margin-top:9px;font-family:var(--mono);font-size:14px;color:var(--tx3)}
+  .w52{margin-top:24px}
+  .w52 .tr{position:relative;height:8px;border-radius:4px;background:var(--line)}
+  .w52 .fl2{position:absolute;left:0;top:0;bottom:0;border-radius:4px;
+            background:linear-gradient(90deg,rgba(59,130,246,.4),var(--hl))}
+  .w52 .pn{position:absolute;top:-6px;width:4px;height:20px;border-radius:2px;background:var(--tx)}
+  .w52 .sc{margin-top:10px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;color:var(--tx3)}
+  .peer{margin-top:24px}
+  .peer .hd{display:flex;padding:10px 0;border-bottom:1px solid var(--line2);font-size:15px;color:var(--tx3);font-weight:700}
+  .peer .tr{display:flex;padding:13px 0;border-bottom:1px solid var(--line);font-size:22px}
+  .peer .tr.me{background:rgba(250,204,21,.08)}
+  .peer .c-t{flex:0 0 168px;font-family:var(--mono);font-weight:700;padding-left:10px}
+  .peer .c-n{flex:1;text-align:right;font-family:var(--mono)}
 
-  /* ── 공통 상단 크롬: 진행바 + 날짜/브랜드 ─────── */
-  .progress { display: flex; gap: 6px; position: relative; z-index: 2; }
-  .progress .seg { flex: 1; height: 4px; border-radius: 2px; background: var(--rule); }
-  .progress .seg.on { background: var(--accent); }
+  /* ── P4 ─────────────────────────────── */
+  .chain{margin-top:22px}
+  .chain .it{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .chain .tk2{flex:0 0 120px;font-family:var(--mono);font-size:24px;font-weight:700}
+  .chain .rl{flex:1;font-size:20px;color:var(--tx2);letter-spacing:-.015em}
+  .chain .pc{flex:0 0 128px;text-align:right;font-family:var(--mono);font-size:22px;font-weight:700}
+  .tgt{margin-top:26px;padding:24px 26px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .tgt .top{display:flex;justify-content:space-between;align-items:baseline}
+  .tgt .k{font-size:17px;color:var(--tx3);font-weight:500}
+  .tgt .v{font-family:var(--mono);font-size:40px;font-weight:700;color:var(--hl)}
+  .tgt .track{margin-top:18px;position:relative;height:10px;border-radius:5px;background:var(--line)}
+  .tgt .fill{position:absolute;left:0;top:0;bottom:0;border-radius:5px;
+             background:linear-gradient(90deg,rgba(250,204,21,.35),var(--hl))}
+  .tgt .pin{position:absolute;top:-6px;width:4px;height:22px;border-radius:2px;background:var(--tx)}
+  .tgt .scale{margin-top:11px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;color:var(--tx3)}
+  .acts{margin-top:20px}
+  .acts .a{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .acts .fm{flex:1;font-size:20px;font-weight:700;letter-spacing:-.02em}
+  .acts .gr{font-family:var(--mono);font-size:17px;color:var(--tx2)}
+  .risks{margin-top:24px}
+  .risks .r{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .risks .ic{flex:0 0 auto;width:24px;height:24px;border-radius:6px;
+             background:rgba(59,130,246,.18);border:1px solid rgba(59,130,246,.45);
+             color:var(--dn);font-size:14px;font-weight:900;
+             display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .risks .t{font-size:21px;line-height:1.45;letter-spacing:-.015em}
 
-  .chrome-meta {
-    margin-top: 16px; display: flex; justify-content: space-between; align-items: baseline;
-    font-size: 19px; color: var(--muted); letter-spacing: -0.01em; position: relative; z-index: 2;
-  }
-  .chrome-meta .date { font-weight: 700; color: var(--ink); }
-
-  .card-head {
-    margin-top: 36px; display: flex; align-items: center; gap: 12px;
-    font-size: 28px; font-weight: 800; color: var(--ink); letter-spacing: -0.025em;
-    position: relative; z-index: 2;
-  }
-  .card-head::before { content: ""; width: 5px; height: 26px; border-radius: 2px; background: var(--accent); }
-
-  .asof {
-    margin-top: 8px; font-size: 18px; font-weight: 500; color: #57677E;
-    letter-spacing: -0.01em; position: relative; z-index: 2;
-  }
-
-  /* ── 카드 1: 표지 ───────────────────────────── */
-  .cover-chart { position: absolute; left: 0; right: 0; top: 150px; height: 620px; z-index: 0; }
-  .cover { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .cover-lede { font-size: 26px; font-weight: 600; color: var(--muted); letter-spacing: -0.015em; }
-  .cover-direction { margin-top: 10px; font-size: 132px; font-weight: 900; line-height: 0.94; letter-spacing: -0.04em; }
-  .cover-suffix { margin-top: 4px; font-size: 42px; font-weight: 800; color: var(--muted); letter-spacing: -0.02em; }
-  .cover-headline { margin-top: 24px; font-size: 45px; font-weight: 700; line-height: 1.26; letter-spacing: -0.03em; }
-  .cover-reason { margin-top: 18px; font-size: 27px; font-weight: 400; line-height: 1.55; color: var(--muted); max-width: 900px; letter-spacing: -0.015em; }
-
-  /* ── 티커 로우 (지수·매크로 공용) ──────────────── */
-  .ticker { margin-top: 18px; border-top: 1px solid var(--rule); position: relative; z-index: 2; }
-  .ticker-row {
-    display: flex; align-items: baseline; justify-content: space-between;
-    padding: 22px 0; border-bottom: 1px solid var(--rule);
-  }
-  .ticker-row .name { font-size: 25px; font-weight: 600; letter-spacing: -0.015em; }
-  .ticker-row .nums { display: flex; align-items: baseline; gap: 20px; }
-  .ticker-row .val { font-family: var(--mono); font-size: 36px; font-weight: 600; letter-spacing: -0.01em; }
-  .ticker-row .delta { font-family: var(--mono); font-size: 23px; font-weight: 600; min-width: 108px; text-align: right; }
-
-  .pull {
-    margin-top: 30px; padding-left: 22px; border-left: 3px solid var(--accent);
-    font-size: 26px; line-height: 1.55; font-weight: 500; letter-spacing: -0.015em;
-    position: relative; z-index: 2;
-  }
-
-  /* ── 카드 3: 미국장 이슈 (고스트 넘버) ────────── */
-  .issue-block { position: relative; padding-left: 84px; margin-top: 44px; z-index: 2; }
-  .issue-block:first-of-type { margin-top: 40px; }
-  .ghost-num {
-    position: absolute; left: -8px; top: -22px; font-family: var(--mono);
-    font-size: 100px; font-weight: 700; line-height: 1; color: transparent;
-    -webkit-text-stroke: 1.5px var(--rule); z-index: 0;
-  }
-  .issue-title { position: relative; font-size: 32px; font-weight: 800; line-height: 1.28; letter-spacing: -0.025em; }
-  .issue-detail { position: relative; margin-top: 9px; font-size: 24px; line-height: 1.5; color: var(--muted); letter-spacing: -0.012em; }
-
-  /* ── 카드 4: 수급 다이버징 바 ───────────────── */
-  .flow { margin-top: 34px; position: relative; z-index: 2; }
-  .flow-row { display: flex; align-items: center; gap: 16px; margin-top: 16px; }
-  .flow-row:first-child { margin-top: 0; }
-  .flow-row .k { flex: 0 0 64px; font-size: 20px; font-weight: 600; color: var(--muted); }
-  .flow-track { flex: 1; position: relative; height: 24px; }
-  .flow-track::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--rule); }
-  .flow-bar { position: absolute; top: 3px; height: 18px; border-radius: 3px; }
-  .flow-bar.up { left: 50%; background: var(--up); }
-  .flow-bar.down { right: 50%; background: var(--down); }
-  .flow-row .v { flex: 0 0 118px; text-align: right; font-family: var(--mono); font-size: 22px; font-weight: 700; }
-
-  .movers { margin-top: 36px; position: relative; z-index: 2; }
-  .movers-grid { display: flex; gap: 26px; }
-  .movers-col { flex: 1; }
-  .movers-col .cap { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
-  .movers-item {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 10px 0; border-bottom: 1px solid var(--rule); font-family: var(--mono);
-  }
-  .movers-item .t { font-size: 23px; font-weight: 600; color: var(--ink); }
-  .movers-item .p { font-size: 22px; font-weight: 700; }
-
-  /* ── 카드 5: 오늘 볼 것 · 마무리 ──────────────── */
-  .watch { margin-top: 8px; position: relative; z-index: 2; }
-  .watch-row { display: flex; align-items: center; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--rule); }
-  .watch-row .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
-  .watch-row .t { font-size: 24px; font-weight: 500; letter-spacing: -0.015em; }
-
-  .disclaimer {
-    margin-top: auto; padding-top: 20px; border-top: 1px solid var(--rule);
-    font-size: 15px; line-height: 1.6; color: #57677E; letter-spacing: -0.01em;
-    position: relative; z-index: 2;
-  }
+  /* ── P5 ─────────────────────────────── */
+  .sum{margin-top:24px}
+  .sum .s{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .sum .n{flex:0 0 40px;height:40px;border-radius:11px;background:var(--hl);color:#1A1400;
+          font-family:var(--mono);font-size:19px;font-weight:900;
+          display:flex;align-items:center;justify-content:center}
+  .sum .t{font-size:26px;line-height:1.4;font-weight:600;letter-spacing:-.025em;padding-top:5px}
+  .krbox{margin-top:24px;padding:20px 22px;border-radius:13px;
+         background:rgba(59,130,246,.11);border:1px solid rgba(59,130,246,.3)}
+  .krbox .k{font-size:15px;font-weight:800;color:var(--dn)}
+  .krbox .v{margin-top:8px;font-size:22px;line-height:1.5;letter-spacing:-.018em}
+  .qbox{margin-top:24px;padding:26px;border-radius:14px;
+        background:rgba(250,204,21,.11);border:1px solid rgba(250,204,21,.32);text-align:center}
+  .qbox .q{font-size:28px;font-weight:800;line-height:1.35;letter-spacing:-.03em}
+  .qbox .sm{margin-top:10px;font-size:17px;color:var(--tx2)}
+  .cta{margin-top:18px;display:flex;gap:12px}
+  .cta .b{flex:1;padding:19px;border-radius:13px;text-align:center;font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .cta .b.save{background:var(--hl);color:#1A1400}
+  .cta .b.share{background:rgba(255,255,255,.07);border:1px solid var(--line2);color:var(--tx)}
+  .disc{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);
+        display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+  .disc .t{font-size:13px;line-height:1.55;color:var(--tx3)}
+  .disc .b{font-family:var(--mono);font-size:14px;color:var(--tx3);white-space:nowrap}
 </style>
 </head>
 <body>
 
-  <div class="progress">
-    {% for n in range(1, 6) %}<div class="seg {{ 'on' if n <= card_num else '' }}"></div>{% endfor %}
-  </div>
-  <div class="chrome-meta">
-    <span class="date">{{ date_kr }} ({{ weekday_kr }})</span>
-    <span>조간 브리핑</span>
-  </div>
+{% if card_num == 1 %}
+<div class="bleed" style="width:520px;height:520px;right:-260px;top:52%"></div>
+<div class="bleed" style="width:760px;height:760px;right:-380px;top:44%"></div>
+{% endif %}
 
-  {% if card_num == 1 %}
-  <svg class="cover-chart" viewBox="0 0 1080 620" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="gUp" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#FF5A4E" stop-opacity="0.24"/>
-        <stop offset="100%" stop-color="#FF5A4E" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="gDown" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#4F8FFF" stop-opacity="0.24"/>
-        <stop offset="100%" stop-color="#4F8FFF" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="gFlat" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#7C8BA1" stop-opacity="0.18"/>
-        <stop offset="100%" stop-color="#7C8BA1" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    {% if dir_class == 'up' %}
-    <path d="M0,460 L140,430 L220,462 L320,378 L420,402 L540,296 L640,332 L760,214 L860,250 L980,132 L1080,158 L1080,620 L0,620 Z" fill="url(#gUp)"/>
-    <polyline points="0,460 140,430 220,462 320,378 420,402 540,296 640,332 760,214 860,250 980,132 1080,158" fill="none" stroke="#FF5A4E" stroke-width="3" stroke-opacity="0.4" stroke-linejoin="round"/>
-    {% elif dir_class == 'down' %}
-    <path d="M0,150 L140,180 L220,148 L320,232 L420,208 L540,314 L640,278 L760,396 L860,360 L980,478 L1080,452 L1080,620 L0,620 Z" fill="url(#gDown)"/>
-    <polyline points="0,150 140,180 220,148 320,232 420,208 540,314 640,278 760,396 860,360 980,478 1080,452" fill="none" stroke="#4F8FFF" stroke-width="3" stroke-opacity="0.4" stroke-linejoin="round"/>
-    {% else %}
-    <path d="M0,300 L140,278 L220,320 L320,286 L420,312 L540,268 L640,300 L760,278 L860,312 L980,288 L1080,300 L1080,620 L0,620 Z" fill="url(#gFlat)"/>
-    <polyline points="0,300 140,278 220,320 320,286 420,312 540,268 640,300 760,278 860,312 980,288 1080,300" fill="none" stroke="#7C8BA1" stroke-width="3" stroke-opacity="0.35" stroke-linejoin="round"/>
-    {% endif %}
-  </svg>
-  <div class="cover">
-    <div class="cover-lede">오늘 코스피 개장 전망</div>
-    <div class="cover-direction {{ dir_class }}">{{ s.kr_direction }}</div>
-    <div class="cover-suffix">출발 전망</div>
-    <div class="cover-headline clamp-2">{{ s.kr_headline }}</div>
-    <div class="cover-reason clamp-3">{{ s.kr_reason }}</div>
-  </div>
+<div class="rail">{% for n in range(1,6) %}<i class="{{ 'on' if n<=card_num else '' }}"></i>{% endfor %}</div>
+<div class="meta"><span class="d">{{ date_kr }} {{ weekday_kr }}</span><span>{{ card_label }}</span></div>
 
-  {% elif card_num == 2 %}
-  <div class="card-head">어젯밤 미국 지수</div>
-  <div class="asof">간밤 뉴욕증시 종가 기준</div>
-  <div class="ticker">
-    {% for i in indices %}
-    <div class="ticker-row">
-      <span class="name">{{ i.label }}</span>
-      <span class="nums">
-        <span class="val">{{ i.fmt_last }}</span>
-        <span class="delta {{ i.cls }}">{{ i.fmt_pct }}</span>
-      </span>
-    </div>
+{# ══ P1: 3-Zone ═══════════════════════════ #}
+{% if card_num==1 %}
+<div class="z1">
+  <div class="cat"><span class="dot"></span>미국주식 ISSUE</div>
+</div>
+<div class="z2">
+  <div class="hero">
+    <span class="pc {{ f.cls }}">{{ f.fmt_pct }}</span>
+    <span class="ar {{ f.cls }}">{{ f.arrow }}</span>
+  </div>
+  <div class="tk">
+    <span class="sym">{{ f.ticker }}</span>
+    <span class="nm">{{ f.name }}</span>
+  </div>
+  <div class="hook c3">{% for p in hook_parts %}{% if p.hl %}<span class="mk">{{ p.t }}</span>{% else %}{{ p.t }}{% endif %}{% endfor %}</div>
+  {% if s.hook_oneline %}<div class="oneline c1">{{ s.hook_oneline }}</div>{% endif %}
+</div>
+<div class="z3">
+  <div class="badges">
+    {% for c in p1_chips %}
+    <div class="badge"><div class="k">{{ c.label }}</div><div class="v {{ c.cls }}">{{ c.val }}</div></div>
     {% endfor %}
   </div>
-  {% if s.us_summary_line %}
-  <div class="pull clamp-3">{{ s.us_summary_line }}</div>
-  {% endif %}
+</div>
 
-  {% elif card_num == 3 %}
-  <div class="card-head">어젯밤 미국장 핵심 이슈</div>
-  {% for it in s.us_issues %}
-  <div class="issue-block">
-    <div class="ghost-num">{{ loop.index }}</div>
-    <div class="issue-title clamp-2">{{ it.title }}</div>
-    <div class="issue-detail clamp-3">{{ it.detail }}</div>
+{# ══ P2 ═══════════════════════════════════ #}
+{% elif card_num==2 %}
+<div class="h1">돈은 어디로 움직였나</div>
+<div class="h2sub">간밤 섹터별 자금 흐름 · 뉴욕증시 마감 기준</div>
+{% if sectors %}
+<div class="sec">
+  {% for x in sectors %}
+  <div class="r">
+    <span class="k">{{ x.label }}</span>
+    <span class="t"><span class="b {{ x.cls }}" style="width:{{ x.bar }}%"></span></span>
+    <span class="v {{ x.cls }}">{{ x.fmt_pct }}</span>
   </div>
   {% endfor %}
+</div>
+{% endif %}
+{% if s.driver_title %}
+<div class="drv"><div class="k">핵심 드라이버</div><div class="v c2">{{ s.driver_title }}</div></div>
+{% endif %}
+{% if s.facts %}
+<div class="facts">
+  {% for t in s.facts %}<div class="fct"><span class="n">0{{ loop.index }}</span><span class="t c2">{{ t }}</span></div>{% endfor %}
+</div>
+{% endif %}
 
-  {% elif card_num == 4 %}
-  <div class="card-head">오늘 한국시장 체크</div>
-  {% if korea_idx %}
-  <div class="asof">전일 종가 기준 · 코스피는 오전 9시 개장</div>
-  <div class="ticker">
-    {% for i in korea_idx %}
-    <div class="ticker-row">
-      <span class="name">{{ i.label }}</span>
-      <span class="nums">
-        <span class="val">{{ i.fmt_last }}</span>
-        <span class="delta {{ i.cls }}">{{ i.fmt_pct }}</span>
-      </span>
-    </div>
-    {% endfor %}
+{# ══ P3 ═══════════════════════════════════ #}
+{% elif card_num==3 %}
+<div class="h1">숫자로 보는 {{ f.ticker }}</div>
+<div class="h2sub">직전 실적 · 밸류에이션 · 경쟁사 비교</div>
+{% if f.earnings and f.earnings.eps_act is not none %}
+<div class="eps">
+  <div class="box"><div class="k">컨센서스 EPS</div><div class="v">${{ f.earnings.eps_est }}</div></div>
+  <div class="box {{ 'on' if f.earnings.beat else 'off' }}"><div class="k">발표 EPS</div><div class="v">${{ f.earnings.eps_act }}</div></div>
+  <div class="box {{ 'on' if f.earnings.beat else 'off' }}">
+    <div class="k">{{ 'BEAT' if f.earnings.beat else 'MISS' }}</div>
+    <div class="v {{ 'up' if f.earnings.beat else 'dn' }}">{{ f.earnings.fmt_surprise }}</div>
   </div>
-  {% endif %}
-  {% if korea_flow %}
-  <div class="flow">
-    {% for f in korea_flow %}
-    <div class="flow-row">
-      <span class="k">{{ f.label }}</span>
-      <span class="flow-track"><span class="flow-bar {{ f.cls }}" style="width:{{ f.bar_pct }}%"></span></span>
-      <span class="v {{ f.cls }}">{{ f.fmt }}</span>
-    </div>
-    {% endfor %}
+</div>
+{% endif %}
+{% if val_cells %}
+<div class="val">{% for c in val_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
+{% endif %}
+{% if rev_bars %}
+<div class="revbar">{% for b in rev_bars %}<div class="b"><div class="bar" style="height:{{ b.h }}%"></div><div class="lb">{{ b.period }}</div></div>{% endfor %}</div>
+{% endif %}
+{% if w52.pos is not none and w52.low and w52.high %}
+<div class="w52">
+  <div class="tr"><div class="fl2" style="width:{{ w52.pos }}%"></div><div class="pn" style="left:{{ w52.pos }}%"></div></div>
+  <div class="sc"><span>52주 저 ${{ '%.0f'|format(w52.low) }}</span><span style="color:var(--tx2)">현재 {{ w52.pos }}% 지점</span><span>52주 고 ${{ '%.0f'|format(w52.high) }}</span></div>
+</div>
+{% endif %}
+{% if peers %}
+<div class="peer">
+  <div class="hd"><span class="c-t">경쟁사</span><span class="c-n">등락률</span><span class="c-n">PER</span><span class="c-n">시총</span></div>
+  {% for p in peers %}
+  <div class="tr {{ 'me' if p.is_me else '' }}">
+    <span class="c-t">{{ p.ticker }}</span>
+    <span class="c-n {{ p.cls }}">{{ p.fmt_pct }}</span>
+    <span class="c-n">{{ p.fmt_per }}</span>
+    <span class="c-n">{{ p.fmt_cap }}</span>
   </div>
-  {% endif %}
-  {% if movers_up or movers_down %}
-  <div class="movers">
-    <div class="card-head" style="margin-top:0; font-size:22px;">특징주 · 반도체·빅테크</div>
-    <div class="movers-grid">
-      <div class="movers-col">
-        <div class="cap up">상승</div>
-        {% for m in movers_up %}<div class="movers-item"><span class="t">{{ m.ticker }}</span><span class="p up">{{ m.fmt_pct }}</span></div>{% endfor %}
-      </div>
-      <div class="movers-col">
-        <div class="cap down">하락</div>
-        {% for m in movers_down %}<div class="movers-item"><span class="t">{{ m.ticker }}</span><span class="p down">{{ m.fmt_pct }}</span></div>{% endfor %}
-      </div>
-    </div>
-  </div>
-  {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
 
-  {% elif card_num == 5 %}
-  <div class="card-head">오늘의 체크포인트</div>
-  <div class="asof">전일 기준</div>
-  <div class="ticker">
-    {% for m in macro %}
-    <div class="ticker-row">
-      <span class="name">{{ m.label }}</span>
-      <span class="nums">
-        <span class="val">{{ m.fmt_last }}</span>
-        <span class="delta {{ m.cls }}">{{ m.fmt_pct }}</span>
-      </span>
-    </div>
-    {% endfor %}
+{# ══ P4 ═══════════════════════════════════ #}
+{% elif card_num==4 %}
+<div class="h1">그래서 어떻게 볼 것인가</div>
+<div class="h2sub">{{ chain_kind }} · 월가 목표주가 · 리스크</div>
+{% if chain %}
+<div class="chain">
+  {% for c in chain %}
+  <div class="it">
+    <span class="tk2">{{ c.ticker }}</span>
+    <span class="rl c1">{{ c.relation }}</span>
+    <span class="pc {{ c.cls }}">{{ c.fmt_pct }} {{ c.arrow }}</span>
   </div>
-  {% if s.watch %}
-  <div class="card-head" style="font-size:22px;">오늘 볼 일정</div>
-  <div class="watch">
-    {% for w in s.watch %}<div class="watch-row"><span class="dot"></span><span class="t">{{ w }}</span></div>{% endfor %}
+  {% endfor %}
+</div>
+{% endif %}
+{% if tgt %}
+<div class="tgt">
+  <div class="top">
+    <span class="k">월가 목표주가 평균{% if tgt.count %} · 애널리스트 {{ tgt.count }}명{% endif %}</span>
+    <span class="v">${{ tgt.mean }}</span>
   </div>
-  {% endif %}
-  <div class="disclaimer">자동 생성된 시황 정리입니다. 특정 종목의 매수·매도를 권유하지 않으며,<br>투자 판단과 책임은 본인에게 있습니다.</div>
-  {% endif %}
+  <div class="track"><div class="fill" style="width:{{ tgt.fill }}%"></div><div class="pin" style="left:{{ tgt.pin }}%"></div></div>
+  <div class="scale">
+    <span>${{ tgt.low }}</span>
+    <span style="color:var(--tx)">현재 ${{ tgt.cur }}{% if tgt.upside %} · 여력 {{ tgt.upside }}%{% endif %}</span>
+    <span>${{ tgt.high }}</span>
+  </div>
+</div>
+{% endif %}
+{% if actions %}
+<div class="acts">{% for a in actions %}<div class="a"><span class="fm c1">{{ a.firm }}</span><span class="gr {{ a.cls }}">{{ a.from }} → {{ a.to }}</span></div>{% endfor %}</div>
+{% endif %}
+{% if s.risks %}
+<div class="risks">{% for r in s.risks %}<div class="r"><span class="ic">!</span><span class="t c2">{{ r }}</span></div>{% endfor %}</div>
+{% endif %}
+
+{# ══ P5 ═══════════════════════════════════ #}
+{% elif card_num==5 %}
+<div class="h1">오늘의 3줄 요약</div>
+<div class="h2sub">바쁜 분들을 위한 핵심만</div>
+{% if s.summary3 %}
+<div class="sum">{% for t in s.summary3 %}<div class="s"><span class="n">{{ loop.index }}</span><span class="t c2">{{ t }}</span></div>{% endfor %}</div>
+{% endif %}
+{% if s.kr_line %}
+<div class="krbox"><div class="k">국내 증시 영향</div><div class="v c3">{{ s.kr_line }}</div></div>
+{% endif %}
+{% if s.cta_question %}
+<div class="qbox"><div class="q c2">{{ s.cta_question }}</div><div class="sm">댓글로 의견을 남겨주세요</div></div>
+{% endif %}
+<div class="cta">
+  <div class="b save">저장해두고 다시 보기</div>
+  <div class="b share">친구에게 공유하기</div>
+</div>
+<div class="disc">
+  <div class="t">본 콘텐츠는 공개된 시장 데이터를 자동 정리한 투자 참고용 자료입니다.<br>특정 종목의 매수·매도를 권유하지 않으며, 투자 결과에 대한 책임은 본인에게 있습니다.</div>
+  <div class="b">MORNING BRIEF</div>
+</div>
+{% endif %}
+
+{% if card_num < 5 %}
+<div class="swipe"><span>{{ '옆으로 넘겨보세요' if card_num == 1 else '' }}</span><span class="arw">&rsaquo;</span></div>
+{% endif %}
 
 </body>
 </html>
