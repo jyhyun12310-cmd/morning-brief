@@ -297,6 +297,65 @@ def _rvol_badge(focus: dict) -> dict | None:
     return {"val": f"{rv:.1f}x", "txt": txt, "tone": tone}
 
 
+def _pct100(v: float | None) -> str:
+    return f"{v * 100:.1f}%" if v is not None else "—"
+
+
+def _rsi_read(rsi: float | None) -> dict | None:
+    """RSI 수치를 색·해석과 함께. 70 이상 과매수, 30 이하 과매도가 표준 기준선입니다."""
+    if rsi is None:
+        return None
+    if rsi >= 70:
+        tone, txt = "up", "과매수"
+    elif rsi <= 30:
+        tone, txt = "dn", "과매도"
+    else:
+        tone, txt = "fl", "중립"
+    return {"val": f"{rsi:.0f}", "txt": txt, "tone": tone, "pct": round(min(rsi, 100), 1)}
+
+
+def _cross_read(cross: str | None) -> dict | None:
+    if not cross:
+        return None
+    if cross == "golden":
+        return {"txt": "골든크로스", "sub": "20일선이 50일선 위", "tone": "up"}
+    return {"txt": "데드크로스", "sub": "20일선이 50일선 아래", "tone": "dn"}
+
+
+def _smart_money_cells(sm: dict) -> list[dict]:
+    """기관 보유율·공매도·베타. 값이 있는 것만 표시합니다."""
+    if not sm:
+        return []
+    cells = []
+    if sm.get("inst_pct") is not None:
+        cells.append({"k": "기관 보유율", "v": _pct100(sm["inst_pct"])})
+    if sm.get("short_pct") is not None:
+        cells.append({"k": "공매도 비중", "v": _pct100(sm["short_pct"])})
+    if sm.get("short_ratio") is not None:
+        cells.append({"k": "숏커버 소요일", "v": f"{sm['short_ratio']:.1f}일"})
+    if sm.get("beta") is not None:
+        cells.append({"k": "베타", "v": f"{sm['beta']:.2f}"})
+    return cells
+
+
+def _rec_bars(dist: dict) -> list[dict]:
+    """애널리스트 매수/보유/매도 분포를 막대 폭으로. 목표주가 하나보다 훨씬 많은 정보를 줍니다."""
+    if not dist or not dist.get("total"):
+        return []
+    total = dist["total"]
+    order = [
+        ("강력매수", dist.get("strong_buy", 0), "up"),
+        ("매수", dist.get("buy", 0), "up"),
+        ("보유", dist.get("hold", 0), "fl"),
+        ("매도", dist.get("sell", 0), "dn"),
+        ("강력매도", dist.get("strong_sell", 0), "dn"),
+    ]
+    return [
+        {"label": lbl, "n": n, "pct": round(n / total * 100, 1), "cls": cls}
+        for lbl, n, cls in order if n > 0
+    ]
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -321,6 +380,11 @@ def _template_context(data: dict, summary: dict) -> dict:
         "sectors": _sector_rotation(data.get("sector_rotation", [])),
         "rvol": _rvol_badge(focus),
         "w52": focus.get("w52") or {},
+        "rsi": _rsi_read((focus.get("levels") or {}).get("rsi")),
+        "cross": _cross_read((focus.get("levels") or {}).get("cross")),
+        "smart_cells": _smart_money_cells(focus.get("smart_money") or {}),
+        "rec_bars": _rec_bars(focus.get("rec_dist") or {}),
+        "peer_avg_per": focus.get("peer_avg_per"),
         "runners": [
             {**r, "cls": _cls(r.get("pct")),
              "fmt_pct": f"{r['pct']:+.2f}%" if r.get("pct") is not None else "—"}

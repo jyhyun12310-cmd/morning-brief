@@ -314,6 +314,55 @@ def _levels(series_60: list[float], last: float) -> dict:
     }
 
 
+def _rsi(series: list[float], period: int = 14) -> float | None:
+    """14일 RSI. 70 이상 과매수, 30 이하 과매도로 봅니다."""
+    pts = [float(v) for v in (series or []) if v is not None]
+    if len(pts) < period + 1:
+        return None
+    deltas = [pts[i] - pts[i - 1] for i in range(1, len(pts))]
+    recent = deltas[-period:]
+    gains = [d for d in recent if d > 0]
+    losses = [-d for d in recent if d < 0]
+    avg_gain = sum(gains) / period
+    avg_loss = sum(losses) / period
+    if avg_loss == 0:
+        return 100.0
+    rs = avg_gain / avg_loss
+    return round(100 - 100 / (1 + rs), 1)
+
+
+def _smart_money(info: dict) -> dict:
+    """기관 보유율·공매도 비중·숏커버 소요일. 스마트머니 포지셔닝을 보여줍니다."""
+    return {
+        "inst_pct": _num(info.get("heldPercentInstitutions")),
+        "short_pct": _num(info.get("shortPercentOfFloat")),
+        "short_ratio": _num(info.get("shortRatio")),
+        "beta": _num(info.get("beta")),
+    }
+
+
+def _rec_distribution(tk: yf.Ticker) -> dict:
+    """애널리스트 매수/보유/매도 분포. 목표주가 평균 하나보다 훨씬 많은 정보를 줍니다."""
+    try:
+        df = tk.recommendations
+        if df is None or df.empty:
+            return {}
+        row = df[df["period"] == "0m"]
+        row = row.iloc[0] if not row.empty else df.iloc[0]
+        out = {
+            "strong_buy": int(row.get("strongBuy", 0) or 0),
+            "buy": int(row.get("buy", 0) or 0),
+            "hold": int(row.get("hold", 0) or 0),
+            "sell": int(row.get("sell", 0) or 0),
+            "strong_sell": int(row.get("strongSell", 0) or 0),
+        }
+        out["total"] = sum(out.values())
+        return out if out["total"] > 0 else {}
+    except Exception:
+        log.warning("추천 분포 없음")
+        return {}
+
+
 def _earnings(tk: yf.Ticker) -> dict:
     """직전 실적의 컨센서스 대비 Beat/Miss."""
     try:
@@ -435,7 +484,13 @@ def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
     focus["earnings"] = _earnings(tk)
     focus["revenue_history"] = _revenue_history(tk)
     focus["actions"] = _analyst_actions(tk)
-    focus["levels"] = _levels(quote.get("series_60"), quote.get("last", 0))
+    focus["rec_dist"] = _rec_distribution(tk)
+    focus["smart_money"] = _smart_money(info)
+    levels = _levels(quote.get("series_60"), quote.get("last", 0))
+    levels["rsi"] = _rsi(quote.get("series_60"))
+    if levels.get("ma20") and levels.get("ma50"):
+        levels["cross"] = "golden" if levels["ma20"] > levels["ma50"] else "death"
+    focus["levels"] = levels
 
     w52_hi, w52_lo = _num(info.get("fiftyTwoWeekHigh")), _num(info.get("fiftyTwoWeekLow"))
     focus["w52"] = {"high": w52_hi, "low": w52_lo}
@@ -563,12 +618,18 @@ def collect_all(history: list[dict] | None = None) -> dict:
     focus_q = fetch_quotes([top["ticker"]])
     quote = focus_q.get(top["ticker"], {"last": top["last"], "pct": top["pct"],
                                         "series": [], "series_60": []})
+    # peer_tickers 는 industry 조회가 필요해 focus 안에서 채워지므로,
+    # fetch_focus 가 끝난 뒤에 그 결과로 경쟁사 시세를 조회합니다.
     focus = fetch_focus(top["ticker"], quote, top)
 
     related = {t for t, _ in chain_pairs} | set(focus.get("peer_tickers", []))
     rel_q = fetch_quotes(sorted(related)) if related else {}
 
-    focus["peers"] = fetch_peers(focus.get("peer_tickers", [])[:4], rel_q)
+    peer_rows = fetch_peers(focus.get("peer_tickers", [])[:5], rel_q)
+    focus["_peer_raw"] = peer_rows
+    focus["peers"] = peer_rows
+    peer_pers = [p["per"] for p in peer_rows if p.get("per")]
+    focus["peer_avg_per"] = round(sum(peer_pers) / len(peer_pers), 1) if peer_pers else None
     if chain_pairs:
         focus["chain"] = [
             {"ticker": t, "relation": rel, "last": rel_q[t]["last"], "pct": rel_q[t]["pct"]}

@@ -140,6 +140,15 @@
   .fct .t{font-size:var(--f-body);line-height:1.45;font-weight:500;letter-spacing:-.02em}
 
   /* ── P3 ─────────────────────────────── */
+  .tech{margin-top:24px;display:flex;gap:12px}
+  .tech .box{flex:1;border-radius:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .tech .k{font-size:14px;color:var(--tx3);font-weight:500}
+  .tech .v{margin-top:8px;font-family:var(--mono);font-size:26px;font-weight:700}
+  .tech .sub{margin-top:4px;font-size:13px;color:var(--tx3)}
+  .tech .bar{margin-top:12px;position:relative;height:7px;border-radius:4px;background:var(--line)}
+  .tech .bar .f{position:absolute;top:0;bottom:0;border-radius:4px;background:var(--hl)}
+  .tech .bar .mk{position:absolute;top:-3px;width:2px;height:13px;background:var(--tx3)}
+  .smcap{margin-top:24px;font-size:15px;font-weight:700;color:var(--tx3);letter-spacing:.01em}
   .eps{margin-top:24px;display:flex;gap:12px}
   .eps .box{flex:1;border-radius:14px;padding:20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
   .eps .box.on{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.36)}
@@ -168,6 +177,12 @@
   .peer .c-n{flex:1;text-align:right;font-family:var(--mono)}
 
   /* ── P4 ─────────────────────────────── */
+  .recbar{margin-top:24px}
+  .recbar .r{display:flex;align-items:center;gap:14px;padding:8px 0}
+  .recbar .k{flex:0 0 80px;font-size:17px;font-weight:600}
+  .recbar .t{flex:1;height:16px;border-radius:5px;background:var(--line);position:relative;overflow:hidden}
+  .recbar .t .f{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
+  .recbar .n{flex:0 0 38px;text-align:right;font-family:var(--mono);font-size:17px;font-weight:700}
   .chain{margin-top:22px}
   .chain .it{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .chain .tk2{flex:0 0 120px;font-family:var(--mono);font-size:24px;font-weight:700}
@@ -298,15 +313,39 @@
 {% if rev_bars %}
 <div class="revbar">{% for b in rev_bars %}<div class="b"><div class="bar" style="height:{{ b.h }}%"></div><div class="lb">{{ b.period }}</div></div>{% endfor %}</div>
 {% endif %}
+{% if rsi or cross %}
+<div class="tech">
+  {% if rsi %}
+  <div class="box">
+    <div class="k">RSI (14일)</div>
+    <div class="v {{ rsi.tone }}">{{ rsi.val }} · {{ rsi.txt }}</div>
+    <div class="bar"><div class="f" style="width:{{ rsi.pct }}%"></div><div class="mk" style="left:30%"></div><div class="mk" style="left:70%"></div></div>
+  </div>
+  {% endif %}
+  {% if cross %}
+  <div class="box">
+    <div class="k">추세 신호 (20일선 vs 50일선)</div>
+    <div class="v {{ cross.tone }}">{{ cross.txt }}</div>
+    <div class="sub">{{ cross.sub }}</div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+{% if s.chart_note %}<div class="note c3">{{ s.chart_note }}</div>{% endif %}
 {% if w52.pos is not none and w52.low and w52.high %}
 <div class="w52">
   <div class="tr"><div class="fl2" style="width:{{ w52.pos }}%"></div><div class="pn" style="left:{{ w52.pos }}%"></div></div>
   <div class="sc"><span>52주 저 ${{ '%.0f'|format(w52.low) }}</span><span style="color:var(--tx2)">현재 {{ w52.pos }}% 지점</span><span>52주 고 ${{ '%.0f'|format(w52.high) }}</span></div>
 </div>
 {% endif %}
+{% if smart_cells %}
+<div class="smcap">스마트머니 포지셔닝</div>
+<div class="val">{% for c in smart_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
+{% if s.smart_money_note %}<div class="note c2">{{ s.smart_money_note }}</div>{% endif %}
+{% endif %}
 {% if peers %}
 <div class="peer">
-  <div class="hd"><span class="c-t">경쟁사</span><span class="c-n">등락률</span><span class="c-n">PER</span><span class="c-n">시총</span></div>
+  <div class="hd"><span class="c-t">경쟁사{% if peer_avg_per %} · 업종PER {{ peer_avg_per }}{% endif %}</span><span class="c-n">등락률</span><span class="c-n">PER</span><span class="c-n">시총</span></div>
   {% for p in peers %}
   <div class="tr {{ 'me' if p.is_me else '' }}">
     <span class="c-t">{{ p.ticker }}</span>
@@ -345,6 +384,17 @@
     <span style="color:var(--tx)">현재 ${{ tgt.cur }}{% if tgt.upside %} · 여력 {{ tgt.upside }}%{% endif %}</span>
     <span>${{ tgt.high }}</span>
   </div>
+</div>
+{% endif %}
+{% if rec_bars %}
+<div class="recbar">
+  {% for r in rec_bars %}
+  <div class="r">
+    <span class="k">{{ r.label }}</span>
+    <span class="t"><span class="f {{ r.cls }}" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
+    <span class="n">{{ r.n }}</span>
+  </div>
+  {% endfor %}
 </div>
 {% endif %}
 {% if actions %}
