@@ -19,10 +19,10 @@ CARD_COUNT = 5
 UP, DOWN, FLAT, GOLD = "#EF4444", "#3B82F6", "#94A3B8", "#FACC15"
 
 CARD_LABELS = {
-    1: "오늘의 종목",
-    2: "시장 맥락",
+    1: "어젯밤 키워드 주식",
+    2: "왜 지금 이 종목인가",
     3: "펀더멘털",
-    4: "인사이트",
+    4: "AI 전망",
     5: "요약",
 }
 
@@ -90,7 +90,7 @@ def _fmt_cap(v: float | None) -> str:
         return f"{v / 1e12:.2f}T"
     if v >= 1e9:
         return f"{v / 1e9:.0f}B"
-    return f"{v / 1e6:.0f}M"
+    return f"{v / 1e6:.1f}M"
 
 
 def _fmt_ratio(v: float | None, suffix: str = "") -> str:
@@ -108,6 +108,16 @@ def _spark(series: list[float], width: int = 120, height: int = 26) -> str:
         f"{i / (n - 1) * width:.1f},{height - pad - (v - lo) / span * (height - pad * 2):.1f}"
         for i, v in enumerate(pts)
     )
+
+
+def _cover_glow_chart(series: list[float], width: int = 1080, height: int = 300) -> dict | None:
+    """표지 배경에 깔 종목 자체의 60일 추세선. 마지막 점 좌표는 골드 글로우 점을 찍는 데 씁니다."""
+    pts_str = _spark(series, width=width, height=height)
+    if not pts_str:
+        return None
+    pts = pts_str.split()
+    last_x, last_y = pts[-1].split(",")
+    return {"points": pts_str, "last_x": last_x, "last_y": last_y}
 
 
 def _decorate(rows: list[dict]) -> list[dict]:
@@ -137,11 +147,7 @@ def _focus_ctx(focus: dict) -> dict:
     tk = focus.get("ticker", "")
     mark = {1: 62, 2: 58, 3: 50, 4: 40, 5: 33}.get(len(tk), 30)
 
-    e = dict(focus.get("earnings") or {})
-    if e.get("surprise") is not None:
-        e["fmt_surprise"] = f"{e['surprise']:+.1f}%"
-    elif e:
-        e["fmt_surprise"] = "—"
+    e = _earnings_read(focus.get("earnings") or {})
 
     return {
         **focus,
@@ -173,7 +179,7 @@ def _p1_chips(data: dict) -> list[dict]:
 
 
 def _val_cells(focus: dict) -> list[dict]:
-    """밸류에이션 4칸. 값이 없는 지표는 아예 넣지 않습니다."""
+    """밸류에이션 지표. 값이 없는 건 빼고, 있는 것 위주로 최대 6칸 채웁니다."""
     v = focus.get("valuation") or {}
     g = focus.get("growth") or {}
     cands = [
@@ -185,7 +191,7 @@ def _val_cells(focus: dict) -> list[dict]:
         ("매출성장", f"{g['revenue'] * 100:+.1f}%" if g.get("revenue") is not None else "—"),
         ("FCF", _fmt_cap(v.get("fcf"))),
     ]
-    return [{"k": k, "v": val} for k, val in cands if val != "—"][:4]
+    return [{"k": k, "v": val} for k, val in cands if val != "—"][:6]
 
 
 def _rev_bars(focus: dict) -> list[dict]:
@@ -250,9 +256,11 @@ def _target(focus: dict) -> dict | None:
 
 
 def _actions(focus: dict) -> list[dict]:
+    # outlook_note 가 P4에 새로 추가되면서 공간이 빠듯해져 2개로 줄입니다.
+    # 어차피 rec_dist(추천분포)가 전체 그림을 이미 보여주므로 최신 변경만으로 충분합니다.
     return [
         {**a, "cls": "up" if a["dir"] == "up" else "dn" if a["dir"] == "down" else "fl"}
-        for a in (focus.get("actions") or [])[:3]
+        for a in (focus.get("actions") or [])[:2]
     ]
 
 
@@ -302,16 +310,34 @@ def _pct100(v: float | None) -> str:
 
 
 def _rsi_read(rsi: float | None) -> dict | None:
-    """RSI 수치를 색·해석과 함께. 70 이상 과매수, 30 이하 과매도가 표준 기준선입니다."""
+    """RSI 수치를 색·해석과 함께.
+
+    과매수·과매도는 '상승/하락'이 아니라 '주의 신호'이므로 up/dn(빨강/파랑) 대신
+    hl(골드) 톤을 씁니다. 색이 매수 신호처럼 오독되는 걸 막기 위함입니다.
+    """
     if rsi is None:
         return None
     if rsi >= 70:
-        tone, txt = "up", "과매수"
+        tone, txt = "hl", "과매수"
     elif rsi <= 30:
-        tone, txt = "dn", "과매도"
+        tone, txt = "hl", "과매도"
     else:
         tone, txt = "fl", "중립"
     return {"val": f"{rsi:.0f}", "txt": txt, "tone": tone, "pct": round(min(rsi, 100), 1)}
+
+
+def _earnings_read(e: dict) -> dict:
+    """실적 히스토리를 카드용으로. dots 는 과거→최신 순 점 4개."""
+    if not e:
+        return {}
+    out = dict(e)
+    if e.get("surprise") is not None:
+        out["fmt_surprise"] = f"{e['surprise']:+.1f}%"
+    hist = e.get("history") or []
+    out["dots"] = [{"beat": b} for b in hist]
+    if e.get("streak"):
+        out["streak_txt"] = f"{e['streak']}분기 연속 서프라이즈"
+    return out
 
 
 def _cross_read(cross: str | None) -> dict | None:
@@ -356,6 +382,47 @@ def _rec_bars(dist: dict) -> list[dict]:
     ]
 
 
+def _insider_read(ins: dict) -> dict | None:
+    """내부자 매매를 카드용 문구로. 매수 우위/매도 우위를 톤으로 구분합니다."""
+    if not ins:
+        return None
+    net = ins.get("net_shares", 0)
+    tone = "up" if net > 0 else "dn" if net < 0 else "fl"
+    txt = f"최근 매수 {ins['buy_count']}건 · 매도 {ins['sell_count']}건"
+    tb = ins.get("top_buy")
+    highlight = None
+    if tb and tb.get("value"):
+        highlight = f"{tb['position'] or tb['name']} ${_fmt_cap(tb['value'])} 매수"
+    return {"txt": txt, "tone": tone, "highlight": highlight}
+
+
+def _vol_compare(hist_vol: float | None, vix_pct: float | None, vix_last: float | None) -> dict | None:
+    """종목 자체 변동성과 VIX(시장 변동성)를 나란히. 몇 배 더 흔들리는지 보여줍니다."""
+    if hist_vol is None or vix_last is None:
+        return None
+    ratio = round(hist_vol / vix_last, 1) if vix_last else None
+    return {
+        "stock": f"{hist_vol:.0f}%",
+        "market": f"{vix_last:.0f}%",
+        "ratio": ratio,
+        "tone": "up" if ratio and ratio >= 1.5 else "fl",
+    }
+
+
+def _fin_health_cells(fh: dict) -> list[dict]:
+    """부채비율·유동비율. 값이 있는 것만 표시합니다."""
+    if not fh:
+        return []
+    cells = []
+    if fh.get("debt_equity") is not None:
+        cells.append({"k": "부채비율", "v": f"{fh['debt_equity']:.0f}%"})
+    if fh.get("current_ratio") is not None:
+        cells.append({"k": "유동비율", "v": f"{fh['current_ratio']:.1f}배"})
+    if fh.get("quick_ratio") is not None:
+        cells.append({"k": "당좌비율", "v": f"{fh['quick_ratio']:.1f}배"})
+    return cells
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -368,6 +435,7 @@ def _template_context(data: dict, summary: dict) -> dict:
         "hook_parts": _split_highlight(
             summary.get("hook_headline", ""), summary.get("hook_highlight", "")
         ),
+        "glow_chart": _cover_glow_chart(focus.get("series_60") or focus.get("series")),
         "indices": _decorate(market.get("indices", [])),
         "gauges": _decorate(market.get("gauges", [])),
         "val_cells": _val_cells(focus),
@@ -385,6 +453,15 @@ def _template_context(data: dict, summary: dict) -> dict:
         "smart_cells": _smart_money_cells(focus.get("smart_money") or {}),
         "rec_bars": _rec_bars(focus.get("rec_dist") or {}),
         "peer_avg_per": focus.get("peer_avg_per"),
+        "insider": _insider_read(focus.get("insider") or {}),
+        "inst_top": focus.get("inst_top") or [],
+        "vol_compare": _vol_compare(
+            (focus.get("levels") or {}).get("hist_vol"),
+            None,
+            next((g["last"] for g in data.get("market", {}).get("gauges", [])
+                  if g["ticker"] == "^VIX"), None),
+        ),
+        "fin_cells": _fin_health_cells(focus.get("financial_health") or {}),
         "runners": [
             {**r, "cls": _cls(r.get("pct")),
              "fmt_pct": f"{r['pct']:+.2f}%" if r.get("pct") is not None else "—"}
