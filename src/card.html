@@ -63,6 +63,9 @@
 
   .h1{margin-top:34px;font-size:var(--f-h1);font-weight:900;letter-spacing:-.04em;line-height:1.1}
   .h2sub{margin-top:10px;font-size:var(--f-cap);font-weight:500;color:var(--tx3);letter-spacing:-.01em}
+  .cattag{display:flex;align-items:center;gap:8px;margin-top:24px;margin-bottom:6px;
+          font-size:14px;font-weight:800;letter-spacing:.04em;color:var(--hl)}
+  .cattag::before{content:"";width:13px;height:2px;background:var(--hl);border-radius:1px;flex:0 0 auto}
 
   /* ══ P1: 3-Zone (20 / 60 / 20) ══════════ */
   .z1{height:20%;display:flex;flex-direction:column;justify-content:flex-start}
@@ -204,6 +207,11 @@
            border:1px solid rgba(250,204,21,.28)}
   .outlook .ok{font-size:15px;font-weight:800;color:var(--hl);letter-spacing:.02em}
   .outlook .ov{margin-top:9px;font-size:23px;line-height:1.55;font-weight:600;letter-spacing:-.018em}
+  .fcard{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .fcell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+  .fcat{font-size:13px;color:var(--tx3);font-weight:700;letter-spacing:.02em}
+  .fverd{margin-top:6px;font-size:23px;font-weight:800;letter-spacing:-.02em}
+  .fdet{margin-top:5px;font-size:14px;color:var(--tx2);line-height:1.4;letter-spacing:-.01em}
   .chain .it{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .chain .tk2{flex:0 0 120px;font-family:var(--mono);font-size:24px;font-weight:700}
   .chain .rl{flex:1;font-size:20px;color:var(--tx2);letter-spacing:-.015em}
@@ -318,7 +326,7 @@
 
 {# ══ P2 ═══════════════════════════════════ #}
 {% elif card_num==2 %}
-<div class="h1">왜 지금 이 종목인가</div>
+<div class="h1">오늘의 무브</div>
 <div class="h2sub">{{ f.ticker }} · {{ f.sector_kr }}</div>
 {% if s.company_desc %}
 <div class="cdesc">
@@ -351,7 +359,7 @@
 {# ══ P3 ═══════════════════════════════════ #}
 {% elif card_num==3 %}
 <div class="h1">숫자로 보는 {{ f.ticker }}</div>
-<div class="h2sub">직전 실적 · 밸류에이션 · 경쟁사 비교</div>
+<div class="cattag">밸류에이션 · 실적</div>
 {% if f.earnings and f.earnings.eps_act is not none %}
 <div class="eps">
   <div class="box"><div class="k">컨센서스 EPS</div><div class="v">${{ f.earnings.eps_est }}</div></div>
@@ -378,9 +386,11 @@
 </div>
 {% endif %}
 {% if rev_bars %}
+<div class="cattag">펀더멘털 · 성장</div>
 <div class="revbar">{% for b in rev_bars %}<div class="b"><div class="bar" style="height:{{ b.h }}%"></div><div class="lb">{{ b.period }}</div></div>{% endfor %}</div>
 {% endif %}
 {% if rsi or cross %}
+<div class="cattag">모멘텀 · 기술적 신호</div>
 <div class="tech">
   {% if rsi %}
   <div class="box">
@@ -418,10 +428,7 @@
 </div>
 {% endif %}
 {% if smart_cells %}
-<div class="smcap" style="display:flex;align-items:center;gap:6px">
-  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" style="width:16px;height:16px"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z" stroke="var(--tx3)" stroke-width="1.6"/></svg>
-  스마트머니 포지셔닝
-</div>
+<div class="cattag">수급 · 심리</div>
 <div class="val">{% for c in smart_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
 {% endif %}
 {% if s.smart_money_note %}<div class="note c2">{{ s.smart_money_note }}</div>{% endif %}
@@ -441,8 +448,19 @@
 
 {# ══ P4 ═══════════════════════════════════ #}
 {% elif card_num==4 %}
-<div class="h1">AI가 보는 이 종목의 전망</div>
-<div class="h2sub">{{ f.ticker }} · {{ chain_kind }} · 월가 목표주가</div>
+<div class="h1">AI 팩터 진단</div>
+<div class="h2sub">{{ f.ticker }} · 4가지 지표로 보는 근거</div>
+{% if factors %}
+<div class="fcard">
+  {% for x in factors %}
+  <div class="fcell">
+    <div class="fcat">{{ x.cat }}</div>
+    <div class="fverd {{ x.tone }}">{{ x.verdict }}</div>
+    <div class="fdet">{{ x.detail }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
 {% if s.outlook_note %}
 <div class="outlook">
   <div class="ok">종합 판단</div>
@@ -450,8 +468,9 @@
 </div>
 {% endif %}
 {% if chain %}
+<div class="cattag">밸류체인 반응</div>
 <div class="chain">
-  {% for c in chain %}
+  {% for c in chain[:3] %}
   <div class="it">
     <span class="tk2">{{ c.ticker }}</span>
     <span class="rl c1">{{ c.relation }}</span>
@@ -474,28 +493,17 @@
   </div>
 </div>
 {% endif %}
-{% if rec_bars %}
-<div class="recbar">
-  {% for r in rec_bars %}
-  <div class="r">
-    <span class="k">{{ r.label }}</span>
-    <span class="t"><span class="f {{ r.cls }}" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
-    <span class="n">{{ r.n }}</span>
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
 {% if actions %}
 <div class="acts">{% for a in actions %}<div class="a"><span class="fm c1">{{ a.firm }}</span><span class="gr {{ a.cls }}">{{ a.from }} → {{ a.to }}</span></div>{% endfor %}</div>
 {% endif %}
 {% if s.risks %}
-<div class="risks">{% for r in s.risks %}<div class="r"><span class="ic">!</span><span class="t c2">{{ r }}</span></div>{% endfor %}</div>
+<div class="risks">{% for r in s.risks[:3] %}<div class="r"><span class="ic">!</span><span class="t c2">{{ r }}</span></div>{% endfor %}</div>
 {% endif %}
 
 {# ══ P5 ═══════════════════════════════════ #}
 {% elif card_num==5 %}
 <div class="h1">오늘의 3줄 요약</div>
-<div class="h2sub">바쁜 분들을 위한 핵심만</div>
+<div class="h2sub">4장을 안 봐도 이 3줄이면 충분합니다</div>
 {% if s.summary3 %}
 <div class="sum">{% for t in s.summary3 %}<div class="s"><span class="n">{{ loop.index }}</span><span class="t c2">{{ t }}</span></div>{% endfor %}</div>
 {% endif %}
