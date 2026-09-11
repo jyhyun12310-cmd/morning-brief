@@ -68,6 +68,11 @@ SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 
   종목의 다른 데이터(등락률, 거래량, 업종 흐름, 지수 대비 상대 성과, 52주 위치)로
   대체해 반드시 의미 있는 문장을 채웁니다.
 - 한 항목당 하나의 메시지만 담되, 근거 수치는 함께 적어 내용을 촘촘하게 채웁니다.
+- summary3 는 카드 전체를 안 봐도 이 3줄만으로 이해되게 씁니다. 각 줄은
+  서로 다른 각도(사건 → 숫자 → 결론)를 담당하며, 앞서 쓴 다른 필드의 핵심을
+  재료로 삼되 문장은 새로 씁니다. 전문용어를 최소화하고, 고등학생이 한 번
+  읽으면 바로 이해할 정도로 쉬운 말을 씁니다. (예: "선행 PER" 같은 용어를
+  써야 한다면 "내년 이익 대비 주가가 싸다/비싸다" 식으로 풀어서 설명)
 
 반드시 아래 JSON 만 출력합니다. 코드펜스, 설명, 서론 없이 JSON 객체 하나만.
 
@@ -91,7 +96,11 @@ SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 
   "wallst_note": "70~100자. 목표주가 컨센서스 대비 현재가 위치, 추천분포의 쏠림, 투자의견 변경이 있으면 함께.",
   "risks": ["리스크 1 (34자 이내, 근거 포함)", "리스크 2", "리스크 3", "리스크 4"],
 
-  "summary3": ["결론 1줄 (42자 이내)", "결론 2줄", "결론 3줄"],
+  "summary3": [
+    "1줄: 오늘 무슨 일이 있었는지 (회사·이유 압축, 42자 이내)",
+    "2줄: 숫자로 본 상태 한 줄 (밸류에이션 또는 실적, 42자 이내)",
+    "3줄: AI 판단 한 줄 (4팩터 진단의 결론, 42자 이내)"
+  ],
   "cta_question": "35자 이내 댓글 유도 질문. 매수 권유가 아닌 의견 묻기 형태.",
 
 
@@ -222,8 +231,6 @@ def summarize(data: dict) -> dict:
         )
         text = "{" + "".join(b.text for b in resp.content if b.type == "text")
 
-        # 응답이 잘렸는지 먼저 확인합니다. 잘린 JSON 은 파싱에서 실패하는데,
-        # 원인을 모르면 프롬프트만 계속 고치게 되므로 로그에 명시합니다.
         if getattr(resp, "stop_reason", None) == "max_tokens":
             log.error(
                 "응답이 max_tokens(%d)에 걸려 잘렸습니다. 한도를 올리거나 "
@@ -231,8 +238,19 @@ def summarize(data: dict) -> dict:
             )
 
         result = _extract_json(text)
-    except Exception:
+    except Exception as e:
+        # 실패해도 원인을 모르면 매번 추측만 하게 되므로, 다음 확인 때 바로
+        # 보이도록 out/error.txt 에 그대로 남깁니다.
         log.exception("요약 생성 실패 — 폴백 사용")
+        try:
+            import pathlib
+            import traceback
+            pathlib.Path("out").mkdir(exist_ok=True)
+            pathlib.Path("out/error.txt").write_text(
+                f"{type(e).__name__}: {e}\n\n{traceback.format_exc()}", encoding="utf-8"
+            )
+        except Exception:
+            pass
         return _fallback(data)
 
     base = _fallback(data)
