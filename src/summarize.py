@@ -16,6 +16,10 @@ log = logging.getLogger(__name__)
 
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
 
+# 요구하는 출력 분량이 한국어 1,800자 남짓이고 한국어는 글자당 1.5~2토큰이라
+# 3,000토큰으로는 JSON 이 중간에서 잘려 파싱에 실패합니다. 넉넉히 잡습니다.
+MAX_TOKENS = 8000
+
 SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 전문 애널리스트입니다.
 독자는 (1) 미국주식에 직접 투자하는 한국인, (2) 코스피 투자자입니다.
 매일 그날 가장 주목할 미국 종목 하나를 골라 5장짜리 카드뉴스로 정리합니다.
@@ -39,6 +43,13 @@ SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 
 - 기관 보유율·공매도 비중·숏커버 소요일(스마트머니 데이터)이 있으면 "왜 이 가격에
   거래되는가"의 근거로 씁니다. 공매도 비중이 높고 거래량이 급증했다면 숏스퀴즈
   가능성도 짚을 수 있습니다.
+- 내부자매매 데이터가 있으면 언급합니다. 임원의 자사주 매수는 강한 긍정 신호,
+  매도 우위는 주의 신호로 읽되 "매도는 세금·개인사정일 수도 있다"는 단서를 달 만큼
+  과잉해석하지 않습니다.
+- 재무건전성(부채비율·유동비율)이 있으면 금리 환경과 엮어 해석합니다. 부채비율이
+  높은데 금리가 오르는 국면이면 리스크로, 유동비율이 튼튼하면 안정성 근거로.
+- 실현변동성과 VIX 비교 데이터가 있으면 "이 종목이 시장보다 몇 배 흔들리는지"를
+  리스크 평가에 반영합니다.
 - 업종평균PER 이 있으면 종목 PER 과 직접 비교해 "업종 대비 몇 % 프리미엄/디스카운트"
   형태로 씁니다.
 - 애널리스트 추천분포가 있으면 목표주가 평균만 말하지 말고 매수/보유/매도 의견이
@@ -49,9 +60,13 @@ SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 
 톤:
 - 한국어 개조식. 존댓말 없이 ("~했습니다" 대신 "~함", "~기록")
 - 과장된 찌라시 표현 금지. 숫자와 사실로 후킹합니다.
-- 글자 수 제한을 반드시 지킵니다. 카드에 들어가므로 넘치면 잘립니다. 다만 상한에
-  가깝게 채워서 카드 여백이 비지 않게 합니다. 짧게 줄일 수 있어도 허용된 길이를
-  최대한 활용해 구체적인 근거와 수치를 담으세요.
+- 글자 수 제한을 반드시 지킵니다. 카드에 들어가므로 넘치면 잘립니다.
+- **분량 하한은 권장이 아니라 요구사항입니다.** 하한에 미달하면 카드에 빈 공간이
+  생겨 완성도가 떨어집니다. 할 말이 부족하면 제공된 데이터에서 근거 수치를
+  하나 더 끌어와 문장을 보강하세요.
+- 빈 문자열이나 "데이터 없음" 같은 응답을 쓰지 않습니다. 특정 지표가 없으면 그
+  종목의 다른 데이터(등락률, 거래량, 업종 흐름, 지수 대비 상대 성과, 52주 위치)로
+  대체해 반드시 의미 있는 문장을 채웁니다.
 - 한 항목당 하나의 메시지만 담되, 근거 수치는 함께 적어 내용을 촘촘하게 채웁니다.
 
 반드시 아래 JSON 만 출력합니다. 코드펜스, 설명, 서론 없이 JSON 객체 하나만.
@@ -111,6 +126,7 @@ def _fallback(data: dict) -> dict:
 
     return {
         "hook_headline": head,
+        "hook_highlight": "",
         "hook_oneline": "데이터 확인",
         "hook_tag": "시황",
         "macro_line": idx_line or "지수 데이터를 불러오지 못했습니다.",
@@ -131,6 +147,19 @@ def _fallback(data: dict) -> dict:
 
 
 _LIST_LIMITS = {"facts": 4, "risks": 4, "summary3": 3}
+
+# LLM 에게 보낼 때 빼는 필드. 60일 종가 배열 같은 건 모델이 읽어도 의미를 못 뽑는데
+# 토큰만 1만 자 넘게 잡아먹어, 정작 출력할 여력을 줄입니다.
+_DROP_FIELDS = ("series", "series_60", "_peer_raw", "spark")
+
+
+def _slim(rows):
+    """시세 행에서 시계열 배열을 떼어냅니다."""
+    if not rows:
+        return rows
+    if isinstance(rows, dict):
+        return {k: v for k, v in rows.items() if k not in _DROP_FIELDS}
+    return [{k: v for k, v in r.items() if k not in _DROP_FIELDS} for r in rows]
 
 
 def summarize(data: dict) -> dict:
@@ -155,34 +184,46 @@ def summarize(data: dict) -> dict:
             "투자의견변경": f.get("actions"),
             "기술적수준": f.get("levels"),
             "스마트머니_기관공매도베타": f.get("smart_money"),
+            "내부자매매": f.get("insider"),
+            "주요기관보유자": f.get("inst_top"),
+            "재무건전성_부채유동성": f.get("financial_health"),
             "업종평균PER": f.get("peer_avg_per"),
             "애널리스트추천분포": f.get("rec_dist"),
             "52주": f.get("w52"),
         },
-        "경쟁사": f.get("peers"),
-        "밸류체인": f.get("chain"),
-        "섹터로테이션": data.get("sector_rotation"),
-        "미국지수": market.get("indices"),
-        "시장지표_VIX금리달러유가": market.get("gauges"),
+        "경쟁사": _slim(f.get("peers")),
+        "밸류체인": _slim(f.get("chain")),
+        "섹터로테이션": _slim(data.get("sector_rotation")),
+        "미국지수": _slim(market.get("indices")),
+        "시장지표_VIX금리달러유가": _slim(market.get("gauges")),
         "CNN공포탐욕지수": data.get("fear_greed", {}),
-        "한국투자자참고": market.get("kr_context"),
+        "한국투자자참고": _slim(market.get("kr_context")),
         "전일한국증시": data.get("korea", {}),
-        "상승상위": data.get("top_gainers"),
-        "하락상위": data.get("top_losers"),
-        "뉴스헤드라인": data.get("news"),
+        "상승상위": _slim(data.get("top_gainers")),
+        "하락상위": _slim(data.get("top_losers")),
+        "뉴스헤드라인": (data.get("news") or [])[:20],
     }
 
     try:
         resp = client.messages.create(
             model=MODEL,
-            max_tokens=3000,
+            max_tokens=MAX_TOKENS,
             system=SYSTEM,
             messages=[
-                {"role": "user", "content": json.dumps(payload, ensure_ascii=False, indent=1)},
+                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
                 {"role": "assistant", "content": "{"},  # 프리필로 JSON 강제
             ],
         )
         text = "{" + "".join(b.text for b in resp.content if b.type == "text")
+
+        # 응답이 잘렸는지 먼저 확인합니다. 잘린 JSON 은 파싱에서 실패하는데,
+        # 원인을 모르면 프롬프트만 계속 고치게 되므로 로그에 명시합니다.
+        if getattr(resp, "stop_reason", None) == "max_tokens":
+            log.error(
+                "응답이 max_tokens(%d)에 걸려 잘렸습니다. 한도를 올리거나 "
+                "요구 분량을 줄여야 합니다.", MAX_TOKENS
+            )
+
         result = _extract_json(text)
     except Exception:
         log.exception("요약 생성 실패 — 폴백 사용")
