@@ -609,6 +609,9 @@ def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
     focus["industry"] = info.get("industry", "")
     focus["industry_key"] = info.get("industryKey", "")
     focus["market_cap"] = _num(info.get("marketCap")) or cand.get("market_cap")
+    # 회사 소개 문단 — 이미 받아오던 info 안에 있던 필드입니다.
+    # 원문은 길고 영어라 그대로 안 쓰고, 요약 단계에서 AI 가 1~2문장으로 축약합니다.
+    focus["business_summary"] = (info.get("longBusinessSummary") or "")[:700]
 
     focus["valuation"] = {
         "per": _num(info.get("trailingPE")),
