@@ -423,6 +423,106 @@ def _fin_health_cells(fh: dict) -> list[dict]:
     return cells
 
 
+def _factor_scorecard(focus: dict) -> list[dict]:
+    """밸류에이션·모멘텀·펀더멘털·수급심리 4팩터 진단표.
+
+    퀀트 리서치에서 표준적으로 쓰는 분류(Value·Momentum·Quality·Sentiment)를
+    따릅니다. AI 가 지어내지 않도록 전부 이미 수집한 숫자로 직접 판정합니다.
+    """
+    factors = []
+    v = focus.get("valuation") or {}
+    lv = focus.get("levels") or {}
+    sm = focus.get("smart_money") or {}
+    rec = focus.get("rec_dist") or {}
+    g = focus.get("growth") or {}
+    peer_per = focus.get("peer_avg_per")
+
+    # 1) 밸류에이션 — 선행 PER을 업종 평균과 비교
+    fpe = v.get("forward_per")
+    if fpe and peer_per:
+        diff = (fpe - peer_per) / peer_per * 100
+        if diff <= -15:
+            verdict, tone = "저평가", "up"
+        elif diff >= 15:
+            verdict, tone = "고평가", "dn"
+        else:
+            verdict, tone = "적정", "fl"
+        factors.append({
+            "cat": "밸류에이션", "verdict": verdict, "tone": tone,
+            "detail": f"선행PER {fpe:.0f}배 · 업종평균 대비 {diff:+.0f}%",
+        })
+
+    # 2) 모멘텀 — RSI + 이동평균 교차.
+    #    우선순위를 명확히 둡니다: 데드크로스+약세모멘텀이 가장 부정적이고,
+    #    과매수·과매도는 추세 방향과 무관하게 "주의" 신호로 따로 뗍니다.
+    #    (예: RSI 23 + 골든크로스 처럼 지표끼리 모순될 때 억지로 긍정/부정을
+    #    가르지 않고, 그 모순 자체를 "주의"로 정직하게 보여줍니다.)
+    rsi, cross = lv.get("rsi"), lv.get("cross")
+    if rsi is not None:
+        if cross == "death" and rsi <= 40:
+            verdict, tone = "부정", "dn"
+        elif rsi >= 70:
+            verdict, tone = "과열", "hl"
+        elif rsi <= 30:
+            verdict, tone = "과매도", "hl"
+        elif cross == "golden":
+            verdict, tone = "긍정", "up"
+        elif cross == "death":
+            verdict, tone = "부정", "dn"
+        else:
+            verdict, tone = "중립", "fl"
+        cross_kr = "골든크로스" if cross == "golden" else "데드크로스" if cross == "death" else "횡보"
+        factors.append({
+            "cat": "모멘텀", "verdict": verdict, "tone": tone,
+            "detail": f"RSI {rsi:.0f} · {cross_kr}",
+        })
+
+    # 3) 펀더멘털 — 매출 성장률 + 영업이익률
+    rev_g = g.get("revenue")
+    margin = v.get("margin")
+    if rev_g is not None:
+        if rev_g >= 0.15:
+            verdict, tone = "우수", "up"
+        elif rev_g <= 0:
+            verdict, tone = "부진", "dn"
+        else:
+            verdict, tone = "보통", "fl"
+        detail = f"매출성장 {rev_g * 100:+.0f}%"
+        if margin is not None:
+            detail += f" · 이익률 {margin * 100:.0f}%"
+        factors.append({"cat": "펀더멘털", "verdict": verdict, "tone": tone, "detail": detail})
+
+    # 4) 수급·심리 — 애널리스트 매수비중, 없으면 기관 보유율로 대체.
+    #    공매도 비중이 높은데 애널리스트만 긍정적이면 "혼조"로 정직하게 보여줍니다
+    #    (모멘텀 팩터와 같은 원칙: 신호가 엇갈리면 억지로 한쪽으로 몰지 않습니다).
+    total = rec.get("total") or 0
+    short_pct = sm.get("short_pct")
+    if total:
+        buy_ratio = (rec.get("strong_buy", 0) + rec.get("buy", 0)) / total
+        high_short = short_pct is not None and short_pct >= 0.20
+        if high_short and buy_ratio >= 0.5:
+            verdict, tone = "혼조", "hl"
+        elif buy_ratio >= 0.7:
+            verdict, tone = "긍정", "up"
+        elif buy_ratio <= 0.3:
+            verdict, tone = "부정", "dn"
+        else:
+            verdict, tone = "중립", "fl"
+        detail = f"매수의견 {buy_ratio * 100:.0f}%"
+        if short_pct is not None and short_pct > 0.1:
+            detail += f" · 공매도 {short_pct * 100:.0f}%"
+        factors.append({"cat": "수급·심리", "verdict": verdict, "tone": tone, "detail": detail})
+    elif sm.get("inst_pct") is not None:
+        pct = sm["inst_pct"]
+        verdict, tone = ("긍정", "up") if pct >= 0.6 else ("중립", "fl")
+        factors.append({
+            "cat": "수급·심리", "verdict": verdict, "tone": tone,
+            "detail": f"기관보유율 {pct * 100:.0f}%",
+        })
+
+    return factors
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -462,6 +562,7 @@ def _template_context(data: dict, summary: dict) -> dict:
                   if g["ticker"] == "^VIX"), None),
         ),
         "fin_cells": _fin_health_cells(focus.get("financial_health") or {}),
+        "factors": _factor_scorecard(focus),
         "runners": [
             {**r, "cls": _cls(r.get("pct")),
              "fmt_pct": f"{r['pct']:+.2f}%" if r.get("pct") is not None else "—"}
