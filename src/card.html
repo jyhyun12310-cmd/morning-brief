@@ -32,13 +32,13 @@
                linear-gradient(180deg,var(--bg2) 0%,var(--bg) 55%);
   }
   body>*{position:relative;z-index:1}
-  .up{color:var(--up)}.dn{color:var(--dn)}.fl{color:var(--fl)}
+  .up{color:var(--up)}.dn{color:var(--dn)}.fl{color:var(--fl)}.hl{color:var(--hl)}
   .mono{font-family:var(--mono)}
   .c1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
   .c2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .c3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
-  /* ── 스와이프 유도: 1~4p 우하단 화살표 ─────── */
+
   .swipe{
     position:absolute;right:var(--pad-x);bottom:52px;z-index:3;
     display:flex;align-items:center;gap:11px;
@@ -119,15 +119,21 @@
   }
 
   /* ── P2 ─────────────────────────────── */
-  .sec{margin-top:22px}
-  .sec .r{display:flex;align-items:center;gap:14px;padding:9px 0}
-  .sec .k{flex:0 0 132px;font-size:21px;font-weight:600;letter-spacing:-.02em}
-  .sec .t{flex:1;position:relative;height:18px}
-  .sec .t::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line2)}
-  .sec .b{position:absolute;top:3px;height:12px;border-radius:3px}
-  .sec .b.up{left:50%;background:linear-gradient(90deg,rgba(239,68,68,.5),var(--up))}
-  .sec .b.dn{right:50%;background:linear-gradient(270deg,rgba(59,130,246,.5),var(--dn))}
-  .sec .v{flex:0 0 104px;text-align:right;font-family:var(--mono);font-size:19px;font-weight:700}
+  .cdesc{margin-top:24px;display:flex;gap:18px;align-items:flex-start;
+         padding:20px 22px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .cdesc .tk-mini{flex:0 0 auto;padding:8px 14px;border-radius:10px;
+         background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.32);
+         font-family:var(--mono);font-size:19px;font-weight:700;color:var(--hl)}
+  .cdesc-t{font-size:23px;line-height:1.5;font-weight:500;letter-spacing:-.015em;padding-top:4px}
+  .sec-mini{margin-top:14px}
+  .sec-mini .r{display:flex;align-items:center;gap:12px;padding:6px 0}
+  .sec-mini .k{flex:0 0 100px;font-size:17px;font-weight:500;color:var(--tx2)}
+  .sec-mini .t{flex:1;position:relative;height:12px}
+  .sec-mini .t::before{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line2)}
+  .sec-mini .b{position:absolute;top:2px;height:8px;border-radius:2px}
+  .sec-mini .b.up{left:50%;background:linear-gradient(90deg,rgba(239,68,68,.5),var(--up))}
+  .sec-mini .b.dn{right:50%;background:linear-gradient(270deg,rgba(59,130,246,.5),var(--dn))}
+  .sec-mini .v{flex:0 0 76px;text-align:right;font-family:var(--mono);font-size:15px;font-weight:600}
 
   .drv{margin-top:26px;padding:24px 26px;border-radius:14px;
        background:rgba(250,204,21,.10);border:1px solid rgba(250,204,21,.3)}
@@ -149,6 +155,15 @@
   .tech .bar .f{position:absolute;top:0;bottom:0;border-radius:4px;background:var(--hl)}
   .tech .bar .mk{position:absolute;top:-3px;width:2px;height:13px;background:var(--tx3)}
   .smcap{margin-top:24px;font-size:15px;font-weight:700;color:var(--tx3);letter-spacing:.01em}
+  .edots{margin-top:10px;display:flex;align-items:center;gap:8px}
+  .edots .d{width:11px;height:11px;border-radius:50%}
+  .edots .d.on{background:var(--up)}
+  .edots .d.off{background:var(--line2)}
+  .edots .s{margin-left:6px;font-size:14px;color:var(--tx3);font-weight:600}
+  .nextq{margin-top:10px;display:inline-flex;align-items:center;gap:8px;
+         padding:6px 12px;border-radius:100px;background:rgba(255,255,255,.04);
+         border:1px solid var(--line);font-size:14px;color:var(--tx2);font-weight:600}
+  .nextq b{font-family:var(--mono);color:var(--tx)}
   .eps{margin-top:24px;display:flex;gap:12px}
   .eps .box{flex:1;border-radius:14px;padding:20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
   .eps .box.on{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.36)}
@@ -184,6 +199,11 @@
   .recbar .t .f{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
   .recbar .n{flex:0 0 38px;text-align:right;font-family:var(--mono);font-size:17px;font-weight:700}
   .chain{margin-top:22px}
+  .outlook{margin-top:22px;padding:22px 24px;border-radius:14px;
+           background:linear-gradient(135deg,rgba(250,204,21,.10),rgba(255,255,255,.03));
+           border:1px solid rgba(250,204,21,.28)}
+  .outlook .ok{font-size:15px;font-weight:800;color:var(--hl);letter-spacing:.02em}
+  .outlook .ov{margin-top:9px;font-size:23px;line-height:1.55;font-weight:600;letter-spacing:-.018em}
   .chain .it{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .chain .tk2{flex:0 0 120px;font-family:var(--mono);font-size:24px;font-weight:700}
   .chain .rl{flex:1;font-size:20px;color:var(--tx2);letter-spacing:-.015em}
@@ -224,14 +244,33 @@
         background:rgba(250,204,21,.11);border:1px solid rgba(250,204,21,.32);text-align:center}
   .qbox .q{font-size:28px;font-weight:800;line-height:1.35;letter-spacing:-.03em}
   .qbox .sm{margin-top:10px;font-size:17px;color:var(--tx2)}
+  .follow{margin-top:18px;text-align:center}
+  .follow .ft{font-size:16px;color:var(--tx2);font-weight:500}
+  .follow .fb{margin-top:4px;font-size:22px;font-weight:800;color:var(--hl);letter-spacing:-.02em}
   .cta{margin-top:18px;display:flex;gap:12px}
   .cta .b{flex:1;padding:19px;border-radius:13px;text-align:center;font-size:20px;font-weight:800;letter-spacing:-.02em}
-  .cta .b.save{background:var(--hl);color:#1A1400}
-  .cta .b.share{background:rgba(255,255,255,.07);border:1px solid var(--line2);color:var(--tx)}
+  .cta .b.save{background:var(--hl);color:#1A1400;
+    box-shadow:0 6px 0 #B8930A, 0 10px 22px rgba(250,204,21,.35);}
+  .cta .b.share{background:rgba(255,255,255,.08);border:1px solid var(--line2);color:var(--tx);
+    box-shadow:0 6px 0 rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);}
   .disc{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);
         display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
   .disc .t{font-size:13px;line-height:1.55;color:var(--tx3)}
   .disc .b{font-family:var(--mono);font-size:14px;color:var(--tx3);white-space:nowrap}
+  /* ── 글로우 · 글래스모피즘 유틸 ─────────────── */
+  .glow-up   { filter: drop-shadow(0 0 10px rgba(239,68,68,.55)) drop-shadow(0 0 22px rgba(239,68,68,.28)); }
+  .glow-dn   { filter: drop-shadow(0 0 10px rgba(59,130,246,.55)) drop-shadow(0 0 22px rgba(59,130,246,.28)); }
+  .glow-gold { filter: drop-shadow(0 0 8px rgba(250,204,21,.6)) drop-shadow(0 0 18px rgba(250,204,21,.3)); }
+  .glass {
+    background: rgba(255,255,255,.055);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,.09);
+    box-shadow: 0 8px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .icon-sm { width: 22px; height: 22px; flex: 0 0 auto; }
+
+  /* ── 표지 배경 글로우 차트 ─────────────────── */
+  .cv-chart { position: absolute; left: -6%; right: -6%; top: 34%; height: 42%; z-index: 0; opacity: .9; }
 </style>
 </head>
 <body>
@@ -239,6 +278,14 @@
 {% if card_num == 1 %}
 <div class="bleed" style="width:520px;height:520px;right:-260px;top:52%"></div>
 <div class="bleed" style="width:760px;height:760px;right:-380px;top:44%"></div>
+{% if glow_chart %}
+<svg class="cv-chart" viewBox="0 0 1080 300" preserveAspectRatio="none">
+  <polyline points="{{ glow_chart.points }}" fill="none" stroke="{{ f.hex }}"
+            stroke-width="5" stroke-linejoin="round" stroke-linecap="round"
+            class="{{ 'glow-up' if f.cls=='up' else 'glow-dn' if f.cls=='dn' else '' }}" opacity=".85"/>
+  <circle cx="{{ glow_chart.last_x }}" cy="{{ glow_chart.last_y }}" r="7" fill="#FACC15" class="glow-gold"/>
+</svg>
+{% endif %}
 {% endif %}
 
 <div class="rail">{% for n in range(1,6) %}<i class="{{ 'on' if n<=card_num else '' }}"></i>{% endfor %}</div>
@@ -247,7 +294,7 @@
 {# ══ P1: 3-Zone ═══════════════════════════ #}
 {% if card_num==1 %}
 <div class="z1">
-  <div class="cat"><span class="dot"></span>미국주식 ISSUE</div>
+  <div class="cat"><span class="dot glow-gold"></span>미국주식 ISSUE</div>
 </div>
 <div class="z2">
   <div class="hero">
@@ -264,24 +311,19 @@
 <div class="z3">
   <div class="badges">
     {% for c in p1_chips %}
-    <div class="badge"><div class="k">{{ c.label }}</div><div class="v {{ c.cls }}">{{ c.val }}</div></div>
+    <div class="badge glass"><div class="k">{{ c.label }}</div><div class="v {{ c.cls }}">{{ c.val }}</div></div>
     {% endfor %}
   </div>
 </div>
 
 {# ══ P2 ═══════════════════════════════════ #}
 {% elif card_num==2 %}
-<div class="h1">돈은 어디로 움직였나</div>
-<div class="h2sub">간밤 섹터별 자금 흐름 · 뉴욕증시 마감 기준</div>
-{% if sectors %}
-<div class="sec">
-  {% for x in sectors %}
-  <div class="r">
-    <span class="k">{{ x.label }}</span>
-    <span class="t"><span class="b {{ x.cls }}" style="width:{{ x.bar }}%"></span></span>
-    <span class="v {{ x.cls }}">{{ x.fmt_pct }}</span>
-  </div>
-  {% endfor %}
+<div class="h1">왜 지금 이 종목인가</div>
+<div class="h2sub">{{ f.ticker }} · {{ f.sector_kr }}</div>
+{% if s.company_desc %}
+<div class="cdesc">
+  <div class="tk-mini">{{ f.ticker }}</div>
+  <div class="cdesc-t c3">{{ s.company_desc }}</div>
 </div>
 {% endif %}
 {% if s.driver_title %}
@@ -290,6 +332,19 @@
 {% if s.facts %}
 <div class="facts">
   {% for t in s.facts %}<div class="fct"><span class="n">0{{ loop.index }}</span><span class="t c2">{{ t }}</span></div>{% endfor %}
+</div>
+{% endif %}
+{% if s.macro_line %}<div class="note c2">{{ s.macro_line }}</div>{% endif %}
+{% if sectors %}
+<div class="sec-mini">
+  <div class="smcap" style="margin-top:20px">참고 · 간밤 섹터별 자금 흐름</div>
+  {% for x in sectors[:5] %}
+  <div class="r">
+    <span class="k">{{ x.label }}</span>
+    <span class="t"><span class="b {{ x.cls }}" style="width:{{ x.bar }}%"></span></span>
+    <span class="v {{ x.cls }}">{{ x.fmt_pct }}</span>
+  </div>
+  {% endfor %}
 </div>
 {% endif %}
 
@@ -306,9 +361,21 @@
     <div class="v {{ 'up' if f.earnings.beat else 'dn' }}">{{ f.earnings.fmt_surprise }}</div>
   </div>
 </div>
+{% if f.earnings.dots %}
+<div class="edots">
+  {% for d in f.earnings.dots %}<span class="d {{ 'on' if d.beat else 'off' }}"></span>{% endfor %}
+  {% if f.earnings.streak_txt %}<span class="s">{{ f.earnings.streak_txt }}</span>{% endif %}
+</div>
 {% endif %}
-{% if val_cells %}
-<div class="val">{% for c in val_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
+{% if f.earnings.next_date %}
+<div class="nextq">다음 실적 발표 <b>{{ f.earnings.next_date }}</b></div>
+{% endif %}
+{% endif %}
+{% if val_cells or fin_cells %}
+<div class="val">
+  {% for c in val_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
+  {% for c in fin_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
+</div>
 {% endif %}
 {% if rev_bars %}
 <div class="revbar">{% for b in rev_bars %}<div class="b"><div class="bar" style="height:{{ b.h }}%"></div><div class="lb">{{ b.period }}</div></div>{% endfor %}</div>
@@ -317,7 +384,10 @@
 <div class="tech">
   {% if rsi %}
   <div class="box">
-    <div class="k">RSI (14일)</div>
+    <div class="k" style="display:flex;align-items:center;gap:6px">
+      <svg class="icon-sm glow-gold" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="var(--hl)"/></svg>
+      RSI (14일)
+    </div>
     <div class="v {{ rsi.tone }}">{{ rsi.val }} · {{ rsi.txt }}</div>
     <div class="bar"><div class="f" style="width:{{ rsi.pct }}%"></div><div class="mk" style="left:30%"></div><div class="mk" style="left:70%"></div></div>
   </div>
@@ -332,6 +402,15 @@
 </div>
 {% endif %}
 {% if s.chart_note %}<div class="note c3">{{ s.chart_note }}</div>{% endif %}
+{% if vol_compare %}
+<div class="tech" style="margin-top:14px">
+  <div class="box" style="flex:1">
+    <div class="k">실현변동성(60일) vs VIX</div>
+    <div class="v {{ vol_compare.tone }}">{{ vol_compare.stock }} <span style="color:var(--tx3);font-weight:500;font-size:16px">/ 시장 {{ vol_compare.market }}</span></div>
+    {% if vol_compare.ratio %}<div class="sub">시장 평균보다 {{ vol_compare.ratio }}배 변동성</div>{% endif %}
+  </div>
+</div>
+{% endif %}
 {% if w52.pos is not none and w52.low and w52.high %}
 <div class="w52">
   <div class="tr"><div class="fl2" style="width:{{ w52.pos }}%"></div><div class="pn" style="left:{{ w52.pos }}%"></div></div>
@@ -339,10 +418,13 @@
 </div>
 {% endif %}
 {% if smart_cells %}
-<div class="smcap">스마트머니 포지셔닝</div>
+<div class="smcap" style="display:flex;align-items:center;gap:6px">
+  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" style="width:16px;height:16px"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z" stroke="var(--tx3)" stroke-width="1.6"/></svg>
+  스마트머니 포지셔닝
+</div>
 <div class="val">{% for c in smart_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
-{% if s.smart_money_note %}<div class="note c2">{{ s.smart_money_note }}</div>{% endif %}
 {% endif %}
+{% if s.smart_money_note %}<div class="note c2">{{ s.smart_money_note }}</div>{% endif %}
 {% if peers %}
 <div class="peer">
   <div class="hd"><span class="c-t">경쟁사{% if peer_avg_per %} · 업종PER {{ peer_avg_per }}{% endif %}</span><span class="c-n">등락률</span><span class="c-n">PER</span><span class="c-n">시총</span></div>
@@ -359,8 +441,14 @@
 
 {# ══ P4 ═══════════════════════════════════ #}
 {% elif card_num==4 %}
-<div class="h1">그래서 어떻게 볼 것인가</div>
-<div class="h2sub">{{ chain_kind }} · 월가 목표주가 · 리스크</div>
+<div class="h1">AI가 보는 이 종목의 전망</div>
+<div class="h2sub">{{ f.ticker }} · {{ chain_kind }} · 월가 목표주가</div>
+{% if s.outlook_note %}
+<div class="outlook">
+  <div class="ok">종합 판단</div>
+  <div class="ov c3">{{ s.outlook_note }}</div>
+</div>
+{% endif %}
 {% if chain %}
 <div class="chain">
   {% for c in chain %}
@@ -415,8 +503,12 @@
 <div class="krbox"><div class="k">국내 증시 영향</div><div class="v c3">{{ s.kr_line }}</div></div>
 {% endif %}
 {% if s.cta_question %}
-<div class="qbox"><div class="q c2">{{ s.cta_question }}</div><div class="sm">댓글로 의견을 남겨주세요</div></div>
+<div class="qbox glass" style="border-color:rgba(250,204,21,.32)"><div class="q c2">{{ s.cta_question }}</div><div class="sm">댓글로 의견을 남겨주세요</div></div>
 {% endif %}
+<div class="follow">
+  <div class="ft">매일 아침, 미국 시장의 핵심 종목을 가장 먼저</div>
+  <div class="fb">팔로우하고 놓치지 말고 받아보세요</div>
+</div>
 <div class="cta">
   <div class="b save">저장해두고 다시 보기</div>
   <div class="b share">친구에게 공유하기</div>
