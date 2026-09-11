@@ -1,1 +1,37 @@
-
+name: 카드 미리보기 (발송 안 함)
+"on":
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 의존성 설치
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+      - name: 한글 폰트 설치
+        run: sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+      - name: 카드 5장 생성
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PAGES_BASE_URL: https://jyhyun12310-cmd.github.io/morning-brief
+        run: PYTHONPATH=src python src/build.py --force
+      - name: 세로 넘침 검사
+        continue-on-error: true
+        run: python check_overflow.py
+      - name: 카드 이미지 업로드
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 카드-미리보기
+          path: |
+            docs/cards/
+            out/raw.json
+          retention-days: 7
