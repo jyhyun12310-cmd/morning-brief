@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import datetime as dt
 import logging
+import math
+import re
 
 import feedparser
 import pandas as pd
@@ -198,14 +200,62 @@ def screen_universe() -> dict[str, dict]:
 
 
 def _passes_filter(c: dict) -> bool:
-    """작전주·페니스톡·거래 부진 종목을 걸러냅니다."""
+    """작전주·페니스톡·거래 부진 종목과 이상치를 걸러냅니다."""
     if c["market_cap"] < cfg.MIN_MARKET_CAP:
         return False
     if c["last"] < cfg.MIN_PRICE:
         return False
     if c["last"] * c["volume"] < cfg.MIN_DOLLAR_VOLUME:
         return False
+    if abs(c["pct"]) > cfg.MAX_ABS_PCT:
+        return False
     return True
+
+
+# 회사명에서 떼어낼 법인격 표기. "Oracle Corporation" -> "ORACLE"
+_CORP_SUFFIXES = (
+    " CORPORATION", " CORP", " INCORPORATED", " INC", " COMPANY", " CO",
+    " LIMITED", " LTD", " PLC", " HOLDINGS", " HOLDING", " GROUP",
+    " TECHNOLOGIES", " TECHNOLOGY", " SYSTEMS", " CLASS A", " CLASS B",
+    " & CO", ".COM", ",",
+)
+
+
+def _company_key(name: str) -> str:
+    """뉴스 헤드라인과 대조할 회사명 핵심부를 뽑습니다.
+
+    헤드라인은 티커가 아니라 회사명으로 쓰이는 경우가 대부분이라
+    ("Oracle surges..." 처럼), 티커만 찾으면 뉴스를 놓칩니다.
+    """
+    key = (name or "").upper().strip()
+    for suf in _CORP_SUFFIXES:
+        key = key.replace(suf, " ")
+    key = re.sub(r"[^A-Z0-9 ]+", " ", key)   # 남은 구두점 제거
+    key = " ".join(key.split())
+    return key[:18].strip()
+
+
+def _has_news(c: dict, blob: str) -> bool:
+    """티커 또는 회사명이 헤드라인에 등장하는지.
+
+    헤드라인 쪽도 같은 방식으로 구두점을 지워서 비교하므로
+    "AT&T" 와 "ATT" 처럼 표기가 달라도 잡힙니다.
+    """
+    tk = c["ticker"]
+    # 티커는 짧아서 우연히 다른 단어에 섞일 수 있으므로 단어 경계로 확인
+    if len(tk) >= 3 and re.search(rf"\b{re.escape(tk)}\b", blob):
+        return True
+
+    key = _company_key(c.get("name", ""))
+    if not key:
+        return False
+    flat_blob = re.sub(r"[^A-Z0-9 ]+", "", blob.upper())
+    flat_key = key.replace(" ", "")
+    if len(flat_key) >= 4 and flat_key in flat_blob.replace(" ", ""):
+        return True
+    # 두 단어 이상이면 첫 단어만으로도 (예: "ADVANCED MICRO DEV" -> "ADVANCED")
+    head = key.split(" ")[0]
+    return len(head) >= 5 and head in flat_blob
 
 
 def _cap_weight(cap: float) -> float:
@@ -246,16 +296,16 @@ def score_candidates(cands: dict[str, dict], news: list[dict],
     for c in cands.values():
         if not _passes_filter(c):
             continue
-        move = abs(c["pct"]) ** 0.7
+        # 등락률은 로그로 눌러 큰 변동이 점수를 독식하지 않게 합니다.
+        # 제곱근 계열(**0.7)로는 -15% 종목이 -5% 종목의 2배 이상을 가져가
+        # 뉴스·시총 가중치가 뒤집히지 못했습니다.
+        move = math.log1p(abs(c["pct"]))
         rvol = min(c.get("rvol") or 1.0, cfg.RVOL_CAP)
         vol_boost = 1 + (rvol - 1) * cfg.RVOL_WEIGHT
         cap_w = _cap_weight(c["market_cap"])
 
-        news_hit = c["ticker"] in blob
-        if not news_hit:
-            head = c["name"].upper().split()[0] if c["name"] else ""
-            news_hit = len(head) >= 4 and head in blob
-        news_mult = 1.5 if news_hit else 1.0
+        news_hit = _has_news(c, blob)
+        news_mult = cfg.NEWS_MULT if news_hit else 1.0
 
         cool = _cooldown_mult(c["ticker"], history, today)
         score = move * vol_boost * cap_w * news_mult * cool
@@ -364,28 +414,55 @@ def _rec_distribution(tk: yf.Ticker) -> dict:
 
 
 def _earnings(tk: yf.Ticker) -> dict:
-    """직전 실적의 컨센서스 대비 Beat/Miss."""
+    """직전 실적 상세 + 최근 4분기 서프라이즈 패턴 + 다음 발표일.
+
+    yfinance 의 earnings_dates 는 과거(발표됨)와 미래(예정) 행이 섞여 있어,
+    Reported EPS 유무로 구분합니다.
+    """
     try:
         df = tk.earnings_dates
         if df is None or df.empty:
             return {}
-        past = df[df["Reported EPS"].notna()]
-        if past.empty:
-            return {}
-        row = past.iloc[0]
-        est, act = _num(row.get("EPS Estimate")), _num(row.get("Reported EPS"))
-        if est is None or act is None:
-            return {}
-        surprise = _num(row.get("Surprise(%)"))
-        if surprise is None and est:
-            surprise = (act - est) / abs(est) * 100
-        return {
-            "date": past.index[0].strftime("%Y.%m.%d"),
-            "eps_est": round(est, 2),
-            "eps_act": round(act, 2),
-            "surprise": round(surprise, 1) if surprise is not None else None,
-            "beat": act >= est,
-        }
+        df = df.sort_index(ascending=False)  # 최신이 위로
+
+        reported = df[df["Reported EPS"].notna()]
+        upcoming = df[df["Reported EPS"].isna()]
+        out: dict = {}
+
+        if not reported.empty:
+            row = reported.iloc[0]
+            est, act = _num(row.get("EPS Estimate")), _num(row.get("Reported EPS"))
+            if est is not None and act is not None:
+                surprise = _num(row.get("Surprise(%)"))
+                if surprise is None and est:
+                    surprise = (act - est) / abs(est) * 100
+                out.update({
+                    "date": reported.index[0].strftime("%Y.%m.%d"),
+                    "eps_est": round(est, 2),
+                    "eps_act": round(act, 2),
+                    "surprise": round(surprise, 1) if surprise is not None else None,
+                    "beat": act >= est,
+                })
+
+            # 최근 4분기 beat/miss 패턴 (오래된 → 최신 순으로 뒤집어서 저장)
+            history = []
+            for _, r in reported.head(4).iloc[::-1].iterrows():
+                e, a = _num(r.get("EPS Estimate")), _num(r.get("Reported EPS"))
+                if e is not None and a is not None:
+                    history.append(bool(a >= e))
+            out["history"] = history
+            streak = 0
+            for beat in reversed(history):
+                if beat:
+                    streak += 1
+                else:
+                    break
+            out["streak"] = streak
+
+        if not upcoming.empty:
+            out["next_date"] = upcoming.index.min().strftime("%Y.%m.%d")
+
+        return out
     except Exception:
         log.warning("실적 데이터 없음")
         return {}
@@ -431,6 +508,82 @@ def _analyst_actions(tk: yf.Ticker) -> list[dict]:
     except Exception:
         log.warning("투자의견 변경 이력 없음")
         return []
+
+
+def _insider_activity(tk: yf.Ticker) -> dict:
+    """최근 내부자 매매. 임원의 자사주 매수는 가장 직접적인 스마트머니 신호입니다.
+
+    'Transaction' 텍스트가 종목마다 조금씩 달라("Sale", "Sale (Sell)" 등) 부분
+    문자열 매칭으로 판정합니다.
+    """
+    try:
+        df = tk.insider_transactions
+        if df is None or df.empty:
+            return {}
+        recent = df.head(10)
+        buys, sells = [], []
+        for _, r in recent.iterrows():
+            txt = str(r.get("Transaction", "")).lower()
+            shares = _num(r.get("Shares"))
+            if shares is None:
+                continue
+            entry = {
+                "name": str(r.get("Insider", ""))[:22],
+                "position": str(r.get("Position", ""))[:20],
+                "shares": shares,
+                "value": _num(r.get("Value")),
+            }
+            if "sale" in txt or "sell" in txt:
+                sells.append(entry)
+            elif "purchase" in txt or "buy" in txt:
+                buys.append(entry)
+
+        if not buys and not sells:
+            return {}
+
+        top_buy = max(buys, key=lambda x: x.get("value") or 0) if buys else None
+        return {
+            "buy_count": len(buys),
+            "sell_count": len(sells),
+            "net_shares": sum(b["shares"] for b in buys) - sum(s["shares"] for s in sells),
+            "top_buy": top_buy,
+        }
+    except Exception:
+        log.warning("내부자 매매 데이터 없음")
+        return {}
+
+
+def _institutional_top(tk: yf.Ticker) -> list[dict]:
+    """상위 기관 보유자 3곳. 합계 비율보다 구체적인 근거가 됩니다."""
+    try:
+        df = tk.institutional_holders
+        if df is None or df.empty:
+            return []
+        out = []
+        for _, r in df.head(3).iterrows():
+            pct = _num(r.get("pctHeld"))
+            name = r.get("Holder")
+            if pct is None or not name:
+                continue
+            out.append({"name": str(name)[:22], "pct": pct})
+        return out
+    except Exception:
+        log.warning("기관 보유자 데이터 없음")
+        return []
+
+
+def _hist_volatility(series: list[float]) -> float | None:
+    """60일 종가로 연율화 실현변동성(%)을 계산. VIX(내재변동성)와 비교하는 용도."""
+    pts = [float(v) for v in (series or []) if v is not None]
+    if len(pts) < 20:
+        return None
+    rets = [pts[i] / pts[i - 1] - 1 for i in range(1, len(pts)) if pts[i - 1]]
+    if len(rets) < 10:
+        return None
+    mean = sum(rets) / len(rets)
+    var = sum((r - mean) ** 2 for r in rets) / (len(rets) - 1)
+    daily_sd = var ** 0.5
+    return round(daily_sd * (252 ** 0.5) * 100, 1)
 
 
 def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
@@ -486,8 +639,17 @@ def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
     focus["actions"] = _analyst_actions(tk)
     focus["rec_dist"] = _rec_distribution(tk)
     focus["smart_money"] = _smart_money(info)
+    focus["insider"] = _insider_activity(tk)
+    focus["inst_top"] = _institutional_top(tk)
+    focus["financial_health"] = {
+        "debt_equity": _num(info.get("debtToEquity")),
+        "current_ratio": _num(info.get("currentRatio")),
+        "quick_ratio": _num(info.get("quickRatio")),
+    }
+
     levels = _levels(quote.get("series_60"), quote.get("last", 0))
     levels["rsi"] = _rsi(quote.get("series_60"))
+    levels["hist_vol"] = _hist_volatility(quote.get("series_60"))
     if levels.get("ma20") and levels.get("ma50"):
         levels["cross"] = "golden" if levels["ma20"] > levels["ma50"] else "death"
     focus["levels"] = levels
@@ -626,7 +788,6 @@ def collect_all(history: list[dict] | None = None) -> dict:
     rel_q = fetch_quotes(sorted(related)) if related else {}
 
     peer_rows = fetch_peers(focus.get("peer_tickers", [])[:5], rel_q)
-    focus["_peer_raw"] = peer_rows
     focus["peers"] = peer_rows
     peer_pers = [p["per"] for p in peer_rows if p.get("per")]
     focus["peer_avg_per"] = round(sum(peer_pers) / len(peer_pers), 1) if peer_pers else None
