@@ -72,28 +72,14 @@
   .z2{height:60%;display:flex;flex-direction:column;justify-content:center}
   .z3{height:20%;display:flex;flex-direction:column;justify-content:flex-end}
 
-  .tagmini{
-    margin-top:28px;font-size:19px;font-weight:700;letter-spacing:.02em;
-    color:var(--hl);
-  }
-
   .hero{display:flex;align-items:baseline;gap:20px}
   .hero .pc{font-family:var(--mono);font-size:var(--f-hero);font-weight:700;
              line-height:.86;letter-spacing:-.055em}
   .hero .ar{font-size:64px;line-height:1;font-weight:700}
-  .tk{margin-top:22px;display:flex;align-items:center;gap:16px}
-  .tk .sym{font-family:var(--mono);font-size:44px;font-weight:700;letter-spacing:-.03em}
-  .tk .nm{font-size:var(--f-h2);font-weight:500;color:var(--tx2);letter-spacing:-.02em;
-          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hook{
-    margin-top:34px;font-size:52px;font-weight:900;line-height:1.3;letter-spacing:-.04em;
+    margin-top:26px;font-size:50px;font-weight:900;line-height:1.28;letter-spacing:-.035em;
   }
-  .hook .mk{
-    background:var(--hl);color:#1A1400;
-    padding:2px 12px;border-radius:6px;
-    box-decoration-break:clone;-webkit-box-decoration-break:clone;
-  }
-  .oneline{margin-top:26px;font-size:var(--f-h2);font-weight:700;color:var(--hl);letter-spacing:-.03em}
+  .p1sub{margin-top:16px;font-size:27px;font-weight:600;color:var(--tx2);letter-spacing:-.02em}
 
   .badges{display:flex;gap:10px}
   .badge{
@@ -119,81 +105,23 @@
   }
 
   /* ── P2 ─────────────────────────────── */
-  .cdesc{margin-top:24px;display:flex;gap:18px;align-items:flex-start;
-         padding:20px 22px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
-  .cdesc .tk-mini{flex:0 0 auto;padding:8px 14px;border-radius:10px;
-         background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.32);
-         font-family:var(--mono);font-size:19px;font-weight:700;color:var(--hl)}
-  .cdesc-t{font-size:23px;line-height:1.5;font-weight:500;letter-spacing:-.015em;padding-top:4px}
-  .sec-mini{margin-top:14px}
-  .sec-mini .r{display:flex;align-items:center;gap:12px;padding:6px 0}
-  .sec-mini .k{flex:0 0 100px;font-size:17px;font-weight:500;color:var(--tx2)}
-  .sec-mini .t{flex:1;position:relative;height:12px}
-  .sec-mini .t::before{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line2)}
-  .sec-mini .b{position:absolute;top:2px;height:8px;border-radius:2px}
-  .sec-mini .b.up{left:50%;background:linear-gradient(90deg,rgba(239,68,68,.5),var(--up))}
-  .sec-mini .b.dn{right:50%;background:linear-gradient(270deg,rgba(59,130,246,.5),var(--dn))}
-  .sec-mini .v{flex:0 0 76px;text-align:right;font-family:var(--mono);font-size:15px;font-weight:600}
-
-  .drv{margin-top:26px;padding:24px 26px;border-radius:14px;
-       background:rgba(250,204,21,.10);border:1px solid rgba(250,204,21,.3)}
-  .drv .k{font-size:16px;font-weight:800;color:var(--hl);letter-spacing:.02em}
-  .drv .v{margin-top:9px;font-size:38px;font-weight:900;letter-spacing:-.035em;line-height:1.2}
-
-  .facts{margin-top:24px}
-  .fct{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
-  .fct .n{flex:0 0 auto;font-family:var(--mono);font-size:17px;font-weight:700;color:var(--hl);padding-top:4px}
-  .fct .t{font-size:var(--f-body);line-height:1.45;font-weight:500;letter-spacing:-.02em}
+  .spoints{margin-top:22px}
+  .spoint{display:flex;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+  .spoint:first-child{border-top:1px solid var(--line)}
+  .sicon{flex:0 0 auto;width:34px;height:34px;border-radius:10px;
+         background:rgba(250,204,21,.14);border:1px solid rgba(250,204,21,.4);
+         color:var(--hl);font-family:var(--mono);font-size:17px;font-weight:800;
+         display:flex;align-items:center;justify-content:center}
+  .stext{flex:1;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .stitle{font-size:24px;font-weight:800;letter-spacing:-.02em}
+  .sdetail{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--hl);white-space:nowrap}
 
   /* ── P3 ─────────────────────────────── */
-  .tech{margin-top:24px;display:flex;gap:12px}
-  .tech .box{flex:1;border-radius:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
-  .tech .k{font-size:14px;color:var(--tx3);font-weight:500}
-  .tech .v{margin-top:8px;font-family:var(--mono);font-size:30px;font-weight:700}
-  .tech .sub{margin-top:4px;font-size:13px;color:var(--tx3)}
-  .tech .bar{margin-top:12px;position:relative;height:7px;border-radius:4px;background:var(--line)}
-  .tech .bar .f{position:absolute;top:0;bottom:0;border-radius:4px;background:var(--hl)}
-  .tech .bar .mk{position:absolute;top:-3px;width:2px;height:13px;background:var(--tx3)}
-  .smcap{margin-top:24px;font-size:15px;font-weight:700;color:var(--tx3);letter-spacing:.01em}
-  .miniline{margin-top:10px;font-size:16px;color:var(--tx2);line-height:1.8;letter-spacing:-.01em}
-  .miniline span{margin-right:16px}
-  .miniline b{color:var(--tx);font-family:var(--mono);font-weight:700}
-  .miniline b.up{color:var(--up)} .miniline b.dn{color:var(--dn)} .miniline b.fl{color:var(--fl)} .miniline b.hl{color:var(--hl)}
-  .edots{margin-top:10px;display:flex;align-items:center;gap:8px}
-  .edots .d{width:11px;height:11px;border-radius:50%}
-  .edots .d.on{background:var(--up)}
-  .edots .d.off{background:var(--line2)}
-  .edots .s{margin-left:6px;font-size:14px;color:var(--tx3);font-weight:600}
-  .nextq{margin-top:10px;display:inline-flex;align-items:center;gap:8px;
-         padding:6px 12px;border-radius:100px;background:rgba(255,255,255,.04);
-         border:1px solid var(--line);font-size:14px;color:var(--tx2);font-weight:600}
-  .nextq b{font-family:var(--mono);color:var(--tx)}
-  .eps{margin-top:24px;display:flex;gap:12px}
-  .eps .box{flex:1;border-radius:14px;padding:20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
-  .eps .box.on{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.36)}
-  .eps .box.off{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.36)}
-  .eps .k{font-size:15px;color:var(--tx3);font-weight:500}
-  .eps .v{margin-top:7px;font-family:var(--mono);font-size:32px;font-weight:700}
-  .val{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-  .val .cell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:15px 16px}
-  .val .k{font-size:14px;color:var(--tx3)}
-  .val .v{margin-top:5px;font-family:var(--mono);font-size:25px;font-weight:700}
-  .revbar{margin-top:24px;display:flex;align-items:flex-end;gap:14px;height:116px}
-  .revbar .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
-  .revbar .bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--hl),rgba(250,204,21,.3))}
-  .revbar .lb{margin-top:9px;font-family:var(--mono);font-size:14px;color:var(--tx3)}
-  .w52{margin-top:24px}
-  .w52 .tr{position:relative;height:8px;border-radius:4px;background:var(--line)}
-  .w52 .fl2{position:absolute;left:0;top:0;bottom:0;border-radius:4px;
-            background:linear-gradient(90deg,rgba(59,130,246,.4),var(--hl))}
-  .w52 .pn{position:absolute;top:-6px;width:4px;height:20px;border-radius:2px;background:var(--tx)}
-  .w52 .sc{margin-top:10px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;color:var(--tx3)}
-  .peer{margin-top:24px}
-  .peer .hd{display:flex;padding:10px 0;border-bottom:1px solid var(--line2);font-size:15px;color:var(--tx3);font-weight:700}
-  .peer .tr{display:flex;padding:9px 0;border-bottom:1px solid var(--line);font-size:18px}
-  .peer .tr.me{background:rgba(250,204,21,.08)}
-  .peer .c-t{flex:0 0 168px;font-family:var(--mono);font-weight:700;padding-left:10px}
-  .peer .c-n{flex:1;text-align:right;font-family:var(--mono)}
+  .statgrid{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .statcell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:24px 22px}
+  .slabel{font-size:16px;color:var(--tx3);font-weight:700;letter-spacing:.01em}
+  .sval{margin-top:10px;font-family:var(--mono);font-size:38px;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+  .sdet{margin-top:7px;font-size:15px;color:var(--tx2);letter-spacing:-.01em}
 
   /* ── P4 ─────────────────────────────── */
   .recbar{margin-top:24px}
@@ -214,21 +142,27 @@
   .ftop{display:flex;align-items:baseline;gap:12px}
   .fcat{flex:0 0 84px;font-size:15px;color:var(--tx3);font-weight:700;letter-spacing:.01em}
   .fverd{font-size:21px;font-weight:800;letter-spacing:-.02em}
+  .fverd.good{color:#22C55E}
+  .fverd.bad{color:#EF4444}
+  .fverd.caution{color:#F97316}
+  .fverd.neutral{color:#94A3B8}
   .fdet{flex:1;text-align:right;font-family:var(--mono);font-size:14px;color:var(--tx3)}
   .fwhy{margin-top:5px;padding-left:96px;font-size:16px;color:var(--tx2);line-height:1.45;letter-spacing:-.01em}
   .chain .it{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .chain .tk2{flex:0 0 120px;font-family:var(--mono);font-size:24px;font-weight:700}
   .chain .rl{flex:1;font-size:20px;color:var(--tx2);letter-spacing:-.015em}
   .chain .pc{flex:0 0 128px;text-align:right;font-family:var(--mono);font-size:22px;font-weight:700}
-  .tgt{margin-top:26px;padding:24px 26px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .tgt{margin-top:26px;padding:26px 28px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
   .tgt .top{display:flex;justify-content:space-between;align-items:baseline}
   .tgt .k{font-size:17px;color:var(--tx3);font-weight:500}
-  .tgt .v{font-family:var(--mono);font-size:40px;font-weight:700;color:var(--hl)}
-  .tgt .track{margin-top:18px;position:relative;height:10px;border-radius:5px;background:var(--line)}
-  .tgt .fill{position:absolute;left:0;top:0;bottom:0;border-radius:5px;
+  .tgt .v{font-family:var(--mono);font-size:46px;font-weight:800;color:var(--hl)}
+  .tgt .track{margin-top:22px;position:relative;height:14px;border-radius:7px;background:var(--line)}
+  .tgt .fill{position:absolute;left:0;top:0;bottom:0;border-radius:7px;
              background:linear-gradient(90deg,rgba(250,204,21,.35),var(--hl))}
-  .tgt .pin{position:absolute;top:-6px;width:4px;height:22px;border-radius:2px;background:var(--tx)}
-  .tgt .scale{margin-top:11px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;color:var(--tx3)}
+  .tgt .pin{position:absolute;top:-9px;width:6px;height:32px;border-radius:3px;background:var(--tx);
+            box-shadow:0 0 0 3px var(--bg), 0 2px 8px rgba(0,0,0,.4)}
+  .tgt .scale{margin-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:17px;font-weight:600;color:var(--tx3)}
+  .tgt .scale .cur{font-size:19px;font-weight:800;color:var(--tx)}
   .acts{margin-top:20px}
   .acts .a{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
   .acts .fm{flex:1;font-size:20px;font-weight:700;letter-spacing:-.02em}
@@ -282,7 +216,7 @@
   .icon-sm { width: 22px; height: 22px; flex: 0 0 auto; }
 
   /* ── 표지 배경 글로우 차트 ─────────────────── */
-  .cv-chart { position: absolute; left: -6%; right: -6%; top: 34%; height: 42%; z-index: 0; opacity: .9; }
+  .cv-chart { position: absolute; left: -6%; right: -6%; top: 68%; height: 30%; z-index: 0; opacity: .85; }
 </style>
 </head>
 <body>
@@ -305,19 +239,14 @@
 
 {# ══ P1: 3-Zone ═══════════════════════════ #}
 {% if card_num==1 %}
-<div class="z1">
-  <div class="tagmini">{{ s.hook_tag }}</div>
-</div>
+<div class="z1"></div>
 <div class="z2">
   <div class="hero">
     <span class="pc {{ f.cls }}">{{ f.fmt_pct }}</span>
     <span class="ar {{ f.cls }}">{{ f.arrow }}</span>
   </div>
-  <div class="tk">
-    <span class="sym">{{ f.ticker }}</span>
-    <span class="nm">{{ f.name }}</span>
-  </div>
-  <div class="hook c2">{% for p in hook_parts %}{% if p.hl %}<span class="mk">{{ p.t }}</span>{% else %}{{ p.t }}{% endif %}{% endfor %}</div>
+  <div class="hook c2">{{ p1_title }}</div>
+  <div class="p1sub c2">{{ p1_subtitle }}</div>
 </div>
 {% if p1_chips %}
 <div class="z3">
@@ -331,111 +260,41 @@
 
 {# ══ P2 ═══════════════════════════════════ #}
 {% elif card_num==2 %}
-<div class="h1">찐이유</div>
-<div class="h2sub">{{ f.ticker }} · {{ f.sector_kr }}</div>
-{% if s.company_desc %}
-<div class="cdesc">
-  <div class="tk-mini">{{ f.ticker }}</div>
-  <div class="cdesc-t c3">{{ s.company_desc }}</div>
+<div class="h1">{{ f.name }}은 왜 갑자기 {{ '올랐을까' if f.cls=='up' else '떨어졌을까' }}?</div>
+{% if s.company_desc %}<div class="h2sub c1">{{ s.company_desc }}</div>{% endif %}
+{% if s.points %}
+<div class="spoints">
+  {% for pt in s.points %}
+  <div class="spoint">
+    <div class="sicon">{{ loop.index }}</div>
+    <div class="stext">
+      <span class="stitle">{{ pt.title }}</span>
+      <span class="sdetail">{{ pt.detail }}</span>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endif %}
-{% if s.driver_title %}
-<div class="drv"><div class="k">핵심 드라이버</div><div class="v c2">{{ s.driver_title }}</div></div>
-{% endif %}
-{% if s.facts %}
-<div class="facts">
-  {% for t in s.facts %}<div class="fct"><span class="n">0{{ loop.index }}</span><span class="t c2">{{ t }}</span></div>{% endfor %}
-</div>
-{% endif %}
+{% if s.points_summary %}<div class="note c2">{{ s.points_summary }}</div>{% endif %}
 {% if s.macro_line %}<div class="note c2">{{ s.macro_line }}</div>{% endif %}
 
 {# ══ P3 ═══════════════════════════════════ #}
 {% elif card_num==3 %}
 <div class="h1">숫자로 보는 {{ f.ticker }}</div>
-<div class="cattag">밸류에이션 · 실적</div>
-{% if f.earnings and f.earnings.eps_act is not none %}
-<div class="eps">
-  <div class="box"><div class="k">컨센서스 EPS</div><div class="v">${{ f.earnings.eps_est }}</div></div>
-  <div class="box {{ 'on' if f.earnings.beat else 'off' }}"><div class="k">발표 EPS</div><div class="v">${{ f.earnings.eps_act }}</div></div>
-  <div class="box {{ 'on' if f.earnings.beat else 'off' }}">
-    <div class="k">{{ 'BEAT' if f.earnings.beat else 'MISS' }}</div>
-    <div class="v {{ 'up' if f.earnings.beat else 'dn' }}">{{ f.earnings.fmt_surprise }}</div>
-  </div>
-</div>
-{% if f.earnings.dots %}
-<div class="edots">
-  {% for d in f.earnings.dots %}<span class="d {{ 'on' if d.beat else 'off' }}"></span>{% endfor %}
-  {% if f.earnings.streak_txt %}<span class="s">{{ f.earnings.streak_txt }}</span>{% endif %}
-</div>
-{% endif %}
-{% if f.earnings.next_date %}
-<div class="nextq">다음 실적 발표 <b>{{ f.earnings.next_date }}</b></div>
-{% endif %}
-{% endif %}
-{% if val_cells %}
-<div class="val">
-  {% for c in val_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
-</div>
-{% endif %}
-{% if fin_cells %}
-<div class="miniline">{% for c in fin_cells %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}</div>
-{% endif %}
-{% if rev_bars %}
-<div class="cattag">펀더멘털 · 성장</div>
-<div class="revbar">{% for b in rev_bars %}<div class="b"><div class="bar" style="height:{{ b.h }}%"></div><div class="lb">{{ b.period }}</div></div>{% endfor %}</div>
-{% endif %}
-{% if rsi or cross %}
-<div class="cattag">모멘텀 · 기술적 신호</div>
-<div class="tech">
-  {% if rsi %}
-  <div class="box">
-    <div class="k" style="display:flex;align-items:center;gap:6px">
-      <svg class="icon-sm glow-gold" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="var(--hl)"/></svg>
-      RSI (14일)
-    </div>
-    <div class="v {{ rsi.tone }}">{{ rsi.val }} · {{ rsi.txt }}</div>
-    <div class="bar"><div class="f" style="width:{{ rsi.pct }}%"></div><div class="mk" style="left:30%"></div><div class="mk" style="left:70%"></div></div>
-  </div>
-  {% endif %}
-  {% if cross %}
-  <div class="box">
-    <div class="k">추세 신호 (20일선 vs 50일선)</div>
-    <div class="v {{ cross.tone }}">{{ cross.txt }}</div>
-    <div class="sub">{{ cross.sub }}</div>
-  </div>
-  {% endif %}
-</div>
-{% endif %}
-{% if s.chart_note %}<div class="note c3">{{ s.chart_note }}</div>{% endif %}
-{% if vol_compare %}
-<div class="miniline">
-  <span>실현변동성(60일) <b class="{{ vol_compare.tone }}">{{ vol_compare.stock }}</b> / 시장 {{ vol_compare.market }}{% if vol_compare.ratio %} · {{ vol_compare.ratio }}배{% endif %}</span>
-</div>
-{% endif %}
-{% if w52.pos is not none and w52.low and w52.high %}
-<div class="w52">
-  <div class="tr"><div class="fl2" style="width:{{ w52.pos }}%"></div><div class="pn" style="left:{{ w52.pos }}%"></div></div>
-  <div class="sc"><span>52주 저 ${{ '%.0f'|format(w52.low) }}</span><span style="color:var(--tx2)">현재 {{ w52.pos }}% 지점</span><span>52주 고 ${{ '%.0f'|format(w52.high) }}</span></div>
-</div>
-{% endif %}
-{% if smart_cells %}
-<div class="cattag">수급 · 심리</div>
-<div class="miniline">{% for c in smart_cells %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}</div>
-{% endif %}
-{% if s.smart_money_note %}<div class="note c2">{{ s.smart_money_note }}</div>{% endif %}
-{% if peers %}
-<div class="peer">
-  <div class="hd"><span class="c-t">경쟁사{% if peer_avg_per %} · 업종PER {{ peer_avg_per }}{% endif %}</span><span class="c-n">등락률</span><span class="c-n">PER</span><span class="c-n">시총</span></div>
-  {% for p in peers %}
-  <div class="tr {{ 'me' if p.is_me else '' }}">
-    <span class="c-t">{{ p.ticker }}</span>
-    <span class="c-n {{ p.cls }}">{{ p.fmt_pct }}</span>
-    <span class="c-n">{{ p.fmt_per }}</span>
-    <span class="c-n">{{ p.fmt_cap }}</span>
+<div class="h2sub">투자자가 꼭 봐야 할 4가지</div>
+{% if p3_stats %}
+<div class="statgrid">
+  {% for x in p3_stats %}
+  <div class="statcell">
+    <div class="slabel">{{ x.label }}</div>
+    <div class="sval {{ x.tone }}">{{ x.val }}</div>
+    <div class="sdet">{{ x.detail }}</div>
   </div>
   {% endfor %}
 </div>
 {% endif %}
+{% if s.fundamental_note %}<div class="note c3">{{ s.fundamental_note }}</div>{% endif %}
+{% if s.chart_note %}<div class="note c3">{{ s.chart_note }}</div>{% endif %}
 
 {# ══ P4 ═══════════════════════════════════ #}
 {% elif card_num==4 %}
@@ -447,7 +306,7 @@
   <div class="frow">
     <div class="ftop">
       <span class="fcat">{{ x.cat }}</span>
-      <span class="fverd {{ x.tone }}">{{ x.verdict }}</span>
+      <span class="fverd {{ x.badge }}">{{ x.verdict }}</span>
       <span class="fdet">{{ x.detail }}</span>
     </div>
     <div class="fwhy c2">{{ x.why }}</div>
@@ -482,7 +341,7 @@
   <div class="track"><div class="fill" style="width:{{ tgt.fill }}%"></div><div class="pin" style="left:{{ tgt.pin }}%"></div></div>
   <div class="scale">
     <span>${{ tgt.low }}</span>
-    <span style="color:var(--tx)">현재 ${{ tgt.cur }}{% if tgt.upside %} · 여력 {{ tgt.upside }}%{% endif %}</span>
+    <span class="cur">현재 ${{ tgt.cur }}{% if tgt.upside %} · 여력 {{ tgt.upside }}%{% endif %}</span>
     <span>${{ tgt.high }}</span>
   </div>
 </div>
@@ -512,8 +371,8 @@
   <div class="fb">팔로우하고 놓치지 말고 받아보세요</div>
 </div>
 <div class="cta">
-  <div class="b save">저장해두고 다시 보기</div>
-  <div class="b share">친구에게 공유하기</div>
+  <div class="b save">저장하기</div>
+  <div class="b share">공유하기</div>
 </div>
 <div class="disc">
   <div class="t">본 콘텐츠는 공개된 시장 데이터를 자동 정리한 투자 참고용 자료입니다.<br>특정 종목의 매수·매도를 권유하지 않으며, 투자 결과에 대한 책임은 본인에게 있습니다.</div>
