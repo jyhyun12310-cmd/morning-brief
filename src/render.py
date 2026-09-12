@@ -161,6 +161,35 @@ def _focus_ctx(focus: dict) -> dict:
     }
 
 
+def _p1_title(focus: dict) -> str:
+    """표지 메인 타이틀. AI가 아니라 실제 등락률로 직접 조립합니다.
+
+    '폭등' 같은 표현이 실제 숫자와 어긋나는 일이 없도록, 이 문구는 전부
+    코드에서 확정합니다.
+    """
+    name = focus.get("name") or focus.get("ticker", "")
+    pct = focus.get("pct")
+    if pct is None:
+        return name
+    a = abs(pct)
+    if pct > 0:
+        verb = "폭등" if a >= 8 else "급등" if a >= 3 else "상승"
+    else:
+        verb = "폭락" if a >= 8 else "급락" if a >= 3 else "하락"
+    return f"{name}, 하루 만에 {pct:+.0f}% {verb}!"
+
+
+def _p1_subtitle(focus: dict) -> str:
+    """표지 서브 타이틀. 거래량 배수가 있으면 그걸로, 없으면 등락폭 기준으로."""
+    rvol = focus.get("rvol")
+    if rvol and rvol >= 1.3:
+        return f"거래량 평소 {rvol:.1f}배 폭증, 무슨 일일까?"
+    pct = abs(focus.get("pct") or 0)
+    if pct >= 5:
+        return "시장이 술렁인 이유가 있다"
+    return "무슨 일이 있었는지 알아보자"
+
+
 def _p1_chips(focus: dict) -> list[dict]:
     """표지 하단: 이 종목 자체의 지표만. 시장 전체 지수는 여기 안 넣습니다
     (관련 없는 시장 데이터가 뜬금없이 끼는 걸 막기 위함 — 그건 3p 이후로).
@@ -534,21 +563,61 @@ def _factor_scorecard(focus: dict) -> list[dict]:
             "detail": f"기관보유율 {pct * 100:.0f}%",
         })
 
+    # 신호등 색상 매핑 — 4팩터 각각의 up/dn/hl/fl 판정은 이미 좋음/나쁨/주의/중립과
+    # 정확히 대응되므로, P4 뱃지 전용 색(초록/빨강/주황/회색)으로 그대로 옮깁니다.
+    # 가격 등락에 쓰는 빨강=상승/파랑=하락 한국식 표기와는 별개의 색 체계입니다.
+    badge_map = {"up": "good", "dn": "bad", "hl": "caution", "fl": "neutral"}
+    for factor in factors:
+        factor["badge"] = badge_map.get(factor["tone"], "neutral")
+
     return factors
+
+
+def _p3_stats(focus: dict, rsi: dict | None, cross: dict | None) -> list[dict]:
+    """P3 핵심 4칸만: EPS 서프라이즈·밸류에이션·기술적 신호·모멘텀.
+
+    나머지 자잘한 지표(재무건전성·경쟁사표·52주위치 등)는 전부 뺍니다.
+    투자자가 반드시 봐야 할 4가지만 큼직하게 남깁니다.
+    """
+    e = focus.get("earnings") or {}
+    v = focus.get("valuation") or {}
+    stats = []
+
+    if e.get("eps_act") is not None:
+        detail = f"예상 대비 {e['surprise']:+.1f}% {'Beat' if e.get('beat') else 'Miss'}" \
+            if e.get("surprise") is not None else ""
+        stats.append({
+            "label": "실적 스코어", "val": f"${e['eps_act']}", "detail": detail,
+            "tone": "up" if e.get("beat") else "dn",
+        })
+
+    fpe = v.get("forward_per")
+    if fpe:
+        stats.append({"label": "밸류에이션", "val": f"{fpe:.1f}배", "detail": "선행 PER", "tone": "fl"})
+
+    if rsi:
+        stats.append({"label": "기술적 신호", "val": f"RSI {rsi['val']}", "detail": f"{rsi['txt']} 구간", "tone": rsi["tone"]})
+
+    if cross:
+        stats.append({"label": "모멘텀", "val": cross["txt"], "detail": "20일선 vs 50일선", "tone": cross["tone"]})
+
+    return stats
 
 
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
+    levels = focus.get("levels") or {}
+    rsi_obj = _rsi_read(levels.get("rsi"))
+    cross_obj = _cross_read(levels.get("cross"))
     return {
         "date_kr": data["date_kr"],
         "weekday_kr": data["weekday_kr"],
         "s": summary,
         "f": _focus_ctx(focus),
         "p1_chips": _p1_chips(focus),
-        "hook_parts": _split_highlight(
-            summary.get("hook_headline", ""), summary.get("hook_highlight", "")
-        ),
+        "p1_title": _p1_title(focus),
+        "p1_subtitle": _p1_subtitle(focus),
         "glow_chart": _cover_glow_chart(focus.get("series_60") or focus.get("series")),
         "indices": _decorate(market.get("indices", [])),
         "gauges": _decorate(market.get("gauges", [])),
@@ -562,8 +631,9 @@ def _template_context(data: dict, summary: dict) -> dict:
         "sectors": _sector_rotation(data.get("sector_rotation", [])),
         "rvol": _rvol_badge(focus),
         "w52": focus.get("w52") or {},
-        "rsi": _rsi_read((focus.get("levels") or {}).get("rsi")),
-        "cross": _cross_read((focus.get("levels") or {}).get("cross")),
+        "rsi": rsi_obj,
+        "cross": cross_obj,
+        "p3_stats": _p3_stats(focus, rsi_obj, cross_obj),
         "smart_cells": _smart_money_cells(focus.get("smart_money") or {}),
         "rec_bars": _rec_bars(focus.get("rec_dist") or {}),
         "peer_avg_per": focus.get("peer_avg_per"),
