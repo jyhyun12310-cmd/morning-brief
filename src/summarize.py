@@ -81,13 +81,14 @@ SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 
 반드시 아래 JSON 만 출력합니다. 코드펜스, 설명, 서론 없이 JSON 객체 하나만.
 
 {
-  "hook_headline": "20자 이내. 원인을 다 밝히지 말고 한 조각만 보여줘 다음 장이 궁금해지게. 완결된 설명 금지. 숫자는 큰 글씨로 따로 표시되므로 등락률은 넣지 말 것. 예: 젠슨 황의 한마디가 부른 파장 / 이 회사에 무슨 일이",
-  "hook_highlight": "위 hook_headline 안에 그대로 들어있는 핵심 키워드 2~7자. 형광 배경으로 강조됩니다. 반드시 hook_headline 의 부분 문자열이어야 함.",
-  "hook_tag": "8자 이내 이슈 성격 태그. 예: 실적 서프라이즈 / 가이던스 상향 / 규제 리스크",
-
   "company_desc": "45~65자. 이 회사가 정확히 무엇을 하는 곳인지 쉬운 말로. 제공된 영문 소개(사업요약)와 업종 정보를 근거로 삼되, 직역하지 말고 한국 독자가 바로 이해할 문장으로 새로 씁니다. 예: 클라우드 인프라와 데이터베이스를 기업에 공급하는 소프트웨어 회사",
-  "driver_title": "16자 이내. 이 종목이 오늘 움직인 근본 원인.",
-  "facts": ["왜 거래량·관심이 몰렸는지 뒷받침하는 사실 34자 이내", "팩트 2", "팩트 3", "팩트 4"],
+
+  "points": [
+    {"title": "8~14자. 이유를 짧게 요약한 제목", "detail": "수치 하나 (18자 이내)"},
+    {"title": "위와 동일 형식", "detail": "..."},
+    {"title": "위와 동일 형식", "detail": "..."}
+  ],
+  "points_summary": "40~60자. 위 3가지 이유를 한 문장으로 엮은 요약. 예: 어닝 서프라이즈와 저평가 매력이 맞물려 수급 집중",
   "macro_line": "시장 전체 흐름과 이 종목의 움직임이 뚜렷하게 대비될 때만 50~80자로 채웁니다. 예: 시장 전체가 하락한 날 이 종목만 급등, 또는 시장은 잠잠한데 이 종목만 반응. 특별한 대비가 없으면 반드시 빈 문자열(\"\")로 둡니다 — 관련 없는 지수 나열은 절대 금지.",
 
   "fundamental_note": "90~130자. 실적과 밸류에이션 수치를 해석. 비싼지 싼지, 성장이 뒷받침되는지, 업종평균PER 데이터가 있으면 비교까지.",
@@ -142,15 +143,13 @@ def _fallback(data: dict) -> dict:
     direction = "급등" if (pct or 0) >= 5 else "상승" if (pct or 0) > 0 else \
                 "급락" if (pct or 0) <= -5 else "하락"
 
-    facts = []
+    points = []
     if rvol:
-        facts.append(f"거래량 평소 대비 {rvol:.1f}배")
+        points.append({"title": "거래량 급증", "detail": f"평소 대비 {rvol:.1f}배"})
     if g.get("revenue") is not None:
-        facts.append(f"매출성장률 {g['revenue'] * 100:+.0f}%")
+        points.append({"title": "매출 성장", "detail": f"{g['revenue'] * 100:+.0f}%"})
     if v.get("forward_per"):
-        facts.append(f"선행 PER {v['forward_per']:.0f}배")
-    if a.get("upside") is not None:
-        facts.append(f"목표주가 대비 {a['upside']:+.0f}% 여력")
+        points.append({"title": "밸류에이션", "detail": f"선행 PER {v['forward_per']:.0f}배"})
 
     summary3 = []
     if pct is not None:
@@ -161,14 +160,11 @@ def _fallback(data: dict) -> dict:
         summary3.append(f"월가 목표주가 평균은 현재가 대비 {a['upside']:+.0f}% 수준")
 
     return {
-        "hook_headline": f"{name} {direction}",
-        "hook_highlight": "",
-        "hook_tag": direction,
         "company_desc": industry or f"{tk} 관련 기업",
-        "macro_line": f"{name}이(가) {abs(pct or 0):.1f}% {direction}하며 거래량이 크게 늘어남",
-        "driver_title": f"{direction} 마감",
-        "facts": facts,
-        "fundamental_note": " · ".join(facts) if facts else "",
+        "points": points,
+        "points_summary": f"{name} {direction}의 배경을 데이터로 정리했습니다",
+        "macro_line": "",
+        "fundamental_note": " · ".join(p["detail"] for p in points) if points else "",
         "chart_note": (
             f"RSI {lv['rsi']:.0f} 수준" if lv.get("rsi") is not None else ""
         ),
@@ -185,7 +181,7 @@ def _fallback(data: dict) -> dict:
     }
 
 
-_LIST_LIMITS = {"facts": 4, "risks": 4, "summary3": 3}
+_LIST_LIMITS = {"points": 3, "risks": 4, "summary3": 3}
 
 # LLM 에게 보낼 때 빼는 필드. 60일 종가 배열 같은 건 모델이 읽어도 의미를 못 뽑는데
 # 토큰만 1만 자 넘게 잡아먹어, 정작 출력할 여력을 줄입니다.
