@@ -190,6 +190,25 @@
              display:flex;align-items:center;justify-content:center;margin-top:2px}
   .risks .t{font-size:21px;line-height:1.45;letter-spacing:-.015em}
 
+  /* ── P4 시장 파급효과 ─────────────────── */
+  .ripple{margin-top:24px}
+  .rip{padding:18px 0;border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:flex-start}
+  .rip:first-child{border-top:1px solid var(--line)}
+  .riplabel{flex:0 0 88px;padding:7px 0;font-size:17px;font-weight:800;color:var(--hl);letter-spacing:-.01em}
+  .riptext{flex:1;font-size:21px;line-height:1.5;font-weight:500;letter-spacing:-.018em}
+
+  /* ── P5 팩터 요약 ─────────────────────── */
+  .fmini{margin-top:18px}
+  .fm{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .fmdot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .fmdot.good{background:#22C55E} .fmdot.bad{background:#EF4444}
+  .fmdot.caution{background:#F97316} .fmdot.neutral{background:#94A3B8}
+  .fmcat{flex:0 0 78px;font-size:15px;color:var(--tx3);font-weight:700}
+  .fmv{font-size:18px;font-weight:800}
+  .fmv.good{color:#22C55E} .fmv.bad{color:#EF4444}
+  .fmv.caution{color:#F97316} .fmv.neutral{color:#94A3B8}
+  .fmd{flex:1;text-align:right;font-family:var(--mono);font-size:14px;color:var(--tx3)}
+
   /* ── P5 ─────────────────────────────── */
   .verdict{margin-top:22px;display:flex;align-items:center;gap:22px;
            padding:26px 28px;border-radius:18px;border:2px solid}
@@ -318,45 +337,6 @@
 </div>
 {% endif %}
 {% if s.fundamental_note %}<div class="note c3">{{ s.fundamental_note }}</div>{% endif %}
-{% if s.chart_note %}<div class="note c3">{{ s.chart_note }}</div>{% endif %}
-
-{# ══ P4 ═══════════════════════════════════ #}
-{% elif card_num==4 %}
-<div class="h1">AI 팩터 진단</div>
-<div class="h2sub">{{ f.ticker }} · 4가지 지표로 보는 근거</div>
-{% if factors %}
-<div class="fcard">
-  {% for x in factors %}
-  <div class="frow">
-    <div class="ftop">
-      <span class="fcat">{{ x.cat }}</span>
-      <span class="fverd {{ x.badge }}">{{ x.verdict }}</span>
-      <span class="fdet">{{ x.detail }}</span>
-    </div>
-    <div class="fwhy c2">{{ x.why }}</div>
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
-{% if s.outlook_note %}
-<div class="outlook">
-  <div class="ok">종합 판단</div>
-  <div class="ov c3">{{ s.outlook_note }}</div>
-</div>
-{% endif %}
-{% if chain %}
-<div class="cattag">밸류체인 반응</div>
-<div class="chain">
-  {% for c in chain[:2] %}
-  <div class="it">
-    <span class="tk2">{{ c.ticker }}</span>
-    <span class="rl c1">{{ c.relation }}</span>
-    <span class="pc {{ c.cls }}">{{ c.fmt_pct }} {{ c.arrow }}</span>
-  </div>
-  {% endfor %}
-</div>
-{% if s.chain_note %}<div class="note c2">{{ s.chain_note }}</div>{% endif %}
-{% endif %}
 {% if peer_per_chart %}
 <div class="cattag">동종업계 PER 비교</div>
 <div class="perchart">
@@ -384,8 +364,40 @@
 </div>
 {% endif %}
 {% if s.wallst_note %}<div class="note c2">{{ s.wallst_note }}</div>{% endif %}
-{% if s.risks %}
-<div class="risks">{% for r in s.risks[:3] %}<div class="r"><span class="ic">!</span><span class="t c2">{{ r }}</span></div>{% endfor %}</div>
+
+{# ══ P4 ═══════════════════════════════════ #}
+{% elif card_num==4 %}
+<div class="h1">{{ s.ripple_title or '시장으로 번지는 파장' }}</div>
+<div class="h2sub">이 움직임이 다른 시장에 남긴 것</div>
+{% if s.ripple_items %}
+<div class="ripple">
+  {% for r in s.ripple_items %}
+  <div class="rip">
+    <div class="riplabel">{{ r.label }}</div>
+    <div class="riptext c3">{{ r.text }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% if s.industry_story %}
+<div class="cattag">산업 구조는 이렇게 바뀌는 중</div>
+<div class="note c3">{{ s.industry_story }}</div>
+{% endif %}
+{% if chain %}
+<div class="cattag">밸류체인 반응</div>
+<div class="chain">
+  {% for c in chain[:2] %}
+  <div class="it">
+    <span class="tk2">{{ c.ticker }}</span>
+    <span class="rl c1">{{ c.relation }}</span>
+    <span class="pc {{ c.cls }}">{{ c.fmt_pct }} {{ c.arrow }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% if s.chain_note %}<div class="note c2">{{ s.chain_note }}</div>{% endif %}
+{% endif %}
+{% if s.kr_line %}
+<div class="krbox"><div class="k">한국 증시에 미칠 영향</div><div class="v c3">{{ s.kr_line }}</div></div>
 {% endif %}
 
 {# ══ P5 ═══════════════════════════════════ #}
@@ -399,6 +411,13 @@
     <div class="vlabel">{{ factor_verdict.label }}</div>
     <div class="vdetail">{{ factor_verdict.detail }}</div>
   </div>
+</div>
+{% endif %}
+{% if factors %}
+<div class="fmini">
+  {% for x in factors %}
+  <div class="fm"><span class="fmdot {{ x.badge }}"></span><span class="fmcat">{{ x.cat }}</span><span class="fmv {{ x.badge }}">{{ x.verdict }}</span><span class="fmd">{{ x.detail }}</span></div>
+  {% endfor %}
 </div>
 {% endif %}
 {% if s.summary3 %}
