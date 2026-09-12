@@ -155,7 +155,7 @@ def _focus_ctx(focus: dict) -> dict:
         "hex": _hex(pct),
         "fmt_pct": f"{pct:+.2f}%" if pct is not None else "—",
         "arrow": _arrow(pct),
-        "fmt_last": _fmt_num(focus.get("last", 0)),
+        "fmt_last": _fmt_num(focus.get("last") or 0),
         "mark_size": mark,
         "earnings": e,
     }
@@ -231,6 +231,29 @@ def _rev_bars(focus: dict) -> list[dict]:
         {"period": h["period"], "h": round(22 + (h["value"] / hi) * 78, 1)}
         for h in hist if h.get("value")
     ]
+
+
+def _peer_per_chart(focus: dict) -> list[dict]:
+    """동종업계 PER 비교 막대. 이미 수집한 피어 데이터를 시각화만 새로 합니다.
+
+    피어는 실적 기준(trailing) PER 만 갖고 있어서, 주인공도 같은 기준으로
+    맞춰 비교합니다 (P3의 선행 PER 과는 다른 수치이므로 라벨을 명확히 구분).
+    """
+    fpe = (focus.get("valuation") or {}).get("per")
+    ticker = focus.get("ticker", "")
+    rows = []
+    if fpe and ticker:
+        rows.append({"ticker": ticker, "per": fpe, "is_me": True})
+    for p in (focus.get("peers") or [])[:4]:
+        if p.get("per"):
+            rows.append({"ticker": p["ticker"], "per": p["per"], "is_me": False})
+    if len(rows) < 2:
+        return []
+    max_per = max(r["per"] for r in rows) or 1
+    for r in rows:
+        r["bar_pct"] = round(r["per"] / max_per * 100, 1)
+        r["fmt_per"] = f"{r['per']:.1f}"
+    return rows
 
 
 def _peers(focus: dict) -> list[dict]:
@@ -617,7 +640,7 @@ def _template_context(data: dict, summary: dict) -> dict:
         "f": _focus_ctx(focus),
         "p1_chips": _p1_chips(focus),
         "p1_title": _p1_title(focus),
-        "p1_subtitle": _p1_subtitle(focus),
+        "p1_subtitle": summary.get("headline_theme") or _p1_subtitle(focus),
         "glow_chart": _cover_glow_chart(focus.get("series_60") or focus.get("series")),
         "indices": _decorate(market.get("indices", [])),
         "gauges": _decorate(market.get("gauges", [])),
@@ -637,6 +660,7 @@ def _template_context(data: dict, summary: dict) -> dict:
         "smart_cells": _smart_money_cells(focus.get("smart_money") or {}),
         "rec_bars": _rec_bars(focus.get("rec_dist") or {}),
         "peer_avg_per": focus.get("peer_avg_per"),
+        "peer_per_chart": _peer_per_chart(focus),
         "insider": _insider_read(focus.get("insider") or {}),
         "inst_top": focus.get("inst_top") or [],
         "vol_compare": _vol_compare(
