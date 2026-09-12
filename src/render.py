@@ -472,6 +472,42 @@ def _fin_health_cells(fh: dict) -> list[dict]:
     return cells
 
 
+def _factor_verdict(factors: list[dict]) -> dict | None:
+    """4팩터 결과를 집계한 대형 스코어 뱃지.
+
+    매수/매도 판정이 아니라 '지표가 몇 개나 긍정인지'를 그대로 보여줍니다.
+    투자 판단은 독자 몫으로 남기고, 우리는 집계만 제공합니다.
+    """
+    if not factors:
+        return None
+    good = sum(1 for f in factors if f["badge"] == "good")
+    bad = sum(1 for f in factors if f["badge"] == "bad")
+    caution = sum(1 for f in factors if f["badge"] == "caution")
+    total = len(factors)
+
+    if good >= total * 0.75:
+        label, badge = "지표 대부분 긍정", "good"
+    elif bad > total * 0.5:
+        label, badge = "지표 대부분 부정", "bad"
+    elif caution >= total * 0.5:
+        label, badge = "주의 신호 우세", "caution"
+    elif good > bad:
+        label, badge = "긍정 우세", "good"
+    elif bad > good:
+        label, badge = "부정 우세", "bad"
+    else:
+        label, badge = "신호 엇갈림", "neutral"
+
+    return {
+        "label": label,
+        "badge": badge,
+        "score": f"{good}/{total}",
+        "detail": f"{total}개 지표 중 {good}개 긍정"
+        + (f" · {caution}개 주의" if caution else "")
+        + (f" · {bad}개 부정" if bad else ""),
+    }
+
+
 def _factor_scorecard(focus: dict) -> list[dict]:
     """밸류에이션·모멘텀·펀더멘털·수급심리 4팩터 진단표.
 
@@ -633,6 +669,7 @@ def _template_context(data: dict, summary: dict) -> dict:
     levels = focus.get("levels") or {}
     rsi_obj = _rsi_read(levels.get("rsi"))
     cross_obj = _cross_read(levels.get("cross"))
+    factors_list = _factor_scorecard(focus)
     return {
         "date_kr": data["date_kr"],
         "weekday_kr": data["weekday_kr"],
@@ -670,7 +707,8 @@ def _template_context(data: dict, summary: dict) -> dict:
                   if g["ticker"] == "^VIX"), None),
         ),
         "fin_cells": _fin_health_cells(focus.get("financial_health") or {}),
-        "factors": _factor_scorecard(focus),
+        "factors": factors_list,
+        "factor_verdict": _factor_verdict(factors_list),
         "runners": [
             {**r, "cls": _cls(r.get("pct")),
              "fmt_pct": f"{r['pct']:+.2f}%" if r.get("pct") is not None else "—"}
