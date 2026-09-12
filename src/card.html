@@ -72,13 +72,10 @@
   .z2{height:60%;display:flex;flex-direction:column;justify-content:center}
   .z3{height:20%;display:flex;flex-direction:column;justify-content:flex-end}
 
-  .cat{
-    display:inline-flex;align-self:flex-start;align-items:center;gap:10px;
-    margin-top:28px;padding:11px 20px;border-radius:8px;
-    background:var(--hl);color:#1A1400;
-    font-size:22px;font-weight:900;letter-spacing:-.01em;
+  .tagmini{
+    margin-top:28px;font-size:19px;font-weight:700;letter-spacing:.02em;
+    color:var(--hl);
   }
-  .cat .dot{width:8px;height:8px;border-radius:50%;background:#1A1400}
 
   .hero{display:flex;align-items:baseline;gap:20px}
   .hero .pc{font-family:var(--mono);font-size:var(--f-hero);font-weight:700;
@@ -152,12 +149,16 @@
   .tech{margin-top:24px;display:flex;gap:12px}
   .tech .box{flex:1;border-radius:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
   .tech .k{font-size:14px;color:var(--tx3);font-weight:500}
-  .tech .v{margin-top:8px;font-family:var(--mono);font-size:26px;font-weight:700}
+  .tech .v{margin-top:8px;font-family:var(--mono);font-size:30px;font-weight:700}
   .tech .sub{margin-top:4px;font-size:13px;color:var(--tx3)}
   .tech .bar{margin-top:12px;position:relative;height:7px;border-radius:4px;background:var(--line)}
   .tech .bar .f{position:absolute;top:0;bottom:0;border-radius:4px;background:var(--hl)}
   .tech .bar .mk{position:absolute;top:-3px;width:2px;height:13px;background:var(--tx3)}
   .smcap{margin-top:24px;font-size:15px;font-weight:700;color:var(--tx3);letter-spacing:.01em}
+  .miniline{margin-top:10px;font-size:16px;color:var(--tx2);line-height:1.8;letter-spacing:-.01em}
+  .miniline span{margin-right:16px}
+  .miniline b{color:var(--tx);font-family:var(--mono);font-weight:700}
+  .miniline b.up{color:var(--up)} .miniline b.dn{color:var(--dn)} .miniline b.fl{color:var(--fl)} .miniline b.hl{color:var(--hl)}
   .edots{margin-top:10px;display:flex;align-items:center;gap:8px}
   .edots .d{width:11px;height:11px;border-radius:50%}
   .edots .d.on{background:var(--up)}
@@ -189,7 +190,7 @@
   .w52 .sc{margin-top:10px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;color:var(--tx3)}
   .peer{margin-top:24px}
   .peer .hd{display:flex;padding:10px 0;border-bottom:1px solid var(--line2);font-size:15px;color:var(--tx3);font-weight:700}
-  .peer .tr{display:flex;padding:13px 0;border-bottom:1px solid var(--line);font-size:22px}
+  .peer .tr{display:flex;padding:9px 0;border-bottom:1px solid var(--line);font-size:18px}
   .peer .tr.me{background:rgba(250,204,21,.08)}
   .peer .c-t{flex:0 0 168px;font-family:var(--mono);font-weight:700;padding-left:10px}
   .peer .c-n{flex:1;text-align:right;font-family:var(--mono)}
@@ -207,11 +208,14 @@
            border:1px solid rgba(250,204,21,.28)}
   .outlook .ok{font-size:15px;font-weight:800;color:var(--hl);letter-spacing:.02em}
   .outlook .ov{margin-top:9px;font-size:23px;line-height:1.55;font-weight:600;letter-spacing:-.018em}
-  .fcard{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  .fcell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
-  .fcat{font-size:13px;color:var(--tx3);font-weight:700;letter-spacing:.02em}
-  .fverd{margin-top:6px;font-size:23px;font-weight:800;letter-spacing:-.02em}
-  .fdet{margin-top:5px;font-size:14px;color:var(--tx2);line-height:1.4;letter-spacing:-.01em}
+  .fcard{margin-top:16px}
+  .frow{padding:13px 0;border-bottom:1px solid var(--line)}
+  .frow:first-child{border-top:1px solid var(--line)}
+  .ftop{display:flex;align-items:baseline;gap:12px}
+  .fcat{flex:0 0 84px;font-size:15px;color:var(--tx3);font-weight:700;letter-spacing:.01em}
+  .fverd{font-size:21px;font-weight:800;letter-spacing:-.02em}
+  .fdet{flex:1;text-align:right;font-family:var(--mono);font-size:14px;color:var(--tx3)}
+  .fwhy{margin-top:5px;padding-left:96px;font-size:16px;color:var(--tx2);line-height:1.45;letter-spacing:-.01em}
   .chain .it{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .chain .tk2{flex:0 0 120px;font-family:var(--mono);font-size:24px;font-weight:700}
   .chain .rl{flex:1;font-size:20px;color:var(--tx2);letter-spacing:-.015em}
@@ -302,7 +306,7 @@
 {# ══ P1: 3-Zone ═══════════════════════════ #}
 {% if card_num==1 %}
 <div class="z1">
-  <div class="cat"><span class="dot glow-gold"></span>미국주식 ISSUE</div>
+  <div class="tagmini">{{ s.hook_tag }}</div>
 </div>
 <div class="z2">
   <div class="hero">
@@ -313,9 +317,9 @@
     <span class="sym">{{ f.ticker }}</span>
     <span class="nm">{{ f.name }}</span>
   </div>
-  <div class="hook c3">{% for p in hook_parts %}{% if p.hl %}<span class="mk">{{ p.t }}</span>{% else %}{{ p.t }}{% endif %}{% endfor %}</div>
-  {% if s.hook_oneline %}<div class="oneline c1">{{ s.hook_oneline }}</div>{% endif %}
+  <div class="hook c2">{% for p in hook_parts %}{% if p.hl %}<span class="mk">{{ p.t }}</span>{% else %}{{ p.t }}{% endif %}{% endfor %}</div>
 </div>
+{% if p1_chips %}
 <div class="z3">
   <div class="badges">
     {% for c in p1_chips %}
@@ -323,10 +327,11 @@
     {% endfor %}
   </div>
 </div>
+{% endif %}
 
 {# ══ P2 ═══════════════════════════════════ #}
 {% elif card_num==2 %}
-<div class="h1">오늘의 무브</div>
+<div class="h1">찐이유</div>
 <div class="h2sub">{{ f.ticker }} · {{ f.sector_kr }}</div>
 {% if s.company_desc %}
 <div class="cdesc">
@@ -343,18 +348,6 @@
 </div>
 {% endif %}
 {% if s.macro_line %}<div class="note c2">{{ s.macro_line }}</div>{% endif %}
-{% if sectors %}
-<div class="sec-mini">
-  <div class="smcap" style="margin-top:20px">참고 · 간밤 섹터별 자금 흐름</div>
-  {% for x in sectors[:5] %}
-  <div class="r">
-    <span class="k">{{ x.label }}</span>
-    <span class="t"><span class="b {{ x.cls }}" style="width:{{ x.bar }}%"></span></span>
-    <span class="v {{ x.cls }}">{{ x.fmt_pct }}</span>
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
 
 {# ══ P3 ═══════════════════════════════════ #}
 {% elif card_num==3 %}
@@ -379,11 +372,13 @@
 <div class="nextq">다음 실적 발표 <b>{{ f.earnings.next_date }}</b></div>
 {% endif %}
 {% endif %}
-{% if val_cells or fin_cells %}
+{% if val_cells %}
 <div class="val">
   {% for c in val_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
-  {% for c in fin_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
 </div>
+{% endif %}
+{% if fin_cells %}
+<div class="miniline">{% for c in fin_cells %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}</div>
 {% endif %}
 {% if rev_bars %}
 <div class="cattag">펀더멘털 · 성장</div>
@@ -413,12 +408,8 @@
 {% endif %}
 {% if s.chart_note %}<div class="note c3">{{ s.chart_note }}</div>{% endif %}
 {% if vol_compare %}
-<div class="tech" style="margin-top:14px">
-  <div class="box" style="flex:1">
-    <div class="k">실현변동성(60일) vs VIX</div>
-    <div class="v {{ vol_compare.tone }}">{{ vol_compare.stock }} <span style="color:var(--tx3);font-weight:500;font-size:16px">/ 시장 {{ vol_compare.market }}</span></div>
-    {% if vol_compare.ratio %}<div class="sub">시장 평균보다 {{ vol_compare.ratio }}배 변동성</div>{% endif %}
-  </div>
+<div class="miniline">
+  <span>실현변동성(60일) <b class="{{ vol_compare.tone }}">{{ vol_compare.stock }}</b> / 시장 {{ vol_compare.market }}{% if vol_compare.ratio %} · {{ vol_compare.ratio }}배{% endif %}</span>
 </div>
 {% endif %}
 {% if w52.pos is not none and w52.low and w52.high %}
@@ -429,7 +420,7 @@
 {% endif %}
 {% if smart_cells %}
 <div class="cattag">수급 · 심리</div>
-<div class="val">{% for c in smart_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
+<div class="miniline">{% for c in smart_cells %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}</div>
 {% endif %}
 {% if s.smart_money_note %}<div class="note c2">{{ s.smart_money_note }}</div>{% endif %}
 {% if peers %}
@@ -453,10 +444,13 @@
 {% if factors %}
 <div class="fcard">
   {% for x in factors %}
-  <div class="fcell">
-    <div class="fcat">{{ x.cat }}</div>
-    <div class="fverd {{ x.tone }}">{{ x.verdict }}</div>
-    <div class="fdet">{{ x.detail }}</div>
+  <div class="frow">
+    <div class="ftop">
+      <span class="fcat">{{ x.cat }}</span>
+      <span class="fverd {{ x.tone }}">{{ x.verdict }}</span>
+      <span class="fdet">{{ x.detail }}</span>
+    </div>
+    <div class="fwhy c2">{{ x.why }}</div>
   </div>
   {% endfor %}
 </div>
@@ -494,7 +488,7 @@
 </div>
 {% endif %}
 {% if actions %}
-<div class="acts">{% for a in actions %}<div class="a"><span class="fm c1">{{ a.firm }}</span><span class="gr {{ a.cls }}">{{ a.from }} → {{ a.to }}</span></div>{% endfor %}</div>
+<div class="acts">{% for a in actions[:1] %}<div class="a"><span class="fm c1">{{ a.firm }}</span><span class="gr {{ a.cls }}">{{ a.from }} → {{ a.to }}</span></div>{% endfor %}</div>
 {% endif %}
 {% if s.risks %}
 <div class="risks">{% for r in s.risks[:3] %}<div class="r"><span class="ic">!</span><span class="t c2">{{ r }}</span></div>{% endfor %}</div>
