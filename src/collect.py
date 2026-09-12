@@ -728,25 +728,179 @@ def fetch_korea() -> dict:
     except Exception:
         log.warning("pykrx 미설치 — 한국 데이터 건너뜀")
         return result
+
+    # 영업일 확정을 먼저 합니다. 이게 실패하면 이후 조회가 전부 의미 없습니다.
     try:
         today = dt.datetime.now(cfg.KST).strftime("%Y%m%d")
         biz = stock.get_nearest_business_day_in_a_week(date=today, prev=True)
         result["date"] = biz
+    except Exception:
+        log.exception("한국 영업일 조회 실패")
+        return result
+
+    try:
+        start = (dt.datetime.strptime(biz, "%Y%m%d") - dt.timedelta(days=10)).strftime("%Y%m%d")
         for name, code in (("코스피", "1001"), ("코스닥", "2001")):
-            df = stock.get_index_ohlcv(
-                (dt.datetime.strptime(biz, "%Y%m%d") - dt.timedelta(days=10)).strftime("%Y%m%d"),
-                biz, code,
-            )
+            df = stock.get_index_ohlcv(start, biz, code)
             if df is None or df.empty:
                 continue
             last, pct = _pct_change(df["종가"])
             result[name] = {"last": round(last, 2), "pct": round(pct, 2) if pct else None}
     except Exception:
-        log.exception("한국 데이터 수집 실패")
+        log.exception("한국 지수 수집 실패")
+
+    # 투자자별 순매수 — 외국인이 사는지 파는지가 국내 증시 스토리의 핵심입니다.
+    try:
+        flow = stock.get_market_trading_value_by_investor(biz, biz, "KOSPI")
+        if flow is not None and not flow.empty and "순매수" in flow.columns:
+            picks = {}
+            for label, key in (("외국인", "외국인합계"), ("기관", "기관합계"), ("개인", "개인")):
+                if key in flow.index:
+                    val = _num(flow.loc[key, "순매수"])
+                    if val is not None:
+                        picks[label] = round(val / 1e8)  # 억원 단위
+            if picks:
+                result["수급"] = picks
+    except Exception:
+        log.warning("한국 투자자별 수급 수집 실패")
+
     return result
 
 
 # ══ 오케스트레이션 ══════════════════════════════════════
+
+def _josa_ro(word: str) -> str:
+    """'로' / '으로' 를 받침에 맞춰 고릅니다. (ㄹ 받침은 '로')"""
+    if not word:
+        return "로"
+    last = word[-1]
+    if not ("가" <= last <= "힣"):
+        return "로"
+    jong = (ord(last) - 0xAC00) % 28
+    return "로" if jong in (0, 8) else "으로"
+
+
+def detect_market_events(market: dict, fear_greed: dict, sectors: list[dict],
+                         korea: dict) -> list[dict]:
+    """그날 시장에서 실제로 벌어진 '이야깃거리'를 조건에 맞을 때만 뽑아냅니다.
+
+    AI 에게 "재미있게 써줘"라고 맡기면 매일 뻔한 소리가 나오므로, 실제 수치가
+    특정 조건을 넘었을 때만 해당 스토리를 만들어 넘깁니다. 조건에 안 걸리면
+    그날은 그 이야기를 안 합니다.
+    """
+    events: list[dict] = []
+    gauges = {g["ticker"]: g for g in market.get("gauges", [])}
+    indices = {i["ticker"]: i for i in market.get("indices", [])}
+
+    # 1) 금리 급변 — 10년물이 하루 2% 이상 움직이면 주식시장 전체에 파급됩니다
+    tnx = gauges.get("^TNX")
+    if tnx and tnx.get("pct") is not None and abs(tnx["pct"]) >= 2.0:
+        up = tnx["pct"] > 0
+        events.append({
+            "kind": "금리",
+            "headline": f"미 10년물 국채금리 {tnx['last']:.2f}%",
+            "value": f"{tnx['pct']:+.2f}%",
+            "context": (
+                "금리가 오르면 미래 이익을 당겨쓰는 성장주·기술주가 먼저 눌립니다"
+                if up else
+                "금리가 내리면 성장주 밸류에이션 부담이 줄어 기술주에 우호적입니다"
+            ),
+            "tone": "dn" if up else "up",
+        })
+
+    # 2) 공포탐욕 급변 — 일주일 전 대비 15포인트 이상 이동
+    fg = fear_greed or {}
+    if fg.get("score") is not None and fg.get("week_ago") is not None:
+        delta = fg["score"] - fg["week_ago"]
+        if abs(delta) >= 15:
+            events.append({
+                "kind": "투자심리",
+                "headline": f"공포탐욕지수 {fg['score']} ({fg['label']})",
+                "value": f"1주 전 대비 {delta:+.0f}",
+                "context": (
+                    "시장 심리가 빠르게 탐욕으로 기울면 단기 과열 신호로 읽힙니다"
+                    if delta > 0 else
+                    "심리가 급격히 얼어붙을 때는 통상 반등 재료에도 시장이 둔감해집니다"
+                ),
+                "tone": "hl",
+            })
+
+    # 3) 달러 강세/약세 — 한국 투자자에게 직접 영향
+    dxy = gauges.get("DX-Y.NYB")
+    if dxy and dxy.get("pct") is not None and abs(dxy["pct"]) >= 0.5:
+        strong = dxy["pct"] > 0
+        events.append({
+            "kind": "달러",
+            "headline": f"달러인덱스 {dxy['last']:.1f}",
+            "value": f"{dxy['pct']:+.2f}%",
+            "context": (
+                "달러가 강해지면 원화 환산 수익은 늘지만 신흥국 증시엔 자금 유출 압력"
+                if strong else
+                "달러 약세는 외국인 자금이 한국 같은 신흥국으로 흘러들 여건을 만듭니다"
+            ),
+            "tone": "dn" if strong else "up",
+        })
+
+    # 4) 유가 급변 — 물가·운송비로 이어지는 연결고리
+    oil = gauges.get("CL=F")
+    if oil and oil.get("pct") is not None and abs(oil["pct"]) >= 2.5:
+        up = oil["pct"] > 0
+        events.append({
+            "kind": "유가",
+            "headline": f"WTI 원유 ${oil['last']:.1f}",
+            "value": f"{oil['pct']:+.2f}%",
+            "context": (
+                "유가 상승은 항공·운송 비용을 밀어올리고 물가 부담으로 되돌아옵니다"
+                if up else
+                "유가 하락은 물가 압력을 낮춰 중앙은행의 금리 인하 여지를 넓힙니다"
+            ),
+            "tone": "dn" if up else "up",
+        })
+
+    # 5) 섹터 쏠림 — 1등과 꼴찌 격차가 2.5%p 이상이면 자금이 확실히 이동한 날
+    if len(sectors) >= 2:
+        top, bottom = sectors[0], sectors[-1]
+        gap = top["pct"] - bottom["pct"]
+        if gap >= 2.5:
+            events.append({
+                "kind": "섹터",
+                "headline": f"{top['label']} vs {bottom['label']}",
+                "value": f"{gap:.1f}%p 격차",
+                "context": f"돈이 {bottom['label']}에서 빠져나와 "
+                           f"{top['label']}{_josa_ro(top['label'])} 몰린 하루",
+                "tone": "hl",
+            })
+
+    # 6) VIX 급등 — 공포가 실제로 커진 날
+    vix = gauges.get("^VIX")
+    if vix and vix.get("pct") is not None and vix["pct"] >= 10:
+        events.append({
+            "kind": "변동성",
+            "headline": f"VIX {vix['last']:.1f}",
+            "value": f"{vix['pct']:+.1f}%",
+            "context": "VIX 급등은 기관이 하락 보험을 사들이고 있다는 뜻입니다",
+            "tone": "dn",
+        })
+
+    # 7) 외국인 수급 — 한국 증시 방향을 좌우하는 주체
+    flow = (korea or {}).get("수급") or {}
+    foreign = flow.get("외국인")
+    if foreign is not None and abs(foreign) >= 3000:
+        buying = foreign > 0
+        events.append({
+            "kind": "국내수급",
+            "headline": "코스피 외국인",
+            "value": f"{foreign:+,}억원",
+            "context": (
+                "외국인이 대규모로 사들이면 지수 상승 탄력이 붙는 경우가 많습니다"
+                if buying else
+                "외국인 매도가 이어지면 지수 반등이 나와도 힘이 실리기 어렵습니다"
+            ),
+            "tone": "up" if buying else "dn",
+        })
+
+    return events
+
 
 def collect_all(history: list[dict] | None = None) -> dict:
     now = dt.datetime.now(cfg.KST)
@@ -815,18 +969,26 @@ def collect_all(history: list[dict] | None = None) -> dict:
         [c for c in ranked if c.get("pct") is not None], key=lambda x: x["pct"]
     )
 
+    market_data = fetch_market()
+    sectors = fetch_sector_rotation()
+    fg = fetch_fear_greed()
+    korea = fetch_korea()
+    events = detect_market_events(market_data, fg, sectors, korea)
+    log.info("감지된 시장 이벤트 %d개: %s", len(events), [e["kind"] for e in events])
+
     return {
         "generated_at": now.isoformat(),
         "date_kr": now.strftime("%Y.%m.%d"),
         "date_slug": today,
         "weekday_kr": "월화수목금토일"[now.weekday()],
-        "market": fetch_market(),
-        "sector_rotation": fetch_sector_rotation(),
-        "fear_greed": fetch_fear_greed(),
+        "market": market_data,
+        "sector_rotation": sectors,
+        "fear_greed": fg,
+        "market_events": events,
         "focus": focus,
         "runners_up": ranked[1:5],
         "top_gainers": list(reversed(movers[-4:])),
         "top_losers": movers[:4],
         "news": news,
-        "korea": fetch_korea(),
+        "korea": korea,
     }
