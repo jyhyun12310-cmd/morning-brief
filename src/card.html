@@ -131,6 +131,14 @@
   .recbar .t .f{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
   .recbar .n{flex:0 0 38px;text-align:right;font-family:var(--mono);font-size:17px;font-weight:700}
   .chain{margin-top:22px}
+  .perchart{margin-top:14px}
+  .prow{display:flex;align-items:center;gap:14px;padding:8px 0}
+  .prow.me .ptk{color:var(--hl)}
+  .ptk{flex:0 0 68px;font-family:var(--mono);font-size:18px;font-weight:700}
+  .ptrack{flex:1;height:14px;border-radius:5px;background:var(--line);position:relative;overflow:hidden}
+  .pfill{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:linear-gradient(90deg,rgba(250,204,21,.4),var(--hl))}
+  .prow.me .pfill{background:linear-gradient(90deg,rgba(239,68,68,.5),var(--up))}
+  .pval{flex:0 0 46px;text-align:right;font-family:var(--mono);font-size:17px;font-weight:700;color:var(--tx2)}
   .outlook{margin-top:22px;padding:22px 24px;border-radius:14px;
            background:linear-gradient(135deg,rgba(250,204,21,.10),rgba(255,255,255,.03));
            border:1px solid rgba(250,204,21,.28)}
@@ -182,6 +190,10 @@
           font-family:var(--mono);font-size:19px;font-weight:900;
           display:flex;align-items:center;justify-content:center}
   .sum .t{font-size:26px;line-height:1.4;font-weight:600;letter-spacing:-.025em;padding-top:5px}
+  .signature{margin-top:22px;padding:20px 22px;border-radius:13px;
+             background:rgba(250,204,21,.08);border-left:4px solid var(--hl)}
+  .sigk{font-size:14px;font-weight:800;color:var(--hl);letter-spacing:.03em}
+  .sigv{margin-top:8px;font-size:22px;line-height:1.5;font-weight:600;letter-spacing:-.015em}
   .krbox{margin-top:24px;padding:20px 22px;border-radius:13px;
          background:rgba(59,130,246,.11);border:1px solid rgba(59,130,246,.3)}
   .krbox .k{font-size:15px;font-weight:800;color:var(--dn)}
@@ -323,11 +335,24 @@
 {% if chain %}
 <div class="cattag">밸류체인 반응</div>
 <div class="chain">
-  {% for c in chain[:3] %}
+  {% for c in chain[:2] %}
   <div class="it">
     <span class="tk2">{{ c.ticker }}</span>
     <span class="rl c1">{{ c.relation }}</span>
     <span class="pc {{ c.cls }}">{{ c.fmt_pct }} {{ c.arrow }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% if s.chain_note %}<div class="note c2">{{ s.chain_note }}</div>{% endif %}
+{% endif %}
+{% if peer_per_chart %}
+<div class="cattag">동종업계 PER 비교</div>
+<div class="perchart">
+  {% for p in peer_per_chart %}
+  <div class="prow {{ 'me' if p.is_me else '' }}">
+    <span class="ptk">{{ p.ticker }}</span>
+    <span class="ptrack"><span class="pfill" style="width:{{ p.bar_pct }}%"></span></span>
+    <span class="pval">{{ p.fmt_per }}</span>
   </div>
   {% endfor %}
 </div>
@@ -346,9 +371,7 @@
   </div>
 </div>
 {% endif %}
-{% if actions %}
-<div class="acts">{% for a in actions[:1] %}<div class="a"><span class="fm c1">{{ a.firm }}</span><span class="gr {{ a.cls }}">{{ a.from }} → {{ a.to }}</span></div>{% endfor %}</div>
-{% endif %}
+{% if s.wallst_note %}<div class="note c2">{{ s.wallst_note }}</div>{% endif %}
 {% if s.risks %}
 <div class="risks">{% for r in s.risks[:3] %}<div class="r"><span class="ic">!</span><span class="t c2">{{ r }}</span></div>{% endfor %}</div>
 {% endif %}
@@ -360,6 +383,12 @@
 {% if s.summary3 %}
 <div class="sum">{% for t in s.summary3 %}<div class="s"><span class="n">{{ loop.index }}</span><span class="t c2">{{ t }}</span></div>{% endfor %}</div>
 {% endif %}
+{% if s.signature_insight %}
+<div class="signature">
+  <div class="sigk">MORNING BRIEF의 한 줄 통찰</div>
+  <div class="sigv c2">{{ s.signature_insight }}</div>
+</div>
+{% endif %}
 {% if s.kr_line %}
 <div class="krbox"><div class="k">국내 증시 영향</div><div class="v c3">{{ s.kr_line }}</div></div>
 {% endif %}
@@ -367,8 +396,7 @@
 <div class="qbox glass" style="border-color:rgba(250,204,21,.32)"><div class="q c2">{{ s.cta_question }}</div><div class="sm">댓글로 의견을 남겨주세요</div></div>
 {% endif %}
 <div class="follow">
-  <div class="ft">매일 아침, 미국 시장의 핵심 종목을 가장 먼저</div>
-  <div class="fb">팔로우하고 놓치지 말고 받아보세요</div>
+  <div class="fb">팔로우하고 매일 아침 놓치지 마세요</div>
 </div>
 <div class="cta">
   <div class="b save">저장하기</div>
