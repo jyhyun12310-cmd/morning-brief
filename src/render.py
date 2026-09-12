@@ -20,7 +20,7 @@ UP, DOWN, FLAT, GOLD = "#EF4444", "#3B82F6", "#94A3B8", "#FACC15"
 
 CARD_LABELS = {
     1: "어젯밤 키워드 주식",
-    2: "왜 지금 이 종목인가",
+    2: "찐이유",
     3: "펀더멘털",
     4: "AI 전망",
     5: "요약",
@@ -161,21 +161,18 @@ def _focus_ctx(focus: dict) -> dict:
     }
 
 
-def _p1_chips(data: dict) -> list[dict]:
-    """표지 하단 4칸: 주요 지수 2 + VIX + 공포탐욕지수."""
+def _p1_chips(focus: dict) -> list[dict]:
+    """표지 하단: 이 종목 자체의 지표만. 시장 전체 지수는 여기 안 넣습니다
+    (관련 없는 시장 데이터가 뜬금없이 끼는 걸 막기 위함 — 그건 3p 이후로).
+    """
     chips = []
-    for i in data.get("market", {}).get("indices", [])[:2]:
-        if i.get("pct") is None:
-            continue
-        chips.append({"label": i["label"], "val": f"{i['pct']:+.2f}%", "cls": _cls(i["pct"])})
-    for g in data.get("market", {}).get("gauges", []):
-        if g["ticker"] == "^VIX" and g.get("pct") is not None:
-            chips.append({"label": "VIX", "val": _fmt_num(g["last"], "^VIX"), "cls": _cls(g["pct"])})
-            break
-    fg = data.get("fear_greed", {})
-    if fg.get("score") is not None:
-        chips.append({"label": "공포탐욕", "val": f"{fg['score']} {fg['label']}", "cls": "fl"})
-    return chips[:4]
+    rvol = focus.get("rvol")
+    if rvol:
+        chips.append({"label": "거래량", "val": f"평소의 {rvol:.1f}배", "cls": "hl" if rvol >= 2 else "fl"})
+    cap = focus.get("market_cap")
+    if cap:
+        chips.append({"label": "시가총액", "val": _fmt_cap(cap), "cls": "fl"})
+    return chips[:2]
 
 
 def _val_cells(focus: dict) -> list[dict]:
@@ -443,12 +440,15 @@ def _factor_scorecard(focus: dict) -> list[dict]:
         diff = (fpe - peer_per) / peer_per * 100
         if diff <= -15:
             verdict, tone = "저평가", "up"
+            why = "업종 평균보다 싸게 거래되고 있어, 실적이 뒷받침되면 오를 여지가 있음"
         elif diff >= 15:
             verdict, tone = "고평가", "dn"
+            why = "업종 평균보다 비싸게 거래되고 있어, 기대치가 이미 많이 반영됨"
         else:
             verdict, tone = "적정", "fl"
+            why = "업종 평균과 비슷한 수준으로, 가격 자체는 부담도 매력도 크지 않음"
         factors.append({
-            "cat": "밸류에이션", "verdict": verdict, "tone": tone,
+            "cat": "밸류에이션", "verdict": verdict, "tone": tone, "why": why,
             "detail": f"선행PER {fpe:.0f}배 · 업종평균 대비 {diff:+.0f}%",
         })
 
@@ -461,19 +461,25 @@ def _factor_scorecard(focus: dict) -> list[dict]:
     if rsi is not None:
         if cross == "death" and rsi <= 40:
             verdict, tone = "부정", "dn"
+            why = "단기·중기 추세가 모두 하락 쪽으로 기울어, 반등 신호는 아직 안 보임"
         elif rsi >= 70:
             verdict, tone = "과열", "hl"
+            why = "단기간 너무 많이 올라 숨고르기(단기 조정) 가능성이 있는 구간"
         elif rsi <= 30:
             verdict, tone = "과매도", "hl"
+            why = "단기간 너무 많이 빠져, 추세와 별개로 기술적 반등이 나올 수도 있는 구간"
         elif cross == "golden":
             verdict, tone = "긍정", "up"
+            why = "20일 이동평균이 50일선을 뚫고 올라 중기 상승 추세로 해석됨"
         elif cross == "death":
             verdict, tone = "부정", "dn"
+            why = "20일 이동평균이 50일선 아래로 내려가 중기 하락 추세로 해석됨"
         else:
             verdict, tone = "중립", "fl"
+            why = "뚜렷한 방향 없이 박스권에서 움직이는 중"
         cross_kr = "골든크로스" if cross == "golden" else "데드크로스" if cross == "death" else "횡보"
         factors.append({
-            "cat": "모멘텀", "verdict": verdict, "tone": tone,
+            "cat": "모멘텀", "verdict": verdict, "tone": tone, "why": why,
             "detail": f"RSI {rsi:.0f} · {cross_kr}",
         })
 
@@ -483,14 +489,17 @@ def _factor_scorecard(focus: dict) -> list[dict]:
     if rev_g is not None:
         if rev_g >= 0.15:
             verdict, tone = "우수", "up"
+            why = "매출이 두 자릿수로 늘고 있어 성장 스토리가 아직 유효함"
         elif rev_g <= 0:
             verdict, tone = "부진", "dn"
+            why = "매출이 정체되거나 줄고 있어 성장 동력이 약해진 상태"
         else:
             verdict, tone = "보통", "fl"
+            why = "완만하지만 꾸준한 성장세를 유지하는 중"
         detail = f"매출성장 {rev_g * 100:+.0f}%"
         if margin is not None:
             detail += f" · 이익률 {margin * 100:.0f}%"
-        factors.append({"cat": "펀더멘털", "verdict": verdict, "tone": tone, "detail": detail})
+        factors.append({"cat": "펀더멘털", "verdict": verdict, "tone": tone, "why": why, "detail": detail})
 
     # 4) 수급·심리 — 애널리스트 매수비중, 없으면 기관 보유율로 대체.
     #    공매도 비중이 높은데 애널리스트만 긍정적이면 "혼조"로 정직하게 보여줍니다
@@ -502,21 +511,26 @@ def _factor_scorecard(focus: dict) -> list[dict]:
         high_short = short_pct is not None and short_pct >= 0.20
         if high_short and buy_ratio >= 0.5:
             verdict, tone = "혼조", "hl"
+            why = "애널리스트는 매수 의견이 우세하지만, 공매도 비중도 높아 시장 참여자 사이에 의견이 엇갈림"
         elif buy_ratio >= 0.7:
             verdict, tone = "긍정", "up"
+            why = "월가 애널리스트 대부분이 매수 의견을 내고 있음"
         elif buy_ratio <= 0.3:
             verdict, tone = "부정", "dn"
+            why = "월가 애널리스트 다수가 부정적이거나 관망 의견"
         else:
             verdict, tone = "중립", "fl"
+            why = "매수·매도 의견이 팽팽히 갈리는 중"
         detail = f"매수의견 {buy_ratio * 100:.0f}%"
         if short_pct is not None and short_pct > 0.1:
             detail += f" · 공매도 {short_pct * 100:.0f}%"
-        factors.append({"cat": "수급·심리", "verdict": verdict, "tone": tone, "detail": detail})
+        factors.append({"cat": "수급·심리", "verdict": verdict, "tone": tone, "why": why, "detail": detail})
     elif sm.get("inst_pct") is not None:
         pct = sm["inst_pct"]
         verdict, tone = ("긍정", "up") if pct >= 0.6 else ("중립", "fl")
+        why = "기관 보유율이 높아 안정적인 수급 기반을 갖춤" if pct >= 0.6 else "기관 보유율이 보통 수준"
         factors.append({
-            "cat": "수급·심리", "verdict": verdict, "tone": tone,
+            "cat": "수급·심리", "verdict": verdict, "tone": tone, "why": why,
             "detail": f"기관보유율 {pct * 100:.0f}%",
         })
 
@@ -531,7 +545,7 @@ def _template_context(data: dict, summary: dict) -> dict:
         "weekday_kr": data["weekday_kr"],
         "s": summary,
         "f": _focus_ctx(focus),
-        "p1_chips": _p1_chips(data),
+        "p1_chips": _p1_chips(focus),
         "hook_parts": _split_highlight(
             summary.get("hook_headline", ""), summary.get("hook_highlight", "")
         ),
