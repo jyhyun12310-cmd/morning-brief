@@ -37,6 +37,7 @@
   .c1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
   .c2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .c3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .c4{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
 
   .swipe{
@@ -116,6 +117,64 @@
   .sbadge{margin-top:14px;padding:8px 14px;border-radius:100px;
           background:var(--hl);color:#1A1400;
           font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:-.01em}
+
+  /* ── 공용: KEY DATA 뱃지 ─────────────── */
+  .kd{margin-top:20px;display:flex;gap:11px}
+  .kdcell{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--line);
+          border-radius:14px;padding:16px 18px}
+  .kdk{font-size:15px;color:var(--tx3);font-weight:600}
+  .kdv{margin-top:6px;font-family:var(--mono);font-size:27px;font-weight:800;letter-spacing:-.02em}
+  .hookline{margin-top:18px;font-size:21px;font-weight:700;color:var(--hl);letter-spacing:-.02em;text-align:center}
+
+  /* ── P2: 흐름 ───────────────────────── */
+  .flow{margin-top:22px}
+  .fstep{display:flex;align-items:center;gap:14px;padding:9px 0;position:relative}
+  .fnum{flex:0 0 auto;width:30px;height:30px;border-radius:9px;
+        background:rgba(250,204,21,.15);border:1px solid rgba(250,204,21,.42);
+        color:var(--hl);font-family:var(--mono);font-size:15px;font-weight:800;
+        display:flex;align-items:center;justify-content:center}
+  .ftxt{flex:1;font-size:23px;font-weight:700;letter-spacing:-.025em}
+  .farrow{position:absolute;left:13px;bottom:-8px;color:var(--tx3);font-size:14px}
+  .sec-mini{margin-top:12px}
+  .sec-mini .r{display:flex;align-items:center;gap:12px;padding:6px 0}
+  .sec-mini .k{flex:0 0 108px;font-size:17px;font-weight:600;color:var(--tx2)}
+  .sec-mini .t{flex:1;position:relative;height:12px}
+  .sec-mini .t::before{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line2)}
+  .sec-mini .b{position:absolute;top:2px;height:8px;border-radius:2px}
+  .sec-mini .b.up{left:50%;background:linear-gradient(90deg,rgba(239,68,68,.5),var(--up))}
+  .sec-mini .b.dn{right:50%;background:linear-gradient(270deg,rgba(59,130,246,.5),var(--dn))}
+  .sec-mini .v{flex:0 0 78px;text-align:right;font-family:var(--mono);font-size:15px;font-weight:700}
+
+  /* ── P3: 인과 사슬 ──────────────────── */
+  .chainflow{margin-top:22px}
+  .cf{padding:15px 20px;border-radius:13px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .cfstep{font-size:14px;font-weight:800;color:var(--hl);letter-spacing:.02em}
+  .cftext{margin-top:6px;font-size:22px;font-weight:700;letter-spacing:-.022em;line-height:1.35}
+  .cfarrow{text-align:center;font-size:20px;color:var(--tx3);padding:5px 0}
+  .qthink{margin-top:20px;padding:18px 20px;border-radius:13px;
+          background:rgba(59,130,246,.10);border-left:4px solid var(--dn)}
+  .qk{font-size:14px;font-weight:800;color:var(--dn);letter-spacing:.02em}
+  .qv{margin-top:7px;font-size:22px;font-weight:700;line-height:1.4;letter-spacing:-.02em}
+
+  /* ── P4: 수혜 기업 ──────────────────── */
+  .bens{margin-top:20px}
+  .ben{padding:16px 0;border-bottom:1px solid var(--line)}
+  .ben:first-child{border-top:1px solid var(--line)}
+  .bentop{display:flex;align-items:baseline;gap:12px}
+  .bentk{font-family:var(--mono);font-size:25px;font-weight:800;color:var(--hl);letter-spacing:-.02em}
+  .benname{font-size:18px;color:var(--tx2);font-weight:600}
+  .benwhy{margin-top:7px;font-size:20px;line-height:1.45;font-weight:500;letter-spacing:-.018em}
+  .benwatch{margin-top:6px;font-size:15px;color:var(--tx3);font-weight:600}
+  .caution{margin-top:18px;padding:15px 18px;border-radius:12px;
+           background:rgba(249,115,22,.10);border:1px solid rgba(249,115,22,.32);
+           font-size:18px;line-height:1.45;color:#FDBA74;font-weight:600}
+
+  /* ── P5: 다음에 볼 것 ───────────────── */
+  .watch{margin-top:20px}
+  .wrow{display:flex;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .wrow:first-child{border-top:1px solid var(--line)}
+  .wwhen{flex:0 0 108px;font-family:var(--mono);font-size:17px;font-weight:800;color:var(--hl)}
+  .wwhat{flex:1;font-size:21px;line-height:1.45;font-weight:600;letter-spacing:-.018em}
 
   /* ── P3 ─────────────────────────────── */
   .statgrid{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
@@ -282,7 +341,7 @@
 <div class="rail">{% for n in range(1,6) %}<i class="{{ 'on' if n<=card_num else '' }}"></i>{% endfor %}</div>
 <div class="meta"><span class="d">{{ date_kr }} {{ weekday_kr }}</span><span>{{ card_label }}</span></div>
 
-{# ══ P1: 3-Zone ═══════════════════════════ #}
+{# ══ P1 HOOK ══════════════════════════════ #}
 {% if card_num==1 %}
 <div class="z1"></div>
 <div class="z2">
@@ -290,53 +349,105 @@
     <span class="pc {{ f.cls }}">{{ f.fmt_pct }}</span>
     <span class="ar {{ f.cls }}">{{ f.arrow }}</span>
   </div>
-  <div class="hook c2">{{ p1_title }}</div>
-  <div class="p1sub c2">{{ p1_subtitle }}</div>
+  <div class="hook c3">{{ s.p1_headline }}</div>
+  <div class="p1sub c2">{{ s.p1_sub }}</div>
 </div>
-{% if p1_chips %}
 <div class="z3">
-  <div class="badges">
-    {% for c in p1_chips %}
-    <div class="badge glass"><div class="k">{{ c.label }}</div><div class="v {{ c.cls }}">{{ c.val }}</div></div>
+  {% if s.p1_keydata %}
+  <div class="kd">
+    {% for k in s.p1_keydata %}
+    <div class="kdcell glass"><div class="kdk">{{ k.label }}</div><div class="kdv">{{ k.value }}</div></div>
     {% endfor %}
   </div>
+  {% endif %}
+  {% if s.p1_hook %}<div class="hookline">{{ s.p1_hook }}</div>{% endif %}
 </div>
-{% endif %}
 
-{# ══ P2 ═══════════════════════════════════ #}
+{# ══ P2 WHAT HAPPENED ═════════════════════ #}
 {% elif card_num==2 %}
-<div class="h1">{{ f.name }}은 왜 갑자기 {{ '올랐을까' if f.cls=='up' else '떨어졌을까' }}?</div>
-{% if s.company_desc %}<div class="h2sub c1">{{ s.company_desc }}</div>{% endif %}
-{% if s.points %}
-<div class="spoints">
-  {% for pt in s.points %}
-  <div class="spoint">
-    <div class="sicon">{{ loop.index }}</div>
-    <div class="stitle c2">{{ pt.title }}</div>
-    <div class="sbadge">{{ pt.detail }}</div>
+<div class="h1 c2">{{ s.p2_headline }}</div>
+<div class="h2sub c2">{{ s.p2_sub }}</div>
+{% if s.p2_keydata %}
+<div class="kd">
+  {% for k in s.p2_keydata %}
+  <div class="kdcell"><div class="kdk">{{ k.label }}</div><div class="kdv">{{ k.value }}</div></div>
+  {% endfor %}
+</div>
+{% endif %}
+{% if s.p2_flow %}
+<div class="flow">
+  {% for step in s.p2_flow %}
+  <div class="fstep">
+    <span class="fnum">{{ loop.index }}</span>
+    <span class="ftxt c2">{{ step }}</span>
+    {% if not loop.last %}<span class="farrow">↓</span>{% endif %}
   </div>
   {% endfor %}
 </div>
 {% endif %}
-{% if s.points_summary %}<div class="note c2">{{ s.points_summary }}</div>{% endif %}
-{% if s.macro_line %}<div class="note c2">{{ s.macro_line }}</div>{% endif %}
+{% if s.p2_content %}<div class="note c4">{{ s.p2_content }}</div>{% endif %}
+{% if sectors %}
+<div class="cattag">돈이 움직인 방향</div>
+<div class="sec-mini">
+  {% for x in sectors[:4] %}
+  <div class="r">
+    <span class="k">{{ x.label }}</span>
+    <span class="t"><span class="b {{ x.cls }}" style="width:{{ x.bar }}%"></span></span>
+    <span class="v {{ x.cls }}">{{ x.fmt_pct }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
 
-{# ══ P3 ═══════════════════════════════════ #}
+{# ══ P3 WHY IT MATTERS ════════════════════ #}
 {% elif card_num==3 %}
-<div class="h1">숫자로 보는 {{ f.ticker }}</div>
-<div class="h2sub">투자자가 꼭 봐야 할 4가지</div>
-{% if p3_stats %}
-<div class="statgrid">
-  {% for x in p3_stats %}
-  <div class="statcell">
-    <div class="slabel"><span class="sdot {{ x.tone }}"></span>{{ x.label }}</div>
-    <div class="sval {{ x.tone }}">{{ x.val }}</div>
-    <div class="sdet">{{ x.detail }}</div>
+<div class="h1 c2">{{ s.p3_headline }}</div>
+<div class="h2sub c2">{{ s.p3_sub }}</div>
+{% if s.p3_chain %}
+<div class="chainflow">
+  {% for c in s.p3_chain %}
+  <div class="cf">
+    <div class="cfstep">{{ c.step }}</div>
+    <div class="cftext c2">{{ c.text }}</div>
+  </div>
+  {% if not loop.last %}<div class="cfarrow">↓</div>{% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+{% if s.p3_content %}<div class="note c4">{{ s.p3_content }}</div>{% endif %}
+{% if s.p3_question %}
+<div class="qthink">
+  <div class="qk">생각해볼 점</div>
+  <div class="qv c2">{{ s.p3_question }}</div>
+</div>
+{% endif %}
+{% if factors %}
+<div class="fmini">
+  {% for x in factors %}
+  <div class="fm"><span class="fmdot {{ x.badge }}"></span><span class="fmcat">{{ x.cat }}</span><span class="fmv {{ x.badge }}">{{ x.verdict }}</span><span class="fmd">{{ x.detail }}</span></div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ══ P4 WHO BENEFITS ══════════════════════ #}
+{% elif card_num==4 %}
+<div class="h1 c2">{{ s.p4_headline }}</div>
+<div class="h2sub c2">{{ s.p4_sub }}</div>
+{% if s.beneficiaries %}
+<div class="bens">
+  {% for b in s.beneficiaries %}
+  <div class="ben">
+    <div class="bentop">
+      <span class="bentk">{{ b.ticker }}</span>
+      <span class="benname c1">{{ b.name }}</span>
+    </div>
+    <div class="benwhy c2">{{ b.reason }}</div>
+    {% if b.watch %}<div class="benwatch">확인할 것 · {{ b.watch }}</div>{% endif %}
   </div>
   {% endfor %}
 </div>
 {% endif %}
-{% if s.fundamental_note %}<div class="note c3">{{ s.fundamental_note }}</div>{% endif %}
+{% if s.p4_caution %}<div class="caution c2">{{ s.p4_caution }}</div>{% endif %}
 {% if peer_per_chart %}
 <div class="cattag">동종업계 PER 비교</div>
 <div class="perchart">
@@ -345,6 +456,21 @@
     <span class="ptk">{{ p.ticker }}</span>
     <span class="ptrack"><span class="pfill" style="width:{{ p.bar_pct }}%"></span></span>
     <span class="pval">{{ p.fmt_per }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ══ P5 WATCH NEXT ════════════════════════ #}
+{% elif card_num==5 %}
+<div class="h1 c2">{{ s.p5_headline }}</div>
+<div class="h2sub c2">{{ s.p5_sub }}</div>
+{% if s.watch_next %}
+<div class="watch">
+  {% for w in s.watch_next %}
+  <div class="wrow">
+    <span class="wwhen">{{ w.when }}</span>
+    <span class="wwhat c2">{{ w.what }}</span>
   </div>
   {% endfor %}
 </div>
@@ -363,78 +489,15 @@
   </div>
 </div>
 {% endif %}
-{% if s.wallst_note %}<div class="note c2">{{ s.wallst_note }}</div>{% endif %}
-
-{# ══ P4 ═══════════════════════════════════ #}
-{% elif card_num==4 %}
-<div class="h1">{{ s.ripple_title or '시장으로 번지는 파장' }}</div>
-<div class="h2sub">이 움직임이 다른 시장에 남긴 것</div>
-{% if s.ripple_items %}
-<div class="ripple">
-  {% for r in s.ripple_items %}
-  <div class="rip">
-    <div class="riplabel">{{ r.label }}</div>
-    <div class="riptext c3">{{ r.text }}</div>
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
-{% if s.industry_story %}
-<div class="cattag">산업 구조는 이렇게 바뀌는 중</div>
-<div class="note c3">{{ s.industry_story }}</div>
-{% endif %}
-{% if chain %}
-<div class="cattag">밸류체인 반응</div>
-<div class="chain">
-  {% for c in chain[:2] %}
-  <div class="it">
-    <span class="tk2">{{ c.ticker }}</span>
-    <span class="rl c1">{{ c.relation }}</span>
-    <span class="pc {{ c.cls }}">{{ c.fmt_pct }} {{ c.arrow }}</span>
-  </div>
-  {% endfor %}
-</div>
-{% if s.chain_note %}<div class="note c2">{{ s.chain_note }}</div>{% endif %}
-{% endif %}
 {% if s.kr_line %}
-<div class="krbox"><div class="k">한국 증시에 미칠 영향</div><div class="v c3">{{ s.kr_line }}</div></div>
+<div class="krbox"><div class="k">한국 증시에 미칠 영향</div><div class="v c2">{{ s.kr_line }}</div></div>
 {% endif %}
-
-{# ══ P5 ═══════════════════════════════════ #}
-{% elif card_num==5 %}
-<div class="h1">오늘의 결론</div>
-<div class="h2sub">{{ f.ticker }} · 4개 지표 종합</div>
-{% if factor_verdict %}
-<div class="verdict {{ factor_verdict.badge }}">
-  <div class="vscore">{{ factor_verdict.score }}</div>
-  <div class="vtext">
-    <div class="vlabel">{{ factor_verdict.label }}</div>
-    <div class="vdetail">{{ factor_verdict.detail }}</div>
-  </div>
-</div>
-{% endif %}
-{% if factors %}
-<div class="fmini">
-  {% for x in factors %}
-  <div class="fm"><span class="fmdot {{ x.badge }}"></span><span class="fmcat">{{ x.cat }}</span><span class="fmv {{ x.badge }}">{{ x.verdict }}</span><span class="fmd">{{ x.detail }}</span></div>
-  {% endfor %}
-</div>
-{% endif %}
-{% if s.summary3 %}
-<div class="sum">{% for t in s.summary3 %}<div class="s"><span class="n">{{ loop.index }}</span><span class="t c2">{{ t }}</span></div>{% endfor %}</div>
-{% endif %}
-{% if s.signature_insight %}
+{% if s.takeaway %}
 <div class="neonbox">
-  <div class="sigk">MORNING BRIEF의 한 줄 통찰</div>
-  <div class="sigv c2">{{ s.signature_insight }}</div>
+  <div class="sigk">오늘의 한 줄</div>
+  <div class="sigv c3">{{ s.takeaway }}</div>
 </div>
 {% endif %}
-{% if s.kr_line %}
-<div class="krbox"><div class="k">국내 증시 영향</div><div class="v c2">{{ s.kr_line }}</div></div>
-{% endif %}
-<div class="follow">
-  <div class="fb">내일 아침, 이 종목의 변동성을 반드시 체크하세요</div>
-</div>
 <div class="disc">
   <div class="t">본 콘텐츠는 공개된 시장 데이터를 자동 정리한 투자 참고용 자료입니다.<br>특정 종목의 매수·매도를 권유하지 않으며, 투자 결과에 대한 책임은 본인에게 있습니다.</div>
   <div class="b">MORNING BRIEF</div>
