@@ -113,6 +113,14 @@ SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 
 
   "signature_insight": "35~50자. 숫자 재탕이 아닌 통찰 한 문장. '그래서 이게 왜 중요한지'에 대한 소신 있는 해석. 매수·매도 권유는 아니되 뻔한 말은 지양. 예: 사람들이 Dell을 PC 회사로만 보는 사이, 사업의 무게중심은 이미 AI 인프라로 넘어갔다",
 
+  "ripple_title": "14자 이내. 이 움직임이 시장 전체로 번지는 현상을 요약한 제목. 예: 금리가 흔든 성장주 / 반도체에서 빠진 돈의 행방",
+  "ripple_items": [
+    {"label": "6자 이내 영역명 (예: 채권시장, 환율, 국내증시, 산업구조)", "text": "이 종목·이슈가 그 영역에 미치는 영향 40~55자. 반드시 '오늘감지된시장이벤트' 배열이나 제공된 지표 수치를 근거로. 데이터에 없는 인과는 지어내지 말 것"},
+    {"label": "위와 동일", "text": "..."},
+    {"label": "위와 동일", "text": "..."}
+  ],
+  "industry_story": "70~100자. 이 이슈가 보여주는 산업 구조의 변화. 단순 실적 얘기가 아니라 '무엇이 바뀌고 있는지'. 데이터에서 읽히는 범위 안에서만. 근거가 부족하면 빈 문자열.",
+
   "summary3": [
     "핵심 모멘텀 1문장 (42자 이내) - 이 종목을 움직인 근본 동력",
     "리스크·기술적 신호 1문장 (42자 이내) - 주의해서 볼 지표",
@@ -121,7 +129,7 @@ SYSTEM = """당신은 인스타그램에서 미국주식 콘텐츠를 만드는 
   "cta_question": "35자 이내 댓글 유도 질문. 매수 권유가 아닌 의견 묻기 형태.",
 
 
-  "kr_line": "50~70자. 이 이슈가 오늘 한국 증시·관련주에 미칠 영향. 반드시 전망 어조('~할 전망','~가능성').",
+  "kr_line": "55~80자. 이 이슈가 오늘 한국 증시에 미칠 영향. 제공된 외국인 순매수·원달러 환율 데이터가 있으면 반드시 근거로 인용. 반드시 전망 어조('~할 전망','~가능성'). 예: 외국인이 4,200억원 순매도한 데다 달러 강세까지 겹쳐 국내 반도체주 반등은 제한적일 가능성",
   "kakao_text": "카톡 알림용 요약. 150자 이내.",
   "instagram_caption": "인스타 캡션. 400자 이내. 핵심을 먼저 쓰고 마지막 줄에 해시태그 6~8개."
 }"""
@@ -176,6 +184,13 @@ def _fallback(data: dict) -> dict:
     if a.get("target_mean") and a.get("upside") is not None:
         summary3.append(f"월가 목표주가 평균은 현재가 대비 {a['upside']:+.0f}% 수준")
 
+    # 감지된 시장 이벤트를 그대로 재활용 — AI 없이도 파급효과 카드가 채워집니다.
+    events = data.get("market_events") or []
+    ripple_items = [
+        {"label": e["kind"], "text": f"{e['headline']} {e['value']} · {e['context']}"}
+        for e in events[:3]
+    ]
+
     return {
         "headline_theme": "",
         "company_desc": industry or f"{tk} 관련 기업",
@@ -192,6 +207,9 @@ def _fallback(data: dict) -> dict:
         "wallst_note": "",
         "risks": [],
         "signature_insight": "",
+        "ripple_title": "오늘 시장에서 벌어진 일",
+        "ripple_items": ripple_items,
+        "industry_story": "",
         "summary3": summary3,
         "cta_question": "여러분은 이 종목을 어떻게 보시나요?",
         "kr_line": "",
@@ -200,7 +218,7 @@ def _fallback(data: dict) -> dict:
     }
 
 
-_LIST_LIMITS = {"points": 3, "risks": 3, "summary3": 3}
+_LIST_LIMITS = {"points": 3, "risks": 3, "summary3": 3, "ripple_items": 3}
 
 # LLM 에게 보낼 때 빼는 필드. 60일 종가 배열 같은 건 모델이 읽어도 의미를 못 뽑는데
 # 토큰만 1만 자 넘게 잡아먹어, 정작 출력할 여력을 줄입니다.
@@ -250,6 +268,7 @@ def summarize(data: dict) -> dict:
         "경쟁사": _slim(f.get("peers")),
         "밸류체인": _slim(f.get("chain")),
         "섹터로테이션": _slim(data.get("sector_rotation")),
+        "오늘감지된시장이벤트": data.get("market_events"),
         "미국지수": _slim(market.get("indices")),
         "시장지표_VIX금리달러유가": _slim(market.get("gauges")),
         "CNN공포탐욕지수": data.get("fear_greed", {}),
