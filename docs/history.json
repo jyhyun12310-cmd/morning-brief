@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-14",
+  "ticker": "DELL",
+  "name": "Dell Technologies Inc.",
+  "pct": 11.98,
+  "rvol": 1.88
+ },
+ {
   "date": "2026-09-11",
   "ticker": "COO",
   "name": "The Cooper Companies, Inc.",
