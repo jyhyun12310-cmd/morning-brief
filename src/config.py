@@ -118,6 +118,20 @@ VALUE_CHAIN = {
     "ENPH": [("SEDG", "직접 경쟁"), ("FSLR", "태양광 밸류체인")],
 }
 
+
+# ── 인스타그램 캡션 ─────────────────────────────────────
+# ★ 아래 따옴표 안을 본인 인스타 계정 아이디로 바꿔주세요 (@ 기호는 빼고).
+#   예: 계정이 @us_stock_daily 라면 "us_stock_daily"
+INSTAGRAM_HANDLE = os.environ.get("INSTAGRAM_HANDLE", "morningbrief")
+
+# 캡션 맨 아래 해시태그. 종목 티커는 매일 자동으로 앞에 붙습니다.
+# 인스타는 30개까지 허용하지만, 너무 많으면 스팸으로 보여 8~12개가 적당합니다.
+INSTAGRAM_TAGS = [
+    "#미국주식", "#해외주식", "#미국증시", "#주식공부",
+    "#특징주", "#투자공부", "#경제뉴스", "#주식초보",
+    "#서학개미", "#미장",
+]
+
 # CNN 공포탐욕지수 — 브라우저 UA 를 안 보내면 차단됩니다.
 FEAR_GREED_URL = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
 FEAR_GREED_UA = (
