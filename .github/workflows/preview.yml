@@ -1,34 +1,100 @@
 name: 카드 미리보기 (발송 안 함)
-"on":
+
+# 수동 실행 전용. 자동으로는 절대 돌지 않습니다.
+on:
   workflow_dispatch:
+
+# 카톡·인스타로 발송하지 않고, 저장소에 커밋도 하지 않습니다.
+# 카드 이미지를 만들어 다운로드할 수 있게 올려두기만 합니다.
 permissions:
   contents: read
+
 jobs:
   preview:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
+          cache: pip
+
       - name: 의존성 설치
         run: |
           pip install -r requirements.txt
           playwright install --with-deps chromium
+
       - name: 한글 폰트 설치
         run: sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+
       - name: 카드 5장 생성
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PAGES_BASE_URL: https://jyhyun12310-cmd.github.io/morning-brief
+          PAGES_BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        # --force: 휴장일에도 강제로 생성 (주말에 테스트할 때 필요)
         run: PYTHONPATH=src python src/build.py --force
+
       - name: 세로 넘침 검사
+        # 카드는 1080x1350 으로 잘립니다. 내용이 넘치면 아래쪽이 조용히 사라지므로
+        # 각 페이지의 실제 높이를 재서 로그에 표로 남깁니다.
+        # 넘치더라도 이미지는 받아볼 수 있게 계속 진행합니다.
         continue-on-error: true
         run: python check_overflow.py
+
+      - name: 요약 텍스트 점검
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import json, pathlib
+
+          raw = json.loads(pathlib.Path("out/raw.json").read_text(encoding="utf-8"))
+          s, d = raw["summary"], raw["data"]
+          f = d.get("focus", {})
+
+          pct = f.get("pct")
+          print(f"오늘의 종목: {f.get('ticker')} {f.get('name')}"
+                + (f"  {pct:+.2f}%" if pct is not None else ""))
+          print(f"선정 근거: 상대거래량 {f.get('rvol')}배\n")
+
+          hl, hd = s.get("hook_highlight", ""), s.get("hook_headline", "")
+          print(f"헤드라인: {hd}")
+          ok = "정상 적용" if hl and hl in hd else "적용 안 됨 (강조 없이 나감)"
+          print(f"강조 키워드: '{hl}' -> {ok}\n")
+
+          print("--- 글자 수 ---")
+          for k in ("macro_line", "fundamental_note", "chart_note",
+                    "smart_money_note", "chain_note", "wallst_note", "kr_line"):
+              v = s.get(k) or ""
+              tail = "..." if len(v) > 45 else ""
+              print(f"  {k:20} {len(v):>4}자  {v[:45]}{tail}")
+
+          print("\n--- 목록 항목 ---")
+          for k in ("facts", "risks", "summary3"):
+              print(f"  {k}:")
+              for item in s.get(k, []):
+                  print(f"    - ({len(item):>2}자) {item}")
+
+          print("\n--- 데이터가 비어서 카드에서 빠진 항목 ---")
+          checks = {
+              "실적(EPS)": f.get("earnings"),
+              "애널리스트 추천분포": f.get("rec_dist"),
+              "내부자 매매": f.get("insider"),
+              "기관 보유자": f.get("inst_top"),
+              "재무건전성": f.get("financial_health"),
+              "경쟁사": f.get("peers"),
+              "증권사 의견변경": f.get("actions"),
+              "매출 추이": f.get("revenue_history"),
+          }
+          missing = [k for k, v in checks.items() if not v]
+          print("  " + (", ".join(missing) if missing else "없음 — 전부 채워졌습니다"))
+          PY
+
       - name: 카드 이미지 업로드
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: 카드-미리보기
           path: |
