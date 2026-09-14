@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-15",
+  "ticker": "CRWD",
+  "name": "CrowdStrike Holdings, Inc.",
+  "pct": 13.85,
+  "rvol": 2.6
+ },
+ {
   "date": "2026-09-14",
   "ticker": "MU",
   "name": "Micron Technology, Inc.",
