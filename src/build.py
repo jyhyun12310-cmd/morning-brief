@@ -61,11 +61,12 @@ def _fmt_pct(pct: float | None) -> str:
 # 인스타 캡션 하단 고정 문구. 매일 같은 자리에 같은 문장이 와야 브랜드로 각인됩니다.
 CAPTION_FOOTER = """오늘의 움직임보다, 움직인 이유를 봅니다.
 
-매일 아침 7시, 미국 증시에서 가장 주목할 종목 하나를
-7장으로 정리해서 올립니다.
+매일 아침 7시.
+미국장에서 가장 시끄러웠던 종목 하나를 골라
+왜 움직였는지 7장으로 풀어드립니다.
 
-놓치지 않으려면 팔로우해 주세요 @{handle}
-저장해두면 나중에 다시 꺼내보기 좋습니다."""
+내일도 받아보려면 @{handle} 팔로우
+나중에 다시 볼 것 같으면 저장 한 번 눌러두세요."""
 
 CAPTION_DISCLAIMER = "본 게시물은 공개된 시장 데이터를 정리한 투자 참고용 자료이며, 특정 종목의 매수·매도를 권유하지 않습니다."
 
@@ -99,37 +100,46 @@ def _build_caption(data: dict, summary: dict) -> str:
 
 
 def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_url: str) -> list[dict]:
-    """카드 7장에 대응하는 카카오 메시지. 각 장의 핵심 문장을 그대로 씁니다."""
+    """카드 7장에 대응하는 카카오 메시지. 각 장의 핵심 문장을 그대로 씁니다.
+
+    설명이 비면 카톡에서 제목만 덩그러니 보이므로, 각 칸마다 대체 문구를 둡니다.
+    """
     f = data.get("focus", {})
     tk = f.get("ticker", "")
     pct = f.get("pct")
     name = f.get("name") or tk
     tk_txt = f"{tk} {pct:+.2f}%" if tk and pct is not None else name
 
-    def _first(items, key, sep=" · "):
-        return sep.join(str(i.get(key, "")) for i in (items or [])[:2] if i.get(key))
+    def _join(items, key, sep=" · ", n=2):
+        return sep.join(str(i.get(key, "")) for i in (items or [])[:n] if i.get(key))
 
-    metrics = _first(summary.get("p4_metrics"), "value")
-    if metrics:
-        labels = _first(summary.get("p4_metrics"), "label")
-        metrics = f"{labels} → {metrics}"
+    hook = " ".join(x for x in [summary.get("hook1"), summary.get("hook2")] if x)
+    expects = _join(summary.get("p3_expects"), "label")
+    axes = _join(summary.get("p5_axes"), "axis", n=3)
+    risks = _join(summary.get("p6_risks"), "area", n=3)
 
     cards = [
         {"title": f"{data['date_kr']} · {tk_txt}",
-         "description": summary.get("p1_line") or summary.get("kakao_text", "")},
-        {"title": summary.get("p2_headline") or "무슨 일이 있었나",
-         "description": summary.get("p2_reaction", "")},
-        {"title": summary.get("p3_headline") or "왜 중요한가",
-         "description": summary.get("p3_note", "")},
+         "description": hook or summary.get("kakao_text", "")},
+        {"title": summary.get("p2_headline") or "오늘 무슨 일이",
+         "description": _join(summary.get("p2_points"), "text", sep=" / ")},
+        {"title": summary.get("p3_headline") or "시장의 기대",
+         "description": summary.get("p3_fact") or (f"기대 요소: {expects}" if expects else "")},
         {"title": summary.get("p4_headline") or "진짜 실적",
-         "description": summary.get("p4_note") or metrics},
-        {"title": summary.get("p5_headline") or "지금 주가는",
-         "description": summary.get("p5_read", "")},
-        {"title": summary.get("p6_headline") or "시장의 기대",
-         "description": summary.get("p6_read", "")},
-        {"title": "오늘의 결론",
-         "description": summary.get("conclusion") or summary.get("kr_line", "")},
+         "description": summary.get("p4_reading", "")},
+        {"title": summary.get("p5_headline") or "왜 중요한가",
+         "description": _join(summary.get("p5_axes"), "text", sep=" / ") or axes},
+        {"title": summary.get("p6_headline") or "리스크 체크",
+         "description": _join(summary.get("p6_risks"), "text", sep=" / ") or risks},
+        {"title": "한눈에 정리",
+         "description": summary.get("p7_line") or summary.get("kr_line", "")},
     ]
+
+    # 빈 설명은 카톡에서 어색하므로 최소한의 문구로 채웁니다.
+    for card in cards:
+        if not (card.get("description") or "").strip():
+            card["description"] = f"{name} 관련 내용은 카드에서 확인하세요."
+
     for card, url in zip(cards, image_urls):
         card["image_url"] = url
         card["link_url"] = link_url
