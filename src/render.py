@@ -15,15 +15,17 @@ from playwright.sync_api import sync_playwright
 import config as cfg
 
 SRC = Path(__file__).parent
-CARD_COUNT = 5
-UP, DOWN, FLAT, GOLD = "#EF4444", "#3B82F6", "#94A3B8", "#FACC15"
+CARD_COUNT = 7
+UP, DOWN, FLAT, GOLD = "#FF5A5A", "#4A90E2", "#AAB4C7", "#FFD21C"
 
 CARD_LABELS = {
-    1: "오늘의 이슈",
+    1: "오늘의 특징주",
     2: "무슨 일이",
-    3: "왜 중요한가",
-    4: "어디를 볼까",
-    5: "다음에 볼 것",
+    3: "시장의 기대",
+    4: "진짜 실적",
+    5: "왜 중요한가",
+    6: "리스크 체크",
+    7: "한눈에 정리",
 }
 
 
@@ -226,9 +228,13 @@ def _rev_bars(focus: dict) -> list[dict]:
     vals = [h["value"] for h in hist if h.get("value")]
     if len(vals) < 2:
         return []
-    hi = max(vals)
+    hi, lo = max(vals), min(vals)
+    # 0 기준으로 그리면 값들이 다 비슷해 보여 추세가 안 드러납니다.
+    # 최소값보다 살짝 아래를 바닥으로 잡아 증감 폭을 눈에 보이게 확대합니다.
+    base = lo - (hi - lo) * 0.45 if hi > lo else lo * 0.8
+    span = (hi - base) or 1
     return [
-        {"period": h["period"], "h": round(22 + (h["value"] / hi) * 78, 1)}
+        {"period": h["period"], "h": round(18 + (h["value"] - base) / span * 82, 1)}
         for h in hist if h.get("value")
     ]
 
@@ -626,6 +632,7 @@ def _factor_scorecard(focus: dict) -> list[dict]:
     # 정확히 대응되므로, P4 뱃지 전용 색(초록/빨강/주황/회색)으로 그대로 옮깁니다.
     # 가격 등락에 쓰는 빨강=상승/파랑=하락 한국식 표기와는 별개의 색 체계입니다.
     badge_map = {"up": "good", "dn": "bad", "hl": "caution", "fl": "neutral"}
+    # good 은 초록이 아니라 코럴레드로 렌더됩니다(강조색 2개 원칙, CSS 참조).
     for factor in factors:
         factor["badge"] = badge_map.get(factor["tone"], "neutral")
 
@@ -663,6 +670,170 @@ def _p3_stats(focus: dict, rsi: dict | None, cross: dict | None) -> list[dict]:
     return stats
 
 
+def _p2_nums(focus: dict) -> list[dict]:
+    """P2 상단의 큰 숫자 3개. AI 가 아니라 실제 데이터에서 직접 뽑습니다.
+
+    스펙상 "매출 +58% / EPS $7.04 / 거래량 1.9배"처럼 그날을 대표하는 숫자를
+    크게 보여주는 자리입니다. 값이 없는 항목은 넣지 않습니다.
+    """
+    out = []
+    e = focus.get("earnings") or {}
+    g = focus.get("growth") or {}
+    rvol = focus.get("rvol")
+
+    if e.get("eps_act") is not None:
+        out.append({"label": "EPS", "value": f"${e['eps_act']}",
+                    "cls": "up" if e.get("beat") else "dn"})
+    if g.get("revenue") is not None:
+        out.append({"label": "매출 성장률", "value": f"{g['revenue'] * 100:+.0f}%",
+                    "cls": "up" if g["revenue"] > 0 else "dn"})
+    if rvol:
+        out.append({"label": "거래량", "value": f"{rvol:.1f}배", "cls": "hl"})
+    if len(out) < 3 and focus.get("pct") is not None:
+        out.append({"label": "주가", "value": f"{focus['pct']:+.1f}%", "cls": _cls(focus["pct"])})
+    return out[:3]
+
+
+def _investor_take(focus: dict) -> list[dict]:
+    """P7 한눈 요약 4항목. AI 판정이 아니라 실제 수치로 등급을 매깁니다.
+
+    강조색은 2개만 씁니다(스펙): 긍정=up(코럴), 주의/핵심=hl(옐로), 부정=dn(블루),
+    중립=fl(그레이). 초록은 쓰지 않습니다.
+    """
+    lv = focus.get("levels") or {}
+    v = focus.get("valuation") or {}
+    g = focus.get("growth") or {}
+    e = focus.get("earnings") or {}
+    sm = focus.get("smart_money") or {}
+    rvol = focus.get("rvol")
+    peer_per = focus.get("peer_avg_per")
+    out = []
+
+    # 1) 주가 모멘텀 — RSI + 이동평균 교차
+    rsi, cross = lv.get("rsi"), lv.get("cross")
+    if rsi is not None:
+        if rsi >= 70:
+            grade, tone = "과열", "hl"
+        elif cross == "golden" and rsi >= 50:
+            grade, tone = "강함", "up"
+        elif cross == "death" or rsi <= 35:
+            grade, tone = "약함", "dn"
+        else:
+            grade, tone = "보통", "fl"
+        out.append({"key": "주가 모멘텀", "grade": grade, "tone": tone,
+                    "detail": f"RSI {rsi:.0f}"})
+
+    # 2) 실적 — 서프라이즈 + 매출 성장
+    rev = g.get("revenue")
+    if e.get("beat") is not None or rev is not None:
+        if e.get("beat") and (rev or 0) >= 0.10:
+            grade, tone = "개선", "up"
+        elif e.get("beat") is False or (rev is not None and rev < 0):
+            grade, tone = "둔화", "dn"
+        else:
+            grade, tone = "유지", "fl"
+        detail = f"매출 {rev*100:+.0f}%" if rev is not None else "직전 실적 기준"
+        out.append({"key": "실적", "grade": grade, "tone": tone, "detail": detail})
+
+    # 3) 시장 관심 — 상대거래량
+    if rvol:
+        if rvol >= 2.0:
+            grade, tone = "높음", "up"
+        elif rvol >= 1.2:
+            grade, tone = "보통", "fl"
+        else:
+            grade, tone = "낮음", "dn"
+        out.append({"key": "시장 관심", "grade": grade, "tone": tone,
+                    "detail": f"거래량 {rvol:.1f}배"})
+
+    # 4) 리스크 — 밸류에이션 부담·공매도·변동성을 합산.
+    #    판단 근거가 하나도 없으면 "낮음"으로 단정하지 않고 항목을 뺍니다.
+    #    (데이터가 없는 것과 리스크가 없는 것은 다릅니다)
+    score, bits = 0, []
+    fpe, short, hv = v.get("forward_per"), sm.get("short_pct"), lv.get("hist_vol")
+    checked = 0
+    if fpe and peer_per:
+        checked += 1
+        if fpe > peer_per * 1.15:
+            score += 1
+            bits.append("밸류 부담")
+    if short is not None:
+        checked += 1
+        if short >= 0.15:
+            score += 1
+            bits.append(f"공매도 {short*100:.0f}%")
+    if hv is not None:
+        checked += 1
+        if hv >= 45:
+            score += 1
+            bits.append(f"변동성 {hv:.0f}%")
+    if rsi is not None:
+        checked += 1
+        if rsi >= 70:
+            score += 1
+            bits.append("단기 과열")
+
+    if checked >= 2:
+        grade, tone = ("높음", "hl") if score >= 2 else ("보통", "fl") if score == 1 else ("낮음", "up")
+        out.append({"key": "리스크", "grade": grade, "tone": tone,
+                    "detail": " · ".join(bits) if bits else "특이 신호 없음"})
+
+    return out
+
+
+def _real_numbers(focus: dict) -> list[dict]:
+    """P4 핵심 실적 지표. AI 가 아니라 실제 데이터에서 직접 뽑습니다.
+
+    스펙의 "확인 가능한 최신 데이터만, 임의 수치 금지" 원칙을 코드로 강제합니다.
+    값이 없는 지표는 아예 넣지 않습니다.
+    """
+    e = focus.get("earnings") or {}
+    v = focus.get("valuation") or {}
+    g = focus.get("growth") or {}
+    sm = focus.get("smart_money") or {}
+    out = []
+
+    if e.get("eps_act") is not None:
+        row = {"label": "EPS (주당순이익)", "value": f"${e['eps_act']}",
+               "mean": "회사가 벌어들인 주당 순이익"}
+        if e.get("surprise") is not None:
+            row["delta"] = f"예상치 대비 {e['surprise']:+.1f}%"
+            row["dcls"] = "up" if e.get("beat") else "dn"
+        out.append(row)
+
+    if g.get("revenue") is not None:
+        out.append({"label": "매출 성장률", "value": f"{g['revenue'] * 100:+.0f}%",
+                    "delta": "전년 동기 대비", "dcls": "fl",
+                    "mean": "1년 전 같은 기간과 비교한 수치"})
+
+    if v.get("margin") is not None:
+        out.append({"label": "영업이익률", "value": f"{v['margin'] * 100:.1f}%",
+                    "mean": "매출에서 실제로 남는 이익 비율"})
+
+    if g.get("earnings") is not None:
+        out.append({"label": "이익 성장률", "value": f"{g['earnings'] * 100:+.0f}%",
+                    "delta": "전년 동기 대비", "dcls": "fl",
+                    "mean": "순이익이 얼마나 늘었는지"})
+    elif sm.get("inst_pct") is not None:
+        out.append({"label": "기관 보유율", "value": f"{sm['inst_pct'] * 100:.0f}%",
+                    "mean": "연기금·펀드가 들고 있는 비중"})
+
+    return out[:4]
+
+
+def _accent_titles(summary: dict) -> dict:
+    """각 페이지 제목에서 핵심 단어만 노랗게 강조하기 위해 조각으로 나눕니다.
+
+    AI 가 엉뚱한 키워드를 주면 강조 없이 원문 그대로 나가므로 안전합니다.
+    """
+    out = {}
+    for n in range(2, 8):
+        head = summary.get(f"p{n}_headline", "")
+        acc = summary.get(f"p{n}_accent", "")
+        out[n] = _split_highlight(head, acc)
+    return out
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -676,6 +847,10 @@ def _template_context(data: dict, summary: dict) -> dict:
         "s": summary,
         "f": _focus_ctx(focus),
         "p1_chips": _p1_chips(focus),
+        "p2_nums": _p2_nums(focus),
+        "take": _investor_take(focus),
+        "titles": _accent_titles(summary),
+        "real_nums": _real_numbers(focus),
         "p1_title": _p1_title(focus),
         "p1_subtitle": summary.get("headline_theme") or _p1_subtitle(focus),
         "glow_chart": _cover_glow_chart(focus.get("series_60") or focus.get("series")),
