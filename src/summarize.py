@@ -156,7 +156,7 @@ def _fallback(data: dict) -> dict:
     for e in events[:2]:
         points.append({"tag": e["kind"], "text": f"{e['headline']} {e['value']}"})
     if rvol:
-        points.append({"tag": "수급 변화", "text": f"거래량이 평소의 {rvol:.1f}배로 늘었습니다"})
+        points.append({"tag": "돈의 흐름", "text": f"거래량은 평소의 {rvol:.1f}배"})
 
     fact = ""
     if ern.get("eps_act") is not None and ern.get("surprise") is not None:
