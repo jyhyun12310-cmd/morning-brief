@@ -120,9 +120,8 @@ VALUE_CHAIN = {
 
 
 # ── 인스타그램 캡션 ─────────────────────────────────────
-# ★ 아래 따옴표 안을 본인 인스타 계정 아이디로 바꿔주세요 (@ 기호는 빼고).
-#   예: 계정이 @us_stock_daily 라면 "us_stock_daily"
-INSTAGRAM_HANDLE = os.environ.get("INSTAGRAM_HANDLE", "morningbrief")
+# 계정 아이디 (@ 없이). 캡션의 팔로우 유도 문구에 들어갑니다.
+INSTAGRAM_HANDLE = os.environ.get("INSTAGRAM_HANDLE", "making_money_for_chicken")
 
 # 캡션 맨 아래 해시태그. 종목 티커는 매일 자동으로 앞에 붙습니다.
 # 인스타는 30개까지 허용하지만, 너무 많으면 스팸으로 보여 8~12개가 적당합니다.
