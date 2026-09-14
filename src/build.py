@@ -58,53 +58,82 @@ def _fmt_pct(pct: float | None) -> str:
     return f"{pct:+.2f}%" if pct is not None else "—"
 
 
-def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_url: str) -> list[dict]:
-    """카드 5장에 대응하는 카카오 메시지. 숫자는 원본 데이터에서 직접 만듭니다."""
+# 인스타 캡션 하단 고정 문구. 매일 같은 자리에 같은 문장이 와야 브랜드로 각인됩니다.
+CAPTION_FOOTER = """오늘의 움직임보다, 움직인 이유를 봅니다.
+
+매일 아침 7시, 미국 증시에서 가장 주목할 종목 하나를
+7장으로 정리해서 올립니다.
+
+놓치지 않으려면 팔로우해 주세요 @{handle}
+저장해두면 나중에 다시 꺼내보기 좋습니다."""
+
+CAPTION_DISCLAIMER = "본 게시물은 공개된 시장 데이터를 정리한 투자 참고용 자료이며, 특정 종목의 매수·매도를 권유하지 않습니다."
+
+
+def _build_caption(data: dict, summary: dict) -> str:
+    """AI 가 쓴 본문 + 고정 팔로우 문구 + 해시태그를 조립합니다.
+
+    본문만 AI 에 맡기고 팔로우 유도는 고정으로 둡니다. 매번 새로 쓰게 하면
+    문구가 들쭉날쭉해져 브랜드로 쌓이지 않습니다.
+    """
     f = data.get("focus", {})
-    market = data.get("market", {})
+    tk = f.get("ticker", "")
+    name = f.get("name") or tk
+    pct = f.get("pct")
+
+    head = f"{name} ({tk}) {pct:+.2f}%" if tk and pct is not None else name
+    body = (summary.get("instagram_caption") or "").strip()
+    if not body:
+        body = summary.get("p7_line") or summary.get("hook2") or ""
+
+    footer = CAPTION_FOOTER.format(handle=cfg.INSTAGRAM_HANDLE)
+
+    tags = list(cfg.INSTAGRAM_TAGS)
+    if tk and f"#{tk}" not in tags:
+        tags.insert(0, f"#{tk}")
+    tag_line = " ".join(tags)
+
+    parts = [head, "", body, "", footer, "", CAPTION_DISCLAIMER, "", tag_line]
+    caption = "\n".join(p for p in parts if p is not None)
+    return caption[:2000]
+
+
+def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_url: str) -> list[dict]:
+    """카드 7장에 대응하는 카카오 메시지. 각 장의 핵심 문장을 그대로 씁니다."""
+    f = data.get("focus", {})
     tk = f.get("ticker", "")
     pct = f.get("pct")
-    tk_txt = f"{tk} {pct:+.2f}%" if tk and pct is not None else "오늘의 종목"
+    name = f.get("name") or tk
+    tk_txt = f"{tk} {pct:+.2f}%" if tk and pct is not None else name
 
-    def _line(rows, n=4):
-        return " · ".join(
-            f"{r['label']} {r['pct']:+.2f}%" for r in (rows or [])[:n] if r.get("pct") is not None
-        )
+    def _first(items, key, sep=" · "):
+        return sep.join(str(i.get(key, "")) for i in (items or [])[:2] if i.get(key))
 
-    val = f.get("valuation") or {}
-    val_bits = []
-    if val.get("per") is not None:
-        val_bits.append(f"PER {val['per']:.1f}")
-    if val.get("pbr") is not None:
-        val_bits.append(f"PBR {val['pbr']:.1f}")
-    ern = f.get("earnings") or {}
-    if ern.get("surprise") is not None:
-        val_bits.append(f"EPS {'Beat' if ern.get('beat') else 'Miss'} {ern['surprise']:+.1f}%")
-
-    a = f.get("analyst") or {}
-    tgt_txt = (
-        f"목표가 평균 ${a['target_mean']:,.0f}"
-        + (f" · 상승여력 {a['upside']:+.1f}%" if a.get("upside") is not None else "")
-        if a.get("target_mean") else summary.get("wallst_note", "")
-    )
+    metrics = _first(summary.get("p4_metrics"), "value")
+    if metrics:
+        labels = _first(summary.get("p4_metrics"), "label")
+        metrics = f"{labels} → {metrics}"
 
     cards = [
         {"title": f"{data['date_kr']} · {tk_txt}",
-         "description": summary.get("kakao_text", "")},
-        {"title": "간밤 시장 맥락",
-         "description": _line(market.get("indices")) or summary.get("macro_line", "")},
-        {"title": f"{tk} 펀더멘털",
-         "description": " · ".join(val_bits) or summary.get("fundamental_note", "")},
-        {"title": "밸류체인 · 월가 시각",
-         "description": tgt_txt or summary.get("chain_note", "")},
-        {"title": "오늘의 3줄 요약",
-         "description": " / ".join(summary.get("summary3", [])) or summary.get("kr_line", "")},
+         "description": summary.get("p1_line") or summary.get("kakao_text", "")},
+        {"title": summary.get("p2_headline") or "무슨 일이 있었나",
+         "description": summary.get("p2_reaction", "")},
+        {"title": summary.get("p3_headline") or "왜 중요한가",
+         "description": summary.get("p3_note", "")},
+        {"title": summary.get("p4_headline") or "진짜 실적",
+         "description": summary.get("p4_note") or metrics},
+        {"title": summary.get("p5_headline") or "지금 주가는",
+         "description": summary.get("p5_read", "")},
+        {"title": summary.get("p6_headline") or "시장의 기대",
+         "description": summary.get("p6_read", "")},
+        {"title": "오늘의 결론",
+         "description": summary.get("conclusion") or summary.get("kr_line", "")},
     ]
     for card, url in zip(cards, image_urls):
         card["image_url"] = url
         card["link_url"] = link_url
     return cards
-
 
 
 def main() -> int:
@@ -143,7 +172,7 @@ def main() -> int:
         "weekday_kr": data["weekday_kr"],
         "link_url": link_url,
         "instagram_image_urls": image_urls,
-        "instagram_caption": summary["instagram_caption"],
+        "instagram_caption": _build_caption(data, summary),
         "kakao_cards": _build_kakao_cards(data, summary, image_urls, link_url),
     }
 
