@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-16",
+  "ticker": "DLTR",
+  "name": "Dollar Tree, Inc.",
+  "pct": -5.35,
+  "rvol": 1.46
+ },
+ {
   "date": "2026-09-15",
   "ticker": "CRWD",
   "name": "CrowdStrike Holdings, Inc.",
