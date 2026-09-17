@@ -157,8 +157,8 @@
   .sec-mini .b.dn{right:50%;background:linear-gradient(270deg,rgba(59,130,246,.5),var(--dn))}
   .sec-mini .v{flex:0 0 78px;text-align:right;font-family:var(--mono);font-size:15px;font-weight:700}
 
-  .idxrows{margin-top:12px}
-  .ir{display:flex;align-items:center;gap:14px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .idxrows{margin-top:10px}
+  .ir{display:flex;align-items:center;gap:14px;padding:7px 0;border-bottom:1px solid var(--line)}
   .ir:first-child{border-top:1px solid var(--line)}
   .irn{flex:0 0 108px;font-size:19px;font-weight:700;letter-spacing:-.02em}
   .irs{flex:1;height:22px;opacity:.85}
@@ -195,7 +195,7 @@
   .bnv.hl{color:var(--hl)}
   .bnk{margin-top:8px;font-size:15px;color:var(--tx3);font-weight:600}
   .story{margin-top:44px}
-  .sline{padding:32px 0;border-bottom:1px solid var(--line)}
+  .sline{padding:24px 0;border-bottom:1px solid var(--line)}
   .sline:first-child{border-top:1px solid var(--line)}
   .sdot2{flex:0 0 auto;width:11px;height:11px;border-radius:50%;background:var(--hl);margin-top:11px;
          box-shadow:0 0 0 5px rgba(255,210,28,.12)}
@@ -240,13 +240,13 @@
   .ptag{display:inline-block;font-size:15px;font-weight:800;color:var(--hl);letter-spacing:.02em}
 
   /* ── P3 Fact / Expectation ───────────── */
-  .factbox{margin-top:38px;padding:32px 34px;border-radius:16px;
+  .factbox{margin-top:28px;padding:26px 30px;border-radius:16px;
            background:rgba(255,255,255,.05);border-left:4px solid var(--tx2)}
   .fbk{font-size:14px;font-weight:800;color:var(--tx2);letter-spacing:.12em}
   .fbv{margin-top:12px;font-size:27px;line-height:1.45;font-weight:700;letter-spacing:-.02em}
   .expk{margin-top:30px;font-size:14px;font-weight:800;color:var(--hl);letter-spacing:.12em}
   .expects{margin-top:18px}
-  .exp{padding:26px 0;border-bottom:1px solid var(--line)}
+  .exp{padding:20px 0;border-bottom:1px solid var(--line)}
   .exp:first-child{border-top:1px solid var(--line)}
   .exptop{display:flex;align-items:center;gap:14px}
   .explabel{font-size:27px;font-weight:800;letter-spacing:-.025em}
@@ -276,14 +276,18 @@
           font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center}
   .rktext{margin-top:11px;font-size:21px;line-height:1.5;color:var(--tx2);font-weight:500}
 
+  .instrow{margin-top:10px;font-size:15px;color:var(--tx3);line-height:1.8}
+  .ih{margin-right:16px}
+  .ih b{color:var(--tx2);font-family:var(--mono)}
+
   /* ── P7 한눈 정리 ────────────────────── */
-  .takes{margin-top:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-  .tk3{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:18px;padding:26px 24px}
-  .tkk{font-size:16px;color:var(--tx3);font-weight:700}
-  .tkg{margin-top:10px;font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1}
+  .takes{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .tk3{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:20px;padding:36px 30px}
+  .tkk{font-size:17px;color:var(--tx3);font-weight:700}
+  .tkg{margin-top:12px;font-size:46px;font-weight:900;letter-spacing:-.03em;line-height:1}
   .tkg.up{color:var(--up)} .tkg.dn{color:var(--dn)}
   .tkg.hl{color:var(--hl)} .tkg.fl{color:var(--tx2)}
-  .tkd{margin-top:10px;font-size:15px;color:var(--tx3);font-weight:600}
+  .tkd{margin-top:12px;font-size:16px;color:var(--tx3);font-weight:600}
 
   /* ── P4 핵심 지표 ────────────────────── */
   .mets{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -457,8 +461,8 @@
   .riptext{flex:1;font-size:21px;line-height:1.5;font-weight:500;letter-spacing:-.018em}
 
   /* ── P5 팩터 요약 ─────────────────────── */
-  .fmini{margin-top:18px}
-  .fm{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .fmini{margin-top:12px}
+  .fm{display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid var(--line)}
   .fmdot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
   .fmdot.good{background:var(--up)} .fmdot.bad{background:#EF4444}
   .fmdot.caution{background:var(--hl)} .fmdot.neutral{background:#94A3B8}
@@ -490,16 +494,16 @@
           display:flex;align-items:center;justify-content:center}
   .sum .t{font-size:23px;line-height:1.4;font-weight:600;letter-spacing:-.025em;padding-top:4px}
 
-  .neonbox{margin-top:28px;padding:34px 32px;border-radius:18px;
+  .neonbox{margin-top:34px;padding:40px 36px;border-radius:18px;
            background:rgba(250,204,21,.10);border:1px solid rgba(250,204,21,.45);
            box-shadow:0 0 24px rgba(250,204,21,.18), inset 0 0 20px rgba(250,204,21,.05)}
   .sigk{font-size:16px;font-weight:800;color:var(--hl);letter-spacing:.04em}
-  .sigv{margin-top:12px;font-size:30px;line-height:1.4;font-weight:800;letter-spacing:-.025em}
+  .sigv{margin-top:14px;font-size:33px;line-height:1.4;font-weight:800;letter-spacing:-.025em}
 
-  .krbox{margin-top:26px;padding:24px 26px;border-radius:12px;
+  .krbox{margin-top:30px;padding:28px 30px;border-radius:12px;
          background:rgba(59,130,246,.11);border:1px solid rgba(59,130,246,.3)}
   .krbox .k{font-size:14px;font-weight:800;color:var(--dn)}
-  .krbox .v{margin-top:10px;font-size:23px;line-height:1.45;letter-spacing:-.018em}
+  .krbox .v{margin-top:11px;font-size:24px;line-height:1.45;letter-spacing:-.018em}
 
   .follow{margin-top:20px;text-align:center}
   .follow .fb{font-size:22px;font-weight:800;color:var(--hl);letter-spacing:-.02em}
@@ -593,7 +597,7 @@
 {% endif %}
 {% if sectors %}
 <div class="sec-mini" style="margin-top:26px">
-  {% for x in sectors[:5] %}
+  {% for x in sectors[:4] %}
   <div class="r">
     <span class="k">{{ x.label }}</span>
     <span class="t"><span class="b {{ x.cls }}" style="width:{{ x.bar }}%"></span></span>
@@ -602,6 +606,17 @@
   {% endfor %}
 </div>
 <div class="chartnote">간밤 섹터별 자금 흐름</div>
+{% endif %}
+{% if indices %}
+<div class="idxrows">
+  {% for i in indices %}
+  <div class="ir">
+    <span class="irn">{{ i.label }}</span>
+    <span class="irs">{% if i.spark %}<svg viewBox="0 0 120 22" preserveAspectRatio="none" style="width:100%;height:100%"><polyline points="{{ i.spark }}" fill="none" stroke="{{ i.hex }}" stroke-width="2.2" stroke-opacity=".8" vector-effect="non-scaling-stroke"/></svg>{% endif %}</span>
+    <span class="ird {{ i.cls }}">{{ i.fmt_pct }}</span>
+  </div>
+  {% endfor %}
+</div>
 {% endif %}
 {% if gauges %}
 <div class="gauges">
@@ -639,10 +654,18 @@
   {% endfor %}
 </div>
 {% endif %}
+{% if factors %}
+<div class="reltag">지표로 본 현재 위치</div>
+<div class="fmini">
+  {% for x in factors %}
+  <div class="fm"><span class="fmdot {{ x.badge }}"></span><span class="fmcat">{{ x.cat }}</span><span class="fmv {{ x.badge }}">{{ x.verdict }}</span><span class="fmd">{{ x.detail }}</span></div>
+  {% endfor %}
+</div>
+{% endif %}
 {% if chain %}
 <div class="reltag">함께 움직인 종목</div>
 <div class="relgrid">
-  {% for c in chain[:4] %}
+  {% for c in chain[:3] %}
   <div class="rel">
     <div class="reltk">{{ c.ticker }}</div>
     <div class="relwhy c1">{{ c.relation }}</div>
@@ -677,6 +700,12 @@
   {% for d in f.earnings.dots %}<span class="ed {{ 'on' if d.beat else 'off' }}"></span>{% endfor %}
   {% if f.earnings.streak_txt %}<span class="es">{{ f.earnings.streak_txt }}</span>{% endif %}
   {% if f.earnings.next_date %}<span class="en">다음 {{ f.earnings.next_date }}</span>{% endif %}
+</div>
+{% endif %}
+{% if fin_cells or vol_compare %}
+<div class="smline">
+  {% for c in fin_cells %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}
+  {% if vol_compare %}<span>변동성 <b class="{{ vol_compare.tone }}">{{ vol_compare.stock }}</b> / 시장 {{ vol_compare.market }}</span>{% endif %}
 </div>
 {% endif %}
 {% if s.p4_reading %}<div class="note">{{ s.p4_reading }}</div>{% endif %}
@@ -716,6 +745,18 @@
 </div>
 <div class="chartnote">1년 주가 범위에서 지금 위치</div>
 {% endif %}
+{% if rec_bars %}
+<div class="recbar" style="margin-top:22px">
+  {% for r in rec_bars %}
+  <div class="r">
+    <span class="k">{{ r.label }}</span>
+    <span class="t"><span class="f" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
+    <span class="n">{{ r.n }}</span>
+  </div>
+  {% endfor %}
+</div>
+<div class="chartnote">애널리스트 의견 분포</div>
+{% endif %}
 
 {# ══ P6 리스크 체크 ═══════════════════════ #}
 {% elif card_num==6 %}
@@ -744,17 +785,21 @@
   </div>
 </div>
 {% endif %}
-{% if rec_bars %}
-<div class="recbar" style="margin-top:24px">
-  {% for r in rec_bars %}
-  <div class="r">
-    <span class="k">{{ r.label }}</span>
-    <span class="t"><span class="f" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
-    <span class="n">{{ r.n }}</span>
-  </div>
+{% if smart_cells or insider %}
+<div class="reltag" style="margin-top:26px">수급은 어떤가</div>
+<div class="smline">
+  {% for c in smart_cells[:3] %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}
+</div>
+{% if insider %}
+<div class="smline" style="margin-top:4px"><span>내부자 거래 <b class="{{ insider.tone }}">{{ insider.txt }}</b></span></div>
+{% endif %}
+{% endif %}
+{% if inst_top %}
+<div class="instrow">
+  {% for h in inst_top[:3] %}
+  <span class="ih">{{ h.name }} <b>{{ '%.1f'|format(h.pct * 100) }}%</b></span>
   {% endfor %}
 </div>
-<div class="chartnote">애널리스트 의견 분포</div>
 {% endif %}
 <div class="warn">주가 상승이 곧 기업가치 상승은 아닙니다. 목표주가도 애널리스트의 기대치일 뿐입니다.</div>
 
