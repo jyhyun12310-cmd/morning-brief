@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-18",
+  "ticker": "INTC",
+  "name": "Intel Corporation",
+  "pct": 7.67,
+  "rvol": 1.36
+ },
+ {
   "date": "2026-09-17",
   "ticker": "KEY",
   "name": "KeyCorp",
