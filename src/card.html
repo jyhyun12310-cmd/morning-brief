@@ -157,18 +157,18 @@
   .sec-mini .b.dn{right:50%;background:linear-gradient(270deg,rgba(59,130,246,.5),var(--dn))}
   .sec-mini .v{flex:0 0 78px;text-align:right;font-family:var(--mono);font-size:15px;font-weight:700}
 
-  .idxrows{margin-top:24px}
-  .ir{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .idxrows{margin-top:18px}
+  .ir{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
   .ir:first-child{border-top:1px solid var(--line)}
   .irn{flex:0 0 120px;font-size:21px;font-weight:700;letter-spacing:-.02em}
   .irs{flex:1;height:22px;opacity:.85}
   .irv{flex:0 0 100px;text-align:right;font-family:var(--mono);font-size:19px;font-weight:600}
   .ird{flex:0 0 78px;text-align:right;font-family:var(--mono);font-size:17px;font-weight:700}
-  .gauges{margin-top:26px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .gcell{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:24px 22px}
-  .gk{font-size:16px;color:var(--tx3);font-weight:600}
-  .gv{margin-top:8px;font-family:var(--mono);font-size:34px;font-weight:800;letter-spacing:-.02em}
-  .gd{margin-top:5px;font-family:var(--mono);font-size:16px;font-weight:700}
+  .gauges{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+  .gcell{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:18px 16px}
+  .gk{font-size:14px;color:var(--tx3);font-weight:600}
+  .gv{margin-top:6px;font-family:var(--mono);font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .gd{margin-top:4px;font-family:var(--mono);font-size:14px;font-weight:700}
 
   /* ── P1 eyebrow ──────────────────────── */
   .eyebrow{margin-top:26px;font-size:15px;font-weight:800;color:var(--hl);letter-spacing:.22em}
@@ -276,7 +276,7 @@
           font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center}
   .rktext{margin-top:11px;font-size:21px;line-height:1.5;color:var(--tx2);font-weight:500}
 
-  .instrow{margin-top:14px;font-size:17px;color:var(--tx3);line-height:1.8}
+  .instrow{margin-top:18px;font-size:18px;color:var(--tx3);line-height:1.8}
   .ih{margin-right:16px}
   .ih b{color:var(--tx2);font-family:var(--mono)}
 
@@ -287,6 +287,18 @@
   .val .cell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:18px 18px}
   .val .k{font-size:15px;color:var(--tx3);font-weight:600}
   .val .v{margin-top:7px;font-family:var(--mono);font-size:28px;font-weight:800;letter-spacing:-.02em}
+
+  .rsns{margin-top:22px}
+  .rsn{display:flex;align-items:baseline;gap:14px;padding:9px 0}
+  .rsnn{font-family:var(--mono);font-size:16px;font-weight:800;color:var(--hl)}
+  .rsnt{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--tx2)}
+  .swhy{margin-top:12px;font-size:16px;color:var(--tx3);line-height:1.9}
+  .swhy span{margin-right:18px}
+  .swhy b{color:var(--tx2);font-weight:700}
+  .tmr{margin-top:18px;padding:17px 22px;border-radius:14px;
+       background:rgba(74,144,226,.10);border-left:4px solid var(--dn)}
+  .tmk{display:block;font-size:14px;font-weight:800;color:var(--dn);letter-spacing:.04em}
+  .tmv{display:block;margin-top:8px;font-size:21px;font-weight:700;letter-spacing:-.02em}
 
   /* ── P4 경쟁사 비교표 ────────────────── */
   .ptable{margin-top:34px}
@@ -315,12 +327,12 @@
   .bbx{margin-top:7px;font-size:17px;color:var(--tx2);line-height:1.4}
 
   /* ── P6 기관 게이지 ──────────────────── */
-  .igauge{margin-top:34px;padding:34px 32px;border-radius:16px;
+  .igauge{margin-top:34px;padding:40px 34px;border-radius:16px;
           background:rgba(255,255,255,.045);border:1px solid var(--line)}
   .igtop{display:flex;justify-content:space-between;align-items:baseline}
   .igk{font-size:17px;color:var(--tx3);font-weight:600}
-  .igv{font-family:var(--mono);font-size:54px;font-weight:800;letter-spacing:-.03em}
-  .igtrack{margin-top:20px;height:22px;border-radius:8px;background:var(--line);overflow:hidden}
+  .igv{font-family:var(--mono);font-size:62px;font-weight:800;letter-spacing:-.03em}
+  .igtrack{margin-top:24px;height:26px;border-radius:8px;background:var(--line);overflow:hidden}
   .igfill{height:100%;border-radius:8px;background:linear-gradient(90deg,rgba(255,210,28,.45),var(--hl))}
   .iglabel{margin-top:10px;font-size:15px;color:var(--tx3);font-weight:600}
 
@@ -612,6 +624,13 @@
     <span class="pcnow">${{ f.fmt_last }}</span>
   </div>
   {% if s.spotlight %}<div class="spot">{{ s.spotlight }}</div>{% endif %}
+  {% if s.p1_reasons %}
+  <div class="rsns">
+    {% for r in s.p1_reasons %}
+    <div class="rsn"><span class="rsnn">0{{ loop.index }}</span><span class="rsnt">{{ r.text }}</span></div>
+    {% endfor %}
+  </div>
+  {% endif %}
   <div class="hook2">
     <div class="hl1">{{ s.hook1 }}</div>
     <div class="hl2">{{ s.hook2 }}</div>
@@ -660,6 +679,12 @@
   </div>
   {% endfor %}
 </div>
+{% if s.p2_sector_why %}
+<div class="swhy">{% for w in s.p2_sector_why %}<span><b>{{ w.sector }}</b> {{ w.why }}</span>{% endfor %}</div>
+{% endif %}
+{% endif %}
+{% if s.p2_tomorrow %}
+<div class="tmr"><span class="tmk">내일의 관전 포인트</span><span class="tmv">{{ s.p2_tomorrow }}</span></div>
 {% endif %}
 {% if s.p2_reading %}<div class="note">{{ s.p2_reading }}</div>{% endif %}
 
@@ -769,9 +794,9 @@
 </div>
 {% endif %}
 {% if fin_cells or vol_compare %}
-<div class="smline">
-  {% for c in fin_cells %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}
-  {% if vol_compare %}<span>변동성 <b class="{{ vol_compare.tone }}">{{ vol_compare.stock }}</b> / 시장 {{ vol_compare.market }}</span>{% endif %}
+<div class="val" style="margin-top:18px">
+  {% for c in fin_cells[:2] %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
+  {% if vol_compare %}<div class="cell"><div class="k">변동성 / 시장</div><div class="v {{ vol_compare.tone }}">{{ vol_compare.stock }}</div></div>{% endif %}
 </div>
 {% endif %}
 {% if chain %}
