@@ -618,6 +618,7 @@ def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
         "forward_per": _num(info.get("forwardPE")),
         "pbr": _num(info.get("priceToBook")),
         "ev_ebitda": _num(info.get("enterpriseToEbitda")),
+        "ev_sales": _num(info.get("enterpriseToRevenue")),
         "fcf": _num(info.get("freeCashflow")),
         "margin": _num(info.get("profitMargins")),
     }
@@ -667,7 +668,10 @@ def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
 
 
 def fetch_peers(tickers: list[str], quotes: dict) -> list[dict]:
-    """경쟁사 비교표용. 이미 받은 시세에 PER·시총만 덧붙입니다."""
+    """경쟁사 비교표용. 이미 받은 시세에 밸류에이션 지표를 덧붙입니다.
+
+    스펙상 비교표에 Forward P/E · EV/Sales · 투자의견이 들어가므로 함께 받아옵니다.
+    """
     out = []
     for t in tickers:
         row = {"ticker": t, **quotes.get(t, {})}
@@ -675,6 +679,9 @@ def fetch_peers(tickers: list[str], quotes: dict) -> list[dict]:
             info = yf.Ticker(t).info or {}
             row["name"] = info.get("shortName") or t
             row["per"] = _num(info.get("trailingPE"))
+            row["fwd_per"] = _num(info.get("forwardPE"))
+            row["ev_sales"] = _num(info.get("enterpriseToRevenue"))
+            row["rec"] = info.get("recommendationKey", "")
             row["market_cap"] = _num(info.get("marketCap"))
         except Exception:
             log.warning("피어 info 실패: %s", t)
