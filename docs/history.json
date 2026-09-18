@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-18-intc",
+  "ticker": "INTC",
+  "name": "Intel Corporation",
+  "pct": 7.67,
+  "rvol": 1.37
+ },
+ {
   "date": "2026-09-18",
   "ticker": "GNRC",
   "name": "Generac Holdlings Inc.",
