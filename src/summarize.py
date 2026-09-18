@@ -76,14 +76,22 @@ SYSTEM = """당신은 개인투자자용 미니 리서치 리포트를 만드는
   "hook1": "14~20자. 표지 첫 줄. 예: 주가는 올랐는데,",
   "hook2": "16~24자. 표지 둘째 줄. 궁금증을 완성. 예: 진짜 이유는 따로 있다",
   "spotlight": "급등 또는 급락의 핵심 이유 한 줄. 24자 이내. 예: AI 서버 수주가 실적으로 확인됐다",
+  "p1_reasons": [
+    {"text": "시장이 오늘 이 종목을 본 이유. 22자 이내. 예: AI 칩 경쟁력이 부각됐다"},
+    {"text": "두 번째 이유. 22자 이내"}
+  ],
 
   "p2_headline": "14자 이내. 예: 오늘 시장을 움직인 것들",
   "p2_accent": "p2_headline 안에 그대로 있는 2~5자 핵심 단어",
   "p2_reading": "거시 지표들이 이 종목에 어떤 영향을 줬는지 한 줄. 34자 이내. 예: 금리 상승에도 실적이 버텨준 하루",
+  "p2_sector_why": [
+    {"sector": "제공된 섹터로테이션 배열에 실제로 있는 섹터명 그대로", "why": "그 섹터가 오르내린 이유 14자 이내. 예: AI 기대감"}
+  ],
+  "p2_tomorrow": "내일 시장이 주목할 일정이나 지표 한 줄. 28자 이내. 데이터에 근거가 없으면 빈 문자열.",
 
   "p3_headline": "14자 이내. 예: 실적의 질을 따져보면",
   "p3_accent": "p3_headline 안의 2~5자 핵심 단어",
-  "p3_reading": "실적 숫자의 의미 한 줄. 34자 이내. 예: 매출만 는 게 아니라 남는 돈도 늘었다",
+  "p3_reading": "실적 숫자의 의미 한 줄. 34자 이내. 단순 반복 금지. 무엇이 성장을 이끌었는지까지. 예: 주택용 전력 수요가 성장을 끌고 있다",
 
   "p4_headline": "14자 이내. 예: 지금 주가는 비싼가",
   "p4_accent": "p4_headline 안의 2~5자 핵심 단어",
@@ -169,8 +177,9 @@ def _fallback(data: dict) -> dict:
 
     return {
         "hook1": "오늘 시장이", "hook2": "이 종목에 주목했다",
-        "spotlight": spot,
+        "spotlight": spot, "p1_reasons": [],
         "p2_headline": "오늘 시장을 움직인 것들", "p2_accent": "움직인", "p2_reading": "",
+        "p2_sector_why": [], "p2_tomorrow": "",
         "p3_headline": "실적의 질을 따져보면", "p3_accent": "실적", "p3_reading": p3,
         "p4_headline": "지금 주가는 비싼가", "p4_accent": "비싼가", "p4_premium": p4,
         "p5_headline": "사는 쪽과 파는 쪽", "p5_accent": "사는 쪽",
@@ -182,7 +191,7 @@ def _fallback(data: dict) -> dict:
     }
 
 
-_LIST_LIMITS = {"p5_bull": 3, "p5_bear": 3}
+_LIST_LIMITS = {"p5_bull": 3, "p5_bear": 3, "p1_reasons": 2, "p2_sector_why": 4}
 
 _DROP_FIELDS = ("series", "series_60", "_peer_raw", "spark")
 
