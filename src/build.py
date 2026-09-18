@@ -13,7 +13,7 @@ from pathlib import Path
 
 import config as cfg
 from collect import collect_all
-from render import render_cards, render_detail_page
+from render import CARD_COUNT, render_cards, render_detail_page
 from summarize import summarize
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -155,8 +155,6 @@ def main() -> int:
         Path(cfg.OUT_DIR, "skip").write_text("holiday")
         return 0
 
-    slug = now.strftime("%Y-%m-%d")
-
     log.info("데이터 수집 중")
     history = load_history()
     data = collect_all(history)
@@ -166,10 +164,15 @@ def main() -> int:
         log.error("오늘의 종목을 선정하지 못했습니다.")
         return 1
 
+    # 파일명에 티커를 넣습니다. 날짜만 쓰면 같은 날 두 번 실행했을 때
+    # 이전 종목의 카드와 파일명이 겹쳐, 캐시 탓에 1장만 옛 종목이 섞이는 일이
+    # 생깁니다(실제로 INTC 표지 + GNRC 본문이 나간 적 있음).
+    slug = f"{now.strftime('%Y-%m-%d')}-{focus['ticker'].lower()}"
+
     log.info("요약 생성 중")
     summary = summarize(data)
 
-    log.info("카드 5장 렌더링 중")
+    log.info("카드 %d장 렌더링 중", CARD_COUNT)
     card_paths = render_cards(data, summary, f"{cfg.DOCS_DIR}/cards", slug)
     render_detail_page(data, summary, slug)
 
