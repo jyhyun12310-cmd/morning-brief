@@ -834,6 +834,72 @@ def _accent_titles(summary: dict) -> dict:
     return out
 
 
+_REC_KR = {
+    "strong_buy": "적극매수", "buy": "매수", "hold": "중립",
+    "sell": "매도", "strong_sell": "적극매도", "underperform": "비중축소",
+    "outperform": "비중확대", "none": "-", "": "-",
+}
+
+
+def _peer_table(focus: dict) -> list[dict]:
+    """경쟁사 비교 테이블. 주인공을 맨 위에 두고 하이라이트합니다.
+
+    스펙의 Forward P/E · EV/Sales · 투자의견 3열 구성입니다.
+    """
+    v = focus.get("valuation") or {}
+    a = focus.get("analyst") or {}
+    rows = [{
+        "ticker": focus.get("ticker", ""),
+        "fwd_per": v.get("forward_per"),
+        "ev_sales": v.get("ev_sales"),
+        "rec": a.get("rec", ""),
+        "is_me": True,
+    }]
+    for p in (focus.get("peers") or [])[:3]:
+        rows.append({
+            "ticker": p.get("ticker", ""),
+            "fwd_per": p.get("fwd_per") or p.get("per"),
+            "ev_sales": p.get("ev_sales"),
+            "rec": p.get("rec", ""),
+            "is_me": False,
+        })
+    out = []
+    for r in rows:
+        if not r["ticker"]:
+            continue
+        out.append({
+            **r,
+            "f_per": f"{r['fwd_per']:.1f}" if r["fwd_per"] else "—",
+            "f_evs": f"{r['ev_sales']:.1f}" if r["ev_sales"] else "—",
+            "f_rec": _REC_KR.get(str(r["rec"]).lower(), str(r["rec"]) or "—"),
+        })
+    if len(out) < 2:
+        return []
+    # 한 열의 값이 전부 비어 있으면 그 열은 표에서 뺍니다(빈 칸만 늘어나므로).
+    has_evs = any(r["ev_sales"] for r in out)
+    has_rec = any(str(r["rec"]).strip() for r in out)
+    for r in out:
+        r["show_evs"] = has_evs
+        r["show_rec"] = has_rec
+    return out
+
+
+def _inst_gauge(focus: dict) -> dict | None:
+    """기관 보유 비중 게이지. 반원 대신 가로 바로 표시합니다."""
+    sm = focus.get("smart_money") or {}
+    pct = sm.get("inst_pct")
+    if pct is None:
+        return None
+    p = max(0.0, min(pct, 1.0)) * 100
+    if p >= 70:
+        label, tone = "기관 비중 높음", "up"
+    elif p >= 40:
+        label, tone = "기관 비중 보통", "fl"
+    else:
+        label, tone = "기관 비중 낮음", "dn"
+    return {"pct": round(p, 1), "txt": f"{p:.1f}%", "label": label, "tone": tone}
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -849,6 +915,9 @@ def _template_context(data: dict, summary: dict) -> dict:
         "p1_chips": _p1_chips(focus),
         "p2_nums": _p2_nums(focus),
         "take": _investor_take(focus),
+        "handle": cfg.INSTAGRAM_HANDLE,
+        "peer_table": _peer_table(focus),
+        "inst_gauge": _inst_gauge(focus),
         "titles": _accent_titles(summary),
         "real_nums": _real_numbers(focus),
         "p1_title": _p1_title(focus),
