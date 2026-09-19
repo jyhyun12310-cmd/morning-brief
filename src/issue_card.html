@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<style>
+  /* ══════════════════════════════════════════════════════
+     이슈 카드뉴스 — 종목 카드(card.html)와 정반대 비주얼.
+     종목 = 어두운 네이비 + 금색, 리포트 톤.
+     이슈 = 밝은 크림 + 두꺼운 검정 테두리 + 팝 컬러, 포스터 톤.
+     피드에서 두 시리즈가 한눈에 구분되도록 일부러 멀리 떨어뜨렸습니다.
+     ══════════════════════════════════════════════════════ */
+  :root{
+    --ink:#141110; --ink2:#4A4340; --ink3:#8A817C;
+    --bg:#FFF3DF; --paper:#FFFFFF;
+    --up:#FF3B30;    /* 상승 = 빨강 (국내 관례) */
+    --dn:#2B4DFF;    /* 하락 = 파랑 */
+    --fl:#8A817C;
+    --yellow:#FFD400; --mint:#00C08B; --purple:#7C4DFF;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --sans:Pretendard,"Noto Sans CJK KR","Noto Sans KR",sans-serif;
+    --pad-x:84px; --pad-y:76px;
+    --bd:5px solid var(--ink);
+    --shadow:9px 9px 0 var(--ink);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px}
+  body{
+    position:relative;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+    display:flex;flex-direction:column;
+    padding:var(--pad-y) var(--pad-x) 92px;overflow:hidden;
+  }
+  /* 종이 질감 대신 도트 그리드 — 밝은 배경이 허전해 보이지 않게 */
+  body::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background-image:radial-gradient(rgba(20,17,16,.10) 2px,transparent 2px);
+    background-size:34px 34px;
+  }
+  body>*{position:relative;z-index:1}
+
+  .up{color:var(--up)}.dn{color:var(--dn)}.fl{color:var(--fl)}
+  .mono{font-family:var(--mono)}
+  .c1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .c2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .c3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* ── 상단 크롬 ───────────────────────────── */
+  .rail{display:flex;gap:7px}
+  .rail i{flex:1;height:8px;border:3px solid var(--ink);background:transparent}
+  .rail i.done{background:var(--ink3)}
+  .rail i.now{background:var(--yellow)}
+  .meta{margin-top:20px;display:flex;align-items:center;gap:13px;
+        font-size:19px;font-weight:800;color:var(--ink2);letter-spacing:.02em}
+  .meta .d{font-family:var(--mono);font-weight:600}
+  .meta .sep{width:7px;height:7px;background:var(--ink);border-radius:50%}
+  .meta .cat{letter-spacing:.1em}
+  .meta .pg{margin-left:auto;font-family:var(--mono);font-weight:700;color:var(--ink3)}
+
+  /* ── 공통 부품 ───────────────────────────── */
+  .sticker{
+    display:inline-block;padding:11px 22px;background:var(--yellow);
+    border:var(--bd);box-shadow:6px 6px 0 var(--ink);
+    font-size:28px;font-weight:900;letter-spacing:-.02em;transform:rotate(-2.2deg);
+  }
+  .sticker.blue{background:var(--dn);color:#fff}
+  .sticker.red{background:var(--up);color:#fff}
+  .sectitle{
+    display:flex;align-items:center;gap:16px;margin-top:34px;
+    font-size:46px;font-weight:900;letter-spacing:-.045em;line-height:1.1;
+  }
+  .sectitle .dot{flex:0 0 auto;width:20px;height:20px;background:var(--up);border:4px solid var(--ink);border-radius:50%}
+  .sectitle .kicker{
+    font-size:19px;font-weight:900;color:var(--ink3);letter-spacing:.12em;
+  }
+  /* 남는 세로 공간을 내용이 나눠 갖습니다. 안 하면 카드 아래가 텅 빕니다. */
+  .stack{flex:1;display:flex;flex-direction:column;min-height:0;justify-content:space-between}
+  .swipe{
+    position:absolute;right:var(--pad-x);bottom:38px;z-index:3;
+    display:flex;align-items:center;gap:12px;
+    font-size:21px;font-weight:900;color:var(--ink2);
+  }
+  .swipe .arw{
+    width:48px;height:48px;border:var(--bd);background:var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;font-weight:900;line-height:1;box-shadow:4px 4px 0 var(--ink);
+  }
+  .brand{
+    position:absolute;left:var(--pad-x);bottom:44px;z-index:3;
+    font-family:var(--mono);font-size:19px;font-weight:600;color:var(--ink3);
+  }
+
+  /* ══ 1장: 표지 ═══════════════════════════ */
+  .cover{flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:26px}
+  .cover .tagrow{margin-bottom:38px}
+  .hook{font-size:88px;font-weight:900;letter-spacing:-.055em;line-height:1.08}
+  .hook .mark{
+    background:linear-gradient(transparent 58%,var(--yellow) 58%);
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 4px;
+  }
+  .coversub{margin-top:30px;font-size:29px;font-weight:600;color:var(--ink2);letter-spacing:-.02em;line-height:1.5}
+  .statrow{margin-top:46px;display:flex;gap:20px}
+  .statbox{
+    flex:1;background:var(--paper);border:var(--bd);box-shadow:var(--shadow);
+    padding:22px 24px 24px;
+  }
+  .statbox .k{font-size:20px;font-weight:800;color:var(--ink3);letter-spacing:-.01em}
+  .statbox .v{margin-top:9px;font-family:var(--mono);font-size:50px;font-weight:700;letter-spacing:-.045em;line-height:1}
+  .spark{position:absolute;left:0;right:0;bottom:118px;height:150px;z-index:0;opacity:.5}
+
+  /* ══ 2장: 무슨 일이 ══════════════════════ */
+  .facts{margin-top:26px;flex:1;min-height:0;display:flex;flex-direction:column;
+         gap:18px;justify-content:space-between}
+  /* 남는 공간을 나눠 갖되 무한정 늘어나면 상자 안이 허해 보여 상한을 둡니다 */
+  .fact{
+    flex:1;max-height:208px;background:var(--paper);border:var(--bd);box-shadow:var(--shadow);
+    padding:24px 26px;display:flex;align-items:center;gap:26px;
+  }
+  .fact .n{
+    flex:0 0 268px;font-family:var(--mono);font-size:52px;font-weight:700;
+    letter-spacing:-.05em;line-height:1;text-align:left;
+  }
+  .fact .n.small{font-size:40px}
+  .fact .r{flex:1;min-width:0}
+  .fact .lb{font-size:20px;font-weight:900;color:var(--ink3);letter-spacing:.03em}
+  .fact .tx{margin-top:8px;font-size:29px;font-weight:700;letter-spacing:-.03em;line-height:1.35}
+  .noteline{
+    margin-top:20px;padding:22px 24px;border:var(--bd);background:var(--yellow);
+    box-shadow:var(--shadow);font-size:27px;font-weight:800;letter-spacing:-.03em;line-height:1.4;
+  }
+
+  /* ══ 3장: 왜 중요한가 ════════════════════ */
+  /* 남는 공간은 연결고리 칸이 아니라 이 한마디가 가져갑니다 — 3장의 주인공 */
+  .why{
+    margin-top:26px;flex:1;min-height:0;max-height:296px;
+    background:var(--paper);border:var(--bd);box-shadow:var(--shadow);
+    padding:30px;display:flex;align-items:center;
+    font-size:35px;font-weight:700;letter-spacing:-.035em;line-height:1.5;
+  }
+  .chain{margin-top:22px;flex:0 0 auto;display:flex;flex-direction:column;gap:13px}
+  .chain .step{height:84px;display:flex;align-items:stretch;gap:18px}
+  .chain .pill{
+    flex:1;padding:0 24px;border:var(--bd);background:var(--paper);
+    box-shadow:6px 6px 0 var(--ink);display:flex;align-items:center;
+    font-size:27px;font-weight:900;letter-spacing:-.03em;
+  }
+  .chain .pill.on{background:var(--yellow)}
+  .chain .idx{
+    flex:0 0 52px;height:52px;align-self:center;
+    border:var(--bd);border-radius:50%;background:var(--ink);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:23px;font-weight:700;
+  }
+  .punch{
+    margin-top:22px;padding:26px 28px;border:var(--bd);background:var(--ink);color:var(--bg);
+    box-shadow:var(--shadow);font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.4;
+  }
+  .punch .q{color:var(--yellow);font-family:var(--mono);font-size:34px;margin-right:8px}
+
+  /* ══ 4장: 웃은 쪽 / 운 쪽 ════════════════ */
+  .cols{margin-top:26px;flex:1;min-height:0;display:flex;gap:22px}
+  .col{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px;justify-content:space-between}
+  .colhead{
+    flex:0 0 auto;padding:14px 18px;border:var(--bd);box-shadow:6px 6px 0 var(--ink);
+    font-size:27px;font-weight:900;letter-spacing:-.02em;color:#fff;text-align:center;
+  }
+  .colhead.w{background:var(--up)}
+  .colhead.l{background:var(--dn)}
+  .mv{flex:1;max-height:238px;background:var(--paper);border:var(--bd);box-shadow:6px 6px 0 var(--ink);
+      padding:16px 20px;display:flex;flex-direction:column;justify-content:center}
+  .mv .top{display:flex;align-items:baseline;gap:10px}
+  .mv .tk{font-family:var(--mono);font-size:32px;font-weight:700;letter-spacing:-.04em}
+  .mv .pc{margin-left:auto;font-family:var(--mono);font-size:29px;font-weight:700;letter-spacing:-.04em}
+  .mv .nm{margin-top:5px;font-size:19px;font-weight:700;color:var(--ink3);letter-spacing:-.02em}
+  .mv .wy{margin-top:9px;font-size:23px;font-weight:700;letter-spacing:-.03em;line-height:1.3}
+  .kr{
+    margin-top:22px;padding:22px 26px;border:var(--bd);background:var(--yellow);box-shadow:var(--shadow);
+  }
+  .kr .lb{font-size:19px;font-weight:900;letter-spacing:.1em;color:var(--ink2)}
+  .kr .tx{margin-top:9px;font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1.4}
+
+  /* ══ 5장: 정리 ═══════════════════════════ */
+  .wrap{margin-top:26px;flex:0 0 auto;display:flex;flex-direction:column;gap:16px}
+  .wl{
+    height:142px;display:flex;align-items:stretch;
+    background:var(--paper);border:var(--bd);box-shadow:6px 6px 0 var(--ink);
+  }
+  .wl .no{
+    flex:0 0 76px;background:var(--yellow);border-right:5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:28px;font-weight:700;
+  }
+  .wl .tx{
+    flex:1;display:flex;align-items:center;padding:0 24px;
+    font-size:31px;font-weight:800;letter-spacing:-.035em;line-height:1.35;
+  }
+  /* 남는 공간은 이 검은 패널이 먹습니다. 5장이 아래로 갈수록 무거워 보이게. */
+  .tmr{
+    margin-top:22px;flex:1;min-height:150px;max-height:212px;padding:26px 30px;
+    border:var(--bd);background:var(--ink);color:var(--bg);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .tmr .lb{font-size:19px;font-weight:900;letter-spacing:.1em;color:var(--yellow)}
+  .tmr .tx{margin-top:12px;font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1.4}
+  .cta{
+    margin-top:22px;padding-top:24px;border-top:5px dashed var(--ink);
+    font-size:27px;font-weight:900;letter-spacing:-.03em;line-height:1.5;
+  }
+  .cta .h{font-family:var(--mono);color:var(--dn)}
+  .disc{margin-top:14px;font-size:16px;font-weight:600;color:var(--ink3);line-height:1.5}
+</style>
+</head>
+<body>
+
+{# ── 상단 공통 크롬 ── #}
+<div class="rail">
+  {% for i in range(1, 6) %}
+  <i class="{% if i < card_num %}done{% elif i == card_num %}now{% endif %}"></i>
+  {% endfor %}
+</div>
+<div class="meta">
+  <span class="d">{{ date_kr }}</span>
+  <span class="sep"></span>
+  <span class="cat">{{ card_label }}</span>
+  <span class="pg">{{ card_num }}/5</span>
+</div>
+
+
+{# ══════════ 1장: 표지 ══════════ #}
+{% if card_num == 1 %}
+  {% if spark %}
+  <svg class="spark" viewBox="0 0 1080 150" preserveAspectRatio="none">
+    <polyline points="{{ spark }}" fill="none" stroke="{{ spark_color }}" stroke-width="6"
+              stroke-linejoin="round" stroke-linecap="round"/>
+  </svg>
+  {% endif %}
+  <div class="cover">
+    <div class="tagrow"><span class="sticker">{{ s.issue_tag }}</span></div>
+    <div class="hook">{{ s.hook1 }}<br><span class="mark">{{ s.hook2 }}</span></div>
+    {% if s.cover_sub %}<div class="coversub c2">{{ s.cover_sub }}</div>{% endif %}
+    <div class="statrow">
+      {% for st in cover_stats %}
+      <div class="statbox">
+        <div class="k">{{ st.k }}</div>
+        <div class="v {{ st.cls }}">{{ st.v }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="brand">@{{ handle }}</div>
+  <div class="swipe"><span>넘겨보기</span><span class="arw">&rsaquo;</span></div>
+
+
+{# ══════════ 2장: 무슨 일이 ══════════ #}
+{% elif card_num == 2 %}
+  <div class="sectitle">
+    <span class="dot"></span>
+    <span>{{ s.p2_headline }}</span>
+  </div>
+  <div class="stack">
+  <div class="facts">
+    {% for f in s.facts %}
+    <div class="fact">
+      <div class="n {{ f.cls }}{% if f.num|length > 7 %} small{% endif %}">{{ f.num }}</div>
+      <div class="r">
+        <div class="lb c1">{{ f.label }}</div>
+        <div class="tx c2">{{ f.text }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% if s.p2_note %}<div class="noteline c2">{{ s.p2_note }}</div>{% endif %}
+  </div>
+  <div class="swipe"><span>왜 중요하냐면</span><span class="arw">&rsaquo;</span></div>
+
+
+{# ══════════ 3장: 왜 중요한가 ══════════ #}
+{% elif card_num == 3 %}
+  <div class="sectitle">
+    <span class="dot"></span>
+    <span>{{ s.p3_headline }}</span>
+  </div>
+  <div class="stack">
+  <div class="why"><span class="c4">{{ s.why_text }}</span></div>
+  <div class="chain">
+    {% for c in s.chain %}
+    <div class="step">
+      <div class="idx">{{ loop.index }}</div>
+      <div class="pill c1 {% if loop.last %}on{% endif %}">{{ c.step }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% if s.punch %}<div class="punch c2"><span class="q">&ldquo;</span>{{ s.punch }}</div>{% endif %}
+  </div>
+  <div class="swipe"><span>누가 웃었나</span><span class="arw">&rsaquo;</span></div>
+
+
+{# ══════════ 4장: 웃은 쪽 / 운 쪽 ══════════ #}
+{% elif card_num == 4 %}
+  <div class="sectitle">
+    <span class="dot"></span>
+    <span>{{ s.p4_headline }}</span>
+  </div>
+  <div class="stack">
+  <div class="cols">
+    <div class="col">
+      <div class="colhead w">웃은 쪽</div>
+      {% for m in winners %}
+      <div class="mv">
+        <div class="top">
+          <span class="tk">{{ m.ticker }}</span>
+          <span class="pc {{ m.cls }}">{{ m.fmt_pct }}</span>
+        </div>
+        <div class="nm c1">{{ m.name }}</div>
+        {% if m.why %}<div class="wy c2">{{ m.why }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <div class="colhead l">운 쪽</div>
+      {% for m in losers %}
+      <div class="mv">
+        <div class="top">
+          <span class="tk">{{ m.ticker }}</span>
+          <span class="pc {{ m.cls }}">{{ m.fmt_pct }}</span>
+        </div>
+        <div class="nm c1">{{ m.name }}</div>
+        {% if m.why %}<div class="wy c2">{{ m.why }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% if s.kr_line %}
+  <div class="kr">
+    <div class="lb">한국 투자자라면</div>
+    <div class="tx c2">{{ s.kr_line }}</div>
+  </div>
+  {% endif %}
+  </div>
+  <div class="swipe"><span>정리</span><span class="arw">&rsaquo;</span></div>
+
+
+{# ══════════ 5장: 정리 ══════════ #}
+{% else %}
+  <div class="sectitle">
+    <span class="dot"></span>
+    <span>{{ s.p5_headline }}</span>
+  </div>
+  <div class="stack">
+  <div class="wrap">
+    {% for w in s.wrap %}
+    <div class="wl">
+      <div class="no">{{ loop.index }}</div>
+      <div class="tx c2">{{ w.text }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {# 내일 볼 일정이 없는 날도 있습니다. 그때는 표지 한 줄로 채웁니다 — 칸이 비면 카드가 허술해 보입니다. #}
+  <div class="tmr">
+    <div class="lb">{% if s.tomorrow %}내일 이건 보세요{% else %}오늘 한 줄로{% endif %}</div>
+    <div class="tx c2">{{ s.tomorrow or s.cover_sub or s.hook2 }}</div>
+  </div>
+  <div class="cta">
+    미국장 이슈, 매일 아침 5장으로.<br>
+    <span class="h">@{{ handle }}</span> 팔로우하고 내일도 받아보세요.
+    <div class="disc">공개된 시장 데이터를 정리한 투자 참고용 자료입니다. 매수·매도를 권유하지 않습니다.</div>
+  </div>
+  </div>
+{% endif %}
+
+</body>
+</html>
