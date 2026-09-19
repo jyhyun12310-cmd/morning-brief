@@ -233,10 +233,27 @@ def _rev_bars(focus: dict) -> list[dict]:
     # 최소값보다 살짝 아래를 바닥으로 잡아 증감 폭을 눈에 보이게 확대합니다.
     base = lo - (hi - lo) * 0.45 if hi > lo else lo * 0.8
     span = (hi - base) or 1
-    return [
-        {"period": h["period"], "h": round(18 + (h["value"] - base) / span * 82, 1)}
-        for h in hist if h.get("value")
-    ]
+
+    def _short(v: float) -> str:
+        """매출 규모를 짧게. 막대만 있으면 얼마인지 알 수 없습니다."""
+        if v >= 1e9:
+            return f"{v / 1e9:.1f}B"
+        if v >= 1e6:
+            return f"{v / 1e6:.0f}M"
+        return f"{v:,.0f}"
+
+    rows = [h for h in hist if h.get("value")]
+    out = []
+    for i, h in enumerate(rows):
+        row = {"period": h["period"], "h": round(18 + (h["value"] - base) / span * 82, 1),
+               "amt": _short(h["value"])}
+        # 직전 분기 대비 증감률 — 성장세가 이어지는지 한눈에.
+        if i > 0 and rows[i - 1]["value"]:
+            chg = (h["value"] - rows[i - 1]["value"]) / rows[i - 1]["value"] * 100
+            row["chg"] = f"{chg:+.0f}%"
+            row["chg_cls"] = "up" if chg > 0 else "dn" if chg < 0 else "fl"
+        out.append(row)
+    return out
 
 
 def _peer_per_chart(focus: dict) -> list[dict]:
@@ -737,14 +754,16 @@ def _investor_take(focus: dict) -> list[dict]:
 
     # 3) 시장 관심 — 상대거래량
     if rvol:
-        if rvol >= 2.0:
+        if rvol >= 2.5:
+            grade, tone = "매우 높음", "up"
+        elif rvol >= 1.5:
             grade, tone = "높음", "up"
-        elif rvol >= 1.2:
+        elif rvol >= 1.0:
             grade, tone = "보통", "fl"
         else:
             grade, tone = "낮음", "dn"
         out.append({"key": "시장 관심", "grade": grade, "tone": tone,
-                    "detail": f"거래량 {rvol:.1f}배"})
+                    "detail": f"거래량 평소의 {rvol:.1f}배"})
 
     # 4) 리스크 — 밸류에이션 부담·공매도·변동성을 합산.
     #    판단 근거가 하나도 없으면 "낮음"으로 단정하지 않고 항목을 뺍니다.
@@ -807,7 +826,21 @@ def _real_numbers(focus: dict) -> list[dict]:
                     "mean": "1년 전 같은 기간과 비교한 수치"})
 
     if v.get("margin") is not None:
-        out.append({"label": "영업이익률", "value": f"{v['margin'] * 100:.1f}%",
+        m = v["margin"] * 100
+        # 숫자만 보면 높은지 낮은지 알 수 없어 해석을 붙입니다.
+        # (제조·하드웨어는 한 자릿수가 흔하고, 소프트웨어는 20%대가 보통입니다)
+        if m < 0:
+            read = "아직 적자 상태"
+        elif m < 5:
+            read = "박한 마진 구조"
+        elif m < 15:
+            read = "제조업에선 무난한 수준"
+        elif m < 25:
+            read = "수익성이 좋은 편"
+        else:
+            read = "고마진 사업 구조"
+        out.append({"label": "영업이익률", "value": f"{m:.1f}%",
+                    "delta": read, "dcls": "fl",
                     "mean": "매출에서 실제로 남는 이익 비율"})
 
     if g.get("earnings") is not None:
@@ -900,6 +933,92 @@ def _inst_gauge(focus: dict) -> dict | None:
     return {"pct": round(p, 1), "txt": f"{p:.1f}%", "label": label, "tone": tone}
 
 
+def _pro_metrics(focus: dict) -> list[dict]:
+    """애널리스트가 실제로 보는 파생 지표들. 원시 수치를 조합해 계산합니다.
+
+    단순 수치 나열보다 "그래서 비싼가/위험한가"에 답하는 지표를 씁니다.
+    데이터가 없으면 해당 항목은 아예 만들지 않습니다.
+    """
+    v = focus.get("valuation") or {}
+    g = focus.get("growth") or {}
+    a = focus.get("analyst") or {}
+    sm = focus.get("smart_money") or {}
+    e = focus.get("earnings") or {}
+    out = []
+
+    # 1) PEG — 성장률을 감안한 밸류에이션. 1 미만이면 통상 저평가로 봅니다.
+    fpe, rev_g = v.get("forward_per"), g.get("revenue")
+    eps_g = g.get("earnings")
+    growth = eps_g if eps_g and eps_g > 0 else rev_g
+    # 일시적 급성장(예: 기저효과로 +200%)을 그대로 쓰면 PEG 가 비현실적으로
+    # 낮아집니다. 통상 밸류에이션에 반영되는 지속가능 성장률 상한(40%)을 둡니다.
+    if fpe and growth and growth > 0:
+        capped = min(growth, 0.40)
+        peg = fpe / (capped * 100)
+        if peg < 1:
+            tone, read = "up", "성장 대비 저평가"
+        elif peg < 2:
+            tone, read = "fl", "성장에 걸맞은 수준"
+        else:
+            tone, read = "hl", "성장 대비 비싼 편"
+        note = " (성장률 40% 기준)" if growth > 0.40 else ""
+        out.append({"k": "PEG", "v": f"{peg:.2f}", "tone": tone, "read": read,
+                    "help": "성장률 대비 주가 수준" + note})
+
+    # 2) 목표주가 분산 — 애널리스트 의견이 갈리는 정도
+    hi, lo, mean = a.get("target_high"), a.get("target_low"), a.get("target_mean")
+    if hi and lo and mean and mean > 0:
+        spread = (hi - lo) / mean * 100
+        if spread >= 50:
+            tone, read = "hl", "전망이 크게 엇갈림"
+        elif spread >= 25:
+            tone, read = "fl", "의견 차이 보통"
+        else:
+            tone, read = "up", "전망이 모이는 편"
+        out.append({"k": "목표가 편차", "v": f"{spread:.0f}%", "tone": tone, "read": read,
+                    "help": "최고-최저 목표가 격차"})
+
+    # 3) 숏스퀴즈 압력 — 공매도가 많고 커버가 오래 걸리면 급등 시 압력이 커집니다
+    short_pct, short_ratio = sm.get("short_pct"), sm.get("short_ratio")
+    if short_pct is not None and short_ratio:
+        score = short_pct * 100 * short_ratio
+        if score >= 30:
+            tone, read = "hl", "숏커버 압력 높음"
+        elif score >= 10:
+            tone, read = "fl", "보통 수준"
+        else:
+            tone, read = "up", "공매도 부담 작음"
+        out.append({"k": "숏 압력", "v": f"{short_pct*100:.1f}% · {short_ratio:.1f}일",
+                    "tone": tone, "read": read, "help": "공매도 비중과 청산 소요일"})
+
+    # 4) 수익성 방향 — 이익이 매출보다 빨리 늘면 수익성이 개선되는 중
+    if rev_g is not None and eps_g is not None:
+        gap = (eps_g - rev_g) * 100
+        if gap >= 5:
+            tone, read = "up", "수익성 개선 중"
+        elif gap <= -5:
+            tone, read = "hl", "외형만 성장"
+        else:
+            tone, read = "fl", "매출과 이익 동반"
+        out.append({"k": "이익 레버리지", "v": f"{gap:+.0f}%p", "tone": tone, "read": read,
+                    "help": "이익 성장 - 매출 성장"})
+
+    # 5) 실적 신뢰도 — 최근 4분기 중 몇 번 예상을 넘었는지
+    hist = e.get("history") or []
+    if len(hist) >= 3:
+        beats = sum(1 for h in hist if h)
+        if beats == len(hist):
+            tone, read = "up", "매 분기 예상 상회"
+        elif beats >= len(hist) * 0.6:
+            tone, read = "fl", "대체로 예상 상회"
+        else:
+            tone, read = "hl", "예상을 밑돈 분기 많음"
+        out.append({"k": "실적 적중", "v": f"{beats}/{len(hist)}", "tone": tone, "read": read,
+                    "help": "최근 분기 컨센서스 상회 횟수"})
+
+    return out
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -915,6 +1034,7 @@ def _template_context(data: dict, summary: dict) -> dict:
         "p1_chips": _p1_chips(focus),
         "p2_nums": _p2_nums(focus),
         "take": _investor_take(focus),
+        "pro": _pro_metrics(focus),
         "handle": cfg.INSTAGRAM_HANDLE,
         "peer_table": _peer_table(focus),
         "inst_gauge": _inst_gauge(focus),
