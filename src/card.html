@@ -158,16 +158,16 @@
   .sec-mini .v{flex:0 0 78px;text-align:right;font-family:var(--mono);font-size:15px;font-weight:700}
 
   .idxrows{margin-top:18px}
-  .ir{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .ir{display:flex;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
   .ir:first-child{border-top:1px solid var(--line)}
-  .irn{flex:0 0 120px;font-size:21px;font-weight:700;letter-spacing:-.02em}
+  .irn{flex:0 0 130px;font-size:23px;font-weight:700;letter-spacing:-.02em}
   .irs{flex:1;height:22px;opacity:.85}
   .irv{flex:0 0 100px;text-align:right;font-family:var(--mono);font-size:19px;font-weight:600}
   .ird{flex:0 0 78px;text-align:right;font-family:var(--mono);font-size:17px;font-weight:700}
   .gauges{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
-  .gcell{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:18px 16px}
+  .gcell{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:24px 20px}
   .gk{font-size:14px;color:var(--tx3);font-weight:600}
-  .gv{margin-top:6px;font-family:var(--mono);font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .gv{margin-top:8px;font-family:var(--mono);font-size:32px;font-weight:800;letter-spacing:-.02em}
   .gd{margin-top:4px;font-family:var(--mono);font-size:14px;font-weight:700}
 
   /* ── P1 eyebrow ──────────────────────── */
@@ -292,13 +292,16 @@
   .rsn{display:flex;align-items:baseline;gap:14px;padding:9px 0}
   .rsnn{font-family:var(--mono);font-size:16px;font-weight:800;color:var(--hl)}
   .rsnt{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--tx2)}
-  .swhy{margin-top:12px;font-size:16px;color:var(--tx3);line-height:1.9}
+  .swhy{margin-top:16px;font-size:17px;color:var(--tx3);line-height:1.9}
   .swhy span{margin-right:18px}
   .swhy b{color:var(--tx2);font-weight:700}
-  .tmr{margin-top:18px;padding:17px 22px;border-radius:14px;
+  .tmr{margin-top:24px;padding:24px 26px;border-radius:14px;
        background:rgba(74,144,226,.10);border-left:4px solid var(--dn)}
   .tmk{display:block;font-size:14px;font-weight:800;color:var(--dn);letter-spacing:.04em}
-  .tmv{display:block;margin-top:8px;font-size:21px;font-weight:700;letter-spacing:-.02em}
+  .tmv{display:block;margin-top:9px;font-size:23px;font-weight:700;letter-spacing:-.02em}
+
+  .revbar .amt{margin-bottom:9px;font-family:var(--mono);font-size:16px;font-weight:700;color:var(--tx2)}
+  .revbar .lb .up{color:var(--up)} .revbar .lb .dn{color:var(--dn)} .revbar .lb .fl{color:var(--tx3)}
 
   /* ── P4 경쟁사 비교표 ────────────────── */
   .ptable{margin-top:34px}
@@ -314,27 +317,46 @@
   .pmk{font-size:14px;font-weight:800;color:var(--hl);letter-spacing:.06em}
   .pmv{margin-top:9px;font-size:23px;line-height:1.4;font-weight:700;letter-spacing:-.02em}
 
+  .prorows{margin-top:12px}
+  .pro{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .pro:first-child{border-top:1px solid var(--line)}
+  .prok{flex:0 0 116px;font-size:16px;color:var(--tx3);font-weight:700}
+  .prov{flex:0 0 150px;font-family:var(--mono);font-size:21px;font-weight:800;letter-spacing:-.02em}
+  .prov.up{color:var(--tx)} .prov.dn{color:var(--dn)}
+  .prov.hl{color:var(--hl)} .prov.fl{color:var(--tx2)}
+  .pro .pror{color:var(--tx3)}
+  .pro:has(.prov.hl) .pror{color:var(--hl)}
+  .pror{flex:1;text-align:right;font-size:16px;color:var(--tx2);font-weight:600}
+
   /* ── P5 Bull / Bear ──────────────────── */
-  .bb{margin-top:34px;display:flex;gap:18px}
-  .bbcol{flex:1;padding:32px 26px;border-radius:20px}
+  .bb{margin-top:28px;display:flex;gap:18px}
+  .bbcol{flex:1;padding:28px 24px;border-radius:20px}
   .bbcol.bull{background:rgba(255,90,90,.08);border:1px solid rgba(255,90,90,.3)}
   .bbcol.bear{background:rgba(74,144,226,.08);border:1px solid rgba(74,144,226,.3)}
   .bbk{font-size:15px;font-weight:800;letter-spacing:.04em}
   .bbcol.bull .bbk{color:var(--up)}
   .bbcol.bear .bbk{color:var(--dn)}
-  .bbitem{margin-top:26px}
+  .bbitem{margin-top:22px}
   .bbt{font-size:23px;font-weight:800;letter-spacing:-.025em}
   .bbx{margin-top:7px;font-size:17px;color:var(--tx2);line-height:1.4}
 
   /* ── P6 기관 게이지 ──────────────────── */
-  .igauge{margin-top:34px;padding:40px 34px;border-radius:16px;
+  .igauge{margin-top:26px;padding:28px 30px;border-radius:16px;
           background:rgba(255,255,255,.045);border:1px solid var(--line)}
   .igtop{display:flex;justify-content:space-between;align-items:baseline}
   .igk{font-size:17px;color:var(--tx3);font-weight:600}
-  .igv{font-family:var(--mono);font-size:62px;font-weight:800;letter-spacing:-.03em}
-  .igtrack{margin-top:24px;height:26px;border-radius:8px;background:var(--line);overflow:hidden}
+  .igv{font-family:var(--mono);font-size:48px;font-weight:800;letter-spacing:-.03em}
+  .igtrack{margin-top:16px;height:18px;border-radius:8px;background:var(--line);overflow:hidden}
   .igfill{height:100%;border-radius:8px;background:linear-gradient(90deg,rgba(255,210,28,.45),var(--hl))}
   .iglabel{margin-top:10px;font-size:15px;color:var(--tx3);font-weight:600}
+
+  .acts{margin-top:12px}
+  .a{display:flex;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .a:first-child{border-top:1px solid var(--line)}
+  .fm{flex:0 0 180px;font-size:17px;font-weight:700;color:var(--tx2)}
+  .gr{flex:1;font-size:17px;font-weight:700}
+  .gr.up{color:var(--up)} .gr.dn{color:var(--dn)} .gr.fl{color:var(--tx3)}
+  .dt{font-family:var(--mono);font-size:14px;color:var(--tx3)}
 
   /* ── P7 CTA ──────────────────────────── */
   .cta{margin-top:26px;padding:24px;border-radius:16px;text-align:center;
@@ -356,8 +378,9 @@
   .met{background:rgba(255,255,255,.045);border:1px solid var(--line);
        border-radius:20px;padding:34px 28px}
   .metlabel{font-size:17px;color:var(--tx3);font-weight:700}
-  .metvalue{margin-top:14px;font-family:var(--mono);font-size:54px;font-weight:800;
-            letter-spacing:-.03em;line-height:1;color:var(--hl)}
+  .metvalue{margin-top:14px;font-family:var(--mono);font-size:48px;font-weight:800;
+            letter-spacing:-.03em;line-height:1;color:var(--tx)}
+  .met:first-child .metvalue{font-size:56px;color:var(--hl)}
   .metmean{margin-top:12px;font-size:17px;color:var(--tx2);line-height:1.4}
   .chartnote{margin-top:16px;font-size:17px;color:var(--tx3);font-weight:600;text-align:center}
 
@@ -430,7 +453,7 @@
            background:rgba(255,210,28,.09);border:1px solid rgba(249,115,22,.32);
            font-size:18px;line-height:1.45;color:var(--hl);font-weight:600}
 
-  .smline{margin-top:24px;font-size:19px;color:var(--tx2);line-height:1.9;letter-spacing:-.01em}
+  .smline{margin-top:18px;font-size:18px;color:var(--tx2);line-height:1.9;letter-spacing:-.01em}
   .smline span{margin-right:15px}
   .smline b{color:var(--tx);font-family:var(--mono);font-weight:700}
   .smline b.up{color:var(--up)} .smline b.dn{color:#EF4444} .smline b.fl{color:var(--fl)}
@@ -492,10 +515,10 @@
   .chain .tk2{flex:0 0 120px;font-family:var(--mono);font-size:24px;font-weight:700}
   .chain .rl{flex:1;font-size:20px;color:var(--tx2);letter-spacing:-.015em}
   .chain .pc{flex:0 0 128px;text-align:right;font-family:var(--mono);font-size:22px;font-weight:700}
-  .tgt{margin-top:30px;padding:34px 32px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .tgt{margin-top:22px;padding:26px 28px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
   .tgt .top{display:flex;justify-content:space-between;align-items:baseline}
   .tgt .k{font-size:17px;color:var(--tx3);font-weight:500}
-  .tgt .v{font-family:var(--mono);font-size:58px;font-weight:800;color:var(--hl)}
+  .tgt .v{font-family:var(--mono);font-size:46px;font-weight:800;color:var(--hl)}
   .tgt .track{margin-top:22px;position:relative;height:14px;border-radius:7px;background:var(--line)}
   .tgt .fill{position:absolute;left:0;top:0;bottom:0;border-radius:7px;
              background:linear-gradient(90deg,rgba(250,204,21,.35),var(--hl))}
@@ -704,7 +727,15 @@
 </div>
 {% endif %}
 {% if rev_bars %}
-<div class="revbar">{% for b in rev_bars %}<div class="b"><div class="bar" style="height:{{ b.h }}%"></div><div class="lb">{{ b.period }}</div></div>{% endfor %}</div>
+<div class="revbar">
+  {% for b in rev_bars %}
+  <div class="b">
+    <div class="amt">{{ b.amt }}</div>
+    <div class="bar" style="height:{{ b.h }}%"></div>
+    <div class="lb">{{ b.period }}{% if b.chg %} <span class="{{ b.chg_cls }}">{{ b.chg }}</span>{% endif %}</div>
+  </div>
+  {% endfor %}
+</div>
 <div class="chartnote">분기별 매출 추이</div>
 {% endif %}
 {% if f.earnings and f.earnings.dots %}
@@ -740,25 +771,25 @@
 </div>
 {% endif %}
 {% if val_cells %}
-<div class="val">{% for c in val_cells %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
+<div class="val">{% for c in val_cells[:3] %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
+{% endif %}
+{% if pro %}
+<div class="reltag">애널리스트가 보는 지표</div>
+<div class="prorows">
+  {% for m in pro %}
+  <div class="pro">
+    <span class="prok">{{ m.k }}</span>
+    <span class="prov {{ m.tone }}">{{ m.v }}</span>
+    <span class="pror">{{ m.read }}</span>
+  </div>
+  {% endfor %}
+</div>
 {% endif %}
 {% if s.p4_premium %}
 <div class="premium">
   <div class="pmk">프리미엄 요인</div>
   <div class="pmv">{{ s.p4_premium }}</div>
 </div>
-{% endif %}
-{% if rec_bars %}
-<div class="recbar">
-  {% for r in rec_bars %}
-  <div class="r">
-    <span class="k">{{ r.label }}</span>
-    <span class="t"><span class="f" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
-    <span class="n">{{ r.n }}</span>
-  </div>
-  {% endfor %}
-</div>
-<div class="chartnote">애널리스트 추천 분포</div>
 {% endif %}
 
 {# ══ P5 Bull vs Bear ══════════════════════ #}
@@ -787,8 +818,11 @@
   {% endfor %}
 </div>
 {% endif %}
+{% if insider %}
+<div class="smline" style="margin-top:16px"><span>내부자 거래 <b class="{{ insider.tone }}">{{ insider.txt }}</b></span></div>
+{% endif %}
 {% if w52.pos is not none and w52.low and w52.high %}
-<div class="w52" style="margin-top:22px">
+<div class="w52" style="margin-top:18px">
   <div class="tr"><div class="fl2" style="width:{{ w52.pos }}%"></div><div class="pn" style="left:{{ w52.pos }}%"></div></div>
   <div class="sc"><span>52주 저 ${{ '%.0f'|format(w52.low) }}</span><span class="mid">현재 {{ w52.pos }}% 지점</span><span>52주 고 ${{ '%.0f'|format(w52.high) }}</span></div>
 </div>
@@ -838,18 +872,30 @@
 </div>
 {% endif %}
 {% if smart_cells %}
-<div class="smline">{% for c in smart_cells[:3] %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}</div>
+<div class="smline">{% for c in smart_cells if "기관" not in c.k %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}</div>
 {% endif %}
-{% if insider %}
-<div class="smline" style="margin-top:4px"><span>내부자 거래 <b class="{{ insider.tone }}">{{ insider.txt }}</b></span></div>
-{% endif %}
-{% if inst_top %}
-<div class="instrow">
-  {% for h in inst_top[:3] %}<span class="ih">{{ h.name }} <b>{{ '%.1f'|format(h.pct * 100) }}%</b></span>{% endfor %}
+{% if rec_bars %}
+<div class="reltag">애널리스트 의견</div>
+<div class="recbar">
+  {% for r in rec_bars %}
+  <div class="r">
+    <span class="k">{{ r.label }}</span>
+    <span class="t"><span class="f" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
+    <span class="n">{{ r.n }}</span>
+  </div>
+  {% endfor %}
 </div>
 {% endif %}
+{% if actions %}
+<div class="acts">
+  {% for a in actions[:1] %}
+  <div class="a"><span class="fm">{{ a.firm }}</span><span class="gr {{ a.cls }}">{{ a.from }} → {{ a.to }}</span><span class="dt">{{ a.date }}</span></div>
+  {% endfor %}
+</div>
+<div class="chartnote">최근 투자의견 변경</div>
+{% endif %}
 {% if s.p6_reading %}<div class="note">{{ s.p6_reading }}</div>{% endif %}
-<div class="warn">목표주가는 애널리스트의 기대치이며, 실적이 따라오지 않으면 언제든 조정될 수 있습니다.</div>
+<div class="warn">목표주가는 기대치일 뿐, 실적이 따라오지 않으면 조정될 수 있습니다.</div>
 
 {# ══ P7 요약 ══════════════════════════════ #}
 {% elif card_num==7 %}
