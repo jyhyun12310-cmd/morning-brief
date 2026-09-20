@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-21-sndk",
+  "ticker": "SNDK",
+  "name": "Sandisk Corporation",
+  "pct": 10.99,
+  "rvol": 1.29
+ },
+ {
   "date": "2026-09-20-are",
   "ticker": "ARE",
   "name": "Alexandria Real Estate Equities",
