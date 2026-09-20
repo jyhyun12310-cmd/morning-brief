@@ -77,7 +77,7 @@
 
   /* ══ P1: 3-Zone (20 / 60 / 20) ══════════ */
   .z1{height:10%;display:flex;flex-direction:column;justify-content:flex-start}
-  .z2{height:64%;display:flex;flex-direction:column;justify-content:center;padding-bottom:6%}
+  .z2{height:64%;display:flex;flex-direction:column;justify-content:center;padding-bottom:2%}
   .z3{height:26%;display:flex;flex-direction:column;justify-content:flex-end}
 
   .tkline{margin-top:0;display:flex;align-items:baseline;gap:16px}
@@ -179,12 +179,21 @@
   .pcnow{margin-left:auto;font-family:var(--mono);font-size:26px;color:var(--tx3);font-weight:600}
 
   .eyesub{margin-top:8px;font-size:17px;color:var(--tx3);font-weight:500}
-  .hook2{margin-top:28px}
+  .hook2{margin-top:32px}
   .hl1{font-size:44px;font-weight:800;letter-spacing:-.035em;line-height:1.28;color:var(--tx2)}
   .hl2{margin-top:6px;font-size:50px;font-weight:900;letter-spacing:-.04em;line-height:1.24}
   .expnum{font-family:var(--mono);font-size:16px;font-weight:800;color:var(--hl);margin-right:4px}
   .kdcell{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--line);
           border-radius:14px;padding:18px 20px}
+
+  .pchart{margin-top:28px}
+  .pchart svg{width:100%;height:300px;display:block}
+  .pcax{margin-top:10px;display:flex;justify-content:space-between;
+        font-family:var(--mono);font-size:16px;color:var(--tx3)}
+  .pcl{color:var(--tx3)}
+  .pcr{color:var(--tx2)}
+  .pchi{color:var(--tx2)} .pclo{color:var(--tx2)}
+  .pctd{color:var(--hl);font-weight:700}
 
   /* ── P2 큰 숫자 + 스토리 흐름 ─────────── */
   .bignums{margin-top:34px;display:flex;gap:0}
@@ -281,7 +290,7 @@
   .ih b{color:var(--tx2);font-family:var(--mono)}
 
   /* ── P1 스포트라이트 ─────────────────── */
-  .spot{margin-top:20px;font-size:23px;font-weight:700;color:var(--hl);letter-spacing:-.02em}
+  .spot{margin-top:16px;font-size:22px;font-weight:700;color:var(--hl);letter-spacing:-.02em}
 
   .val{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .val .cell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:18px 18px}
@@ -329,16 +338,29 @@
   .pror{flex:1;text-align:right;font-size:16px;color:var(--tx2);font-weight:600}
 
   /* ── P5 Bull / Bear ──────────────────── */
-  .bb{margin-top:28px;display:flex;gap:18px}
-  .bbcol{flex:1;padding:28px 24px;border-radius:20px}
+  .bb{margin-top:24px;display:flex;gap:16px}
+  .bbcol{flex:1;padding:24px 22px;border-radius:18px}
   .bbcol.bull{background:rgba(255,90,90,.08);border:1px solid rgba(255,90,90,.3)}
   .bbcol.bear{background:rgba(74,144,226,.08);border:1px solid rgba(74,144,226,.3)}
   .bbk{font-size:15px;font-weight:800;letter-spacing:.04em}
   .bbcol.bull .bbk{color:var(--up)}
   .bbcol.bear .bbk{color:var(--dn)}
-  .bbitem{margin-top:22px}
+  .bbitem{margin-top:18px}
   .bbt{font-size:23px;font-weight:800;letter-spacing:-.025em}
   .bbx{margin-top:7px;font-size:17px;color:var(--tx2);line-height:1.4}
+
+  .tree{margin-top:18px}
+  .trhead{margin:0 auto;padding:13px 26px;border-radius:100px;width:fit-content;
+          background:rgba(255,210,28,.13);border:1px solid rgba(255,210,28,.42);
+          color:var(--hl);font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .trfan{height:46px}
+  .trfan svg{width:100%;height:46px;display:block}
+  .trrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .trnode{background:rgba(255,255,255,.04);border:1px solid var(--line);
+          border-radius:14px;padding:18px 12px;text-align:center}
+  .trtk{font-family:var(--mono);font-size:24px;font-weight:800;color:var(--hl)}
+  .trwhy{margin-top:6px;font-size:14px;color:var(--tx3)}
+  .trpct{margin-top:9px;font-family:var(--mono);font-size:19px;font-weight:700}
 
   /* ── P6 기관 게이지 ──────────────────── */
   .igauge{margin-top:26px;padding:28px 30px;border-radius:16px;
@@ -358,17 +380,22 @@
   .gr.up{color:var(--up)} .gr.dn{color:var(--dn)} .gr.fl{color:var(--tx3)}
   .dt{font-family:var(--mono);font-size:14px;color:var(--tx3)}
 
+  .tkbar{margin-top:12px;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+  .tkfill{display:block;height:100%;border-radius:4px}
+  .tkfill.up{background:var(--up)} .tkfill.dn{background:var(--dn)}
+  .tkfill.hl{background:var(--hl)} .tkfill.fl{background:var(--fl)}
+
   /* ── P7 CTA ──────────────────────────── */
-  .cta{margin-top:26px;padding:24px;border-radius:16px;text-align:center;
+  .cta{margin-top:20px;padding:20px;border-radius:16px;text-align:center;
        background:rgba(255,210,28,.09);border:1px solid rgba(255,210,28,.32)}
   .ctat{font-size:17px;color:var(--tx2);font-weight:600}
   .ctah{margin-top:8px;font-size:26px;font-weight:900;color:var(--hl);letter-spacing:-.02em}
 
   /* ── P7 한눈 정리 ────────────────────── */
-  .takes{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .tk3{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:20px;padding:36px 30px}
+  .takes{margin-top:30px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .tk3{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:20px;padding:28px 26px}
   .tkk{font-size:17px;color:var(--tx3);font-weight:700}
-  .tkg{margin-top:12px;font-size:46px;font-weight:900;letter-spacing:-.03em;line-height:1}
+  .tkg{margin-top:10px;font-size:40px;font-weight:900;letter-spacing:-.03em;line-height:1}
   .tkg.up{color:var(--up)} .tkg.dn{color:var(--dn)}
   .tkg.hl{color:var(--hl)} .tkg.fl{color:var(--tx2)}
   .tkd{margin-top:12px;font-size:16px;color:var(--tx3);font-weight:600}
@@ -579,13 +606,13 @@
           display:flex;align-items:center;justify-content:center}
   .sum .t{font-size:23px;line-height:1.4;font-weight:600;letter-spacing:-.025em;padding-top:4px}
 
-  .neonbox{margin-top:34px;padding:40px 36px;border-radius:18px;
+  .neonbox{margin-top:24px;padding:30px 32px;border-radius:18px;
            background:rgba(250,204,21,.10);border:1px solid rgba(250,204,21,.45);
            box-shadow:0 0 24px rgba(250,204,21,.18), inset 0 0 20px rgba(250,204,21,.05)}
   .sigk{font-size:16px;font-weight:800;color:var(--hl);letter-spacing:.04em}
-  .sigv{margin-top:14px;font-size:33px;line-height:1.4;font-weight:800;letter-spacing:-.025em}
+  .sigv{margin-top:11px;font-size:29px;line-height:1.4;font-weight:800;letter-spacing:-.025em}
 
-  .krbox{margin-top:30px;padding:28px 30px;border-radius:12px;
+  .krbox{margin-top:22px;padding:22px 26px;border-radius:12px;
          background:rgba(59,130,246,.11);border:1px solid rgba(59,130,246,.3)}
   .krbox .k{font-size:14px;font-weight:800;color:var(--dn)}
   .krbox .v{margin-top:11px;font-size:24px;line-height:1.45;letter-spacing:-.018em}
@@ -609,14 +636,12 @@
   .icon-sm { width: 22px; height: 22px; flex: 0 0 auto; }
 
   /* ── 표지 배경 글로우 차트 ─────────────────── */
-  .cv-chart { position: absolute; left: 0; right: 0; top: 62%; height: 15%; z-index: 0; opacity: .45; }
+  .cv-chart { display: none; }
 </style>
 </head>
 <body>
 
 {% if card_num == 1 %}
-<div class="bleed" style="width:520px;height:520px;right:-260px;top:52%"></div>
-<div class="bleed" style="width:760px;height:760px;right:-380px;top:44%"></div>
 {% if glow_chart %}
 <svg class="cv-chart" viewBox="0 0 1080 300" preserveAspectRatio="none">
   <polyline points="{{ glow_chart.points }}" fill="none" stroke="{{ f.hex }}"
@@ -634,7 +659,6 @@
 {% if card_num==1 %}
 <div class="z1">
   <div class="eyebrow">TODAY'S STOCK SPOTLIGHT</div>
-  <div class="eyesub">오늘 시장이 가장 주목한 종목</div>
 </div>
 <div class="z2">
   <div class="tkline">
@@ -646,17 +670,33 @@
     <span class="pcar {{ f.cls }}">{{ f.arrow }}</span>
     <span class="pcnow">${{ f.fmt_last }}</span>
   </div>
-  {% if s.spotlight %}<div class="spot">{{ s.spotlight }}</div>{% endif %}
-  {% if s.p1_reasons %}
-  <div class="rsns">
-    {% for r in s.p1_reasons %}
-    <div class="rsn"><span class="rsnn">0{{ loop.index }}</span><span class="rsnt">{{ r.text }}</span></div>
-    {% endfor %}
+  {% if price_chart %}
+  <div class="pchart">
+    <svg viewBox="0 0 {{ price_chart.w }} {{ price_chart.h }}" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="pcg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="{{ f.hex }}" stop-opacity=".28"/>
+          <stop offset="100%" stop-color="{{ f.hex }}" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <polygon points="{{ price_chart.area }}" fill="url(#pcg)"/>
+      <polyline points="{{ price_chart.points }}" fill="none" stroke="{{ f.hex }}"
+                stroke-width="3" vector-effect="non-scaling-stroke"/>
+      <circle cx="{{ price_chart.hi_x }}" cy="{{ price_chart.hi_y }}" r="5" fill="var(--tx2)" opacity=".8"/>
+      <circle cx="{{ price_chart.lo_x }}" cy="{{ price_chart.lo_y }}" r="5" fill="var(--tx2)" opacity=".8"/>
+      <circle cx="{{ price_chart.last_x }}" cy="{{ price_chart.last_y }}" r="7" fill="{{ f.hex }}"/>
+      <circle cx="{{ price_chart.last_x }}" cy="{{ price_chart.last_y }}" r="14"
+              fill="none" stroke="{{ f.hex }}" stroke-width="2" opacity=".45"/>
+    </svg>
+    <div class="pcax">
+      <span class="pcl">{{ price_chart.days }}일 추이</span>
+      <span class="pcr">고 {{ price_chart.hi_txt }} · 저 {{ price_chart.lo_txt }}</span>
+    </div>
   </div>
   {% endif %}
   <div class="hook2">
-    <div class="hl1">{{ s.hook1 }}</div>
-    <div class="hl2">{{ s.hook2 }}</div>
+    <div class="hl2">{{ s.hook1 }} {{ s.hook2 }}</div>
+    {% if s.spotlight %}<div class="spot">{{ s.spotlight }}</div>{% endif %}
   </div>
 </div>
 <div class="z3">
@@ -821,12 +861,6 @@
 {% if insider %}
 <div class="smline" style="margin-top:16px"><span>내부자 거래 <b class="{{ insider.tone }}">{{ insider.txt }}</b></span></div>
 {% endif %}
-{% if w52.pos is not none and w52.low and w52.high %}
-<div class="w52" style="margin-top:18px">
-  <div class="tr"><div class="fl2" style="width:{{ w52.pos }}%"></div><div class="pn" style="left:{{ w52.pos }}%"></div></div>
-  <div class="sc"><span>52주 저 ${{ '%.0f'|format(w52.low) }}</span><span class="mid">현재 {{ w52.pos }}% 지점</span><span>52주 고 ${{ '%.0f'|format(w52.high) }}</span></div>
-</div>
-{% endif %}
 {% if fin_cells or vol_compare %}
 <div class="val" style="margin-top:18px">
   {% for c in fin_cells[:2] %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
@@ -834,15 +868,25 @@
 </div>
 {% endif %}
 {% if chain %}
-<div class="reltag">함께 움직인 종목</div>
-<div class="relgrid">
-  {% for c in chain[:3] %}
-  <div class="rel">
-    <div class="reltk">{{ c.ticker }}</div>
-    <div class="relwhy c1">{{ c.relation }}</div>
-    <div class="relpct {{ c.cls }}">{{ c.fmt_pct }}</div>
+<div class="tree">
+  {% if s.p5_trigger %}
+  <div class="trhead">{{ s.p5_trigger }}</div>
+  <div class="trfan">
+    <svg viewBox="0 0 872 46" preserveAspectRatio="none">
+      <path d="M436,0 L436,16 M436,16 L120,16 L120,46 M436,16 L436,46 M436,16 L752,16 L752,46"
+            fill="none" stroke="var(--line2)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    </svg>
   </div>
-  {% endfor %}
+  {% endif %}
+  <div class="trrow">
+    {% for c in chain[:3] %}
+    <div class="trnode">
+      <div class="trtk">{{ c.ticker }}</div>
+      <div class="trwhy c1">{{ c.relation }}</div>
+      <div class="trpct {{ c.cls }}">{{ c.fmt_pct }}</div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endif %}
 
@@ -907,6 +951,7 @@
   <div class="tk3">
     <div class="tkk">{{ t.key }}</div>
     <div class="tkg {{ t.tone }}">{{ t.grade }}</div>
+    <div class="tkbar"><span class="tkfill {{ t.tone }}" style="width:{{ t.pct }}%"></span></div>
     <div class="tkd">{{ t.detail }}</div>
   </div>
   {% endfor %}
