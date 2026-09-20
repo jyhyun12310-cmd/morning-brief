@@ -111,6 +111,7 @@ SYSTEM = """당신은 개인투자자용 미니 리서치 리포트를 만드는
   "p4_headline": "14자 이내. 예: 지금 주가는 비싼가",
   "p4_accent": "p4_headline 안의 2~5자 핵심 단어",
   "p4_premium": "경쟁사 대비 이 종목이 가진 프리미엄 또는 디스카운트 요인 한 줄. 36자 이내. 예: 서버 점유율 1위라는 점이 배수에 반영돼 있다",
+  "p5_trigger": "이 종목과 밸류체인 종목들을 함께 움직인 사건 한 줄. 20자 이내. 관계도 맨 위에 놓입니다. 예: AI 서버 투자 확대. 공통 원인이 확인되지 않으면 빈 문자열.",
 
   "p5_headline": "14자 이내. 예: 사는 쪽과 파는 쪽",
   "p5_accent": "p5_headline 안의 2~5자 핵심 단어",
@@ -198,7 +199,7 @@ def _fallback(data: dict) -> dict:
         "p3_headline": "실적의 질을 따져보면", "p3_accent": "실적", "p3_reading": p3,
         "p4_headline": "지금 주가는 비싼가", "p4_accent": "비싼가", "p4_premium": p4,
         "p5_headline": "사는 쪽과 파는 쪽", "p5_accent": "사는 쪽",
-        "p5_bull": bull, "p5_bear": bear,
+        "p5_bull": bull, "p5_bear": bear, "p5_trigger": "",
         "p6_headline": "스마트머니는 어디에", "p6_accent": "스마트머니", "p6_reading": "",
         "p7_line": "", "kr_line": "",
         "kakao_text": f"{name} {pct:+.1f}%" if pct is not None else name,
