@@ -19,13 +19,13 @@ CARD_COUNT = 7
 UP, DOWN, FLAT, GOLD = "#FF5A5A", "#4A90E2", "#AAB4C7", "#FFD21C"
 
 CARD_LABELS = {
-    1: "오늘의 특징주",
+    1: "오늘의 종목",
     2: "무슨 일이",
-    3: "시장의 기대",
-    4: "진짜 실적",
-    5: "왜 중요한가",
-    6: "리스크 체크",
-    7: "한눈에 정리",
+    3: "왜 중요한가",
+    4: "숫자로 확인",
+    5: "주가 반응",
+    6: "기대와 위험",
+    7: "기억할 것",
 }
 
 
@@ -1066,6 +1066,54 @@ def _pro_metrics(focus: dict) -> list[dict]:
     return out
 
 
+def _movers_table(data: dict) -> list[dict]:
+    """오늘의 특징주 비교표. 대표 종목 + 차순위 2개를 같은 기준으로 놓습니다.
+
+    스펙상 등락률뿐 아니라 거래량 배수와 선정 사유를 함께 보여야 하므로,
+    수집 단계에서 매긴 점수와 뉴스 매칭 여부를 그대로 씁니다.
+    """
+    focus = data.get("focus") or {}
+    rows = []
+    if focus.get("ticker"):
+        rows.append({
+            "ticker": focus["ticker"],
+            "name": (focus.get("name") or focus["ticker"])[:16],
+            "pct": focus.get("pct"),
+            "rvol": focus.get("rvol"),
+            "news": True,
+            "is_me": True,
+        })
+    for r in (data.get("runners_up") or [])[:2]:
+        if not r.get("ticker"):
+            continue
+        rows.append({
+            "ticker": r["ticker"],
+            "name": (r.get("name") or r["ticker"])[:16],
+            "pct": r.get("pct"),
+            "rvol": r.get("rvol"),
+            "news": bool(r.get("news_hit")),
+            "is_me": False,
+        })
+    if len(rows) < 2:
+        return []
+
+    # 등락률 막대는 0 기준선 양쪽으로. 가장 큰 절대값을 100%로 잡습니다.
+    mx = max((abs(r["pct"]) for r in rows if r["pct"] is not None), default=1) or 1
+    out = []
+    for r in rows:
+        pct = r["pct"]
+        out.append({
+            **r,
+            "cls": _cls(pct),
+            "fmt_pct": f"{pct:+.2f}%" if pct is not None else "—",
+            "bar": round(abs(pct) / mx * 50, 1) if pct is not None else 0,
+            "up": (pct or 0) >= 0,
+            "fmt_rvol": f"{r['rvol']:.1f}x" if r.get("rvol") else "—",
+            "tag": "뉴스" if r["news"] else "수급",
+        })
+    return out
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -1081,6 +1129,7 @@ def _template_context(data: dict, summary: dict) -> dict:
         "p1_chips": _p1_chips(focus),
         "p2_nums": _p2_nums(focus),
         "take": _investor_take(focus),
+        "movers": _movers_table(data),
         "pro": _pro_metrics(focus),
         "handle": cfg.INSTAGRAM_HANDLE,
         "peer_table": _peer_table(focus),
