@@ -122,6 +122,44 @@ def _cover_glow_chart(series: list[float], width: int = 1080, height: int = 300)
     return {"points": pts_str, "last_x": last_x, "last_y": last_y}
 
 
+def _price_chart(series: list[float], width: int = 872, height: int = 300) -> dict | None:
+    """표지용 주가 차트. 배경 장식이 아니라 읽히는 차트로 만듭니다.
+
+    스펙상 "숫자를 크게 쓰는 데서 끝내지 말고 무엇과 비교할지 보여줄 것"이라
+    고점·저점·오늘 지점을 좌표로 함께 돌려줍니다.
+    """
+    vals = [v for v in (series or []) if isinstance(v, (int, float))]
+    if len(vals) < 5:
+        return None
+    hi, lo = max(vals), min(vals)
+    span = (hi - lo) or 1
+    n = len(vals)
+    pts = []
+    for i, v in enumerate(vals):
+        x = i / (n - 1) * width
+        y = height - (v - lo) / span * height
+        pts.append((x, y))
+
+    hi_i = vals.index(hi)
+    lo_i = vals.index(lo)
+    area = (f"0,{height:.0f} " + " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+            + f" {width},{height:.0f}")
+
+    def _fmt(v: float) -> str:
+        return f"${v:,.0f}" if v >= 100 else f"${v:,.2f}"
+
+    return {
+        "points": " ".join(f"{x:.1f},{y:.1f}" for x, y in pts),
+        "area": area,
+        "last_x": f"{pts[-1][0]:.1f}", "last_y": f"{pts[-1][1]:.1f}",
+        "hi_x": f"{pts[hi_i][0]:.1f}", "hi_y": f"{pts[hi_i][1]:.1f}",
+        "lo_x": f"{pts[lo_i][0]:.1f}", "lo_y": f"{pts[lo_i][1]:.1f}",
+        "hi_txt": _fmt(hi), "lo_txt": _fmt(lo),
+        "days": n,
+        "w": width, "h": height,
+    }
+
+
 def _decorate(rows: list[dict]) -> list[dict]:
     out = []
     for r in rows:
@@ -797,6 +835,15 @@ def _investor_take(focus: dict) -> list[dict]:
         out.append({"key": "리스크", "grade": grade, "tone": tone,
                     "detail": " · ".join(bits) if bits else "특이 신호 없음"})
 
+    # 등급을 막대 길이로도 보여줍니다. 글자만 있으면 4칸이 다 비슷해 보입니다.
+    _PCT = {
+        "매우 높음": 100, "높음": 78, "강함": 85, "개선": 85, "과열": 92,
+        "보통": 52, "유지": 52, "중립": 50,
+        "낮음": 26, "약함": 24, "둔화": 24, "부정": 22,
+    }
+    for row in out:
+        row["pct"] = _PCT.get(row["grade"], 50)
+
     return out
 
 
@@ -1043,6 +1090,7 @@ def _template_context(data: dict, summary: dict) -> dict:
         "p1_title": _p1_title(focus),
         "p1_subtitle": summary.get("headline_theme") or _p1_subtitle(focus),
         "glow_chart": _cover_glow_chart(focus.get("series_60") or focus.get("series")),
+        "price_chart": _price_chart(focus.get("series_60") or focus.get("series")),
         "indices": _decorate(market.get("indices", [])),
         "gauges": _decorate(market.get("gauges", [])),
         "val_cells": _val_cells(focus),
