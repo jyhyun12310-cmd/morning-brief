@@ -88,49 +88,54 @@ SYSTEM = """당신은 개인투자자용 미니 리서치 리포트를 만드는
 반드시 아래 JSON 만 출력합니다. 코드펜스, 설명, 서론 없이 JSON 객체 하나만.
 
 {
-  "hook1": "14~20자. 표지 첫 줄. 예: 주가는 올랐는데,",
-  "hook2": "16~24자. 표지 둘째 줄. 궁금증을 완성. 예: 진짜 이유는 따로 있다",
-  "spotlight": "급등 또는 급락의 핵심 이유 한 줄. 24자 이내. 예: AI 서버 수주가 실적으로 확인됐다",
-  "p1_reasons": [
-    {"text": "시장이 오늘 이 종목을 본 이유. 22자 이내. 예: AI 칩 경쟁력이 부각됐다"},
-    {"text": "두 번째 이유. 22자 이내"}
-  ],
+  "hook1": "14~20자. 표지 첫 줄. 사실에 근거한 궁금증. 예: 실적은 좋은데,",
+  "hook2": "16~24자. 표지 둘째 줄. 질문을 완성. 예: 주가는 왜 빠졌을까",
+  "spotlight": "오늘의 핵심 사건 한 줄. 24자 이내. 예: AI 서버 수주가 실적으로 확인됐다",
 
-  "p2_headline": "14자 이내. 예: 오늘 시장을 움직인 것들",
+  "p2_headline": "14자 이내. 예: 어제 정확히 무슨 일이",
   "p2_accent": "p2_headline 안에 그대로 있는 2~5자 핵심 단어",
-  "p2_reading": "거시 지표들이 이 종목에 어떤 영향을 줬는지 한 줄. 34자 이내. 예: 금리 상승에도 실적이 버텨준 하루",
-  "p2_sector_why": [
-    {"sector": "제공된 섹터로테이션 배열에 실제로 있는 섹터명 그대로", "why": "그 섹터가 오르내린 이유 14자 이내. 예: AI 기대감"}
+  "p2_timeline": [
+    {"when": "시점 12자 이내. 예: 장 마감 후", "what": "무슨 일이 있었는지 26자 이내"}
   ],
-  "p2_tomorrow": "내일 시장이 주목할 일정이나 지표 한 줄. 28자 이내. 데이터에 근거가 없으면 빈 문자열.",
+  "p2_diff": "기존 예상과 무엇이 달랐는지 한 줄. 32자 이내. 예상치가 있으면 숫자로.",
 
-  "p3_headline": "14자 이내. 예: 실적의 질을 따져보면",
+  "p3_headline": "14자 이내. 예: 이 뉴스가 왜 중요한가",
   "p3_accent": "p3_headline 안의 2~5자 핵심 단어",
-  "p3_reading": "실적 숫자의 의미 한 줄. 34자 이내. 단순 반복 금지. 제공된 분기매출 배열에서 증가율이 점점 줄고 있으면 그 둔화를 짚고, 반대로 가팔라지면 가속을 짚습니다. 예: 매출은 늘지만 증가 속도는 둔해지는 중 / 주택용 전력 수요가 성장을 끌고 있다",
+  "p3_biz": "이 회사가 무엇을 팔아 돈을 버는지 한 줄. 30자 이내. 이번 이슈를 이해하는 데 필요한 만큼만.",
+  "p3_flow": [
+    {"step": "이번 변화", "text": "12자 이내"},
+    {"step": "영향받는 사업", "text": "12자 이내"},
+    {"step": "실적에서 볼 것", "text": "12자 이내"}
+  ],
+  "p3_note": "이 경로가 확정인지 기대인지 구분한 한 줄. 32자 이내. 예: 아직 매출로 잡히진 않았고 다음 분기에 확인 가능",
 
-  "p4_headline": "14자 이내. 예: 지금 주가는 비싼가",
+  "p4_headline": "14자 이내. 예: 숫자로 확인해보면",
   "p4_accent": "p4_headline 안의 2~5자 핵심 단어",
-  "p4_premium": "경쟁사 대비 이 종목이 가진 프리미엄 또는 디스카운트 요인 한 줄. 36자 이내. 예: 서버 점유율 1위라는 점이 배수에 반영돼 있다",
-  "p5_trigger": "이 종목과 밸류체인 종목들을 함께 움직인 사건 한 줄. 20자 이내. 관계도 맨 위에 놓입니다. 예: AI 서버 투자 확대. 공통 원인이 확인되지 않으면 빈 문자열.",
+  "p4_reading": "지표들이 말해주는 것 한 줄. 34자 이내. 증가율이 둔화 중이면 그 점을 짚습니다.",
 
-  "p5_headline": "14자 이내. 예: 사는 쪽과 파는 쪽",
+  "p5_headline": "14자 이내. 예: 주가는 무엇을 반영했나",
   "p5_accent": "p5_headline 안의 2~5자 핵심 단어",
-  "p5_bull": [
-    {"title": "상승 동력 제목 10자 이내", "text": "근거 한 줄. 26자 이내"}
-  ],
-  "p5_bear": [
-    {"title": "리스크 제목 10자 이내", "text": "근거 한 줄. 26자 이내"}
-  ],
+  "p5_reading": "주가 반응을 어떻게 읽어야 하는지 한 줄. 34자 이내. '올랐다'와 '앞으로 오른다'를 구분해서.",
+  "p5_caution": "주가 반응 해석 시 주의할 점 한 줄. 32자 이내. 예: 거래량이 실렸지만 하루치 움직임일 수 있다",
 
-  "p6_headline": "14자 이내. 예: 스마트머니는 어디에",
+  "p6_headline": "14자 이내. 예: 기대할 점과 확인할 위험",
   "p6_accent": "p6_headline 안의 2~5자 핵심 단어",
-  "p6_reading": "기관 수급과 목표주가가 말해주는 것 한 줄. 36자 이내.",
+  "p6_bull": [
+    {"title": "기대 요인 10자 이내", "text": "어떤 조건이 충족되면 뒷받침되는지 26자 이내"}
+  ],
+  "p6_bear": [
+    {"title": "위험 요인 10자 이내", "text": "어떤 조건이 깨지면 재검토해야 하는지 26자 이내"}
+  ],
 
-  "p7_line": "오늘 주목한 이유 한 줄. 34자 이내. 투자 권유가 아닌 객관적 표현으로.",
+  "p7_oneline": "이 기업을 한 문장으로. 28자 이내. 예: 기업용 서버와 PC를 만드는 하드웨어 회사",
+  "p7_line": "이번 이슈의 핵심 결론 한 줄. 34자 이내. 앞 문장 반복 말고 '무엇을 기억할지'로.",
+  "p7_checks": [
+    {"text": "앞으로 확인할 지표 22자 이내"}
+  ],
 
   "kr_line": "한국 증시 영향 한 줄. 36자 이내. 외국인 순매수·환율 데이터가 있으면 인용. 전망 어조.",
   "kakao_text": "카톡 알림용 요약. 150자 이내.",
-  "instagram_caption": "인스타 캡션 본문만. 150~250자. 해시태그·팔로우 유도·종목명은 코드가 붙이므로 넣지 마세요. 무슨 일이 있었고 왜 중요한지 3~4문장으로."
+  "instagram_caption": "인스타 캡션 본문만. 150~250자. 해시태그·팔로우 유도·종목명은 코드가 붙이므로 넣지 마세요."
 }"""
 
 
@@ -150,8 +155,8 @@ def _extract_json(text: str) -> dict:
 def _fallback(data: dict) -> dict:
     """API 가 실패해도 카드가 자연스럽게 보이도록 원본 수치로 채웁니다.
 
-    데이터 기반 요소(차트·표·게이지)는 AI 와 무관하게 항상 렌더되므로,
-    여기서는 문장만 최소한으로 채우고 나머지는 빈 문자열로 둡니다.
+    차트·표·게이지는 AI 와 무관하게 항상 렌더되므로, 여기서는 문장만
+    최소한으로 채우고 나머지는 빈 문자열로 둡니다(해당 블록이 자동으로 숨음).
     """
     f = data.get("focus", {})
     tk = f.get("ticker", "")
@@ -162,6 +167,7 @@ def _fallback(data: dict) -> dict:
     g = f.get("growth") or {}
     ern = f.get("earnings") or {}
     peer_per = f.get("peer_avg_per")
+    industry = f.get("industry", "")
 
     direction = "급등" if (pct or 0) >= 5 else "상승" if (pct or 0) > 0 else \
                 "급락" if (pct or 0) <= -5 else "하락"
@@ -172,42 +178,62 @@ def _fallback(data: dict) -> dict:
     elif rvol:
         spot = f"거래량이 평소의 {rvol:.1f}배로 늘었다"
 
-    p3 = ""
-    if g.get("revenue") is not None:
-        p3 = f"매출은 1년 전보다 {g['revenue']*100:+.0f}% 늘었다"
+    timeline = []
+    if ern.get("date"):
+        timeline.append({"when": ern["date"], "what": "분기 실적 발표"})
+    if pct is not None:
+        timeline.append({"when": "정규장", "what": f"주가 {abs(pct):.1f}% {direction}"})
+
+    diff = ""
+    if ern.get("eps_est") is not None and ern.get("eps_act") is not None:
+        diff = f"예상 ${ern['eps_est']} → 실제 ${ern['eps_act']}"
 
     p4 = ""
-    if v.get("forward_per") and peer_per:
-        diff = (v["forward_per"] - peer_per) / peer_per * 100
-        p4 = f"선행 PER은 업종 평균 대비 {diff:+.0f}% 수준"
+    if g.get("revenue") is not None:
+        p4 = f"매출은 1년 전보다 {g['revenue']*100:+.0f}% 늘었다"
+
+    p5 = ""
+    if rvol:
+        p5 = f"거래량이 평소의 {rvol:.1f}배로 실렸다"
 
     bull, bear = [], []
     if g.get("revenue") is not None and g["revenue"] > 0.1:
-        bull.append({"title": "매출 성장", "text": f"전년 대비 {g['revenue']*100:+.0f}%"})
+        bull.append({"title": "매출 성장", "text": f"전년 대비 {g['revenue']*100:+.0f}% 유지 여부가 관건"})
     if ern.get("beat"):
-        bull.append({"title": "실적 서프라이즈", "text": "시장 예상을 웃돈 분기"})
+        bull.append({"title": "실적 서프라이즈", "text": "다음 분기에도 이어지는지 확인 필요"})
     if rvol and rvol >= 1.5:
-        bear.append({"title": "단기 변동성", "text": f"거래량 {rvol:.1f}배로 급증"})
+        bear.append({"title": "단기 변동성", "text": f"거래량 {rvol:.1f}배로 급등 후 되돌림 가능"})
     if v.get("forward_per") and peer_per and v["forward_per"] > peer_per:
-        bear.append({"title": "밸류 부담", "text": "업종 평균보다 높은 배수"})
+        bear.append({"title": "밸류 부담", "text": "업종 평균보다 높은 배수가 유지될지"})
+
+    checks = []
+    if ern.get("next_date"):
+        checks.append({"text": f"{ern['next_date']} 다음 실적"})
+    if g.get("revenue") is not None:
+        checks.append({"text": "매출 성장률이 유지되는지"})
 
     return {
         "hook1": "오늘 시장이", "hook2": "이 종목에 주목했다",
-        "spotlight": spot, "p1_reasons": [],
-        "p2_headline": "오늘 시장을 움직인 것들", "p2_accent": "움직인", "p2_reading": "",
-        "p2_sector_why": [], "p2_tomorrow": "",
-        "p3_headline": "실적의 질을 따져보면", "p3_accent": "실적", "p3_reading": p3,
-        "p4_headline": "지금 주가는 비싼가", "p4_accent": "비싼가", "p4_premium": p4,
-        "p5_headline": "사는 쪽과 파는 쪽", "p5_accent": "사는 쪽",
-        "p5_bull": bull, "p5_bear": bear, "p5_trigger": "",
-        "p6_headline": "스마트머니는 어디에", "p6_accent": "스마트머니", "p6_reading": "",
-        "p7_line": "", "kr_line": "",
+        "spotlight": spot,
+        "p2_headline": "어제 무슨 일이", "p2_accent": "무슨 일",
+        "p2_timeline": timeline, "p2_diff": diff,
+        "p3_headline": "이 뉴스가 왜 중요한가", "p3_accent": "왜 중요",
+        "p3_biz": industry, "p3_flow": [], "p3_note": "",
+        "p4_headline": "숫자로 확인해보면", "p4_accent": "숫자", "p4_reading": p4,
+        "p5_headline": "주가는 어떻게 움직였나", "p5_accent": "주가",
+        "p5_reading": p5, "p5_caution": "",
+        "p6_headline": "기대할 점과 확인할 위험", "p6_accent": "위험",
+        "p6_bull": bull, "p6_bear": bear,
+        "p7_oneline": industry, "p7_line": "", "p7_checks": checks,
+        "kr_line": "",
         "kakao_text": f"{name} {pct:+.1f}%" if pct is not None else name,
         "instagram_caption": "",
     }
 
 
-_LIST_LIMITS = {"p5_bull": 3, "p5_bear": 3, "p1_reasons": 2, "p2_sector_why": 4}
+_LIST_LIMITS = {
+    "p2_timeline": 3, "p3_flow": 3, "p6_bull": 2, "p6_bear": 2, "p7_checks": 3,
+}
 
 _DROP_FIELDS = ("series", "series_60", "_peer_raw", "spark")
 
