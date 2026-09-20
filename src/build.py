@@ -102,7 +102,7 @@ def _build_caption(data: dict, summary: dict) -> str:
 def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_url: str) -> list[dict]:
     """카드 7장에 대응하는 카카오 메시지. 각 장의 핵심 문장을 그대로 씁니다.
 
-    설명이 비면 카톡에서 제목만 덩그러니 보이므로, 각 칸마다 대체 문구를 둡니다.
+    설명이 비면 카톡에서 제목만 덩그러니 보이므로 대체 문구를 둡니다.
     """
     f = data.get("focus", {})
     tk = f.get("ticker", "")
@@ -110,32 +110,36 @@ def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_ur
     name = f.get("name") or tk
     tk_txt = f"{tk} {pct:+.2f}%" if tk and pct is not None else name
 
-    def _join(items, key, sep=" · ", n=2):
+    def _join(items, key, sep=" / ", n=3):
         return sep.join(str(i.get(key, "")) for i in (items or [])[:n] if i.get(key))
 
     hook = " ".join(x for x in [summary.get("hook1"), summary.get("hook2")] if x)
-    expects = _join(summary.get("p3_expects"), "label")
-    axes = _join(summary.get("p5_axes"), "axis", n=3)
-    risks = _join(summary.get("p6_risks"), "area", n=3)
+    timeline = _join(summary.get("p2_timeline"), "what")
+    flow = " → ".join(
+        str(x.get("text", "")) for x in (summary.get("p3_flow") or [])[:3] if x.get("text")
+    )
+    bull = _join(summary.get("p6_bull"), "title", sep=" · ", n=2)
+    bear = _join(summary.get("p6_bear"), "title", sep=" · ", n=2)
+    risk = " / ".join(x for x in [f"기대 {bull}" if bull else "", f"위험 {bear}" if bear else ""] if x)
 
     cards = [
         {"title": f"{data['date_kr']} · {tk_txt}",
-         "description": hook or summary.get("kakao_text", "")},
-        {"title": summary.get("p2_headline") or "오늘 무슨 일이",
-         "description": _join(summary.get("p2_points"), "text", sep=" / ")},
-        {"title": summary.get("p3_headline") or "시장의 기대",
-         "description": summary.get("p3_fact") or (f"기대 요소: {expects}" if expects else "")},
-        {"title": summary.get("p4_headline") or "진짜 실적",
+         "description": hook or summary.get("spotlight") or summary.get("kakao_text", "")},
+        {"title": summary.get("p2_headline") or "무슨 일이",
+         "description": summary.get("p2_diff") or timeline},
+        {"title": summary.get("p3_headline") or "왜 중요한가",
+         "description": summary.get("p3_note") or flow or summary.get("p3_biz", "")},
+        {"title": summary.get("p4_headline") or "숫자로 확인",
          "description": summary.get("p4_reading", "")},
-        {"title": summary.get("p5_headline") or "왜 중요한가",
-         "description": _join(summary.get("p5_axes"), "text", sep=" / ") or axes},
-        {"title": summary.get("p6_headline") or "리스크 체크",
-         "description": _join(summary.get("p6_risks"), "text", sep=" / ") or risks},
-        {"title": "한눈에 정리",
-         "description": summary.get("p7_line") or summary.get("kr_line", "")},
+        {"title": summary.get("p5_headline") or "주가 반응",
+         "description": summary.get("p5_reading") or summary.get("p5_caution", "")},
+        {"title": summary.get("p6_headline") or "기대와 위험",
+         "description": risk},
+        {"title": "기억할 것",
+         "description": summary.get("p7_line") or _join(summary.get("p7_checks"), "text")
+                        or summary.get("kr_line", "")},
     ]
 
-    # 빈 설명은 카톡에서 어색하므로 최소한의 문구로 채웁니다.
     for card in cards:
         if not (card.get("description") or "").strip():
             card["description"] = f"{name} 관련 내용은 카드에서 확인하세요."
