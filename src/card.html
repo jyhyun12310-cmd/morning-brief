@@ -196,11 +196,11 @@
   .pctd{color:var(--hl);font-weight:700}
 
   /* ── P2 큰 숫자 + 스토리 흐름 ─────────── */
-  .bignums{margin-top:34px;display:flex;gap:0}
+  .bignums{margin-top:24px;display:flex;gap:0}
   .bn{flex:1;text-align:center;position:relative}
   .bn{text-align:left}
   .bn:not(:first-child){padding-left:6%}
-  .bnv{font-family:var(--mono);font-size:50px;white-space:nowrap;font-weight:800;letter-spacing:-.035em;line-height:1}
+  .bnv{font-family:var(--mono);font-size:44px;white-space:nowrap;font-weight:800;letter-spacing:-.035em;line-height:1}
   .bnv.hl{color:var(--hl)}
   .bnk{margin-top:8px;font-size:15px;color:var(--tx3);font-weight:600}
   .story{margin-top:44px}
@@ -312,6 +312,36 @@
   .revbar .amt{margin-bottom:9px;font-family:var(--mono);font-size:16px;font-weight:700;color:var(--tx2)}
   .revbar .lb .up{color:var(--up)} .revbar .lb .dn{color:var(--dn)} .revbar .lb .fl{color:var(--tx3)}
 
+  /* ── P2 타임라인 · 예상vs실제 ─────────── */
+  .tl{margin-top:36px}
+  .tlrow{display:flex;align-items:center;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .tlrow:first-child{border-top:1px solid var(--line)}
+  .tlwhen{flex:0 0 130px;font-family:var(--mono);font-size:17px;font-weight:700;color:var(--hl)}
+  .tldot{flex:0 0 auto;width:9px;height:9px;border-radius:50%;background:var(--line2)}
+  .tlwhat{flex:1;font-size:25px;font-weight:700;letter-spacing:-.02em}
+  .vs{margin-top:26px;display:flex;align-items:center;gap:18px;
+      padding:28px 30px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid var(--line)}
+  .vscol{flex:1}
+  .vscol.hit .vsk{color:var(--hl)}
+  .vsk{font-size:15px;color:var(--tx3);font-weight:600}
+  .vsv{margin-top:9px;font-family:var(--mono);font-size:44px;font-weight:800;letter-spacing:-.03em}
+  .vsar{font-size:28px;color:var(--tx3)}
+  .vsgap{flex:0 0 auto;padding:10px 18px;border-radius:100px;
+         background:rgba(255,255,255,.06);font-family:var(--mono);font-size:22px;font-weight:800}
+
+  /* ── P3 사업 구조 ────────────────────── */
+  .bizbox{margin-top:34px;padding:34px 32px;border-radius:18px;
+          background:rgba(255,210,28,.09);border-left:4px solid var(--hl)}
+  .bizk{font-size:15px;font-weight:800;color:var(--hl);letter-spacing:.03em}
+  .bizv{margin-top:11px;font-size:28px;font-weight:700;line-height:1.4;letter-spacing:-.02em}
+  .flow3{margin-top:34px;display:flex;align-items:stretch;gap:12px}
+  .f3{flex:1;padding:34px 16px;border-radius:18px;text-align:center;
+      background:rgba(255,255,255,.045);border:1px solid var(--line)}
+  .f3k{font-size:14px;color:var(--tx3);font-weight:700}
+  .f3v{margin-top:12px;font-size:23px;font-weight:800;letter-spacing:-.025em;line-height:1.3}
+  .f3ar{align-self:center;font-size:24px;color:var(--tx3)}
+  .pchart.big svg{height:360px}
+
   /* ── P4 경쟁사 비교표 ────────────────── */
   .ptable{margin-top:34px}
   .phd{display:flex;padding:12px 0;border-bottom:1px solid var(--line2);
@@ -327,7 +357,7 @@
   .pmv{margin-top:9px;font-size:23px;line-height:1.4;font-weight:700;letter-spacing:-.02em}
 
   .prorows{margin-top:12px}
-  .pro{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .pro{display:flex;align-items:baseline;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
   .pro:first-child{border-top:1px solid var(--line)}
   .prok{flex:0 0 116px;font-size:16px;color:var(--tx3);font-weight:700}
   .prov{flex:0 0 150px;font-family:var(--mono);font-size:21px;font-weight:800;letter-spacing:-.02em}
@@ -339,15 +369,15 @@
 
   /* ── P5 Bull / Bear ──────────────────── */
   .bb{margin-top:24px;display:flex;gap:16px}
-  .bbcol{flex:1;padding:24px 22px;border-radius:18px}
+  .bbcol{flex:1;padding:34px 26px;border-radius:20px}
   .bbcol.bull{background:rgba(255,90,90,.08);border:1px solid rgba(255,90,90,.3)}
   .bbcol.bear{background:rgba(74,144,226,.08);border:1px solid rgba(74,144,226,.3)}
   .bbk{font-size:15px;font-weight:800;letter-spacing:.04em}
   .bbcol.bull .bbk{color:var(--up)}
   .bbcol.bear .bbk{color:var(--dn)}
-  .bbitem{margin-top:18px}
-  .bbt{font-size:23px;font-weight:800;letter-spacing:-.025em}
-  .bbx{margin-top:7px;font-size:17px;color:var(--tx2);line-height:1.4}
+  .bbitem{margin-top:26px}
+  .bbt{font-size:25px;font-weight:800;letter-spacing:-.025em}
+  .bbx{margin-top:9px;font-size:18px;color:var(--tx2);line-height:1.4}
 
   .tree{margin-top:18px}
   .trhead{margin:0 auto;padding:13px 26px;border-radius:100px;width:fit-content;
@@ -386,16 +416,16 @@
   .tkfill.hl{background:var(--hl)} .tkfill.fl{background:var(--fl)}
 
   /* ── P7 CTA ──────────────────────────── */
-  .cta{margin-top:20px;padding:20px;border-radius:16px;text-align:center;
+  .cta{margin-top:16px;padding:16px;border-radius:16px;text-align:center;
        background:rgba(255,210,28,.09);border:1px solid rgba(255,210,28,.32)}
   .ctat{font-size:17px;color:var(--tx2);font-weight:600}
-  .ctah{margin-top:8px;font-size:26px;font-weight:900;color:var(--hl);letter-spacing:-.02em}
+  .ctah{margin-top:6px;font-size:22px;font-weight:900;color:var(--hl);letter-spacing:-.02em}
 
   /* ── P7 한눈 정리 ────────────────────── */
-  .takes{margin-top:30px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-  .tk3{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:20px;padding:28px 26px}
-  .tkk{font-size:17px;color:var(--tx3);font-weight:700}
-  .tkg{margin-top:10px;font-size:40px;font-weight:900;letter-spacing:-.03em;line-height:1}
+  .takes{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+  .tk3{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:20px 14px}
+  .tkk{font-size:14px;color:var(--tx3);font-weight:700}
+  .tkg{margin-top:8px;font-size:26px;font-weight:900;letter-spacing:-.03em;line-height:1}
   .tkg.up{color:var(--up)} .tkg.dn{color:var(--dn)}
   .tkg.hl{color:var(--hl)} .tkg.fl{color:var(--tx2)}
   .tkd{margin-top:12px;font-size:16px;color:var(--tx3);font-weight:600}
@@ -411,7 +441,7 @@
   .metmean{margin-top:12px;font-size:17px;color:var(--tx2);line-height:1.4}
   .chartnote{margin-top:16px;font-size:17px;color:var(--tx3);font-weight:600;text-align:center}
 
-  .revbar{margin-top:32px;display:flex;align-items:flex-end;gap:16px;height:225px}
+  .revbar{margin-top:34px;display:flex;align-items:flex-end;gap:16px;height:280px}
   .revbar .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
   .revbar .bar{width:100%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--hl),rgba(250,204,21,.3))}
   .revbar .lb{margin-top:12px;font-family:var(--mono);font-size:16px;color:var(--tx3)}
@@ -433,14 +463,14 @@
   .gapv{margin-top:12px;font-size:25px;line-height:1.5;font-weight:600;letter-spacing:-.018em}
 
   /* ── P7 체크리스트 ───────────────────── */
-  .checks{margin-top:40px}
-  .chk{display:flex;align-items:flex-start;gap:20px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .checks{margin-top:22px}
+  .chk{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .chk:first-child{border-top:1px solid var(--line)}
-  .chknum{flex:0 0 auto;width:42px;height:42px;border-radius:10px;
+  .chknum{flex:0 0 auto;width:34px;height:34px;border-radius:10px;
           background:rgba(250,204,21,.15);border:1px solid rgba(250,204,21,.42);
           color:var(--hl);font-family:var(--mono);font-size:16px;font-weight:800;
           display:flex;align-items:center;justify-content:center}
-  .chktext{flex:1;font-size:26px;line-height:1.45;font-weight:600;letter-spacing:-.02em;padding-top:4px}
+  .chktext{flex:1;font-size:21px;line-height:1.45;font-weight:600;letter-spacing:-.02em;padding-top:4px}
 
   /* ── P3: 인과 사슬 ──────────────────── */
   .chainflow{margin-top:22px}
@@ -606,11 +636,11 @@
           display:flex;align-items:center;justify-content:center}
   .sum .t{font-size:23px;line-height:1.4;font-weight:600;letter-spacing:-.025em;padding-top:4px}
 
-  .neonbox{margin-top:24px;padding:30px 32px;border-radius:18px;
+  .neonbox{margin-top:20px;padding:24px 28px;border-radius:18px;
            background:rgba(250,204,21,.10);border:1px solid rgba(250,204,21,.45);
            box-shadow:0 0 24px rgba(250,204,21,.18), inset 0 0 20px rgba(250,204,21,.05)}
   .sigk{font-size:16px;font-weight:800;color:var(--hl);letter-spacing:.04em}
-  .sigv{margin-top:11px;font-size:29px;line-height:1.4;font-weight:800;letter-spacing:-.025em}
+  .sigv{margin-top:9px;font-size:25px;line-height:1.4;font-weight:800;letter-spacing:-.025em}
 
   .krbox{margin-top:22px;padding:22px 26px;border-radius:12px;
          background:rgba(59,130,246,.11);border:1px solid rgba(59,130,246,.3)}
@@ -655,10 +685,10 @@
 <div class="rail">{% for n in range(1,8) %}<i class="{{ 'now' if n==card_num else 'done' if n<card_num else '' }}"></i>{% endfor %}</div>
 <div class="meta"><span class="d">{{ date_kr }}</span><span class="sep">|</span><span class="cat">MARKET BRIEF</span><span class="pg">{{ '%02d'|format(card_num) }} / 07</span></div>
 
-{# ══ P1 스포트라이트 ══════════════════════ #}
+{# ══ P1 표지 ══════════════════════════════ #}
 {% if card_num==1 %}
 <div class="z1">
-  <div class="eyebrow">TODAY'S STOCK SPOTLIGHT</div>
+  <div class="eyebrow">TODAY'S STOCK</div>
 </div>
 <div class="z2">
   <div class="tkline">
@@ -682,8 +712,6 @@
       <polygon points="{{ price_chart.area }}" fill="url(#pcg)"/>
       <polyline points="{{ price_chart.points }}" fill="none" stroke="{{ f.hex }}"
                 stroke-width="3" vector-effect="non-scaling-stroke"/>
-      <circle cx="{{ price_chart.hi_x }}" cy="{{ price_chart.hi_y }}" r="5" fill="var(--tx2)" opacity=".8"/>
-      <circle cx="{{ price_chart.lo_x }}" cy="{{ price_chart.lo_y }}" r="5" fill="var(--tx2)" opacity=".8"/>
       <circle cx="{{ price_chart.last_x }}" cy="{{ price_chart.last_y }}" r="7" fill="{{ f.hex }}"/>
       <circle cx="{{ price_chart.last_x }}" cy="{{ price_chart.last_y }}" r="14"
               fill="none" stroke="{{ f.hex }}" stroke-width="2" opacity=".45"/>
@@ -709,30 +737,41 @@
   {% endif %}
 </div>
 
-{# ══ P2 거시 동인 ═════════════════════════ #}
+{# ══ P2 무슨 일이 ═════════════════════════ #}
 {% elif card_num==2 %}
 <div class="h1">{% for t in titles[2] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
-<div class="h2sub">MARKET-WIDE DRIVERS</div>
-{% if gauges %}
-<div class="gauges">
-  {% for g in gauges %}
-  <div class="gcell"><div class="gk">{{ g.label }}</div><div class="gv {{ g.cls }}">{{ g.fmt_last }}</div><div class="gd {{ g.cls }}">{{ g.fmt_pct }}</div></div>
-  {% endfor %}
-</div>
-{% endif %}
-{% if indices %}
-<div class="idxrows">
-  {% for i in indices %}
-  <div class="ir">
-    <span class="irn">{{ i.label }}</span>
-    <span class="irs">{% if i.spark %}<svg viewBox="0 0 120 22" preserveAspectRatio="none" style="width:100%;height:100%"><polyline points="{{ i.spark }}" fill="none" stroke="{{ i.hex }}" stroke-width="2.2" stroke-opacity=".8" vector-effect="non-scaling-stroke"/></svg>{% endif %}</span>
-    <span class="ird {{ i.cls }}">{{ i.fmt_pct }}</span>
+{% if s.p2_timeline %}
+<div class="tl">
+  {% for e in s.p2_timeline %}
+  <div class="tlrow">
+    <span class="tlwhen">{{ e.when }}</span>
+    <span class="tldot"></span>
+    <span class="tlwhat">{{ e.what }}</span>
   </div>
   {% endfor %}
 </div>
 {% endif %}
+{% if f.earnings and f.earnings.eps_act is not none %}
+<div class="vs">
+  <div class="vscol"><div class="vsk">시장 예상</div><div class="vsv">${{ f.earnings.eps_est }}</div></div>
+  <div class="vsar">→</div>
+  <div class="vscol hit"><div class="vsk">실제 발표</div><div class="vsv {{ 'up' if f.earnings.beat else 'dn' }}">${{ f.earnings.eps_act }}</div></div>
+  {% if f.earnings.fmt_surprise %}
+  <div class="vsgap {{ 'up' if f.earnings.beat else 'dn' }}">{{ f.earnings.fmt_surprise }}</div>
+  {% endif %}
+</div>
+<div class="chartnote">주당순이익(EPS) 예상 대비 실제</div>
+{% endif %}
+{% if s.p2_diff %}<div class="note">{{ s.p2_diff }}</div>{% endif %}
+{% if f.earnings and f.earnings.dots %}
+<div class="ehist">
+  <span class="ek">최근 4분기</span>
+  {% for d in f.earnings.dots %}<span class="ed {{ 'on' if d.beat else 'off' }}"></span>{% endfor %}
+  {% if f.earnings.streak_txt %}<span class="es">{{ f.earnings.streak_txt }}</span>{% endif %}
+</div>
+{% endif %}
 {% if sectors %}
-<div class="reltag">섹터 순환</div>
+<div class="reltag">그날 업종 흐름</div>
 <div class="sec-mini">
   {% for x in sectors[:4] %}
   <div class="r">
@@ -742,19 +781,66 @@
   </div>
   {% endfor %}
 </div>
-{% if s.p2_sector_why %}
-<div class="swhy">{% for w in s.p2_sector_why %}<span><b>{{ w.sector }}</b> {{ w.why }}</span>{% endfor %}</div>
 {% endif %}
+{% if gauges %}
+<div class="reltag">시장 지표</div>
+<div class="gauges">
+  {% for g in gauges %}
+  <div class="gcell"><div class="gk">{{ g.label }}</div><div class="gv {{ g.cls }}">{{ g.fmt_last }}</div><div class="gd {{ g.cls }}">{{ g.fmt_pct }}</div></div>
+  {% endfor %}
+</div>
 {% endif %}
-{% if s.p2_tomorrow %}
-<div class="tmr"><span class="tmk">내일의 관전 포인트</span><span class="tmv">{{ s.p2_tomorrow }}</span></div>
-{% endif %}
-{% if s.p2_reading %}<div class="note">{{ s.p2_reading }}</div>{% endif %}
 
-{# ══ P3 실적 분석 ═════════════════════════ #}
+{# ══ P3 왜 중요한가 ═══════════════════════ #}
 {% elif card_num==3 %}
 <div class="h1">{% for t in titles[3] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
-<div class="h2sub">FUNDAMENTAL PERFORMANCE</div>
+{% if s.p3_biz %}
+<div class="bizbox">
+  <div class="bizk">이 회사는</div>
+  <div class="bizv">{{ s.p3_biz }}</div>
+</div>
+{% endif %}
+{% if s.p3_flow %}
+<div class="flow3">
+  {% for x in s.p3_flow %}
+  <div class="f3">
+    <div class="f3k">{{ x.step }}</div>
+    <div class="f3v">{{ x.text }}</div>
+  </div>
+  {% if not loop.last %}<div class="f3ar">→</div>{% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+{% if s.p3_note %}<div class="note">{{ s.p3_note }}</div>{% endif %}
+{% if peer_per_chart %}
+<div class="reltag">업종 내 위치</div>
+<div class="perchart">
+  {% for p in peer_per_chart[:4] %}
+  <div class="prow {{ 'me' if p.is_me else '' }}">
+    <span class="ptk">{{ p.ticker }}</span>
+    <span class="ptrack"><span class="pfill" style="width:{{ p.bar_pct }}%"></span></span>
+    <span class="pval">{{ p.fmt_per }}</span>
+  </div>
+  {% endfor %}
+</div>
+<div class="chartnote">동종업계 PER 비교 (낮을수록 이익 대비 주가가 싸다는 뜻)</div>
+{% endif %}
+{% if chain %}
+<div class="reltag">같은 흐름에 있는 종목</div>
+<div class="relgrid">
+  {% for c in chain[:3] %}
+  <div class="rel">
+    <div class="reltk">{{ c.ticker }}</div>
+    <div class="relwhy c1">{{ c.relation }}</div>
+    <div class="relpct {{ c.cls }}">{{ c.fmt_pct }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ══ P4 숫자로 확인 ═══════════════════════ #}
+{% elif card_num==4 %}
+<div class="h1">{% for t in titles[4] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
 {% if real_nums %}
 <div class="mets">
   {% for m in real_nums %}
@@ -776,47 +862,86 @@
   </div>
   {% endfor %}
 </div>
-<div class="chartnote">분기별 매출 추이</div>
+<div class="chartnote">분기별 매출 추이 · 직전 분기 대비 증감</div>
 {% endif %}
-{% if f.earnings and f.earnings.dots %}
-<div class="ehist">
-  <span class="ek">최근 4분기</span>
-  {% for d in f.earnings.dots %}<span class="ed {{ 'on' if d.beat else 'off' }}"></span>{% endfor %}
-  {% if f.earnings.streak_txt %}<span class="es">{{ f.earnings.streak_txt }}</span>{% endif %}
-  {% if f.earnings.next_date %}<span class="en">다음 {{ f.earnings.next_date }}</span>{% endif %}
+{% if s.p4_reading %}<div class="note">{{ s.p4_reading }}</div>{% endif %}
+
+{# ══ P5 주가 반응 ═════════════════════════ #}
+{% elif card_num==5 %}
+<div class="h1">{% for t in titles[5] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
+{% if price_chart %}
+<div class="pchart big">
+  <svg viewBox="0 0 {{ price_chart.w }} {{ price_chart.h }}" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="pcg5" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="{{ f.hex }}" stop-opacity=".26"/>
+        <stop offset="100%" stop-color="{{ f.hex }}" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="{{ price_chart.area }}" fill="url(#pcg5)"/>
+    <polyline points="{{ price_chart.points }}" fill="none" stroke="{{ f.hex }}"
+              stroke-width="3" vector-effect="non-scaling-stroke"/>
+    <circle cx="{{ price_chart.hi_x }}" cy="{{ price_chart.hi_y }}" r="5" fill="var(--tx2)" opacity=".8"/>
+    <circle cx="{{ price_chart.lo_x }}" cy="{{ price_chart.lo_y }}" r="5" fill="var(--tx2)" opacity=".8"/>
+    <circle cx="{{ price_chart.last_x }}" cy="{{ price_chart.last_y }}" r="8" fill="{{ f.hex }}"/>
+    <circle cx="{{ price_chart.last_x }}" cy="{{ price_chart.last_y }}" r="16"
+            fill="none" stroke="{{ f.hex }}" stroke-width="2" opacity=".5"/>
+  </svg>
+  <div class="pcax">
+    <span class="pcl">{{ price_chart.days }}일 추이</span>
+    <span class="pcr">고 {{ price_chart.hi_txt }} · 저 {{ price_chart.lo_txt }} · 오늘 ${{ f.fmt_last }}</span>
+  </div>
 </div>
 {% endif %}
-{% if s.p3_reading %}<div class="note">{{ s.p3_reading }}</div>{% endif %}
-
-{# ══ P4 밸류에이션 ════════════════════════ #}
-{% elif card_num==4 %}
-<div class="h1">{% for t in titles[4] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
-<div class="h2sub">VALUATION & SECTOR POSITIONING</div>
-{% if peer_table %}
-<div class="ptable">
-  <div class="phd">
-    <span class="pc1">종목</span>
-    <span class="pc2">선행 PER</span>
-    {% if peer_table[0].show_evs %}<span class="pc2">EV/매출</span>{% endif %}
-    {% if peer_table[0].show_rec %}<span class="pc2">투자의견</span>{% endif %}
-  </div>
-  {% for r in peer_table %}
-  <div class="ptr {{ 'me' if r.is_me else '' }}">
-    <span class="pc1">{{ r.ticker }}</span>
-    <span class="pc2">{{ r.f_per }}</span>
-    {% if r.show_evs %}<span class="pc2">{{ r.f_evs }}</span>{% endif %}
-    {% if r.show_rec %}<span class="pc2">{{ r.f_rec }}</span>{% endif %}
+{% if p2_nums %}
+<div class="bignums">
+  {% for k in p2_nums %}
+  <div class="bn"><div class="bnv {{ k.cls }}">{{ k.value }}</div><div class="bnk">{{ k.label }}</div></div>
+  {% endfor %}
+</div>
+{% endif %}
+{% if w52.pos is not none and w52.low and w52.high %}
+<div class="w52">
+  <div class="tr"><div class="fl2" style="width:{{ w52.pos }}%"></div><div class="pn" style="left:{{ w52.pos }}%"></div></div>
+  <div class="sc"><span>52주 저 ${{ '%.0f'|format(w52.low) }}</span><span class="mid">현재 {{ w52.pos }}% 지점</span><span>52주 고 ${{ '%.0f'|format(w52.high) }}</span></div>
+</div>
+{% endif %}
+{% if indices %}
+<div class="reltag">같은 날 지수는</div>
+<div class="idxrows">
+  {% for i in indices[:3] %}
+  <div class="ir">
+    <span class="irn">{{ i.label }}</span>
+    <span class="irs">{% if i.spark %}<svg viewBox="0 0 120 22" preserveAspectRatio="none" style="width:100%;height:100%"><polyline points="{{ i.spark }}" fill="none" stroke="{{ i.hex }}" stroke-width="2.2" stroke-opacity=".8" vector-effect="non-scaling-stroke"/></svg>{% endif %}</span>
+    <span class="ird {{ i.cls }}">{{ i.fmt_pct }}</span>
   </div>
   {% endfor %}
 </div>
 {% endif %}
-{% if val_cells %}
-<div class="val">{% for c in val_cells[:3] %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}</div>
-{% endif %}
+{% if s.p5_reading %}<div class="note">{{ s.p5_reading }}</div>{% endif %}
+{% if s.p5_caution %}<div class="warn">{{ s.p5_caution }}</div>{% endif %}
+
+{# ══ P6 기대 vs 위험 ══════════════════════ #}
+{% elif card_num==6 %}
+<div class="h1">{% for t in titles[6] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
+<div class="bb">
+  <div class="bbcol bull">
+    <div class="bbk">기대할 점</div>
+    {% for b in s.p6_bull %}
+    <div class="bbitem"><div class="bbt">{{ b.title }}</div><div class="bbx">{{ b.text }}</div></div>
+    {% endfor %}
+  </div>
+  <div class="bbcol bear">
+    <div class="bbk">확인할 위험</div>
+    {% for b in s.p6_bear %}
+    <div class="bbitem"><div class="bbt">{{ b.title }}</div><div class="bbx">{{ b.text }}</div></div>
+    {% endfor %}
+  </div>
+</div>
 {% if pro %}
-<div class="reltag">애널리스트가 보는 지표</div>
+<div class="reltag">판단에 쓰인 지표</div>
 <div class="prorows">
-  {% for m in pro %}
+  {% for m in pro[:4] %}
   <div class="pro">
     <span class="prok">{{ m.k }}</span>
     <span class="prov {{ m.tone }}">{{ m.v }}</span>
@@ -825,81 +950,17 @@
   {% endfor %}
 </div>
 {% endif %}
-{% if s.p4_premium %}
-<div class="premium">
-  <div class="pmk">프리미엄 요인</div>
-  <div class="pmv">{{ s.p4_premium }}</div>
-</div>
-{% endif %}
-
-{# ══ P5 Bull vs Bear ══════════════════════ #}
-{% elif card_num==5 %}
-<div class="h1">{% for t in titles[5] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
-<div class="h2sub">KEY FACTORS & RISKS</div>
-<div class="bb">
-  <div class="bbcol bull">
-    <div class="bbk">상승 동력</div>
-    {% for b in s.p5_bull %}
-    <div class="bbitem"><div class="bbt">{{ b.title }}</div><div class="bbx">{{ b.text }}</div></div>
-    {% endfor %}
+{% if rec_bars %}
+<div class="recbar">
+  {% for r in rec_bars %}
+  <div class="r">
+    <span class="k">{{ r.label }}</span>
+    <span class="t"><span class="f" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
+    <span class="n">{{ r.n }}</span>
   </div>
-  <div class="bbcol bear">
-    <div class="bbk">리스크</div>
-    {% for b in s.p5_bear %}
-    <div class="bbitem"><div class="bbt">{{ b.title }}</div><div class="bbx">{{ b.text }}</div></div>
-    {% endfor %}
-  </div>
-</div>
-{% if factors %}
-<div class="reltag">지표로 본 현재 위치</div>
-<div class="fmini">
-  {% for x in factors %}
-  <div class="fm"><span class="fmdot {{ x.badge }}"></span><span class="fmcat">{{ x.cat }}</span><span class="fmv {{ x.badge }}">{{ x.verdict }}</span><span class="fmd">{{ x.detail }}</span></div>
   {% endfor %}
 </div>
-{% endif %}
-{% if insider %}
-<div class="smline" style="margin-top:16px"><span>내부자 거래 <b class="{{ insider.tone }}">{{ insider.txt }}</b></span></div>
-{% endif %}
-{% if fin_cells or vol_compare %}
-<div class="val" style="margin-top:18px">
-  {% for c in fin_cells[:2] %}<div class="cell"><div class="k">{{ c.k }}</div><div class="v">{{ c.v }}</div></div>{% endfor %}
-  {% if vol_compare %}<div class="cell"><div class="k">변동성 / 시장</div><div class="v {{ vol_compare.tone }}">{{ vol_compare.stock }}</div></div>{% endif %}
-</div>
-{% endif %}
-{% if chain %}
-<div class="tree">
-  {% if s.p5_trigger %}
-  <div class="trhead">{{ s.p5_trigger }}</div>
-  <div class="trfan">
-    <svg viewBox="0 0 872 46" preserveAspectRatio="none">
-      <path d="M436,0 L436,16 M436,16 L120,16 L120,46 M436,16 L436,46 M436,16 L752,16 L752,46"
-            fill="none" stroke="var(--line2)" stroke-width="2" vector-effect="non-scaling-stroke"/>
-    </svg>
-  </div>
-  {% endif %}
-  <div class="trrow">
-    {% for c in chain[:3] %}
-    <div class="trnode">
-      <div class="trtk">{{ c.ticker }}</div>
-      <div class="trwhy c1">{{ c.relation }}</div>
-      <div class="trpct {{ c.cls }}">{{ c.fmt_pct }}</div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
-
-{# ══ P6 기관 심리 ═════════════════════════ #}
-{% elif card_num==6 %}
-<div class="h1">{% for t in titles[6] %}{% if t.hl %}<span class="ha">{{ t.t }}</span>{% else %}{{ t.t }}{% endif %}{% endfor %}</div>
-<div class="h2sub">INSTITUTIONAL SENTIMENT & TARGET</div>
-{% if inst_gauge %}
-<div class="igauge">
-  <div class="igtop"><span class="igk">기관 보유 비중</span><span class="igv {{ inst_gauge.tone }}">{{ inst_gauge.txt }}</span></div>
-  <div class="igtrack"><div class="igfill" style="width:{{ inst_gauge.pct }}%"></div></div>
-  <div class="iglabel">{{ inst_gauge.label }}</div>
-</div>
+<div class="chartnote">애널리스트 의견 분포</div>
 {% endif %}
 {% if tgt %}
 <div class="tgt">
@@ -915,36 +976,16 @@
   </div>
 </div>
 {% endif %}
-{% if smart_cells %}
-<div class="smline">{% for c in smart_cells if "기관" not in c.k %}<span>{{ c.k }} <b>{{ c.v }}</b></span>{% endfor %}</div>
-{% endif %}
-{% if rec_bars %}
-<div class="reltag">애널리스트 의견</div>
-<div class="recbar">
-  {% for r in rec_bars %}
-  <div class="r">
-    <span class="k">{{ r.label }}</span>
-    <span class="t"><span class="f" style="width:{{ r.pct }}%;background:{% if r.cls=='up' %}var(--up){% elif r.cls=='dn' %}var(--dn){% else %}var(--fl){% endif %}"></span></span>
-    <span class="n">{{ r.n }}</span>
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
-{% if actions %}
-<div class="acts">
-  {% for a in actions[:1] %}
-  <div class="a"><span class="fm">{{ a.firm }}</span><span class="gr {{ a.cls }}">{{ a.from }} → {{ a.to }}</span><span class="dt">{{ a.date }}</span></div>
-  {% endfor %}
-</div>
-<div class="chartnote">최근 투자의견 변경</div>
-{% endif %}
-{% if s.p6_reading %}<div class="note">{{ s.p6_reading }}</div>{% endif %}
-<div class="warn">목표주가는 기대치일 뿐, 실적이 따라오지 않으면 조정될 수 있습니다.</div>
 
-{# ══ P7 요약 ══════════════════════════════ #}
+{# ══ P7 다시 볼 때 ════════════════════════ #}
 {% elif card_num==7 %}
-<div class="h1">한눈에 <span class="ha">정리</span>하면</div>
-<div class="h2sub">SUMMARY AT A GLANCE</div>
+<div class="h1">다시 볼 때 <span class="ha">기억할 것</span></div>
+{% if s.p7_oneline %}
+<div class="bizbox">
+  <div class="bizk">{{ f.ticker }} · {{ f.name }}</div>
+  <div class="bizv">{{ s.p7_oneline }}</div>
+</div>
+{% endif %}
 {% if take %}
 <div class="takes">
   {% for t in take %}
@@ -952,26 +993,29 @@
     <div class="tkk">{{ t.key }}</div>
     <div class="tkg {{ t.tone }}">{{ t.grade }}</div>
     <div class="tkbar"><span class="tkfill {{ t.tone }}" style="width:{{ t.pct }}%"></span></div>
-    <div class="tkd">{{ t.detail }}</div>
   </div>
   {% endfor %}
 </div>
 {% endif %}
-{% if s.kr_line %}
-<div class="krbox"><div class="k">한국 증시에 미칠 영향</div><div class="v">{{ s.kr_line }}</div></div>
+{% if s.p7_checks %}
+<div class="checks">
+  {% for c in s.p7_checks %}
+  <div class="chk"><span class="chknum">{{ loop.index }}</span><span class="chktext">{{ c.text }}</span></div>
+  {% endfor %}
+</div>
 {% endif %}
 {% if s.p7_line %}
 <div class="neonbox">
-  <div class="sigk">오늘 주목한 이유</div>
+  <div class="sigk">오늘의 결론</div>
   <div class="sigv">{{ s.p7_line }}</div>
 </div>
 {% endif %}
 <div class="cta">
-  <div class="ctat">더 많은 분석을 매일 아침에</div>
-  <div class="ctah">@{{ handle }} 팔로우</div>
+  <div class="ctat">매일 아침 미국장 한 종목</div>
+  <div class="ctah">@{{ handle }}</div>
 </div>
 <div class="disc">
-  <div class="t">오늘의 움직임보다, 움직인 이유를 봅니다.<br>본 콘텐츠는 공개된 시장 데이터를 자동 정리한 투자 참고용 자료이며, 특정 종목의 매수·매도를 권유하지 않습니다.</div>
+  <div class="t">오늘의 움직임보다, 움직인 이유를 봅니다.<br>공개된 시장 데이터를 자동 정리한 투자 참고용 자료이며, 매수·매도를 권유하지 않습니다.</div>
   <div class="b">MORNING BRIEF</div>
 </div>
 {% endif %}
