@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-22-meta",
+  "ticker": "META",
+  "name": "Meta Platforms, Inc.",
+  "pct": 11.34,
+  "rvol": 2.65
+ },
+ {
   "date": "2026-09-21-mstr",
   "ticker": "MSTR",
   "name": "Strategy Inc",
