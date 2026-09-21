@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-21-mstr",
+  "ticker": "MSTR",
+  "name": "Strategy Inc",
+  "pct": 7.82,
+  "rvol": 0.28
+ },
+ {
   "date": "2026-09-21-sndk",
   "ticker": "SNDK",
   "name": "Sandisk Corporation",
