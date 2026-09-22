@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-23-rcl",
+  "ticker": "RCL",
+  "name": "Royal Caribbean Cruises Ltd.",
+  "pct": -6.14,
+  "rvol": 3.85
+ },
+ {
   "date": "2026-09-22-meta",
   "ticker": "META",
   "name": "Meta Platforms, Inc.",
