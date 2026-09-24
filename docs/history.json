@@ -1,5 +1,12 @@
 [
  {
+  "date": "2026-09-25-meta",
+  "ticker": "META",
+  "name": "Meta Platforms, Inc.",
+  "pct": 4.5,
+  "rvol": 1.79
+ },
+ {
   "date": "2026-09-24-mcd",
   "ticker": "MCD",
   "name": "McDonald's Corporation",
