@@ -7,6 +7,8 @@
 from __future__ import annotations
 
 import html
+import os
+import re
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -266,11 +268,11 @@ def _rev_bars(focus: dict) -> list[dict]:
     vals = [h["value"] for h in hist if h.get("value")]
     if len(vals) < 2:
         return []
-    hi, lo = max(vals), min(vals)
-    # 0 기준으로 그리면 값들이 다 비슷해 보여 추세가 안 드러납니다.
-    # 최소값보다 살짝 아래를 바닥으로 잡아 증감 폭을 눈에 보이게 확대합니다.
-    base = lo - (hi - lo) * 0.45 if hi > lo else lo * 0.8
-    span = (hi - base) or 1
+    hi = max(vals)
+    # 막대는 0 기준으로 그립니다. 바닥을 올려 잡으면 추세는 도드라지지만
+    # 막대 높이와 실제 수치의 비례가 깨져 과장이 됩니다.
+    base = 0.0
+    span = hi or 1
 
     def _short(v: float) -> str:
         """매출 규모를 짧게. 막대만 있으면 얼마인지 알 수 없습니다."""
@@ -283,7 +285,7 @@ def _rev_bars(focus: dict) -> list[dict]:
     rows = [h for h in hist if h.get("value")]
     out = []
     for i, h in enumerate(rows):
-        row = {"period": h["period"], "h": round(18 + (h["value"] - base) / span * 82, 1),
+        row = {"period": h["period"], "h": round((h["value"] - base) / span * 100, 1),
                "amt": _short(h["value"])}
         # 직전 분기 대비 증감률 — 성장세가 이어지는지 한눈에.
         if i > 0 and rows[i - 1]["value"]:
@@ -872,7 +874,10 @@ def _real_numbers(focus: dict) -> list[dict]:
                     "delta": "전년 동기 대비", "dcls": "fl",
                     "mean": "1년 전 같은 기간과 비교한 수치"})
 
-    if v.get("margin") is not None:
+    is_reit = "reit" in (focus.get("industry") or "").lower()
+    if v.get("margin") is not None and not is_reit:
+        # 리츠는 감가상각이 커서 영업이익률이 구조적으로 낮게 나옵니다.
+        # 이 숫자로 수익성을 판단하면 오해를 부르므로 리츠에선 아예 뺍니다.
         m = v["margin"] * 100
         # 숫자만 보면 높은지 낮은지 알 수 없어 해석을 붙입니다.
         # (제조·하드웨어는 한 자릿수가 흔하고, 소프트웨어는 20%대가 보통입니다)
@@ -895,7 +900,9 @@ def _real_numbers(focus: dict) -> list[dict]:
                     "delta": "전년 동기 대비", "dcls": "fl",
                     "mean": "순이익이 얼마나 늘었는지"})
     elif sm.get("inst_pct") is not None:
-        out.append({"label": "기관 보유율", "value": f"{sm['inst_pct'] * 100:.0f}%",
+        # 기관 보유율이 100%를 넘게 집계되는 경우가 있어 상한을 둡니다.
+        ip = min(sm["inst_pct"], 1.0) * 100
+        out.append({"label": "기관 보유율", "value": f"{ip:.0f}%",
                     "mean": "연기금·펀드가 들고 있는 비중"})
 
     return out[:4]
@@ -1114,6 +1121,225 @@ def _movers_table(data: dict) -> list[dict]:
     return out
 
 
+_INDUSTRY_KR = {
+    "reit": "리츠(부동산 임대 수익을 배당하는 회사)",
+    "office": "오피스 빌딩",
+    "residential": "주거용 부동산",
+    "industrial": "물류·산업용 부동산",
+    "healthcare": "헬스케어 시설",
+    "software": "소프트웨어",
+    "semiconductor": "반도체",
+    "biotechnology": "바이오텍",
+    "banks": "은행",
+    "insurance": "보험",
+    "retail": "소매",
+    "oil & gas": "석유·가스",
+    "utilities": "유틸리티",
+    "aerospace": "항공우주",
+    "automobile": "자동차",
+    "specialty": "전문",
+    "diversified": "종합",
+    "consumer electronics": "가전",
+    "computer hardware": "컴퓨터 하드웨어",
+    "internet": "인터넷",
+    "medical": "의료",
+    "drug manufacturers": "제약",
+}
+
+
+def _industry_kr(industry: str) -> str:
+    """영문 업종명을 한국어로. 매칭 안 되면 원문을 그대로 둡니다.
+
+    화면에 'REIT - Office' 같은 영문이 그대로 나가던 문제를 막습니다.
+    """
+    if not industry:
+        return ""
+    low = industry.lower()
+    parts = []
+    for token in re.split(r"[-–—/]", low):
+        token = token.strip()
+        if not token:
+            continue
+        hit = next((v for k, v in _INDUSTRY_KR.items() if k in token), None)
+        parts.append(hit or token.title())
+    return " · ".join(parts) if parts else industry
+
+
+def _density(summary: dict, card_num: int) -> str:
+    """그 장에 들어갈 글 양을 재서 크기 등급을 정합니다.
+
+    내용이 적은 날 화면이 비어 보이는 걸 막습니다. 글이 적으면 큰 등급을 줘서
+    폰트와 여백을 키우고, 많으면 작은 등급으로 내려 넘치지 않게 합니다.
+    """
+    keys = {
+        2: ("p2_a", "p2_secs"), 3: ("p3_a", "p3_secs"),
+        4: ("p4_a", "p4_secs"), 5: ("p5_a", "p5_secs"),
+        6: ("p6_a", None), 7: (None, None),
+    }
+    if card_num not in keys:
+        return "m"
+    a_key, s_key = keys[card_num]
+    n = len(str(summary.get(a_key) or "")) if a_key else 0
+    if s_key:
+        for s in (summary.get(s_key) or []):
+            if isinstance(s, dict):
+                n += len(str(s.get("h", ""))) + len(str(s.get("t", "")))
+
+    # 6·7장은 좌우 카드와 목록이 본문 역할을 하므로 그쪽 글자도 셉니다.
+    if card_num == 6:
+        for key in ("p6_bull", "p6_bear"):
+            for b in (summary.get(key) or []):
+                if isinstance(b, dict):
+                    n += len(str(b.get("fact", ""))) + len(str(b.get("check", "")))
+    elif card_num == 7:
+        n += len(str(summary.get("p7_oneline") or ""))
+        for key in ("p7_facts", "p7_checks"):
+            for x in (summary.get(key) or []):
+                n += len(str(x))
+        n += len(str(summary.get("p7_keep") or "")) + len(str(summary.get("p7_review") or ""))
+
+    # 차트나 표가 함께 들어가는 장은 글이 쓸 수 있는 세로 공간이 그만큼 줄어듭니다.
+    # 글자 수만 보고 키우면 넘치므로, 시각 요소가 차지하는 만큼을 더해서 판단합니다.
+    visual = {2: 175, 3: 210, 4: 190, 5: 290, 6: 175, 7: 200}.get(card_num, 0)
+    n += visual
+
+    if n < 300:
+        return "xl"
+    if n < 400:
+        return "l"
+    if n < 480:
+        return "m"
+    return "s"
+
+
+# 업종별 배경 모티프. 사진이나 외부 이미지를 쓰지 않고 코드로 그립니다.
+# 저작권 문제가 없고, 매일 종목이 바뀌어도 업종만 보고 자동으로 골라집니다.
+_ART = {
+    "reit": '<g opacity=".9">'
+            '<rect x="40" y="300" width="90" height="240" rx="4"/>'
+            '<rect x="150" y="210" width="110" height="330" rx="4"/>'
+            '<rect x="280" y="120" width="96" height="420" rx="4"/>'
+            '<rect x="396" y="250" width="120" height="290" rx="4"/>'
+            '<rect x="536" y="170" width="88" height="370" rx="4"/>'
+            '<rect x="644" y="300" width="116" height="240" rx="4"/>'
+            '<g fill="none" stroke-width="3" opacity=".55">'
+            '<path d="M60 340h50M60 380h50M60 420h50M60 460h50"/>'
+            '<path d="M170 250h70M170 290h70M170 330h70M170 370h70M170 410h70"/>'
+            '<path d="M300 160h56M300 200h56M300 240h56M300 280h56M300 320h56"/>'
+            '<path d="M416 290h80M416 330h80M416 370h80M416 410h80"/>'
+            '<path d="M556 210h48M556 250h48M556 290h48M556 330h48"/></g></g>',
+    "semiconductor": '<g fill="none" stroke-width="4">'
+            '<rect x="230" y="150" width="340" height="340" rx="16"/>'
+            '<rect x="310" y="230" width="180" height="180" rx="8"/>'
+            '<path d="M230 210h-80M230 270h-80M230 330h-80M230 390h-80M230 450h-80"/>'
+            '<path d="M570 210h80M570 270h80M570 330h80M570 390h80M570 450h80"/>'
+            '<path d="M290 150V70M350 150V70M410 150V70M470 150V70M530 150V70"/>'
+            '<path d="M290 490v80M350 490v80M410 490v80M470 490v80M530 490v80"/></g>',
+    "software": '<g fill="none" stroke-width="4">'
+            '<circle cx="180" cy="180" r="34"/><circle cx="420" cy="120" r="26"/>'
+            '<circle cx="640" cy="230" r="34"/><circle cx="300" cy="380" r="30"/>'
+            '<circle cx="560" cy="440" r="26"/><circle cx="140" cy="480" r="24"/>'
+            '<path d="M212 192 394 132M446 134 612 214M406 138 322 352M330 372 534 432"/>'
+            '<path d="M276 394 164 462M612 252 580 416M206 196 282 358"/></g>',
+    "finance": '<g fill="none" stroke-width="4">'
+            '<path d="M120 200h560M150 200v300M270 200v300M390 200v300M510 200v300M630 200v300"/>'
+            '<path d="M100 520h600M400 120 700 200 100 200z"/></g>',
+    "energy": '<g fill="none" stroke-width="4">'
+            '<path d="M120 520V220l120-90 120 90v300M240 220v300"/>'
+            '<path d="M420 520V300h240v220M420 380h240M540 300v220"/>'
+            '<circle cx="240" cy="140" r="16"/></g>',
+    "health": '<g fill="none" stroke-width="4">'
+            '<circle cx="300" cy="200" r="42"/><circle cx="520" cy="170" r="34"/>'
+            '<circle cx="420" cy="380" r="46"/><circle cx="640" cy="400" r="30"/>'
+            '<circle cx="200" cy="420" r="28"/>'
+            '<path d="M338 218 486 182M330 236 396 338M462 200 438 336M464 398 610 398M382 400 226 412"/></g>',
+    "hardware": '<g fill="none" stroke-width="4">'
+            '<rect x="150" y="130" width="500" height="80" rx="8"/>'
+            '<rect x="150" y="240" width="500" height="80" rx="8"/>'
+            '<rect x="150" y="350" width="500" height="80" rx="8"/>'
+            '<rect x="150" y="460" width="500" height="80" rx="8"/>'
+            '<g stroke-width="5"><path d="M190 170h40M190 280h40M190 390h40M190 500h40"/></g>'
+            '<g stroke-width="3" opacity=".6">'
+            '<path d="M560 160v20M590 160v20M620 160v20M560 270v20M590 270v20M620 270v20"/>'
+            '<path d="M560 380v20M590 380v20M620 380v20M560 490v20M590 490v20M620 490v20"/></g></g>',
+    "consumer": '<g fill="none" stroke-width="4">'
+            '<rect x="180" y="220" width="180" height="150" rx="6"/>'
+            '<rect x="400" y="180" width="200" height="190" rx="6"/>'
+            '<rect x="260" y="400" width="230" height="140" rx="6"/>'
+            '<path d="M180 270h180M400 240h200M260 445h230"/></g>',
+    "auto": '<g fill="none" stroke-width="4">'
+            '<circle cx="270" cy="400" r="110"/><circle cx="270" cy="400" r="44"/>'
+            '<circle cx="580" cy="400" r="110"/><circle cx="580" cy="400" r="44"/>'
+            '<path d="M270 290v-40M270 510v40M160 400h-40M380 400h40"/>'
+            '<path d="M580 290v-40M580 510v40M470 400h-40M690 400h40"/></g>',
+}
+
+_ART_MATCH = [
+    ("reit", "reit"), ("real estate", "reit"), ("부동산", "reit"),
+    ("semiconductor", "semiconductor"), ("반도체", "semiconductor"),
+    ("software", "software"), ("internet", "software"), ("소프트웨어", "software"),
+    ("bank", "finance"), ("insurance", "finance"), ("capital", "finance"),
+    ("financial", "finance"), ("금융", "finance"),
+    ("oil", "energy"), ("gas", "energy"), ("energy", "energy"), ("utilities", "energy"),
+    ("biotech", "health"), ("drug", "health"), ("medical", "health"),
+    ("health", "health"), ("pharma", "health"),
+    ("computer", "hardware"), ("hardware", "hardware"), ("electronic", "hardware"),
+    ("communication equipment", "hardware"),
+    ("auto", "auto"), ("vehicle", "auto"),
+    ("retail", "consumer"), ("consumer", "consumer"), ("beverage", "consumer"),
+    ("food", "consumer"), ("apparel", "consumer"),
+]
+
+
+def _industry_art(industry: str) -> str | None:
+    """업종에 맞는 배경 모티프 SVG 조각을 고릅니다. 없으면 None."""
+    low = (industry or "").lower()
+    for needle, key in _ART_MATCH:
+        if needle in low:
+            return _ART[key]
+    return None
+
+
+# 섹션 소제목 옆 아이콘. 소제목의 뜻에 맞춰 고릅니다.
+_ICONS = {
+    "calendar": '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    "compare": '<path d="M4 7h16M4 7l4-4M4 7l4 4M20 17H4M20 17l-4-4M20 17l-4 4"/>',
+    "search": '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/>',
+    "money": '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h5M9.5 14.5h5"/>',
+    "chart": '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    "warn": '<path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5M12 17h.01"/>',
+    "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "build": '<path d="M3 21h18M6 21V8l6-4 6 4v13"/><path d="M10 21v-6h4v6"/>',
+}
+
+_ICON_MATCH = [
+    ("발표", "calendar"), ("일정", "calendar"), ("다음", "clock"),
+    ("차이", "compare"), ("예상", "compare"), ("비교", "compare"),
+    ("해석", "search"), ("확인", "search"), ("기록", "search"),
+    ("남는 돈", "money"), ("수익", "money"), ("배당", "money"), ("매출", "chart"),
+    ("변화", "chart"), ("상태", "chart"), ("위치", "chart"), ("범위", "chart"),
+    ("목표", "chart"), ("한계", "warn"), ("착시", "warn"), ("위험", "warn"),
+    ("회계", "build"), ("구조", "build"), ("업종", "build"), ("무슨 일", "build"),
+]
+
+
+def _icon_for(text: str) -> str:
+    """소제목 문구를 보고 어울리는 아이콘 경로를 돌려줍니다."""
+    for needle, key in _ICON_MATCH:
+        if needle in (text or ""):
+            return _ICONS[key]
+    return _ICONS["search"]
+
+
+def _sec_icons(items: list) -> list[dict]:
+    """소제목 목록에 아이콘을 붙여 돌려줍니다."""
+    out = []
+    for s in (items or []):
+        if isinstance(s, dict):
+            out.append({**s, "icon": _icon_for(s.get("h", ""))})
+    return out
+
+
 def _template_context(data: dict, summary: dict) -> dict:
     focus = data.get("focus", {})
     market = data.get("market", {})
@@ -1129,6 +1355,12 @@ def _template_context(data: dict, summary: dict) -> dict:
         "p1_chips": _p1_chips(focus),
         "p2_nums": _p2_nums(focus),
         "take": _investor_take(focus),
+        "art": _industry_art(focus.get("industry", "")),
+        "secs2": _sec_icons(summary.get("p2_secs")),
+        "secs3": _sec_icons(summary.get("p3_secs")),
+        "secs4": _sec_icons(summary.get("p4_secs")),
+        "secs5": _sec_icons(summary.get("p5_secs")),
+        "summary_raw": summary,
         "movers": _movers_table(data),
         "pro": _pro_metrics(focus),
         "handle": cfg.INSTAGRAM_HANDLE,
@@ -1181,9 +1413,11 @@ def _template_context(data: dict, summary: dict) -> dict:
 # ══ 렌더링 ══════════════════════════════════════════════
 
 def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> list[str]:
+    from photo_layout import build_photo_deck
     env = Environment(loader=FileSystemLoader(SRC), autoescape=select_autoescape(["html"]))
     tpl = env.get_template("card.html")
     ctx = _template_context(data, summary)
+    ctx['photo_deck'] = build_photo_deck(data, summary)
 
     out_dir = Path(docs_cards_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -1192,7 +1426,10 @@ def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> l
 
     paths: list[str] = []
     with sync_playwright() as p:
-        browser = p.chromium.launch(args=["--font-render-hinting=none"])
+        launch_args = {"args": ["--font-render-hinting=none"]}
+        if os.environ.get('CARD_CHROMIUM_PATH'):
+            launch_args['executable_path'] = os.environ['CARD_CHROMIUM_PATH']
+        browser = p.chromium.launch(**launch_args)
         page = browser.new_page(
             viewport={"width": cfg.CARD_WIDTH, "height": cfg.CARD_HEIGHT},
             device_scale_factor=1,
@@ -1200,15 +1437,41 @@ def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> l
         first = True
         for n in range(1, CARD_COUNT + 1):
             tmp = tmp_dir / f"_card-{n}.html"
-            tmp.write_text(tpl.render(card_num=n, card_label=CARD_LABELS[n], **ctx), encoding="utf-8")
+            tmp.write_text(
+                tpl.render(card_num=n, card_label=CARD_LABELS[n],
+                           dens=_density(ctx["s"], n), **ctx),
+                encoding="utf-8")
             page.goto(tmp.resolve().as_uri())
             page.wait_for_load_state("networkidle")
+            page.evaluate("""async () => {
+              await document.fonts.ready;
+              await Promise.all([...document.images].map(img => img.decode()));
+              if ([...document.images].some(img => img.naturalWidth < 800))
+                throw new Error('사진 해상도가 부족합니다. 가로 800px 이상 이미지가 필요합니다.');
+            }""")
             if first:
                 page.evaluate("document.fonts.ready")  # 웹폰트 대기 — 안 하면 한글이 깨집니다
                 page.wait_for_timeout(600)
                 first = False
             else:
                 page.wait_for_timeout(150)
+            layout_errors = page.evaluate("""() => {
+              const errors=[];
+              const main=document.querySelector('main');
+              const footer=document.querySelector('footer').getBoundingClientRect();
+              const title=document.querySelector('h1');
+              const lineHeight=parseFloat(getComputedStyle(title).lineHeight);
+              if(title.scrollHeight > lineHeight*2+14) errors.push('제목이 2줄을 넘습니다');
+              for(const el of main.children) {
+                const r=el.getBoundingClientRect();
+                if(r.bottom > footer.top-12) errors.push('본문이 하단 출처 영역을 침범합니다');
+                if(r.right > 1017 || r.left < 63) errors.push('가로 안전 여백을 벗어났습니다');
+              }
+              return [...new Set(errors)];
+            }""")
+            if layout_errors:
+                browser.close()
+                raise ValueError(f'{n}장 레이아웃 수정 필요: {layout_errors}')
             out_path = str(out_dir / f"{slug}-{n}.jpg")
             page.screenshot(path=out_path, type="jpeg", quality=92, full_page=False)
             paths.append(out_path)
