@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import re
+from pathlib import Path
 
 from anthropic import Anthropic
 
@@ -20,123 +21,7 @@ MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
 # 3,000토큰으로는 JSON 이 중간에서 잘려 파싱에 실패합니다. 넉넉히 잡습니다.
 MAX_TOKENS = 8000
 
-SYSTEM = """당신은 개인투자자용 미니 리서치 리포트를 만드는 금융 에디터입니다.
-매일 시장에서 주목받는 '오늘의 특징주' 하나를 골라 7장으로 정리합니다.
-
-목표는 "주식 초보도 읽기 쉽지만, 금융 전문가가 봐도 허술하지 않은" 콘텐츠입니다.
-
-━━ 가장 중요: 문장 길이 ━━
-모바일에서 읽는 콘텐츠입니다. 카드 한 줄에 약 38자가 들어갑니다.
-각 설명 문장은 반드시 한 줄 안에 끝나도록 씁니다.
-
-길면 글자를 줄이지 말고 문장을 짧게 다시 쓰세요.
-  나쁜 예: "이번 실적 발표를 통해 시장에서는 향후 성장 가능성에 대한 기대감이 더욱 확대되고 있습니다"
-  좋은 예: "실적이 개선되며 시장 기대가 커졌습니다"
-
-한 항목에 두 문장 이상 넣지 않습니다. 쉼표로 길게 잇지 않습니다.
-정보를 줄이는 것이 곧 전문적인 디자인입니다.
-
-━━ 절대 원칙 ━━
-- 제공된 JSON 에 있는 수치만 씁니다. 없는 숫자·기업명·뉴스를 지어내지 않습니다.
-- 사실(Fact)과 시장의 기대(Expectation)를 명확히 구분합니다. 기대를 사실처럼
-  쓰지 마세요. 기대는 "~할 것으로 기대", "~가능성" 어조로.
-- 매수·매도를 권유하지 않습니다. "무조건", "확정", "폭등", "대박", "지금 안 사면
-  늦는다", "목표가 XXX" 전부 금지.
-- 좋은 이야기만 쓰지 않습니다. 리스크도 제시하되 공포를 조성하지 않습니다.
-- 스키마의 설명 문구를 그대로 값으로 넣지 마세요. 실제 내용을 새로 씁니다.
-
-━━ 전문성 ━━
-숫자를 읽어주는 데서 그치지 말고, 그 숫자가 의미하는 바를 짚습니다.
-  얕은 예: "매출이 58% 늘었다"
-  깊은 예: "매출보다 이익이 더 빨리 늘어 수익 구조가 바뀌는 중"
-
-가능하면 다음 관점 중 하나를 문장에 녹입니다.
-- 성장의 질: 외형만 큰지, 이익도 따라오는지
-- 지속 가능성: 일회성인지 구조적 변화인지
-- 기대와 현실의 간격: 주가에 이미 반영됐는지
-- 상대 비교: 업종 평균이나 경쟁사 대비 어느 위치인지
-- 수급 주체: 누가 사고 누가 파는지
-
-다만 데이터에 없는 내용을 지어내면서까지 깊이를 흉내내지 마세요.
-근거가 없으면 얕게 쓰는 편이 낫습니다.
-
-━━ 초보자 배려 ━━
-전문 용어는 괄호로 짧게 풉니다. EPS = 주당순이익 / PER = 이익 대비 주가 수준.
-다만 내용의 깊이는 낮추지 않습니다.
-
-━━ 문장 리듬 (매우 중요) ━━
-기계가 찍어낸 듯한 글이 되지 않게 합니다. 다음을 지키세요.
-
-1. 어미를 반복하지 마세요. 한 페이지 안에서 "~습니다"가 연달아 나오면 안 됩니다.
-   나쁜 예: "예상을 넘었습니다 / 신호로 읽혔습니다 / 늘었습니다"
-   좋은 예: "예상을 훌쩍 넘었다 / 시장은 이걸 진짜 수요로 읽었다 / 거래량은 평소의 두 배"
-   명사로 끝내거나, 반말 서술형("~다")을 섞거나, 숫자로 끝내는 식으로 변주하세요.
-
-2. 같은 페이지의 항목끼리 문장 구조를 다르게 하세요. 전부 "주어 + 동사 + 습니다"로
-   맞추지 말고, 어떤 건 짧게 끊고 어떤 건 숫자를 앞에 두는 식으로.
-
-3. 사람이 말하듯 씁니다. "~로 인해", "~에 따라", "~하는 모습을 보였다" 같은
-   보고서 투를 피하고 일상어로 씁니다.
-   나쁜 예: "실적 개선에 따라 투자 심리가 개선되는 모습"
-   좋은 예: "실적이 좋아지자 분위기가 바뀌었다"
-
-4. 뻔한 문구를 쓰지 마세요. "주목받고 있습니다", "관심이 집중", "기대감이 확대",
-   "~할 것으로 전망됩니다" 같은 표현은 전부 금지.
-
-5. 같은 단어를 한 페이지에서 두 번 이상 반복하지 마세요.
-
-반드시 아래 JSON 만 출력합니다. 코드펜스, 설명, 서론 없이 JSON 객체 하나만.
-
-{
-  "hook1": "14~20자. 표지 첫 줄. 사실에 근거한 궁금증. 예: 실적은 좋은데,",
-  "hook2": "16~24자. 표지 둘째 줄. 질문을 완성. 예: 주가는 왜 빠졌을까",
-  "spotlight": "오늘의 핵심 사건 한 줄. 24자 이내. 예: AI 서버 수주가 실적으로 확인됐다",
-
-  "p2_headline": "14자 이내. 예: 어제 정확히 무슨 일이",
-  "p2_accent": "p2_headline 안에 그대로 있는 2~5자 핵심 단어",
-  "p2_timeline": [
-    {"when": "시점 12자 이내. 예: 장 마감 후", "what": "무슨 일이 있었는지 26자 이내"}
-  ],
-  "p2_diff": "기존 예상과 무엇이 달랐는지 한 줄. 32자 이내. 예상치가 있으면 숫자로.",
-
-  "p3_headline": "14자 이내. 예: 이 뉴스가 왜 중요한가",
-  "p3_accent": "p3_headline 안의 2~5자 핵심 단어",
-  "p3_biz": "이 회사가 무엇을 팔아 돈을 버는지 한 줄. 30자 이내. 이번 이슈를 이해하는 데 필요한 만큼만.",
-  "p3_flow": [
-    {"step": "이번 변화", "text": "12자 이내"},
-    {"step": "영향받는 사업", "text": "12자 이내"},
-    {"step": "실적에서 볼 것", "text": "12자 이내"}
-  ],
-  "p3_note": "이 경로가 확정인지 기대인지 구분한 한 줄. 32자 이내. 예: 아직 매출로 잡히진 않았고 다음 분기에 확인 가능",
-
-  "p4_headline": "14자 이내. 예: 숫자로 확인해보면",
-  "p4_accent": "p4_headline 안의 2~5자 핵심 단어",
-  "p4_reading": "지표들이 말해주는 것 한 줄. 34자 이내. 증가율이 둔화 중이면 그 점을 짚습니다.",
-
-  "p5_headline": "14자 이내. 예: 주가는 무엇을 반영했나",
-  "p5_accent": "p5_headline 안의 2~5자 핵심 단어",
-  "p5_reading": "주가 반응을 어떻게 읽어야 하는지 한 줄. 34자 이내. '올랐다'와 '앞으로 오른다'를 구분해서.",
-  "p5_caution": "주가 반응 해석 시 주의할 점 한 줄. 32자 이내. 예: 거래량이 실렸지만 하루치 움직임일 수 있다",
-
-  "p6_headline": "14자 이내. 예: 기대할 점과 확인할 위험",
-  "p6_accent": "p6_headline 안의 2~5자 핵심 단어",
-  "p6_bull": [
-    {"title": "기대 요인 10자 이내", "text": "어떤 조건이 충족되면 뒷받침되는지 26자 이내"}
-  ],
-  "p6_bear": [
-    {"title": "위험 요인 10자 이내", "text": "어떤 조건이 깨지면 재검토해야 하는지 26자 이내"}
-  ],
-
-  "p7_oneline": "이 기업을 한 문장으로. 28자 이내. 예: 기업용 서버와 PC를 만드는 하드웨어 회사",
-  "p7_line": "이번 이슈의 핵심 결론 한 줄. 34자 이내. 앞 문장 반복 말고 '무엇을 기억할지'로.",
-  "p7_checks": [
-    {"text": "앞으로 확인할 지표 22자 이내"}
-  ],
-
-  "kr_line": "한국 증시 영향 한 줄. 36자 이내. 외국인 순매수·환율 데이터가 있으면 인용. 전망 어조.",
-  "kakao_text": "카톡 알림용 요약. 150자 이내.",
-  "instagram_caption": "인스타 캡션 본문만. 150~250자. 해시태그·팔로우 유도·종목명은 코드가 붙이므로 넣지 마세요."
-}"""
+SYSTEM = (Path(__file__).parent / "photo_editorial_prompt.txt").read_text(encoding="utf-8")
 
 
 def _extract_json(text: str) -> dict:
@@ -153,10 +38,11 @@ def _extract_json(text: str) -> dict:
 
 
 def _fallback(data: dict) -> dict:
-    """API 가 실패해도 카드가 자연스럽게 보이도록 원본 수치로 채웁니다.
+    """AI 가 실패해도 카드가 충분히 채워지도록, 데이터로 만들 수 있는 문장을 최대한 만듭니다.
 
-    차트·표·게이지는 AI 와 무관하게 항상 렌더되므로, 여기서는 문장만
-    최소한으로 채우고 나머지는 빈 문자열로 둡니다(해당 블록이 자동으로 숨음).
+    실제로 AI 실패 시 폴백이 얇아서 위험 칸이 비고 마지막 장이 텅 빈 채
+    발송된 적이 있습니다. 그래서 각 장마다 수치에서 끌어낼 수 있는 설명을
+    빠짐없이 채우고, 특히 위험 요인은 어떤 경우에도 비우지 않습니다.
     """
     f = data.get("focus", {})
     tk = f.get("ticker", "")
@@ -165,66 +51,215 @@ def _fallback(data: dict) -> dict:
     rvol = f.get("rvol")
     v = f.get("valuation") or {}
     g = f.get("growth") or {}
-    ern = f.get("earnings") or {}
-    peer_per = f.get("peer_avg_per")
+    e = f.get("earnings") or {}
+    a = f.get("analyst") or {}
+    lv = f.get("levels") or {}
+    sm = f.get("smart_money") or {}
+    w52 = f.get("w52") or {}
     industry = f.get("industry", "")
+    try:
+        from render import _industry_kr
+        ind_kr = _industry_kr(industry)
+    except Exception:
+        ind_kr = industry
+    is_reit = "reit" in industry.lower()
 
-    direction = "급등" if (pct or 0) >= 5 else "상승" if (pct or 0) > 0 else \
-                "급락" if (pct or 0) <= -5 else "하락"
+    up = (pct or 0) >= 0
+    mv = "올랐" if up else "내렸"
+    pct_txt = f"{abs(pct):.1f}%" if pct is not None else ""
 
-    spot = ""
-    if ern.get("surprise") is not None:
-        spot = f"실적이 예상보다 {ern['surprise']:+.0f}% 나왔다"
-    elif rvol:
-        spot = f"거래량이 평소의 {rvol:.1f}배로 늘었다"
+    # ── 표지
+    surprise = e.get("surprise")
+    rev = g.get("revenue")
 
-    timeline = []
-    if ern.get("date"):
-        timeline.append({"when": ern["date"], "what": "분기 실적 발표"})
-    if pct is not None:
-        timeline.append({"when": "정규장", "what": f"주가 {abs(pct):.1f}% {direction}"})
+    # 원인을 자료로 확정할 수 없으므로 "왜 빠졌을까"처럼 인과를 묻는 제목은
+    # 쓰지 않습니다. 답할 수 있는 질문으로 범위를 좁혀야 마지막 장에서 실제로
+    # 답을 낼 수 있습니다.
+    if surprise is not None and surprise > 0 and not up:
+        title = "실적은 넘겼는데 주가는 내렸습니다"
+    elif surprise is not None and surprise < 0 and up:
+        title = "실적은 밑돌았는데 주가는 올랐습니다"
+    elif rev is not None and rev < 0 and up:
+        title = "매출은 줄었는데 주가는 올랐습니다"
+    elif rvol and rvol >= 2:
+        title = f"거래량이 평소의 {rvol:.1f}배로 뛰었습니다"
+    else:
+        title = f"{tk}, 이번 분기에서 볼 것은"
 
-    diff = ""
-    if ern.get("eps_est") is not None and ern.get("eps_act") is not None:
-        diff = f"예상 ${ern['eps_est']} → 실제 ${ern['eps_act']}"
-
-    p4 = ""
-    if g.get("revenue") is not None:
-        p4 = f"매출은 1년 전보다 {g['revenue']*100:+.0f}% 늘었다"
-
-    p5 = ""
-    if rvol:
-        p5 = f"거래량이 평소의 {rvol:.1f}배로 실렸다"
-
-    bull, bear = [], []
-    if g.get("revenue") is not None and g["revenue"] > 0.1:
-        bull.append({"title": "매출 성장", "text": f"전년 대비 {g['revenue']*100:+.0f}% 유지 여부가 관건"})
-    if ern.get("beat"):
-        bull.append({"title": "실적 서프라이즈", "text": "다음 분기에도 이어지는지 확인 필요"})
+    sub = f"하루 만에 {pct_txt} {mv}습니다"
     if rvol and rvol >= 1.5:
-        bear.append({"title": "단기 변동성", "text": f"거래량 {rvol:.1f}배로 급등 후 되돌림 가능"})
-    if v.get("forward_per") and peer_per and v["forward_per"] > peer_per:
-        bear.append({"title": "밸류 부담", "text": "업종 평균보다 높은 배수가 유지될지"})
+        sub += f". 거래량은 평소의 {rvol:.1f}배"
+
+    # ── 2장: 무엇이 움직였나
+    p2_secs = []
+    if e.get("date") and e.get("eps_act") is not None:
+        p2_secs.append({"h": "최근 발표",
+                        "t": f"{e['date']} 분기 실적. 주당순이익 ${e['eps_act']}."})
+    if e.get("eps_est") is not None and e.get("eps_act") is not None:
+        diff = "웃돌았" if e.get("beat") else "밑돌았"
+        p2_secs.append({"h": "예상과의 차이",
+                        "t": f"예상 ${e['eps_est']} 대비 {abs(surprise or 0):.0f}% {diff}네요. 같은 기준인지는 원자료 확인이 필요합니다."})
+    p2_secs.append({"h": "확인된 것과 해석",
+                    "t": "다만 오늘 움직임의 직접 원인은 자료로 확인되지 않습니다."})
+
+    # 질문("무엇이 움직였나")에 실제로 답하는 문장. 등락률 반복은 답이 아닙니다.
+    if surprise is not None and e.get("date"):
+        p2_a = f"{e['date']} 실적이 예상과 달랐습니다"
+    elif rvol and rvol >= 1.8:
+        p2_a = f"거래량이 평소의 {rvol:.1f}배. 주체까진 알 수 없습니다"
+    else:
+        p2_a = "딱 하나로 꼽을 원인은 자료에서 확인되지 않습니다"
+
+    # ── 3장: 어떻게 돈을 버나
+    p3_flow = []
+    if is_reit:
+        p3_flow = [{"step": "제품·서비스", "text": "건물 임대"},
+                   {"step": "고객", "text": "입주 기업"},
+                   {"step": "돈이 되는 변수", "text": "공실률·임대료"}]
+        p3_a = "부동산을 임대하고 운영하는 사업입니다"
+        p3_secs = [{"h": "회계가 만드는 착시",
+                    "t": "감가상각은 원가를 기간에 나누는 회계 처리예요. 건물 시세가 떨어졌다는 뜻이 아닙니다."},
+                   {"h": "그래서 함께 보는 것",
+                    "t": "그래서 감가상각 등을 조정한 FFO를 함께 봅니다. 임대료 입금액과는 다른 개념이에요."}]
+    else:
+        p3_a = f"{ind_kr} 쪽에서 수익을 내는 회사입니다" if ind_kr else f"{name}가 돈을 버는 구조를 봅니다"
+        p3_secs = []
+        if ind_kr:
+            p3_secs.append({"h": "무슨 일을 하나",
+                            "t": f"{ind_kr} 업종. 수요와 가격이 바뀌면 실적도 따라 움직입니다."})
+        if v.get("margin") is not None:
+            mg = v["margin"] * 100
+            if mg < 0:
+                read = "아직 버는 것보다 쓰는 게 많습니다"
+            elif mg < 10:
+                read = "얇은 편이라 매출이 흔들리면 이익은 크게 움직여요"
+            elif mg < 25:
+                read = "무난한 수준. 매출이 늘면 이익도 따라옵니다"
+            else:
+                read = "두툼한 편. 가격을 지킬 힘이 있다는 신호죠"
+            p3_secs.append({"h": "남는 돈",
+                            "t": f"매출 100원 중 {mg:.1f}원이 남습니다. {read}."})
+        if g.get("revenue") is not None and v.get("margin") is not None:
+            rv2 = g["revenue"] * 100
+            p3_secs.append({"h": "지금 상태",
+                            "t": f"매출은 1년 전보다 {abs(rv2):.0f}% {'늘었' if rv2 > 0 else '줄었'}고, "
+                                 f"마진은 {v['margin']*100:.1f}%. 둘을 같이 봐야 합니다."})
+        if not p3_secs:
+            p3_secs.append({"h": "확인된 것",
+                            "t": "세부 자료가 아직 부족합니다. 다음 공시에서 확인할 부분이에요."})
+
+    # ── 4장: 실적
+    p4_secs = []
+    if rev is not None:
+        verb = "늘었" if rev > 0 else "줄었"
+        p4_secs.append({"h": "매출 변화",
+                        "t": f"1년 전 같은 분기보다 {abs(rev*100):.0f}% {verb}습니다."})
+    hist = e.get("history") or []
+    if len(hist) >= 3:
+        beats = sum(1 for h in hist if h)
+        p4_secs.append({"h": "과거 기록",
+                        "t": f"최근 {len(hist)}분기 중 {beats}번 예상을 넘었어요. 다음 분기 확률은 아닙니다."})
+    if e.get("next_date"):
+        p4_secs.append({"h": "다음 확인",
+                        "t": f"다음 실적 {e['next_date']} 예정. 확정 여부는 회사 공지로 확인하세요."})
+
+    if rev is not None and surprise is not None:
+        if surprise > 0 and rev < 0:
+            p4_a = "예상은 넘겼지만 매출은 줄었습니다"
+        elif surprise > 0:
+            p4_a = "예상도 넘겼고 매출도 늘었습니다"
+        else:
+            p4_a = "이번엔 예상에 못 미쳤습니다"
+    else:
+        p4_a = "확인되는 실적 숫자만 모아봤습니다"
+
+    # ── 5장: 주가 여유
+    p5_secs = []
+    if w52.get("pos") is not None:
+        p5_secs.append({"h": "1년 가격 범위",
+                        "t": f"저 ${w52.get('low', 0):.0f} ~ 고 ${w52.get('high', 0):.0f} 사이 {w52['pos']:.0f}% 지점. 위치가 싸다는 뜻은 아닙니다."})
+    if a.get("target_mean") and a.get("count"):
+        p5_secs.append({"h": "애널리스트 목표가",
+                        "t": f"{a['count']}명 평균 ${a['target_mean']:,.1f}. 전망을 모은 참고치일 뿐이에요."})
+    if is_reit:
+        p5_secs.append({"h": "평가 기준의 한계",
+                        "t": "PER만으론 왜곡이 생깁니다. 주가/주당FFO와 배당수익률을 함께 보세요."})
+    elif v.get("forward_per"):
+        p5_secs.append({"h": "평가의 한계",
+                        "t": f"선행 PER {v['forward_per']:.1f}배. 어떤 이익 추정을 썼는지에 따라 달라집니다."})
+
+    # ── 6장: 틀릴 수 있는 이유 (위험 칸은 절대 비우지 않습니다)
+    bull, bear = [], []
+    if e.get("beat"):
+        bull.append({"fact": "직전 분기 예상 상회", "check": "다음 분기 EPS 추정치 변화"})
+    if rev is not None and rev > 0.05:
+        bull.append({"fact": f"매출 {rev*100:+.0f}% 성장", "check": "성장률 유지 여부"})
+
+    if rev is not None and rev < 0:
+        bear.append({"fact": f"매출 {rev*100:+.0f}% 감소", "check": "다음 분기 매출 반등 여부"})
+    if rvol and rvol >= 1.8:
+        bear.append({"fact": f"거래량 {rvol:.1f}배로 급증", "check": "며칠간 거래량이 이어지는지"})
+    if sm.get("short_pct") is not None and sm["short_pct"] >= 0.05:
+        # 기준일·분모를 밝히지 않은 채 위험 등급으로 바꾸지 않습니다.
+        bear.append({"fact": f"공매도 잔고 비중 {sm['short_pct']*100:.1f}% (집계 기준일 확인 필요)",
+                     "check": "다음 집계일의 잔고 증감"})
+    if is_reit:
+        bear.append({"fact": "금리에 민감한 리츠 구조", "check": "미 국채 10년물 금리 방향"})
+    if not bear:
+        # 어떤 데이터도 없을 때의 최후 보루. 빈 칸으로 내보내지 않습니다.
+        bear.append({"fact": "단일 분기 데이터에 기댄 해석", "check": "다음 분기 실적으로 재확인"})
+    if not bull:
+        bull.append({"fact": "추가 확인이 필요한 상태", "check": "다음 실적 발표 내용"})
+
+    # ── 7장: 기억할 것
+    facts = []
+    if pct is not None:
+        facts.append(f"주가 {pct:+.1f}%, 거래량 {rvol:.1f}배" if rvol else f"주가 {pct:+.1f}%")
+    if surprise is not None:
+        facts.append(f"EPS 예상 대비 {surprise:+.0f}%")
+    if rev is not None:
+        facts.append(f"매출 전년 대비 {rev*100:+.0f}%")
 
     checks = []
-    if ern.get("next_date"):
-        checks.append({"text": f"{ern['next_date']} 다음 실적"})
-    if g.get("revenue") is not None:
-        checks.append({"text": "매출 성장률이 유지되는지"})
+    if e.get("next_date"):
+        checks.append(f"{e['next_date']} 다음 실적 발표 (예정)")
+    if is_reit:
+        checks.append("공실률과 임대료 갱신율")
+        checks.append("미 국채 10년물 금리")
+    else:
+        if rev is not None:
+            checks.append("다음 분기 매출이 반등하는지" if rev < 0 else "매출 성장률이 둔화되는지")
+        if a.get("target_mean"):
+            checks.append("애널리스트 목표가 조정 방향")
+
+    # 표지에서 던진 질문에 마지막 장이 실제로 답하게 합니다.
+    if surprise is not None and surprise > 0 and not up:
+        conclusion = ("예상을 넘긴 건 맞지만, 주가가 내린 직접 원인은 지금 자료로 "
+                      "확인되지 않습니다. 실적의 질과 다음 전망부터 확인하는 게 순서예요")
+    elif rev is not None and rev < 0:
+        conclusion = ("한 분기 예상 상회보다, 매출이 줄어든 흐름이 이어지는지가 "
+                      "판단의 기준입니다")
+    elif rev is not None and rev > 0 and surprise is not None and surprise > 0:
+        conclusion = ("예상도 넘기고 매출도 늘었습니다. 다만 이 속도가 유지되는지는 "
+                      "다음 분기에 갈립니다")
+    else:
+        conclusion = ("지금 자료로는 방향을 단정하기 어렵습니다. 아래 지표부터 "
+                      "확인하는 게 순서예요")
 
     return {
-        "hook1": "오늘 시장이", "hook2": "이 종목에 주목했다",
-        "spotlight": spot,
-        "p2_headline": "어제 무슨 일이", "p2_accent": "무슨 일",
-        "p2_timeline": timeline, "p2_diff": diff,
-        "p3_headline": "이 뉴스가 왜 중요한가", "p3_accent": "왜 중요",
-        "p3_biz": industry, "p3_flow": [], "p3_note": "",
-        "p4_headline": "숫자로 확인해보면", "p4_accent": "숫자", "p4_reading": p4,
-        "p5_headline": "주가는 어떻게 움직였나", "p5_accent": "주가",
-        "p5_reading": p5, "p5_caution": "",
-        "p6_headline": "기대할 점과 확인할 위험", "p6_accent": "위험",
+        "cover_title": title, "cover_sub": sub, "conclusion": conclusion,
+        "cover_qs": ["무엇이 주가를 움직였을까", "이 회사는 어떻게 돈을 벌까", "기대가 틀릴 수 있는 이유는"],
+        "p2_q": "무엇이 주가를 움직였을까", "p2_a": p2_a, "p2_secs": p2_secs,
+        "p3_q": "이 회사는 어떻게 돈을 벌까", "p3_a": p3_a, "p3_flow": p3_flow, "p3_secs": p3_secs,
+        "p4_q": "실적은 이어질 수 있을까", "p4_a": p4_a, "p4_secs": p4_secs,
+        "p5_q": "주가에도 여유가 있을까", "p5_a": "지금 가격에 담긴 기대를 짚어봅니다", "p5_secs": p5_secs,
+        "p6_q": "어떤 조건이면 해석이 달라질까", "p6_a": "조건과 확인 지표를 함께 봅니다",
         "p6_bull": bull, "p6_bear": bear,
-        "p7_oneline": industry, "p7_line": "", "p7_checks": checks,
+        "p7_oneline": p3_a,
+        "p7_facts": facts,
+        "p7_keep": "다음 분기에도 실적이 예상을 넘어설 때",
+        "p7_review": "매출 감소가 이어지거나 회사 전망이 낮아질 때",
+        "p7_checks": checks,
         "kr_line": "",
         "kakao_text": f"{name} {pct:+.1f}%" if pct is not None else name,
         "instagram_caption": "",
@@ -232,7 +267,8 @@ def _fallback(data: dict) -> dict:
 
 
 _LIST_LIMITS = {
-    "p2_timeline": 3, "p3_flow": 3, "p6_bull": 2, "p6_bear": 2, "p7_checks": 3,
+    "cover_qs": 3, "p2_secs": 3, "p3_flow": 3, "p3_secs": 2, "p4_secs": 3,
+    "p5_secs": 3, "p6_bull": 2, "p6_bear": 2, "p7_facts": 3, "p7_checks": 3,
 }
 
 _DROP_FIELDS = ("series", "series_60", "_peer_raw", "spark")
@@ -327,8 +363,30 @@ def summarize(data: dict) -> dict:
         return _fallback(data)
 
     base = _fallback(data)
+
+    # setdefault 는 키가 있으면 값이 빈 문자열이어도 그대로 둡니다.
+    # AI 가 필드를 빈 값으로 돌려주면 카드가 비어버리므로, 실제로 내용이
+    # 있는지까지 보고 채웁니다.
+    filled, empty = 0, []
     for k, v in base.items():
-        result.setdefault(k, v)
+        cur = result.get(k)
+        if cur is None or (isinstance(cur, str) and not cur.strip()) or \
+           (isinstance(cur, list) and not cur):
+            if v:
+                result[k] = v
+            empty.append(k)
+        else:
+            filled += 1
+
     for key, limit in _LIST_LIMITS.items():
         result[key] = (result.get(key) or [])[:limit]
+
+    # 몇 개나 AI 가 실제로 채웠는지 남깁니다. 이 숫자가 낮으면 프롬프트나
+    # 모델 응답에 문제가 있다는 뜻이라, 로그만 봐도 바로 알 수 있습니다.
+    total = len(base)
+    log.info("요약 필드 %d/%d 채움", filled, total)
+    if filled < total * 0.5:
+        log.warning("AI 응답이 절반 이상 비었습니다. 비어 있던 필드: %s",
+                    ", ".join(empty[:12]))
+
     return result
