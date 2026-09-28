@@ -67,43 +67,37 @@ def comparison(rows: list, unit: str = '') -> dict | None:
     return {'rows': clean, 'zero': zero, 'unit': unit}
 
 
-def _legacy_pages(data: dict, s: dict) -> list:
-    """Bridge the existing summary keys. No missing-data narratives are fabricated."""
-    def rows(key):
-        return [{'label': x.get('h',''), 'text': x.get('t','')} for x in (s.get(key) or [])[:2]]
-    pages = [
-        {'layout':'cover','title':s.get('cover_title'), 'takeaway':s.get('cover_sub'), 'labels':[]},
-        {'layout':'photo','title':s.get('p2_q'), 'takeaway':s.get('p2_a'), 'labels':rows('p2_secs')},
-        {'layout':'annotated','title':s.get('p3_q'), 'takeaway':s.get('p3_a'),
-         'labels':[{'label':x.get('step',''),'text':x.get('text','')} for x in (s.get('p3_flow') or [])[:3]]},
-        {'layout':'comparison','title':s.get('p4_q'), 'takeaway':s.get('p4_a'), 'labels':rows('p4_secs')},
-        {'layout':'explain','title':s.get('p5_q'), 'takeaway':s.get('p5_a'), 'labels':rows('p5_secs')},
-        {'layout':'conditions','title':s.get('p6_q'), 'takeaway':s.get('p6_a'),
-         'branches':[{'label':'기대를 지지하는 근거','text':'; '.join(str(x.get('fact','')) for x in (s.get('p6_bull') or [])[:1]),
-                      'check':'; '.join(str(x.get('check','')) for x in (s.get('p6_bull') or [])[:1])},
-                     {'label':'다시 확인할 근거','text':'; '.join(str(x.get('fact','')) for x in (s.get('p6_bear') or [])[:1]),
-                      'check':'; '.join(str(x.get('check','')) for x in (s.get('p6_bear') or [])[:1])}]},
-        {'layout':'closing','title':'그래서, 지금의 답은', 'takeaway':s.get('conclusion'),
-         'labels':[{'label':str(i+1).zfill(2),'text':x} for i,x in enumerate((s.get('p7_checks') or [])[:3])]},
-    ]
-    return pages
-
-
 def build_photo_deck(data: dict, summary: dict) -> dict:
+    # Reject stale/thin summaries instead of silently replacing them with generic text.
+    from summarize import validate_summary
+    validate_summary(summary)
     photos = _photos(data)
-    stories = summary.get('visual_story') or _legacy_pages(data, summary)
+    stories = summary.get('visual_story')
     if not isinstance(stories, list) or len(stories) != 7:
         raise ValueError('visual_story 는 정확히 7장이어야 합니다.')
     layouts = {'cover','photo','annotated','comparison','explain','conditions','closing'}
     pages=[]
+    chapters=['오늘의 질문','확인된 변화','사업과 연결','숫자의 의미','평가의 기준','반론과 조건','질문에 대한 답']
+    sources={x['id']:x for x in summary['sources']}
+    evidence={x['id']:x for x in summary['evidence_notes']}
     for index, raw in enumerate(stories):
         layout=raw.get('layout')
         if layout not in layouts:
             raise ValueError(f'지원하지 않는 layout: {layout}')
-        labels=[{'label':_text(x.get('label'),24), 'text':_text(x.get('text'),70)} for x in (raw.get('labels') or [])[:3]]
+        labels=[{'label':_text(x.get('label'),32), 'text':_text(x.get('text'),70),
+                 'note':_text(x.get('note'),60)} for x in (raw.get('labels') or [])[:3]]
+        source_ids=list(dict.fromkeys(sid for eid in raw['evidence_ids'] for sid in evidence[eid]['source_ids']))
+        # Keep the card readable even when original publication titles are long.
+        source_line='출처 '+ '·'.join(source_ids) + ' / 원문·기준일은 게시물 캡션 참고'
         page={**raw,'layout':layout,'title':_text(raw.get('title'),55),
-              'takeaway':_text(raw.get('takeaway'),140), 'labels':labels,
+              'body':_text(raw.get('body'),170), 'bridge':_text(raw.get('bridge'),45),
+              'chapter':chapters[index], 'source_line':_text(raw.get('source_line') or source_line,160),
+              'takeaway':_text(raw.get('takeaway'),70), 'labels':labels,
               'photo':photos['business' if index in (1,4,5) else 'cover']}
+        if raw.get('photo_role'):
+            if raw['photo_role'] not in photos:
+                raise ValueError(f"등록되지 않은 photo_role: {raw['photo_role']}")
+            page['photo']=photos[raw['photo_role']]
         if not page['title']:
             raise ValueError(f'{index+1}장 제목이 없습니다.')
         page['chart']=None
@@ -122,7 +116,8 @@ def build_photo_deck(data: dict, summary: dict) -> dict:
                     raise ValueError('차트에는 source와 note가 필요합니다.')
                 page['chart']=comparison(chart.get('rows') or [], chart.get('unit',''))
                 if page['chart']:
-                    page['chart'].update(note=chart['note'],source=chart['source'])
+                    page['chart'].update(note=_text(chart['note'],100),source=_text(chart['source'],120),
+                                         annotation=_text(chart.get('annotation'),65))
             if not page['chart'] and not labels:
                 raise ValueError('차트 자료가 없으면 의미 있는 labels로 근거를 설명하세요.')
         if layout=='conditions':
@@ -134,5 +129,5 @@ def build_photo_deck(data: dict, summary: dict) -> dict:
     if [p['layout'] for p in pages].count('cover')!=1 or pages[0]['layout']!='cover' or pages[-1]['layout']!='closing':
         raise ValueError('첫 장은 cover, 마지막 장은 closing 이어야 합니다.')
     return {'pages':pages,'font':_embed(ROOT/'assets/NotoSansKR.ttf'),
-            'edition':_text(summary.get('edition','한 종목 깊이 읽기'),30),
+            'edition':_text(summary.get('edition','한 종목 깊이 읽기'),50),
             'footer':_text(summary.get('source_line','자료 출처·기준일은 게시물 캡션 참고'),90)}
