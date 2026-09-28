@@ -1,4 +1,4 @@
-"""1단계: 데이터 수집 → 요약 → 카드 5장·상세페이지 생성.
+"""1단계: 데이터 수집 → 사진 준비 → 요약 → 카드 7장·상세페이지 생성.
 
 발송은 하지 않습니다. GitHub Pages 에 푸시된 다음 publish.py 가 발송합니다.
 """
@@ -8,6 +8,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -15,6 +16,7 @@ import config as cfg
 from collect import collect_all
 from render import CARD_COUNT, render_cards, render_detail_page
 from summarize import summarize
+from visual_assets import prepare_visual_assets
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("build")
@@ -22,6 +24,11 @@ log = logging.getLogger("build")
 
 def is_market_holiday(now: dt.datetime) -> bool:
     """한국 증시 휴장일이면 True. 판단이 불확실하면 False (그냥 실행)."""
+    # 한국 휴장일 조회는 미국 종목 카드 생성의 필수 입력이 아닙니다.
+    # 자격 정보 없이 pykrx를 호출하면 로그인·JSON 오류만 반복됩니다.
+    if not (os.environ.get("KRX_ID") and os.environ.get("KRX_PW")):
+        log.info("KRX 자격 정보 없음 — 한국 휴장일 조회를 건너뜁니다")
+        return False
     try:
         from pykrx import stock
 
@@ -94,9 +101,18 @@ def _build_caption(data: dict, summary: dict) -> str:
         tags.insert(0, f"#{tk}")
     tag_line = " ".join(tags)
 
-    parts = [head, "", body, "", footer, "", CAPTION_DISCLAIMER, "", tag_line]
-    caption = "\n".join(p for p in parts if p is not None)
-    return caption[:2000]
+    # 원고 끝의 근거 URL을 잘라내지 않습니다. 선택 문구만 여유가 있을 때 추가합니다.
+    if not body:
+        raise ValueError("게시할 인스타그램 본문이 없습니다.")
+    if len(body) > 2200:
+        raise ValueError("출처를 포함한 인스타그램 본문이 2,200자를 넘습니다.")
+    caption = body
+    if head and len(head) + 2 + len(caption) <= 2200:
+        caption = head + "\n\n" + caption
+    for optional in (CAPTION_DISCLAIMER, footer, tag_line):
+        if optional and optional not in caption and len(caption) + 2 + len(optional) <= 2200:
+            caption += "\n\n" + optional
+    return caption
 
 
 def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_url: str) -> list[dict]:
@@ -104,6 +120,16 @@ def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_ur
 
     설명이 비면 카톡에서 제목만 덩그러니 보이므로 대체 문구를 둡니다.
     """
+    stories = summary.get("visual_story")
+    if isinstance(stories, list) and len(stories) == CARD_COUNT:
+        if len(image_urls) != CARD_COUNT:
+            raise ValueError("카카오 카드와 이미지 수가 맞지 않습니다.")
+        # 새 원고의 본문을 직접 사용합니다. 구형 p7_checks 문자열에 .get()을
+        # 호출하던 경로를 거치지 않아 카드 생성 후 발생하던 형식 오류를 없앱니다.
+        return [{"title": story["title"].replace("\n", " "),
+                 "description": story["body"], "image_url": image_url,
+                 "link_url": link_url}
+                for story, image_url in zip(stories, image_urls)]
     f = data.get("focus", {})
     tk = f.get("ticker", "")
     pct = f.get("pct")
@@ -111,7 +137,9 @@ def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_ur
     tk_txt = f"{tk} {pct:+.2f}%" if tk and pct is not None else name
 
     def _join(items, key, sep=" / ", n=3):
-        return sep.join(str(i.get(key, "")) for i in (items or [])[:n] if i.get(key))
+        values = [str(i.get(key, "")) if isinstance(i, dict) else str(i)
+                  for i in (items or [])[:n]]
+        return sep.join(value for value in values if value)
 
     hook = " ".join(x for x in [summary.get("hook1"), summary.get("hook2")] if x)
     timeline = _join(summary.get("p2_timeline"), "what")
@@ -152,6 +180,11 @@ def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_ur
 
 def main() -> int:
     now = dt.datetime.now(cfg.KST)
+    out_dir = Path(cfg.OUT_DIR)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    # 로컬 재실행 때 지난 성공 결과가 이번 실패 결과로 잘못 게시되지 않도록 정리합니다.
+    for stale in ("skip", "state.json"):
+        (out_dir / stale).unlink(missing_ok=True)
 
     if "--force" not in sys.argv and is_market_holiday(now):
         log.info("오늘은 한국 증시 휴장일입니다. 브리핑을 건너뜁니다.")
@@ -162,6 +195,9 @@ def main() -> int:
     log.info("데이터 수집 중")
     history = load_history()
     data = collect_all(history)
+    log.info("수집 확인: 뉴스 %d개 · 종목 뉴스 %d개 · 출처 %d개",
+             len(data.get("news") or []), len(data.get("focus_news") or []),
+             len(data.get("sources") or []))
 
     focus = data.get("focus", {})
     if not focus.get("ticker"):
@@ -172,6 +208,9 @@ def main() -> int:
     # 이전 종목의 카드와 파일명이 겹쳐, 캐시 탓에 1장만 옛 종목이 섞이는 일이
     # 생깁니다(실제로 INTC 표지 + GNRC 본문이 나간 적 있음).
     slug = f"{now.strftime('%Y-%m-%d')}-{focus['ticker'].lower()}"
+
+    log.info("%s 사진 준비 중", focus['ticker'])
+    data = prepare_visual_assets(data)
 
     log.info("요약 생성 중")
     summary = summarize(data)
