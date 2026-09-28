@@ -7,9 +7,15 @@ yfinance 의 info 필드는 종목마다 누락이 잦아 모든 접근을 방�
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import logging
 import math
+import os
 import re
+from email.utils import parsedate_to_datetime
+from html.parser import HTMLParser
+from urllib.parse import quote as urlquote, urlsplit
+from zoneinfo import ZoneInfo
 
 import feedparser
 import pandas as pd
@@ -31,6 +37,128 @@ SECTOR_KR = {
 
 
 # ══ 공통 유틸 ═══════════════════════════════════════════
+
+def _utc_now() -> str:
+    return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+
+
+def _public_url(value) -> str | None:
+    """Keep a supplied HTTP(S) URL; never manufacture an article URL."""
+    if isinstance(value, dict):
+        value = value.get("url")
+    if not isinstance(value, str):
+        return None
+    value = value.strip()
+    try:
+        parsed = urlsplit(value)
+        if parsed.scheme in {"https", "http"} and parsed.hostname and not parsed.username and not parsed.password:
+            return value
+    except ValueError:
+        pass
+    return None
+
+
+def _published_time(value) -> str | None:
+    """Normalize provider time without substituting the collection time."""
+    if value is None or value == "":
+        return None
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        try:
+            return dt.datetime.fromtimestamp(value, dt.timezone.utc).isoformat(timespec="seconds")
+        except (ValueError, OverflowError, OSError):
+            return None
+    if hasattr(value, "isoformat"):
+        return value.isoformat()
+    if isinstance(value, str):
+        try:
+            return dt.datetime.fromisoformat(value.replace("Z", "+00:00")).isoformat()
+        except ValueError:
+            try:
+                return parsedate_to_datetime(value).isoformat()
+            except (ValueError, TypeError, OverflowError):
+                return value.strip() or None  # Preserve an unparsed provider date as supplied.
+    return None
+
+
+def _us_market_date(value) -> str | None:
+    try:
+        if isinstance(value, (int, float)) and not isinstance(value, bool):
+            return dt.datetime.fromtimestamp(value, dt.timezone.utc).astimezone(ZoneInfo("America/New_York")).strftime("%Y-%m-%d")
+    except (ValueError, OverflowError, OSError):
+        pass
+    return None
+
+
+class _FeedText(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts = []
+        self.hidden = 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in {"script", "style"}:
+            self.hidden += 1
+        if tag in {"p", "br", "div", "li"}:
+            self.parts.append(" ")
+
+    def handle_endtag(self, tag):
+        if tag in {"script", "style"} and self.hidden:
+            self.hidden -= 1
+        if tag in {"p", "div", "li"}:
+            self.parts.append(" ")
+
+    def handle_data(self, data):
+        if not self.hidden:
+            self.parts.append(data)
+
+
+def _feed_text(value) -> str:
+    if not isinstance(value, str):
+        return ""
+    parser = _FeedText()
+    parser.feed(value)
+    return " ".join("".join(parser.parts).split())
+
+
+def _provider_source(ticker: str, section: str, scope: str, retrieved_at: str,
+                     market_date: str | None = None) -> dict:
+    """Reference Yahoo's provider page for fields actually retrieved through yfinance.
+
+    This is provider provenance, not a claim that a company filing or that HTML
+    page was downloaded. Section routes are Yahoo's public quote-page routes.
+    """
+    routes = {"quotes": "history/", "profile": "profile/", "financials": "financials/", "metrics": "key-statistics/"}
+    symbol = urlquote(ticker, safe="")
+    return {
+        "id": "YF_" + re.sub(r"[^A-Z0-9]", "_", ticker.upper()) + "_" + section.upper(),
+        "title": f"Yahoo Finance · {ticker} · {section} (yfinance)",
+        "url": f"https://finance.yahoo.com/quote/{symbol}/{routes.get(section, '')}",
+        "as_of": f"거래일 {market_date}; 수집 {retrieved_at}" if market_date else f"수집 {retrieved_at}",
+        "retrieved_at": retrieved_at,
+        "market_date": market_date,
+        "evidence_scope": scope,
+        "source_type": "market_data_provider",
+        "retrieval_method": "Yahoo Finance data via yfinance; linked page is a provider reference, not downloaded article text",
+        "is_primary_filing": False,
+    }
+
+
+def _collect_sources(data: dict) -> list[dict]:
+    """Collect explicit provenance records; unrelated URLs are not evidence."""
+    gathered = {}
+    def walk(value):
+        if isinstance(value, dict):
+            if value.get("id") and value.get("title") and value.get("as_of") and _public_url(value.get("url")) and value.get("evidence_scope"):
+                gathered.setdefault(value["id"], value)
+            for key, child in value.items():
+                if key not in {"series", "series_60", "thumbnails"}:
+                    walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                walk(child)
+    walk(data)
+    return list(gathered.values())
+
 
 def _pct_change(closes: pd.Series) -> tuple[float | None, float | None]:
     s = closes.dropna()
@@ -77,6 +205,7 @@ def fetch_quotes(tickers: list[str]) -> dict[str, dict]:
         close.columns = [tickers[0]]
 
     out: dict[str, dict] = {}
+    retrieved_at = _utc_now()
     for t in tickers:
         if t not in close.columns:
             continue
@@ -84,11 +213,18 @@ def fetch_quotes(tickers: list[str]) -> dict[str, dict]:
         last, pct = _pct_change(close[t])
         if last is None:
             continue
+        last_bar = series.index[-1]
+        market_date = last_bar.strftime("%Y-%m-%d") if hasattr(last_bar, "strftime") else None
         out[t] = {
             "last": round(last, 2),
             "pct": round(pct, 2) if pct is not None else None,
             "series": [round(float(v), 4) for v in series.tail(10)],
             "series_60": [round(float(v), 4) for v in series.tail(60)],
+            "market_date": market_date,
+            "quote_as_of": last_bar.isoformat() if hasattr(last_bar, "isoformat") else str(last_bar),
+            "retrieved_at": retrieved_at,
+            "quote_basis": "Yahoo daily Close, auto_adjust=False; last available daily bar, not proof that today's session has closed",
+            "source": _provider_source(t, "quotes", "daily Close, daily change and price history", retrieved_at, market_date),
         }
     return out
 
@@ -194,6 +330,9 @@ def screen_universe() -> dict[str, dict]:
                 "volume": vol,
                 "avg_volume": avg,
                 "rvol": round(vol / avg, 2) if avg else None,
+                "quote_as_of": _published_time(q.get("regularMarketTime")),
+                "market_date": _us_market_date(q.get("regularMarketTime")),
+                "source": _provider_source(sym, "screener", "Yahoo screener regularMarketPrice, change, market cap and volume", _utc_now()),
             }
     log.info("스크리너 후보 %d개 확보", len(found))
     return found
@@ -319,7 +458,8 @@ def fetch_sector_rotation() -> list[dict]:
     """섹터 ETF 등락률. 자금이 어느 업종으로 돌았는지 보여줍니다."""
     q = fetch_quotes(list(cfg.SECTOR_ETFS))
     rows = [
-        {"label": name, "ticker": t, "pct": q[t]["pct"], "last": q[t]["last"]}
+        {"label": name, "ticker": t, "pct": q[t]["pct"], "last": q[t]["last"],
+         "market_date": q[t].get("market_date"), "source": q[t].get("source")}
         for t, name in cfg.SECTOR_ETFS.items()
         if t in q and q[t].get("pct") is not None
     ]
@@ -442,6 +582,10 @@ def _earnings(tk: yf.Ticker) -> dict:
                     "eps_act": round(act, 2),
                     "surprise": round(surprise, 1) if surprise is not None else None,
                     "beat": act >= est,
+                    "accounting_basis": "Yahoo provider EPS; GAAP versus adjusted basis not specified",
+                    "period_note": "date is the earnings announcement date, not the reported quarter end",
+                    "surprise_comparable": bool(est > 0 and act >= 0),
+                    "surprise_note": "EPS crossing zero or non-positive estimates must be explained in amounts, not a beat percentage",
                 })
 
             # 최근 4분기 beat/miss 패턴 (오래된 → 최신 순으로 뒤집어서 저장)
@@ -480,7 +624,9 @@ def _revenue_history(tk: yf.Ticker) -> list[dict]:
             v = _num(val)
             if v is None:
                 continue
-            out.append({"period": period.strftime("%y.%m"), "value": v})
+            out.append({"period": period.strftime("%y.%m"), "value": v,
+                        "period_end": period.strftime("%Y-%m-%d"),
+                        "period_type": "quarterly", "provider_field": "Total Revenue"})
         return list(reversed(out))
     except Exception:
         log.warning("매출 추이 없음")
@@ -611,7 +757,30 @@ def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
     focus["market_cap"] = _num(info.get("marketCap")) or cand.get("market_cap")
     # 회사 소개 문단 — 이미 받아오던 info 안에 있던 필드입니다.
     # 원문은 길고 영어라 그대로 안 쓰고, 요약 단계에서 AI 가 1~2문장으로 축약합니다.
-    focus["business_summary"] = (info.get("longBusinessSummary") or "")[:700]
+    focus["business_summary"] = info.get("longBusinessSummary") or ""
+    focus["currency"] = info.get("currency")
+    focus["financial_currency"] = info.get("financialCurrency")
+    focus["financial_period_end"] = _published_time(info.get("mostRecentQuarter"))
+    focus["financial_period_note"] = "mostRecentQuarter is provider metadata; individual fields may use TTM, annual or forward periods"
+    retrieved_at = _utc_now()
+    focus["sources"] = []
+    if info:
+        focus["sources"].append(_provider_source(ticker, "metrics",
+            "Ticker.info supplied valuation, growth, analyst targets, holdings and financial ratios; not primary filings", retrieved_at))
+    if focus["business_summary"]:
+        focus["sources"].append(_provider_source(ticker, "profile",
+            "Ticker.info longBusinessSummary, sector and industry; provider company description", retrieved_at))
+    focus["provenance"] = {
+        "retrieved_at": retrieved_at,
+        "provider": "Yahoo Finance via yfinance",
+        "profile_basis": "provider company description; primary filing not downloaded",
+        "valuation.margin": "profitMargins: net profit margin, not operating margin",
+        "valuation.per": "trailingPE: provider trailing P/E",
+        "valuation.forward_per": "forwardPE: provider forward P/E based on estimates",
+        "growth.revenue": "revenueGrowth: provider-reported growth; exact period must be checked against statement period metadata",
+        "growth.earnings": "earningsGrowth: provider-reported growth; exact accounting basis not supplied",
+        "analyst": "provider consensus; analyst coverage date and individual methodology not supplied",
+    }
 
     focus["valuation"] = {
         "per": _num(info.get("trailingPE")),
@@ -640,6 +809,19 @@ def fetch_focus(ticker: str, quote: dict, cand: dict) -> dict:
 
     focus["earnings"] = _earnings(tk)
     focus["revenue_history"] = _revenue_history(tk)
+    if focus["revenue_history"]:
+        financial_source = _provider_source(ticker, "financials",
+            "Ticker.quarterly_income_stmt Total Revenue by exact period_end; provider financial statement data, not primary filing", retrieved_at)
+        focus["sources"].append(financial_source)
+        focus["revenue_source"] = financial_source["title"] + " | " + financial_source["url"]
+        for row in focus["revenue_history"]:
+            row["currency"] = focus["financial_currency"]
+            row["source_id"] = financial_source["id"]
+    if focus["earnings"]:
+        earnings_source = _provider_source(ticker, "earnings",
+            "Ticker.earnings_dates: provider EPS estimate/reported EPS and announcement dates; GAAP/adjusted basis unspecified", retrieved_at)
+        focus["sources"].append(earnings_source)
+        focus["earnings"]["source_id"] = earnings_source["id"]
     focus["actions"] = _analyst_actions(tk)
     focus["rec_dist"] = _rec_distribution(tk)
     focus["smart_money"] = _smart_money(info)
@@ -683,6 +865,7 @@ def fetch_peers(tickers: list[str], quotes: dict) -> list[dict]:
             row["ev_sales"] = _num(info.get("enterpriseToRevenue"))
             row["rec"] = info.get("recommendationKey", "")
             row["market_cap"] = _num(info.get("marketCap"))
+            row["metrics_source"] = _provider_source(t, "metrics", "Ticker.info peer valuation and analyst recommendation fields", _utc_now())
         except Exception:
             log.warning("피어 info 실패: %s", t)
         if row.get("last") is not None:
@@ -706,7 +889,64 @@ def fetch_chain(ticker: str, quotes: dict) -> list[dict]:
 
 # ══ 뉴스 · 한국 ═════════════════════════════════════════
 
+def _news_thumbnails(raw: dict, title: str, publisher: str, article_url: str | None) -> list[dict]:
+    """Return supplied image metadata only; downloading/rights checks belong downstream."""
+    candidates = []
+    thumbnail = raw.get("thumbnail") or {}
+    if isinstance(thumbnail, dict):
+        candidates.extend(thumbnail.get("resolutions") or [])
+        if thumbnail.get("originalUrl"):
+            candidates.append({"url": thumbnail["originalUrl"], "width": thumbnail.get("originalWidth"),
+                               "height": thumbnail.get("originalHeight")})
+    elif isinstance(thumbnail, str):
+        candidates.append({"url": thumbnail})
+    for key in ("media_thumbnail", "media_content"):
+        for item in raw.get(key) or []:
+            if isinstance(item, dict) and (key == "media_thumbnail" or str(item.get("type", "")).startswith("image/") or item.get("medium") == "image"):
+                candidates.append(item)
+    for item in raw.get("links") or []:
+        if isinstance(item, dict) and item.get("rel") == "enclosure" and str(item.get("type", "")).startswith("image/"):
+            candidates.append({**item, "url": item.get("href")})
+    out, seen = [], set()
+    for item in candidates:
+        if not isinstance(item, dict):
+            continue
+        url = _public_url(item.get("url"))
+        if not url or url in seen:
+            continue
+        seen.add(url)
+        out.append({"url": url, "width": _num(item.get("width")), "height": _num(item.get("height")),
+                    "caption": _feed_text(item.get("caption")) or title,
+                    "caption_basis": "supplied image caption" if item.get("caption") else "article headline, not an independently verified image description",
+                    "publisher": publisher, "article_url": article_url,
+                    "license": "not supplied by news metadata"})
+    return sorted(out, key=lambda x: (x.get("width") or 0) * (x.get("height") or 0), reverse=True)
+
+
+def _news_source(item: dict) -> dict | None:
+    url = _public_url(item.get("url"))
+    if not url:
+        return None
+    return {"id": "NEWS_" + hashlib.sha1(url.encode("utf-8")).hexdigest()[:12],
+            "title": item["title"], "url": url,
+            "as_of": item.get("published_at") or ("발표일 미제공; 수집 " + item["retrieved_at"]),
+            "retrieved_at": item["retrieved_at"], "publisher": item.get("publisher", ""),
+            "evidence_scope": item["content_scope"], "source_type": "news_metadata_or_feed_text",
+            "is_full_article": False}
+
+
+def _dedupe_news(items: list[dict], limit: int | None = None) -> list[dict]:
+    out, seen = [], set()
+    for item in items:
+        key = item.get("url") or item.get("title", "").casefold()
+        if key and item.get("title") and key not in seen:
+            seen.add(key)
+            out.append(item)
+    return out[:limit] if limit is not None else out
+
+
 def fetch_news() -> list[dict]:
+    """Preserve the RSS evidence and its real links instead of title-only records."""
     items: list[dict] = []
     for url in cfg.NEWS_FEEDS:
         try:
@@ -714,22 +954,89 @@ def fetch_news() -> list[dict]:
         except Exception:
             log.warning("RSS 실패: %s", url)
             continue
-        for entry in feed.entries[:14]:
-            items.append({
-                "title": getattr(entry, "title", "").strip(),
-                "summary": getattr(entry, "summary", "")[:300].strip(),
-            })
-    seen, uniq = set(), []
-    for it in items:
-        k = it["title"].lower()
-        if k and k not in seen:
-            seen.add(k)
-            uniq.append(it)
-    return uniq[: cfg.NEWS_MAX_ITEMS]
+        feed_info = getattr(feed, "feed", {}) or {}
+        retrieved_at = _utc_now()
+        for entry in (getattr(feed, "entries", []) or [])[:14]:
+            try:
+                title = _feed_text(entry.get("title", ""))
+                summary = _feed_text(entry.get("summary", ""))
+                parts = [_feed_text(part.get("value", "")) for part in (entry.get("content") or []) if isinstance(part, dict)]
+                content = "\n\n".join(part for part in parts if part)
+                article_url = _public_url(entry.get("link"))
+                if not article_url:
+                    article_url = next((_public_url(link.get("href")) for link in entry.get("links", [])
+                                        if isinstance(link, dict) and link.get("rel", "alternate") == "alternate"
+                                        and _public_url(link.get("href"))), None)
+                entry_source = entry.get("source") or {}
+                publisher = str(entry_source.get("title") or feed_info.get("title") or urlsplit(url).hostname or "")
+                item = {"title": title, "summary": summary, "body": content or summary,
+                        "content_scope": "RSS content/synopsis only; linked article full text not fetched",
+                        "url": article_url, "article_url": article_url, "feed_url": url,
+                        "publisher": publisher, "published_at": _published_time(entry.get("published")),
+                        "updated_at": _published_time(entry.get("updated")), "retrieved_at": retrieved_at,
+                        "body_format": "plain_text_from_rss", "is_full_article": False}
+                item["thumbnails"] = _news_thumbnails(entry, title, publisher, article_url)
+                item["source"] = _news_source(item)
+                items.append(item)
+            except Exception:
+                log.warning("RSS 개별 항목 해석 실패: %s", url)
+    return _dedupe_news(items, cfg.NEWS_MAX_ITEMS)
+
+
+def fetch_ticker_news(ticker: str, count: int = 12) -> list[dict]:
+    """Normalize both nested content and legacy Yahoo news shapes without scraping pages.
+
+    Official method: Ticker.get_news(count=10, tab='news'). Older installed
+    yfinance versions may expose only the news property or a no-argument method.
+    """
+    try:
+        tk = yf.Ticker(ticker)
+        getter = getattr(tk, "get_news", None)
+        if callable(getter):
+            try:
+                rows = getter(count=count, tab="news")
+            except TypeError:
+                rows = getter()
+        else:
+            rows = tk.news
+        if not isinstance(rows, list):
+            return []
+    except Exception:
+        log.warning("종목 뉴스 조회 실패: %s — RSS 및 확인된 재무자료로 계속", ticker)
+        return []
+    retrieved_at, normalized = _utc_now(), []
+    for row in rows[:count]:
+        if not isinstance(row, dict):
+            continue
+        try:
+            content = row.get("content") if isinstance(row.get("content"), dict) else row
+            title = _feed_text(content.get("title") or row.get("title"))
+            url = (_public_url(content.get("canonicalUrl")) or _public_url(content.get("clickThroughUrl"))
+                   or _public_url(content.get("link")) or _public_url(row.get("link")))
+            provider = content.get("provider") or {}
+            publisher = str(provider.get("displayName") if isinstance(provider, dict) else provider)
+            publisher = publisher if publisher and publisher != "None" else str(content.get("publisher") or row.get("publisher") or "Yahoo Finance news feed")
+            summary = _feed_text(content.get("summary") or content.get("description") or row.get("summary"))
+            item = {"title": title, "summary": summary, "body": summary,
+                    "url": url, "article_url": url, "feed_url": None, "publisher": publisher,
+                    "published_at": _published_time(content.get("pubDate") or content.get("providerPublishTime") or row.get("providerPublishTime")),
+                    "retrieved_at": retrieved_at, "content_scope": "Yahoo supplied headline/synopsis only; linked article full text not fetched",
+                    "is_full_article": False, "body_format": "provider_synopsis",
+                    "requested_ticker": ticker, "related_tickers": content.get("relatedTickers") or row.get("relatedTickers") or [],
+                    "relevance_note": "returned by ticker news endpoint; relevance must be checked against title/synopsis"}
+            item["thumbnails"] = _news_thumbnails(content, title, publisher, url)
+            item["source"] = _news_source(item)
+            normalized.append(item)
+        except Exception:
+            log.warning("종목 뉴스 개별 항목 해석 실패: %s", ticker)
+    return _dedupe_news(normalized, count)
 
 
 def fetch_korea() -> dict:
     result: dict = {}
+    if not os.environ.get("KRX_ID") or not os.environ.get("KRX_PW"):
+        log.info("KRX 인증 정보 미설정 — 선택 항목인 한국 지수·수급 수집 생략")
+        return result
     try:
         from pykrx import stock
     except Exception:
@@ -924,16 +1231,19 @@ def collect_all(history: list[dict] | None = None) -> dict:
             if t not in cands and v.get("pct") is not None:
                 cands[t] = {"ticker": t, "name": t, "last": v["last"], "pct": v["pct"],
                             "market_cap": cfg.MIN_MARKET_CAP, "volume": cfg.MIN_DOLLAR_VOLUME,
-                            "avg_volume": None, "rvol": None}
+                            "avg_volume": None, "rvol": None, "market_date": v.get("market_date"),
+                            "quote_as_of": v.get("quote_as_of"), "source": v.get("source")}
 
     # 2) 복합 점수로 정렬
     ranked = score_candidates(cands, news, history, today)
     if not ranked:
         log.error("선정 가능한 후보가 없습니다")
-        return {"generated_at": now.isoformat(), "date_kr": now.strftime("%Y.%m.%d"),
+        result = {"generated_at": now.isoformat(), "date_kr": now.strftime("%Y.%m.%d"),
                 "weekday_kr": "월화수목금토일"[now.weekday()], "market": fetch_market(),
                 "fear_greed": {}, "focus": {}, "news": news, "korea": fetch_korea(),
                 "sector_rotation": [], "ranked": []}
+        result["sources"] = _collect_sources(result)
+        return result
 
     top = ranked[0]
     log.info("오늘의 종목: %s (점수 %.2f, 등락 %+.2f%%, RVOL %s, 뉴스 %s)",
@@ -943,10 +1253,15 @@ def collect_all(history: list[dict] | None = None) -> dict:
     chain_pairs = cfg.VALUE_CHAIN.get(top["ticker"], [])
     focus_q = fetch_quotes([top["ticker"]])
     quote = focus_q.get(top["ticker"], {"last": top["last"], "pct": top["pct"],
-                                        "series": [], "series_60": []})
+                                        "series": [], "series_60": [], "market_date": top.get("market_date"),
+                                        "quote_as_of": top.get("quote_as_of"), "source": top.get("source"),
+                                        "quote_basis": "Yahoo screener regularMarketPrice; historical quote download unavailable"})
     # peer_tickers 는 industry 조회가 필요해 focus 안에서 채워지므로,
     # fetch_focus 가 끝난 뒤에 그 결과로 경쟁사 시세를 조회합니다.
     focus = fetch_focus(top["ticker"], quote, top)
+    focus_news = _dedupe_news(fetch_ticker_news(top["ticker"]) + [
+        item for item in news if _has_news(top, item.get("title", "").upper())])
+    news = _dedupe_news(focus_news + news)
 
     related = {t for t, _ in chain_pairs} | set(focus.get("peer_tickers", []))
     rel_q = fetch_quotes(sorted(related)) if related else {}
@@ -957,7 +1272,8 @@ def collect_all(history: list[dict] | None = None) -> dict:
     focus["peer_avg_per"] = round(sum(peer_pers) / len(peer_pers), 1) if peer_pers else None
     if chain_pairs:
         focus["chain"] = [
-            {"ticker": t, "relation": rel, "last": rel_q[t]["last"], "pct": rel_q[t]["pct"]}
+            {"ticker": t, "relation": rel, "last": rel_q[t]["last"], "pct": rel_q[t]["pct"],
+             "market_date": rel_q[t].get("market_date"), "source": rel_q[t].get("source")}
             for t, rel in chain_pairs
             if t in rel_q and rel_q[t].get("pct") is not None
         ][:4]
@@ -966,7 +1282,8 @@ def collect_all(history: list[dict] | None = None) -> dict:
         # 관계 정의가 없으면 같은 산업 종목들의 실제 등락으로 대체합니다
         focus["chain"] = [
             {"ticker": t, "relation": focus.get("industry", "동일 산업"),
-             "last": rel_q[t]["last"], "pct": rel_q[t]["pct"]}
+             "last": rel_q[t]["last"], "pct": rel_q[t]["pct"],
+             "market_date": rel_q[t].get("market_date"), "source": rel_q[t].get("source")}
             for t in focus.get("peer_tickers", [])
             if t in rel_q and rel_q[t].get("pct") is not None
         ][:4]
@@ -983,7 +1300,7 @@ def collect_all(history: list[dict] | None = None) -> dict:
     events = detect_market_events(market_data, fg, sectors, korea)
     log.info("감지된 시장 이벤트 %d개: %s", len(events), [e["kind"] for e in events])
 
-    return {
+    result = {
         "generated_at": now.isoformat(),
         "date_kr": now.strftime("%Y.%m.%d"),
         "date_slug": today,
@@ -997,5 +1314,12 @@ def collect_all(history: list[dict] | None = None) -> dict:
         "top_gainers": list(reversed(movers[-4:])),
         "top_losers": movers[:4],
         "news": news,
+        "focus_news": focus_news,
+        "image_candidates": [{**image, "requested_ticker": top["ticker"]}
+                             for item in focus_news for image in item.get("thumbnails", [])],
+        "market_date": focus.get("market_date"),
+        "date_note": "date_kr is the collection/publication date; market_date is the last available quote's trading date",
         "korea": korea,
     }
+    result["sources"] = _collect_sources(result)
+    return result
