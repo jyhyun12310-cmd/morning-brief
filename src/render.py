@@ -1,8 +1,4 @@
-"""5장 카드뉴스(JPEG)와 GitHub Pages 상세 페이지를 만듭니다.
-
-인스타그램은 PNG 를 안 받습니다. 반드시 JPEG 로 저장합니다.
-캐러셀은 첫 장 비율에 맞춰 나머지가 잘리므로 5장 모두 1080x1350 로 통일합니다.
-"""
+"""7장의 1080×1350 JPEG와 상세 페이지를 만듭니다."""
 
 from __future__ import annotations
 
@@ -1416,8 +1412,9 @@ def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> l
     from photo_layout import build_photo_deck
     env = Environment(loader=FileSystemLoader(SRC), autoescape=select_autoescape(["html"]))
     tpl = env.get_template("card.html")
-    ctx = _template_context(data, summary)
-    ctx['photo_deck'] = build_photo_deck(data, summary)
+    # The photo story is authoritative; legacy gauges and canned prose are not used.
+    ctx = {'s':summary, 'f':data.get('focus') or {}, 'handle':cfg.INSTAGRAM_HANDLE,
+           'photo_deck':build_photo_deck(data, summary)}
 
     out_dir = Path(docs_cards_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -1438,8 +1435,7 @@ def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> l
         for n in range(1, CARD_COUNT + 1):
             tmp = tmp_dir / f"_card-{n}.html"
             tmp.write_text(
-                tpl.render(card_num=n, card_label=CARD_LABELS[n],
-                           dens=_density(ctx["s"], n), **ctx),
+                tpl.render(card_num=n, card_label=CARD_LABELS[n], **ctx),
                 encoding="utf-8")
             page.goto(tmp.resolve().as_uri())
             page.wait_for_load_state("networkidle")
@@ -1465,8 +1461,16 @@ def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> l
               for(const el of main.children) {
                 const r=el.getBoundingClientRect();
                 if(r.bottom > footer.top-12) errors.push('본문이 하단 출처 영역을 침범합니다');
-                if(r.right > 1017 || r.left < 63) errors.push('가로 안전 여백을 벗어났습니다');
+                if(r.right > 1021 || r.left < 59) errors.push('가로 안전 여백을 벗어났습니다');
               }
+              const visual=document.querySelector('.visual');
+              if(visual.scrollHeight > visual.clientHeight+3) errors.push('시각 자료의 내용이 잘립니다');
+              // Step connectors deliberately extend into the gutter; check their text.
+              for(const el of document.querySelectorAll('p, h1, h2, small, strong, .metric, .branch, .check')) {
+                if(el.scrollWidth > el.clientWidth+4) errors.push('문구가 가로 영역을 넘습니다');
+              }
+              const body=document.querySelector('.body-copy');
+              if(!body || !body.textContent.trim()) errors.push('설명 본문이 비었습니다');
               return [...new Set(errors)];
             }""")
             if layout_errors:
@@ -1520,41 +1524,60 @@ DETAIL_TPL = """<!DOCTYPE html>
 
 
 def render_detail_page(data: dict, summary: dict, slug: str) -> str:
+    """Publish the same verified story as the cards, including full explanations."""
+    from summarize import validate_summary
+
+    validate_summary(summary)
+    if not isinstance(slug, str) or not slug or slug in {".", ".."} or "/" in slug or "\\" in slug:
+        raise ValueError("상세 페이지 slug에는 파일 이름만 사용할 수 있습니다.")
     e = html.escape
-    focus = data.get("focus", {})
-    ctx = _template_context(data, summary)
-
-    card_imgs = "".join(
-        f'<img src="cards/{slug}-{n}.jpg" alt="브리핑 {n}">' for n in range(1, CARD_COUNT + 1)
+    sections = []
+    for number, story in enumerate(summary["visual_story"], 1):
+        title = e(story["title"])
+        sections.append(
+            f'<section class="story" aria-labelledby="story-{number}">'
+            f'<p class="eyebrow">{number:02d} / 07</p>'
+            f'<h2 id="story-{number}">{title}</h2>'
+            f'<img src="cards/{e(slug)}-{number}.jpg" alt="{number}장: {title}" '
+            f'width="1080" height="1350" loading="{"eager" if number == 1 else "lazy"}">'
+            f'<p class="body">{e(story["body"])}</p>'
+            f'<p class="takeaway">{e(story["takeaway"])}</p>'
+            f'<p class="bridge">{e(story["bridge"])}</p>'
+            '</section>'
+        )
+    source_items = "".join(
+        f'<li><a href="{e(source["url"])}" target="_blank" rel="noopener noreferrer">'
+        f'{e(source["title"])}</a><span class="source-date">기준: {e(source["as_of"])}</span>'
+        f'<span class="source-url">{e(source["url"])}</span></li>'
+        for source in summary["sources"]
     )
-    facts = "".join(f"<p>{e(t)}</p>" for t in summary.get("facts", []))
-    val_rows = "".join(
-        f'<div class="row"><span>{e(c["k"])}</span><span class="n">{e(c["v"])}</span></div>'
-        for c in ctx["val_cells"]
-    )
-    chain_rows = "".join(
-        f'<div class="row"><span>{e(c["ticker"])} · {e(c["relation"])}</span>'
-        f'<span class="n {c["cls"]}">{c["fmt_pct"]}</span></div>'
-        for c in ctx["chain"]
-    )
-    risks = "".join(f"<li>{e(r)}</li>" for r in summary.get("risks", [])) or "<li>—</li>"
-    summary3 = "".join(f"<li>{e(t)}</li>" for t in summary.get("summary3", [])) or "<li>—</li>"
-
-    page = DETAIL_TPL.format(
-        date=data["date_kr"],
-        ticker=e(focus.get("ticker", "")),
-        card_imgs=card_imgs,
-        headline=e(summary.get("hook_headline", "")),
-        macro_line=e(summary.get("macro_line", "")),
-        facts=facts,
-        val_rows=val_rows,
-        fundamental_note=e(summary.get("fundamental_note", "")),
-        chain_rows=chain_rows,
-        chain_note=e(summary.get("chain_note", "")),
-        wallst_note=e(summary.get("wallst_note", "")),
-        risks=risks,
-        summary3=summary3,
-    )
+    ticker = e(str((data.get("focus") or {}).get("ticker", "")))
+    page = f'''<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{ticker} · {e(summary["central_question"])}</title>
+<style>
+  :root{{color-scheme:light;--paper:#F6F3EB;--navy:#17324D;--gold:#C8A655}}
+  *{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--navy);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;word-break:keep-all;overflow-wrap:anywhere}}
+  main{{max-width:780px;margin:auto;padding:40px 24px 72px}}header{{padding-bottom:24px;border-bottom:3px solid var(--gold)}}
+  .eyebrow{{margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.08em;color:#756134}}
+  h1{{font-size:clamp(28px,5vw,40px);line-height:1.35;letter-spacing:-.04em;margin:0 0 18px}}
+  h2{{font-size:clamp(23px,4vw,30px);line-height:1.4;letter-spacing:-.03em;margin:0 0 20px;white-space:pre-line}}
+  p{{line-height:1.8;font-size:17px}}.thesis{{margin:0;color:#39536A}}
+  .story{{padding:38px 0 30px;border-bottom:1px solid #D9D6CC}}img{{display:block;width:100%;height:auto;border-radius:12px}}
+  .body{{margin:24px 0 16px;white-space:pre-wrap}}.takeaway{{font-weight:700;border-left:4px solid var(--gold);padding:12px 16px;background:#EEE8D8;margin:0}}
+  .bridge{{font-size:15px;color:#526578;margin:18px 0 0}}.sources{{padding-top:36px}}.sources ol{{padding-left:22px}}
+  .sources li{{margin:18px 0;line-height:1.6}}a{{color:var(--navy);text-underline-offset:3px}}a:hover{{text-decoration-thickness:2px}}
+  .source-date,.source-url{{display:block;color:#526578;font-size:13px;word-break:break-all}}
+  footer{{margin-top:40px;padding-top:20px;border-top:1px solid #D9D6CC;color:#526578;font-size:13px;line-height:1.7}}
+  @media(max-width:480px){{main{{padding:28px 18px 48px}}p{{font-size:16px}}.story{{padding-top:30px}}}}
+</style></head><body><main>
+<header><p class="eyebrow">{e(summary["edition"])}</p>
+<h1>{e(summary["central_question"])}</h1><p class="thesis">{e(summary["thesis"])}</p></header>
+{"".join(sections)}
+<section class="sources"><h2>자료 출처와 기준일</h2><ol>{source_items}</ol></section>
+<footer>@making_money_for_chicken · 이 글은 표시된 자료 시점에 근거한 해설입니다. 조건에 따른 해석은 확정된 미래 결과를 뜻하지 않습니다.</footer>
+</main></body></html>'''
     docs = Path(cfg.DOCS_DIR)
     docs.mkdir(parents=True, exist_ok=True)
     (docs / f"{slug}.html").write_text(page, encoding="utf-8")
