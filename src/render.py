@@ -1551,6 +1551,27 @@ def render_detail_page(data: dict, summary: dict, slug: str) -> str:
         f'<span class="source-url">{e(source["url"])}</span></li>'
         for source in summary["sources"]
     )
+    photo_items = []
+    seen_photos = set()
+    for asset in (data.get("visual_assets") or {}).values():
+        if not isinstance(asset, dict):
+            continue
+        identity = asset.get("source_url") or asset.get("path")
+        if not identity or identity in seen_photos:
+            continue
+        seen_photos.add(identity)
+        links = []
+        for key, label in (("source_url", "사진 원문"), ("license_url", "이용 조건")):
+            url = str(asset.get(key) or "")
+            if url.startswith("https://"):
+                links.append(f'<a href="{e(url)}" rel="noopener noreferrer">{label}</a>')
+        credit = str(asset.get("credit_full") or asset.get("credit") or "")
+        photo_items.append(f'<li>{e(str(asset.get("caption") or "사진"))}'
+                           f'<span class="source-date">{e(credit)}</span>'
+                           f'<span class="source-date">카드 비율에 맞춰 자르기·문구 배치</span>'
+                           f'{" · ".join(links)}</li>')
+    photo_section = ('<section class="sources"><h2>사진 출처</h2><ol>'
+                     + ''.join(photo_items) + '</ol></section>') if photo_items else ''
     ticker = e(str((data.get("focus") or {}).get("ticker", "")))
     page = f'''<!DOCTYPE html>
 <html lang="ko"><head>
@@ -1576,6 +1597,7 @@ def render_detail_page(data: dict, summary: dict, slug: str) -> str:
 <h1>{e(summary["central_question"])}</h1><p class="thesis">{e(summary["thesis"])}</p></header>
 {"".join(sections)}
 <section class="sources"><h2>자료 출처와 기준일</h2><ol>{source_items}</ol></section>
+{photo_section}
 <footer>@making_money_for_chicken · 이 글은 표시된 자료 시점에 근거한 해설입니다. 조건에 따른 해석은 확정된 미래 결과를 뜻하지 않습니다.</footer>
 </main></body></html>'''
     docs = Path(cfg.DOCS_DIR)
