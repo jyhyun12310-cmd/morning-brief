@@ -1,392 +1,294 @@
-"""수집한 원자료를 Claude 에게 넘겨 고정 스키마 JSON 으로 받아옵니다.
+"""Generate a sourced, seven-card editorial story; never publish a thin fallback.
 
-스키마를 고정해야 매일 같은 레이아웃으로 렌더링됩니다.
+The public summarize(data) interface and legacy publisher keys are preserved.
+Only supplied source material is sent to the model. This module does not fetch news.
 """
-
 from __future__ import annotations
 
 import json
 import logging
+import math
 import os
 import re
+from datetime import date, datetime, timezone
 from pathlib import Path
-
-from anthropic import Anthropic
+from urllib.parse import urlsplit
+from uuid import uuid4
 
 log = logging.getLogger(__name__)
 
+# Confirmed in the official model overview on 2026-09-28; env override is retained.
+# https://platform.claude.com/docs/en/models/overview
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
-
-# 요구하는 출력 분량이 한국어 1,800자 남짓이고 한국어는 글자당 1.5~2토큰이라
-# 3,000토큰으로는 JSON 이 중간에서 잘려 파싱에 실패합니다. 넉넉히 잡습니다.
-MAX_TOKENS = 8000
-
+# Sonnet 5's default adaptive thinking shares this limit with its response text.
+MAX_TOKENS = 16000
 SYSTEM = (Path(__file__).parent / "photo_editorial_prompt.txt").read_text(encoding="utf-8")
+LAYOUTS = ("cover", "photo", "annotated", "comparison", "explain", "conditions", "closing")
+_DROP_FIELDS = {"series", "series_60", "spark", "_peer_raw", "visual_assets"}
+_SECRET_KEY = re.compile(r"(?:^|_)(?:api_key|token|password|secret|authorization|cookie)(?:$|_)", re.I)
+_URL = re.compile(r"https?://[^\s<>\"'\]\[{}]+")
+
+
+class SummaryGenerationError(RuntimeError):
+    """The pipeline must stop here instead of rendering or publishing empty cards."""
+
+
+def _clean_input(value, key=""):
+    """Keep news bodies, periods, accounting bases and new metrics without a whitelist."""
+    if isinstance(value, dict):
+        return {str(k): _clean_input(v, str(k)) for k, v in value.items()
+                if str(k) not in _DROP_FIELDS and not _SECRET_KEY.search(str(k))}
+    if isinstance(value, (list, tuple)):
+        return [_clean_input(v, key) for v in value]
+    if isinstance(value, (datetime, date)):
+        return value.isoformat()
+    if isinstance(value, float) and not math.isfinite(value):
+        return None  # A missing numeric value is never converted to zero.
+    if isinstance(value, str) and value.startswith("data:"):
+        return None  # Binary image/font payloads are not editorial evidence.
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    raise ValueError(f"원자료의 {key or '항목'}에 JSON으로 전달할 수 없는 {type(value).__name__} 값이 있습니다.")
+
+
+def _source_urls(value) -> set[str]:
+    urls = set()
+    if isinstance(value, dict):
+        for child in value.values():
+            urls.update(_source_urls(child))
+    elif isinstance(value, list):
+        for child in value:
+            urls.update(_source_urls(child))
+    elif isinstance(value, str):
+        for match in _URL.findall(value):
+            url = match.rstrip(".,;:!?)）")
+            parsed = urlsplit(url)
+            if parsed.scheme in {"http", "https"} and parsed.hostname and not parsed.username and not parsed.password:
+                urls.add(url)
+    return urls
 
 
 def _extract_json(text: str) -> dict:
-    """모델이 코드펜스를 붙였을 경우까지 방어적으로 파싱."""
-    text = text.strip()
-    text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.MULTILINE).strip()
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError:
-        start, end = text.find("{"), text.rfind("}")
-        if start == -1 or end == -1:
-            raise
-        return json.loads(text[start : end + 1])
+    """Accept a complete JSON object, optionally enclosed in one code fence."""
+    clean = text.strip()
+    if clean.startswith("```"):
+        clean = re.sub(r"^```(?:json)?\s*", "", clean, flags=re.I)
+        clean = re.sub(r"\s*```$", "", clean)
+    result = json.loads(clean)
+    if not isinstance(result, dict):
+        raise ValueError("응답 최상위는 JSON 객체여야 합니다.")
+    return result
 
 
-def _fallback(data: dict) -> dict:
-    """AI 가 실패해도 카드가 충분히 채워지도록, 데이터로 만들 수 있는 문장을 최대한 만듭니다.
-
-    실제로 AI 실패 시 폴백이 얇아서 위험 칸이 비고 마지막 장이 텅 빈 채
-    발송된 적이 있습니다. 그래서 각 장마다 수치에서 끌어낼 수 있는 설명을
-    빠짐없이 채우고, 특히 위험 요인은 어떤 경우에도 비우지 않습니다.
-    """
-    f = data.get("focus", {})
-    tk = f.get("ticker", "")
-    pct = f.get("pct")
-    name = f.get("name") or tk
-    rvol = f.get("rvol")
-    v = f.get("valuation") or {}
-    g = f.get("growth") or {}
-    e = f.get("earnings") or {}
-    a = f.get("analyst") or {}
-    lv = f.get("levels") or {}
-    sm = f.get("smart_money") or {}
-    w52 = f.get("w52") or {}
-    industry = f.get("industry", "")
-    try:
-        from render import _industry_kr
-        ind_kr = _industry_kr(industry)
-    except Exception:
-        ind_kr = industry
-    is_reit = "reit" in industry.lower()
-
-    up = (pct or 0) >= 0
-    mv = "올랐" if up else "내렸"
-    pct_txt = f"{abs(pct):.1f}%" if pct is not None else ""
-
-    # ── 표지
-    surprise = e.get("surprise")
-    rev = g.get("revenue")
-
-    # 원인을 자료로 확정할 수 없으므로 "왜 빠졌을까"처럼 인과를 묻는 제목은
-    # 쓰지 않습니다. 답할 수 있는 질문으로 범위를 좁혀야 마지막 장에서 실제로
-    # 답을 낼 수 있습니다.
-    if surprise is not None and surprise > 0 and not up:
-        title = "실적은 넘겼는데 주가는 내렸습니다"
-    elif surprise is not None and surprise < 0 and up:
-        title = "실적은 밑돌았는데 주가는 올랐습니다"
-    elif rev is not None and rev < 0 and up:
-        title = "매출은 줄었는데 주가는 올랐습니다"
-    elif rvol and rvol >= 2:
-        title = f"거래량이 평소의 {rvol:.1f}배로 뛰었습니다"
-    else:
-        title = f"{tk}, 이번 분기에서 볼 것은"
-
-    sub = f"하루 만에 {pct_txt} {mv}습니다"
-    if rvol and rvol >= 1.5:
-        sub += f". 거래량은 평소의 {rvol:.1f}배"
-
-    # ── 2장: 무엇이 움직였나
-    p2_secs = []
-    if e.get("date") and e.get("eps_act") is not None:
-        p2_secs.append({"h": "최근 발표",
-                        "t": f"{e['date']} 분기 실적. 주당순이익 ${e['eps_act']}."})
-    if e.get("eps_est") is not None and e.get("eps_act") is not None:
-        diff = "웃돌았" if e.get("beat") else "밑돌았"
-        p2_secs.append({"h": "예상과의 차이",
-                        "t": f"예상 ${e['eps_est']} 대비 {abs(surprise or 0):.0f}% {diff}네요. 같은 기준인지는 원자료 확인이 필요합니다."})
-    p2_secs.append({"h": "확인된 것과 해석",
-                    "t": "다만 오늘 움직임의 직접 원인은 자료로 확인되지 않습니다."})
-
-    # 질문("무엇이 움직였나")에 실제로 답하는 문장. 등락률 반복은 답이 아닙니다.
-    if surprise is not None and e.get("date"):
-        p2_a = f"{e['date']} 실적이 예상과 달랐습니다"
-    elif rvol and rvol >= 1.8:
-        p2_a = f"거래량이 평소의 {rvol:.1f}배. 주체까진 알 수 없습니다"
-    else:
-        p2_a = "딱 하나로 꼽을 원인은 자료에서 확인되지 않습니다"
-
-    # ── 3장: 어떻게 돈을 버나
-    p3_flow = []
-    if is_reit:
-        p3_flow = [{"step": "제품·서비스", "text": "건물 임대"},
-                   {"step": "고객", "text": "입주 기업"},
-                   {"step": "돈이 되는 변수", "text": "공실률·임대료"}]
-        p3_a = "부동산을 임대하고 운영하는 사업입니다"
-        p3_secs = [{"h": "회계가 만드는 착시",
-                    "t": "감가상각은 원가를 기간에 나누는 회계 처리예요. 건물 시세가 떨어졌다는 뜻이 아닙니다."},
-                   {"h": "그래서 함께 보는 것",
-                    "t": "그래서 감가상각 등을 조정한 FFO를 함께 봅니다. 임대료 입금액과는 다른 개념이에요."}]
-    else:
-        p3_a = f"{ind_kr} 쪽에서 수익을 내는 회사입니다" if ind_kr else f"{name}가 돈을 버는 구조를 봅니다"
-        p3_secs = []
-        if ind_kr:
-            p3_secs.append({"h": "무슨 일을 하나",
-                            "t": f"{ind_kr} 업종. 수요와 가격이 바뀌면 실적도 따라 움직입니다."})
-        if v.get("margin") is not None:
-            mg = v["margin"] * 100
-            if mg < 0:
-                read = "아직 버는 것보다 쓰는 게 많습니다"
-            elif mg < 10:
-                read = "얇은 편이라 매출이 흔들리면 이익은 크게 움직여요"
-            elif mg < 25:
-                read = "무난한 수준. 매출이 늘면 이익도 따라옵니다"
-            else:
-                read = "두툼한 편. 가격을 지킬 힘이 있다는 신호죠"
-            p3_secs.append({"h": "남는 돈",
-                            "t": f"매출 100원 중 {mg:.1f}원이 남습니다. {read}."})
-        if g.get("revenue") is not None and v.get("margin") is not None:
-            rv2 = g["revenue"] * 100
-            p3_secs.append({"h": "지금 상태",
-                            "t": f"매출은 1년 전보다 {abs(rv2):.0f}% {'늘었' if rv2 > 0 else '줄었'}고, "
-                                 f"마진은 {v['margin']*100:.1f}%. 둘을 같이 봐야 합니다."})
-        if not p3_secs:
-            p3_secs.append({"h": "확인된 것",
-                            "t": "세부 자료가 아직 부족합니다. 다음 공시에서 확인할 부분이에요."})
-
-    # ── 4장: 실적
-    p4_secs = []
-    if rev is not None:
-        verb = "늘었" if rev > 0 else "줄었"
-        p4_secs.append({"h": "매출 변화",
-                        "t": f"1년 전 같은 분기보다 {abs(rev*100):.0f}% {verb}습니다."})
-    hist = e.get("history") or []
-    if len(hist) >= 3:
-        beats = sum(1 for h in hist if h)
-        p4_secs.append({"h": "과거 기록",
-                        "t": f"최근 {len(hist)}분기 중 {beats}번 예상을 넘었어요. 다음 분기 확률은 아닙니다."})
-    if e.get("next_date"):
-        p4_secs.append({"h": "다음 확인",
-                        "t": f"다음 실적 {e['next_date']} 예정. 확정 여부는 회사 공지로 확인하세요."})
-
-    if rev is not None and surprise is not None:
-        if surprise > 0 and rev < 0:
-            p4_a = "예상은 넘겼지만 매출은 줄었습니다"
-        elif surprise > 0:
-            p4_a = "예상도 넘겼고 매출도 늘었습니다"
-        else:
-            p4_a = "이번엔 예상에 못 미쳤습니다"
-    else:
-        p4_a = "확인되는 실적 숫자만 모아봤습니다"
-
-    # ── 5장: 주가 여유
-    p5_secs = []
-    if w52.get("pos") is not None:
-        p5_secs.append({"h": "1년 가격 범위",
-                        "t": f"저 ${w52.get('low', 0):.0f} ~ 고 ${w52.get('high', 0):.0f} 사이 {w52['pos']:.0f}% 지점. 위치가 싸다는 뜻은 아닙니다."})
-    if a.get("target_mean") and a.get("count"):
-        p5_secs.append({"h": "애널리스트 목표가",
-                        "t": f"{a['count']}명 평균 ${a['target_mean']:,.1f}. 전망을 모은 참고치일 뿐이에요."})
-    if is_reit:
-        p5_secs.append({"h": "평가 기준의 한계",
-                        "t": "PER만으론 왜곡이 생깁니다. 주가/주당FFO와 배당수익률을 함께 보세요."})
-    elif v.get("forward_per"):
-        p5_secs.append({"h": "평가의 한계",
-                        "t": f"선행 PER {v['forward_per']:.1f}배. 어떤 이익 추정을 썼는지에 따라 달라집니다."})
-
-    # ── 6장: 틀릴 수 있는 이유 (위험 칸은 절대 비우지 않습니다)
-    bull, bear = [], []
-    if e.get("beat"):
-        bull.append({"fact": "직전 분기 예상 상회", "check": "다음 분기 EPS 추정치 변화"})
-    if rev is not None and rev > 0.05:
-        bull.append({"fact": f"매출 {rev*100:+.0f}% 성장", "check": "성장률 유지 여부"})
-
-    if rev is not None and rev < 0:
-        bear.append({"fact": f"매출 {rev*100:+.0f}% 감소", "check": "다음 분기 매출 반등 여부"})
-    if rvol and rvol >= 1.8:
-        bear.append({"fact": f"거래량 {rvol:.1f}배로 급증", "check": "며칠간 거래량이 이어지는지"})
-    if sm.get("short_pct") is not None and sm["short_pct"] >= 0.05:
-        # 기준일·분모를 밝히지 않은 채 위험 등급으로 바꾸지 않습니다.
-        bear.append({"fact": f"공매도 잔고 비중 {sm['short_pct']*100:.1f}% (집계 기준일 확인 필요)",
-                     "check": "다음 집계일의 잔고 증감"})
-    if is_reit:
-        bear.append({"fact": "금리에 민감한 리츠 구조", "check": "미 국채 10년물 금리 방향"})
-    if not bear:
-        # 어떤 데이터도 없을 때의 최후 보루. 빈 칸으로 내보내지 않습니다.
-        bear.append({"fact": "단일 분기 데이터에 기댄 해석", "check": "다음 분기 실적으로 재확인"})
-    if not bull:
-        bull.append({"fact": "추가 확인이 필요한 상태", "check": "다음 실적 발표 내용"})
-
-    # ── 7장: 기억할 것
-    facts = []
-    if pct is not None:
-        facts.append(f"주가 {pct:+.1f}%, 거래량 {rvol:.1f}배" if rvol else f"주가 {pct:+.1f}%")
-    if surprise is not None:
-        facts.append(f"EPS 예상 대비 {surprise:+.0f}%")
-    if rev is not None:
-        facts.append(f"매출 전년 대비 {rev*100:+.0f}%")
-
-    checks = []
-    if e.get("next_date"):
-        checks.append(f"{e['next_date']} 다음 실적 발표 (예정)")
-    if is_reit:
-        checks.append("공실률과 임대료 갱신율")
-        checks.append("미 국채 10년물 금리")
-    else:
-        if rev is not None:
-            checks.append("다음 분기 매출이 반등하는지" if rev < 0 else "매출 성장률이 둔화되는지")
-        if a.get("target_mean"):
-            checks.append("애널리스트 목표가 조정 방향")
-
-    # 표지에서 던진 질문에 마지막 장이 실제로 답하게 합니다.
-    if surprise is not None and surprise > 0 and not up:
-        conclusion = ("예상을 넘긴 건 맞지만, 주가가 내린 직접 원인은 지금 자료로 "
-                      "확인되지 않습니다. 실적의 질과 다음 전망부터 확인하는 게 순서예요")
-    elif rev is not None and rev < 0:
-        conclusion = ("한 분기 예상 상회보다, 매출이 줄어든 흐름이 이어지는지가 "
-                      "판단의 기준입니다")
-    elif rev is not None and rev > 0 and surprise is not None and surprise > 0:
-        conclusion = ("예상도 넘기고 매출도 늘었습니다. 다만 이 속도가 유지되는지는 "
-                      "다음 분기에 갈립니다")
-    else:
-        conclusion = ("지금 자료로는 방향을 단정하기 어렵습니다. 아래 지표부터 "
-                      "확인하는 게 순서예요")
-
-    return {
-        "cover_title": title, "cover_sub": sub, "conclusion": conclusion,
-        "cover_qs": ["무엇이 주가를 움직였을까", "이 회사는 어떻게 돈을 벌까", "기대가 틀릴 수 있는 이유는"],
-        "p2_q": "무엇이 주가를 움직였을까", "p2_a": p2_a, "p2_secs": p2_secs,
-        "p3_q": "이 회사는 어떻게 돈을 벌까", "p3_a": p3_a, "p3_flow": p3_flow, "p3_secs": p3_secs,
-        "p4_q": "실적은 이어질 수 있을까", "p4_a": p4_a, "p4_secs": p4_secs,
-        "p5_q": "주가에도 여유가 있을까", "p5_a": "지금 가격에 담긴 기대를 짚어봅니다", "p5_secs": p5_secs,
-        "p6_q": "어떤 조건이면 해석이 달라질까", "p6_a": "조건과 확인 지표를 함께 봅니다",
-        "p6_bull": bull, "p6_bear": bear,
-        "p7_oneline": p3_a,
-        "p7_facts": facts,
-        "p7_keep": "다음 분기에도 실적이 예상을 넘어설 때",
-        "p7_review": "매출 감소가 이어지거나 회사 전망이 낮아질 때",
-        "p7_checks": checks,
-        "kr_line": "",
-        "kakao_text": f"{name} {pct:+.1f}%" if pct is not None else name,
-        "instagram_caption": "",
-    }
+def _string(value, field: str, low: int = 1, high: int = 2000) -> str:
+    if not isinstance(value, str) or not low <= len(value.strip()) <= high:
+        size = len(value.strip()) if isinstance(value, str) else "문자열 아님"
+        raise ValueError(f"{field}: {low}~{high}자 필요(현재 {size}).")
+    return value.strip()
 
 
-_LIST_LIMITS = {
-    "cover_qs": 3, "p2_secs": 3, "p3_flow": 3, "p3_secs": 2, "p4_secs": 3,
-    "p5_secs": 3, "p6_bull": 2, "p6_bear": 2, "p7_facts": 3, "p7_checks": 3,
-}
+def _ids(value, field: str, available: set[str]) -> None:
+    if not isinstance(value, list) or not value or any(not isinstance(v, str) or v not in available for v in value):
+        raise ValueError(f"{field}: 실제 존재하는 근거/출처 ID를 1개 이상 연결해야 합니다.")
+    if len(set(value)) != len(value):
+        raise ValueError(f"{field}: 중복 ID가 있습니다.")
 
-_DROP_FIELDS = ("series", "series_60", "_peer_raw", "spark")
+
+def validate_summary(result: dict, allowed_source_urls: set[str] | None = None) -> dict:
+    """Validate completeness, references and geometry inputs; not a semantic fact checker."""
+    if not isinstance(result, dict):
+        raise ValueError("원고 최상위는 JSON 객체여야 합니다.")
+    if result.get("status") == "insufficient_evidence":
+        missing = result.get("missing") or []
+        raise ValueError("원자료 부족: " + "; ".join(str(x) for x in missing))
+    for field, low, high in (("central_question", 12, 70), ("thesis", 40, 220),
+                             ("edition", 1, 30), ("instagram_caption", 500, 2200)):
+        _string(result.get(field), field, low, high)
+    sources = result.get("sources")
+    if not isinstance(sources, list) or not sources:
+        raise ValueError("sources: 실제 원자료 출처가 1개 이상 필요합니다.")
+    source_ids = set()
+    for index, source in enumerate(sources):
+        if not isinstance(source, dict):
+            raise ValueError(f"sources[{index}]: 객체여야 합니다.")
+        sid = _string(source.get("id"), f"sources[{index}].id", 1, 30)
+        if sid in source_ids:
+            raise ValueError(f"sources: 중복 ID {sid}")
+        source_ids.add(sid)
+        _string(source.get("title"), f"sources[{index}].title", 3, 200)
+        url = _string(source.get("url"), f"sources[{index}].url", 10, 2000)
+        parsed = urlsplit(url)
+        if parsed.scheme not in {"http", "https"} or not parsed.hostname or parsed.username or parsed.password:
+            raise ValueError(f"sources[{index}].url: 유효한 공개 출처 URL이 필요합니다.")
+        if allowed_source_urls is not None and url not in allowed_source_urls:
+            raise ValueError(f"sources[{index}].url: 입력에 없는 URL을 만들었습니다: {url}")
+        _string(source.get("as_of"), f"sources[{index}].as_of", 4, 100)
+
+    notes = result.get("evidence_notes")
+    if not isinstance(notes, list) or len(notes) < 4:
+        raise ValueError("evidence_notes: 서로 다른 사실/설명 근거가 4개 이상 필요합니다.")
+    evidence_ids = set()
+    for index, note in enumerate(notes):
+        if not isinstance(note, dict):
+            raise ValueError(f"evidence_notes[{index}]: 객체여야 합니다.")
+        eid = _string(note.get("id"), f"evidence_notes[{index}].id", 1, 30)
+        if eid in evidence_ids:
+            raise ValueError(f"evidence_notes: 중복 ID {eid}")
+        evidence_ids.add(eid)
+        _string(note.get("claim"), f"evidence_notes[{index}].claim", 15, 450)
+        _ids(note.get("source_ids"), f"evidence_notes[{index}].source_ids", source_ids)
+
+    pages = result.get("visual_story")
+    if not isinstance(pages, list) or len(pages) != 7:
+        raise ValueError("visual_story: 정확히 7장의 원고가 필요합니다.")
+    bodies, titles = [], []
+    for index, page in enumerate(pages):
+        prefix = f"visual_story[{index}]({index+1}장)"
+        if not isinstance(page, dict) or page.get("layout") != LAYOUTS[index]:
+            raise ValueError(f"{prefix}: layout은 {LAYOUTS[index]}여야 합니다.")
+        title = _string(page.get("title"), prefix + ".title", 8, 55)
+        if title.count("\n") > 1:
+            raise ValueError(f"{prefix}.title: 제목은 최대 2줄입니다.")
+        titles.append(title.replace("\n", " "))
+        bodies.append(_string(page.get("body"), prefix + ".body", 40 if index == 0 else 80, 85 if index == 0 else 170))
+        _string(page.get("takeaway"), prefix + ".takeaway", 25, 70)
+        _string(page.get("bridge"), prefix + ".bridge", 18, 45)
+        _ids(page.get("evidence_ids"), prefix + ".evidence_ids", evidence_ids)
+        labels = page.get("labels") or []
+        needs_labels = index in {1, 2, 4, 6} or (index == 3 and not page.get("chart"))
+        if not isinstance(labels, list) or len(labels) > 3 or (needs_labels and len(labels) < 2):
+            raise ValueError(f"{prefix}.labels: 구체적인 설명 라벨 2~3개가 필요합니다.")
+        for label_index, label in enumerate(labels):
+            if not isinstance(label, dict):
+                raise ValueError(f"{prefix}.labels[{label_index}]: 객체여야 합니다.")
+            _string(label.get("label"), prefix + ".label", 1, 24)
+            _string(label.get("text"), prefix + ".text", 3, 70)
+        if index == 3 and page.get("chart"):
+            chart = page["chart"]
+            if not isinstance(chart, dict):
+                raise ValueError(f"{prefix}.chart: 객체여야 합니다.")
+            _string(chart.get("source"), prefix + ".chart.source", 3, 120)
+            _string(chart.get("note"), prefix + ".chart.note", 5, 100)
+            _string(chart.get("unit"), prefix + ".chart.unit", 1, 40)
+            rows = chart.get("rows")
+            if not isinstance(rows, list) or not 2 <= len(rows) <= 5:
+                raise ValueError(f"{prefix}.chart.rows: 같은 기준의 수치 2~5개가 필요합니다.")
+            for row in rows:
+                value = row.get("value") if isinstance(row, dict) else None
+                if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+                    raise ValueError(f"{prefix}.chart.rows: 실제 유한 수치가 필요합니다.")
+                _string(row.get("label"), prefix + ".chart.label", 1, 34)
+                _string(row.get("display"), prefix + ".chart.display", 1, 32)
+        if index == 5:
+            _string(page.get("origin"), prefix + ".origin", 5, 65)
+            branches = page.get("branches")
+            if not isinstance(branches, list) or len(branches) != 2:
+                raise ValueError(f"{prefix}.branches: 지지 조건과 반론 조건 2개가 필요합니다.")
+            for branch in branches:
+                if not isinstance(branch, dict):
+                    raise ValueError(f"{prefix}.branches: 각 조건은 객체여야 합니다.")
+                for field, low, high in (("label", 3, 24), ("text", 12, 65), ("check", 10, 65)):
+                    _string(branch.get(field), prefix + ".branches." + field, low, high)
+    if len(set(bodies)) != 7 or len(set(titles)) != 7:
+        raise ValueError("같은 본문이나 제목을 여러 장에 반복할 수 없습니다.")
+    return result
 
 
-def _slim(rows):
-    """시세 행에서 시계열 배열을 떼어냅니다."""
-    if not rows:
-        return rows
-    if isinstance(rows, dict):
-        return {k: v for k, v in rows.items() if k not in _DROP_FIELDS}
-    return [{k: v for k, v in r.items() if k not in _DROP_FIELDS} for r in rows]
+def _compatibility_keys(result: dict) -> dict:
+    """Derive old keys from the validated story; no independently invented copy."""
+    pages = result["visual_story"]
+    result.update(cover_title=pages[0]["title"], cover_sub=pages[0]["takeaway"],
+                  conclusion=pages[6]["takeaway"],
+                  cover_qs=[pages[i]["title"].replace("\n", " ") for i in (1, 2, 4)])
+    for number in range(2, 7):
+        page = pages[number - 1]
+        result[f"p{number}_q"] = page["title"]
+        result[f"p{number}_a"] = page["takeaway"]
+        result[f"p{number}_secs"] = [{"h": "핵심 설명", "t": page["body"]}] + [
+            {"h": row["label"], "t": row["text"]} for row in page.get("labels", [])[:2]]
+    result["p3_flow"] = [{"step": row["label"], "text": row["text"]} for row in pages[2]["labels"]]
+    result["p6_bull"] = [{"fact": pages[5]["branches"][0]["text"], "check": pages[5]["branches"][0]["check"]}]
+    result["p6_bear"] = [{"fact": pages[5]["branches"][1]["text"], "check": pages[5]["branches"][1]["check"]}]
+    result.update(p7_oneline=pages[6]["title"], p7_facts=[row["claim"] for row in result["evidence_notes"][:3]],
+                  p7_keep=pages[5]["branches"][0]["text"], p7_review=pages[5]["branches"][1]["text"],
+                  p7_checks=[f"{row['label']}: {row['text']}" for row in pages[6]["labels"]])
+    if not isinstance(result.get("kakao_text"), str) or not result["kakao_text"].strip():
+        result["kakao_text"] = pages[0]["title"].replace("\n", " ") + " — " + pages[6]["takeaway"]
+    if not isinstance(result.get("kr_line"), str):
+        result["kr_line"] = ""
+    if not isinstance(result.get("source_line"), str) or not result["source_line"].strip():
+        result["source_line"] = "자료 출처·기준일: 게시물 캡션 참고"
+    missing = [f"• {s['title']} ({s['as_of']})\n{s['url']}" for s in result["sources"]
+               if s["url"] not in result["instagram_caption"]]
+    if missing:
+        result["instagram_caption"] += "\n\n자료 출처\n" + "\n".join(missing)
+    if len(result["instagram_caption"]) > 2200:
+        raise ValueError("출처를 포함한 instagram_caption이 2,200자를 넘습니다. 근거를 유지하며 설명을 줄여 주세요.")
+    return result
+
+
+def _save_diagnostic(payload: dict, raw: str, error: str, attempt: int, stop_reason=None) -> str:
+    root = Path(os.environ.get("CARD_DIAGNOSTIC_DIR", "out/summary_diagnostics"))
+    root.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
+    directory = root / f"{stamp}_{uuid4().hex[:8]}_attempt{attempt}"
+    directory.mkdir()
+    (directory / "input.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    (directory / "response.txt").write_text(raw, encoding="utf-8")
+    (directory / "error.json").write_text(json.dumps({"error": error, "stop_reason": stop_reason,
+        "attempt": attempt, "model": MODEL}, ensure_ascii=False, indent=2), encoding="utf-8")
+    log.error("원고 검증 실패; 원문 보존: %s (%s)", directory, error)
+    return str(directory)
 
 
 def summarize(data: dict) -> dict:
-    client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-
-    f = data.get("focus", {})
-    market = data.get("market", {})
-    payload = {
-        "날짜": data["date_kr"],
-        "오늘의종목": {
-            "티커": f.get("ticker"),
-            "종목명": f.get("name"),
-            "섹터": f.get("sector_kr"),
-            "산업": f.get("industry"),
-            "사업요약_영문원문": f.get("business_summary", ""),
-            "현재가": f.get("last"),
-            "등락률": f.get("pct"),
-            "시가총액": f.get("market_cap"),
-            "밸류에이션": f.get("valuation"),
-            "성장률": f.get("growth"),
-            "직전실적": f.get("earnings"),
-            "분기매출추이": f.get("revenue_history"),
-            "목표주가": f.get("analyst"),
-            "투자의견변경": f.get("actions"),
-            "기술적수준": f.get("levels"),
-            "스마트머니_기관공매도베타": f.get("smart_money"),
-            "내부자매매": f.get("insider"),
-            "주요기관보유자": f.get("inst_top"),
-            "재무건전성_부채유동성": f.get("financial_health"),
-            "업종평균PER": f.get("peer_avg_per"),
-            "애널리스트추천분포": f.get("rec_dist"),
-            "52주": f.get("w52"),
-        },
-        "경쟁사": _slim(f.get("peers")),
-        "밸류체인": _slim(f.get("chain")),
-        "섹터로테이션": _slim(data.get("sector_rotation")),
-        "오늘감지된시장이벤트": data.get("market_events"),
-        "미국지수": _slim(market.get("indices")),
-        "시장지표_VIX금리달러유가": _slim(market.get("gauges")),
-        "CNN공포탐욕지수": data.get("fear_greed", {}),
-        "한국투자자참고": _slim(market.get("kr_context")),
-        "전일한국증시": data.get("korea", {}),
-        "상승상위": _slim(data.get("top_gainers")),
-        "하락상위": _slim(data.get("top_losers")),
-        "뉴스헤드라인": (data.get("news") or [])[:20],
-    }
-
+    """One initial generation and, only for a malformed draft, one repair request."""
+    if not isinstance(data, dict):
+        raise SummaryGenerationError("summarize(data)의 원자료는 dict여야 합니다.")
+    payload = _clean_input(data)
+    allowed_urls = _source_urls(payload)
+    if not allowed_urls:
+        path = _save_diagnostic(payload, "", "원자료에 출처 URL이 없습니다. 뉴스 본문·공시 수치·URL·기준일을 수집기에 추가하세요.", 0)
+        raise SummaryGenerationError(f"출처 없는 원고 생성은 중단했습니다. 원자료 확인: {path}")
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise SummaryGenerationError("ANTHROPIC_API_KEY가 없습니다. API 키를 설정한 뒤 다시 실행하세요.")
+    # Lazy import keeps validation and the local preview independent of API packages.
     try:
-        resp = client.messages.create(
-            model=MODEL,
-            max_tokens=MAX_TOKENS,
-            system=SYSTEM,
-            messages=[
-                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
-                {"role": "assistant", "content": "{"},  # 프리필로 JSON 강제
-            ],
-        )
-        text = "{" + "".join(b.text for b in resp.content if b.type == "text")
-
-        if getattr(resp, "stop_reason", None) == "max_tokens":
-            log.error(
-                "응답이 max_tokens(%d)에 걸려 잘렸습니다. 한도를 올리거나 "
-                "요구 분량을 줄여야 합니다.", MAX_TOKENS
-            )
-
-        result = _extract_json(text)
-    except Exception as e:
-        # 실패해도 원인을 모르면 매번 추측만 하게 되므로, 다음 확인 때 바로
-        # 보이도록 out/error.txt 에 그대로 남깁니다.
-        log.exception("요약 생성 실패 — 폴백 사용")
+        from anthropic import Anthropic
+    except ImportError as exc:
+        raise SummaryGenerationError("anthropic 패키지가 없습니다. 기존 requirements 의존성을 설치하세요.") from exc
+    client = Anthropic(api_key=api_key, max_retries=0)
+    user_input = json.dumps({"task": "원자료에 근거해 질문 하나에 답하는 7장 카드뉴스 JSON을 작성하세요.",
+                             "source_material": payload}, ensure_ascii=False, allow_nan=False)
+    messages = [{"role": "user", "content": user_input}]
+    last_path = ""
+    for attempt in (1, 2):
+        raw, stop_reason = "", None
         try:
-            import pathlib
-            import traceback
-            pathlib.Path("out").mkdir(exist_ok=True)
-            pathlib.Path("out/error.txt").write_text(
-                f"{type(e).__name__}: {e}\n\n{traceback.format_exc()}", encoding="utf-8"
-            )
-        except Exception:
-            pass
-        return _fallback(data)
-
-    base = _fallback(data)
-
-    # setdefault 는 키가 있으면 값이 빈 문자열이어도 그대로 둡니다.
-    # AI 가 필드를 빈 값으로 돌려주면 카드가 비어버리므로, 실제로 내용이
-    # 있는지까지 보고 채웁니다.
-    filled, empty = 0, []
-    for k, v in base.items():
-        cur = result.get(k)
-        if cur is None or (isinstance(cur, str) and not cur.strip()) or \
-           (isinstance(cur, list) and not cur):
-            if v:
-                result[k] = v
-            empty.append(k)
-        else:
-            filled += 1
-
-    for key, limit in _LIST_LIMITS.items():
-        result[key] = (result.get(key) or [])[:limit]
-
-    # 몇 개나 AI 가 실제로 채웠는지 남깁니다. 이 숫자가 낮으면 프롬프트나
-    # 모델 응답에 문제가 있다는 뜻이라, 로그만 봐도 바로 알 수 있습니다.
-    total = len(base)
-    log.info("요약 필드 %d/%d 채움", filled, total)
-    if filled < total * 0.5:
-        log.warning("AI 응답이 절반 이상 비었습니다. 비어 있던 필드: %s",
-                    ", ".join(empty[:12]))
-
-    return result
+            response = client.messages.create(model=MODEL, max_tokens=MAX_TOKENS,
+                                               system=SYSTEM, messages=messages)
+        except Exception as exc:
+            last_path = _save_diagnostic(payload, raw, f"API {type(exc).__name__}: {exc}", attempt)
+            raise SummaryGenerationError(f"원고 API 요청에 실패했습니다. 자동 게시를 중단합니다. 확인: {last_path}") from exc
+        raw = "".join(getattr(block, "text", "") for block in response.content if getattr(block, "type", "") == "text")
+        stop_reason = getattr(response, "stop_reason", None)
+        try:
+            if stop_reason != "end_turn":
+                raise ValueError(f"응답이 완결되지 않았습니다(stop_reason={stop_reason}).")
+            result = _extract_json(raw)
+            validate_summary(result, allowed_urls)
+            result = _compatibility_keys(result)
+            log.info("출처 %d개, 근거 %d개, 7장 원고 검증 통과(시도 %d)", len(result["sources"]), len(result["evidence_notes"]), attempt)
+            return result
+        except (ValueError, TypeError, KeyError) as exc:
+            last_path = _save_diagnostic(payload, raw, str(exc), attempt, stop_reason)
+            if attempt == 2 or stop_reason not in {"end_turn", "max_tokens"}:
+                raise SummaryGenerationError(f"7장 원고를 완성하지 못해 자동 게시를 중단했습니다. {exc} 확인: {last_path}") from exc
+            messages = [
+                {"role": "user", "content": user_input},
+                {"role": "user", "content": "이전 응답에 아래 오류가 있습니다. 원자료만 사용해 완전한 JSON 객체를 처음부터 1회 다시 작성하세요. "
+                 "빈칸이나 일반론으로 보충하지 말고 모든 필수필드·분량·출처 ID를 맞추세요. 원자료로 불가능하면 "
+                 "{\"status\":\"insufficient_evidence\",\"missing\":[\"구체적으로 부족한 자료\"]}를 반환하세요.\n"
+                 + json.dumps({"validation_error": str(exc), "previous_draft": raw}, ensure_ascii=False)}]
+    raise SummaryGenerationError(f"원고 생성이 중단되었습니다. 확인: {last_path}")
