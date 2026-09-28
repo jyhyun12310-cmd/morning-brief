@@ -108,9 +108,11 @@ def build_photo_deck(data: dict, summary: dict) -> dict:
                 focus=data.get('focus') or {}
                 history=focus.get('revenue_history') or []
                 source=focus.get('revenue_source')
-                if history and source:
-                    chart={'rows':[{'label':x['period'],'value':x['value'],'display':f"${x['value']/1e6:,.0f}M"} for x in history[-5:]],
-                           'unit':'USD','source':source,'note':'매출 · 같은 0 기준'}
+                currencies={x.get('currency') for x in history}
+                if history and source and len(currencies)==1 and None not in currencies and '' not in currencies:
+                    currency=next(iter(currencies))
+                    chart={'rows':[{'label':x['period'],'value':x['value'],'display':f"{x['value']/1e6:,.0f}M"} for x in history[-5:]],
+                           'unit':currency,'source':source,'note':f'분기 매출 · {currency} 백만 · 같은 0 기준'}
             if chart:
                 if not chart.get('source') or not chart.get('note'):
                     raise ValueError('차트에는 source와 note가 필요합니다.')
@@ -128,6 +130,8 @@ def build_photo_deck(data: dict, summary: dict) -> dict:
         pages.append(page)
     if [p['layout'] for p in pages].count('cover')!=1 or pages[0]['layout']!='cover' or pages[-1]['layout']!='closing':
         raise ValueError('첫 장은 cover, 마지막 장은 closing 이어야 합니다.')
-    return {'pages':pages,'font':_embed(ROOT/'assets/NotoSansKR.ttf'),
+    # 기존 번들 폰트가 없으면 워크플로에서 설치한 Noto CJK를 CSS로 사용합니다.
+    font_path = ROOT/'assets/NotoSansKR.ttf'
+    return {'pages':pages,'font':_embed(font_path) if font_path.is_file() else '',
             'edition':_text(summary.get('edition','한 종목 깊이 읽기'),50),
             'footer':_text(summary.get('source_line','자료 출처·기준일은 게시물 캡션 참고'),90)}
