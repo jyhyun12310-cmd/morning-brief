@@ -1,7 +1,7 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
-@font-face{font-family:CardSans;src:url('{{ photo_deck.font }}')}
+{% if photo_deck.font %}@font-face{font-family:CardSans;src:url('{{ photo_deck.font }}')}{% endif %}
 :root{--ivory:#F6F3EB;--navy:#17324D;--gold:#C8A655;--muted:#607284;--line:#d8d8ce}
-*{box-sizing:border-box;margin:0;padding:0}html,body{width:1080px;height:1350px}body{background:var(--ivory);color:var(--navy);font-family:CardSans,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box;margin:0;padding:0}html,body{width:1080px;height:1350px}body{background:var(--ivory);color:var(--navy);font-family:CardSans,"Noto Sans CJK KR","Noto Sans KR",sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
 header{position:absolute;left:60px;right:60px;top:38px;height:45px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);font-size:18px;letter-spacing:.045em}.brand{font-weight:850}.number{color:var(--muted)}.gold{color:var(--gold)}
 main{position:absolute;left:60px;right:60px;top:110px;bottom:114px;display:flex;flex-direction:column;gap:22px}
 .eyebrow{font-size:20px;font-weight:700;color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex:none;line-height:1.4}.chapter{color:#947630}
@@ -21,12 +21,13 @@ footer{position:absolute;left:60px;right:60px;bottom:27px;height:63px;border-top
 .layout-cover h1{font-size:72px}.layout-cover .body-copy{font-size:32px}.layout-cover .visual{min-height:410px}.layout-cover .takeaway{background:transparent;border:0;padding:0;font-size:31px}.layout-closing .body-copy{font-weight:600}
 </style></head>
 {% set p=photo_deck.pages[card_num-1] %}
-{% macro pic(asset) %}<div class="photo"><img src="{{ asset.src }}" alt="{{ asset.caption }}"><span class="caption">{{ asset.caption }}</span></div>{% endmacro %}
+{% macro photo_caption(asset) %}{{ asset.caption }}{% if asset.credit %}<br>{{ asset.credit }}{% endif %}{% endmacro %}
+{% macro pic(asset) %}<div class="photo"><img src="{{ asset.src }}" alt="{{ asset.caption }}"><span class="caption">{{ photo_caption(asset) }}</span></div>{% endmacro %}
 <body class="layout-{{ p.layout }}"><header><span class="brand">MONEY FOR CHICKEN <span class="gold">/</span> {{ f.ticker }}</span><span class="number">{{ '%02d'|format(card_num) }} / 07</span></header>
 <main><div class="eyebrow"><span>{{ photo_deck.edition }}</span><span class="chapter">{{ p.chapter }}</span></div><h1>{{ p.title }}</h1><p class="body-copy">{{ p.body }}</p>
 <section class="visual">
 {% if p.layout=='cover' %}
- <div class="photo hero"><img src="{{ p.photo.src }}" alt="{{ p.photo.caption }}"><span class="cover-tag">{{ f.ticker }} · {{ f.name }}</span><div class="cover-stats">{% for l in p.labels[:2] %}<div class="cover-stat"><small>{{ l.label }}</small><strong>{{ l.text }}</strong></div>{% endfor %}</div><span class="caption">{{ p.photo.caption }}</span></div>
+ <div class="photo hero"><img src="{{ p.photo.src }}" alt="{{ p.photo.caption }}"><span class="cover-tag">{{ f.ticker }} · {{ f.name }}</span><div class="cover-stats">{% for l in p.labels[:2] %}<div class="cover-stat"><small>{{ l.label }}</small><strong>{{ l.text }}</strong></div>{% endfor %}</div><span class="caption">{{ photo_caption(p.photo) }}</span></div>
 {% elif p.layout=='photo' %}
  <div class="photo-pair">{{ pic(p.photo) }}<div class="metrics">{% for l in p.labels[:2] %}<div class="metric"><small>{{ l.label }}</small><strong>{{ l.text }}</strong>{% if l.note %}<p>{{ l.note }}</p>{% endif %}</div>{% endfor %}</div></div>
 {% elif p.layout=='annotated' %}
