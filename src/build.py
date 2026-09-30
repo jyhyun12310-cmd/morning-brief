@@ -1,257 +1,120 @@
-"""1단계: 데이터 수집 → 사진 준비 → 요약 → 카드 7장·상세페이지 생성.
-
-발송은 하지 않습니다. GitHub Pages 에 푸시된 다음 publish.py 가 발송합니다.
-"""
-
+"""Frozen packet -> existing licensed photos -> existing seven-card renderer."""
 from __future__ import annotations
-
-import datetime as dt
+import argparse
+import copy
+import hashlib
 import json
 import logging
 import os
-import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 
-import config as cfg
-from collect import collect_all
-from render import CARD_COUNT, render_cards, render_detail_page
+from editorial_packet import load_packet, validate_packet, render_data, digest, slug_for, publication_key
 from summarize import summarize
-from visual_assets import prepare_visual_assets
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-log = logging.getLogger("build")
+log = logging.getLogger('build')
+DISCLAIMER = '본 게시물은 공개 자료를 정리한 투자 참고용 해설이며, 특정 종목의 매수·매도를 권유하지 않습니다.'
 
+def write_json(path, value):
+    path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + '.tmp')
+    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+    temporary.replace(path)
 
-def is_market_holiday(now: dt.datetime) -> bool:
-    """한국 증시 휴장일이면 True. 판단이 불확실하면 False (그냥 실행)."""
-    # 한국 휴장일 조회는 미국 종목 카드 생성의 필수 입력이 아닙니다.
-    # 자격 정보 없이 pykrx를 호출하면 로그인·JSON 오류만 반복됩니다.
-    if not (os.environ.get("KRX_ID") and os.environ.get("KRX_PW")):
-        log.info("KRX 자격 정보 없음 — 한국 휴장일 조회를 건너뜁니다")
-        return False
-    try:
-        from pykrx import stock
-
-        today = now.strftime("%Y%m%d")
-        return stock.get_nearest_business_day_in_a_week(date=today, prev=True) != today
-    except Exception:
-        log.warning("휴장일 확인 실패 — 그대로 진행합니다")
-        return False
-
-
-def load_history() -> list[dict]:
-    """최근 선정 이력. 같은 종목이 반복되지 않도록 쿨다운에 씁니다."""
-    p = Path(cfg.HISTORY_FILE)
-    if not p.exists():
-        return []
-    try:
-        return json.loads(p.read_text(encoding="utf-8"))
-    except Exception:
-        log.warning("선정 이력을 읽지 못했습니다 — 새로 시작합니다")
-        return []
-
-
-def save_history(history: list[dict], entry: dict) -> None:
-    p = Path(cfg.HISTORY_FILE)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    merged = [entry] + [h for h in history if h.get("date") != entry["date"]]
-    p.write_text(
-        json.dumps(merged[: cfg.HISTORY_KEEP], ensure_ascii=False, indent=1),
-        encoding="utf-8",
-    )
-
-
-def _fmt_pct(pct: float | None) -> str:
-    return f"{pct:+.2f}%" if pct is not None else "—"
-
-
-# 인스타 캡션 하단 고정 문구. 매일 같은 자리에 같은 문장이 와야 브랜드로 각인됩니다.
-CAPTION_FOOTER = """오늘의 움직임보다, 움직인 이유를 봅니다.
-
-매일 아침 7시.
-미국장에서 가장 시끄러웠던 종목 하나를 골라
-왜 움직였는지 7장으로 풀어드립니다.
-
-내일도 받아보려면 @{handle} 팔로우
-나중에 다시 볼 것 같으면 저장 한 번 눌러두세요."""
-
-CAPTION_DISCLAIMER = "본 게시물은 공개된 시장 데이터를 정리한 투자 참고용 자료이며, 특정 종목의 매수·매도를 권유하지 않습니다."
-
-
-def _build_caption(data: dict, summary: dict) -> str:
-    """AI 가 쓴 본문 + 고정 팔로우 문구 + 해시태그를 조립합니다.
-
-    본문만 AI 에 맡기고 팔로우 유도는 고정으로 둡니다. 매번 새로 쓰게 하면
-    문구가 들쭉날쭉해져 브랜드로 쌓이지 않습니다.
-    """
-    f = data.get("focus", {})
-    tk = f.get("ticker", "")
-    name = f.get("name") or tk
-    pct = f.get("pct")
-
-    head = f"{name} ({tk}) {pct:+.2f}%" if tk and pct is not None else name
-    body = (summary.get("instagram_caption") or "").strip()
-    if not body:
-        body = summary.get("p7_line") or summary.get("hook2") or ""
-
-    footer = CAPTION_FOOTER.format(handle=cfg.INSTAGRAM_HANDLE)
-
-    tags = list(cfg.INSTAGRAM_TAGS)
-    if tk and f"#{tk}" not in tags:
-        tags.insert(0, f"#{tk}")
-    tag_line = " ".join(tags)
-
-    # 원고 끝의 근거 URL을 잘라내지 않습니다. 선택 문구만 여유가 있을 때 추가합니다.
-    if not body:
-        raise ValueError("게시할 인스타그램 본문이 없습니다.")
-    if len(body) > 2200:
-        raise ValueError("출처를 포함한 인스타그램 본문이 2,200자를 넘습니다.")
-    caption = body
-    if head and len(head) + 2 + len(caption) <= 2200:
-        caption = head + "\n\n" + caption
-    for optional in (CAPTION_DISCLAIMER, footer, tag_line):
-        if optional and optional not in caption and len(caption) + 2 + len(optional) <= 2200:
-            caption += "\n\n" + optional
+def _build_caption(data, summary):
+    # Never slice away source URLs to satisfy Instagram's limit.
+    caption = summary['instagram_caption'].strip()
+    if len(caption) > 2200:
+        raise ValueError('caption exceeds 2,200 characters')
+    if DISCLAIMER not in caption and len(caption) + len(DISCLAIMER) + 2 <= 2200:
+        caption += '\n\n' + DISCLAIMER
     return caption
 
+def _build_kakao_cards(data, summary, image_urls, link_url):
+    return [{'title':p['title'].replace('\n', ' '), 'description':p['body'],
+             'image_url':url, 'link_url':link_url}
+            for p, url in zip(summary['visual_story'], image_urls)]
 
-def _build_kakao_cards(data: dict, summary: dict, image_urls: list[str], link_url: str) -> list[dict]:
-    """카드 7장에 대응하는 카카오 메시지. 각 장의 핵심 문장을 그대로 씁니다.
+def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
+                 assets=None, renderer=None, detail_renderer=None):
+    out = Path(out_dir); out.mkdir(parents=True, exist_ok=True)
+    for stale in ('skip', 'state.json', 'raw.json', 'packet.json'):
+        (out / stale).unlink(missing_ok=True)
+    validate_packet(packet)
+    if renderer is None or assets is None or detail_renderer is None:
+        import config as cfg
+        cfg.DOCS_DIR = str(docs_dir)
+        cfg.OUT_DIR = str(out_dir)
+        from render import render_cards, render_detail_page
+        from visual_assets import prepare_visual_assets
+        renderer = renderer or render_cards
+        detail_renderer = detail_renderer or render_detail_page
+        assets = assets or prepare_visual_assets
+    data = render_data(packet)
+    summary = summarize(data, packet['summary'])
+    # This call may retrieve photographs; it must not change market/source inputs.
+    original_focus = copy.deepcopy(data['focus'])
+    original_sources = copy.deepcopy(data['sources'])
+    data = assets(data)
+    if data['focus'] != original_focus or data['sources'] != original_sources:
+        raise ValueError('photo preparation changed the frozen financial inputs')
+    slug = slug_for(packet)
+    paths = renderer(data, summary, str(Path(docs_dir) / 'cards'), slug)
+    if len(paths) != 7:
+        raise ValueError('renderer did not produce exactly seven cards')
+    from PIL import Image
+    image_hashes = []
+    for index, path in enumerate(paths, 1):
+        path = Path(path)
+        if path.name != f'{slug}-{index}.jpg':
+            raise ValueError('renderer returned unexpected file order/name')
+        with Image.open(path) as im:
+            if im.format != 'JPEG' or im.size != (1080, 1350):
+                raise ValueError('every card must be a 1080x1350 JPEG')
+            im.verify()
+        image_hashes.append(hashlib.sha256(path.read_bytes()).hexdigest())
+    detail_renderer(data, summary, slug)
+    base = pages_base.rstrip('/')
+    parsed = urlsplit(base)
+    if base and (parsed.scheme != 'https' or not parsed.hostname or parsed.query or parsed.fragment):
+        raise ValueError('PAGES_BASE_URL must be a plain HTTPS base URL')
+    urls = [f'{base}/cards/{slug}-{n}.jpg' for n in range(1, 8)]
+    link = f'{base}/{slug}.html'
+    state = {'schema_version':1, 'slug':slug, 'packet_sha256':digest(packet),
+             'publication_key':publication_key(packet), 'intent':packet['intent'],
+             'is_test':packet.get('is_test', False), 'date_kr':data['date_kr'],
+             'weekday_kr':data['weekday_kr'], 'link_url':link,
+             'instagram_image_urls':urls, 'image_sha256':image_hashes,
+             'instagram_caption':_build_caption(data, summary),
+             'kakao_cards':_build_kakao_cards(data, summary, urls, link)}
+    write_json(out / 'packet.json', packet)
+    write_json(out / 'raw.json', {'data':data, 'summary':summary})
+    # State is written last, only after all seven images have passed validation.
+    write_json(out / 'state.json', state)
+    log.info('Frozen packet built: %s; seven JPEGs; zero AI API calls', slug)
+    return state
 
-    설명이 비면 카톡에서 제목만 덩그러니 보이므로 대체 문구를 둡니다.
-    """
-    stories = summary.get("visual_story")
-    if isinstance(stories, list) and len(stories) == CARD_COUNT:
-        if len(image_urls) != CARD_COUNT:
-            raise ValueError("카카오 카드와 이미지 수가 맞지 않습니다.")
-        # 새 원고의 본문을 직접 사용합니다. 구형 p7_checks 문자열에 .get()을
-        # 호출하던 경로를 거치지 않아 카드 생성 후 발생하던 형식 오류를 없앱니다.
-        return [{"title": story["title"].replace("\n", " "),
-                 "description": story["body"], "image_url": image_url,
-                 "link_url": link_url}
-                for story, image_url in zip(stories, image_urls)]
-    f = data.get("focus", {})
-    tk = f.get("ticker", "")
-    pct = f.get("pct")
-    name = f.get("name") or tk
-    tk_txt = f"{tk} {pct:+.2f}%" if tk and pct is not None else name
-
-    def _join(items, key, sep=" / ", n=3):
-        values = [str(i.get(key, "")) if isinstance(i, dict) else str(i)
-                  for i in (items or [])[:n]]
-        return sep.join(value for value in values if value)
-
-    hook = " ".join(x for x in [summary.get("hook1"), summary.get("hook2")] if x)
-    timeline = _join(summary.get("p2_timeline"), "what")
-    flow = " → ".join(
-        str(x.get("text", "")) for x in (summary.get("p3_flow") or [])[:3] if x.get("text")
-    )
-    bull = _join(summary.get("p6_bull"), "title", sep=" · ", n=2)
-    bear = _join(summary.get("p6_bear"), "title", sep=" · ", n=2)
-    risk = " / ".join(x for x in [f"기대 {bull}" if bull else "", f"위험 {bear}" if bear else ""] if x)
-
-    cards = [
-        {"title": f"{data['date_kr']} · {tk_txt}",
-         "description": hook or summary.get("spotlight") or summary.get("kakao_text", "")},
-        {"title": summary.get("p2_headline") or "무슨 일이",
-         "description": summary.get("p2_diff") or timeline},
-        {"title": summary.get("p3_headline") or "왜 중요한가",
-         "description": summary.get("p3_note") or flow or summary.get("p3_biz", "")},
-        {"title": summary.get("p4_headline") or "숫자로 확인",
-         "description": summary.get("p4_reading", "")},
-        {"title": summary.get("p5_headline") or "주가 반응",
-         "description": summary.get("p5_reading") or summary.get("p5_caution", "")},
-        {"title": summary.get("p6_headline") or "기대와 위험",
-         "description": risk},
-        {"title": "기억할 것",
-         "description": summary.get("p7_line") or _join(summary.get("p7_checks"), "text")
-                        or summary.get("kr_line", "")},
-    ]
-
-    for card in cards:
-        if not (card.get("description") or "").strip():
-            card["description"] = f"{name} 관련 내용은 카드에서 확인하세요."
-
-    for card, url in zip(cards, image_urls):
-        card["image_url"] = url
-        card["link_url"] = link_url
-    return cards
-
-
-def main() -> int:
-    now = dt.datetime.now(cfg.KST)
-    out_dir = Path(cfg.OUT_DIR)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    # 로컬 재실행 때 지난 성공 결과가 이번 실패 결과로 잘못 게시되지 않도록 정리합니다.
-    for stale in ("skip", "state.json"):
-        (out_dir / stale).unlink(missing_ok=True)
-
-    if "--force" not in sys.argv and is_market_holiday(now):
-        log.info("오늘은 한국 증시 휴장일입니다. 브리핑을 건너뜁니다.")
-        Path(cfg.OUT_DIR).mkdir(parents=True, exist_ok=True)
-        Path(cfg.OUT_DIR, "skip").write_text("holiday")
+def main(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', default=os.environ.get('CARD_INPUT_FILE', 'automation/inbox/latest.json'))
+    parser.add_argument('--force', action='store_true', help='Compatibility only; never bypasses validation')
+    parser.add_argument('--out', default='out'); parser.add_argument('--docs', default='docs')
+    args = parser.parse_args(argv)
+    out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
+    for name in ('state.json', 'raw.json', 'packet.json', 'skip'):
+        (out / name).unlink(missing_ok=True)
+    if not Path(args.input).is_file():
+        (out / 'skip').write_text('awaiting ChatGPT manuscript packet', encoding='utf-8')
+        log.info('원고 파일 대기 중. 데이터 재수집·유료 AI·게시를 실행하지 않습니다.')
         return 0
-
-    log.info("데이터 수집 중")
-    history = load_history()
-    data = collect_all(history)
-    log.info("수집 확인: 뉴스 %d개 · 종목 뉴스 %d개 · 출처 %d개",
-             len(data.get("news") or []), len(data.get("focus_news") or []),
-             len(data.get("sources") or []))
-
-    focus = data.get("focus", {})
-    if not focus.get("ticker"):
-        log.error("오늘의 종목을 선정하지 못했습니다.")
-        return 1
-
-    # 파일명에 티커를 넣습니다. 날짜만 쓰면 같은 날 두 번 실행했을 때
-    # 이전 종목의 카드와 파일명이 겹쳐, 캐시 탓에 1장만 옛 종목이 섞이는 일이
-    # 생깁니다(실제로 INTC 표지 + GNRC 본문이 나간 적 있음).
-    slug = f"{now.strftime('%Y-%m-%d')}-{focus['ticker'].lower()}"
-
-    log.info("%s 사진 준비 중", focus['ticker'])
-    data = prepare_visual_assets(data)
-
-    log.info("요약 생성 중")
-    summary = summarize(data)
-
-    log.info("카드 %d장 렌더링 중", CARD_COUNT)
-    card_paths = render_cards(data, summary, f"{cfg.DOCS_DIR}/cards", slug)
-    render_detail_page(data, summary, slug)
-
-    image_urls = [f"{cfg.PAGES_BASE}/cards/{slug}-{n}.jpg" for n in range(1, len(card_paths) + 1)]
-    link_url = f"{cfg.PAGES_BASE}/{slug}.html"
-
-    state = {
-        "slug": slug,
-        "date_kr": data["date_kr"],
-        "weekday_kr": data["weekday_kr"],
-        "link_url": link_url,
-        "instagram_image_urls": image_urls,
-        "instagram_caption": _build_caption(data, summary),
-        "kakao_cards": _build_kakao_cards(data, summary, image_urls, link_url),
-    }
-
-    Path(cfg.OUT_DIR).mkdir(parents=True, exist_ok=True)
-    Path(cfg.OUT_DIR, "state.json").write_text(
-        json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    Path(cfg.OUT_DIR, "raw.json").write_text(
-        json.dumps({"data": data, "summary": summary}, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
-
-    save_history(history, {
-        "date": slug,
-        "ticker": focus["ticker"],
-        "name": focus.get("name", ""),
-        "pct": focus.get("pct"),
-        "rvol": focus.get("rvol"),
-    })
-
-    log.info("완료: %s · 카드 %d장", focus["ticker"], len(card_paths))
+    build_packet(load_packet(args.input), out_dir=args.out, docs_dir=args.docs,
+                 pages_base=os.environ.get('PAGES_BASE_URL', ''))
     return 0
 
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
+    try:
+        raise SystemExit(main())
+    except Exception as exc:
+        log.error('Build stopped: %s', str(exc))
+        raise SystemExit(1)
