@@ -1,16 +1,22 @@
 # ChatGPT → GitHub 카드뉴스 인계 규약
 
-## 현재 상태 — 2026-09-30
+## 운영 상태 — 2026-10-01
 
-수정 코드는 `chatgpt/no-paid-ai-20260930` 작업 브랜치에 있습니다. main 운영 전환은 하지 않았습니다. 일반 파일 읽기·쓰기는 확인했습니다. 기존 GitHub Pages 실행 36645999107의 재실행은 성공했지만, 신규 워크플로 파일 쓰기는 ChatGPT 보안 검토에서 차단되어 설치되지 않았습니다. 차단을 우회하지 않았습니다.
+사용자가 JBL 7장 실제 공개 게시와 이후 원고 작성부터 게시까지 자동 실행을 승인했습니다. main의 `card-packet.yml`이 운영 경로입니다. `allow_publish=true`, 최초 실제 preview 실행은 36860437531이며 운영 실행 36861877774도 성공했습니다. Instagram에서 캐러셀 7장을 다시 읽어 검증했습니다.
 
-로컬의 모의 테스트 40개가 통과했습니다. 실제 사진 다운로드, 기존 HTML/Playwright를 이용한 7장 렌더링, 신규 GitHub 워크플로 실행, 실제 Instagram 계정 게시까지 검증한 것은 아닙니다. 테스트 데이터는 가상 데이터입니다. `allow_publish=false`가 기본값입니다.
+- 게시 계정: @making_money_for_chicken
+- 최초 실제 게시: https://www.instagram.com/p/Dd86Xjbm6cq/
+- 게시 ID: 18119582245819862
+- 영구 게시 기록: automation/publication_log/us-stock-2026-09-30.json
+- 실제 게시 시각: 2026-10-01 21:29 KST
+- 검사: 모의 회귀 테스트 47개, 실제 렌더링, Pages 이미지 해시, Instagram 게시 및 7장 확인 통과
+- 기존 brief.yml과 유료 AI 호출 issue.yml의 예약 및 작업은 중지되었습니다.
 
 ## 처리 경로
 
-ChatGPT가 웹에서 확인한 원고와 시세·출처를 **하나의 JSON**으로 작성 → `automation/inbox/latest.json`에 커밋 → 승인 후 설치할 `card-packet.yml`의 파일 push 트리거 → 입력 검증 → 기존 `visual_assets.prepare_visual_assets` → 기존 `render.render_cards` 및 상세 페이지 → 오프라인 게시 검증 → 운영 허용 시 GitHub Pages 배포 → 공개 이미지 바이트 검증 → 영구 중복 방지 기록 → 기존 `publish_instagram.publish_carousel`.
+예약 작업이 웹 원문과 정규장 시세를 검증하여 한국어 원고를 하나의 JSON으로 작성 → main의 automation/inbox/latest.json 업데이트 → card-packet 자동 실행 → 입력 검사 → 라이선스 확인 사진 및 7장 렌더링 → 오프라인 게시 검사 → GitHub Pages 배포 → 공개 이미지 해시 검사 → 영구 중복 방지 예약 → Instagram 캐러셀 게시 → 실제 게시물의 주소와 7장 확인.
 
-`src/build.py`, `src/summarize.py`의 새 실행 경로는 Claude/OpenAI 등 유료 AI API를 호출하지 않습니다. 원고가 없으면 건너뛰며 유료 AI 또는 새 시세 조회로 대체하지 않습니다. 사진 취득은 기존 기능이며, 사진 준비 과정에서 시세·출처 입력을 바꾸면 실패합니다. 다른 기존 워크플로까지 모두 전환한 상태는 아닙니다. Kakao는 이번 Instagram 전용 경로에서 보내지 않습니다.
+별도 유료 AI API는 사용하지 않습니다. GitHub가 원고를 받은 뒤 시세·원고를 새로 생성하거나 변경하지 않습니다. 원고가 없거나 부정확하면 중단합니다. Kakao는 이 Instagram 전용 작업에서 발송하지 않습니다.
 
 ## JSON 구조
 
@@ -65,13 +71,17 @@ summary 필드:
 
 가상 예시는 `tests/test_packet_pipeline.py`의 `sample_packet()`에서 생성할 수 있습니다. 예시는 실제 종목·출처·투자 자료가 아니며 게시하면 안 됩니다.
 
-## ChatGPT 예약 작업 원칙
+## 예약 운영
 
-한국 시간 화–토 아침에 최근 완료된 미국 거래일을 확인합니다. 새 거래가 없거나 확인 가능한 근거가 부족하면 건너뜁니다. 큰 가격 변동만을 자극적으로 단정하지 말고 뉴스 발생일과 기사 발행일을 구분합니다. 회사 IR·SEC·거래소 등 원문을 우선합니다. 수치뿐 아니라 자연어 주장도 원문에 대조하고 사실, 해석, 불확실성을 구분합니다.
+Codex의 현재 대화에 연결된 활성 예약 작업 `미국 주식 7장 카드 자동 게시`(ID 7)가 한국 시간 화–토 오전 8시 30분에 시작합니다. 로컬 원고 작성 예약이므로 해당 PC와 Codex 앱이 실행 중이어야 합니다. GitHub에 전달된 뒤 렌더링·배포·게시 작업은 GitHub 호스팅 환경에서 실행됩니다. 별도 유료 AI API 비용은 발생시키지 않지만 기존 서비스 이용 한도는 적용됩니다.
 
-연결된 GitHub로 main의 설정과 워크플로, 최근 실행 기록을 먼저 읽습니다. main에 이 규약이 없거나 신규 워크플로 설치와 성공한 실제 렌더링 preview를 확인하지 못하면 작업 브랜치 `chatgpt/no-paid-ai-20260930`에 **preview 원고만** 작성합니다. main 전환 후에도 allow_publish=false이면 preview만 작성합니다. 작업이 보안 승인에서 멈추면 파일 전달 성공 또는 자동 게시 완료라고 보고하지 않습니다. 워크플로·설정·보안 권한을 예약 작업이 임의로 변경하지 않습니다.
+예약 실행은 최신 main의 규약·설정·코드 및 실행 기록을 먼저 확인합니다. allow_publish가 false이면 실제 게시하지 않습니다. 워크플로·설정·권한·비밀키를 예약 실행이 변경하지 않습니다. 공개 게시 권한은 사용자가 이미 부여했으므로 매번 재승인을 요청하지 않습니다.
 
-운영 모드에서는 allow_publish=true와 preview_verified_run_id에 해당하는 성공한 신규 워크플로 실행을 확인해야 합니다. 기존 Pages 성공 기록은 렌더링 preview 증거가 아닙니다. `automation/publication_log/us-stock-YYYY-MM-DD.json`이 있으면 해당 미국 거래일을 다시 게시하지 않습니다. latest.json에 같은 거래일이 이미 전달되어 있으면 덮어써 새 게시를 만들지 않고 현재 상태를 보고합니다. 전송할 때 기존 파일 SHA를 읽고 내용 쓰기 후 다시 읽어 일치 여부를 확인합니다. 저장소에는 비밀키를 저장하지 않습니다.
+최신 완료된 미국 거래일과 공식 휴장·조기폐장 일정을 확인합니다. 새 거래가 없거나 이미 published이면 건너뜁니다. reserved/불명확한 기록은 자동 삭제하거나 재시도하지 않습니다. 같은 거래일 원고가 처리 중이면 덮어쓰지 않습니다. 입력만의 문제이며 아직 게시를 시도하지 않았다고 확인된 실패는 내용을 교정할 수 있습니다.
+
+회사 IR·SEC·거래소 원문을 우선하고, 사실·해석·불확실성을 나눕니다. 뉴스 발생일과 발행일을 구분하며 숫자와 자연어 주장을 모두 원문에 대조합니다. 확인 가능한 근거가 부족하면 종목을 바꾸거나 건너뜁니다.
+
+운영 JSON은 is_test=false, intent=publish로 전송합니다. 기존 파일 SHA를 읽고 갱신 후 다시 읽어 일치를 확인합니다. workflow 성공 외에도 영구 기록의 published/media_id 및 로그의 실제 7장·permalink 확인을 확인해야 게시 완료로 보고합니다. 완료·실패·사용자 조치가 필요한 경우에 알리고, 휴장이나 변화 없는 상태는 조용히 종료합니다.
 
 ## 중복 및 오래된 데이터 방지
 
@@ -79,21 +89,10 @@ summary 필드:
 
 운영 원고는 생성 후 24시간, 시장 종료 후 36시간 이내이며 한국 날짜가 오늘이어야 합니다. JSON과 캡션의 일치, JPEG 7장 및 1080×1350 규격, 이미지 해시를 검사합니다. 파일명에는 원고 해시가 들어가고, Pages에서 내려받은 JPEG 바이트의 해시가 만들어진 이미지와 정확히 같을 때만 게시를 시도합니다. 가격 문장 전체의 의미를 검증하는 금융 사실 검증기는 아니므로 원고 작성 단계의 출처 확인이 필수입니다.
 
-## 소유자 승인 후 설치·전환
+## 연결 및 검증
 
-1. 기존 유료 AI 기반 `brief.yml` 및 다른 예약/수동 워크플로의 호출 경로를 점검하고 기존 자동 게시 스케줄을 비활성화합니다. 이 PR은 main을 자동 변경하거나 기존 작업을 비활성화하지 않았습니다.
-2. 변경 PR을 검토·병합하고, 대화 첨부 패치의 `.github/workflows/card-packet.yml`을 소유자가 검토 후 같은 경로에 설치합니다. 이 파일은 저장소에 설치되지 않았습니다. Settings → Pages → Source를 GitHub Actions로 설정합니다. Pages 주소가 다른 경우 YAML의 PAGES_BASE_URL을 실제 공개 주소에 맞춥니다. 현재 게시 검증은 github.io 호스트를 사용합니다.
-3. 원고를 intent=preview로 전달하고 `Card packet — no paid AI`를 live=false로 실행합니다. artifact에서 실제 사진·한글·7장 구성·잘림 여부를 직접 확인합니다. 원본 사진이 없거나 라이선스가 확인되지 않으면 실패한 상태로 둡니다.
-4. 성공한 실제 렌더링 실행 ID를 settings.preview_verified_run_id에 기록하고 allow_publish=true로 변경한 뒤, 새 거래일의 최신 원고부터 운영 전환합니다. 예전 가상 테스트 원고나 오래된 원고는 게시하지 않습니다.
+기존 IG_USER_ID 및 IG_ACCESS_TOKEN 비밀값을 사용합니다. GH_TOKEN은 github.token을 사용해 영구 게시 기록을 저장하며, 기존 GH_PAT으로 갱신된 Instagram 토큰을 시크릿에 되씁니다. 2026-10-01 운영 실행에서 토큰 갱신과 저장도 성공했습니다. 비밀값을 원고·로그·아티팩트에 노출하지 않습니다. 인증이 해제되거나 만료되면 사용자 재연결이 필요할 수 있습니다.
 
-운영에 필요한 기존 GitHub secrets는 IG_USER_ID, IG_ACCESS_TOKEN입니다. 게시 잠금용 GH_TOKEN은 워크플로의 github.token을 사용하고 contents:write가 필요합니다. 토큰 갱신 보존은 기존 GH_PAT 권한이 있는 경우에만 수행합니다. GH_PAT이 없으면 장기 토큰 갱신값이 저장되지 않아 추후 수동 갱신이 필요할 수 있습니다. 비밀값은 대화나 원고 파일에 붙여 넣지 않습니다.
+GitHub Pages Source는 GitHub Actions이며 PAGES_BASE_URL은 https://jyhyun12310-cmd.github.io/morning-brief 입니다. 게시 후 검증 결과는 card-publication-result 아티팩트와 실행 로그에 남습니다. 이미 게시한 거래일은 검증 조회만 재시도할 수 있으며 게시 자체를 재실행하지 않습니다.
 
-새 워크플로는 별도 AI SDK를 설치하지 않으며 GitHub 호스팅 실행 자원과 기존 Meta 게시 API를 사용합니다. 별도 AI 사용료가 없다는 뜻이지 모든 서비스의 계정 한도·정책 또는 향후 비용까지 보장한다는 뜻은 아닙니다.
-
-## 테스트
-
-`python -m pip install pytest Pillow requests` 후 `PYTHONPATH=src python -m pytest tests/test_packet_pipeline.py -q`.
-
-검사 항목: 기준 가격 불일치, 출처/근거 ID 누락, 비정상 숫자, 원고 7장 미완성, 시세 변조, 날짜·신선도 제한, 출처 연결 차트 수치, 상태·캡션 변조, 가상 JPEG 7장과 오프라인 dry-run, 생성 전/후 중복 기록, 응답 타임아웃, 기록 갱신 실패, 예약 경쟁 충돌, 빈 SHA 확인 응답, 오래된 HTTP 200 이미지, 잘못된 이미지 크기.
-
-40개 성공은 모의 회귀 테스트 결과이며 실제 Instagram 권한·토큰·게시 성공 또는 새 워크플로 성공의 증거가 아닙니다.
+테스트: `PYTHONPATH=src python -m pytest tests/test_packet_pipeline.py -q`. 모의 테스트 성공만으로 실제 계정 게시 성공을 주장하지 않으며 실제 실행과 Instagram 응답을 별도로 확인합니다.
