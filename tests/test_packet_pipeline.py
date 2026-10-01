@@ -298,3 +298,19 @@ def test_commons_thumbnail_host_change_uses_only_allowed_images(thumb_host, orig
         assert item['license'] == 'CC BY-SA 4.0'
         expected_name = 'example-thumb.jpg' if thumb_host == expected_host else 'example-original.jpg'
         assert item['asset_url'].endswith(expected_name)
+@pytest.mark.parametrize('count,valid', [(7, True), (6, False), (8, False)])
+def test_published_carousel_readback(monkeypatch, count, valid):
+    import publish_instagram
+    monkeypatch.setenv('IG_ACCESS_TOKEN', 'test-token-not-a-secret')
+    class Response:
+        status_code = 200
+        def json(self):
+            return {'id': '123', 'media_type': 'CAROUSEL_ALBUM',
+                    'permalink': 'https://www.instagram.com/p/example/',
+                    'username': 'example', 'children': {'data': [{'id': str(i)} for i in range(count)]}}
+    monkeypatch.setattr(publish_instagram.requests, 'get', lambda *args, **kwargs: Response())
+    if valid:
+        assert publish_instagram.verify_published_media('123')['image_count'] == 7
+    else:
+        with pytest.raises(RuntimeError):
+            publish_instagram.verify_published_media('123')

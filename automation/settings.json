@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "allow_publish": false,
-  "preview_verified_run_id": null,
+  "allow_publish": true,
+  "preview_verified_run_id": 36860437531,
   "workflow_file": "card-packet.yml",
-  "note": "실제 사진·7장 렌더링 시험과 워크플로 설치 승인이 완료되기 전에는 allow_publish를 true로 변경하지 마세요."
+  "note": "2026-10-01: user authorized immediate JBL publication and recurring Instagram publication after successful seven-card preview."
 }

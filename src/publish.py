@@ -112,6 +112,14 @@ def main(argv=None):
         token_dir=str(out / 'tokens')))
     (out / 'publish_result.json').write_text(json.dumps(result), encoding='utf-8')
     log.info('Publication status: %s', result['status'])
+    # The durable journal is already completed. A read-back failure must never
+    # cause this post to be sent again.
+    try:
+        result.update(publish_instagram.verify_published_media(result['media_id']))
+        (out / 'publish_result.json').write_text(json.dumps(result), encoding='utf-8')
+        log.info('Verified %s images: %s', result['image_count'], result['permalink'])
+    except Exception as exc:
+        log.warning('Post succeeded; read-back verification needs checking (%s). Do not republish.', type(exc).__name__)
     # Kakao cards remain in state for compatibility but are not sent by this
     # Instagram-only automation. This avoids an unrelated side effect.
     return 0

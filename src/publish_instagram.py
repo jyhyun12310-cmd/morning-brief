@@ -31,6 +31,26 @@ BASE = f"https://graph.instagram.com/{API_VERSION}"
 CAPTION_LIMIT = 2200
 
 
+def verify_published_media(media_id: str, *, expected_count: int = 7) -> dict:
+    """Read back the published carousel without exposing credentials."""
+    response = requests.get(
+        f"{BASE}/{media_id}",
+        params={"fields": "id,permalink,media_type,username,children{id}",
+                "access_token": os.environ["IG_ACCESS_TOKEN"]},
+        timeout=30,
+    )
+    if response.status_code != 200:
+        raise RuntimeError("Published-media verification HTTP " + str(response.status_code))
+    data = response.json()
+    children = data.get("children", {}).get("data", [])
+    if (str(data.get("id")) != str(media_id) or data.get("media_type") != "CAROUSEL_ALBUM"
+            or len(children) != expected_count
+            or not str(data.get("permalink", "")).startswith("https://www.instagram.com/")):
+        raise RuntimeError("Published carousel does not match the expected seven images")
+    return {"permalink": data["permalink"], "username": data.get("username"),
+            "image_count": len(children), "verified": True}
+
+
 def refresh_long_lived_token(token: str) -> str | None:
     """장기 토큰은 60일짜리이고 발급 24시간 뒤부터 갱신 가능합니다.
 

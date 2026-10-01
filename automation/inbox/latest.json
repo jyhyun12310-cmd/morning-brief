@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-10-01T21:06:00+09:00",
   "publication_date_kst": "2026-10-01",
