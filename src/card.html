@@ -1,5 +1,6 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
-{% if photo_deck.font %}@font-face{font-family:CardSans;src:url('{{ photo_deck.font }}')}{% endif %}
+@font-face{font-family:CardDisplay;src:url('{{ photo_deck.fonts.display }}') format('truetype');font-style:normal;font-weight:700;font-display:block}
+@font-face{font-family:CardSans;src:url('{{ photo_deck.fonts.body }}') format('woff2');font-style:normal;font-weight:100 900;font-display:block}
 :root{--ivory:#F6F3EB;--navy:#17324D;--gold:#C8A655;--muted:#607284;--line:#d8d8ce}
 *{box-sizing:border-box;margin:0;padding:0}html,body{width:1080px;height:1350px}body{background:var(--ivory);color:var(--navy);font-family:CardSans,"Noto Sans CJK KR","Noto Sans KR",sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
 header{position:absolute;left:60px;right:60px;top:38px;height:45px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);font-size:18px;letter-spacing:.045em}.brand{font-weight:850}.number{color:var(--muted)}.gold{color:var(--gold)}
@@ -18,13 +19,28 @@ h1{font-size:65px;font-weight:850;line-height:1.2;letter-spacing:-.045em;word-br
 .takeaway{font-size:30px;line-height:1.5;font-weight:750;word-break:keep-all;padding:17px 22px;border-left:5px solid var(--gold);background:#eeeadd;flex:none;letter-spacing:-.025em}
 .bridge{font-size:23px;color:var(--muted);line-height:1.4;flex:none;display:flex;justify-content:space-between;gap:12px}.bridge span:last-child{font-size:29px;line-height:1;font-weight:800;color:#997934}
 footer{position:absolute;left:60px;right:60px;bottom:27px;height:63px;border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;gap:20px;font-size:16px;line-height:1.5;color:var(--muted)}.source{max-width:570px;word-break:keep-all}footer strong{font-size:17px;color:var(--navy);white-space:nowrap}
-.layout-cover h1{font-size:72px}.layout-cover .body-copy{font-size:32px}.layout-cover .visual{min-height:410px}.layout-cover .takeaway{background:transparent;border:0;padding:0;font-size:31px}.layout-closing .body-copy{font-weight:600}
+.layout-cover h1{font-size:76px}.layout-cover .body-copy{font-size:32px}.layout-cover .visual{min-height:410px}.layout-cover .takeaway{background:transparent;border:0;padding:0;font-size:31px}.layout-closing .body-copy{font-weight:500}
+/* Display and reading text have separate rhythms. The second line is the hook. */
+:root{--ivory:#F8F5ED;--navy:#142D43;--gold:#C6A765;--muted:#54697A;--accent:#B7492E}
+body{font-synthesis:none;font-variant-numeric:tabular-nums}
+header{font-size:17px;border-bottom-color:#d9d5c9}.brand{font-weight:800;letter-spacing:.10em}.number{font-weight:650}
+main{gap:24px}.eyebrow{font-size:22px;letter-spacing:-.02em}.chapter{color:var(--accent);font-weight:750}
+h1{font-family:CardDisplay,CardSans,sans-serif;font-size:65px;font-weight:700;line-height:1.25;letter-spacing:-.045em;white-space:normal}
+.title-line{display:block}.title-accent{color:var(--accent)}
+.body-copy{font-size:33px;line-height:1.56;font-weight:450;letter-spacing:-.023em;color:#32495A}
+.takeaway{font-weight:750;line-height:1.45;background:#EEE9DA;border-left:5px solid var(--accent);border-radius:0 12px 12px 0;padding:18px 23px}
+.bridge{font-weight:500;font-size:23px;letter-spacing:-.01em}
+.cover-stat strong,.metric strong,.bar-meta strong{font-family:CardSans,sans-serif;font-weight:800;letter-spacing:-.045em}
+.cover-stat{border-top-color:var(--accent);border-radius:0 0 12px 12px}.cover-tag{font-size:24px;letter-spacing:-.025em;border-radius:7px}
+.chart-row:last-of-type .bar{background:var(--accent)}.track{height:58px;border-radius:5px}.bar{border-radius:0 5px 5px 0}
+.branch{border-radius:0 0 16px 16px}.branch:last-child{border-top-color:var(--accent)}
+.step strong,.concept p,.check strong{font-weight:720}.source{font-size:16px}
 </style></head>
 {% set p=photo_deck.pages[card_num-1] %}
 {% macro photo_caption(asset) %}{{ asset.caption }}{% if asset.credit %}<br>{{ asset.credit }}{% endif %}{% endmacro %}
 {% macro pic(asset) %}<div class="photo"><img src="{{ asset.src }}" alt="{{ asset.caption }}"><span class="caption">{{ photo_caption(asset) }}</span></div>{% endmacro %}
 <body class="layout-{{ p.layout }}"><header><span class="brand">MONEY FOR CHICKEN <span class="gold">/</span> {{ f.ticker }}</span><span class="number">{{ '%02d'|format(card_num) }} / 07</span></header>
-<main><div class="eyebrow"><span>{{ photo_deck.edition }}</span><span class="chapter">{{ p.chapter }}</span></div><h1>{{ p.title }}</h1><p class="body-copy">{{ p.body }}</p>
+<main><div class="eyebrow"><span>{{ photo_deck.edition }}</span><span class="chapter">{{ p.chapter }}</span></div><h1>{% for line in p.title.split('\n') %}<span class="title-line{% if loop.last and not loop.first %} title-accent{% endif %}">{{ line }}</span>{% endfor %}</h1><p class="body-copy">{{ p.body }}</p>
 <section class="visual">
 {% if p.layout=='cover' %}
  <div class="photo hero"><img src="{{ p.photo.src }}" alt="{{ p.photo.caption }}"><span class="cover-tag">{{ f.ticker }} · {{ f.name }}</span><div class="cover-stats">{% for l in p.labels[:2] %}<div class="cover-stat"><small>{{ l.label }}</small><strong>{{ l.text }}</strong></div>{% endfor %}</div><span class="caption">{{ photo_caption(p.photo) }}</span></div>

@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "intent": "preview",
+  "is_test": false,
+  "created_at": "2026-10-01T21:06:00+09:00",
+  "publication_date_kst": "2026-10-01",
+  "market": {
+    "ticker": "JBL",
+    "name": "Jabil Inc.",
+    "session_date": "2026-09-30",
+    "session_close_at": "2026-09-30T16:00:00-04:00",
+    "price_basis": "regular_close",
+    "currency": "USD",
+    "close": 286.86,
+    "previous_close": 318.84,
+    "change_pct": -10.03,
+    "source_id": "price"
+  },
+  "sources": [
+    {
+      "id": "price",
+      "title": "Jabil (JBL) Stock Price History — Stock Analysis / S&P Global",
+      "url": "https://stockanalysis.com/stocks/jbl/history/",
+      "as_of": "2026-09-30 and 2026-09-29 regular-session Close column (USD)",
+      "retrieved_at": "2026-10-01T21:06:00+09:00"
+    },
+    {
+      "id": "jabil_ir",
+      "title": "Jabil Posts Fourth Quarter and Fiscal Year 2026 Results",
+      "url": "https://investors.jabil.com/news/news-details/2026/Jabil-Posts-Fourth-Quarter-and-Fiscal-Year-2026-Results/default.aspx",
+      "as_of": "2026-09-30; preliminary unaudited FY2026 Q4 and FY2027 outlook",
+      "retrieved_at": "2026-10-01T21:06:00+09:00"
+    },
+    {
+      "id": "nyse",
+      "title": "NYSE Holidays & Trading Hours",
+      "url": "https://www.nyse.com/trade/hours-calendars",
+      "as_of": "2026 calendar; September 29–30 normal sessions, 16:00 ET close",
+      "retrieved_at": "2026-10-01T21:06:00+09:00"
+    }
+  ],
+  "metrics": [
+    {
+      "id": "revenue25",
+      "value": 8252,
+      "unit": "USD million",
+      "period": "FY2025 Q4 ended 2025-08-31",
+      "basis": "Consolidated US GAAP net revenue",
+      "source_id": "jabil_ir"
+    },
+    {
+      "id": "revenue26",
+      "value": 10616,
+      "unit": "USD million",
+      "period": "FY2026 Q4 ended 2026-08-31",
+      "basis": "Consolidated US GAAP net revenue",
+      "source_id": "jabil_ir"
+    }
+  ],
+  "summary": {
+    "market_basis": {
+      "ticker": "JBL",
+      "session_date": "2026-09-30",
+      "price_basis": "regular_close",
+      "currency": "USD",
+      "close": 286.86,
+      "previous_close": 318.84,
+      "change_pct": -10.03
+    },
+    "central_question": "매출은 28.6% 늘었는데, Jabil 주가는 왜 10.03% 내렸을까?",
+    "thesis": "매출 성장과 주가 하락이 겹친 Jabil의 실적 발표일. 확인된 성과, 아직 남은 목표, 시장의 가격 평가를 나눠 읽습니다. 하루의 종가만으로 하락 원인을 확정할 수는 없습니다.",
+    "edition": "오늘의 미장 이슈 · 10월 1일",
+    "instagram_caption": "매출 +28.6%. 그런데 주가는 -10.03%.\n좋아진 성적표가 왜 좋은 주가 반응으로 이어지지 않았을까요?\n\nJabil(JBL)의 9월 30일을 7장으로 읽습니다.\n\n① 이미 나온 성적표\nFY2026 4분기 연결 GAAP 매출은 82.52억달러에서 106.16억달러로 늘었습니다. 증가율 28.6%는 같은 기간·같은 기준의 수치로 계산했습니다. 이번 실적은 잠정·미감사 자료입니다.\n\n② 아직 남은 목표\n회사가 제시한 FY2027 전망은 매출 445억달러, 코어 영업이익률 6.1%입니다. 코어는 비GAAP 지표이며, 전망은 달성된 실적과 다릅니다.\n\n③ 시장이 매긴 가격\n9월 30일 정규장 종가는 286.86달러. 전 거래일 318.84달러보다 10.03% 내렸습니다. 매출 성장과 주가 하락은 모두 확인되지만, 공시와 종가만으로 특정 하락 원인을 확정할 수는 없습니다.\n\n다음 성적표에서 볼 것은 두 가지입니다.\n매출이 회사의 분기 전망 106억~114억달러에 닿는지, 수익성은 어떤지.\n\n저장해 두고 다음 실적과 비교해 보세요.\n@making_money_for_chicken\n\n출처·기준\nJabil IR · 2026-09-30\nhttps://investors.jabil.com/news/news-details/2026/Jabil-Posts-Fourth-Quarter-and-Fiscal-Year-2026-Results/default.aspx\n정규장 Close · 2026-09-29·30\nhttps://stockanalysis.com/stocks/jbl/history/\nNYSE 거래일·시간\nhttps://www.nyse.com/trade/hours-calendars\n\n본 게시물은 공개 자료를 정리한 투자 참고용 해설이며, 특정 종목의 매수·매도를 권유하지 않습니다.\n#JBL #미국주식 #미국증시 #실적발표 #주식공부",
+    "sources": [
+      {
+        "id": "price",
+        "title": "Jabil (JBL) Stock Price History — Stock Analysis / S&P Global",
+        "url": "https://stockanalysis.com/stocks/jbl/history/",
+        "as_of": "2026-09-30 and 2026-09-29 regular-session Close column (USD)"
+      },
+      {
+        "id": "jabil_ir",
+        "title": "Jabil Posts Fourth Quarter and Fiscal Year 2026 Results",
+        "url": "https://investors.jabil.com/news/news-details/2026/Jabil-Posts-Fourth-Quarter-and-Fiscal-Year-2026-Results/default.aspx",
+        "as_of": "2026-09-30; preliminary unaudited FY2026 Q4 and FY2027 outlook"
+      },
+      {
+        "id": "nyse",
+        "title": "NYSE Holidays & Trading Hours",
+        "url": "https://www.nyse.com/trade/hours-calendars",
+        "as_of": "2026 calendar; September 29–30 normal sessions, 16:00 ET close"
+      }
+    ],
+    "evidence_notes": [
+      {
+        "id": "ev1",
+        "claim": "Jabil은 2026년 9월 30일 FY2026 4분기·연간 잠정·미감사 실적을 발표했으며, 분기 GAAP 희석 EPS는 3.76달러다.",
+        "source_ids": [
+          "jabil_ir"
+        ]
+      },
+      {
+        "id": "ev2",
+        "claim": "연결 GAAP 분기 매출은 FY2025 Q4 8,252백만달러에서 FY2026 Q4 10,616백만달러로 증가했다. 같은 두 수치로 계산한 전년 동기 대비 매출 증가율은 약 28.6%다.",
+        "source_ids": [
+          "jabil_ir"
+        ]
+      },
+      {
+        "id": "ev3",
+        "claim": "FY2027 회사 전망은 매출 445억달러, 비GAAP 코어 영업이익률 6.1%, 코어 희석 EPS 17.55달러다.",
+        "source_ids": [
+          "jabil_ir"
+        ]
+      },
+      {
+        "id": "ev4",
+        "claim": "JBL의 9월 30일 정규장 종가는 286.86달러, 9월 29일은 318.84달러로 동일 Close 열 기준 등락률은 -10.03%다.",
+        "source_ids": [
+          "price"
+        ]
+      },
+      {
+        "id": "ev5",
+        "claim": "NYSE 2026년 달력에서 9월 29일과 30일은 휴장·조기폐장일이 아니며 정규장 종료는 동부시간 16시다.",
+        "source_ids": [
+          "nyse"
+        ]
+      },
+      {
+        "id": "ev6",
+        "claim": "FY2027 1분기 회사 매출 전망은 106억~114억달러이며, 이는 아직 실현되지 않은 전망이다.",
+        "source_ids": [
+          "jabil_ir"
+        ]
+      },
+      {
+        "id": "ev7",
+        "claim": "Jabil은 AI 인프라 성장과 고객의 엔지니어링·공급망·제조 수요를 언급했다. 주가 하락의 단일 원인은 이 발표와 종가만으로 입증되지 않는다.",
+        "source_ids": [
+          "jabil_ir",
+          "price"
+        ]
+      }
+    ],
+    "visual_story": [
+      {
+        "layout": "cover",
+        "title": "매출은 28.6% ↑\n주가는 10.03% ↓",
+        "body": "Jabil(JBL)의 실적 발표일, 매출 성장과 주가 하락이 겹쳤습니다.\n좋아진 성적표와 다른 주가의 방향, 어디서 갈렸을까요?",
+        "takeaway": "좋은 실적이 곧 좋은 주가 반응을 뜻하지는 않습니다.",
+        "bridge": "먼저, 실적과 전망을 두 칸으로 나눠 봅시다.",
+        "evidence_ids": [
+          "ev1",
+          "ev2",
+          "ev4"
+        ],
+        "labels": [
+          {
+            "label": "9월 30일 정규장 종가",
+            "text": "286.86달러"
+          },
+          {
+            "label": "전 거래일 대비",
+            "text": "-10.03%"
+          }
+        ]
+      },
+      {
+        "layout": "photo",
+        "title": "성적표는 나왔고,\n목표는 아직 남았다",
+        "body": "9월 30일, Jabil은 FY2026 4분기 실적을 발표했습니다. GAAP 희석 주당순이익은 3.76달러였습니다. 잠정·미감사 실적이라는 점, 함께 공개한 FY2027 전망은 아직 목표라는 점을 구분해 읽어야 합니다.",
+        "takeaway": "이미 나온 성적표와 아직 남은 목표를 구분해서 읽습니다.",
+        "bridge": "그렇다면 이 회사는 무엇으로 돈을 벌까요?",
+        "evidence_ids": [
+          "ev1",
+          "ev3"
+        ],
+        "labels": [
+          {
+            "label": "확인된 실적",
+            "text": "주당순이익 3.76달러"
+          },
+          {
+            "label": "앞으로의 목표",
+            "text": "FY2027 회사 전망"
+          }
+        ]
+      },
+      {
+        "layout": "annotated",
+        "title": "AI 인프라 뒤에서\n설계·공급망·제조를 잇다",
+        "body": "AI 인프라에는 칩뿐 아니라 설계와 생산, 부품 공급도 필요합니다. Jabil은 고객의 엔지니어링·공급망·제조를 지원하며 이번 발표에서 AI 인프라 성장을 언급했습니다. 이 수요가 수익으로 이어지는지는 따로 확인해야 합니다.",
+        "takeaway": "AI 수요가 늘어도 실제 이익으로 연결되는 과정은 남습니다.",
+        "bridge": "사업 이야기를 들었으니, 매출로 확인해 봅시다.",
+        "evidence_ids": [
+          "ev7"
+        ],
+        "labels": [
+          {
+            "label": "고객 수요",
+            "text": "AI 인프라 확대"
+          },
+          {
+            "label": "Jabil 역할",
+            "text": "설계·공급망·제조"
+          },
+          {
+            "label": "검증할 결과",
+            "text": "매출과 수익성"
+          }
+        ]
+      },
+      {
+        "layout": "comparison",
+        "title": "82.52억 → 106.16억\n매출은 확실히 늘었다",
+        "body": "같은 4분기끼리 비교하면 변화가 선명합니다. 연결 GAAP 매출은 82.52억달러에서 106.16억달러로, 약 28.6% 늘었습니다. 회계 기준과 기간을 맞춘 실제 매출 비교이며, 다음 해 전망을 섞은 숫자가 아닙니다.",
+        "takeaway": "같은 기준으로 비교한 매출 성장 자체는 확인된 사실입니다.",
+        "bridge": "이제 성적표 옆에 주가의 움직임을 놓아봅시다.",
+        "evidence_ids": [
+          "ev2"
+        ],
+        "labels": [],
+        "chart": {
+          "source": "Jabil IR · 2026-09-30 · 연결 손익계산서",
+          "note": "4분기 연결 GAAP 순매출 · 단위: 백만달러 · 0 기준",
+          "unit": "USD million",
+          "rows": [
+            {
+              "metric_id": "revenue25",
+              "value": 8252,
+              "label": "FY2025 Q4",
+              "display": "8,252"
+            },
+            {
+              "metric_id": "revenue26",
+              "value": 10616,
+              "label": "FY2026 Q4",
+              "display": "10,616"
+            }
+          ]
+        }
+      },
+      {
+        "layout": "explain",
+        "title": "실적은 과거의 점수,\n주가는 미래의 기대",
+        "body": "정규장 종가는 318.84달러에서 286.86달러로 내렸습니다. 기대에 못 미쳤을까, 실행 위험을 더 크게 봤을까? 가능한 해석이지만 확인된 매도 이유는 아닙니다. 공시와 하루의 종가만으로 원인을 하나로 정할 수는 없습니다.",
+        "takeaway": "주가가 내렸다는 사실과 왜 내렸는지는 서로 다른 질문입니다.",
+        "bridge": "원인 추측보다 다음에 볼 조건을 정해봅시다.",
+        "evidence_ids": [
+          "ev4",
+          "ev7"
+        ],
+        "labels": [
+          {
+            "label": "확인된 사실",
+            "text": "318.84 → 286.86달러"
+          },
+          {
+            "label": "해석의 한계",
+            "text": "단일 하락 원인은 미확인"
+          }
+        ]
+      },
+      {
+        "layout": "conditions",
+        "title": "445억달러의 목표,\n관건은 수익성까지",
+        "body": "Jabil이 제시한 FY2027 목표는 매출 445억달러, 코어 영업이익률 6.1%입니다. 코어 지표는 비GAAP이며 아직 실적이 아닙니다. 매출이 커지는지와 돈을 남기는 힘이 유지되는지를 함께 확인해야 합니다.",
+        "takeaway": "매출의 크기와 수익성을 함께 봐야 목표를 제대로 평가합니다.",
+        "bridge": "마지막으로, 다음 발표에서 볼 숫자를 챙겨봅시다.",
+        "evidence_ids": [
+          "ev3",
+          "ev6"
+        ],
+        "labels": [],
+        "origin": "FY2027 전망을 판단하는 두 가지 조건",
+        "branches": [
+          {
+            "label": "기대가 이어질 조건",
+            "text": "매출 성장과 수익성 개선이 함께 나타날 때",
+            "check": "다음 분기 매출과 마진의 실제 결과 확인"
+          },
+          {
+            "label": "다시 점검할 조건",
+            "text": "수요 둔화나 비용 증가로 목표 달성이 흔들릴 때",
+            "check": "회사 전망 변경과 수익성 설명을 확인"
+          }
+        ]
+      },
+      {
+        "layout": "closing",
+        "title": "오늘의 하락보다\n다음 실적의 두 숫자",
+        "body": "매출은 늘었고 주가는 내렸습니다. 그 사이의 원인은 아직 단정할 수 없습니다. 다음에는 FY2027 1분기 매출이 회사 전망 106억~114억달러에 닿는지, 수익성이 어떤지 보겠습니다. 발표일은 회사 IR 공지로 확인합니다.",
+        "takeaway": "오늘의 가격에 답을 단정하지 말고, 다음 실적과 비교해 보세요.",
+        "bridge": "저장해 두고 다음 성적표가 나오면 꺼내보세요.",
+        "evidence_ids": [
+          "ev2",
+          "ev3",
+          "ev4",
+          "ev6"
+        ],
+        "labels": [
+          {
+            "label": "첫째, 다음 분기 매출",
+            "text": "회사 전망 106억~114억달러와 비교"
+          },
+          {
+            "label": "둘째, 실제 수익성",
+            "text": "매출과 함께 이익률의 흐름 확인"
+          }
+        ]
+      }
+    ]
+  }
+}

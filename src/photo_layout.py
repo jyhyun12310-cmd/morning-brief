@@ -130,8 +130,8 @@ def build_photo_deck(data: dict, summary: dict) -> dict:
         pages.append(page)
     if [p['layout'] for p in pages].count('cover')!=1 or pages[0]['layout']!='cover' or pages[-1]['layout']!='closing':
         raise ValueError('첫 장은 cover, 마지막 장은 closing 이어야 합니다.')
-    # 기존 번들 폰트가 없으면 워크플로에서 설치한 Noto CJK를 CSS로 사용합니다.
-    font_path = ROOT/'assets/NotoSansKR.ttf'
-    return {'pages':pages,'font':_embed(font_path) if font_path.is_file() else '',
+    import config as cfg
+    from typography import card_fonts
+    return {'pages':pages,'fonts':card_fonts(Path(cfg.OUT_DIR) / 'font-cache'),
             'edition':_text(summary.get('edition','한 종목 깊이 읽기'),50),
             'footer':_text(summary.get('source_line','자료 출처·기준일은 게시물 캡션 참고'),90)}

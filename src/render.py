@@ -1441,6 +1441,10 @@ def render_cards(data: dict, summary: dict, docs_cards_dir: str, slug: str) -> l
             page.wait_for_load_state("networkidle")
             page.evaluate("""async () => {
               await document.fonts.ready;
+              if (![...document.fonts].every(f => f.status === 'loaded') ||
+                  !document.fonts.check('700 24px CardDisplay', '매출과 주가') ||
+                  !document.fonts.check('450 24px CardSans', '실적을 읽습니다'))
+                throw new Error('검증된 제목·본문 글꼴을 불러오지 못했습니다.');
               await Promise.all([...document.images].map(img => img.decode()));
               if ([...document.images].some(img => img.naturalWidth < 800))
                 throw new Error('사진 해상도가 부족합니다. 가로 800px 이상 이미지가 필요합니다.');
