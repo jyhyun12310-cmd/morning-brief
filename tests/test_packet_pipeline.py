@@ -268,3 +268,33 @@ def test_wrong_image_dimensions_rejected(tmp_path):
         build.build_packet(sample_packet(),out_dir=tmp_path/'out', docs_dir=tmp_path/'docs',
                            assets=lambda d:d, renderer=bad_renderer, detail_renderer=lambda *a:None)
     assert not (tmp_path/'out/state.json').exists()
+
+
+@pytest.mark.parametrize('thumb_host,original_host,expected_host', [
+    ('thumb.wikimedia.org', 'upload.wikimedia.org', 'thumb.wikimedia.org'),
+    ('upload.wikimedia.org', 'upload.wikimedia.org', 'upload.wikimedia.org'),
+    ('example.com', 'upload.wikimedia.org', 'upload.wikimedia.org'),
+    ('example.com', 'example.com', None),
+])
+def test_commons_thumbnail_host_change_uses_only_allowed_images(thumb_host, original_host, expected_host):
+    from visual_assets import _candidate
+    page = {'title': 'File:Example factory.jpg', 'imageinfo': [{
+        'mime': 'image/jpeg',
+        'thumburl': f'https://{thumb_host}/example-thumb.jpg',
+        'url': f'https://{original_host}/example-original.jpg',
+        'descriptionurl': 'https://commons.wikimedia.org/wiki/File:Example_factory.jpg',
+        'extmetadata': {
+            'ImageDescription': {'value': 'Example factory'},
+            'Artist': {'value': 'Test photographer'},
+            'LicenseShortName': {'value': 'CC BY-SA 4.0'},
+            'LicenseUrl': {'value': 'https://creativecommons.org/licenses/by-sa/4.0/'},
+        },
+    }]}
+    item = _candidate(page, ['Example'])
+    if expected_host is None:
+        assert item is None
+    else:
+        assert item['asset_url'].startswith(f'https://{expected_host}/')
+        assert item['license'] == 'CC BY-SA 4.0'
+        expected_name = 'example-thumb.jpg' if thumb_host == expected_host else 'example-original.jpg'
+        assert item['asset_url'].endswith(expected_name)

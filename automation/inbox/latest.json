@@ -94,7 +94,7 @@
     "evidence_notes": [
       {
         "id": "ev1",
-        "claim": "Jabil은 2026년 9월 30일 FY2026 4분기와 연간 잠정·미감사 실적을 발표했다.",
+        "claim": "Jabil은 2026년 9월 30일 FY2026 4분기·연간 잠정·미감사 실적을 발표했으며, 분기 GAAP 희석 EPS는 3.76달러다.",
         "source_ids": [
           "jabil_ir"
         ]

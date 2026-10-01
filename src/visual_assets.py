@@ -2,7 +2,7 @@
 
 prepare_visual_assets(data) returns the same data dict with cover/business assets.
 Local overrides win. Automatic assets keep source/author/license evidence in JSON.
-Only Commons API and upload.wikimedia.org are fetched; no article thumbnails.
+Only Commons API and Wikimedia's image hosts are fetched; no article thumbnails.
 Pillow, when available, performs full decoding; otherwise the renderer must decode
 the image (this module still checks raster signatures and actual dimensions).
 """
@@ -25,7 +25,8 @@ API = 'https://commons.wikimedia.org/w/api.php'
 MAX_BYTES = 12 * 1024 * 1024
 MIN_WIDTH = 800
 USER_AGENT = 'MorningBriefCardNews/2.0 (https://github.com/jyhyun12310-cmd/morning-brief)'
-ALLOWED_HOSTS = {'commons.wikimedia.org', 'upload.wikimedia.org'}
+IMAGE_HOSTS = {'upload.wikimedia.org', 'thumb.wikimedia.org'}
+ALLOWED_HOSTS = {'commons.wikimedia.org'} | IMAGE_HOSTS
 ALIASES = {
     'META': ['Meta Platforms', 'Facebook headquarters', 'Facebook campus'],
     'MSTR': ['MicroStrategy', 'Microstrategy headquarters'],
@@ -213,13 +214,25 @@ def _candidate(page, markers):
     author = meta.get('Artist')
     if not author or len(author) > 1000:
         return None
-    url = info.get('thumburl') or info.get('url')
+    # Commons now returns thumbnails on thumb.wikimedia.org. Check both image
+    # hosts explicitly, retaining the original as a fallback for unusable URLs.
+    url = None
+    for candidate_url in (info.get('thumburl'), info.get('url')):
+        if not candidate_url:
+            continue
+        try:
+            _safe_url(candidate_url)
+        except ValueError:
+            continue
+        if urlparse(candidate_url).hostname in IMAGE_HOSTS:
+            url = candidate_url
+            break
     source = info.get('descriptionurl')
     if not url or not source:
         return None
     _safe_url(url)
     _safe_url(source)
-    if urlparse(url).hostname != 'upload.wikimedia.org' or urlparse(source).hostname != 'commons.wikimedia.org':
+    if urlparse(url).hostname not in IMAGE_HOSTS or urlparse(source).hostname != 'commons.wikimedia.org':
         return None
     license_url = meta.get('LicenseUrl', '')
     if license_url.startswith('//'):
