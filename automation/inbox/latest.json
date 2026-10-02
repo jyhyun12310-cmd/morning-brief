@@ -2,280 +2,317 @@
   "schema_version": 1,
   "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-01T23:38:50+00:00",
-  "publication_date_kst": "2026-10-02",
+  "created_at": "2026-10-03T08:31:22+09:00",
+  "publication_date_kst": "2026-10-03",
   "market": {
-    "ticker": "MU",
-    "name": "Micron Technology",
-    "session_date": "2026-10-01",
-    "session_close_at": "2026-10-01T16:00:00-04:00",
+    "ticker": "TSLA",
+    "name": "Tesla",
+    "session_date": "2026-10-02",
+    "session_close_at": "2026-10-02T16:00:00-04:00",
     "price_basis": "regular_close",
     "currency": "USD",
-    "close": 1097.39,
-    "previous_close": 1065.11,
-    "change_pct": 3.03,
+    "close": 370.59,
+    "previous_close": 354.11,
+    "change_pct": 4.65,
     "source_id": "price"
   },
   "sources": [
     {
-      "id": "micron_ir",
-      "title": "Micron FY2026 Q4 and full-year results",
-      "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx",
-      "as_of": "2026-09-30 release; FY2026 Q4 ended 2026-09-03; FY2027 Q1 outlook",
-      "retrieved_at": "2026-10-01T23:38:50+00:00"
+      "id": "tesla_q3",
+      "title": "Tesla Q3 2026 Vehicle Production, Deliveries and Deployments",
+      "url": "https://ir.tesla.com/press-release/tesla-third-quarter-2026-production-deliveries-and-deployments",
+      "as_of": "2026-10-02 release; 2026 Q3 company-reported production, deliveries and energy storage",
+      "retrieved_at": "2026-10-02T23:31:22+00:00"
+    },
+    {
+      "id": "tesla_q2",
+      "title": "Tesla Q2 2026 Vehicle Production, Deliveries and Deployments",
+      "url": "https://ir.tesla.com/press-release/tesla-second-quarter-2026-production-deliveries-and-deployments",
+      "as_of": "2026-07-02 release; 2026 Q2 company-reported production, deliveries and energy storage",
+      "retrieved_at": "2026-10-02T23:31:22+00:00"
     },
     {
       "id": "sec",
-      "title": "Micron SEC Exhibit 99.1 earnings release",
-      "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000018/a2026q4ex991-pressrelease.htm",
-      "as_of": "2026-09-30 filing; unaudited consolidated results and outlook",
-      "retrieved_at": "2026-10-01T23:38:50+00:00"
+      "title": "Tesla 2026-10-02 Form 8-K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026064366/tsla-20261002.htm",
+      "as_of": "2026-10-02 filing; Item 2.02 and attached press release",
+      "retrieved_at": "2026-10-02T23:31:22+00:00"
     },
     {
       "id": "price",
-      "title": "Micron historical prices — Stock Analysis / S&P Global",
-      "url": "https://stockanalysis.com/stocks/mu/history/",
-      "as_of": "2026-10-01 and 2026-09-30 regular-session Close; split-adjusted USD",
-      "retrieved_at": "2026-10-01T23:38:50+00:00"
+      "title": "Tesla historical prices — Stock Analysis / S&P Global",
+      "url": "https://stockanalysis.com/stocks/tsla/history/",
+      "as_of": "2026-10-02 and 2026-10-01 regular-session Close; split-adjusted USD",
+      "retrieved_at": "2026-10-02T23:31:22+00:00"
     },
     {
       "id": "nyse",
       "title": "NYSE 2026 Holidays and Trading Hours",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York",
-      "retrieved_at": "2026-10-01T23:38:50+00:00"
+      "as_of": "2026 calendar; 2026-10-02 normal close 16:00 America/New_York",
+      "retrieved_at": "2026-10-02T23:31:22+00:00"
     },
     {
       "id": "nasdaq",
       "title": "Nasdaq 2026 Trading Schedule",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York",
-      "retrieved_at": "2026-10-01T23:38:50+00:00"
+      "as_of": "2026 calendar; 2026-10-02 normal close 16:00 America/New_York",
+      "retrieved_at": "2026-10-02T23:31:22+00:00"
     }
   ],
   "metrics": [
     {
-      "id": "gm_actual",
-      "value": 86.8,
-      "unit": "%",
-      "period": "FY2026 Q4 ended 2026-09-03; actual unaudited",
-      "basis": "Consolidated US GAAP gross margin percentage",
-      "source_id": "micron_ir"
+      "id": "q2_deliveries",
+      "value": 480126,
+      "unit": "대",
+      "period": "2026 Q2",
+      "basis": "Tesla company-reported total vehicle deliveries",
+      "source_id": "tesla_q2"
     },
     {
-      "id": "gm_forecast",
-      "value": 85.95,
-      "unit": "%",
-      "period": "FY2027 Q1; approximate company outlook",
-      "basis": "Consolidated US GAAP gross margin percentage",
-      "source_id": "micron_ir"
+      "id": "q3_deliveries",
+      "value": 486532,
+      "unit": "대",
+      "period": "2026 Q3",
+      "basis": "Tesla company-reported total vehicle deliveries",
+      "source_id": "tesla_q3"
+    },
+    {
+      "id": "q3_production",
+      "value": 464391,
+      "unit": "대",
+      "period": "2026 Q3",
+      "basis": "Tesla company-reported total vehicle production",
+      "source_id": "tesla_q3"
+    },
+    {
+      "id": "energy_deployments",
+      "value": 13.7,
+      "unit": "GWh",
+      "period": "2026 Q3",
+      "basis": "Tesla company-reported energy storage deployments",
+      "source_id": "tesla_q3"
     }
   ],
   "summary": {
     "market_basis": {
-      "ticker": "MU",
-      "session_date": "2026-10-01",
+      "ticker": "TSLA",
+      "session_date": "2026-10-02",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 1097.39,
-      "previous_close": 1065.11,
-      "change_pct": 3.03
+      "close": 370.59,
+      "previous_close": 354.11,
+      "change_pct": 4.65
     },
-    "central_question": "마이크론은 매출총이익률 전망이 낮아졌는데도 이익 금액이 늘 수 있을까요?",
-    "thesis": "매출총이익은 매출과 매출총이익률을 함께 봐야 합니다. 마이크론의 다음 분기 전망을 계산하면 비율은 낮아져도 금액은 커질 수 있습니다. 다만 실제 달성 여부와 주가 평가는 별개입니다.",
-    "edition": "미장, 한 겹 더. · 10월 2일",
-    "instagram_caption": "이익률이 낮아져도, 버는 돈은 늘 수 있을까요?\n마이크론 실적으로 ‘비율’과 ‘금액’의 차이를 7장에 정리했어요.\n\n#미국주식 #마이크론 #실적읽기",
+    "central_question": "테슬라는 생산보다 2만2천 대 더 인도했습니다. 회복 신호로 봐도 될까요?",
+    "thesis": "인도량은 전분기보다 소폭 늘고 생산량도 웃돌았습니다. 판매 규모에는 긍정적인 단서지만, 10월 21일 실적에서 매출과 자동차 수익성까지 확인해야 회복을 말할 수 있습니다.",
+    "edition": "미장, 한 겹 더. · 10월 3일",
+    "instagram_caption": "테슬라는 3분기에 만든 차보다 2만2,141대 더 인도했습니다. 48.7만 대와 주가 +4.65% 뒤에서, ‘판매 대수’와 ‘실제 이익’을 구분해 볼 기준을 7장에 담았어요.\n\n#미국주식 #테슬라 #실적읽기",
     "sources": [
       {
-        "id": "micron_ir",
-        "title": "Micron FY2026 Q4 and full-year results",
-        "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx",
-        "as_of": "2026-09-30 release; FY2026 Q4 ended 2026-09-03; FY2027 Q1 outlook"
+        "id": "tesla_q3",
+        "title": "Tesla Q3 2026 Vehicle Production, Deliveries and Deployments",
+        "url": "https://ir.tesla.com/press-release/tesla-third-quarter-2026-production-deliveries-and-deployments",
+        "as_of": "2026-10-02 release; 2026 Q3 company-reported production, deliveries and energy storage"
+      },
+      {
+        "id": "tesla_q2",
+        "title": "Tesla Q2 2026 Vehicle Production, Deliveries and Deployments",
+        "url": "https://ir.tesla.com/press-release/tesla-second-quarter-2026-production-deliveries-and-deployments",
+        "as_of": "2026-07-02 release; 2026 Q2 company-reported production, deliveries and energy storage"
       },
       {
         "id": "sec",
-        "title": "Micron SEC Exhibit 99.1 earnings release",
-        "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000018/a2026q4ex991-pressrelease.htm",
-        "as_of": "2026-09-30 filing; unaudited consolidated results and outlook"
+        "title": "Tesla 2026-10-02 Form 8-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026064366/tsla-20261002.htm",
+        "as_of": "2026-10-02 filing; Item 2.02 and attached press release"
       },
       {
         "id": "price",
-        "title": "Micron historical prices — Stock Analysis / S&P Global",
-        "url": "https://stockanalysis.com/stocks/mu/history/",
-        "as_of": "2026-10-01 and 2026-09-30 regular-session Close; split-adjusted USD"
+        "title": "Tesla historical prices — Stock Analysis / S&P Global",
+        "url": "https://stockanalysis.com/stocks/tsla/history/",
+        "as_of": "2026-10-02 and 2026-10-01 regular-session Close; split-adjusted USD"
       },
       {
         "id": "nyse",
         "title": "NYSE 2026 Holidays and Trading Hours",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York"
+        "as_of": "2026 calendar; 2026-10-02 normal close 16:00 America/New_York"
       },
       {
         "id": "nasdaq",
         "title": "Nasdaq 2026 Trading Schedule",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York"
+        "as_of": "2026 calendar; 2026-10-02 normal close 16:00 America/New_York"
       }
     ],
     "evidence_notes": [
       {
-        "id": "ev_results",
-        "claim": "2026-09-30 공개된 FY2026 Q4(2026-09-03 종료) 미감사 연결 GAAP 매출은 54,229백만달러, 매출총이익은 47,047백만달러, 매출총이익률은 공시 반올림 수치 86.8%다. 회사는 분기 매출을 신기록으로 발표했다.",
+        "id": "ev_q3",
+        "claim": "Tesla가 2026-10-02 공개한 2026년 3분기 회사 집계치는 차량 생산 464,391대, 인도 486,532대, 에너지저장 배치 13.7GWh다. 인도 중 Model 3/Y는 478,237대, 기타 모델은 8,295대다.",
         "source_ids": [
-          "micron_ir",
+          "tesla_q3",
           "sec"
         ]
       },
       {
-        "id": "ev_outlook",
-        "claim": "FY2027 Q1 회사 전망은 매출 615억달러 ±15억달러, 즉 600~630억달러이며 GAAP 매출총이익률은 약 85.95%다. 전망은 아직 실현된 결과가 아니고 다음 실적일은 이 원고에서 확정하지 않는다.",
+        "id": "ev_q2",
+        "claim": "Tesla가 2026-07-02 공개한 2026년 2분기 회사 집계치는 차량 생산 451,758대, 인도 480,126대, 에너지저장 배치 13.5GWh다.",
         "source_ids": [
-          "micron_ir",
-          "sec"
+          "tesla_q2"
         ]
       },
       {
         "id": "ev_price",
-        "claim": "Stock Analysis의 동일한 주식분할 조정 정규장 Close 열에서 2026-10-01은 1097.39달러, 2026-09-30은 1065.11달러다. 계산 등락률은 약 +3.03067%로 소수 둘째 자리 반올림 +3.03%이며 시간외 가격은 사용하지 않았다.",
+        "claim": "Stock Analysis의 동일한 주식분할 조정 정규장 Close 열에서 TSLA는 2026-10-02 370.59달러, 2026-10-01 354.11달러다. 계산 등락률은 약 +4.65336%로 소수 둘째 자리 반올림 +4.65%이며 시간외 가격은 사용하지 않았다.",
         "source_ids": [
           "price"
         ]
       },
       {
-        "id": "ev_business",
-        "claim": "Micron은 메모리·저장 반도체 기업으로 DRAM·NAND·NOR를 제공하고 AI 및 클라우드부터 기기까지의 컴퓨팅을 지원한다. 회사 설명과 제품 목록을 바탕으로 사업 연결을 설명하며 미래 수요나 주가를 보장하지 않는다.",
+        "id": "ev_gap",
+        "claim": "회사 발표 수치로 계산하면 3분기 인도량은 생산량보다 22,141대 많다. 3분기 인도량은 2분기보다 6,406대, 약 1.3342% 늘었다. 두 값은 회사가 직접 공표한 별도 지표가 아니라 원자료 차이를 이용한 단순 계산이다.",
         "source_ids": [
-          "micron_ir"
+          "tesla_q3",
+          "tesla_q2"
         ]
       },
       {
-        "id": "ev_definition",
-        "claim": "연결 손익계산서에서 매출 54,229백만달러에서 제품 매출원가 7,182백만달러를 빼면 매출총이익 47,047백만달러다. 연구개발비·판매관리비 등은 그 아래 차감된다. 판매규모와 가격·원가에 따른 수익성 설명은 이 구조에 대한 해석이다.",
+        "id": "ev_limits",
+        "claim": "Tesla는 차량 인도와 에너지저장 배치가 분기 재무성과의 두 가지 지표일 뿐이며, 재무성과는 평균판매가격·제품원가·외환 등 여러 요소에 좌우된다고 명시했다. 생산과 인도의 차이만으로 실제 분기 재고 감소를 확정하지 않는다.",
         "source_ids": [
-          "sec"
+          "tesla_q3"
         ]
       },
       {
-        "id": "ev_calculation",
-        "claim": "회사 전망의 매출 중간값 615억달러에 GAAP 매출총이익률 약 85.95%를 곱하면 528.5925억달러(약 528.6억달러)다. 이번 GAAP 실적 470.47억달러보다 크다. 이는 전망을 이용한 단순 계산으로 회사가 직접 공표한 이익 금액 목표나 확정 실적이 아니며 당일 주가 상승의 원인으로 단정하지 않는다.",
+        "id": "ev_next",
+        "claim": "Tesla는 2026년 3분기 재무결과를 2026-10-21 정규장 마감 후 공개하고 같은 날 미 동부시간 17:30에 질의응답 웹캐스트를 열 예정이라고 공식 발표했다.",
         "source_ids": [
-          "micron_ir",
-          "sec"
+          "tesla_q3"
         ]
       },
       {
         "id": "ev_calendar",
-        "claim": "NYSE·Nasdaq 2026 공식 달력상 9월 30일과 10월 1일은 휴장·조기폐장일이 아니다. 최신 완료 정규장은 2026-10-01 16:00 EDT(UTC-04:00), 한국 2026-10-02 05:00이며 실행 시점에는 종료된 거래일이다.",
+        "claim": "NYSE·Nasdaq 2026 공식 달력상 2026-10-02는 휴장·조기폐장일이 아니다. 정규장은 16:00 EDT(UTC-04:00), 한국 2026-10-03 05:00에 종료됐으며 이 원고 생성 시점에는 완료된 거래일이다.",
         "source_ids": [
           "nyse",
           "nasdaq"
         ]
       }
     ],
+    "editorial_review": {
+      "improvement": "생산량과 인도량의 차이를 핵심 질문으로 전면에 배치했습니다.",
+      "reason": "판매 대수와 실제 이익을 혼동하지 않도록 다음 실적 확인 항목이 필요했습니다.",
+      "application": "2·4·5장에서 같은 기준의 대수를 비교하고 7장에 매출·수익성 체크표를 남겼습니다.",
+      "avoided_repetition": "직전 MU의 이익률 대 금액, JBL의 매출 대 주가 프레임을 반복하지 않았습니다."
+    },
     "visual_story": [
       {
         "layout": "cover",
-        "title": "MU, 이익률 내려도\n이익은 더 늘까?",
-        "body": "마이크론은 다음 분기 매출은 더 높게, 매출총이익률은 조금 낮게 예상했어요. 비율이 내려가면 이익 금액도 꼭 줄어들까요?",
-        "takeaway": "이익률의 방향만으로 이익 금액까지 판단하면 놓치는 게 생깁니다.",
-        "bridge": "회사가 다음 분기에 제시한 매출은 얼마일까요?",
+        "title": "테슬라, 만든 차보다\n2.2만 대 더 넘겼다?",
+        "body": "3분기 인도량은 48만6,532대, 생산량보다 2만2,141대 많았습니다. 주가는 정규장 +4.65%, 회복 신호일까요?",
+        "takeaway": "판매 숫자는 좋아졌지만, 아직 수익성까지 보여준 성적표는 아닙니다.",
+        "bridge": "먼저 10월 2일 발표에서 바뀐 숫자를 봅니다.",
         "evidence_ids": [
-          "ev_outlook",
-          "ev_results"
+          "ev_q3",
+          "ev_gap",
+          "ev_price"
         ],
         "labels": [
           {
-            "label": "이번 매출총이익률",
-            "text": "86.8%",
-            "note": "FY2026 Q4 · GAAP 실적"
+            "label": "3분기 인도량",
+            "text": "486,532대"
           },
           {
-            "label": "다음 매출총이익률",
-            "text": "약 85.95%",
-            "note": "FY2027 Q1 · GAAP 회사 전망"
+            "label": "10월 2일 주가",
+            "text": "+4.65%",
+            "note": "정규장 종가 기준"
           }
         ],
         "source_line": ""
       },
       {
         "layout": "photo",
-        "title": "매출은 신기록,\n다음 목표는 더 높다",
-        "body": "9월 30일 발표한 미감사 실적입니다. 이번 분기 매출은 신기록, 다음 분기 회사 전망은 더 높습니다.",
-        "takeaway": "실적은 받은 성적표이고, 회사 전망은 앞으로 확인할 목표입니다.",
-        "bridge": "메모리 회사는 매출에서 무엇을 빼고 남길까요?",
+        "title": "48.7만 대 인도,\n전분기보다 6,406대 늘었다",
+        "body": "테슬라는 10월 2일 3분기 차량 인도량 48만6,532대를 공개했습니다. 2분기보다 6,406대 늘었고, 에너지저장 배치도 13.7GWh였습니다.",
+        "takeaway": "인도량은 고객에게 넘긴 차량 수라서 자동차 매출의 출발점입니다.",
+        "bridge": "그런데 인도량이 생산량보다 많았던 이유는 뭘까요?",
         "evidence_ids": [
-          "ev_results",
-          "ev_outlook",
-          "ev_price"
+          "ev_q3",
+          "ev_q2",
+          "ev_gap"
         ],
         "labels": [
           {
-            "label": "FY2026 Q4 매출",
-            "text": "542.29억달러",
-            "note": "연결 GAAP · 미감사 실적"
+            "label": "3분기 인도량",
+            "text": "486,532대"
           },
           {
-            "label": "FY2027 Q1 매출 전망",
-            "text": "600~630억달러",
-            "note": "회사가 제시한 예상 범위"
+            "label": "전분기 대비",
+            "text": "+6,406대",
+            "note": "+1.3%"
+          },
+          {
+            "label": "에너지저장 배치",
+            "text": "13.7GWh"
           }
         ],
         "source_line": ""
       },
       {
         "layout": "annotated",
-        "title": "AI의 데이터를 담고,\n원가를 빼면 남는 몫",
-        "body": "마이크론은 AI 서버와 기기에 들어갈 메모리·저장장치를 팝니다. 같은 매출이라도 판매가격과 제조원가에 따라 남는 돈이 달라져요.",
-        "takeaway": "수요가 커졌다는 이야기에서 한 걸음 더 가서 원가도 봅니다.",
-        "bridge": "매출 100달러 중 원가를 빼면 얼마가 남을까요?",
+        "title": "차를 넘기면 매출,\n가격과 원가가 이익을 가른다",
+        "body": "테슬라는 차량 판매와 에너지저장 사업으로 돈을 법니다. 인도량이 늘면 판매 기회는 커지지만, 실제 이익은 평균 판매가격과 제조원가까지 함께 움직여야 늘어요.",
+        "takeaway": "대수는 판매 규모를 보여주고, 가격과 원가는 남는 돈을 결정합니다.",
+        "bridge": "전분기와 같은 기준으로 인도량 변화를 비교합니다.",
         "evidence_ids": [
-          "ev_business",
-          "ev_definition"
+          "ev_q3",
+          "ev_limits"
         ],
         "labels": [
           {
-            "label": "쓰이는 곳",
-            "text": "AI·클라우드·기기"
+            "label": "3분기 생산량",
+            "text": "464,391대"
           },
           {
-            "label": "판매하는 제품",
-            "text": "DRAM·NAND 등"
+            "label": "3분기 인도량",
+            "text": "486,532대"
           },
           {
-            "label": "수익성을 가르는 것",
-            "text": "판매가격과 제품 원가"
+            "label": "이익 변수",
+            "text": "판매가격·원가"
           }
         ],
         "source_line": ""
       },
       {
         "layout": "comparison",
-        "title": "100달러 팔 때,\n남는 비율은 조금 낮게",
-        "body": "매출총이익률은 매출에서 제품 원가를 뺀 비율입니다. 다음 분기 회사 전망은 조금 낮아요. 순이익률과는 다른 숫자예요.",
-        "takeaway": "비율의 작은 하락을 곧바로 이익 금액의 감소로 읽지는 마세요.",
-        "bridge": "비율이 낮아도 전체 이익은 커질 수 있을까요?",
+        "title": "인도량은 1.3% 늘었다,\n급증은 아니었다",
+        "body": "같은 회사 기준으로 2분기 48만126대에서 3분기 48만6,532대로 늘었습니다. 방향은 플러스지만 증가폭은 1.3%라서, 반전이라고 부르기엔 작은 폭입니다.",
+        "takeaway": "증가 여부뿐 아니라 증가폭이 사업 기대를 충족하는지도 함께 봅니다.",
+        "bridge": "그럼 생산보다 2.2만 대 더 인도한 건 무슨 뜻일까요?",
         "evidence_ids": [
-          "ev_results",
-          "ev_outlook",
-          "ev_definition"
+          "ev_q3",
+          "ev_q2",
+          "ev_gap"
         ],
         "labels": [],
         "chart": {
-          "source": "Micron IR·SEC / 2026.09.30 발표",
-          "note": "GAAP 매출총이익률 · 이번 실적과 다음 회사 전망 · 0 기준",
-          "unit": "%",
+          "source": "Tesla IR / 2026 Q2·Q3 회사 발표",
+          "note": "회사 집계 차량 인도량 · 동일 기준 비교 · 0 기준",
+          "unit": "대",
           "rows": [
             {
-              "metric_id": "gm_actual",
-              "value": 86.8,
-              "label": "FY2026 Q4 실적",
-              "display": "86.8%"
+              "metric_id": "q2_deliveries",
+              "value": 480126,
+              "label": "2026 Q2",
+              "display": "480,126대"
             },
             {
-              "metric_id": "gm_forecast",
-              "value": 85.95,
-              "label": "FY2027 Q1 회사 전망",
-              "display": "약 85.95%"
+              "metric_id": "q3_deliveries",
+              "value": 486532,
+              "label": "2026 Q3",
+              "display": "486,532대"
             }
           ]
         },
@@ -283,75 +320,80 @@
       },
       {
         "layout": "explain",
-        "title": "비율은 낮아도,\n금액은 커질 수 있어요",
-        "body": "매출 전망의 중간값에 예상 이익률을 곱한 계산입니다. 비율은 낮아져도 이익 금액은 커질 수 있어요. 확정 실적은 아닙니다.",
-        "takeaway": "작아진 비율보다 매출의 증가 효과가 크면 이익 금액은 늘어납니다.",
-        "bridge": "그 계산이 실제로 맞으려면 무엇이 필요할까요?",
+        "title": "2.2만 대 차이는,\n재고 흐름의 단서입니다",
+        "body": "3분기 인도량은 생산량보다 2만2,141대 많았습니다. 기존 보유 차량이 고객에게 넘어갔을 가능성은 있지만, 회사는 분기 재고 감소량을 이 숫자만으로 확정하지 않았습니다.",
+        "takeaway": "생산과 인도의 차이는 재고 방향을 짐작하는 단서이지 확정값은 아닙니다.",
+        "bridge": "주가 상승과 사업 성과를 같은 말로 볼 수 있을까요?",
         "evidence_ids": [
-          "ev_calculation",
-          "ev_results"
+          "ev_gap",
+          "ev_limits"
         ],
         "labels": [
           {
-            "label": "이번 매출총이익",
-            "text": "470.47억달러",
-            "note": "FY2026 Q4 · GAAP 실적"
+            "label": "생산량",
+            "text": "464,391대"
           },
           {
-            "label": "다음 분기 단순 계산",
-            "text": "약 528.6억달러",
-            "note": "매출 전망 중간값 615억 × 85.95% · 확정 아님"
+            "label": "인도량",
+            "text": "486,532대"
+          },
+          {
+            "label": "차이",
+            "text": "22,141대"
           }
         ],
         "source_line": ""
       },
       {
         "layout": "conditions",
-        "title": "더 팔기만 하면 끝?\n원가도 같이 봐야죠",
-        "body": "매출이 늘어도 원가가 예상보다 커지면 이익은 달라져요. 다음 발표에서는 매출과 이익률을 함께 확인하세요.",
-        "takeaway": "전망을 점검할 때는 매출 달성과 수익성 유지를 함께 확인합니다.",
-        "bridge": "다음 실적 옆에 놓고 볼 기준 두 개를 남깁니다.",
+        "title": "회복을 말하려면,\n대수 다음에 마진을 보세요",
+        "body": "주가는 이날 +4.65% 올랐지만, 인도량만으로 분기 이익을 알 수는 없습니다. 10월 21일 실적에서 매출과 자동차 수익성을 함께 확인해야 해요.",
+        "takeaway": "주가 반응은 기대이고, 실적의 확인은 매출과 이익률에서 끝납니다.",
+        "bridge": "첫 질문에 답하고 다음 발표 체크표를 남깁니다.",
         "evidence_ids": [
-          "ev_outlook",
-          "ev_definition",
-          "ev_calculation"
+          "ev_price",
+          "ev_limits",
+          "ev_next"
         ],
         "labels": [],
-        "origin": "FY2027 Q1 전망을 실제 결과로 확인",
+        "origin": "3분기 인도량 증가가 실적 개선으로 이어지는지 확인",
         "branches": [
           {
-            "label": "계산이 맞을 조건",
-            "text": "매출 예상 범위 달성과 예상 수준의 매출총이익률",
-            "check": "실제 매출 600~630억달러 및 이익률 약 85.95% 비교"
+            "label": "회복 확인",
+            "text": "차량 매출과 자동차 수익성이 함께 개선될 때",
+            "check": "10월 21일 매출·자동차 총이익률 확인"
           },
           {
-            "label": "계산이 흔들릴 위험",
-            "text": "예상보다 낮은 판매 규모 또는 제품 원가 부담",
-            "check": "매출·이익률의 전망 이탈과 회사 설명을 확인"
+            "label": "다시 점검",
+            "text": "가격 인하나 원가 부담으로 대수 증가가 희석될 때",
+            "check": "평균 판매가격·원가·현금흐름 설명 확인"
           }
         ],
         "source_line": ""
       },
       {
         "layout": "closing",
-        "title": "남는 비율과 금액,\n같은 말이 아닙니다",
-        "body": "비율이 낮아져도, 매출이 충분히 늘면 이익 금액은 커질 수 있어요. 다음 실적에서 아래 두 숫자를 함께 비교해 보세요.",
-        "takeaway": "수익성을 볼 때는 비율과 절대 금액을 함께 비교해 보세요.",
-        "bridge": "다음 마이크론 실적과 비교할 두 숫자를 저장하세요.",
+        "title": "답은 아직 절반,\n대수는 좋아졌습니다",
+        "body": "인도량과 생산량은 개선의 단서를 줬지만, 회복 확정은 아닙니다. 10월 21일 실적에서 늘어난 대수가 차량 매출과 자동차 이익으로 이어졌는지 확인해 보세요.",
+        "takeaway": "지금 답은 ‘판매 규모 개선’, 최종 답은 다음 수익성 숫자에 있습니다.",
+        "bridge": "10월 21일 실적에 아래 두 항목을 나란히 대보세요.",
         "evidence_ids": [
-          "ev_calculation",
-          "ev_outlook"
+          "ev_q3",
+          "ev_limits",
+          "ev_next"
         ],
         "labels": [
           {
-            "label": "다음 매출의 비교 기준",
-            "text": "600~630억달러",
-            "note": "FY2027 Q1 회사 전망"
+            "label": "판매 규모",
+            "text": "차량 매출"
           },
           {
-            "label": "다음 수익성의 비교 기준",
-            "text": "매출총이익률 약 85.95%",
-            "note": "GAAP · 회사 전망"
+            "label": "남는 돈",
+            "text": "자동차 총이익률"
+          },
+          {
+            "label": "현금 확인",
+            "text": "영업현금흐름"
           }
         ],
         "source_line": ""
