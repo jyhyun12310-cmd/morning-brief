@@ -55,6 +55,8 @@ jobs:
           live = False
           if ready:
               packet = load_packet(path)
+              if packet.get('kind') != 'market_brief':
+                  raise ValueError('Afternoon workflow requires a market_brief packet')
               settings = json.loads(Path('automation/market_settings.json').read_text())
               requested = os.environ['EVENT'] == 'push' or os.environ['REQUEST_LIVE'].lower() == 'true'
               live = (requested and os.environ['REF'] == 'refs/heads/main'

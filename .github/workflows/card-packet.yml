@@ -55,6 +55,8 @@ jobs:
           live = False
           if ready:
               packet = load_packet(path)
+              if packet.get('kind') not in (None, 'stock'):
+                  raise ValueError('Morning workflow requires a stock packet')
               settings = json.loads(Path('automation/settings.json').read_text())
               requested = os.environ['EVENT'] == 'push' or os.environ['REQUEST_LIVE'].lower() == 'true'
               live = (requested and os.environ['REF'] == 'refs/heads/main'

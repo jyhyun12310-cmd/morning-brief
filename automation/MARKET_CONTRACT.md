@@ -25,7 +25,7 @@
 - summary.instagram_caption: 20~400자, 목표 2문장+2~3개 해시태그. 전체 수치/출처를 나열하지 않는다. 상세 출처 링크는 자동 추가된다.
 - summary.visual_story: 정확히 5개, layout 순서 headline/drivers/sectors/calendar/watch. 각 {layout,title,body,source_ids,items}. title 5~38자(두 줄 권장), body 15~110자(40~65자 목표). drivers/sectors/watch에는 items 2~3개, 각 {label(2~25자),text(5~85자),type(fact/analysis/watch),source_ids}. 근거 ID 필수. 카드마다 새 정보/관점을 하나씩 제공한다.
 - summary.editorial_review: {improvement,reason,application,avoided_repetition}; 사용자 결과 보고용이며 Instagram 설명에 길게 넣지 않는다.
-- 실제 게시 시각 13:45~14:40 KST, 원고와 시세 35분 이내. 작업은 13:50 시작하여 약14:00 게시를 목표로 한다. 지연되면 오래된 자료를 강행하지 않는다.
+- 실제 게시 시각 13:45~14:40 KST, 원고와 시세 35분 이내. 클라우드 예약은 평일 14:00 시작하며 자료 확인과 카드 제작이 끝나는 대로 게시한다. 시작 시각이 게시 완료 시각은 아니다. 지연되면 오래된 자료를 강행하지 않는다.
 
 ## 카드와 운영
 
