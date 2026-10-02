@@ -11,7 +11,7 @@ on:
         type: boolean
         default: false
       design_preview:
-        description: 'Render the historical JBL typography/copy example without publishing'
+        description: 'Render the frozen MU photo-variety and short-caption example without publishing'
         type: boolean
         default: false
 permissions:
@@ -22,7 +22,7 @@ concurrency:
 env:
   PYTHONPATH: src
   PAGES_BASE_URL: https://jyhyun12310-cmd.github.io/morning-brief
-  CARD_INPUT_FILE: ${{ inputs.design_preview && 'automation/examples/jbl-editorial-preview.json' || 'automation/inbox/latest.json' }}
+  CARD_INPUT_FILE: ${{ inputs.design_preview && 'automation/examples/visual-variety-preview.json' || 'automation/inbox/latest.json' }}
 jobs:
   build:
     runs-on: ubuntu-latest

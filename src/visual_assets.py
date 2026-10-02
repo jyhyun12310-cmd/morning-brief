@@ -28,11 +28,19 @@ USER_AGENT = 'MorningBriefCardNews/2.0 (https://github.com/jyhyun12310-cmd/morni
 IMAGE_HOSTS = {'upload.wikimedia.org', 'thumb.wikimedia.org'}
 ALLOWED_HOSTS = {'commons.wikimedia.org'} | IMAGE_HOSTS
 ALIASES = {
+    'MU': ['Micron Technology', 'Micron'],
+    'JBL': ['Jabil', 'Jabil Circuit'],
     'META': ['Meta Platforms', 'Facebook headquarters', 'Facebook campus'],
     'MSTR': ['MicroStrategy', 'Microstrategy headquarters'],
     'GOOG': ['Google', 'Googleplex'], 'GOOGL': ['Google', 'Googleplex'],
     'ARE': ['Alexandria Real Estate Equities'],
     'ARM': ['Arm Holdings'], 'CAT': ['Caterpillar Inc', 'Caterpillar factory'],
+}
+# Reviewed subjects, not downloaded/licensed blindly: all entries still pass the
+# same live Commons metadata, license, host and decoded-image checks below.
+CURATED_FILES = {
+    'MU': ['File:Micron Fab in Taichung, Taiwan.jpeg',
+           'File:Micron 32 GB DDR5-5600 SO-DIMM - front view.jpg'],
 }
 # Explicit industry associations. Fallback photos are labeled as industry context.
 INDUSTRIES = [
@@ -120,12 +128,26 @@ def _validate_local(item) -> dict | None:
     try:
         if path.suffix.lower() not in {'.png', '.jpg', '.jpeg', '.webp'} or not path.is_file() or path.stat().st_size > MAX_BYTES:
             return None
-        _, width, height = _raster(path.read_bytes())
+        blob = path.read_bytes()
+        _, width, height = _raster(blob)
         if width < MIN_WIDTH or height < 400 or width * height > 80_000_000:
             return None
     except (OSError, ValueError, SyntaxError):
         return None
-    return {**item, 'path': str(path), 'width': width, 'height': height}
+    return {**item, 'path': str(path), 'width': width, 'height': height,
+            'sha256': hashlib.sha256(blob).hexdigest()}
+
+
+def _duplicate(item, existing):
+    return any(item.get('sha256') == other.get('sha256')
+               or (item.get('source_url') and item['source_url'] == other.get('source_url'))
+               for other in existing)
+
+
+def _photo_style(item):
+    text = (item.get('title', '') + ' ' + item.get('description', '')).lower()
+    product = bool(re.search(r'\b(dimm|so-dimm|ddr[345]|ssd|circuit board|memory module)\b', text))
+    return 'contain' if product else 'cover'
 
 
 class _Budget:
@@ -181,6 +203,8 @@ def _queries(focus):
         aliases = [aliases[0] + (' Inc' if aliases[0].lower() != 'arm' else ' Holdings')]
     if aliases:
         terms = ' OR '.join('"' + a.replace('"', '') + '"' for a in aliases[:3])
+        yield terms + ' (factory OR headquarters OR campus)', aliases, False, ''
+        yield terms + ' (product OR equipment OR memory OR manufacturing)', aliases, False, ''
         yield terms, aliases, False, ''
     industry = ' '.join(str(focus.get(k) or '') for k in ('industry', 'industry_key', 'sector', 'sector_kr')).lower()
     for markers, query, label, matching in INDUSTRIES:
@@ -252,7 +276,7 @@ def _candidate(page, markers):
 
 
 def prepare_visual_assets(data: dict) -> dict:
-    """Fill missing photo roles. Safe failure includes manual override instructions."""
+    """Use each verified photograph once; missing second photo becomes a diagram."""
     focus = data.get('focus') or {}
     ticker = str(focus.get('ticker') or '').upper()
     if not re.fullmatch(r'[A-Z0-9.^=-]{1,20}', ticker):
@@ -269,7 +293,7 @@ def prepare_visual_assets(data: dict) -> dict:
     for role in ('cover', 'business'):
         for source in sources:
             valid = _validate_local(source.get(role)) if isinstance(source, dict) else None
-            if valid:
+            if valid and not _duplicate(valid, assets.values()):
                 assets[role] = valid
                 break
     if len(assets) == 2:
@@ -278,19 +302,30 @@ def prepare_visual_assets(data: dict) -> dict:
     errors, acquired, budget = [], [], _Budget()
     seen = set()
     with requests.Session() as session:
-        for query, markers, generic, label in _queries(focus):
+        queries = list(_queries(focus))
+        if ticker in CURATED_FILES:
+            queries.insert(0, (None, ALIASES[ticker], False, ''))
+        for query, markers, generic, label in queries:
             try:
-                result = _get(session, API, budget, params={
-                    'action': 'query', 'format': 'json', 'generator': 'search',
-                    'gsrsearch': query, 'gsrnamespace': 6, 'gsrlimit': 8,
+                params = {
+                    'action': 'query', 'format': 'json',
                     'prop': 'imageinfo', 'iiprop': 'url|size|mime|extmetadata',
                     'iiurlwidth': 1400, 'iiextmetadatalanguage': 'en',
                     'iiextmetadatafilter': 'Artist|LicenseShortName|LicenseUrl|UsageTerms|ImageDescription|Categories|Restrictions',
-                })
+                }
+                if query is None:
+                    params['titles'] = '|'.join(CURATED_FILES[ticker])
+                else:
+                    params.update(generator='search', gsrsearch=query, gsrnamespace=6, gsrlimit=8)
+                result = _get(session, API, budget, params=params)
                 if result.get('error'):
                     raise ValueError('Commons API: ' + str(result['error'].get('code')))
                 pages = (result.get('query') or {}).get('pages') or {}
-                for page in sorted(pages.values(), key=lambda p: p.get('index', 999)):
+                def rank(page):
+                    if query is None and page.get('title') in CURATED_FILES[ticker]:
+                        return CURATED_FILES[ticker].index(page['title'])
+                    return page.get('index', 999)
+                for page in sorted(pages.values(), key=rank):
                     try:
                         item = _candidate(page, markers)
                         if not item or item['asset_url'] in seen:
@@ -300,12 +335,17 @@ def prepare_visual_assets(data: dict) -> dict:
                         suffix, width, height = _raster(blob)
                         if width < MIN_WIDTH or height < 400 or width * height > 80_000_000:
                             continue
+                        item['sha256'] = hashlib.sha256(blob).hexdigest()
+                        if _duplicate(item, [*assets.values(), *acquired]):
+                            continue
                         folder.mkdir(parents=True, exist_ok=True)
                         target = folder / (hashlib.sha256(blob).hexdigest()[:20] + suffix)
                         target.write_bytes(blob)
-                        caption = f'산업 참고 사진 · {ticker} 실제 시설 아님 · {label}' if generic else f'{ticker} 관련 사진 · 촬영시점과 현재 모습은 다를 수 있음'
+                        fit = _photo_style(item)
+                        caption = f'산업 참고 · {ticker} 실제 시설 아님 · {label}' if generic else (
+                            f'{ticker} 제품 참고 사진 · 발표 제품과 다를 수 있음' if fit == 'contain' else f'{ticker} 관련 시설 · 현재 모습과 다를 수 있음')
                         credit = f"{item['author'][:70]} · {item['license']}"
-                        item.update(path=str(target), caption=caption, credit=credit, width=width, height=height,
+                        item.update(path=str(target), caption=caption, credit=credit, width=width, height=height, fit=fit,
                                     credit_full=f"{item['title']} / {item['author']} / {item['license']} / {item['source_url']} / {item['license_url']}",
                                     kind='industry_reference' if generic else 'company_photo', retrieved_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
                         acquired.append(item)
@@ -313,21 +353,18 @@ def prepare_visual_assets(data: dict) -> dict:
                             break
                     except (requests.RequestException, OSError, ValueError, SyntaxError) as exc:
                         errors.append(type(exc).__name__)
-                if acquired:
+                if len(acquired) + len(assets) >= 2:
                     break
             except (requests.RequestException, OSError, ValueError, TimeoutError) as exc:
                 errors.append(str(exc)[:140])
             if time.monotonic() >= budget.end:
                 break
     if acquired:
-        for role in ('cover', 'business'):
-            if role not in assets:
-                assets[role] = dict(acquired[min(len(acquired) - 1, 0 if role == 'cover' else 1)])
-    elif assets:
-        existing = next(iter(assets.values()))
-        for role in ('cover', 'business'):
-            assets.setdefault(role, dict(existing))
-    if len(assets) < 2:
+        for role, item in zip((r for r in ('cover', 'business') if r not in assets), acquired):
+            assets[role] = item
+    if 'cover' not in assets and 'business' in assets:
+        assets['cover'] = assets.pop('business')
+    if not assets:
         detail = '; '.join(errors[-2:]) or '회사/업종에 맞는 라이선스 확인 사진 없음'
         raise ValueError(f'{ticker}: Commons 자동 사진 수집 실패({detail}). 네트워크를 확인해 재시도하거나 assets/manifest.json의 {ticker} 항목에 cover/business의 path·caption·credit을 등록하세요. 사진은 너비800px 이상 PNG/JPEG/WebP여야 합니다.')
     folder.mkdir(parents=True, exist_ok=True)

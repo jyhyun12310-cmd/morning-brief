@@ -31,9 +31,11 @@ def validate_state(state, packet, pages_base):
     expected_slug = slug_for(packet)
     base = pages_base.rstrip('/')
     expected_urls = [f'{base}/cards/{expected_slug}-{n}.jpg' for n in range(1,8)]
+    expected_link = f'{base}/{expected_slug}.html'
     if (state.get('schema_version') != 1 or state.get('packet_sha256') != digest(packet)
             or state.get('publication_key') != publication_key(packet)
-            or state.get('slug') != expected_slug or state.get('instagram_image_urls') != expected_urls):
+            or state.get('slug') != expected_slug or state.get('instagram_image_urls') != expected_urls
+            or state.get('link_url') != expected_link):
         raise ValueError('state does not match the frozen packet and expected image URLs')
     hashes = state.get('image_sha256')
     if not isinstance(hashes, list) or len(hashes) != 7 or any(
@@ -43,7 +45,7 @@ def validate_state(state, packet, pages_base):
     from editorial_packet import render_data
     from build import _build_caption
     data = render_data(packet)
-    expected_caption = _build_caption(data, summarize(data, packet['summary']))
+    expected_caption = _build_caption(data, summarize(data, packet['summary']), expected_link)
     if state.get('instagram_caption') != expected_caption:
         raise ValueError('caption changed after packet validation')
     return state

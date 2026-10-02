@@ -13,7 +13,7 @@ from editorial_packet import load_packet, validate_packet, render_data, digest, 
 from summarize import summarize
 
 log = logging.getLogger('build')
-DISCLAIMER = '본 게시물은 공개 자료를 정리한 투자 참고용 해설이며, 특정 종목의 매수·매도를 권유하지 않습니다.'
+DISCLAIMER = '투자 참고용 · 매수·매도 권유 아님.'
 
 def write_json(path, value):
     path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
@@ -21,13 +21,16 @@ def write_json(path, value):
     temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
     temporary.replace(path)
 
-def _build_caption(data, summary):
-    # Never slice away source URLs to satisfy Instagram's limit.
+def _build_caption(data, summary, link_url):
+    # Full financial evidence and photo attribution stay on the detailed page.
     caption = summary['instagram_caption'].strip()
-    if len(caption) > 2200:
-        raise ValueError('caption exceeds 2,200 characters')
-    if DISCLAIMER not in caption and len(caption) + len(DISCLAIMER) + 2 <= 2200:
+    if len(caption) > 400:
+        raise ValueError('caption body exceeds 400 characters; edit it instead of truncating')
+    caption += '\n\n자료·사진 출처: ' + link_url
+    if DISCLAIMER not in caption:
         caption += '\n\n' + DISCLAIMER
+    if len(caption) > 600:
+        raise ValueError('final caption exceeds 600 characters')
     return caption
 
 def _build_kakao_cards(data, summary, image_urls, link_url):
@@ -85,7 +88,7 @@ def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
              'is_test':packet.get('is_test', False), 'date_kr':data['date_kr'],
              'weekday_kr':data['weekday_kr'], 'link_url':link,
              'instagram_image_urls':urls, 'image_sha256':image_hashes,
-             'instagram_caption':_build_caption(data, summary),
+             'instagram_caption':_build_caption(data, summary, link),
              'kakao_cards':_build_kakao_cards(data, summary, urls, link)}
     write_json(out / 'packet.json', packet)
     write_json(out / 'raw.json', {'data':data, 'summary':summary})

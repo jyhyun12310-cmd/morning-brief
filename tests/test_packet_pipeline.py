@@ -47,7 +47,7 @@ def sample_packet():
         dict(label='연결 실패', text='원고와 시세 기준이 다르면 즉시 중단합니다.', check='값을 추측하거나 외부 API로 대체하지 않습니다.')])
     summary = dict(central_question='검증용 원고와 시세가 같은 기준으로 전달될까요?',
                    thesis='이 문서는 실제 주식 분석이 아닌 소프트웨어 시험 자료입니다. 원고와 데이터가 어긋날 때 작업을 멈추는지 확인합니다.',
-                   edition='TEST ONLY', instagram_caption=('시험용 설명이며 실제 투자 정보가 아닙니다. 게시해서는 안 됩니다.\n' * 16),
+                   edition='TEST ONLY', instagram_caption='이 설명은 소프트웨어 검증에만 사용하는 가상 자료입니다. 실제 투자 정보가 아니므로 게시해서는 안 됩니다.',
                    market_basis={k: market[k] for k in ep.BASIS_KEYS}, sources=[copy.deepcopy(source)],
                    evidence_notes=[dict(id=f'E{i}', claim=f'시험 근거 {i}: 실제 사실을 주장하지 않는 검증용 문장입니다.', source_ids=['S1']) for i in range(1,5)],
                    visual_story=pages)
@@ -78,7 +78,71 @@ def test_valid_packet_and_legacy_summary():
     assert ep.validate_packet(p, now=NOW) is p
     result = summarize.summarize(ep.render_data(p), p['summary'])
     assert len(result['visual_story']) == 7 and 'p7_checks' in result
-    assert p == original and p['sources'][0]['url'] in result['instagram_caption']
+    assert p == original and result['instagram_caption'] == p['summary']['instagram_caption']
+
+
+def test_short_caption_keeps_full_sources_on_detail_page(tmp_path, monkeypatch):
+    import config
+    from render import render_detail_page
+    p = sample_packet()
+    state = build_test_packet(tmp_path, p)
+    assert len(state['instagram_caption']) < 300
+    assert state['link_url'] in state['instagram_caption']
+    assert p['sources'][0]['url'] not in state['instagram_caption']
+    monkeypatch.setattr(config, 'DOCS_DIR', str(tmp_path / 'detail'))
+    page = Path(render_detail_page(ep.render_data(p), p['summary'], 'test'))
+    html = page.read_text(encoding='utf-8')
+    assert p['sources'][0]['url'] in html and p['sources'][0]['as_of'] in html
+
+
+@pytest.mark.parametrize('caption', ['너무 짧음', '긴 설명' * 101])
+def test_caption_must_be_concise_without_silent_truncation(caption):
+    p = sample_packet()
+    p['summary']['instagram_caption'] = caption
+    with pytest.raises(ValueError): ep.validate_packet(p, now=NOW)
+
+
+@pytest.mark.parametrize('same_source', [False, True])
+def test_repeated_cached_photo_is_not_used_twice(tmp_path, monkeypatch, same_source):
+    import visual_assets as va
+    from photo_layout import _photos
+    monkeypatch.setattr(va, 'ROOT', tmp_path)
+    monkeypatch.setattr(va, '_get', lambda *a, **kw: {})
+    first, second = tmp_path / 'one.jpg', tmp_path / 'two.jpg'
+    Image.new('RGB', (1000, 700), 'red').save(first)
+    Image.new('RGB', (1000, 700), 'blue' if same_source else 'red').save(second)
+    a = dict(path=str(first), caption='Test photo', credit='Test author', source_url='https://commons.wikimedia.org/wiki/File:One.jpg')
+    b = {**a, 'path': str(second)}
+    if not same_source: b['source_url'] = 'https://commons.wikimedia.org/wiki/File:Duplicate.jpg'
+    data = {'focus': {'ticker': 'TEST', 'name': 'Test company'}, 'visual_assets': {'cover': a, 'business': b}}
+    assert list(_photos(data)) == ['cover']
+    result = va.prepare_visual_assets(data)
+    assert list(result['visual_assets']) == ['cover']
+
+
+def test_photo_search_continues_until_second_distinct_image(tmp_path, monkeypatch):
+    import io
+    import visual_assets as va
+    monkeypatch.setattr(va, 'ROOT', tmp_path)
+    monkeypatch.setattr(va, '_queries', lambda f: iter([('q1', ['Example'], False, ''), ('q2', ['Example'], False, '')]))
+    blobs = {}
+    for n, color in ((1, 'red'), (2, 'blue')):
+        buf = io.BytesIO(); Image.new('RGB', (1000, 700), color).save(buf, format='JPEG')
+        blobs[f'https://upload.wikimedia.org/test{n}.jpg'] = buf.getvalue()
+    queries = []
+    def get(session, url, budget, *, params=None, binary=False):
+        if binary: return blobs[url]
+        queries.append(params['gsrsearch'])
+        n = len(queries)
+        return {'query': {'pages': {'1': {'title': f'File:Example photo {n}.jpg', 'imageinfo': [{
+            'mime': 'image/jpeg', 'url': f'https://upload.wikimedia.org/test{n}.jpg',
+            'descriptionurl': f'https://commons.wikimedia.org/wiki/File:Example{n}.jpg',
+            'extmetadata': {'Artist': {'value': 'Test'}, 'LicenseShortName': {'value': 'Public domain'}}
+        }]}}}}
+    monkeypatch.setattr(va, '_get', get)
+    result = va.prepare_visual_assets({'focus': {'ticker': 'TEST', 'name': 'Example'}})['visual_assets']
+    assert queries == ['q1', 'q2']
+    assert result['cover']['sha256'] != result['business']['sha256']
 
 
 @pytest.mark.parametrize('path,value', [
@@ -170,7 +234,7 @@ def test_incomplete_deck_cannot_write_state(tmp_path):
     assert not (tmp_path/'state.json').exists()
 
 
-@pytest.mark.parametrize('field,value', [('instagram_caption','tampered'),('packet_sha256','0'*64),('instagram_image_urls',['https://example.com/wrong.jpg'])])
+@pytest.mark.parametrize('field,value', [('instagram_caption','tampered'),('link_url','https://example.com/wrong'),('packet_sha256','0'*64),('instagram_image_urls',['https://example.com/wrong.jpg'])])
 def test_state_tamper_rejected(tmp_path,field,value):
     p=sample_packet(); state=build_test_packet(tmp_path,p); state[field]=value
     with pytest.raises(ValueError): publish.validate_state(state,p,BASE)

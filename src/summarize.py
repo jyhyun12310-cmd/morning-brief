@@ -16,7 +16,7 @@ def validate_summary(result, allowed_source_urls=None):
     if not isinstance(result, dict) or result.get('status') == 'insufficient_evidence':
         raise SummaryGenerationError('complete, sourced manuscript required')
     for field, low, high in [('central_question', 12, 70), ('thesis', 40, 220),
-                             ('edition', 1, 30), ('instagram_caption', 500, 2200)]:
+                             ('edition', 1, 30), ('instagram_caption', 40, 400)]:
         text(result.get(field), field, low, high)
     sources = result.get('sources')
     if not isinstance(sources, list) or not sources:
@@ -53,7 +53,7 @@ def validate_summary(result, allowed_source_urls=None):
         title = text(page.get('title'), 'page.title', 8, 55)
         if title.count('\n') > 1:
             raise SummaryGenerationError('title exceeds two lines')
-        body = text(page.get('body'), 'page.body', 40 if i == 0 else 80, 85 if i == 0 else 170)
+        body = text(page.get('body'), 'page.body', 40, 85 if i == 0 else 170)
         titles.add(title.replace('\n', ' ')); bodies.add(body)
         text(page.get('takeaway'), 'page.takeaway', 25, 70)
         text(page.get('bridge'), 'page.bridge', 18, 45)
@@ -103,14 +103,8 @@ def _compatibility_keys(result):
     result.update(p7_oneline=pages[6]['title'], p7_facts=[r['claim'] for r in result['evidence_notes'][:3]],
                   p7_keep=pages[5]['branches'][0]['text'], p7_review=pages[5]['branches'][1]['text'],
                   p7_checks=[f"{r['label']}: {r['text']}" for r in pages[6]['labels']],
-                  source_line='자료 출처·기준일: 게시물 캡션 참고', kr_line=result.get('kr_line',''))
+                  source_line='자료·사진 출처: 게시글의 상세 링크', kr_line=result.get('kr_line',''))
     result.setdefault('kakao_text', pages[0]['title'] + ' — ' + pages[6]['takeaway'])
-    missing = [f"• {s['title']} ({s['as_of']})\n{s['url']}" for s in result['sources']
-               if s['url'] not in result['instagram_caption']]
-    if missing:
-        result['instagram_caption'] += '\n\n자료 출처\n' + '\n'.join(missing)
-    if len(result['instagram_caption']) > 2200:
-        raise SummaryGenerationError('caption exceeds 2,200 characters after adding sources')
     return result
 
 def summarize(data, draft=None):

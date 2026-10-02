@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "intent": "preview",
+  "is_test": false,
+  "created_at": "2026-10-01T23:38:50+00:00",
+  "publication_date_kst": "2026-10-02",
+  "market": {
+    "ticker": "MU",
+    "name": "Micron Technology",
+    "session_date": "2026-10-01",
+    "session_close_at": "2026-10-01T16:00:00-04:00",
+    "price_basis": "regular_close",
+    "currency": "USD",
+    "close": 1097.39,
+    "previous_close": 1065.11,
+    "change_pct": 3.03,
+    "source_id": "price"
+  },
+  "sources": [
+    {
+      "id": "micron_ir",
+      "title": "Micron FY2026 Q4 and full-year results",
+      "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx",
+      "as_of": "2026-09-30 release; FY2026 Q4 ended 2026-09-03; FY2027 Q1 outlook",
+      "retrieved_at": "2026-10-01T23:38:50+00:00"
+    },
+    {
+      "id": "sec",
+      "title": "Micron SEC Exhibit 99.1 earnings release",
+      "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000018/a2026q4ex991-pressrelease.htm",
+      "as_of": "2026-09-30 filing; unaudited consolidated results and outlook",
+      "retrieved_at": "2026-10-01T23:38:50+00:00"
+    },
+    {
+      "id": "price",
+      "title": "Micron historical prices — Stock Analysis / S&P Global",
+      "url": "https://stockanalysis.com/stocks/mu/history/",
+      "as_of": "2026-10-01 and 2026-09-30 regular-session Close; split-adjusted USD",
+      "retrieved_at": "2026-10-01T23:38:50+00:00"
+    },
+    {
+      "id": "nyse",
+      "title": "NYSE 2026 Holidays and Trading Hours",
+      "url": "https://www.nyse.com/trade/hours-calendars",
+      "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York",
+      "retrieved_at": "2026-10-01T23:38:50+00:00"
+    },
+    {
+      "id": "nasdaq",
+      "title": "Nasdaq 2026 Trading Schedule",
+      "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
+      "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York",
+      "retrieved_at": "2026-10-01T23:38:50+00:00"
+    }
+  ],
+  "metrics": [
+    {
+      "id": "gm_actual",
+      "value": 86.8,
+      "unit": "%",
+      "period": "FY2026 Q4 ended 2026-09-03; actual unaudited",
+      "basis": "Consolidated US GAAP gross margin percentage",
+      "source_id": "micron_ir"
+    },
+    {
+      "id": "gm_forecast",
+      "value": 85.95,
+      "unit": "%",
+      "period": "FY2027 Q1; approximate company outlook",
+      "basis": "Consolidated US GAAP gross margin percentage",
+      "source_id": "micron_ir"
+    }
+  ],
+  "summary": {
+    "market_basis": {
+      "ticker": "MU",
+      "session_date": "2026-10-01",
+      "price_basis": "regular_close",
+      "currency": "USD",
+      "close": 1097.39,
+      "previous_close": 1065.11,
+      "change_pct": 3.03
+    },
+    "central_question": "마이크론은 매출총이익률 전망이 낮아졌는데도 이익 금액이 늘 수 있을까요?",
+    "thesis": "매출총이익은 매출과 매출총이익률을 함께 봐야 합니다. 마이크론의 다음 분기 전망을 계산하면 비율은 낮아져도 금액은 커질 수 있습니다. 다만 실제 달성 여부와 주가 평가는 별개입니다.",
+    "edition": "미장, 한 겹 더. · 10월 2일",
+    "instagram_caption": "이익률이 낮아져도, 버는 돈은 늘 수 있을까요?\n마이크론 실적으로 ‘비율’과 ‘금액’의 차이를 7장에 정리했어요.\n\n#미국주식 #마이크론 #실적읽기",
+    "sources": [
+      {
+        "id": "micron_ir",
+        "title": "Micron FY2026 Q4 and full-year results",
+        "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx",
+        "as_of": "2026-09-30 release; FY2026 Q4 ended 2026-09-03; FY2027 Q1 outlook"
+      },
+      {
+        "id": "sec",
+        "title": "Micron SEC Exhibit 99.1 earnings release",
+        "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000018/a2026q4ex991-pressrelease.htm",
+        "as_of": "2026-09-30 filing; unaudited consolidated results and outlook"
+      },
+      {
+        "id": "price",
+        "title": "Micron historical prices — Stock Analysis / S&P Global",
+        "url": "https://stockanalysis.com/stocks/mu/history/",
+        "as_of": "2026-10-01 and 2026-09-30 regular-session Close; split-adjusted USD"
+      },
+      {
+        "id": "nyse",
+        "title": "NYSE 2026 Holidays and Trading Hours",
+        "url": "https://www.nyse.com/trade/hours-calendars",
+        "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York"
+      },
+      {
+        "id": "nasdaq",
+        "title": "Nasdaq 2026 Trading Schedule",
+        "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
+        "as_of": "2026 calendar; 2026-10-01 normal close 16:00 America/New_York"
+      }
+    ],
+    "evidence_notes": [
+      {
+        "id": "ev_results",
+        "claim": "2026-09-30 공개된 FY2026 Q4(2026-09-03 종료) 미감사 연결 GAAP 매출은 54,229백만달러, 매출총이익은 47,047백만달러, 매출총이익률은 공시 반올림 수치 86.8%다. 회사는 분기 매출을 신기록으로 발표했다.",
+        "source_ids": [
+          "micron_ir",
+          "sec"
+        ]
+      },
+      {
+        "id": "ev_outlook",
+        "claim": "FY2027 Q1 회사 전망은 매출 615억달러 ±15억달러, 즉 600~630억달러이며 GAAP 매출총이익률은 약 85.95%다. 전망은 아직 실현된 결과가 아니고 다음 실적일은 이 원고에서 확정하지 않는다.",
+        "source_ids": [
+          "micron_ir",
+          "sec"
+        ]
+      },
+      {
+        "id": "ev_price",
+        "claim": "Stock Analysis의 동일한 주식분할 조정 정규장 Close 열에서 2026-10-01은 1097.39달러, 2026-09-30은 1065.11달러다. 계산 등락률은 약 +3.03067%로 소수 둘째 자리 반올림 +3.03%이며 시간외 가격은 사용하지 않았다.",
+        "source_ids": [
+          "price"
+        ]
+      },
+      {
+        "id": "ev_business",
+        "claim": "Micron은 메모리·저장 반도체 기업으로 DRAM·NAND·NOR를 제공하고 AI 및 클라우드부터 기기까지의 컴퓨팅을 지원한다. 회사 설명과 제품 목록을 바탕으로 사업 연결을 설명하며 미래 수요나 주가를 보장하지 않는다.",
+        "source_ids": [
+          "micron_ir"
+        ]
+      },
+      {
+        "id": "ev_definition",
+        "claim": "연결 손익계산서에서 매출 54,229백만달러에서 제품 매출원가 7,182백만달러를 빼면 매출총이익 47,047백만달러다. 연구개발비·판매관리비 등은 그 아래 차감된다. 판매규모와 가격·원가에 따른 수익성 설명은 이 구조에 대한 해석이다.",
+        "source_ids": [
+          "sec"
+        ]
+      },
+      {
+        "id": "ev_calculation",
+        "claim": "회사 전망의 매출 중간값 615억달러에 GAAP 매출총이익률 약 85.95%를 곱하면 528.5925억달러(약 528.6억달러)다. 이번 GAAP 실적 470.47억달러보다 크다. 이는 전망을 이용한 단순 계산으로 회사가 직접 공표한 이익 금액 목표나 확정 실적이 아니며 당일 주가 상승의 원인으로 단정하지 않는다.",
+        "source_ids": [
+          "micron_ir",
+          "sec"
+        ]
+      },
+      {
+        "id": "ev_calendar",
+        "claim": "NYSE·Nasdaq 2026 공식 달력상 9월 30일과 10월 1일은 휴장·조기폐장일이 아니다. 최신 완료 정규장은 2026-10-01 16:00 EDT(UTC-04:00), 한국 2026-10-02 05:00이며 실행 시점에는 종료된 거래일이다.",
+        "source_ids": [
+          "nyse",
+          "nasdaq"
+        ]
+      }
+    ],
+    "visual_story": [
+      {
+        "layout": "cover",
+        "title": "MU, 이익률 내려도\n이익은 더 늘까?",
+        "body": "마이크론은 다음 분기 매출은 더 높게, 매출총이익률은 조금 낮게 예상했어요. 비율이 내려가면 이익 금액도 꼭 줄어들까요?",
+        "takeaway": "이익률의 방향만으로 이익 금액까지 판단하면 놓치는 게 생깁니다.",
+        "bridge": "회사가 다음 분기에 제시한 매출은 얼마일까요?",
+        "evidence_ids": [
+          "ev_outlook",
+          "ev_results"
+        ],
+        "labels": [
+          {
+            "label": "이번 매출총이익률",
+            "text": "86.8%",
+            "note": "FY2026 Q4 · GAAP 실적"
+          },
+          {
+            "label": "다음 매출총이익률",
+            "text": "약 85.95%",
+            "note": "FY2027 Q1 · GAAP 회사 전망"
+          }
+        ],
+        "source_line": ""
+      },
+      {
+        "layout": "photo",
+        "title": "매출은 신기록,\n다음 목표는 더 높다",
+        "body": "9월 30일 발표한 미감사 실적입니다. 이번 분기 매출은 신기록, 다음 분기 회사 전망은 더 높습니다.",
+        "takeaway": "실적은 받은 성적표이고, 회사 전망은 앞으로 확인할 목표입니다.",
+        "bridge": "메모리 회사는 매출에서 무엇을 빼고 남길까요?",
+        "evidence_ids": [
+          "ev_results",
+          "ev_outlook",
+          "ev_price"
+        ],
+        "labels": [
+          {
+            "label": "FY2026 Q4 매출",
+            "text": "542.29억달러",
+            "note": "연결 GAAP · 미감사 실적"
+          },
+          {
+            "label": "FY2027 Q1 매출 전망",
+            "text": "600~630억달러",
+            "note": "회사가 제시한 예상 범위"
+          }
+        ],
+        "source_line": ""
+      },
+      {
+        "layout": "annotated",
+        "title": "AI의 데이터를 담고,\n원가를 빼면 남는 몫",
+        "body": "마이크론은 AI 서버와 기기에 들어갈 메모리·저장장치를 팝니다. 같은 매출이라도 판매가격과 제조원가에 따라 남는 돈이 달라져요.",
+        "takeaway": "수요가 커졌다는 이야기에서 한 걸음 더 가서 원가도 봅니다.",
+        "bridge": "매출 100달러 중 원가를 빼면 얼마가 남을까요?",
+        "evidence_ids": [
+          "ev_business",
+          "ev_definition"
+        ],
+        "labels": [
+          {
+            "label": "쓰이는 곳",
+            "text": "AI·클라우드·기기"
+          },
+          {
+            "label": "판매하는 제품",
+            "text": "DRAM·NAND 등"
+          },
+          {
+            "label": "수익성을 가르는 것",
+            "text": "판매가격과 제품 원가"
+          }
+        ],
+        "source_line": ""
+      },
+      {
+        "layout": "comparison",
+        "title": "100달러 팔 때,\n남는 비율은 조금 낮게",
+        "body": "매출총이익률은 매출에서 제품 원가를 뺀 비율입니다. 다음 분기 회사 전망은 조금 낮아요. 순이익률과는 다른 숫자예요.",
+        "takeaway": "비율의 작은 하락을 곧바로 이익 금액의 감소로 읽지는 마세요.",
+        "bridge": "비율이 낮아도 전체 이익은 커질 수 있을까요?",
+        "evidence_ids": [
+          "ev_results",
+          "ev_outlook",
+          "ev_definition"
+        ],
+        "labels": [],
+        "chart": {
+          "source": "Micron IR·SEC / 2026.09.30 발표",
+          "note": "GAAP 매출총이익률 · 이번 실적과 다음 회사 전망 · 0 기준",
+          "unit": "%",
+          "rows": [
+            {
+              "metric_id": "gm_actual",
+              "value": 86.8,
+              "label": "FY2026 Q4 실적",
+              "display": "86.8%"
+            },
+            {
+              "metric_id": "gm_forecast",
+              "value": 85.95,
+              "label": "FY2027 Q1 회사 전망",
+              "display": "약 85.95%"
+            }
+          ]
+        },
+        "source_line": ""
+      },
+      {
+        "layout": "explain",
+        "title": "비율은 낮아도,\n금액은 커질 수 있어요",
+        "body": "매출 전망의 중간값에 예상 이익률을 곱한 계산입니다. 비율은 낮아져도 이익 금액은 커질 수 있어요. 확정 실적은 아닙니다.",
+        "takeaway": "작아진 비율보다 매출의 증가 효과가 크면 이익 금액은 늘어납니다.",
+        "bridge": "그 계산이 실제로 맞으려면 무엇이 필요할까요?",
+        "evidence_ids": [
+          "ev_calculation",
+          "ev_results"
+        ],
+        "labels": [
+          {
+            "label": "이번 매출총이익",
+            "text": "470.47억달러",
+            "note": "FY2026 Q4 · GAAP 실적"
+          },
+          {
+            "label": "다음 분기 단순 계산",
+            "text": "약 528.6억달러",
+            "note": "매출 전망 중간값 615억 × 85.95% · 확정 아님"
+          }
+        ],
+        "source_line": ""
+      },
+      {
+        "layout": "conditions",
+        "title": "더 팔기만 하면 끝?\n원가도 같이 봐야죠",
+        "body": "매출이 늘어도 원가가 예상보다 커지면 이익은 달라져요. 다음 발표에서는 매출과 이익률을 함께 확인하세요.",
+        "takeaway": "전망을 점검할 때는 매출 달성과 수익성 유지를 함께 확인합니다.",
+        "bridge": "다음 실적 옆에 놓고 볼 기준 두 개를 남깁니다.",
+        "evidence_ids": [
+          "ev_outlook",
+          "ev_definition",
+          "ev_calculation"
+        ],
+        "labels": [],
+        "origin": "FY2027 Q1 전망을 실제 결과로 확인",
+        "branches": [
+          {
+            "label": "계산이 맞을 조건",
+            "text": "매출 예상 범위 달성과 예상 수준의 매출총이익률",
+            "check": "실제 매출 600~630억달러 및 이익률 약 85.95% 비교"
+          },
+          {
+            "label": "계산이 흔들릴 위험",
+            "text": "예상보다 낮은 판매 규모 또는 제품 원가 부담",
+            "check": "매출·이익률의 전망 이탈과 회사 설명을 확인"
+          }
+        ],
+        "source_line": ""
+      },
+      {
+        "layout": "closing",
+        "title": "남는 비율과 금액,\n같은 말이 아닙니다",
+        "body": "비율이 낮아져도, 매출이 충분히 늘면 이익 금액은 커질 수 있어요. 다음 실적에서 아래 두 숫자를 함께 비교해 보세요.",
+        "takeaway": "수익성을 볼 때는 비율과 절대 금액을 함께 비교해 보세요.",
+        "bridge": "다음 마이크론 실적과 비교할 두 숫자를 저장하세요.",
+        "evidence_ids": [
+          "ev_calculation",
+          "ev_outlook"
+        ],
+        "labels": [
+          {
+            "label": "다음 매출의 비교 기준",
+            "text": "600~630억달러",
+            "note": "FY2027 Q1 회사 전망"
+          },
+          {
+            "label": "다음 수익성의 비교 기준",
+            "text": "매출총이익률 약 85.95%",
+            "note": "GAAP · 회사 전망"
+          }
+        ],
+        "source_line": ""
+      }
+    ]
+  }
+}

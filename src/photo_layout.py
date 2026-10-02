@@ -20,6 +20,7 @@ def _embed(path: Path) -> str:
 
 
 def _photos(data: dict) -> dict:
+    from visual_assets import _validate_local, _duplicate, _photo_style
     ticker = str((data.get('focus') or {}).get('ticker', '')).upper()
     supplied = data.get('visual_assets')
     if supplied is None:
@@ -28,14 +29,17 @@ def _photos(data: dict) -> dict:
     result = {}
     for role in ('cover', 'business'):
         item = supplied.get(role) or {}
-        if not item.get('path') or not item.get('caption') or not item.get('credit'):
-            raise ValueError(f"{ticker}: {role} 사진의 path·caption·credit을 assets/manifest.json 또는 data.visual_assets에 등록하세요. 사진 없는 게시물은 만들지 않습니다.")
+        item = _validate_local(item)
+        if not item or _duplicate(item, result.values()):
+            if role == 'business':
+                continue
+            raise ValueError(f"{ticker}: 유효한 cover 사진과 출처가 필요합니다.")
         path = Path(item['path'])
         if not path.is_absolute():
             path = ROOT / path
         if path.suffix.lower() not in {'.png', '.jpg', '.jpeg', '.webp'}:
             raise ValueError('사진은 PNG/JPEG/WebP 로 준비하세요.')
-        result[role] = {**item, 'src': _embed(path)}
+        result[role] = {**item, 'src': _embed(path), 'fit': _photo_style(item)}
     return result
 
 
@@ -88,16 +92,12 @@ def build_photo_deck(data: dict, summary: dict) -> dict:
                  'note':_text(x.get('note'),60)} for x in (raw.get('labels') or [])[:3]]
         source_ids=list(dict.fromkeys(sid for eid in raw['evidence_ids'] for sid in evidence[eid]['source_ids']))
         # Keep the card readable even when original publication titles are long.
-        source_line='출처 '+ '·'.join(source_ids) + ' / 원문·기준일은 게시물 캡션 참고'
+        source_line='자료·사진 출처: 게시글의 상세 링크'
         page={**raw,'layout':layout,'title':_text(raw.get('title'),55),
               'body':_text(raw.get('body'),170), 'bridge':_text(raw.get('bridge'),45),
               'chapter':chapters[index], 'source_line':_text(raw.get('source_line') or source_line,160),
               'takeaway':_text(raw.get('takeaway'),70), 'labels':labels,
-              'photo':photos['business' if index in (1,4,5) else 'cover']}
-        if raw.get('photo_role'):
-            if raw['photo_role'] not in photos:
-                raise ValueError(f"등록되지 않은 photo_role: {raw['photo_role']}")
-            page['photo']=photos[raw['photo_role']]
+              'photo':photos.get('cover' if index == 0 else 'business') if index < 2 else None}
         if not page['title']:
             raise ValueError(f'{index+1}장 제목이 없습니다.')
         page['chart']=None
@@ -134,4 +134,4 @@ def build_photo_deck(data: dict, summary: dict) -> dict:
     from typography import card_fonts
     return {'pages':pages,'fonts':card_fonts(Path(cfg.OUT_DIR) / 'font-cache'),
             'edition':_text(summary.get('edition','한 종목 깊이 읽기'),50),
-            'footer':_text(summary.get('source_line','자료 출처·기준일은 게시물 캡션 참고'),90)}
+            'footer':_text(summary.get('source_line','자료·사진 출처: 게시글의 상세 링크'),90)}
