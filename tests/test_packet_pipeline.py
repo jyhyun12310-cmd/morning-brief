@@ -280,6 +280,54 @@ def test_changed_ticker_does_not_bypass_session_dedup():
     assert ep.publication_key(a)==ep.publication_key(b)
 
 
+def repost_fixture(tmp_path):
+    packet = sample_packet()
+    state = {'image_sha256': ['a'*64]*7}
+    original = ({'status':'published', 'media_id':'original-media'}, 'original-sha')
+    approval = dict(schema_version=1, base_key=ep.publication_key(packet), packet_sha256=ep.digest(packet),
+                    original_media_id='original-media', owner_request='Explicit request to repost the reviewed deck',
+                    approved_at=NOW.isoformat(), expires_at=(NOW+timedelta(hours=1)).isoformat(),
+                    reviewed_image_sha256=state['image_sha256'])
+    path = tmp_path / (ep.digest(packet)+'.json')
+    path.write_text(json.dumps(approval), encoding='utf-8')
+    return packet, state, original, approval, path
+
+
+def test_approved_repost_is_separate_and_still_at_most_once(tmp_path):
+    from repost_approval import approved_key
+    packet, state, original, _, _ = repost_fixture(tmp_path)
+    key = approved_key(packet, state, original, folder=tmp_path, now=NOW)
+    assert key == ep.publication_key(packet)+'-repost-'+ep.digest(packet)[:12]
+    j = journal(FakeGitHub()); send = Mock(return_value='new-media')
+    assert pj.publish_once(j,key,ep.digest(packet),send)['status']=='published'
+    assert pj.publish_once(j,key,ep.digest(packet),send)['status']=='skipped_duplicate'
+    assert send.call_count == 1 and original[0]['media_id'] == 'original-media'
+
+
+@pytest.mark.parametrize('field,value', [
+    ('packet_sha256','0'*64), ('base_key','us-stock-2026-09-28'),
+    ('original_media_id','different-media'), ('expires_at','2026-09-29T00:00:00Z'),
+    ('reviewed_image_sha256',['b'*64]*7), ('owner_request','')])
+def test_repost_approval_cannot_cover_unreviewed_inputs(tmp_path, field, value):
+    from repost_approval import approved_key
+    packet, state, original, approval, path = repost_fixture(tmp_path)
+    approval[field] = value; path.write_text(json.dumps(approval), encoding='utf-8')
+    with pytest.raises(pj.JournalError): approved_key(packet,state,original,folder=tmp_path,now=NOW)
+
+
+def test_no_approval_keeps_normal_session_dedup(tmp_path):
+    from repost_approval import approved_key
+    p = sample_packet()
+    assert approved_key(p, {}, None, folder=tmp_path, now=NOW) == ep.publication_key(p)
+
+
+def test_reserved_original_cannot_be_reposted(tmp_path):
+    from repost_approval import approved_key
+    packet, state, original, _, _ = repost_fixture(tmp_path)
+    original[0]['status'] = 'reserved'
+    with pytest.raises(pj.JournalError): approved_key(packet,state,original,folder=tmp_path,now=NOW)
+
+
 def test_ambiguous_send_is_not_retried():
     s=FakeGitHub(); j=journal(s); send=Mock(side_effect=TimeoutError('synthetic timeout'))
     with pytest.raises(TimeoutError): pj.publish_once(j,'us-stock-2026-09-29','a'*64,send)

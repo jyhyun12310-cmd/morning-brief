@@ -103,6 +103,12 @@ def main(argv=None):
     journal = GitHubJournal(os.environ['GITHUB_REPOSITORY'], os.environ['GH_TOKEN'])
     key = publication_key(packet)
     existing = journal.read(key)
+    from repost_approval import approved_key
+    resolved_key = approved_key(packet, state, existing)
+    if resolved_key != key:
+        key = resolved_key
+        existing = journal.read(key)
+        log.info('Using separate, owner-approved repost journal: %s', key)
     if existing:
         if existing[0].get('status') == 'published':
             log.info('Duplicate session skipped: %s', key)

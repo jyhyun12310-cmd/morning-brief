@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "base_key": "us-stock-2026-10-01",
+  "packet_sha256": "7a8f5e04e8777db001d013dea88ce734463365904c720f6176a38976e406f079",
+  "original_media_id": "18460456237137609",
+  "approved_at": "2026-10-02T00:48:09.124861+00:00",
+  "expires_at": "2026-10-02T06:48:09.124861+00:00",
+  "owner_request": "좋아 지금 일단 오늘은 이 내용으로 다시 올려주고, 앞으로는 더더 발전하는 걸로 만들어줘",
+  "preview_run_id": 36946036783,
+  "reviewed_image_sha256": [
+    "06733778e977b5eb46b33d1853d31fd40d8a55025cce0f443d1edae0e5a0c6a3",
+    "18b4d2da62ad1b803b67a31933aa3b4aad5377b9a375f1bdb6e16f945bc86efb",
+    "03e5140adb7f6bf0b812e894050671f465f15e1bf0a6e3ee8db229e74cd33751",
+    "91b46a8f0e486de49a8c13046115dd8b24168c49adf99428f4ed3822fe9681e9",
+    "876364bcf8502af560ffce16be97457ae6217c7d09767d90b36c958287650192",
+    "f7eac4f1576a5bd28cf0029384698ad12886f4509853f85eab04bd69e99fc2d4",
+    "213549bc13f916f52ceb1df277ef866d90805aec65ffe98eadcf13eb9e5cde38"
+  ]
+}
