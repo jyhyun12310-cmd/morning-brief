@@ -1,182 +1,206 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-02T01:08:14.853220+00:00",
+  "created_at": "2026-10-02T05:14:25Z",
   "publication_date_kst": "2026-10-02",
-  "snapshot_at": "2026-10-02T09:09:00+09:00",
+  "snapshot_at": "2026-10-02T13:58:30+09:00",
   "kr_session": {
     "date": "2026-10-02",
     "status": "open",
-    "source_id": "opening",
-    "evidence": "2026년 10월 2일 09:22 발행 기사에서 당일 개장과 09:09 장중 거래를 확인."
+    "source_id": "kosdaq",
+    "evidence": "10월 2일 당일 일중 데이터와 13:58:30 KST 실시간 지수 표시를 대조해 한국 증시 거래 중임을 확인."
   },
   "sources": [
     {
-      "id": "opening",
-      "title": "연합인포맥스 · 10월 2일 개장과 코스닥 장중 900선 회복",
-      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4437522",
-      "as_of": "2026-10-02 09:00~09:09 KST; 기사 09:22",
-      "retrieved_at": "2026-10-02T01:08:14.853220+00:00"
+      "id": "kospi",
+      "title": "Investing.com · 코스피 장중 지수와 전일 종가",
+      "url": "https://kr.investing.com/indices/kospi",
+      "as_of": "2026-10-02 13:57:40 KST; 전일 종가 2026-10-01",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
     },
     {
-      "id": "close",
-      "title": "연합인포맥스 · 10월 1일 한국 증시 마감",
-      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4437413",
-      "as_of": "2026-10-01 정규장 종가",
-      "retrieved_at": "2026-10-02T01:08:14.853220+00:00"
+      "id": "kosdaq",
+      "title": "Investing.com · 코스닥 장중 값과 날짜별 지수",
+      "url": "https://kr.investing.com/indices/kosdaq-historical-data",
+      "as_of": "2026-10-02 13:58:30 KST; 전일 종가 2026-10-01",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
+    },
+    {
+      "id": "cpi",
+      "title": "국가데이터처 · 2026년 9월 소비자물가동향",
+      "url": "https://mods.go.kr/board.es?act=view&bid=213&list_no=447322&mainXml=Y&mid=a10301010000",
+      "as_of": "2026년 9월 통계; 2026-10-02 발표",
+      "retrieved_at": "2026-10-02T14:09:30+09:00"
+    },
+    {
+      "id": "bonds",
+      "title": "머니투데이 · 재정경제부 10월 국고채 발행계획 보도",
+      "url": "https://www.mt.co.kr/economy/2026/10/01/2026100118074522617",
+      "as_of": "2026-10-01 18:12 KST 보도; 2026년 10월 발행계획",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
+    },
+    {
+      "id": "stocks",
+      "title": "매일경제 마켓 · 13:51 인기종목 표의 대한광통신·아시아나항공",
+      "url": "https://stock.mk.co.kr/price/home/KR7000660001",
+      "as_of": "2026-10-02 13:51 KST 종목 표; 상단 SK하이닉스 시각과 별개",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
     },
     {
       "id": "bls",
-      "title": "BLS · Employment Situation 공식 발표 일정",
-      "url": "https://www.bls.gov/schedule/news_release/empSit.htm",
-      "as_of": "2026년 9월 고용보고서: 10월 2일 08:30 ET 예정",
-      "retrieved_at": "2026-10-02T01:08:14.853220+00:00"
+      "title": "미국 BLS · 2026년 10월 공식 통계 발표 일정",
+      "url": "https://www.bls.gov/schedule/2026/10_sched.htm",
+      "as_of": "9월 고용보고서 2026-10-02 08:30 미국 동부시간(EDT)",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
     }
   ],
   "quotes": [
     {
       "id": "KOSPI",
       "name": "코스피",
-      "value": 6938.27,
+      "value": 6985.01,
       "previous_close": 6971.35,
-      "change_pct": -0.47,
-      "basis": "open",
-      "as_of": "2026-10-02T09:00:00+09:00",
-      "source_id": "opening"
+      "change_pct": 0.2,
+      "basis": "intraday",
+      "as_of": "2026-10-02T13:57:40+09:00",
+      "source_id": "kospi"
     },
     {
       "id": "KOSDAQ",
       "name": "코스닥",
-      "value": 901.4,
+      "value": 892.39,
       "previous_close": 894.29,
-      "change_pct": 0.8,
+      "change_pct": -0.21,
       "basis": "intraday",
-      "as_of": "2026-10-02T09:09:00+09:00",
-      "source_id": "opening"
+      "as_of": "2026-10-02T13:58:30+09:00",
+      "source_id": "kosdaq"
     }
   ],
   "events": [
     {
       "title": "미국 9월 고용보고서",
       "at": "2026-10-02T08:30:00-04:00",
-      "note": "신규 고용·실업률·임금 상승률을 함께 확인할 시간.",
+      "note": "한국 21:30 예정 · 신규 고용, 실업률, 임금과 이전 달 수정치 확인",
       "source_id": "bls"
     }
   ],
   "summary": {
-    "instagram_caption": "코스닥은 장 초반 900선을 회복했고, 오늘 밤엔 미국 고용 발표가 기다립니다. 오후판에서는 최신 지수와 남은 변수를 다섯 장으로 정리합니다. #시장뉴스 #미국증시",
+    "instagram_caption": "10월 2일 오후, 코스피는 올랐지만 코스닥과 개별 종목의 표정은 달랐어요. 국내 물가·국채 공급과 오늘 밤 9시 30분 미국 고용 발표를 함께 보고, 지수 상승이 내 종목까지 번지는지 확인해 보세요. #시장뉴스 #코스피 #미국고용",
     "editorial_review": {
-      "improvement": "지수판·뉴스·업종·발표 시각·관전 포인트를 분리",
-      "reason": "빠르게 읽고 다음에 확인할 것을 남기기",
-      "application": "서로 다른 5개 레이아웃과 사실/관전 표시"
+      "improvement": "관전 조건을 전일 종가와 공식 발표 항목으로 구체화",
+      "reason": "최근 게시물의 기업 실적 설명보다 장중에 다시 확인할 기준을 빠르게 찾게 하기",
+      "application": "마지막 장에 코스피 6971.35·코스닥 894.29와 고용·임금·수정치를 제시",
+      "avoided_repetition": "최근 5개 공개 상세 페이지를 비교해 JBL·MU 실적 문구와 반도체 사진 반복을 피하고 5개 전용 레이아웃 사용"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "코스닥 900선 회복\n밤엔 미국 고용 발표",
-        "body": "개장 초 두 시장의 방향이 갈렸습니다. 오늘 밤 고용 발표 전까지 흐름이 이어지는지 확인할 날입니다.",
-        "items": [],
+        "title": "코스피는 플러스,\n내 종목도 괜찮을까?",
+        "body": "코스피는 소폭 올랐지만 코스닥은 내렸어요. 지수의 색깔만 보면 놓치는 차이를 짚어봅니다.",
         "source_ids": [
-          "opening",
-          "bls"
-        ]
+          "kospi",
+          "kosdaq"
+        ],
+        "items": []
       },
       {
         "layout": "drivers",
-        "title": "같은 아침,\n다른 출발",
-        "body": "코스피의 시가와 코스닥의 장중 수치입니다. 기준 시각이 다르므로 같은 순간의 비교로 읽지 않습니다.",
+        "title": "물가와 국채 공급,\n금리로 연결되는 두 재료",
+        "body": "물가 상승은 남아 있고, 국채 공급 부담은 줄어들 예정이에요. 오늘 지수의 원인으로 단정하진 않아요.",
+        "source_ids": [
+          "cpi",
+          "bonds"
+        ],
         "items": [
           {
-            "label": "코스피는 하락 출발",
-            "text": "전일 종가 대비 0.47% 낮은 시가로 시작했습니다.",
+            "label": "국내 물가 +2.9%",
+            "text": "9월 소비자물가는 전년 동월보다 2.9% 상승, 식료품·에너지를 뺀 지수는 2.8% 올랐어요.",
             "type": "fact",
             "source_ids": [
-              "opening"
+              "cpi"
             ]
           },
           {
-            "label": "코스닥은 상승 전환",
-            "text": "하락 출발 뒤 09:09에는 901.40을 기록했습니다.",
-            "type": "fact",
+            "label": "10월 국고채 5조원 축소",
+            "text": "1일 발표된 계획은 당초보다 5조원 감축이에요. 채권을 소화할 부담을 덜 수 있다는 해석입니다.",
+            "type": "analysis",
             "source_ids": [
-              "opening"
+              "bonds"
             ]
           }
-        ],
-        "source_ids": [
-          "opening"
         ]
       },
       {
         "layout": "sectors",
-        "title": "반도체도\n한 방향은 아니다",
-        "body": "오전 9시 5분, 삼성전자와 SK하이닉스의 방향도 달랐습니다. 업종 이름만으로 흐름을 단정하지 않습니다.",
+        "title": "지수보다 선명한\n종목 사이 온도차",
+        "body": "13:51 기준, 광통신주와 항공주의 방향이 갈렸어요. 개별 종목 사례이지 업종 전체 등락은 아니에요.",
+        "source_ids": [
+          "stocks"
+        ],
         "items": [
           {
-            "label": "삼성전자",
-            "text": "09:05 기준 전일 대비 -1.27%.",
+            "label": "광통신 · 대한광통신",
+            "text": "17,740원, 전일 대비 +4.35%를 기록했어요.",
             "type": "fact",
             "source_ids": [
-              "opening"
+              "stocks"
             ]
           },
           {
-            "label": "SK하이닉스",
-            "text": "09:05 기준 전일 대비 +0.11%.",
+            "label": "항공 · 아시아나항공",
+            "text": "8,150원, 전일 대비 -3.32%를 기록했어요.",
             "type": "fact",
             "source_ids": [
-              "opening"
+              "stocks"
             ]
           }
-        ],
-        "source_ids": [
-          "opening"
         ]
       },
       {
         "layout": "calendar",
-        "title": "오늘 밤의 시계는\n21시 30분",
-        "body": "미국 9월 고용보고서가 예정돼 있습니다. 한 숫자보다 고용·실업률·임금의 조합을 확인합니다.",
-        "items": [],
+        "title": "밤 9시 30분,\n고용 숫자 하나로 끝내지 마세요",
+        "body": "미국 9월 고용보고서가 나올 예정이에요. 일자리뿐 아니라 임금과 이전 달 수정치도 함께 봅니다.",
         "source_ids": [
           "bls"
-        ]
+        ],
+        "items": []
       },
       {
         "layout": "watch",
-        "title": "오늘은\n이 세 가지만",
-        "body": "지금의 방향을 확정된 결론으로 읽지 않습니다. 다음에 확인할 조건을 남겨둡니다.",
+        "title": "지수의 온기가\n내 종목까지 번질까요?",
+        "body": "지수 상승만으로는 아직 답하기 어려워요. 마감 때 두 지수의 기준선, 밤에는 고용의 내용을 다시 확인해요.",
+        "source_ids": [
+          "kospi",
+          "kosdaq",
+          "bls"
+        ],
         "items": [
           {
-            "label": "900선을 지키는가",
-            "text": "코스닥의 장 초반 반등이 오후에도 유지되는지 확인.",
+            "label": "코스피의 상승 유지",
+            "text": "전일 종가 6,971.35 위에서 마치는지 보세요. 장중 플러스와 종가 플러스는 달라요.",
             "type": "watch",
             "source_ids": [
-              "opening"
+              "kospi"
             ]
           },
           {
-            "label": "반도체가 함께 가는가",
-            "text": "엇갈린 대형주의 방향이 좁혀지는지 확인.",
+            "label": "코스닥의 회복 여부",
+            "text": "전일 종가 894.29를 되찾는지 확인해요. 두 시장의 방향이 다시 같아지는 기준이에요.",
             "type": "watch",
             "source_ids": [
-              "opening"
+              "kosdaq"
             ]
           },
           {
-            "label": "고용과 임금이 같은 신호인가",
-            "text": "발표 후 고용·실업률·임금을 함께 읽고 금리 반응 확인.",
+            "label": "고용·임금·수정치",
+            "text": "고용 증가와 임금 상승이 함께 강한지, 이전 달 수치가 바뀌었는지 비교해요.",
             "type": "watch",
             "source_ids": [
               "bls"
             ]
           }
-        ],
-        "source_ids": [
-          "opening",
-          "bls"
         ]
       }
     ]
