@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "allow_publish": false,
+  "preview_verified_run_id": 0,
+  "workflow_file": "market-packet.yml",
+  "note": "Enable only after actual five-card GitHub preview passes."
+}

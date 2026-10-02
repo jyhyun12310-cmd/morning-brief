@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 
 from editorial_packet import load_packet, validate_packet, render_data, digest, slug_for, publication_key
 from summarize import summarize
+from editorial_packet import card_count, packet_summary
 
 log = logging.getLogger('build')
 DISCLAIMER = '투자 참고용 · 매수·매도 권유 아님.'
@@ -26,7 +27,7 @@ def _build_caption(data, summary, link_url):
     caption = summary['instagram_caption'].strip()
     if len(caption) > 400:
         raise ValueError('caption body exceeds 400 characters; edit it instead of truncating')
-    caption += '\n\n자료·사진 출처: ' + link_url
+    caption += ('\n\n자료 출처: ' if 'market_brief' in data else '\n\n자료·사진 출처: ') + link_url
     if DISCLAIMER not in caption:
         caption += '\n\n' + DISCLAIMER
     if len(caption) > 600:
@@ -44,17 +45,22 @@ def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
     for stale in ('skip', 'state.json', 'raw.json', 'packet.json'):
         (out / stale).unlink(missing_ok=True)
     validate_packet(packet)
+    count = card_count(packet)
     if renderer is None or assets is None or detail_renderer is None:
         import config as cfg
         cfg.DOCS_DIR = str(docs_dir)
         cfg.OUT_DIR = str(out_dir)
-        from render import render_cards, render_detail_page
-        from visual_assets import prepare_visual_assets
+        if packet.get('kind') == 'market_brief':
+            from market_render import render_cards, render_detail_page
+            prepare_visual_assets = lambda data: data
+        else:
+            from render import render_cards, render_detail_page
+            from visual_assets import prepare_visual_assets
         renderer = renderer or render_cards
         detail_renderer = detail_renderer or render_detail_page
         assets = assets or prepare_visual_assets
     data = render_data(packet)
-    summary = summarize(data, packet['summary'])
+    summary = packet_summary(packet, data)
     # This call may retrieve photographs; it must not change market/source inputs.
     original_focus = copy.deepcopy(data['focus'])
     original_sources = copy.deepcopy(data['sources'])
@@ -63,8 +69,8 @@ def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
         raise ValueError('photo preparation changed the frozen financial inputs')
     slug = slug_for(packet)
     paths = renderer(data, summary, str(Path(docs_dir) / 'cards'), slug)
-    if len(paths) != 7:
-        raise ValueError('renderer did not produce exactly seven cards')
+    if len(paths) != count:
+        raise ValueError(f'renderer did not produce exactly {count} cards')
     from PIL import Image
     image_hashes = []
     for index, path in enumerate(paths, 1):
@@ -81,7 +87,7 @@ def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
     parsed = urlsplit(base)
     if base and (parsed.scheme != 'https' or not parsed.hostname or parsed.query or parsed.fragment):
         raise ValueError('PAGES_BASE_URL must be a plain HTTPS base URL')
-    urls = [f'{base}/cards/{slug}-{n}.jpg' for n in range(1, 8)]
+    urls = [f'{base}/cards/{slug}-{n}.jpg' for n in range(1, count + 1)]
     link = f'{base}/{slug}.html'
     state = {'schema_version':1, 'slug':slug, 'packet_sha256':digest(packet),
              'publication_key':publication_key(packet), 'intent':packet['intent'],
@@ -94,7 +100,7 @@ def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
     write_json(out / 'raw.json', {'data':data, 'summary':summary})
     # State is written last, only after all seven images have passed validation.
     write_json(out / 'state.json', state)
-    log.info('Frozen packet built: %s; seven JPEGs; zero AI API calls', slug)
+    log.info('Frozen packet built: %s; %s JPEGs; zero AI API calls', slug, count)
     return state
 
 def main(argv=None):

@@ -29,7 +29,7 @@ class GitHubJournal:
         self.branch = branch
 
     def _url(self, key):
-        if not re.fullmatch(r'us-stock-\d{4}-\d{2}-\d{2}(?:-repost-[0-9a-f]{12})?', key):
+        if not re.fullmatch(r'(?:us-stock-\d{4}-\d{2}-\d{2}(?:-repost-[0-9a-f]{12})?|kr-market-\d{4}-\d{2}-\d{2}-afternoon)', key):
             raise JournalError('invalid publication key')
         return self.base + key + '.json'
 

@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 from urllib.parse import urlsplit
 from editorial_packet import load_packet, digest, publication_key, slug_for
+from editorial_packet import card_count, packet_summary
 from publication_journal import GitHubJournal, JournalError, publish_once
 
 log = logging.getLogger('publish')
@@ -30,7 +31,8 @@ class RedactSecrets(logging.Filter):
 def validate_state(state, packet, pages_base):
     expected_slug = slug_for(packet)
     base = pages_base.rstrip('/')
-    expected_urls = [f'{base}/cards/{expected_slug}-{n}.jpg' for n in range(1,8)]
+    count = card_count(packet)
+    expected_urls = [f'{base}/cards/{expected_slug}-{n}.jpg' for n in range(1,count + 1)]
     expected_link = f'{base}/{expected_slug}.html'
     if (state.get('schema_version') != 1 or state.get('packet_sha256') != digest(packet)
             or state.get('publication_key') != publication_key(packet)
@@ -38,14 +40,14 @@ def validate_state(state, packet, pages_base):
             or state.get('link_url') != expected_link):
         raise ValueError('state does not match the frozen packet and expected image URLs')
     hashes = state.get('image_sha256')
-    if not isinstance(hashes, list) or len(hashes) != 7 or any(
+    if not isinstance(hashes, list) or len(hashes) != count or any(
             not isinstance(h, str) or len(h) != 64 or any(c not in '0123456789abcdef' for c in h) for h in hashes):
-        raise ValueError('seven image hashes are required')
+        raise ValueError(f'{count} image hashes are required')
     from summarize import summarize
     from editorial_packet import render_data
     from build import _build_caption
     data = render_data(packet)
-    expected_caption = _build_caption(data, summarize(data, packet['summary']), expected_link)
+    expected_caption = _build_caption(data, packet_summary(packet, data), expected_link)
     if state.get('instagram_caption') != expected_caption:
         raise ValueError('caption changed after packet validation')
     return state
@@ -85,7 +87,7 @@ def main(argv=None):
     base = os.environ.get('PAGES_BASE_URL', '').rstrip('/')
     validate_state(state, packet, base)
     if not args.live:
-        log.info('DRY RUN OK: seven JPEGs; frozen data/caption match; Instagram and journal untouched.')
+        log.info('DRY RUN OK: %s JPEGs; frozen data/caption match; Instagram and journal untouched.', card_count(packet))
         return 0
     settings = json.loads(Path(args.settings).read_text(encoding='utf-8'))
     if settings.get('allow_publish') is not True or os.environ.get('ALLOW_INSTAGRAM_PUBLISH') != 'YES':
@@ -123,7 +125,7 @@ def main(argv=None):
     # The durable journal is already completed. A read-back failure must never
     # cause this post to be sent again.
     try:
-        result.update(publish_instagram.verify_published_media(result['media_id']))
+        result.update(publish_instagram.verify_published_media(result['media_id'], expected_count=card_count(packet)))
         (out / 'publish_result.json').write_text(json.dumps(result), encoding='utf-8')
         log.info('Verified %s images: %s', result['image_count'], result['permalink'])
     except Exception as exc:

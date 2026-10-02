@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "kind": "market_brief",
+  "intent": "preview",
+  "is_test": false,
+  "created_at": "2026-10-02T01:08:14.853220+00:00",
+  "publication_date_kst": "2026-10-02",
+  "snapshot_at": "2026-10-02T09:09:00+09:00",
+  "kr_session": {
+    "date": "2026-10-02",
+    "status": "open",
+    "source_id": "opening",
+    "evidence": "2026년 10월 2일 09:22 발행 기사에서 당일 개장과 09:09 장중 거래를 확인."
+  },
+  "sources": [
+    {
+      "id": "opening",
+      "title": "연합인포맥스 · 10월 2일 개장과 코스닥 장중 900선 회복",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4437522",
+      "as_of": "2026-10-02 09:00~09:09 KST; 기사 09:22",
+      "retrieved_at": "2026-10-02T01:08:14.853220+00:00"
+    },
+    {
+      "id": "close",
+      "title": "연합인포맥스 · 10월 1일 한국 증시 마감",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4437413",
+      "as_of": "2026-10-01 정규장 종가",
+      "retrieved_at": "2026-10-02T01:08:14.853220+00:00"
+    },
+    {
+      "id": "bls",
+      "title": "BLS · Employment Situation 공식 발표 일정",
+      "url": "https://www.bls.gov/schedule/news_release/empSit.htm",
+      "as_of": "2026년 9월 고용보고서: 10월 2일 08:30 ET 예정",
+      "retrieved_at": "2026-10-02T01:08:14.853220+00:00"
+    }
+  ],
+  "quotes": [
+    {
+      "id": "KOSPI",
+      "name": "코스피",
+      "value": 6938.27,
+      "previous_close": 6971.35,
+      "change_pct": -0.47,
+      "basis": "open",
+      "as_of": "2026-10-02T09:00:00+09:00",
+      "source_id": "opening"
+    },
+    {
+      "id": "KOSDAQ",
+      "name": "코스닥",
+      "value": 901.4,
+      "previous_close": 894.29,
+      "change_pct": 0.8,
+      "basis": "intraday",
+      "as_of": "2026-10-02T09:09:00+09:00",
+      "source_id": "opening"
+    }
+  ],
+  "events": [
+    {
+      "title": "미국 9월 고용보고서",
+      "at": "2026-10-02T08:30:00-04:00",
+      "note": "신규 고용·실업률·임금 상승률을 함께 확인할 시간.",
+      "source_id": "bls"
+    }
+  ],
+  "summary": {
+    "instagram_caption": "코스닥은 장 초반 900선을 회복했고, 오늘 밤엔 미국 고용 발표가 기다립니다. 오후판에서는 최신 지수와 남은 변수를 다섯 장으로 정리합니다. #시장뉴스 #미국증시",
+    "editorial_review": {
+      "improvement": "지수판·뉴스·업종·발표 시각·관전 포인트를 분리",
+      "reason": "빠르게 읽고 다음에 확인할 것을 남기기",
+      "application": "서로 다른 5개 레이아웃과 사실/관전 표시"
+    },
+    "visual_story": [
+      {
+        "layout": "headline",
+        "title": "코스닥 900선 회복\n밤엔 미국 고용 발표",
+        "body": "개장 초 두 시장의 방향이 갈렸습니다. 오늘 밤 고용 발표 전까지 흐름이 이어지는지 확인할 날입니다.",
+        "items": [],
+        "source_ids": [
+          "opening",
+          "bls"
+        ]
+      },
+      {
+        "layout": "drivers",
+        "title": "같은 아침,\n다른 출발",
+        "body": "코스피의 시가와 코스닥의 장중 수치입니다. 기준 시각이 다르므로 같은 순간의 비교로 읽지 않습니다.",
+        "items": [
+          {
+            "label": "코스피는 하락 출발",
+            "text": "전일 종가 대비 0.47% 낮은 시가로 시작했습니다.",
+            "type": "fact",
+            "source_ids": [
+              "opening"
+            ]
+          },
+          {
+            "label": "코스닥은 상승 전환",
+            "text": "하락 출발 뒤 09:09에는 901.40을 기록했습니다.",
+            "type": "fact",
+            "source_ids": [
+              "opening"
+            ]
+          }
+        ],
+        "source_ids": [
+          "opening"
+        ]
+      },
+      {
+        "layout": "sectors",
+        "title": "반도체도\n한 방향은 아니다",
+        "body": "오전 9시 5분, 삼성전자와 SK하이닉스의 방향도 달랐습니다. 업종 이름만으로 흐름을 단정하지 않습니다.",
+        "items": [
+          {
+            "label": "삼성전자",
+            "text": "09:05 기준 전일 대비 -1.27%.",
+            "type": "fact",
+            "source_ids": [
+              "opening"
+            ]
+          },
+          {
+            "label": "SK하이닉스",
+            "text": "09:05 기준 전일 대비 +0.11%.",
+            "type": "fact",
+            "source_ids": [
+              "opening"
+            ]
+          }
+        ],
+        "source_ids": [
+          "opening"
+        ]
+      },
+      {
+        "layout": "calendar",
+        "title": "오늘 밤의 시계는\n21시 30분",
+        "body": "미국 9월 고용보고서가 예정돼 있습니다. 한 숫자보다 고용·실업률·임금의 조합을 확인합니다.",
+        "items": [],
+        "source_ids": [
+          "bls"
+        ]
+      },
+      {
+        "layout": "watch",
+        "title": "오늘은\n이 세 가지만",
+        "body": "지금의 방향을 확정된 결론으로 읽지 않습니다. 다음에 확인할 조건을 남겨둡니다.",
+        "items": [
+          {
+            "label": "900선을 지키는가",
+            "text": "코스닥의 장 초반 반등이 오후에도 유지되는지 확인.",
+            "type": "watch",
+            "source_ids": [
+              "opening"
+            ]
+          },
+          {
+            "label": "반도체가 함께 가는가",
+            "text": "엇갈린 대형주의 방향이 좁혀지는지 확인.",
+            "type": "watch",
+            "source_ids": [
+              "opening"
+            ]
+          },
+          {
+            "label": "고용과 임금이 같은 신호인가",
+            "text": "발표 후 고용·실업률·임금을 함께 읽고 금리 반응 확인.",
+            "type": "watch",
+            "source_ids": [
+              "bls"
+            ]
+          }
+        ],
+        "source_ids": [
+          "opening",
+          "bls"
+        ]
+      }
+    ]
+  }
+}

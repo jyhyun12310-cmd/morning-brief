@@ -1,0 +1,159 @@
+# Installed and preview-verified; owner authorized live and recurring publishing on 2026-10-01.
+name: Afternoon market news — no paid AI
+on:
+  push:
+    branches: [main]
+    paths: ['automation/market_inbox/latest.json']
+  workflow_dispatch:
+    inputs:
+      live:
+        description: 'Publish only after an approved successful preview and settings enablement'
+        type: boolean
+        default: false
+      design_preview:
+        description: 'Render the dated market design example without publishing'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: morning-brief
+  cancel-in-progress: false
+env:
+  PYTHONPATH: src
+  PAGES_BASE_URL: https://jyhyun12310-cmd.github.io/morning-brief
+  CARD_INPUT_FILE: ${{ inputs.design_preview && 'automation/examples/market-preview.json' || 'automation/market_inbox/latest.json' }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      ready: ${{ steps.gate.outputs.ready }}
+      live: ${{ steps.gate.outputs.live }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install rendering and test dependencies, not AI SDKs
+        run: python -m pip install 'requests>=2.32,<3' 'Pillow>=10,<13' 'Jinja2>=3.1,<4' 'playwright>=1.47,<2' 'pytest>=8,<10'
+      - name: Offline regression tests
+        run: python -m pytest tests -q --junitxml=test-results.xml
+      - name: Validate input and publication gates
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          REQUEST_LIVE: ${{ inputs.live }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from editorial_packet import load_packet
+          path = Path(os.environ['CARD_INPUT_FILE'])
+          ready = path.is_file()
+          live = False
+          if ready:
+              packet = load_packet(path)
+              settings = json.loads(Path('automation/market_settings.json').read_text())
+              requested = os.environ['EVENT'] == 'push' or os.environ['REQUEST_LIVE'].lower() == 'true'
+              live = (requested and os.environ['REF'] == 'refs/heads/main'
+                      and str(path) == 'automation/market_inbox/latest.json'
+                      and settings.get('allow_publish') is True
+                      and isinstance(settings.get('preview_verified_run_id'), int)
+                      and settings['preview_verified_run_id'] > 0
+                      and packet['intent'] == 'publish' and not packet.get('is_test', False))
+              if live:
+                  load_packet(path, live=True)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f'ready={str(ready).lower()}\nlive={str(live).lower()}\n')
+          print('packet ready:', ready, '| live gates:', live)
+          PY
+      - name: Install Chromium and Korean fonts
+        if: steps.gate.outputs.ready == 'true'
+        run: |
+          python -m playwright install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Five-card market newsroom renderer
+        if: steps.gate.outputs.ready == 'true'
+        run: python src/build.py --input "$CARD_INPUT_FILE"
+      - name: Offline publication rehearsal
+        if: steps.gate.outputs.ready == 'true'
+        run: python src/publish.py --dry-run
+      - name: Save reviewed inputs, rendered images, and test report only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-packet-preview
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            test-results.xml
+            out/packet.json
+            out/state.json
+            out/raw.json
+            docs/
+  deploy-and-publish:
+    needs: build
+    if: needs.build.outputs.ready == 'true' && needs.build.outputs.live == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: market-packet-preview
+          path: .
+      - name: Preserve card and detail-page history without force pushes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- docs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified frozen card assets'
+            git push origin HEAD:main
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+      - name: Deploy exact checked images to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'requests>=2.32,<3'
+      - name: Durable reservation, public-image hash check, Instagram carousel
+        env:
+          ALLOW_INSTAGRAM_PUBLISH: 'YES'
+          GH_TOKEN: ${{ github.token }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python src/publish.py --live --settings automation/market_settings.json
+      - name: Persist refreshed Instagram token only when existing rotation permission is provided
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -n "$GH_TOKEN" ] && [ -s out/tokens/ig_access_token.txt ]; then
+            gh secret set IG_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY" < out/tokens/ig_access_token.txt
+          fi
+      - name: Publication outcome only — never upload tokens
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-publication-result
+          path: out/publish_result.json
+          if-no-files-found: ignore
+          retention-days: 7
