@@ -73,6 +73,9 @@ def digest(value):
     return hashlib.sha256(canonical(value).encode('utf-8')).hexdigest()
 
 def validate_packet(packet, *, live=False, now=None):
+    if isinstance(packet, dict) and packet.get('kind') == 'breaking_news':
+        from breaking_packet import validate_breaking_packet
+        return validate_breaking_packet(packet, live=live, now=now)
     if isinstance(packet, dict) and packet.get('kind') == 'market_brief':
         from market_packet import validate_market_packet
         return validate_market_packet(packet, live=live, now=now)
@@ -191,6 +194,9 @@ def load_packet(path, *, live=False, now=None):
 
 def render_data(packet):
     """Reconstruct renderer input exclusively from the frozen snapshot."""
+    if packet.get('kind') == 'breaking_news':
+        from breaking_packet import render_breaking_data
+        return render_breaking_data(packet)
     if packet.get('kind') == 'market_brief':
         from market_packet import render_market_data
         return render_market_data(packet)
@@ -202,21 +208,28 @@ def render_data(packet):
             'sources': copy.deepcopy(packet['sources']), 'news': [], 'focus_news': []}
 
 def publication_key(packet):
+    if packet.get('kind') == 'breaking_news':
+        from breaking_packet import news_key
+        return news_key(packet)
     if packet.get('kind') == 'market_brief':
         return 'kr-market-' + packet['publication_date_kst'] + '-afternoon'
     # One stock per US market session, including corrections and ticker changes.
     return 'us-stock-' + packet['market']['session_date']
 
 def slug_for(packet):
+    if packet.get('kind') == 'breaking_news':
+        return packet['publication_date_kst'] + '-news-' + digest(packet)[:12]
     if packet.get('kind') == 'market_brief':
         return packet['publication_date_kst'] + '-market-' + digest(packet)[:12]
     return packet['market']['session_date'] + '-' + packet['market']['ticker'].lower() + '-' + digest(packet)[:12]
 
 def card_count(packet):
+    if packet.get('kind') == 'breaking_news':
+        return 3
     return 5 if packet.get('kind') == 'market_brief' else 7
 
 def packet_summary(packet, data):
-    if packet.get('kind') == 'market_brief':
+    if packet.get('kind') in ('market_brief','breaking_news'):
         return copy.deepcopy(packet['summary'])
     from summarize import summarize
     return summarize(data, packet['summary'])

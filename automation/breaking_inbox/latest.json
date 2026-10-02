@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "breaking_news",
+  "intent": "preview",
+  "is_test": true,
+  "created_at": "2026-10-02T01:32:17.947289+00:00",
+  "snapshot_at": "2026-10-02T01:32:17.947289+00:00",
+  "publication_date_kst": "2026-10-02",
+  "event": {
+    "issuer": "us-fed",
+    "release_id": "2026-09-16-fomc-decision",
+    "occurred_at": "2026-09-16T14:00:00-04:00",
+    "category": "rates",
+    "status": "confirmed",
+    "market_scope": "broad_market",
+    "primary_source_id": "fed",
+    "materiality": "미국 기준금리 결정은 할인율·자금 조달 비용·환율 기대를 통해 주식시장 전반에 영향을 줄 수 있다."
+  },
+  "sources": [
+    {
+      "id": "fed",
+      "kind": "primary",
+      "title": "Federal Reserve · 2026년 9월 16일 FOMC 성명",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "as_of": "2026-09-16 14:00 EDT 공식 발표",
+      "published_at": "2026-09-16T14:00:00-04:00",
+      "retrieved_at": "2026-10-02T01:32:17.947289+00:00"
+    }
+  ],
+  "summary": {
+    "instagram_caption": "과거 발표로 만든 속보 디자인 테스트입니다. 실제 속보는 확인된 사실·시장에 중요한 이유·다음 지표만 세 장에 담습니다. #시장뉴스 #핵심속보",
+    "editorial_review": {
+      "improvement": "3장 속보 형식",
+      "reason": "주요 발표 직후 핵심을 빠르게 전달",
+      "application": "발표 사실·전달 경로·관전 지표 분리"
+    },
+    "visual_story": [
+      {
+        "layout": "headline",
+        "title": "금리가 바뀌면\n어떤 숫자를 볼까?",
+        "body": "지난 9월 16일 FOMC 발표로 구성한 디자인 테스트입니다. 오늘 발생한 속보가 아닙니다.",
+        "items": [
+          {
+            "label": "기준금리 범위",
+            "text": "발표 당시 3.75~4.00%로 결정.",
+            "type": "fact",
+            "source_ids": [
+              "fed"
+            ]
+          },
+          {
+            "label": "변경 폭",
+            "text": "직전 범위보다 0.25%포인트 인상.",
+            "type": "fact",
+            "source_ids": [
+              "fed"
+            ]
+          }
+        ],
+        "source_ids": [
+          "fed"
+        ]
+      },
+      {
+        "layout": "impact",
+        "title": "주식시장에는\n두 경로로 전해진다",
+        "body": "금리 변화가 곧 주가 방향을 정하지는 않습니다. 아래는 정책 변화가 전달될 수 있는 경로입니다.",
+        "items": [
+          {
+            "label": "기업의 자금 비용",
+            "text": "금리 상승은 신규 차입과 차환 부담을 높일 수 있습니다.",
+            "type": "analysis",
+            "source_ids": [
+              "fed"
+            ]
+          },
+          {
+            "label": "미래 이익의 가치",
+            "text": "할인율이 높아지면 미래 이익의 현재 가치에 부담이 됩니다.",
+            "type": "analysis",
+            "source_ids": [
+              "fed"
+            ]
+          }
+        ],
+        "source_ids": [
+          "fed"
+        ]
+      },
+      {
+        "layout": "watch",
+        "title": "발표 다음에는\n이 반응을 확인",
+        "body": "결정 자체와 시장의 해석이 같은지는 별개입니다. 실제 반응을 확인하기 전 상승·하락을 단정하지 않습니다.",
+        "items": [
+          {
+            "label": "미국 국채금리",
+            "text": "정책금리 발표 후 시장금리가 어떻게 움직이는지 확인.",
+            "type": "watch",
+            "source_ids": [
+              "fed"
+            ]
+          },
+          {
+            "label": "업종별 주가",
+            "text": "성장주와 금융주가 같은 방향인지, 차이가 있는지 확인.",
+            "type": "watch",
+            "source_ids": [
+              "fed"
+            ]
+          }
+        ],
+        "source_ids": [
+          "fed"
+        ]
+      }
+    ]
+  }
+}

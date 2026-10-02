@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "allow_publish": false,
+  "preview_verified_run_id": 0,
+  "workflow_file": "breaking-packet.yml",
+  "note": "Enable after verified three-card preview; owner authorized timely material-news publishing on 2026-10-02."
+}

@@ -50,7 +50,7 @@ def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
         import config as cfg
         cfg.DOCS_DIR = str(docs_dir)
         cfg.OUT_DIR = str(out_dir)
-        if packet.get('kind') == 'market_brief':
+        if packet.get('kind') in ('market_brief', 'breaking_news'):
             from market_render import render_cards, render_detail_page
             prepare_visual_assets = lambda data: data
         else:

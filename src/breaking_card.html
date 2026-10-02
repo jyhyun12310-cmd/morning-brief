@@ -1,0 +1,11 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>{% include 'market_style.css' %}
+.headline .row{background:#234a41;color:#fff4e5}.headline .num{color:#efb580}.impact .rows{grid-template-columns:1fr 1fr}.impact .row{display:block;border-left:0;border-top:6px solid #e88766;min-height:330px;padding:30px}.impact .num{font-size:66px;margin-bottom:20px}.impact .row:last-child:nth-child(3){grid-column:1/-1;display:grid;grid-template-columns:76px 1fr;min-height:0}.release{font-size:23px;line-height:1.6;margin-top:24px;color:#a1533d}.headline .release,.watch .release{color:#ebbc93}.headline h1{font-size:77px}.headline .rows{margin-top:35px}.headline .row{border-left:4px solid #edba88}.bulletin-note{font-size:23px;line-height:1.6;margin-top:34px;border-top:1px solid #7d9589;padding-top:24px}.watch .rows{gap:24px}
+</style></head><body><main class="{{ story.layout }}">
+<header class="mast"><span class="brand">시장 핵심 속보</span><span class="pill">{{ '과거 발표 · 디자인 테스트' if packet.intent == 'preview' or packet.is_test else '확인된 주요 발표' }}</span></header>
+<div class="kicker">{{ ['THE NEWS','WHY IT MATTERS','WHAT COMES NEXT'][n-1] }}</div>
+<h1 data-fit>{{ story.title }}</h1><p class="lead" data-fit>{{ story.body }}</p>
+<div class="rows" data-fit>{% for item in story['items'] %}<div class="row"><div class="num">{{ '%02d'|format(loop.index) }}</div><div><div class="label">{{ item.label }}<span class="type">{{ {'fact':'사실','analysis':'해석','watch':'관전'}[item.type] }}</span></div><div class="copy">{{ item.text }}</div></div></div>{% endfor %}</div>
+<div class="release" data-fit>발표 {{ released }} KST<br>{{ snapshot }} KST 확인 · 원문 출처는 상세 페이지</div>
+{% if n == 3 %}<div class="bulletin-note" data-fit>핵심 발표가 바꾼 조건을 봅니다.<br>방향을 단정하기보다 다음 확인 지표를 남깁니다.</div>{% endif %}
+<footer class="foot"><span>@making_money_for_chicken</span><span>NEWS BRIEF</span><b>{{ '%02d'|format(n) }} / 03</b></footer>
+</main></body></html>

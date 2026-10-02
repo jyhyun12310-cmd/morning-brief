@@ -11,12 +11,13 @@ import config as cfg
 def render_cards(data, summary, docs_cards_dir, slug):
     folder = Path(docs_cards_dir); folder.mkdir(parents=True, exist_ok=True)
     packet = data['market_brief']
-    template = Environment(loader=FileSystemLoader(Path(__file__).parent), autoescape=select_autoescape()).get_template('market_card.html')
+    breaking = packet.get('kind') == 'breaking_news'
+    template = Environment(loader=FileSystemLoader(Path(__file__).parent), autoescape=select_autoescape()).get_template('breaking_card.html' if breaking else 'market_card.html')
     fonts = card_fonts(Path(cfg.OUT_DIR) / 'font-cache')
     quotes = [dict(q, time=timestamp(q['as_of'], 'as_of').astimezone(KST).strftime('%H:%M'),
                    sign='+' if q['change_pct'] > 0 else '',
-                   tone='up' if q['change_pct'] > 0 else 'down' if q['change_pct'] < 0 else 'flat') for q in packet['quotes']]
-    events = [dict(e, time=timestamp(e['at'], 'at').astimezone(KST).strftime('%m.%d %H:%M')) for e in packet['events']]
+                   tone='up' if q['change_pct'] > 0 else 'down' if q['change_pct'] < 0 else 'flat') for q in packet.get('quotes',[])]
+    events = [dict(e, time=timestamp(e['at'], 'at').astimezone(KST).strftime('%m.%d %H:%M')) for e in packet.get('events',[])]
     paths = []
     with sync_playwright() as p:
         args = {'headless': True}
@@ -26,7 +27,8 @@ def render_cards(data, summary, docs_cards_dir, slug):
         page = browser.new_page(viewport={'width':1080, 'height':1350}, device_scale_factor=1)
         for n, story in enumerate(summary['visual_story'], 1):
             content = template.render(packet=packet, story=story, n=n, fonts=fonts, quotes=quotes, events=events,
-                                      snapshot=timestamp(packet['snapshot_at'], 'snapshot').astimezone(KST).strftime('%m.%d %H:%M'))
+                                      snapshot=timestamp(packet['snapshot_at'], 'snapshot').astimezone(KST).strftime('%m.%d %H:%M'),
+                                      released=timestamp(packet['event']['occurred_at'],'occurred_at').astimezone(KST).strftime('%Y.%m.%d %H:%M') if breaking else '')
             page.set_content(content, wait_until='load')
             page.evaluate('document.fonts.ready')
             problems = page.evaluate('''() => {
@@ -48,8 +50,11 @@ def render_cards(data, summary, docs_cards_dir, slug):
 
 def render_detail_page(data, summary, slug):
     esc = html.escape
+    breaking = data['market_brief'].get('kind') == 'breaking_news'
+    heading = '시장 핵심 속보' if breaking else '오후 두시 · 시장 뉴스'
+    timing = '확인 기준 · 발표 사실과 시장에 대한 해석을 구분합니다.' if breaking else '기준 · 장중 수치는 이후 달라질 수 있습니다.'
     sources = ''.join(f'<li><a href="{esc(s["url"], quote=True)}">{esc(s["title"])}</a> — {esc(s["as_of"])} (확인 {esc(s["retrieved_at"])})</li>' for s in data['sources'])
     cards = ''.join(f'<img src="cards/{slug}-{n}.jpg" alt="{esc(s["title"], quote=True)}" loading="lazy">' for n,s in enumerate(summary['visual_story'],1))
-    content = f'''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(summary['visual_story'][0]['title'])}</title><style>body{{max-width:1080px;margin:32px auto;padding:20px;background:#f6f3eb;color:#122e2b;font:18px/1.7 sans-serif}}img{{width:100%;display:block;margin:24px 0}}a{{color:#12665b}}</style><h1>오후 두시 · 시장 뉴스</h1><p>{esc(data['market_brief']['snapshot_at'])} 기준 · 장중 수치는 이후 달라질 수 있습니다.</p><p>{esc(summary['instagram_caption'])}</p><h2>자료 출처</h2><ul>{sources}</ul>{cards}<p>사실·해석·관전 포인트를 구분한 정보 콘텐츠. 투자 참고용 · 매수·매도 권유 아님.</p></html>'''
+    content = f'''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(summary['visual_story'][0]['title'])}</title><style>body{{max-width:1080px;margin:32px auto;padding:20px;background:#f6f3eb;color:#122e2b;font:18px/1.7 sans-serif}}img{{width:100%;display:block;margin:24px 0}}a{{color:#12665b}}</style><h1>{heading}</h1><p>{esc(data['market_brief']['snapshot_at'])} {timing}</p><p>{esc(summary['instagram_caption'])}</p><h2>자료 출처</h2><ul>{sources}</ul>{cards}<p>사실·해석·관전 포인트를 구분한 정보 콘텐츠. 투자 참고용 · 매수·매도 권유 아님.</p></html>'''
     Path(cfg.DOCS_DIR).mkdir(parents=True, exist_ok=True)
     Path(cfg.DOCS_DIR, slug + '.html').write_text(content, encoding='utf-8')
