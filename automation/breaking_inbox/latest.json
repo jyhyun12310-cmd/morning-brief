@@ -3,100 +3,97 @@
   "kind": "breaking_news",
   "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-04T19:12:31+00:00",
-  "snapshot_at": "2026-10-04T19:12:31+00:00",
+  "created_at": "2026-10-04T20:50:00+00:00",
+  "snapshot_at": "2026-10-04T20:50:00+00:00",
   "publication_date_kst": "2026-10-05",
   "event": {
-    "issuer": "iran-parliament",
-    "release_id": "2026-10-04-hormuz-seven-conditions",
+    "issuer": "yemen-presidential-leadership-council",
+    "release_id": "2026-10-04-military-operations-announcement",
     "time_precision": "date",
     "occurred_date": "2026-10-04",
-    "source_timezone": "Asia/Tehran",
+    "source_timezone": "Asia/Aden",
     "category": "geopolitics",
     "status": "confirmed",
     "market_scope": "broad_market",
-    "primary_source_id": "irna",
-    "materiality": "이란이 호르무즈 해협 재개를 미국의 7개 조건 이행과 연결했습니다. 통항 정상화 시점은 원유·LNG 공급, 운송비와 물가 불확실성에 직접 영향을 줄 수 있습니다."
+    "primary_source_id": "yemen-mofa",
+    "materiality": "예멘 정부가 후티 점령지 탈환 군사작전을 공식 개시했습니다. 후티가 장악한 바브엘만데브는 홍해와 아덴만을 잇는 핵심 항로여서 충돌 확대는 선박 우회·보험료·운임과 에너지 공급 불확실성으로 번질 수 있습니다."
   },
   "sources": [
     {
-      "id": "irna",
+      "id": "yemen-mofa",
       "kind": "primary",
-      "title": "IRNA · 호르무즈 해협은 이란의 7개 조건 충족 전까지 폐쇄",
-      "url": "https://irna.com/en/news/86282520/",
-      "as_of": "2026-10-04 공식 발표; 정확한 공개 시각 미확인; 이란 의회 의장 발언",
+      "title": "예멘 외교부 · 후티 점령지 탈환 군사작전 개시 공식 발표",
+      "url": "https://www.mofa-ye.org/Pages/40025/",
+      "as_of": "2026-10-04 공식 발표; 정확한 공개 시각 미공개; 군사작전 개시와 국가기관 동원",
       "published_date": "2026-10-04",
-      "retrieved_at": "2026-10-04T19:12:31+00:00"
+      "retrieved_at": "2026-10-04T20:50:00+00:00"
     },
     {
       "id": "reuters",
       "kind": "secondary",
-      "title": "Reuters · 이란의 호르무즈 재개 조건과 협상 경과",
-      "url": "https://www.reuters.com/world/middle-east/iran-says-strait-hormuz-will-not-reopen-until-conditions-are-met-2026-10-04/",
-      "as_of": "2026-10-04 07:59 UTC 보도; 이란 공식 발언과 중재 경과 대조",
-      "retrieved_at": "2026-10-04T19:12:31+00:00"
+      "title": "Reuters · 예멘 정부의 후티 점령지 탈환 작전과 바브엘만데브 상황",
+      "url": "https://www.reuters.com/world/asia-pacific/head-yemens-presidential-council-announces-military-operations-retake-territory-2026-10-04/",
+      "as_of": "2026-10-04 12:14 UTC 보도; 공식 발표와 홍해 항로의 전략적 의미 대조",
+      "retrieved_at": "2026-10-04T20:50:00+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "세계 기름길의 문손잡이가 협상 테이블에 걸렸습니다. 이제 볼 건 ‘7개 조건’보다 누가 먼저 움직이느냐입니다.\n\n#호르무즈 #국제유가 #시장뉴스",
+    "instagram_caption": "호르무즈만 보고 있었는데, 이번엔 홍해의 문이 전쟁터가 됐습니다. 예멘 정부의 작전 개시는 배가 돌아갈지, 운임표가 뛸지를 다시 묻게 합니다.\n\n#예멘 #홍해물류 #시장뉴스",
     "editorial_review": {
-      "improvement": "7개 조건보다 이행 순서가 핵심이라는 반전",
-      "reason": "복잡한 외교 협상을 원유 수송 재개 조건으로 압축",
-      "application": "문이 닫힘→가격 부담→재개 신호 순서",
-      "avoided_repetition": "G7 게시물의 방출 속도 대신 협상 이행 순서를 중심으로 구성"
+      "improvement": "두 바닷목의 위기를 연결한 반전형 훅",
+      "reason": "예멘 내전을 독자의 운임·납기 문제로 바로 연결",
+      "application": "홍해의 문→선박 우회 비용→실제 통항 확인 순서",
+      "avoided_repetition": "호르무즈 협상 조건이 아니라 바브엘만데브 군사작전과 물류 비용을 중심으로 구성"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "호르무즈, 아직 못 연다\n이란이 건 7가지 조건",
-        "body": "이란 의회 의장은 미국이 7개 조건을 이행하기 전까지 해협을 다시 열지 않겠다고 밝혔습니다.",
+        "title": "호르무즈 보던 사이\n홍해의 문도 전쟁터",
+        "body": "예멘 정부가 후티 점령지를 되찾겠다며 군사작전 개시를 공식 선언했습니다.",
         "source_ids": [
-          "irna",
+          "yemen-mofa",
           "reuters"
         ],
         "items": [
           {
-            "label": "문을 여는 조건",
-            "text": "이슬라마바드 합의의 7개 조건을 모두 이행해야 재개",
+            "label": "작전 목표",
+            "text": "남은 점령지를 되찾고 국가기관 통제를 회복",
             "type": "fact",
             "source_ids": [
-              "irna",
-              "reuters"
+              "yemen-mofa"
             ]
           },
           {
-            "label": "협상은 진행 중",
-            "text": "미국 제안은 중재자를 거쳐 이란에 전달된 상태",
+            "label": "전면 동원",
+            "text": "군·경과 국가기관에 즉시 임무 수행을 지시",
             "type": "fact",
             "source_ids": [
-              "irna",
-              "reuters"
+              "yemen-mofa"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "기름길이 막히면\n가격표가 먼저 흔들린다",
-        "body": "호르무즈는 전쟁 전 세계 석유·LNG의 약 5분의 1이 지나던 길입니다. 재개 지연은 공급 불확실성을 남깁니다.",
+        "title": "총성이 커지면\n배는 먼 길을 택한다",
+        "body": "후티가 장악한 바브엘만데브는 홍해로 드나드는 길목입니다. 위험이 커지면 선박 우회와 보험료 부담이 늘 수 있습니다.",
         "source_ids": [
           "reuters"
         ],
         "items": [
           {
-            "label": "원유·LNG 통로",
-            "text": "전쟁 전 세계 물량의 약 5분의 1이 통과",
+            "label": "또 하나의 바닷목",
+            "text": "바브엘만데브는 홍해와 아덴만을 잇는 핵심 통로",
             "type": "fact",
             "source_ids": [
               "reuters"
             ]
           },
           {
-            "label": "투자 연결고리",
-            "text": "통항 지연은 원유 공급·운송비·물가 부담으로 이어질 수 있음",
+            "label": "돈의 경로",
+            "text": "우회 항해·보험료 상승은 운임과 납기 부담으로 번질 수 있음",
             "type": "analysis",
             "source_ids": [
-              "irna",
               "reuters"
             ]
           }
@@ -104,28 +101,27 @@
       },
       {
         "layout": "watch",
-        "title": "진짜 문이 열리는 신호\n말보다 ‘이행 순서’",
-        "body": "쟁점은 조건 자체보다 누가 먼저 움직이느냐입니다. 미국의 조치와 공식 재개 날짜를 확인해야 합니다.",
+        "title": "승전보보다 먼저\n배가 지나가나 보세요",
+        "body": "시장이 먼저 볼 것은 전선 지도보다 상선 운항입니다. 해협 통항과 선사 우회 결정이 실제 비용을 보여줍니다.",
         "source_ids": [
-          "irna",
+          "yemen-mofa",
           "reuters"
         ],
         "items": [
           {
-            "label": "미국의 다음 행동",
-            "text": "7개 조건에 대한 미국의 공식 답변이 나오는지",
+            "label": "통항 상태",
+            "text": "바브엘만데브 상선 운항과 공식 해상 경보 변화",
             "type": "watch",
             "source_ids": [
-              "irna",
               "reuters"
             ]
           },
           {
-            "label": "실제 재개 일정",
-            "text": "이란 정부가 통항 재개 날짜를 공식 발표하는지",
+            "label": "선사의 선택",
+            "text": "수에즈 복귀인지 희망봉 우회 확대인지 확인",
             "type": "watch",
             "source_ids": [
-              "irna"
+              "reuters"
             ]
           }
         ]
