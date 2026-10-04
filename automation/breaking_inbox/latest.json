@@ -1,117 +1,134 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-04T13:29:09+00:00",
-  "snapshot_at": "2026-10-04T13:29:09+00:00",
+  "created_at": "2026-10-04T13:51:17+00:00",
+  "snapshot_at": "2026-10-04T13:51:17+00:00",
   "publication_date_kst": "2026-10-04",
   "event": {
-    "issuer": "kr-fsc",
-    "release_id": "2026-10-02-financial-sector-cybersecurity-response",
-    "time_precision": "date",
-    "occurred_date": "2026-10-02",
-    "source_timezone": "Asia/Seoul",
-    "category": "policy",
+    "issuer": "us-bls",
+    "release_id": "2026-09-employment",
+    "occurred_at": "2026-10-02T08:30:00-04:00",
+    "category": "employment",
     "status": "confirmed",
-    "market_scope": "major_sector",
-    "primary_source_id": "fsc",
-    "materiality": "여러 금융회사에서 발생한 사이버 침해에 대응해 금융위가 외부 접근 시스템 전반의 점검과 공동대응을 주문했습니다. 보안 보완·피해보상에 따른 비용과 고객 신뢰가 은행·카드업의 경영에 연결됩니다."
+    "market_scope": "broad_market",
+    "primary_source_id": "bls",
+    "materiality": "9월 미국 비농업 고용은 2.9만명 증가했고 7·8월 증가분은 합계 6만명 하향 수정됐습니다. 고용 흐름은 연준 금리 판단과 소비·기업 매출 전망을 통해 미국 주식시장 전반에 중요합니다."
   },
   "sources": [
     {
-      "id": "fsc",
+      "id": "bls",
       "kind": "primary",
-      "title": "금융위원회 · 금융권 침해위협 긴급 상황대응 회의",
-      "url": "https://www.fsc.go.kr/no010101/87869",
-      "as_of": "2026-10-02 공식 발표; 회의는 당일 15시; 보도자료의 정확한 공개 시각은 미공개",
-      "published_date": "2026-10-02",
-      "retrieved_at": "2026-10-04T13:29:09+00:00"
+      "title": "BLS · 2026년 9월 미국 고용보고서",
+      "url": "https://www.bls.gov/news.release/archives/empsit_10022026.htm",
+      "as_of": "2026-10-02 08:30 EDT 발표; 2026년 9월 계절조정 통계와 7·8월 수정치",
+      "published_at": "2026-10-02T08:30:00-04:00",
+      "retrieved_at": "2026-10-04T13:51:17+00:00"
+    },
+    {
+      "id": "fed-policy",
+      "kind": "primary",
+      "title": "연준 · 2026년 9월 16일 FOMC 성명",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "as_of": "2026-09-16 14:00 EDT 발표; 고용보고서와 구별하는 기존 정책 배경",
+      "published_at": "2026-09-16T14:00:00-04:00",
+      "retrieved_at": "2026-10-04T13:51:17+00:00"
+    },
+    {
+      "id": "fed-mechanism",
+      "kind": "primary",
+      "title": "연준 · 통화정책의 목표와 전달 경로",
+      "url": "https://www.federalreserve.gov/monetarypolicy/monetary-policy-what-are-its-goals-how-does-it-work.htm",
+      "as_of": "금리·소비·자산가격의 일반적 관계 설명; 이번 발표 뒤 실제 시장 반응이 아님",
+      "retrieved_at": "2026-10-04T13:51:17+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "은행 해킹 뉴스에서 주주가 볼 건 은행에 남을 청구서입니다.\n10월 2일 발표에는 그 금액이 빠져 있죠.\n\n#은행주 #금융보안",
+    "instagram_caption": "9월 미국 고용 +2.9만명, 금리 인하를 기대해도 될까요?\n소비와 기업 매출까지 식는다면 주식엔 다른 이야기가 됩니다.\n\n#미국고용 #미국주식 #연준",
     "editorial_review": {
-      "improvement": "해킹 뒤 은행에 남을 청구서로 이야기를 연결",
-      "reason": "소식 나열을 넘어 독자가 사건과 은행 이익의 관계를 기억하도록 함",
-      "application": "누가 계산하나→복구·보상 비용→공개되지 않은 금액이라는 3장 흐름",
-      "avoided_repetition": "금융위가 나섰다·뒷수습에 돈이 든다 같은 이전 설명형 제목"
+      "improvement": "고용 증가 뒤에 숨은 하향 수정과 투자자의 두 갈래 해석",
+      "reason": "숫자 나열 대신 고용 둔화가 왜 주식에 양면적인지 전달",
+      "application": "증가했는데 괜찮을까→금리와 기업 매출→물가와 실적 확인",
+      "avoided_repetition": "직전 은행 해킹의 청구서 비유와 원고 장수 소개 문구를 반복하지 않음"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "은행 해킹,\n청구서는 누가 받을까?",
-        "body": "신한은행 정보유출 뒤 국민은행 등에서도 추가 피해가 확인됐습니다. 금융위는 10월 2일 긴급회의를 열었습니다.",
+        "title": "일자리 늘었다는데\n미국 고용, 괜찮을까?",
+        "body": "10월 2일 BLS 발표. 9월 고용은 플러스지만, 7·8월 증가분은 이전 발표보다 합계 6만명 낮아졌습니다.",
         "source_ids": [
-          "fsc"
+          "bls"
         ],
         "items": [
           {
-            "label": "피해는 이어지고",
-            "text": "신한은행 9월 30일 정보유출 이후 추가 침해 피해",
+            "label": "9월 비농업 고용",
+            "text": "전월 대비 +2.9만명 · 계절조정",
             "type": "fact",
             "source_ids": [
-              "fsc"
+              "bls"
             ]
           },
           {
-            "label": "점검 범위는 넓게",
-            "text": "금융위, 외부에서 접근 가능한 시스템 전반 점검 주문",
+            "label": "9월 실업률",
+            "text": "4.2% · BLS는 큰 변화 없는 수준으로 평가",
             "type": "fact",
             "source_ids": [
-              "fsc"
+              "bls"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "뚫린 건 보안인데\n이익이 줄 수도 있다",
-        "body": "시스템을 고치고 피해를 보상하려면 돈이 들죠. 이 비용이 커지면 은행이 벌어들인 이익도 줄 수 있습니다.",
+        "title": "약한 고용이\n주식엔 좋은 소식일까?",
+        "body": "고용 둔화는 금리 인하 논리를 보탤 수 있죠. 하지만 소비까지 약해지면 기업 매출과 이익엔 부담입니다.",
         "source_ids": [
-          "fsc"
+          "bls",
+          "fed-mechanism"
         ],
         "items": [
           {
-            "label": "보안 보완",
-            "text": "취약점 조사와 시스템 보완에 드는 비용",
+            "label": "금리가 낮아진다면",
+            "text": "기업의 돈 빌리는 비용을 덜어줄 가능성",
             "type": "analysis",
             "source_ids": [
-              "fsc"
+              "fed-mechanism"
             ]
           },
           {
-            "label": "피해 보상",
-            "text": "확인된 피해에 따라 은행이 부담할 수 있는 비용",
+            "label": "소비도 줄어든다면",
+            "text": "소매·여행 등 소비 업종의 매출엔 부담 가능",
             "type": "analysis",
             "source_ids": [
-              "fsc"
+              "fed-mechanism"
             ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "그래서 얼마인데?\n아직 그 숫자가 없다",
-        "body": "10월 2일 금융위 발표에는 복구·보상액이 없습니다. 은행주 영향은 실제 비용이 나와야 더 구체적으로 따질 수 있죠.",
+        "title": "금리 인하만 기다리면\n절반만 보는 셈",
+        "body": "연준은 9월 16일 물가를 이유로 금리를 올렸습니다. 고용 하나만 보고 다음 결정을 단정할 수는 없죠.",
         "source_ids": [
-          "fsc"
+          "fed-policy"
         ],
         "items": [
           {
-            "label": "피해가 더 커지나",
-            "text": "은행이 추가로 밝히는 유출 범위와 피해 규모",
+            "label": "물가도 식고 있나",
+            "text": "다음 물가 발표에서 상승세가 낮아지는지 확인",
             "type": "watch",
             "source_ids": [
-              "fsc"
+              "fed-policy",
+              "fed-mechanism"
             ]
           },
           {
-            "label": "실적에 얼마나 담기나",
-            "text": "복구·보상 비용 공개 시 금액과 반영 시점 확인",
+            "label": "기업은 얼마나 팔까",
+            "text": "소비 둔화가 기업 매출 전망에 반영되는지 확인",
             "type": "watch",
             "source_ids": [
-              "fsc"
+              "fed-mechanism"
             ]
           }
         ]
