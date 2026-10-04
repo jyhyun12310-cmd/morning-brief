@@ -3,132 +3,128 @@
   "kind": "breaking_news",
   "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-04T13:51:17+00:00",
-  "snapshot_at": "2026-10-04T13:51:17+00:00",
-  "publication_date_kst": "2026-10-04",
+  "created_at": "2026-10-04T15:10:25+00:00",
+  "snapshot_at": "2026-10-04T15:10:25+00:00",
+  "publication_date_kst": "2026-10-05",
   "event": {
-    "issuer": "us-bls",
-    "release_id": "2026-09-employment",
-    "occurred_at": "2026-10-02T08:30:00-04:00",
-    "category": "employment",
+    "issuer": "g7-leaders",
+    "release_id": "2026-10-02-energy-security-market-stability",
+    "time_precision": "date",
+    "occurred_date": "2026-10-02",
+    "source_timezone": "America/Toronto",
+    "category": "policy",
     "status": "confirmed",
     "market_scope": "broad_market",
-    "primary_source_id": "bls",
-    "materiality": "9월 미국 비농업 고용은 2.9만명 증가했고 7·8월 증가분은 합계 6만명 하향 수정됐습니다. 고용 흐름은 연준 금리 판단과 소비·기업 매출 전망을 통해 미국 주식시장 전반에 중요합니다."
+    "primary_source_id": "g7",
+    "materiality": "G7이 비축유 1억 배럴을 4개월간 방출하고 초기 20일에 디젤을 집중 공급하기로 했습니다. 실제 방출 속도는 국제유가·운송비·정유업종 마진과 물가 부담에 직접 연결됩니다."
   },
   "sources": [
     {
-      "id": "bls",
+      "id": "g7",
       "kind": "primary",
-      "title": "BLS · 2026년 9월 미국 고용보고서",
-      "url": "https://www.bls.gov/news.release/archives/empsit_10022026.htm",
-      "as_of": "2026-10-02 08:30 EDT 발표; 2026년 9월 계절조정 통계와 7·8월 수정치",
-      "published_at": "2026-10-02T08:30:00-04:00",
-      "retrieved_at": "2026-10-04T13:51:17+00:00"
+      "title": "G7 정상 공동성명 · 글로벌 에너지 안보와 시장 안정",
+      "url": "https://www.pm.gc.ca/en/news/statements/2026/10/02/g7-leaders-statement-global-energy-security-and-market-stability",
+      "as_of": "2026-10-02 공식 발표; 정확한 공개 시각 미공개; 비축유 1억 배럴을 4개월간 방출",
+      "published_date": "2026-10-02",
+      "retrieved_at": "2026-10-04T15:10:25+00:00"
     },
     {
-      "id": "fed-policy",
+      "id": "iea",
       "kind": "primary",
-      "title": "연준 · 2026년 9월 16일 FOMC 성명",
-      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-      "as_of": "2026-09-16 14:00 EDT 발표; 고용보고서와 구별하는 기존 정책 배경",
-      "published_at": "2026-09-16T14:00:00-04:00",
-      "retrieved_at": "2026-10-04T13:51:17+00:00"
-    },
-    {
-      "id": "fed-mechanism",
-      "kind": "primary",
-      "title": "연준 · 통화정책의 목표와 전달 경로",
-      "url": "https://www.federalreserve.gov/monetarypolicy/monetary-policy-what-are-its-goals-how-does-it-work.htm",
-      "as_of": "금리·소비·자산가격의 일반적 관계 설명; 이번 발표 뒤 실제 시장 반응이 아님",
-      "retrieved_at": "2026-10-04T13:51:17+00:00"
+      "title": "IEA · G7 에너지 안보·시장 회의 참석 결과",
+      "url": "https://www.iea.org/news/executive-director-participates-in-g7-leaders-meeting-on-energy-security-and-markets",
+      "as_of": "2026-10-02 공식 발표; 디젤 공급 압박과 IEA의 이행 점검 역할",
+      "published_date": "2026-10-02",
+      "retrieved_at": "2026-10-04T15:10:25+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "9월 미국 고용 +2.9만명, 금리 인하를 기대해도 될까요?\n소비와 기업 매출까지 식는다면 주식엔 다른 이야기가 됩니다.\n\n#미국고용 #미국주식 #연준",
+    "instagram_caption": "OPEC+는 생산 목표를 묶었는데, G7은 비축유 창고를 열었습니다.\n1억 배럴보다 중요한 건 실제 방출 속도입니다.\n\n#국제유가 #G7 #비축유",
     "editorial_review": {
-      "improvement": "고용 증가 뒤에 숨은 하향 수정과 투자자의 두 갈래 해석",
-      "reason": "숫자 나열 대신 고용 둔화가 왜 주식에 양면적인지 전달",
-      "application": "증가했는데 괜찮을까→금리와 기업 매출→물가와 실적 확인",
-      "avoided_repetition": "직전 은행 해킹의 청구서 비유와 원고 장수 소개 문구를 반복하지 않음"
+      "improvement": "거대한 1억 배럴 숫자보다 실제 방출 속도가 핵심이라는 반전",
+      "reason": "정책 숫자를 투자자가 확인할 조건으로 바로 연결",
+      "application": "창고를 연다→4개월 분할→실제 방출량 확인",
+      "avoided_repetition": "직전 고용 글의 금리 인하 질문과 양면 해석 구조를 반복하지 않음"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "일자리 늘었다는데\n미국 고용, 괜찮을까?",
-        "body": "10월 2일 BLS 발표. 9월 고용은 플러스지만, 7·8월 증가분은 이전 발표보다 합계 6만명 낮아졌습니다.",
+        "title": "G7, 기름값 잡으려고\n비축유 1억 배럴 푼다",
+        "body": "10월 2일 G7 공식 결정입니다. 비축유를 즉시 방출해 4개월간 시장에 공급하기로 했습니다.",
         "source_ids": [
-          "bls"
+          "g7"
         ],
         "items": [
           {
-            "label": "9월 비농업 고용",
-            "text": "전월 대비 +2.9만명 · 계절조정",
+            "label": "총 방출 규모",
+            "text": "G7 회원국·파트너가 1억 배럴을 공동 방출",
             "type": "fact",
             "source_ids": [
-              "bls"
+              "g7"
             ]
           },
           {
-            "label": "9월 실업률",
-            "text": "4.2% · BLS는 큰 변화 없는 수준으로 평가",
+            "label": "공급 기간",
+            "text": "즉시 시작해 4개월 동안 시장에 공급",
             "type": "fact",
             "source_ids": [
-              "bls"
+              "g7"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "약한 고용이\n주식엔 좋은 소식일까?",
-        "body": "고용 둔화는 금리 인하 논리를 보탤 수 있죠. 하지만 소비까지 약해지면 기업 매출과 이익엔 부담입니다.",
+        "title": "1억 배럴?\n한꺼번에 풀진 않는다",
+        "body": "초반 20일에는 디젤을 먼저 집중 공급합니다. 그래서 총량보다 하루에 실제로 얼마나 풀리는지가 더 중요하죠.",
         "source_ids": [
-          "bls",
-          "fed-mechanism"
+          "g7",
+          "iea"
         ],
         "items": [
           {
-            "label": "금리가 낮아진다면",
-            "text": "기업의 돈 빌리는 비용을 덜어줄 가능성",
-            "type": "analysis",
+            "label": "먼저 푸는 기름",
+            "text": "첫 20일에 상당한 규모의 디젤을 우선 방출",
+            "type": "fact",
             "source_ids": [
-              "fed-mechanism"
+              "g7"
             ]
           },
           {
-            "label": "소비도 줄어든다면",
-            "text": "소매·여행 등 소비 업종의 매출엔 부담 가능",
+            "label": "시장에 닿는 속도",
+            "text": "실제 일일 공급량이 유가·운송비 완화 폭을 좌우",
             "type": "analysis",
             "source_ids": [
-              "fed-mechanism"
+              "g7",
+              "iea"
             ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "금리 인하만 기다리면\n절반만 보는 셈",
-        "body": "연준은 9월 16일 물가를 이유로 금리를 올렸습니다. 고용 하나만 보고 다음 결정을 단정할 수는 없죠.",
+        "title": "기름값이 눌릴까?\n답은 속도에 있다",
+        "body": "IEA가 국가별 이행을 점검하고 G7은 20일 안에 후속 보고를 받습니다. 추가 디젤 방출도 다시 논의합니다.",
         "source_ids": [
-          "fed-policy"
+          "g7",
+          "iea"
         ],
         "items": [
           {
-            "label": "물가도 식고 있나",
-            "text": "다음 물가 발표에서 상승세가 낮아지는지 확인",
+            "label": "진짜 몇 배럴 풀리나",
+            "text": "국가별 실제 방출량과 시장 도착 일정 확인",
             "type": "watch",
             "source_ids": [
-              "fed-policy",
-              "fed-mechanism"
+              "g7"
             ]
           },
           {
-            "label": "기업은 얼마나 팔까",
-            "text": "소비 둔화가 기업 매출 전망에 반영되는지 확인",
+            "label": "한 번 더 풀까",
+            "text": "IEA 논의 뒤 추가 디젤 방출 여부 확인",
             "type": "watch",
             "source_ids": [
-              "fed-mechanism"
+              "g7",
+              "iea"
             ]
           }
         ]
