@@ -2,115 +2,129 @@
   "schema_version": 1,
   "kind": "breaking_news",
   "intent": "preview",
-  "is_test": true,
-  "created_at": "2026-10-02T01:32:17.947289+00:00",
-  "snapshot_at": "2026-10-02T01:32:17.947289+00:00",
-  "publication_date_kst": "2026-10-02",
+  "is_test": false,
+  "created_at": "2026-10-04T12:29:41+00:00",
+  "snapshot_at": "2026-10-04T12:29:41+00:00",
+  "publication_date_kst": "2026-10-04",
   "event": {
-    "issuer": "us-fed",
-    "release_id": "2026-09-16-fomc-decision",
-    "occurred_at": "2026-09-16T14:00:00-04:00",
-    "category": "rates",
+    "issuer": "opec",
+    "release_id": "2026-10-04-seven-country-production-decision",
+    "time_precision": "date",
+    "occurred_date": "2026-10-04",
+    "source_timezone": "Europe/Vienna",
+    "category": "policy",
     "status": "confirmed",
-    "market_scope": "broad_market",
-    "primary_source_id": "fed",
-    "materiality": "미국 기준금리 결정은 할인율·자금 조달 비용·환율 기대를 통해 주식시장 전반에 영향을 줄 수 있다."
+    "market_scope": "major_sector",
+    "primary_source_id": "opec",
+    "materiality": "OPEC+ 7개국의 생산 목표는 원유 공급 기대와 유가에 영향을 주며, 원유 생산기업의 판매가격과 항공·운송기업의 연료비를 통해 업종별 손익에 연결됩니다."
   },
   "sources": [
     {
-      "id": "fed",
+      "id": "opec",
       "kind": "primary",
-      "title": "Federal Reserve · 2026년 9월 16일 FOMC 성명",
-      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-      "as_of": "2026-09-16 14:00 EDT 공식 발표",
-      "published_at": "2026-09-16T14:00:00-04:00",
-      "retrieved_at": "2026-10-02T01:32:17.947289+00:00"
+      "title": "OPEC · 7개국의 2026년 11월 생산 목표 결정",
+      "url": "https://www.opec.org/pr-detail/616-4-october-2026.html",
+      "as_of": "2026-10-04 공식 발표; 정확한 발표 시각 미공개; 2026년 11월 적용",
+      "published_date": "2026-10-04",
+      "retrieved_at": "2026-10-04T12:29:41+00:00"
+    },
+    {
+      "id": "eia",
+      "kind": "primary",
+      "title": "EIA · 원유 수급·생산 목표와 가격의 관계",
+      "url": "https://www.eia.gov/energyexplained/oil-and-petroleum-products/prices-and-outlook.php",
+      "as_of": "공급·수요·생산 목표 준수에 따른 유가 형성의 일반 원리; 당일 가격 자료 아님",
+      "retrieved_at": "2026-10-04T12:29:41+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "과거 발표로 만든 속보 디자인 테스트입니다. 실제 속보는 확인된 사실·시장에 중요한 이유·다음 지표만 세 장에 담습니다. #시장뉴스 #핵심속보",
+    "instagram_caption": "OPEC+ 7개국이 11월 생산 목표를 유지하면, 실제 원유 공급도 그대로일까요? 10월 4일 공식 결정과 업종별 영향 경로, 다음에 확인할 생산량·회의 일정을 3장으로 정리했습니다. #OPEC #국제유가 #시장뉴스",
     "editorial_review": {
-      "improvement": "3장 속보 형식",
-      "reason": "주요 발표 직후 핵심을 빠르게 전달",
-      "application": "발표 사실·전달 경로·관전 지표 분리"
+      "improvement": "결정·업종 영향·관전 조건을 장별로 구분하고 생산 목표와 실제 생산량의 차이를 강조",
+      "reason": "목표 동결을 실제 공급량 동결이나 유가 방향으로 오해하지 않도록 함",
+      "application": "첫 장은 기준과 참여국, 둘째 장은 생산기업·운송기업의 두 경로, 셋째 장은 실제 생산량과 다음 회의를 짧게 배치",
+      "avoided_repetition": "최근 테슬라·마이크론의 판매·이익 비유와 사진을 반복하지 않고 공식 결정 중심의 3장 구성을 사용"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "금리가 바뀌면\n어떤 숫자를 볼까?",
-        "body": "지난 9월 16일 FOMC 발표로 구성한 디자인 테스트입니다. 오늘 발생한 속보가 아닙니다.",
+        "title": "OPEC+ 7개국,\n11월 생산 목표 유지",
+        "body": "10월 4일 공식 발표입니다. 생산 목표가 그대로여도 실제 원유 공급량까지 같다는 뜻은 아닙니다.",
+        "source_ids": [
+          "opec",
+          "eia"
+        ],
         "items": [
           {
-            "label": "기준금리 범위",
-            "text": "발표 당시 3.75~4.00%로 결정.",
+            "label": "정책 기준",
+            "text": "9월 생산 목표를 11월에도 적용",
             "type": "fact",
             "source_ids": [
-              "fed"
+              "opec"
             ]
           },
           {
-            "label": "변경 폭",
-            "text": "직전 범위보다 0.25%포인트 인상.",
+            "label": "참여 국가",
+            "text": "사우디·러시아·이라크·쿠웨이트·카자흐스탄·알제리·오만",
             "type": "fact",
             "source_ids": [
-              "fed"
+              "opec"
             ]
           }
-        ],
-        "source_ids": [
-          "fed"
         ]
       },
       {
         "layout": "impact",
-        "title": "주식시장에는\n두 경로로 전해진다",
-        "body": "금리 변화가 곧 주가 방향을 정하지는 않습니다. 아래는 정책 변화가 전달될 수 있는 경로입니다.",
+        "title": "유가를 거쳐\n매출과 비용으로",
+        "body": "목표 동결만으로 유가 방향은 정해지지 않습니다. 실제 공급·수요 변화가 업종별 손익에 영향을 줍니다.",
+        "source_ids": [
+          "opec",
+          "eia"
+        ],
         "items": [
           {
-            "label": "기업의 자금 비용",
-            "text": "금리 상승은 신규 차입과 차환 부담을 높일 수 있습니다.",
+            "label": "원유 생산기업",
+            "text": "유가 변화 → 원유 판매가격 변화 → 매출에 영향",
             "type": "analysis",
             "source_ids": [
-              "fed"
+              "eia"
             ]
           },
           {
-            "label": "미래 이익의 가치",
-            "text": "할인율이 높아지면 미래 이익의 현재 가치에 부담이 됩니다.",
+            "label": "항공·운송기업",
+            "text": "유가 변화 → 연료비 변화 → 비용과 이익에 영향",
             "type": "analysis",
             "source_ids": [
-              "fed"
+              "eia"
             ]
           }
-        ],
-        "source_ids": [
-          "fed"
         ]
       },
       {
         "layout": "watch",
-        "title": "발표 다음에는\n이 반응을 확인",
-        "body": "결정 자체와 시장의 해석이 같은지는 별개입니다. 실제 반응을 확인하기 전 상승·하락을 단정하지 않습니다.",
+        "title": "목표 다음엔\n실제 생산량을 보세요",
+        "body": "각국이 목표를 얼마나 지켰는지 확인합니다. 다음 회의에서는 생산 정책이 바뀌는지 함께 봅니다.",
+        "source_ids": [
+          "opec",
+          "eia"
+        ],
         "items": [
           {
-            "label": "미국 국채금리",
-            "text": "정책금리 발표 후 시장금리가 어떻게 움직이는지 확인.",
+            "label": "실제 생산량",
+            "text": "목표와 실제 생산량의 차이, 원유 재고 흐름을 확인",
             "type": "watch",
             "source_ids": [
-              "fed"
+              "eia"
             ]
           },
           {
-            "label": "업종별 주가",
-            "text": "성장주와 금융주가 같은 방향인지, 차이가 있는지 확인.",
+            "label": "다음 회의 · 11월 1일",
+            "text": "7개국이 시장 상황을 점검하고 생산 정책을 논의",
             "type": "watch",
             "source_ids": [
-              "fed"
+              "opec"
             ]
           }
-        ],
-        "source_ids": [
-          "fed"
         ]
       }
     ]
