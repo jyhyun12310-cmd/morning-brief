@@ -32,11 +32,8 @@ def test_same_release_cannot_republish_with_new_date_or_title(packet):
     changed['event']['release_id']='2026-10-03-new-decision'
     assert publication_key(packet)!=publication_key(changed)
 
-@pytest.mark.parametrize('issue',['old','future','test','preview','undated','secondary','mismatch','rumor','smallcap','unsupported','missing_evidence','stale','four_cards','no_materiality','bad_identity','source_before_release'])
+@pytest.mark.parametrize('issue',['future','test','preview','undated','secondary','mismatch','rumor','smallcap','unsupported','missing_evidence','stale','four_cards','no_materiality','bad_identity','source_before_release'])
 def test_invalid_bulletins_stop(packet,issue):
-    if issue=='old':
-        packet['event']['occurred_at']='2026-10-02T18:00:00+09:00'
-        packet['sources'][0]['published_at']=packet['event']['occurred_at']
     if issue=='future': packet['event']['occurred_at']='2026-10-02T22:40:00+09:00'
     if issue=='test': packet['is_test']=True
     if issue=='preview': packet['intent']='preview'
@@ -67,3 +64,45 @@ def test_three_card_build_hash_and_caption_integrity(tmp_path):
     assert len(state['image_sha256'])==3
     state['instagram_image_urls'].append('https://owner.github.io/extra.jpg')
     with pytest.raises(ValueError):validate_state(state,p,'https://owner.github.io/repo')
+
+
+
+def test_confirmed_older_release_allowed_with_fresh_manuscript(packet):
+    packet['event']['occurred_at']='2026-10-01T18:00:00+09:00'
+    packet['sources'][0]['published_at']=packet['event']['occurred_at']
+    validate_packet(packet,live=True,now=NOW)
+
+@pytest.fixture
+def date_packet(packet):
+    packet=copy.deepcopy(packet)
+    packet['event'].pop('occurred_at')
+    packet['event'].update(time_precision='date', occurred_date='2026-10-02', source_timezone='Europe/Vienna')
+    packet['sources'][0].pop('published_at')
+    packet['sources'][0]['published_date']='2026-10-02'
+    return packet
+
+def test_date_only_release_and_truthful_label(date_packet):
+    from breaking_packet import release_label
+    validate_packet(date_packet,live=True,now=NOW)
+    assert release_label(date_packet)=='2026.10.02 (발표일 · 시각 미공개)'
+    assert '00:00' not in release_label(date_packet)
+
+@pytest.mark.parametrize('issue',['future','mismatch','invented','source_time','zone','invalid_date','unknown_precision','before_release'])
+def test_invalid_date_only_release_stops(date_packet,issue):
+    p=date_packet
+    if issue=='future': p['event']['occurred_date']='2026-10-03';p['sources'][0]['published_date']='2026-10-03'
+    if issue=='mismatch': p['sources'][0]['published_date']='2026-10-01'
+    if issue=='invented': p['event']['occurred_at']='2026-10-02T00:00:00+02:00'
+    if issue=='source_time': p['sources'][0]['published_at']='2026-10-02T00:00:00+02:00'
+    if issue=='zone': p['event']['source_timezone']='Invalid/Zone'
+    if issue=='invalid_date': p['event']['occurred_date']='2026-02-30'
+    if issue=='unknown_precision': p['event']['time_precision']='approximate'
+    if issue=='before_release': p['sources'][0]['retrieved_at']='2026-10-01T20:00:00+02:00'
+    with pytest.raises(PacketError): validate_packet(p,live=True,now=NOW)
+
+def test_datetime_label_preserved(packet):
+    from breaking_packet import release_label
+    assert release_label(packet)=='2026.10.02 22:15 KST'
+
+def test_precision_does_not_change_publication_key(packet,date_packet):
+    assert publication_key(packet)==publication_key(date_packet)

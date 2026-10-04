@@ -5,7 +5,8 @@
 <div class="kicker">{{ ['THE NEWS','WHY IT MATTERS','WHAT COMES NEXT'][n-1] }}</div>
 <h1 data-fit>{{ story.title }}</h1><p class="lead" data-fit>{{ story.body }}</p>
 <div class="rows" data-fit>{% for item in story['items'] %}<div class="row"><div class="num">{{ '%02d'|format(loop.index) }}</div><div><div class="label">{{ item.label }}<span class="type">{{ {'fact':'사실','analysis':'해석','watch':'관전'}[item.type] }}</span></div><div class="copy">{{ item.text }}</div></div></div>{% endfor %}</div>
-<div class="release" data-fit>발표 {{ released }} KST<br>{{ snapshot }} KST 확인 · 원문 출처는 상세 페이지</div>
+<div class="release" data-fit>발표 {{ released }}<br>{{ snapshot }} KST 확인 · 원문 출처는 상세 페이지</div>
 {% if n == 3 %}<div class="bulletin-note" data-fit>핵심 발표가 바꾼 조건을 봅니다.<br>방향을 단정하기보다 다음 확인 지표를 남깁니다.</div>{% endif %}
 <footer class="foot"><span>@making_money_for_chicken</span><span>NEWS BRIEF</span><b>{{ '%02d'|format(n) }} / 03</b></footer>
 </main></body></html>
+
