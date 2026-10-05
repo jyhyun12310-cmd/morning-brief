@@ -3,127 +3,140 @@
   "kind": "breaking_news",
   "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-05T04:45:00+00:00",
-  "snapshot_at": "2026-10-05T04:44:00+00:00",
+  "created_at": "2026-10-05T05:44:00+00:00",
+  "snapshot_at": "2026-10-05T05:43:00+00:00",
   "publication_date_kst": "2026-10-05",
   "event": {
-    "issuer": "opec",
-    "release_id": "2026-10-04-opec-plus-seven-november-production",
+    "issuer": "japan-cabinet",
+    "release_id": "2026-10-05-no-additional-national-oil-reserve-release",
     "time_precision": "date",
-    "occurred_date": "2026-10-04",
-    "source_timezone": "Europe/Vienna",
+    "occurred_date": "2026-10-05",
+    "source_timezone": "Asia/Tokyo",
     "category": "policy",
     "status": "confirmed",
-    "market_scope": "broad_market",
-    "primary_source_id": "opec",
-    "materiality": "OPEC+ 7개국이 11월에도 9월 기준 생산량을 유지하기로 결정했습니다. 중동 수출과 해상 운송이 흔들리는 가운데 추가 증산을 택하지 않아 국제유가·정유·운송비의 공급 민감도가 이어질 수 있습니다."
+    "market_scope": "major_sector",
+    "primary_source_id": "japan-gov",
+    "materiality": "G7의 1억 배럴 방출 발표 뒤 일본이 국유 비축유를 추가로 풀 계획이 없다고 밝혔습니다. 일본의 추가 물량이 빠지면 에너지 시장은 G7 총량보다 국가별 실제 출고 일정과 경유 공급을 더 민감하게 볼 수 있습니다."
   },
   "sources": [
     {
-      "id": "opec",
+      "id": "japan-gov",
       "kind": "primary",
-      "title": "OPEC · 7개국 2026년 11월 생산 기준 유지 결정",
-      "url": "https://www.opec.org/pr-detail/1891616-4-october-2026.html",
-      "as_of": "2026-10-04 발표; 11월에 9월 기준 생산량 유지",
-      "published_date": "2026-10-04",
-      "retrieved_at": "2026-10-05T04:44:00+00:00"
+      "title": "Government of Japan · Chief Cabinet Secretary Press Conference, October 5 Morning",
+      "url": "https://www.gov-online.go.jp/en/press_conference/chief_cabinet_secretary/202610/video-326002.html",
+      "as_of": "2026-10-05 오전 기자회견 영상; 일본 정부 공식 공개",
+      "published_date": "2026-10-05",
+      "retrieved_at": "2026-10-05T05:43:00+00:00"
     },
     {
       "id": "reuters",
       "kind": "secondary",
-      "title": "Reuters · OPEC+ 11월 생산 목표 유지와 중동 공급 여건",
-      "url": "https://www.reuters.com/business/energy/opec-agrees-principle-keep-november-oil-output-targets-steady-sources-say-2026-10-04/",
-      "as_of": "2026-10-04 보도; 공급 차질·쿼터 미달과 결정 배경 대조",
-      "retrieved_at": "2026-10-05T04:44:00+00:00"
+      "title": "Reuters · Japan has no plans for new oil release from national reserves",
+      "url": "https://www.reuters.com/business/energy/japan-has-no-plans-new-oil-release-national-reserves-official-says-2026-10-05/",
+      "as_of": "2026-10-05 04:56 UTC 보도; 기하라 관방장관 발언과 기존 일본 방출 대조",
+      "retrieved_at": "2026-10-05T05:43:00+00:00"
+    },
+    {
+      "id": "g7",
+      "kind": "primary",
+      "title": "G7 Évian 2026 · Leaders’ statement on global energy security and market stability",
+      "url": "https://www.elysee.fr/G7evian/2026/10/02/g7-leaders-statement-on-global-energy-security-and-market-stability-1",
+      "as_of": "2026-10-02 발표; 기존 이행분을 감안한 1억 배럴 방출과 20일 내 경유 선방출",
+      "published_date": "2026-10-02",
+      "retrieved_at": "2026-10-05T05:43:00+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "기름값이 뛰는데 OPEC+는 증산 버튼을 누르지 않았습니다. 이제 숫자보다 실제로 바다를 건너오는 배럴이 더 중요합니다.\n\n#OPEC #국제유가 #에너지",
+    "instagram_caption": "G7이 1억 배럴을 푼다는데 일본은 “추가 없음”이라고 했습니다. 시장이 기다리는 건 큰 숫자보다 나라별 실제 출고표입니다.\n\n#국제유가 #G7 #에너지",
     "editorial_review": {
-      "improvement": "증산 버튼을 누르지 않았다는 선택으로 결정의 의미를 압축",
-      "reason": "생산량 동결을 실제 공급과 독자의 유가 질문으로 바로 연결",
-      "application": "동결 결정→사라진 추가 배럴→실제 수출량 확인 순서",
-      "avoided_repetition": "선박 피격이 아니라 OPEC+의 새 생산 결정과 공급 선택을 중심으로 구성"
+      "improvement": "‘1억 배럴’과 ‘일본 추가 없음’의 충돌을 훅으로 사용",
+      "reason": "공동 발표의 큰 숫자와 실제 국가별 공급의 차이를 바로 이해시키기 위해",
+      "application": "공동 약속→일본의 선택→실제 출고표 확인 순서로 구성",
+      "avoided_repetition": "G7 합의 자체를 되풀이하지 않고 일본의 새 공식 입장과 실행 격차를 다룸"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "OPEC+ 11월에도\n증산 버튼 안 눌렀다",
-        "body": "사우디·러시아 등 7개국은 11월에도 9월 기준 생산량을 유지하기로 결정했습니다.",
+        "title": "G7은 1억 배럴\n일본은 “더 안 푼다”",
+        "body": "G7 발표 사흘 뒤, 일본 관방장관은 국유 비축유를 추가로 풀 계획이 없다고 밝혔습니다.",
         "source_ids": [
-          "opec"
+          "japan-gov",
+          "reuters",
+          "g7"
         ],
         "items": [
           {
-            "label": "공식 결정",
-            "text": "11월 생산 기준을 9월 수준으로 유지",
+            "label": "일본 공식 입장",
+            "text": "국유 비축유 추가 방출 계획 없음",
             "type": "fact",
             "source_ids": [
-              "opec"
+              "japan-gov",
+              "reuters"
             ]
           },
           {
-            "label": "참여국",
-            "text": "사우디·러시아 등 OPEC+ 7개국",
+            "label": "앞선 G7 발표",
+            "text": "4개월간 1억 배럴 방출 약속",
             "type": "fact",
             "source_ids": [
-              "opec"
+              "g7"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "전쟁 중인데도\n추가 배럴은 없다",
-        "body": "해상로와 시설이 흔들리는 때지만 생산 문은 더 열지 않았습니다. 공급 완충재가 하나 줄어든 셈입니다.",
+        "title": "큰 숫자 하나로는\n기름이 안 나옵니다",
+        "body": "G7 공동 약속과 각국 창고 문은 별개입니다. 일본 물량이 더해지지 않으면 다른 나라의 몫이 중요해집니다.",
         "source_ids": [
-          "opec",
-          "reuters"
+          "japan-gov",
+          "reuters",
+          "g7"
         ],
         "items": [
           {
-            "label": "OPEC 경고",
-            "text": "항로·시설 공격은 공급과 시장 변동성을 흔듦",
+            "label": "일본의 이유",
+            "text": "이미 비축유를 방출해 왔다고 설명",
             "type": "fact",
             "source_ids": [
-              "opec"
+              "reuters"
             ]
           },
           {
             "label": "돈의 경로",
-            "text": "공급 불안이 길면 유가·운송비 민감도 확대 가능",
+            "text": "실제 공급이 적으면 유가·운송비 부담 지속 가능",
             "type": "analysis",
             "source_ids": [
-              "opec",
-              "reuters"
+              "reuters",
+              "g7"
             ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "회의 숫자보다\n바다 위 배럴을 보세요",
-        "body": "생산 기준이 그대로여도 실제 생산과 수출은 다를 수 있습니다. 회복되는 물량이 진짜 답입니다.",
+        "title": "헤드라인 말고\n출고표를 보세요",
+        "body": "이제 답은 나라별 방출 물량과 날짜에 있습니다. 특히 첫 20일 경유가 실제로 얼마나 나오는지가 핵심입니다.",
         "source_ids": [
-          "opec",
+          "g7",
           "reuters"
         ],
         "items": [
           {
             "label": "먼저 볼 것",
-            "text": "중동 원유 수출량과 호르무즈 통항 흐름",
+            "text": "G7 국가별 신규 방출량과 시작일",
             "type": "watch",
             "source_ids": [
-              "opec",
+              "g7",
               "reuters"
             ]
           },
           {
-            "label": "다음 회의",
-            "text": "OPEC+ 7개국은 11월 1일 다시 점검",
+            "label": "20일 체크",
+            "text": "선방출하기로 한 경유의 실제 물량",
             "type": "watch",
             "source_ids": [
-              "opec"
+              "g7"
             ]
           }
         ]
