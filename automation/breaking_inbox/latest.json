@@ -3,97 +3,98 @@
   "kind": "breaking_news",
   "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-04T20:49:50+00:00",
-  "snapshot_at": "2026-10-04T20:49:50+00:00",
+  "created_at": "2026-10-05T03:55:00+00:00",
+  "snapshot_at": "2026-10-05T03:55:00+00:00",
   "publication_date_kst": "2026-10-05",
   "event": {
-    "issuer": "yemen-presidential-leadership-council",
-    "release_id": "2026-10-04-military-operations-announcement",
+    "issuer": "ukmto",
+    "release_id": "2026-10-04-warning-150-26",
     "time_precision": "date",
     "occurred_date": "2026-10-04",
-    "source_timezone": "Asia/Aden",
+    "source_timezone": "Europe/London",
     "category": "geopolitics",
     "status": "confirmed",
     "market_scope": "broad_market",
-    "primary_source_id": "yemen-mofa",
-    "materiality": "예멘 정부가 후티 점령지 탈환 군사작전을 공식 개시했습니다. 후티가 장악한 바브엘만데브는 홍해와 아덴만을 잇는 핵심 항로여서 충돌 확대는 선박 우회·보험료·운임과 에너지 공급 불확실성으로 번질 수 있습니다."
+    "primary_source_id": "ukmto",
+    "materiality": "UKMTO가 호르무즈 해협을 빠져나가던 유조선의 엔진룸 피격을 공식 확인했습니다. 반복되는 선박 공격은 운항 지연·수리비·전쟁위험 보험료를 거쳐 원유 운송비와 공급 불확실성을 키울 수 있습니다."
   },
   "sources": [
     {
-      "id": "yemen-mofa",
+      "id": "ukmto",
       "kind": "primary",
-      "title": "예멘 외교부 · 후티 점령지 탈환 군사작전 개시 공식 발표",
-      "url": "https://www.mofa-ye.org/Pages/40025/",
-      "as_of": "2026-10-04 공식 발표; 정확한 공개 시각 미공개; 군사작전 개시와 국가기관 동원",
+      "title": "UKMTO · Warning 150-26 호르무즈 해협 유조선 피격",
+      "url": "https://www.ukmto.org/",
+      "as_of": "2026-10-04 발행; 사건 시각 미공개; 선원 안전·환경 영향 없음",
       "published_date": "2026-10-04",
-      "retrieved_at": "2026-10-04T20:49:50+00:00"
+      "retrieved_at": "2026-10-05T03:55:00+00:00"
     },
     {
       "id": "reuters",
       "kind": "secondary",
-      "title": "Reuters · 예멘 정부의 후티 점령지 탈환 작전과 바브엘만데브 상황",
-      "url": "https://www.reuters.com/world/asia-pacific/head-yemens-presidential-council-announces-military-operations-retake-territory-2026-10-04/",
-      "as_of": "2026-10-04 12:14 UTC 보도; 공식 발표와 홍해 항로의 전략적 의미 대조",
-      "retrieved_at": "2026-10-04T20:49:50+00:00"
+      "title": "Reuters · 중동 원유 수출과 최근 선박 공격 추세",
+      "url": "https://www.reuters.com/business/energy/middle-east-crude-oil-exports-exceed-pre-war-levels-tanker-attacks-increase-2026-10-05/",
+      "as_of": "2026-10-05 보도; 원유 수출 흐름과 최근 선박 공격 추세 대조",
+      "retrieved_at": "2026-10-05T03:55:00+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "호르무즈만 보고 있었는데, 이번엔 홍해의 문이 전쟁터가 됐습니다. 예멘 정부의 작전 개시는 배가 돌아갈지, 운임표가 뛸지를 다시 묻게 합니다.\n\n#예멘 #홍해물류 #시장뉴스",
+    "instagram_caption": "호르무즈를 빠져나가던 유조선의 엔진룸이 맞았습니다. 지금 볼 건 공격 한 번보다 다음 배들이 계속 출항하느냐입니다.\n\n#호르무즈 #국제유가 #해운",
     "editorial_review": {
-      "improvement": "두 바닷목의 위기를 연결한 반전형 훅",
-      "reason": "예멘 내전을 독자의 운임·납기 문제로 바로 연결",
-      "application": "홍해의 문→선박 우회 비용→실제 통항 확인 순서",
-      "avoided_repetition": "호르무즈 협상 조건이 아니라 바브엘만데브 군사작전과 물류 비용을 중심으로 구성"
+      "improvement": "공격 건수보다 다음 배의 선택을 묻는 훅",
+      "reason": "피격 사실을 독자의 운임·유가 질문으로 바로 연결",
+      "application": "엔진룸 피격→항로의 청구서→다음 통항 확인 순서",
+      "avoided_repetition": "이란의 재개 조건이 아니라 새 유조선 피격과 실제 통항 위험을 중심으로 구성"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "호르무즈 보던 사이\n홍해의 문도 전쟁터",
-        "body": "예멘 정부가 후티 점령지를 되찾겠다며 군사작전 개시를 공식 선언했습니다.",
+        "title": "호르무즈 탈출길\n유조선 엔진룸 피격",
+        "body": "UKMTO는 해협을 빠져나가던 유조선이 알 수 없는 발사체에 맞았다고 확인했습니다.",
         "source_ids": [
-          "yemen-mofa",
-          "reuters"
+          "ukmto"
         ],
         "items": [
           {
-            "label": "작전 목표",
-            "text": "남은 점령지를 되찾고 국가기관 통제를 회복",
+            "label": "공식 확인",
+            "text": "알 수 없는 발사체에 맞아 엔진룸 손상",
             "type": "fact",
             "source_ids": [
-              "yemen-mofa"
+              "ukmto"
             ]
           },
           {
-            "label": "전면 동원",
-            "text": "군·경과 국가기관에 즉시 임무 수행을 지시",
+            "label": "피해 현황",
+            "text": "선원은 안전하고 현재 환경 피해 보고 없음",
             "type": "fact",
             "source_ids": [
-              "yemen-mofa"
+              "ukmto"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "총성이 커지면\n배는 먼 길을 택한다",
-        "body": "후티가 장악한 바브엘만데브는 홍해로 드나드는 길목입니다. 위험이 커지면 선박 우회와 보험료 부담이 늘 수 있습니다.",
+        "title": "배 한 척의 상처가\n항로 전체의 청구서",
+        "body": "엔진룸 피격은 운항 지연과 수리비를 만듭니다. 위험이 반복되면 보험료와 운임 부담까지 번질 수 있습니다.",
         "source_ids": [
+          "ukmto",
           "reuters"
         ],
         "items": [
           {
-            "label": "또 하나의 바닷목",
-            "text": "바브엘만데브는 홍해와 아덴만을 잇는 핵심 통로",
-            "type": "fact",
+            "label": "즉시 비용",
+            "text": "수리·지연·대체선 투입이 선사 비용으로 연결",
+            "type": "analysis",
             "source_ids": [
-              "reuters"
+              "ukmto"
             ]
           },
           {
-            "label": "돈의 경로",
-            "text": "우회 항해·보험료 상승은 운임과 납기 부담으로 번질 수 있음",
+            "label": "다음 비용",
+            "text": "전쟁위험 보험료가 오르면 화주와 소비자에게 전가 가능",
             "type": "analysis",
             "source_ids": [
+              "ukmto",
               "reuters"
             ]
           }
@@ -101,24 +102,24 @@
       },
       {
         "layout": "watch",
-        "title": "승전보보다 먼저\n배가 지나가나 보세요",
-        "body": "시장이 먼저 볼 것은 전선 지도보다 상선 운항입니다. 해협 통항과 선사 우회 결정이 실제 비용을 보여줍니다.",
+        "title": "유가보다 먼저\n다음 배를 보세요",
+        "body": "한 척이 맞았다고 공급이 멈춘 것은 아닙니다. 다음 배가 계속 통과하는지가 진짜 변수입니다.",
         "source_ids": [
-          "yemen-mofa",
+          "ukmto",
           "reuters"
         ],
         "items": [
           {
-            "label": "통항 상태",
-            "text": "바브엘만데브 상선 운항과 공식 해상 경보 변화",
+            "label": "항로 신호",
+            "text": "UKMTO 추가 경보와 유조선 통항 지속 여부",
             "type": "watch",
             "source_ids": [
-              "reuters"
+              "ukmto"
             ]
           },
           {
-            "label": "선사의 선택",
-            "text": "수에즈 복귀인지 희망봉 우회 확대인지 확인",
+            "label": "공급 신호",
+            "text": "원유 수출량과 선사 우회 결정이 함께 바뀌는지 확인",
             "type": "watch",
             "source_ids": [
               "reuters"
