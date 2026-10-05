@@ -3,98 +3,98 @@
   "kind": "breaking_news",
   "intent": "publish",
   "is_test": false,
-  "created_at": "2026-10-05T03:55:00+00:00",
-  "snapshot_at": "2026-10-05T03:55:00+00:00",
+  "created_at": "2026-10-05T04:45:00+00:00",
+  "snapshot_at": "2026-10-05T04:44:00+00:00",
   "publication_date_kst": "2026-10-05",
   "event": {
-    "issuer": "ukmto",
-    "release_id": "2026-10-04-warning-150-26",
+    "issuer": "opec",
+    "release_id": "2026-10-04-opec-plus-seven-november-production",
     "time_precision": "date",
     "occurred_date": "2026-10-04",
-    "source_timezone": "Europe/London",
-    "category": "geopolitics",
+    "source_timezone": "Europe/Vienna",
+    "category": "policy",
     "status": "confirmed",
     "market_scope": "broad_market",
-    "primary_source_id": "ukmto",
-    "materiality": "UKMTO가 호르무즈 해협을 빠져나가던 유조선의 엔진룸 피격을 공식 확인했습니다. 반복되는 선박 공격은 운항 지연·수리비·전쟁위험 보험료를 거쳐 원유 운송비와 공급 불확실성을 키울 수 있습니다."
+    "primary_source_id": "opec",
+    "materiality": "OPEC+ 7개국이 11월에도 9월 기준 생산량을 유지하기로 결정했습니다. 중동 수출과 해상 운송이 흔들리는 가운데 추가 증산을 택하지 않아 국제유가·정유·운송비의 공급 민감도가 이어질 수 있습니다."
   },
   "sources": [
     {
-      "id": "ukmto",
+      "id": "opec",
       "kind": "primary",
-      "title": "UKMTO · Warning 150-26 호르무즈 해협 유조선 피격",
-      "url": "https://www.ukmto.org/",
-      "as_of": "2026-10-04 발행; 사건 시각 미공개; 선원 안전·환경 영향 없음",
+      "title": "OPEC · 7개국 2026년 11월 생산 기준 유지 결정",
+      "url": "https://www.opec.org/pr-detail/1891616-4-october-2026.html",
+      "as_of": "2026-10-04 발표; 11월에 9월 기준 생산량 유지",
       "published_date": "2026-10-04",
-      "retrieved_at": "2026-10-05T03:55:00+00:00"
+      "retrieved_at": "2026-10-05T04:44:00+00:00"
     },
     {
       "id": "reuters",
       "kind": "secondary",
-      "title": "Reuters · 중동 원유 수출과 최근 선박 공격 추세",
-      "url": "https://www.reuters.com/business/energy/middle-east-crude-oil-exports-exceed-pre-war-levels-tanker-attacks-increase-2026-10-05/",
-      "as_of": "2026-10-05 보도; 원유 수출 흐름과 최근 선박 공격 추세 대조",
-      "retrieved_at": "2026-10-05T03:55:00+00:00"
+      "title": "Reuters · OPEC+ 11월 생산 목표 유지와 중동 공급 여건",
+      "url": "https://www.reuters.com/business/energy/opec-agrees-principle-keep-november-oil-output-targets-steady-sources-say-2026-10-04/",
+      "as_of": "2026-10-04 보도; 공급 차질·쿼터 미달과 결정 배경 대조",
+      "retrieved_at": "2026-10-05T04:44:00+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "호르무즈를 빠져나가던 유조선의 엔진룸이 맞았습니다. 지금 볼 건 공격 한 번보다 다음 배들이 계속 출항하느냐입니다.\n\n#호르무즈 #국제유가 #해운",
+    "instagram_caption": "기름값이 뛰는데 OPEC+는 증산 버튼을 누르지 않았습니다. 이제 숫자보다 실제로 바다를 건너오는 배럴이 더 중요합니다.\n\n#OPEC #국제유가 #에너지",
     "editorial_review": {
-      "improvement": "공격 건수보다 다음 배의 선택을 묻는 훅",
-      "reason": "피격 사실을 독자의 운임·유가 질문으로 바로 연결",
-      "application": "엔진룸 피격→항로의 청구서→다음 통항 확인 순서",
-      "avoided_repetition": "이란의 재개 조건이 아니라 새 유조선 피격과 실제 통항 위험을 중심으로 구성"
+      "improvement": "증산 버튼을 누르지 않았다는 선택으로 결정의 의미를 압축",
+      "reason": "생산량 동결을 실제 공급과 독자의 유가 질문으로 바로 연결",
+      "application": "동결 결정→사라진 추가 배럴→실제 수출량 확인 순서",
+      "avoided_repetition": "선박 피격이 아니라 OPEC+의 새 생산 결정과 공급 선택을 중심으로 구성"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "호르무즈 탈출길\n유조선 엔진룸 피격",
-        "body": "UKMTO는 해협을 빠져나가던 유조선이 알 수 없는 발사체에 맞았다고 확인했습니다.",
+        "title": "OPEC+ 11월에도\n증산 버튼 안 눌렀다",
+        "body": "사우디·러시아 등 7개국은 11월에도 9월 기준 생산량을 유지하기로 결정했습니다.",
         "source_ids": [
-          "ukmto"
+          "opec"
         ],
         "items": [
           {
-            "label": "공식 확인",
-            "text": "알 수 없는 발사체에 맞아 엔진룸 손상",
+            "label": "공식 결정",
+            "text": "11월 생산 기준을 9월 수준으로 유지",
             "type": "fact",
             "source_ids": [
-              "ukmto"
+              "opec"
             ]
           },
           {
-            "label": "피해 현황",
-            "text": "선원은 안전하고 현재 환경 피해 보고 없음",
+            "label": "참여국",
+            "text": "사우디·러시아 등 OPEC+ 7개국",
             "type": "fact",
             "source_ids": [
-              "ukmto"
+              "opec"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "배 한 척의 상처가\n항로 전체의 청구서",
-        "body": "엔진룸 피격은 운항 지연과 수리비를 만듭니다. 위험이 반복되면 보험료와 운임 부담까지 번질 수 있습니다.",
+        "title": "전쟁 중인데도\n추가 배럴은 없다",
+        "body": "해상로와 시설이 흔들리는 때지만 생산 문은 더 열지 않았습니다. 공급 완충재가 하나 줄어든 셈입니다.",
         "source_ids": [
-          "ukmto",
+          "opec",
           "reuters"
         ],
         "items": [
           {
-            "label": "즉시 비용",
-            "text": "수리·지연·대체선 투입이 선사 비용으로 연결",
-            "type": "analysis",
+            "label": "OPEC 경고",
+            "text": "항로·시설 공격은 공급과 시장 변동성을 흔듦",
+            "type": "fact",
             "source_ids": [
-              "ukmto"
+              "opec"
             ]
           },
           {
-            "label": "다음 비용",
-            "text": "전쟁위험 보험료가 오르면 화주와 소비자에게 전가 가능",
+            "label": "돈의 경로",
+            "text": "공급 불안이 길면 유가·운송비 민감도 확대 가능",
             "type": "analysis",
             "source_ids": [
-              "ukmto",
+              "opec",
               "reuters"
             ]
           }
@@ -102,27 +102,28 @@
       },
       {
         "layout": "watch",
-        "title": "유가보다 먼저\n다음 배를 보세요",
-        "body": "한 척이 맞았다고 공급이 멈춘 것은 아닙니다. 다음 배가 계속 통과하는지가 진짜 변수입니다.",
+        "title": "회의 숫자보다\n바다 위 배럴을 보세요",
+        "body": "생산 기준이 그대로여도 실제 생산과 수출은 다를 수 있습니다. 회복되는 물량이 진짜 답입니다.",
         "source_ids": [
-          "ukmto",
+          "opec",
           "reuters"
         ],
         "items": [
           {
-            "label": "항로 신호",
-            "text": "UKMTO 추가 경보와 유조선 통항 지속 여부",
+            "label": "먼저 볼 것",
+            "text": "중동 원유 수출량과 호르무즈 통항 흐름",
             "type": "watch",
             "source_ids": [
-              "ukmto"
+              "opec",
+              "reuters"
             ]
           },
           {
-            "label": "공급 신호",
-            "text": "원유 수출량과 선사 우회 결정이 함께 바뀌는지 확인",
+            "label": "다음 회의",
+            "text": "OPEC+ 7개국은 11월 1일 다시 점검",
             "type": "watch",
             "source_ids": [
-              "reuters"
+              "opec"
             ]
           }
         ]
