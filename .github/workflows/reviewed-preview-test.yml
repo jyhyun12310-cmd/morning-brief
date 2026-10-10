@@ -1,0 +1,23 @@
+name: Reviewed preview regression checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/reviewed_preview.py'
+      - 'tests/test_reviewed_preview.py'
+      - '.github/workflows/*packet.yml'
+      - '.github/workflows/reviewed-preview-test.yml'
+permissions:
+  contents: read
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'requests>=2.32,<3' 'Pillow>=10,<13' 'Jinja2>=3.1,<4' 'playwright>=1.47,<2' 'pytest>=8,<10'
+      - run: python -m pytest tests -q
+        env:
+          PYTHONPATH: src
