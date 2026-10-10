@@ -1,142 +1,145 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-05T05:44:00+00:00",
-  "snapshot_at": "2026-10-05T05:43:00+00:00",
-  "publication_date_kst": "2026-10-05",
+  "created_at": "2026-10-10T06:16:10+00:00",
+  "snapshot_at": "2026-10-10T06:15:55+00:00",
+  "publication_date_kst": "2026-10-10",
   "event": {
-    "issuer": "japan-cabinet",
-    "release_id": "2026-10-05-no-additional-national-oil-reserve-release",
+    "issuer": "eu-commission",
+    "release_id": "2026-10-09-crma-46-strategic-projects",
     "time_precision": "date",
-    "occurred_date": "2026-10-05",
-    "source_timezone": "Asia/Tokyo",
+    "occurred_date": "2026-10-09",
+    "source_timezone": "Europe/Brussels",
     "category": "policy",
     "status": "confirmed",
     "market_scope": "major_sector",
-    "primary_source_id": "japan-gov",
-    "materiality": "G7의 1억 배럴 방출 발표 뒤 일본이 국유 비축유를 추가로 풀 계획이 없다고 밝혔습니다. 일본의 추가 물량이 빠지면 에너지 시장은 G7 총량보다 국가별 실제 출고 일정과 경유 공급을 더 민감하게 볼 수 있습니다."
+    "primary_source_id": "eu-commission",
+    "materiality": "EU가 16개 회원국의 핵심원료 프로젝트 46개를 전략 사업으로 선정했습니다. 채굴보다 재활용·가공 비중이 커 배터리·방산·항공·영구자석 공급망의 조달 위험과 원가 구조에 영향을 줄 수 있습니다."
   },
   "sources": [
     {
-      "id": "japan-gov",
+      "id": "eu-commission",
       "kind": "primary",
-      "title": "Government of Japan · Chief Cabinet Secretary Press Conference, October 5 Morning",
-      "url": "https://www.gov-online.go.jp/en/press_conference/chief_cabinet_secretary/202610/video-326002.html",
-      "as_of": "2026-10-05 오전 기자회견 영상; 일본 정부 공식 공개",
-      "published_date": "2026-10-05",
-      "retrieved_at": "2026-10-05T05:43:00+00:00"
+      "title": "European Commission · 46 new Strategic Projects for critical raw materials",
+      "url": "https://europa.eu/newsroom/ecpc-failover/pdf/ip-26-2113_en.pdf",
+      "as_of": "2026-10-09 공식 발표; 46개 사업·16개국·가치사슬별 구성을 확인",
+      "published_date": "2026-10-09",
+      "retrieved_at": "2026-10-10T06:15:55+00:00"
     },
     {
       "id": "reuters",
       "kind": "secondary",
-      "title": "Reuters · Japan has no plans for new oil release from national reserves",
-      "url": "https://www.reuters.com/business/energy/japan-has-no-plans-new-oil-release-national-reserves-official-says-2026-10-05/",
-      "as_of": "2026-10-05 04:56 UTC 보도; 기하라 관방장관 발언과 기존 일본 방출 대조",
-      "retrieved_at": "2026-10-05T05:43:00+00:00"
-    },
-    {
-      "id": "g7",
-      "kind": "primary",
-      "title": "G7 Évian 2026 · Leaders’ statement on global energy security and market stability",
-      "url": "https://www.elysee.fr/G7evian/2026/10/02/g7-leaders-statement-on-global-energy-security-and-market-stability-1",
-      "as_of": "2026-10-02 발표; 기존 이행분을 감안한 1억 배럴 방출과 20일 내 경유 선방출",
-      "published_date": "2026-10-02",
-      "retrieved_at": "2026-10-05T05:43:00+00:00"
+      "title": "Reuters · European Commission picks 46 new strategic critical mineral projects",
+      "url": "https://www.reuters.com/business/aerospace-defense/european-commission-picks-46-new-strategic-critical-mineral-projects-2026-10-09/",
+      "as_of": "2026-10-09 보도; 정책의 공급망·산업 파급 경로 대조",
+      "retrieved_at": "2026-10-10T06:15:55+00:00"
     }
   ],
   "summary": {
-    "instagram_caption": "G7이 1억 배럴을 푼다는데 일본은 “추가 없음”이라고 했습니다. 시장이 기다리는 건 큰 숫자보다 나라별 실제 출고표입니다.\n\n#국제유가 #G7 #에너지",
+    "instagram_caption": "EU는 희토류 독립을 광산보다 재활용에서 먼저 찾고 있습니다. 46개 프로젝트의 승부는 선정이 아니라 허가·착공·판매계약입니다. #희토류 #유럽증시 #배터리",
     "editorial_review": {
-      "improvement": "‘1억 배럴’과 ‘일본 추가 없음’의 충돌을 훅으로 사용",
-      "reason": "공동 발표의 큰 숫자와 실제 국가별 공급의 차이를 바로 이해시키기 위해",
-      "application": "공동 약속→일본의 선택→실제 출고표 확인 순서로 구성",
-      "avoided_repetition": "G7 합의 자체를 되풀이하지 않고 일본의 새 공식 입장과 실행 격차를 다룸"
+      "improvement": "프로젝트 수를 가치사슬별로 비교하고 실행 조건까지 연결",
+      "reason": "‘46개 선정’보다 실제 공급과 기업 원가가 바뀌는 경로를 보여주기 위해",
+      "application": "재활용 19곳 대 채굴 8곳의 대비→수혜 경로→허가·계약 지표 순으로 구성",
+      "avoided_repetition": "최근 원유 공급 불안 게시물과 주체·원인·산업·결론이 다른 핵심원료 공급망 이야기"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "G7은 1억 배럴\n일본은 “더 안 푼다”",
-        "body": "G7 발표 사흘 뒤, 일본 관방장관은 국유 비축유를 추가로 풀 계획이 없다고 밝혔습니다.",
+        "title": "EU 희토류 독립,\n광산보다 재활용?",
+        "body": "EU가 16개국 46개 전략 프로젝트를 골랐습니다. 가장 많은 건 광산 8곳이 아니라 재활용 19곳입니다.",
         "source_ids": [
-          "japan-gov",
-          "reuters",
-          "g7"
+          "eu-commission"
         ],
         "items": [
           {
-            "label": "일본 공식 입장",
-            "text": "국유 비축유 추가 방출 계획 없음",
+            "label": "선정 규모",
+            "text": "102개 신청 중 46개, 16개 회원국에 배치",
             "type": "fact",
             "source_ids": [
-              "japan-gov",
-              "reuters"
+              "eu-commission"
             ]
           },
           {
-            "label": "앞선 G7 발표",
-            "text": "4개월간 1억 배럴 방출 약속",
+            "label": "어디에 몰렸나",
+            "text": "재활용 19·가공 11·채굴 8·통합 8",
             "type": "fact",
             "source_ids": [
-              "g7"
+              "eu-commission"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "큰 숫자 하나로는\n기름이 안 나옵니다",
-        "body": "G7 공동 약속과 각국 창고 문은 별개입니다. 일본 물량이 더해지지 않으면 다른 나라의 몫이 중요해집니다.",
+        "title": "배터리·방산 원가가\n여기서 갈립니다",
+        "body": "15개 핵심 원료를 다루며 배터리·방산·항공·영구자석 공급망을 겨냥합니다. 공급이 늘면 조달 위험을 낮출 수 있습니다.",
         "source_ids": [
-          "japan-gov",
-          "reuters",
-          "g7"
+          "eu-commission",
+          "reuters"
         ],
         "items": [
           {
-            "label": "일본의 이유",
-            "text": "이미 비축유를 방출해 왔다고 설명",
+            "label": "배터리 체인",
+            "text": "리튬 7·니켈 12·코발트 10개 프로젝트",
             "type": "fact",
             "source_ids": [
-              "reuters"
+              "eu-commission"
             ]
           },
           {
             "label": "돈의 경로",
-            "text": "실제 공급이 적으면 유가·운송비 부담 지속 가능",
+            "text": "공급 다변화가 되면 소재 조달 위험·가격 충격 완화 가능",
             "type": "analysis",
             "source_ids": [
-              "reuters",
-              "g7"
+              "eu-commission",
+              "reuters"
+            ]
+          },
+          {
+            "label": "약화 변수",
+            "text": "허가·자금·판매계약 지연 시 실물 공급은 늦어짐",
+            "type": "analysis",
+            "source_ids": [
+              "eu-commission",
+              "reuters"
             ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "헤드라인 말고\n출고표를 보세요",
-        "body": "이제 답은 나라별 방출 물량과 날짜에 있습니다. 특히 첫 20일 경유가 실제로 얼마나 나오는지가 핵심입니다.",
+        "title": "선정은 시작,\n허가가 진짜 답",
+        "body": "작년 47개 사업 중 환경평가 완료 25곳, 건설 허가 17곳입니다. 이번 46곳도 허가·자금·판매계약이 실제 공급을 결정합니다.",
         "source_ids": [
-          "g7",
-          "reuters"
+          "eu-commission"
         ],
         "items": [
           {
-            "label": "먼저 볼 것",
-            "text": "G7 국가별 신규 방출량과 시작일",
-            "type": "watch",
+            "label": "2030 기준",
+            "text": "EU 수요의 채굴 10%·가공 40%·재활용 25%",
+            "type": "fact",
             "source_ids": [
-              "g7",
-              "reuters"
+              "eu-commission"
             ]
           },
           {
-            "label": "20일 체크",
-            "text": "선방출하기로 한 경유의 실제 물량",
+            "label": "진행 지표",
+            "text": "건설 허가 수와 실제 착공·판매계약",
             "type": "watch",
             "source_ids": [
-              "g7"
+              "eu-commission"
+            ]
+          },
+          {
+            "label": "현재 답",
+            "text": "광산보다 재활용 비중이 크지만, 실행 전엔 공급 아님",
+            "type": "analysis",
+            "source_ids": [
+              "eu-commission",
+              "reuters"
             ]
           }
         ]
