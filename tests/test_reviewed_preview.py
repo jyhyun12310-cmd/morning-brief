@@ -61,3 +61,38 @@ def test_failed_foreign_or_wrong_workflow_run_rejected():
         bad = {**run,field:value}
         with pytest.raises(ValueError):
             verify_run(bad,'owner/repo','card-packet.yml',123)
+
+
+@pytest.mark.parametrize('kind', ['market', 'breaking'])
+def test_production_preview_has_same_card_markup_as_publish(kind):
+    """Review is a delivery stage, not a reader-facing test watermark."""
+    from jinja2 import Environment, FileSystemLoader, select_autoescape
+    root = Path(__file__).resolve().parents[1]
+    packet = json.loads((root/'automation/examples'/f'{kind}-preview.json').read_text())
+    packet.update(intent='preview', is_test=False)
+    template = Environment(loader=FileSystemLoader(root/'src'),
+                           autoescape=select_autoescape()).get_template(f'{kind}_card.html')
+    for n, story in enumerate(packet['summary']['visual_story'], 1):
+        context = dict(packet=packet, story=story, n=n, fonts={}, quotes=[], events=[],
+                       snapshot='10.02 09:09', released='2026-10-02')
+        preview = template.render(**context)
+        packet['intent'] = 'publish'
+        published = template.render(**context)
+        assert preview == published
+        header = preview.split('</header>', 1)[0]
+        assert '디자인 테스트' not in header
+        assert '디자인 미리보기' not in header
+        packet['intent'] = 'preview'
+
+
+@pytest.mark.parametrize('intent', ['preview', 'publish'])
+def test_breaking_test_fixture_keeps_visible_test_label(intent):
+    from jinja2 import Environment, FileSystemLoader, select_autoescape
+    root = Path(__file__).resolve().parents[1]
+    packet = json.loads((root/'automation/examples/breaking-preview.json').read_text())
+    packet.update(intent=intent, is_test=True)
+    template = Environment(loader=FileSystemLoader(root/'src'),
+                           autoescape=select_autoescape()).get_template('breaking_card.html')
+    markup = template.render(packet=packet, story=packet['summary']['visual_story'][0],
+                             n=1, fonts={}, snapshot='', released='')
+    assert '과거 발표 · 디자인 테스트' in markup

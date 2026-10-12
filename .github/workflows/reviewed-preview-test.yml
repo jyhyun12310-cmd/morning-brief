@@ -4,6 +4,9 @@ on:
     branches: [main]
     paths:
       - 'src/reviewed_preview.py'
+      - 'src/breaking_card.html'
+      - 'src/market_card.html'
+      - 'src/market_style.css'
       - 'tests/test_reviewed_preview.py'
       - '.github/workflows/*packet.yml'
       - '.github/workflows/reviewed-preview-test.yml'
@@ -21,3 +24,25 @@ jobs:
       - run: python -m pytest tests -q
         env:
           PYTHONPATH: src
+
+      - name: Install browser for non-publishing layout checks
+        run: python -m playwright install --with-deps chromium
+      - name: Render historical fixtures for layout review only
+        env:
+          PYTHONPATH: src
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from market_render import render_cards
+          for kind in ('market', 'breaking'):
+              packet = json.loads(Path(f'automation/{kind}_inbox/latest.json').read_text())
+              packet['intent'] = 'preview'
+              # No publish/build call: historical content is only a layout fixture.
+              render_cards({'market_brief': packet}, packet['summary'], f'qa/{kind}', kind)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: layout-review-only-do-not-publish
+          path: qa/
+          retention-days: 7
