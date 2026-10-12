@@ -1,129 +1,101 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-12T15:34:57Z",
-  "snapshot_at": "2026-10-12T15:34:01Z",
+  "created_at": "2026-10-12T16:23:10Z",
+  "snapshot_at": "2026-10-12T16:22:42Z",
   "publication_date_kst": "2026-10-13",
   "event": {
-    "issuer": "eu-council",
-    "release_id": "cfsp-2026-2279-russia-listings",
-    "time_precision": "date",
-    "occurred_date": "2026-10-12",
-    "source_timezone": "Europe/Brussels",
-    "category": "policy",
+    "issuer": "india-mospi",
+    "release_id": "2026-09-cpi",
+    "occurred_at": "2026-10-12T16:00:00+05:30",
+    "category": "inflation",
     "status": "confirmed",
-    "market_scope": "major_sector",
-    "primary_source_id": "eu-listings",
-    "materiality": "EU가 러시아 군수 공급망 기업 826곳과 대표 743명을 새 제재 대상으로 채택했습니다. 반도체·통신·항공 부품 공급업체에 대한 자산 동결과 자금 제공 제한은 해당 거래 상대의 결제·조달 경로를 압박하며, EU 적용 거래에 참여하는 금융·부품 업체의 계약 점검 범위를 넓힙니다."
+    "market_scope": "broad_market",
+    "primary_source_id": "india-cpi",
+    "materiality": "인도의 9월 소비자물가 상승률이 5.54%로 전월 4.83%에서 높아졌고 식품물가는 7.74%까지 올랐습니다. 가계 구매력과 인도 중앙은행의 금리 경로, 채권·루피의 부담을 함께 바꾸는 공식 지표입니다."
   },
   "sources": [
     {
-      "id": "eu-listings",
+      "id": "india-cpi",
       "kind": "primary",
-      "title": "EU 이사회 · 2026-10-12 러시아 군수 공급망 제재 확대; 결정 (CFSP) 2026/2279",
-      "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/12/russia-s-war-of-aggression-against-ukraine-eu-agrees-largest-ever-package-of-listings-targeting-almost-1600-individuals-and-entities-in-russia-s-military-industrial-complex/",
-      "as_of": "2026-10-12 채택; 보도자료 12:33 표시(시간대 미표기), 결정 채택 시각 미공개",
-      "published_date": "2026-10-12",
-      "retrieved_at": "2026-10-12T15:34:01Z"
+      "title": "인도 국가통계국 · 2026년 9월 소비자물가지수",
+      "url": "https://www.mospi.gov.in/uploads/latestReleases/latest_release_1791800601071_643518af-5320-4e52-b78c-75c92b83885b_Press_Release_for_the_month_of_September,_2026.pdf",
+      "as_of": "2026-10-12 16:00 IST 발표; 2026년 9월 잠정치",
+      "published_at": "2026-10-12T16:00:00+05:30",
+      "retrieved_at": "2026-10-12T16:22:42Z"
     }
   ],
   "summary": {
-    "instagram_caption": "제재 명단이 길어졌다는 것보다 거래 상대가 바뀌었다는 점이 중요합니다.\n칩 전체를 막는 조치와 특정 기업의 돈줄을 묶는 조치는 다릅니다.\n#EU제재 #공급망 #반도체",
+    "instagram_caption": "인도 물가의 핵심은 헤드라인보다 식탁에서 더 빠르게 오른 압력입니다. 금리 경로는 다음 달 식품물가가 꺾이는지에 달렸습니다.\n#인도경제 #물가 #금리",
     "editorial_review": {
-      "improvement": "제재 대상·자금 제한·실제 이행 지표를 구분",
-      "reason": "제재 명단 확대를 반도체 전체 금지나 200억유로 손실로 오해하지 않도록",
-      "application": "기업 826곳·개인 743명과 공급업체군 연매출을 분리하고 결제·조달 변화를 관전 조건으로 제시",
-      "avoided_repetition": "삼성 실적 및 최근 원유 공급 불안과 달리 러시아 군수 부품 공급망의 새 제재 결정에 집중"
+      "improvement": "전체 물가와 식품물가의 상승 폭을 분리",
+      "reason": "한 숫자만으로 금리 방향을 단정하지 않도록",
+      "application": "직전치와 새 수치, 가계·금리 전달 경로, 다음 확인 조건을 순서대로 제시",
+      "avoided_repetition": "오늘 EU 제재의 결제·공급망 이슈와 달리 식품발 물가와 금리 경로에 집중"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "EU 제재 1,569명·곳,\n어디서 돈줄을 막나?",
-        "body": "EU는 10월 12일 러시아 군수 공급망 제재를 확대했습니다. 새로운 대상은 부품 공급업체와 그 대표들입니다.",
-        "source_ids": [
-          "eu-listings"
-        ],
+        "title": "인도 물가 5.54%,\n왜 다시 뛰었나?",
+        "body": "9월 소비자물가 상승률은 5.54%로 8월 4.83%보다 0.71%포인트 높아졌습니다.",
+        "source_ids": ["india-cpi"],
         "items": [
           {
-            "label": "새 대상의 구성",
-            "text": "러시아 기업 826곳과 대표 743명입니다. EU는 이번 명단 확대가 역대 최대 규모라고 밝혔습니다.",
+            "label": "공식 9월 잠정치",
+            "text": "도시는 4.88%, 농촌은 6.08%였습니다. 전국 평균보다 농촌 부담이 더 컸습니다.",
             "type": "fact",
-            "source_ids": [
-              "eu-listings"
-            ]
+            "source_ids": ["india-cpi"]
           },
           {
-            "label": "연매출 최소 200억유로",
-            "text": "대상 중간 공급업체군의 연간 매출 규모입니다. 제재 금액이나 확정 손실액은 아닙니다.",
+            "label": "식품이 더 빨랐다",
+            "text": "식품물가는 5.97%에서 7.74%로 올랐습니다. 헤드라인보다 상승 폭이 컸습니다.",
             "type": "fact",
-            "source_ids": [
-              "eu-listings"
-            ]
+            "source_ids": ["india-cpi"]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "칩 종류보다,\n거래 상대가 달라집니다",
-        "body": "명단에 오른 대상은 자산 동결과 자금·경제적 자원 제공 금지의 적용을 받습니다. 직접 제공뿐 아니라 간접 제공도 포함됩니다.",
-        "source_ids": [
-          "eu-listings"
-        ],
+        "title": "식탁의 압력이\n금리로 번집니다",
+        "body": "식품 가격은 가계의 실질 구매력을 줄이고, 물가가 오래 높게 머물 위험을 키울 수 있습니다.",
+        "source_ids": ["india-cpi"],
         "items": [
           {
-            "label": "어떤 부품 공급망인가",
-            "text": "반도체·컴퓨터, 통신장비, 항공·미사일 부품 등이 포함됩니다. 모든 반도체를 새로 금지했다는 뜻은 아닙니다.",
+            "label": "양파 108.09%",
+            "text": "양파의 전년 대비 상승률입니다. 은 장신구 87.80%, 생강 62.85%도 높았습니다.",
             "type": "fact",
-            "source_ids": [
-              "eu-listings"
-            ]
+            "source_ids": ["india-cpi"]
           },
           {
-            "label": "은행·부품 업체의 경로",
-            "text": "EU 적용 거래의 상대방이 새 대상에 포함되면 결제·납품 경로가 제약될 수 있습니다. 업종 전체 손익으로 확대할 수는 없습니다.",
+            "label": "채권·루피의 경로",
+            "text": "물가 압력이 이어지면 금리를 낮출 여지가 좁아질 수 있습니다. 방향은 정책 판단에 달렸습니다.",
             "type": "analysis",
-            "source_ids": [
-              "eu-listings"
-            ]
+            "source_ids": ["india-cpi"]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "명단 다음은,\n결제와 조달을 확인할 차례",
-        "body": "이번 조치가 겨냥한 돈줄은 특정 군수 공급업체의 자산과 자금입니다. 실제 조달 압박의 크기는 이행 결과에서 갈립니다.",
-        "source_ids": [
-          "eu-listings"
-        ],
+        "title": "한 달의 급등인가,\n추세의 시작인가?",
+        "body": "이번 수치만으로 금리 결론을 확정할 수는 없습니다. 식품 가격의 지속성과 범위를 확인해야 합니다.",
+        "source_ids": ["india-cpi"],
         "items": [
           {
-            "label": "확인 ① 결제·계약 차질",
-            "text": "대상 기업과 거래하던 EU 적용 기업의 결제·납품 계약에 실제 차질이 나타나는지가 첫 확인점입니다.",
+            "label": "확인 ① 식품의 확산",
+            "text": "양파 등 일부 품목 급등이 다른 식품으로 번지는지, 다음 달 7.74%가 낮아지는지 봅니다.",
             "type": "watch",
-            "source_ids": [
-              "eu-listings"
-            ]
+            "source_ids": ["india-cpi"]
           },
           {
-            "label": "확인 ② 부품 조달 변화",
-            "text": "대상의 조달이 줄어드는지, 다른 공급처로 옮겨가는지 봅니다. 명단 확대만으로 제재 효과가 확정되지는 않습니다.",
+            "label": "확인 ② 다음 CPI",
+            "text": "10월 소비자물가는 11월 12일 발표됩니다. 농촌 6.08%의 둔화 여부도 핵심입니다.",
             "type": "watch",
-            "source_ids": [
-              "eu-listings"
-            ]
+            "source_ids": ["india-cpi"]
           }
         ]
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 38271464474,
-    "image_sha256": [
-      "a874b9e5a6d29e099819c0d26683c2798749814f985f3cf4e664e3cee29ae3d5",
-      "a509938b4a22dd71a7592c927a992ca377b3b23f0e34c92b2f8f3a9c163852e4",
-      "5b306230157409febc1c2d48058b4988844a9b9996fc77bf3d3b3e9a5ce9f0e4"
     ]
   }
 }
