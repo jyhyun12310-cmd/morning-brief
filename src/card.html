@@ -20,7 +20,7 @@ footer{position:absolute;left:60px;right:60px;bottom:33px;height:68px;border-top
 .photo.contain{background:#FAF9F5}.photo.contain img{object-fit:contain;padding:12px 32px 57px}.photo.contain:after{display:none}.photo.contain .caption{color:var(--muted);text-shadow:none;font-size:13px}
 .photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px}.photo-pair>.photo{min-height:185px}.photo-pair .metrics{display:flex;flex-direction:column;gap:20px;justify-content:center}.photo-pair .metric{padding:28px 25px}.photo-pair .metric strong{margin-top:12px;font-size:42px}.photo-pair .metric p{font-size:20px;margin-top:12px}.photo-pair.no-photo{display:flex;flex-direction:column;justify-content:center}
 .diagram{background:#E5EBDD;border:1px solid #D4DDCB;border-radius:28px;padding:30px 24px;gap:25px}.diagram-heading{font-size:18px;letter-spacing:.12em;font-weight:700;color:var(--muted)}.steps{gap:18px}.step{padding:25px 22px;background:#FCFAF4;min-height:285px;border:none}.step-index{display:flex;justify-content:space-between;margin-bottom:23px}.step-icon{display:block;width:75px;height:75px;margin-bottom:27px;color:var(--orange)}.step:nth-child(2){background:#183C30;color:var(--paper)}.step:nth-child(2) small{color:#BCD0BF}.step:nth-child(2) .step-icon,.step:nth-child(2) .step-index{color:var(--lime)}.step:nth-child(3){background:#F4CFB8}.step strong{font-size:29px}.step:not(:last-child):after{background:#E5EBDD}.diagram-note{font-size:20px;color:var(--muted);line-height:1.45}
-</style></head>
+{% include 'editorial_theme.css' %}</style></head>
 {% set p=photo_deck.pages[card_num-1] %}
 {% macro photo_caption(asset) %}{{ asset.caption }}{% if asset.credit %}<br>{{ asset.credit }}{% endif %}{% endmacro %}
 {% macro pic(asset) %}<div class="photo {{ asset.fit }}"><img src="{{ asset.src }}" alt="{{ asset.caption }}"><span class="caption">{{ photo_caption(asset) }}</span></div>{% endmacro %}
@@ -35,7 +35,7 @@ footer{position:absolute;left:60px;right:60px;bottom:33px;height:68px;border-top
 {% elif p.layout=='photo' %}
  <div class="photo-pair{% if not p.photo %} no-photo{% endif %}">{% if p.photo %}{{ pic(p.photo) }}{% endif %}<div class="metrics">{% for l in p.labels[:2] %}<div class="metric"><small>{{ l.label }}</small><strong>{{ l.text }}</strong>{% if l.note %}<p>{{ l.note }}</p>{% endif %}</div>{% endfor %}</div></div>
 {% elif p.layout=='annotated' %}
- <div class="diagram"><div class="diagram-heading">BUSINESS IN 3 STEPS</div><div class="steps">{% for l in p.labels %}<div class="step"><span class="step-index">{{ '%02d'|format(loop.index) }}</span>{{ step_icon(loop.index) }}<small>{{ l.label }}</small><strong>{{ l.text }}</strong></div>{% endfor %}</div><div class="diagram-note">수요에서 제품으로, 제품에서 수익으로.</div></div>
+ <div class="diagram"><div class="diagram-heading">돈이 흐르는 세 단계</div><div class="steps">{% for l in p.labels %}<div class="step"><span class="step-index">{{ '%02d'|format(loop.index) }}</span>{{ step_icon(loop.index) }}<small>{{ l.label }}</small><strong>{{ l.text }}</strong></div>{% endfor %}</div><div class="diagram-note">수요에서 제품으로, 제품에서 수익으로.</div></div>
 {% elif p.layout=='comparison' %}
  {% if p.chart %}<div class="chart-area"><p class="chart-note">{{ p.chart.note }}</p>{% for r in p.chart.rows %}<div class="chart-row"><div class="bar-meta"><span>{{ r.label }}</span><strong>{{ r.display }}</strong></div><div class="track"><i class="zero" style="left:{{ p.chart.zero }}%"></i><div class="bar" style="left:{{ r.left }}%;width:{{ r.width }}%"></div></div></div>{% endfor %}{% if p.chart.annotation %}<p class="chart-annotation">{{ p.chart.annotation }}</p>{% endif %}<p class="chart-source">{{ p.chart.source }}</p></div>
  {% else %}<div class="concept-list">{% for l in p.labels %}<div class="concept"><small>{{ l.label }}</small><p>{{ l.text }}</p></div>{% endfor %}</div>{% endif %}
@@ -46,6 +46,7 @@ footer{position:absolute;left:60px;right:60px;bottom:33px;height:68px;border-top
 {% elif p.layout=='closing' %}
  <div class="closing"><div class="checklist">{% for l in p.labels %}<div class="check"><span class="n">{{ '%02d'|format(loop.index) }}</span><div><strong>{{ l.label }}</strong><p>{{ l.text }}</p></div></div>{% endfor %}</div><div class="follow-panel"><p>화–토 아침, 한 종목을 깊게.<br>뉴스를 읽는 기준을 함께 쌓아요.</p><span>팔로우 ↗</span></div></div>
 {% endif %}</section>
-<div class="takeaway"><span class="takeaway-tag">ONE<br>POINT</span><p>{{ p.takeaway }}</p></div><div class="bridge"><span>{{ p.bridge }}</span><span class="bridge-arrow">{% if card_num<7 %}→{% else %}↗{% endif %}</span></div></main>
+<div class="takeaway"><span class="takeaway-tag">핵심<br>한 줄</span><p>{{ p.takeaway }}</p></div><div class="bridge"><span>{{ p.bridge }}</span><span class="bridge-arrow">{% if card_num<7 %}→{% else %}↗{% endif %}</span></div></main>
 <footer><span class="source">{{ p.source_line }}</span><strong>@{{ handle }}</strong></footer><div class="progress"><i style="width:{{ card_num / 7 * 100 }}%"></i></div></body></html>
+
 

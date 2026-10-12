@@ -1,9 +1,12 @@
 name: Reviewed preview regression checks
 on:
   push:
-    branches: [main]
+    branches: [main, 'chatgpt/editorial-design-*']
     paths:
       - 'src/reviewed_preview.py'
+      - 'src/card.html'
+      - 'src/editorial_theme.css'
+      - 'src/market_render.py'
       - 'src/breaking_card.html'
       - 'src/market_card.html'
       - 'src/market_style.css'
@@ -41,8 +44,13 @@ jobs:
               # No publish/build call: historical content is only a layout fixture.
               render_cards({'market_brief': packet}, packet['summary'], f'qa/{kind}', kind)
           PY
+      - name: Render seven-card historical stock layout without publishing
+        env:
+          PYTHONPATH: src
+        run: python src/build.py --input automation/examples/visual-variety-preview.json --out qa-stock-out --docs qa/stock
       - uses: actions/upload-artifact@v4
         with:
           name: layout-review-only-do-not-publish
           path: qa/
           retention-days: 7
+

@@ -1,14 +1,15 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><style>{% include 'market_style.css' %}</style></head><body><main class="{{ story.layout }}">
-<header class="mast"><span class="brand">오후 두시<span style="font-weight:400"> · 시장 뉴스</span></span><span class="pill">KOREA → WALL ST.</span></header>
-<div class="kicker">{{ ['MARKET SNAPSHOT','WHAT MOVED THE MARKET','SECTOR WATCH','TONIGHT IN AMERICA','WHAT TO WATCH'][n-1] }}</div>
-<h1 data-fit>{{ story.title }}</h1><p class="lead" data-fit>{{ story.body }}</p>
+<header class="mast"><span class="brand"><span class="brand-mark">m.</span><span>오후 두시 · 시장 뉴스<small>MONEY FOR CHICKEN</small></span></span><span class="pill">한국장에서 미국장까지</span></header>
+<div class="kicker"><span class="chapter-no">{{ '%02d'|format(n) }}</span>{{ ['한눈에 보는 변화','시장을 움직인 재료','종목의 온도차','오늘 밤 확인할 일정','다음 확인 조건'][n-1] }}</div>
+<h1 data-fit>{% for line in story.title.split('\n') %}<span class="title-line{% if loop.last and not loop.first %} accent{% endif %}">{{ line }}</span>{% endfor %}</h1><p class="lead" data-fit>{{ story.body }}</p>
 {% if story.layout == 'headline' %}
 <div class="board" data-fit>{% for q in quotes %}<div class="quote"><div class="name">{{ q.name }}</div><div class="price">{{ '{:,.2f}'.format(q.value) }}</div><div class="pct {{ q.tone }}">{{ '▲' if q.change_pct > 0 else '▼' if q.change_pct < 0 else '—' }} {{ q.sign }}{{ '%.2f'|format(q.change_pct) }}%</div><div class="stamp">{{ q.time }} KST · {{ '시가' if q.basis == 'open' else '장중' }}</div></div>{% endfor %}</div>
-<div class="strap" data-fit>한국장의 흐름부터 오늘 밤 미국 일정까지.<br>숫자 뒤의 맥락을 다섯 장에 담습니다.</div>
+<div class="strap" data-fit><b>지수의 방향, 그 뒤의 이유</b><span class="next-arrow">→</span></div>
 {% elif story.layout == 'calendar' %}
-<div class="timeline" data-fit>{% for e in events %}<div class="event"><div class="time">{{ e.time }} <small style="font:22px Body">KST</small></div><div class="label">{{ e.title }}</div><div class="copy">{{ e.note }}</div></div>{% else %}<div class="event"><div class="label">확인된 주요 발표 없음</div><div class="copy">확인되지 않은 일정은 넣지 않습니다. 발표 기관의 공지 변경을 확인하세요.</div></div>{% endfor %}</div><div class="note" data-fit>예정된 발표이며 결과는 아직 나오지 않았습니다.<br>시간은 한국 기준 · 서머타임 자동 반영</div>
+<div class="timeline" data-fit>{% for e in events %}<div class="event"><div class="time">{{ e.time }} <small style="font:22px Body">KST</small></div><div class="label">{{ e.title }}</div><div class="copy">{{ e.note }}</div></div>{% else %}<div class="event"><div class="label">확인된 주요 발표 없음</div><div class="copy">확인되지 않은 일정은 넣지 않습니다. 발표 기관의 공지 변경을 확인하세요.</div></div>{% endfor %}</div><div class="note" data-fit>예정된 발표 · 결과는 발표 후 확인합니다.<br>시간은 한국 기준입니다.</div>
 {% else %}
 <div class="rows" data-fit>{% for item in story['items'] %}<div class="row"><div class="num">{{ '%02d'|format(loop.index) }}</div><div><div class="label">{{ item.label }}<span class="type">{{ {'fact':'사실','analysis':'해석','watch':'관전'}[item.type] }}</span></div><div class="copy">{{ item.text }}</div></div></div>{% endfor %}</div>
 {% endif %}
 <footer class="foot"><span>@making_money_for_chicken</span><span>{{ snapshot }} KST 기준</span><b>{{ '%02d'|format(n) }} / 05</b></footer>
-</main></body></html>
+<div class="progress">{% for i in range(1,6) %}<i class="{{ 'active' if i <= n else '' }}"></i>{% endfor %}</div></main></body></html>
+
