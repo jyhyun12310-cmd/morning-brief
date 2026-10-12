@@ -1,7 +1,7 @@
-/* White newsroom layouts; one accent, large numeric hierarchy. */
+/* Soft blue-gray reading pages; white cover, restrained accent. */
 @font-face{font-family:Display;src:url('{{ fonts.body }}');font-weight:100 900}
 @font-face{font-family:Body;src:url('{{ fonts.body }}');font-weight:100 900}
-:root{--paper:#FFF;--ink:#16181C;--muted:#656B74;--rule:#DADDE2;--accent:#205AFF}
+:root{--paper:#F0F3F7;--ink:#16181C;--muted:#656B74;--rule:#DADDE2;--accent:#205AFF}
 *{box-sizing:border-box}html,body{margin:0;width:1080px;height:1350px}body{font-family:Body,sans-serif;background:var(--paper);color:var(--ink);font-synthesis:none;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
 main{height:1350px;padding:45px 60px 150px;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .mast{display:flex;align-items:center;justify-content:space-between;flex:none;height:60px;padding-bottom:21px;border-bottom:1px solid var(--rule);gap:20px}.brand{display:flex;align-items:center;gap:13px;font-size:21px;font-weight:700;letter-spacing:-.4px}.brand-mark{display:flex;align-items:center;justify-content:center;flex:none;width:37px;height:37px;background:var(--ink);color:#FFF;font-size:27px;font-weight:850;letter-spacing:-3px;padding-right:3px}.brand small{display:none}.pill{font-size:17px;color:var(--muted);white-space:nowrap}
@@ -14,3 +14,6 @@ h1{font:800 78px/1.17 Display;margin:28px 0 28px;letter-spacing:-3.7px;word-brea
 .calendar .timeline{margin-top:40px;display:grid;gap:0;flex:1;min-height:0;align-content:center;border-top:2px solid var(--ink)}.event{padding:28px 0}.event+.event{border-top:1px solid var(--rule)}.event .time{font:750 56px/1.2 Display;color:var(--accent);margin-bottom:24px;letter-spacing:-2px}.event .label{font-size:35px}.event .copy{font-size:31px}.timeline[data-count='1'] .event{display:flex;flex-direction:column;justify-content:center;padding:35px 0}.timeline[data-count='1'] .time{font-size:102px;letter-spacing:-4px;margin-bottom:34px}.timeline[data-count='1'] .label{font-size:43px}.timeline[data-count='1'] .copy{font-size:34px;line-height:1.6}.timeline[data-count='3'] .event{padding:18px 0}.timeline[data-count='3'] .time{font-size:41px;margin-bottom:10px}.timeline[data-count='3'] .label{font-size:30px}.timeline[data-count='3'] .copy{font-size:27px;margin-top:7px}.calendar .note{margin-top:22px;padding-top:21px;border-top:1px solid var(--rule);font-size:22px;line-height:1.5;color:var(--muted);flex:none}
 .bulletin.headline h1{font-size:85px}.bulletin.headline .row{padding:26px 0}.bulletin.headline .label{font-size:32px}.bulletin.headline .copy{font-size:32px}.release{font-size:20px;line-height:1.5;margin-top:25px;color:var(--muted);flex:none}
 .foot{position:absolute;bottom:47px;left:60px;right:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--rule);padding-top:20px;font-size:18px;color:var(--muted)}.foot b{font-size:20px;font-weight:650;color:var(--ink);white-space:nowrap}.foot .handle{font-size:18px}.progress{position:absolute;left:60px;right:60px;bottom:24px;display:flex;gap:8px;height:3px}.progress i{flex:1;background:#E6E9EF}.progress i.active{background:var(--accent)}
+
+/* Keep the cover white while giving the inner pages a subtle cool tone. */
+.headline{background:#FFF}
