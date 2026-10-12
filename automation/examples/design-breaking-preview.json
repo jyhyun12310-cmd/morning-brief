@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "kind": "breaking_news",
+  "intent": "preview",
+  "is_test": false,
+  "created_at": "2026-10-12T07:26:27Z",
+  "snapshot_at": "2026-10-12T07:25:27Z",
+  "publication_date_kst": "2026-10-12",
+  "event": {
+    "issuer": "reserve-bank-of-india",
+    "release_id": "2026-2027-1305",
+    "time_precision": "date",
+    "occurred_date": "2026-10-10",
+    "source_timezone": "Asia/Kolkata",
+    "category": "policy",
+    "status": "confirmed",
+    "market_scope": "broad_market",
+    "primary_source_id": "rbi-fx",
+    "materiality": "인도 중앙은행이 루피화 외환 파생거래의 증빙 면제 한도를 1억 달러에서 500만 달러로 낮추고 일부 거래에 은행의 20% 현금 예치를 요구했습니다. 정유사 달러 공급 창구는 10월 12일 적용돼 외환 수급과 은행·수입기업의 헤지 조건에 동시에 영향을 줍니다."
+  },
+  "sources": [
+    {
+      "id": "rbi-fx",
+      "kind": "primary",
+      "title": "RBI · Foreign Exchange Market Regulatory Measures · PR 2026-2027/1305",
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=63783",
+      "as_of": "2026-10-10 발표; 루피화 파생거래 한도·현금 예치 규제",
+      "published_date": "2026-10-10",
+      "retrieved_at": "2026-10-12T07:25:27Z"
+    },
+    {
+      "id": "rbi-oil",
+      "kind": "primary",
+      "title": "RBI · Public Sector Oil Companies Dollar Window · PR 2026-2027/1306",
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=63784",
+      "as_of": "2026-10-10 발표; 2026-10-12 적용되는 공공 정유사 달러 창구",
+      "published_date": "2026-10-10",
+      "retrieved_at": "2026-10-12T07:25:27Z"
+    },
+    {
+      "id": "rbi-rule25",
+      "kind": "primary",
+      "title": "RBI · A.P. (DIR Series) Circular No. 25 · Risk Management",
+      "url": "https://rbi.org.in/scripts/NotificationUser.aspx?Id=13737&Mode=0",
+      "as_of": "2026-10-10 발행 즉시 적용; 한도·증빙·재계약 조건",
+      "published_date": "2026-10-10",
+      "retrieved_at": "2026-10-12T07:25:27Z"
+    },
+    {
+      "id": "rbi-rule26",
+      "kind": "primary",
+      "title": "RBI · A.P. (DIR Series) Circular No. 26 · FX Risk Reserve",
+      "url": "https://rbi.org.in/scripts/NotificationUser.aspx?Id=13738&Mode=0",
+      "as_of": "2026-10-10 발행 이후 신규 계약; 200만달러 초과 해당 거래의 20% 예치",
+      "published_date": "2026-10-10",
+      "retrieved_at": "2026-10-12T07:25:27Z"
+    }
+  ],
+  "summary": {
+    "instagram_caption": "인도는 정유사에 달러 창구를 열면서 기업의 환헤지 규칙은 조였습니다.\n환율을 안정시키는 일과 달러를 싸게 구하는 일은 같지 않습니다.\n#인도경제 #환율 #중앙은행",
+    "editorial_review": {
+      "improvement": "달러 공급과 환헤지 규제의 서로 다른 비용 경로를 설명",
+      "reason": "20% 은행 예치를 고객 수수료 20%로 오해하지 않도록",
+      "application": "1억→500만달러의 비교, 은행 예치의 적용 대상, 기업 견적·환율 관전 조건을 구분",
+      "avoided_repetition": "오늘 삼성 실적과 주체·원인·결론이 다름; 최근 원유 공급 기사와 달리 외환 거래·은행 자금 부담에 집중"
+    },
+    "visual_story": [
+      {
+        "layout": "headline",
+        "title": "인도는 달러를 주면서,\n왜 환헤지는 조일까?",
+        "body": "10월 10일 발표한 RBI 대책은 두 갈래입니다. 정유사 달러 창구는 12일부터 열고, 루피화 파생거래의 증빙 면제 한도는 즉시 줄였습니다.",
+        "source_ids": [
+          "rbi-fx",
+          "rbi-oil",
+          "rbi-rule25"
+        ],
+        "items": [
+          {
+            "label": "정유사 달러 창구",
+            "text": "공공 정유사 3곳의 일일 달러 수요 전액이 대상입니다. 지정 은행을 통해 RBI가 달러를 팝니다.",
+            "type": "fact",
+            "source_ids": [
+              "rbi-oil"
+            ]
+          },
+          {
+            "label": "증빙 면제 한도 축소",
+            "text": "환위험을 줄이는 파생거래의 기초 거래 증빙 면제 한도: 1억달러 → 500만달러.",
+            "type": "fact",
+            "source_ids": [
+              "rbi-rule25"
+            ]
+          }
+        ]
+      },
+      {
+        "layout": "impact",
+        "title": "환헤지 비용,\n은행 자금부터 달라집니다",
+        "body": "여기서 묶이는 건 은행 자금입니다. 환헤지 거래에 붙는 20% 예치를 고객이 내는 20% 수수료로 읽으면 안 됩니다.",
+        "source_ids": [
+          "rbi-rule26"
+        ],
+        "items": [
+          {
+            "label": "은행이 예치할 돈",
+            "text": "200만달러 초과 해당 헤지는 은행이 명목금액을 루피로 환산한 20%를 계약 종료까지 현금 예치합니다.",
+            "type": "fact",
+            "source_ids": [
+              "rbi-rule26"
+            ]
+          },
+          {
+            "label": "수입기업의 비용 경로",
+            "text": "루피로 외화를 사는 경상거래 헤지가 대상입니다. 은행 자금 부담이 견적에 반영되면 기업 비용이 늘 수 있습니다.",
+            "type": "analysis",
+            "source_ids": [
+              "rbi-rule26"
+            ]
+          }
+        ]
+      },
+      {
+        "layout": "watch",
+        "title": "달러가 풀리면,\n기업 비용도 줄어들까?",
+        "body": "달러 공급은 늘어도 은행의 거래 비용은 커질 수 있습니다. 환율 안정과 기업의 환헤지 비용 감소는 따로 확인해야 합니다.",
+        "source_ids": [
+          "rbi-fx",
+          "rbi-oil",
+          "rbi-rule26"
+        ],
+        "items": [
+          {
+            "label": "확인 ① 달러 수급",
+            "text": "창구가 열린 뒤 루피 변동성이 줄어드는지가 첫 기준입니다. 원유 수입대금과 자금 유출이 크면 효과는 약해질 수 있습니다.",
+            "type": "watch",
+            "source_ids": [
+              "rbi-oil"
+            ]
+          },
+          {
+            "label": "확인 ② 헤지 견적",
+            "text": "은행의 새 환헤지 견적이 기업 비용으로 이어집니다. 달러 공급이 늘었다고 견적까지 내려갔다고 볼 수는 없습니다.",
+            "type": "watch",
+            "source_ids": [
+              "rbi-oil",
+              "rbi-rule26"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

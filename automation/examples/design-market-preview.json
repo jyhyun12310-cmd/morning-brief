@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "kind": "market_brief",
+  "intent": "preview",
+  "is_test": false,
+  "created_at": "2026-10-02T05:14:25Z",
+  "publication_date_kst": "2026-10-02",
+  "snapshot_at": "2026-10-02T13:58:30+09:00",
+  "kr_session": {
+    "date": "2026-10-02",
+    "status": "open",
+    "source_id": "kosdaq",
+    "evidence": "10월 2일 당일 일중 데이터와 13:58:30 KST 실시간 지수 표시를 대조해 한국 증시 거래 중임을 확인."
+  },
+  "sources": [
+    {
+      "id": "kospi",
+      "title": "Investing.com · 코스피 장중 지수와 전일 종가",
+      "url": "https://kr.investing.com/indices/kospi",
+      "as_of": "2026-10-02 13:57:40 KST; 전일 종가 2026-10-01",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
+    },
+    {
+      "id": "kosdaq",
+      "title": "Investing.com · 코스닥 장중 값과 날짜별 지수",
+      "url": "https://kr.investing.com/indices/kosdaq-historical-data",
+      "as_of": "2026-10-02 13:58:30 KST; 전일 종가 2026-10-01",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
+    },
+    {
+      "id": "cpi",
+      "title": "국가데이터처 · 2026년 9월 소비자물가동향",
+      "url": "https://mods.go.kr/board.es?act=view&bid=213&list_no=447322&mainXml=Y&mid=a10301010000",
+      "as_of": "2026년 9월 통계; 2026-10-02 발표",
+      "retrieved_at": "2026-10-02T14:09:30+09:00"
+    },
+    {
+      "id": "bonds",
+      "title": "머니투데이 · 재정경제부 10월 국고채 발행계획 보도",
+      "url": "https://www.mt.co.kr/economy/2026/10/01/2026100118074522617",
+      "as_of": "2026-10-01 18:12 KST 보도; 2026년 10월 발행계획",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
+    },
+    {
+      "id": "stocks",
+      "title": "매일경제 마켓 · 13:51 인기종목 표의 대한광통신·아시아나항공",
+      "url": "https://stock.mk.co.kr/price/home/KR7000660001",
+      "as_of": "2026-10-02 13:51 KST 종목 표; 상단 SK하이닉스 시각과 별개",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
+    },
+    {
+      "id": "bls",
+      "title": "미국 BLS · 2026년 10월 공식 통계 발표 일정",
+      "url": "https://www.bls.gov/schedule/2026/10_sched.htm",
+      "as_of": "9월 고용보고서 2026-10-02 08:30 미국 동부시간(EDT)",
+      "retrieved_at": "2026-10-02T14:12:46+09:00"
+    }
+  ],
+  "quotes": [
+    {
+      "id": "KOSPI",
+      "name": "코스피",
+      "value": 6985.01,
+      "previous_close": 6971.35,
+      "change_pct": 0.2,
+      "basis": "intraday",
+      "as_of": "2026-10-02T13:57:40+09:00",
+      "source_id": "kospi"
+    },
+    {
+      "id": "KOSDAQ",
+      "name": "코스닥",
+      "value": 892.39,
+      "previous_close": 894.29,
+      "change_pct": -0.21,
+      "basis": "intraday",
+      "as_of": "2026-10-02T13:58:30+09:00",
+      "source_id": "kosdaq"
+    }
+  ],
+  "events": [
+    {
+      "title": "미국 9월 고용보고서",
+      "at": "2026-10-02T08:30:00-04:00",
+      "note": "한국 21:30 예정 · 신규 고용, 실업률, 임금과 이전 달 수정치 확인",
+      "source_id": "bls"
+    }
+  ],
+  "summary": {
+    "instagram_caption": "10월 2일, 코스피는 올랐지만 코스닥과 개별 종목의 흐름은 달랐습니다.\n물가·국채 공급과 미국 고용지표를 보면, 지수 하나로 판단하기 어려운 이유가 드러납니다.\n\n#시장뉴스 #코스피 #미국고용",
+    "editorial_review": {
+      "improvement": "관전 조건을 전일 종가와 공식 발표 항목으로 구체화",
+      "reason": "최근 게시물의 기업 실적 설명보다 장중에 다시 확인할 기준을 빠르게 찾게 하기",
+      "application": "마지막 장에 코스피 6971.35·코스닥 894.29와 고용·임금·수정치를 제시",
+      "avoided_repetition": "최근 5개 공개 상세 페이지를 비교해 JBL·MU 실적 문구와 반도체 사진 반복을 피하고 5개 전용 레이아웃 사용"
+    },
+    "visual_story": [
+      {
+        "layout": "headline",
+        "title": "코스피는 플러스,\n내 종목도 괜찮을까?",
+        "body": "코스피는 소폭 올랐고 코스닥은 내렸습니다. 지수 하나만 보고 내 종목도 괜찮다고 판단하기 어려운 이유입니다.",
+        "source_ids": [
+          "kospi",
+          "kosdaq"
+        ],
+        "items": []
+      },
+      {
+        "layout": "drivers",
+        "title": "물가와 국채 공급,\n금리로 연결되는 두 재료",
+        "body": "물가는 올랐고, 국채 발행 계획은 줄었습니다. 둘 다 금리와 연결되지만 이날 지수 등락의 원인이라고 단정할 근거는 없습니다.",
+        "source_ids": [
+          "cpi",
+          "bonds"
+        ],
+        "items": [
+          {
+            "label": "국내 물가 +2.9%",
+            "text": "9월 소비자물가는 전년 동월보다 2.9% 올랐습니다. 식료품·에너지를 뺀 지수의 상승률은 2.8%입니다.",
+            "type": "fact",
+            "source_ids": [
+              "cpi"
+            ]
+          },
+          {
+            "label": "10월 국고채 5조원 축소",
+            "text": "1일 발표한 계획은 당초보다 5조원 줄었습니다. 채권을 소화해야 하는 시장의 부담도 덜어질 수 있습니다.",
+            "type": "analysis",
+            "source_ids": [
+              "bonds"
+            ]
+          }
+        ]
+      },
+      {
+        "layout": "sectors",
+        "title": "지수보다 선명한\n종목 사이 온도차",
+        "body": "13:51 기준, 광통신주와 항공주의 방향이 갈렸습니다. 개별 종목 사례이므로 업종 전체 움직임과는 구분해야 합니다.",
+        "source_ids": [
+          "stocks"
+        ],
+        "items": [
+          {
+            "label": "광통신 · 대한광통신",
+            "text": "17,740원으로 전일 대비 4.35% 올랐습니다.",
+            "type": "fact",
+            "source_ids": [
+              "stocks"
+            ]
+          },
+          {
+            "label": "항공 · 아시아나항공",
+            "text": "8,150원으로 전일 대비 3.32% 내렸습니다.",
+            "type": "fact",
+            "source_ids": [
+              "stocks"
+            ]
+          }
+        ]
+      },
+      {
+        "layout": "calendar",
+        "title": "밤 9시 30분,\n고용만 보면 놓치는 것",
+        "body": "미국 9월 고용보고서에서 볼 건 일자리 수만이 아닙니다. 임금은 얼마나 올랐는지, 지난달 수치가 수정됐는지도 중요합니다.",
+        "source_ids": [
+          "bls"
+        ],
+        "items": []
+      },
+      {
+        "layout": "watch",
+        "title": "지수는 올랐는데,\n내 종목도 따라갈까?",
+        "body": "그 답은 지수 상승만으로 나오지 않습니다. 장 마감에는 두 지수의 종가를, 밤에는 고용지표의 세부 내용을 확인해야 합니다.",
+        "source_ids": [
+          "kospi",
+          "kosdaq",
+          "bls"
+        ],
+        "items": [
+          {
+            "label": "코스피의 상승 유지",
+            "text": "장중 상승과 상승 마감은 다릅니다. 전일 종가 6,971.35 위에서 끝나는지가 기준입니다.",
+            "type": "watch",
+            "source_ids": [
+              "kospi"
+            ]
+          },
+          {
+            "label": "코스닥의 회복 여부",
+            "text": "전일 종가 894.29를 되찾는지가 기준입니다. 코스피와 같은 방향으로 마치는지 볼 필요가 있습니다.",
+            "type": "watch",
+            "source_ids": [
+              "kosdaq"
+            ]
+          },
+          {
+            "label": "고용·임금·수정치",
+            "text": "고용과 임금이 함께 강한지 확인합니다. 이전 달 수치의 수정도 이번 발표의 해석을 바꿀 수 있습니다.",
+            "type": "watch",
+            "source_ids": [
+              "bls"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

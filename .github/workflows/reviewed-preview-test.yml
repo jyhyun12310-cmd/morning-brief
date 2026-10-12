@@ -3,6 +3,8 @@ on:
   push:
     branches: [main, 'chatgpt/editorial-design-*']
     paths:
+      - 'automation/examples/visual-variety-preview.json'
+      - 'automation/examples/design-*-preview.json'
       - 'src/reviewed_preview.py'
       - 'src/card.html'
       - 'src/editorial_theme.css'
@@ -39,7 +41,7 @@ jobs:
           from pathlib import Path
           from market_render import render_cards
           for kind in ('market', 'breaking'):
-              packet = json.loads(Path(f'automation/{kind}_inbox/latest.json').read_text())
+              packet = json.loads(Path(f'automation/examples/design-{kind}-preview.json').read_text())
               packet['intent'] = 'preview'
               # No publish/build call: historical content is only a layout fixture.
               render_cards({'market_brief': packet}, packet['summary'], f'qa/{kind}', kind)

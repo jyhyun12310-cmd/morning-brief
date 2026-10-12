@@ -44,7 +44,7 @@ footer{position:absolute;left:60px;right:60px;bottom:33px;height:68px;border-top
 {% elif p.layout=='conditions' %}
  <div class="scenario"><div class="origin">{{ p.origin }}</div><div class="branches">{% for b in p.branches %}<div class="branch"><small>{{ b.label }}</small><strong>{{ b.text }}</strong><p>{{ b.check }}</p></div>{% endfor %}</div></div>
 {% elif p.layout=='closing' %}
- <div class="closing"><div class="checklist">{% for l in p.labels %}<div class="check"><span class="n">{{ '%02d'|format(loop.index) }}</span><div><strong>{{ l.label }}</strong><p>{{ l.text }}</p></div></div>{% endfor %}</div><div class="follow-panel"><p>화–토 아침, 한 종목을 깊게.<br>뉴스를 읽는 기준을 함께 쌓아요.</p><span>팔로우 ↗</span></div></div>
+ <div class="closing"><div class="checklist">{% for l in p.labels %}<div class="check"><span class="n">{{ '%02d'|format(loop.index) }}</span><div><strong>{{ l.label }}</strong><p>{{ l.text }}</p></div></div>{% endfor %}</div><div class="follow-panel"><p>화–토 아침, 한 종목을 깊게.<br>숫자 뒤에 있는 이유를 짚어드립니다.</p><span>팔로우 ↗</span></div></div>
 {% endif %}</section>
 <div class="takeaway"><span class="takeaway-tag">핵심<br>한 줄</span><p>{{ p.takeaway }}</p></div><div class="bridge"><span>{{ p.bridge }}</span><span class="bridge-arrow">{% if card_num<7 %}→{% else %}↗{% endif %}</span></div></main>
 <footer><span class="source">{{ p.source_line }}</span><strong>@{{ handle }}</strong></footer><div class="progress"><i style="width:{{ card_num / 7 * 100 }}%"></i></div></body></html>
