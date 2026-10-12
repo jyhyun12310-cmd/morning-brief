@@ -1,5 +1,5 @@
 /* One visual identity across the 7/5/3-card editions. */
-:root{--paper:#FFF8ED;--ink:#103C34;--muted:#536B60;--orange:#C83E26;--lime:#C7F547;--line:#D0DBC7}
+:root{--paper:#FFF8ED;--ink:#103C34;--muted:#4B6257;--orange:#C83E26;--lime:#C7F547;--line:#D0DBC7}
 .brand-mark{width:43px;height:43px;border-radius:13px;font-size:30px;letter-spacing:-3px;background:var(--ink);color:var(--lime)}
 .brand-name{font-size:18px;letter-spacing:.02em}.brand-name small{font-size:12px;letter-spacing:.12em}
 .folio{font-size:16px;letter-spacing:.08em}.chapter{font-size:17px;border-radius:6px;padding:6px 10px}.eyebrow{font-size:19px}
