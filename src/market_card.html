@@ -10,6 +10,5 @@
 {% else %}
 <div class="rows" data-fit>{% for item in story['items'] %}<div class="row"><div class="num">{{ '%02d'|format(loop.index) }}</div><div><div class="label">{{ item.label }}<span class="type">{{ {'fact':'사실','analysis':'해석','watch':'관전'}[item.type] }}</span></div><div class="copy">{{ item.text }}</div></div></div>{% endfor %}</div>
 {% endif %}
-{% if packet.intent == 'preview' %}<div class="preview" data-fit>디자인 미리보기 · {{ snapshot }} 기준 자료</div>{% endif %}
 <footer class="foot"><span>@making_money_for_chicken</span><span>{{ snapshot }} KST 기준</span><b>{{ '%02d'|format(n) }} / 05</b></footer>
 </main></body></html>
