@@ -1,109 +1,132 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-12T16:23:10Z",
-  "snapshot_at": "2026-10-12T16:22:42Z",
-  "publication_date_kst": "2026-10-13",
+  "created_at": "2026-10-13T15:19:40.598Z",
+  "snapshot_at": "2026-10-13T15:19:40.598Z",
+  "publication_date_kst": "2026-10-14",
   "event": {
-    "issuer": "india-mospi",
-    "release_id": "2026-09-cpi",
-    "occurred_at": "2026-10-12T16:00:00+05:30",
-    "category": "inflation",
+    "issuer": "unitedhealth-group",
+    "release_id": "unh-2026-q3-earnings",
+    "time_precision": "date",
+    "occurred_date": "2026-10-13",
+    "source_timezone": "America/New_York",
+    "category": "major_earnings",
     "status": "confirmed",
-    "market_scope": "broad_market",
-    "primary_source_id": "india-cpi",
-    "materiality": "인도의 9월 소비자물가 상승률이 5.54%로 전월 4.83%에서 높아졌고 식품물가는 7.74%까지 올랐습니다. 가계 구매력과 인도 중앙은행의 금리 경로, 채권·루피의 부담을 함께 바꾸는 공식 지표입니다."
+    "market_scope": "major_sector",
+    "primary_source_id": "unh-q3-2026",
+    "materiality": "UnitedHealth가 연간 이익 전망을 높였지만 매출은 전년보다 줄었습니다. 의료비율 개선에 준비금 효과가 포함돼 보험·의료서비스 업종의 비용 통제가 실제로 지속되는지 가르는 실적입니다."
   },
   "sources": [
     {
-      "id": "india-cpi",
+      "id": "unh-q3-2026",
       "kind": "primary",
-      "title": "인도 국가통계국 · 2026년 9월 소비자물가지수",
-      "url": "https://www.mospi.gov.in/uploads/latestReleases/latest_release_1791800601071_643518af-5320-4e52-b78c-75c92b83885b_Press_Release_for_the_month_of_September,_2026.pdf",
-      "as_of": "2026-10-12 16:00 IST 발표; 2026년 9월 잠정치",
-      "published_at": "2026-10-12T16:00:00+05:30",
-      "retrieved_at": "2026-10-12T16:22:42Z"
+      "title": "UnitedHealth Group · 2026년 3분기 실적",
+      "url": "https://www.unitedhealthgroup.com/content/dam/UHG/PDF/investors/2026/unh-reports-third-quarter-2026-results.pdf",
+      "as_of": "2026년 3분기 및 2026년 연간 전망",
+      "published_date": "2026-10-13",
+      "retrieved_at": "2026-10-13T15:19:40.598Z"
+    },
+    {
+      "id": "unh-q2-2026",
+      "kind": "primary",
+      "title": "UnitedHealth Group · 2026년 2분기 실적",
+      "url": "https://www.unitedhealthgroup.com/newsroom/2026/2026-07-16-uhg-reports-second-quarter-2026-results.html",
+      "as_of": "2026년 2분기 당시 연간 전망 비교",
+      "published_date": "2026-07-16",
+      "retrieved_at": "2026-10-13T15:19:40.598Z"
     }
   ],
   "summary": {
-    "instagram_caption": "인도 물가의 핵심은 헤드라인보다 식탁에서 더 빠르게 오른 압력입니다. 금리 경로는 다음 달 식품물가가 꺾이는지에 달렸습니다.\n#인도경제 #물가 #금리",
+    "instagram_caption": "UnitedHealth는 매출이 줄었지만 의료비율과 비용 통제로 연간 이익 전망을 높였습니다. 다음 분기에는 6억1천만달러 준비금 효과를 빼고도 개선이 이어지는지가 핵심입니다.\n#미국주식 #헬스케어 #실적",
     "editorial_review": {
-      "improvement": "전체 물가와 식품물가의 상승 폭을 분리",
-      "reason": "한 숫자만으로 금리 방향을 단정하지 않도록",
-      "application": "직전치와 새 수치, 가계·금리 전달 경로, 다음 확인 조건을 순서대로 제시",
-      "avoided_repetition": "오늘 EU 제재의 결제·공급망 이슈와 달리 식품발 물가와 금리 경로에 집중"
+      "improvement": "전망 상향과 매출 감소를 함께 비교",
+      "reason": "이익 개선을 단순 회복으로 오해하지 않도록",
+      "application": "의료비율·준비금 효과·가입자 감소를 연결하고 다음 분기 확인 조건을 제시",
+      "avoided_repetition": "최근 물가·제재 이슈와 달리 보험사의 의료비 통제와 가입자 구조에 집중"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "인도 물가 5.54%,\n왜 다시 뛰었나?",
-        "body": "9월 소비자물가 상승률은 5.54%로 8월 4.83%보다 0.71%포인트 높아졌습니다.",
-        "source_ids": ["india-cpi"],
+        "title": "전망은 올랐는데,\n매출은 왜 줄었나?",
+        "body": "UnitedHealth는 연간 조정 EPS 전망을 최소 20.50달러로 높였습니다. 2분기 전망 상단보다 0.50달러 높습니다.",
+        "source_ids": [
+          "unh-q3-2026",
+          "unh-q2-2026"
+        ],
         "items": [
           {
-            "label": "공식 9월 잠정치",
-            "text": "도시는 4.88%, 농촌은 6.08%였습니다. 전국 평균보다 농촌 부담이 더 컸습니다.",
+            "label": "이익 전망 상향",
+            "text": "기존 19.50~20.00달러에서 최소 20.50달러로 바뀌었습니다.",
             "type": "fact",
-            "source_ids": ["india-cpi"]
+            "source_ids": [
+              "unh-q3-2026",
+              "unh-q2-2026"
+            ]
           },
           {
-            "label": "식품이 더 빨랐다",
-            "text": "식품물가는 5.97%에서 7.74%로 올랐습니다. 헤드라인보다 상승 폭이 컸습니다.",
+            "label": "매출은 소폭 감소",
+            "text": "3분기 매출은 1,127억달러로 전년 동기 1,132억달러보다 줄었습니다.",
             "type": "fact",
-            "source_ids": ["india-cpi"]
+            "source_ids": [
+              "unh-q3-2026"
+            ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "식탁의 압력이\n금리로 번집니다",
-        "body": "식품 가격은 가계의 실질 구매력을 줄이고, 물가가 오래 높게 머물 위험을 키울 수 있습니다.",
-        "source_ids": ["india-cpi"],
+        "title": "보험료보다\n비용 관리가 움직였다",
+        "body": "매출 성장보다 의료비와 운영비 통제가 이익을 끌어올렸습니다. 다만 개선분을 그대로 반복된다고 볼 수는 없습니다.",
+        "source_ids": [
+          "unh-q3-2026"
+        ],
         "items": [
           {
-            "label": "양파 108.09%",
-            "text": "양파의 전년 대비 상승률입니다. 은 장신구 87.80%, 생강 62.85%도 높았습니다.",
+            "label": "의료비율 88.4%",
+            "text": "전년 89.9%보다 1.5%포인트 낮아져 보험료 중 의료비 부담이 줄었습니다.",
             "type": "fact",
-            "source_ids": ["india-cpi"]
+            "source_ids": [
+              "unh-q3-2026"
+            ]
           },
           {
-            "label": "채권·루피의 경로",
-            "text": "물가 압력이 이어지면 금리를 낮출 여지가 좁아질 수 있습니다. 방향은 정책 판단에 달렸습니다.",
-            "type": "analysis",
-            "source_ids": ["india-cpi"]
+            "label": "준비금 효과 포함",
+            "text": "의료비율에는 과거 기간 준비금 6억1천만달러의 유리한 조정이 반영됐습니다.",
+            "type": "fact",
+            "source_ids": [
+              "unh-q3-2026"
+            ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "한 달의 급등인가,\n추세의 시작인가?",
-        "body": "이번 수치만으로 금리 결론을 확정할 수는 없습니다. 식품 가격의 지속성과 범위를 확인해야 합니다.",
-        "source_ids": ["india-cpi"],
+        "title": "회복인가,\n일회성인가?",
+        "body": "다음 분기에는 준비금 효과를 제외한 의료비율과 줄어든 가입자 기반을 함께 봐야 합니다.",
+        "source_ids": [
+          "unh-q3-2026"
+        ],
         "items": [
           {
-            "label": "확인 ① 식품의 확산",
-            "text": "양파 등 일부 품목 급등이 다른 식품으로 번지는지, 다음 달 7.74%가 낮아지는지 봅니다.",
+            "label": "확인 ① 의료비율",
+            "text": "6억1천만달러 조정 없이도 의료비율이 전년보다 낮게 유지되는지 확인합니다.",
             "type": "watch",
-            "source_ids": ["india-cpi"]
+            "source_ids": [
+              "unh-q3-2026"
+            ]
           },
           {
-            "label": "확인 ② 다음 CPI",
-            "text": "10월 소비자물가는 11월 12일 발표됩니다. 농촌 6.08%의 둔화 여부도 핵심입니다.",
+            "label": "확인 ② 가입자",
+            "text": "메디케어 어드밴티지 가입자는 2025년 말보다 93만5천명 줄었습니다.",
             "type": "watch",
-            "source_ids": ["india-cpi"]
+            "source_ids": [
+              "unh-q3-2026"
+            ]
           }
         ]
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 38277116218,
-    "image_sha256": [
-      "b53c8f8bd2ee92ceb013266e79675b5d32ef3d9d3f23218ff81a2ba63ca53fe7",
-      "4fd65b5911cf142dad789d104d289681308a1173f1dfb438cff5a17acd4ebf8d",
-      "64867fb7417a91847c60b090666b54ce18e5049b16d8cac91ed315181c66a219"
     ]
   }
 }
