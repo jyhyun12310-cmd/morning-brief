@@ -2,7 +2,7 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-14T08:42:30+09:00",
+  "created_at": "2026-10-14T08:46:30+09:00",
   "publication_date_kst": "2026-10-14",
   "market": {
     "ticker": "BMBL",
@@ -254,8 +254,7 @@
           "note": "주식분할 조정 정규장 종가 · 동일 기준 비교 · 0 기준",
           "unit": "USD",
           "rows": [
-            {"metric_id": "close_oct9", "value": 2.54, "label": "10월 9일", "display": "$2.54"},
-            {"metric_id": "close_oct12", "value": 3.80, "label": "10월 12일", "display": "$3.80"},
+            {"metric_id": "close_oct9", "value": 2.54, "label": "소문 전 · 10월 9일", "display": "$2.54"},
             {"metric_id": "close_oct13", "value": 5.95, "label": "10월 13일", "display": "$5.95"}
           ]
         },
