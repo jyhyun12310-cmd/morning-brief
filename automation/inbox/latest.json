@@ -2,7 +2,7 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-14T08:38:30+09:00",
+  "created_at": "2026-10-14T08:42:30+09:00",
   "publication_date_kst": "2026-10-14",
   "market": {
     "ticker": "BMBL",
@@ -210,10 +210,7 @@
         "takeaway": "10센트 차이는 거래가 아직 끝나지 않았다는 시장의 표시입니다.",
         "bridge": "먼저 10월 13일 확정된 계약부터 짚습니다.",
         "evidence_ids": ["ev_deal", "ev_price", "ev_gap"],
-        "labels": [
-          {"label": "현금 인수가", "text": "$6.05"},
-          {"label": "10월 13일 종가", "text": "$5.95"}
-        ],
+        "labels": [],
         "source_line": ""
       },
       {
