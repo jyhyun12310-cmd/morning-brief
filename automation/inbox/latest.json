@@ -2,7 +2,7 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-14T08:35:00+09:00",
+  "created_at": "2026-10-14T08:38:30+09:00",
   "publication_date_kst": "2026-10-14",
   "market": {
     "ticker": "BMBL",
@@ -205,8 +205,8 @@
     "visual_story": [
       {
         "layout": "cover",
-        "title": "범블 인수가 $6.05\n종가는 $5.95, 왜?",
-        "body": "13억달러 현금 인수 계약에 주가는 56.58% 뛰었습니다. 그런데 계약 가격보다 10센트 낮게 끝났습니다.",
+        "title": "범블, 왜 10센트 낮았나?",
+        "body": "인수가는 6.05달러, 종가는 5.95달러였습니다. 주가가 56.58% 뛰고도 남은 간격입니다.",
         "takeaway": "10센트 차이는 거래가 아직 끝나지 않았다는 시장의 표시입니다.",
         "bridge": "먼저 10월 13일 확정된 계약부터 짚습니다.",
         "evidence_ids": ["ev_deal", "ev_price", "ev_gap"],
