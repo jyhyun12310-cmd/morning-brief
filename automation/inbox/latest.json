@@ -2,7 +2,7 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-14T08:41:30+09:00",
+  "created_at": "2026-10-14T08:43:00+09:00",
   "publication_date_kst": "2026-10-14",
   "market": {
     "ticker": "BMBL",
@@ -305,8 +305,7 @@
         "bridge": "다음 공시에서 두 가격의 간격이 좁아지는지 비교합니다.",
         "evidence_ids": ["ev_gap", "ev_next", "ev_approval"],
         "labels": [
-          {"label": "현금 지급 조건", "text": "$6.05"},
-          {"label": "10월 13일 종가", "text": "$5.95"},
+          {"label": "두 가격", "text": "계약 $6.05 · 종가 $5.95"},
           {"label": "다음 문서", "text": "10-Q·후속 8-K"}
         ],
         "source_line": ""
