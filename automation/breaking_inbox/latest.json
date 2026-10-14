@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-10-14T16:11:18Z",
   "snapshot_at": "2026-10-14T16:10:00Z",
@@ -125,6 +125,14 @@
           }
         ]
       }
+    ]
+  },
+  "reviewed_preview": {
+    "run_id": 38595934198,
+    "image_sha256": [
+      "a894c3d63457a3c66b7248c35ded0dce9ad10ee985b8bda6abaf6e77c5a0f2df",
+      "19089e2c375a7419fcee4d52c5618af2e068c4d2ef896af5bc5f3ee32ded6b95",
+      "d65bbde60ca7e60e0eb503a198973e8c5d17485c72b2b719e61fb4bbf67f68f7"
     ]
   }
 }
