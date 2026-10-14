@@ -1,140 +1,130 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-13T15:19:40.598Z",
-  "snapshot_at": "2026-10-13T15:19:40.598Z",
-  "publication_date_kst": "2026-10-14",
+  "created_at": "2026-10-14T16:11:18Z",
+  "snapshot_at": "2026-10-14T16:10:00Z",
+  "publication_date_kst": "2026-10-15",
   "event": {
-    "issuer": "unitedhealth-group",
-    "release_id": "unh-2026-q3-earnings",
-    "time_precision": "date",
-    "occurred_date": "2026-10-13",
-    "source_timezone": "America/New_York",
-    "category": "major_earnings",
+    "issuer": "us-bls",
+    "release_id": "2026-09-cpi",
+    "occurred_at": "2026-10-14T08:30:00-04:00",
+    "category": "inflation",
     "status": "confirmed",
-    "market_scope": "major_sector",
-    "primary_source_id": "unh-q3-2026",
-    "materiality": "UnitedHealth가 연간 이익 전망을 높였지만 매출은 전년보다 줄었습니다. 의료비율 개선에 준비금 효과가 포함돼 보험·의료서비스 업종의 비용 통제가 실제로 지속되는지 가르는 실적입니다."
+    "market_scope": "broad_market",
+    "primary_source_id": "cpi",
+    "materiality": "미국 9월 CPI의 전년비 상승률과 근원 상승률이 모두 8월보다 높아졌습니다. 에너지에만 국한되지 않은 물가 압력은 금리 판단을 통해 기업 차입비용·소비 수요·성장주 평가에 연결되므로 미국·국내 투자자 다수가 확인할 대표 지표입니다."
   },
   "sources": [
     {
-      "id": "unh-q3-2026",
+      "id": "cpi",
       "kind": "primary",
-      "title": "UnitedHealth Group · 2026년 3분기 실적",
-      "url": "https://www.unitedhealthgroup.com/content/dam/UHG/PDF/investors/2026/unh-reports-third-quarter-2026-results.pdf",
-      "as_of": "2026년 3분기 및 2026년 연간 전망",
-      "published_date": "2026-10-13",
-      "retrieved_at": "2026-10-13T15:19:40.598Z"
+      "title": "BLS · 미국 2026년 9월 소비자물가지수",
+      "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+      "as_of": "2026-10-14 08:30 EDT 발표 · 2026년 9월; 전월비 계절조정, 전년비 비조정",
+      "published_at": "2026-10-14T08:30:00-04:00",
+      "retrieved_at": "2026-10-14T16:10:00Z"
     },
     {
-      "id": "unh-q2-2026",
+      "id": "fed-path",
       "kind": "primary",
-      "title": "UnitedHealth Group · 2026년 2분기 실적",
-      "url": "https://www.unitedhealthgroup.com/newsroom/2026/2026-07-16-uhg-reports-second-quarter-2026-results.html",
-      "as_of": "2026년 2분기 당시 연간 전망 비교",
-      "published_date": "2026-07-16",
-      "retrieved_at": "2026-10-13T15:19:40.598Z"
+      "title": "연준 · 금리 변화가 물가·고용에 전달되는 경로",
+      "url": "https://www.federalreserve.gov/faqs/money_12856.htm",
+      "as_of": "2024-07-19 갱신된 제도 설명 · 이번 CPI의 시장 영향에 대한 해석용 배경",
+      "retrieved_at": "2026-10-14T16:10:00Z"
     }
   ],
   "summary": {
-    "instagram_caption": "UnitedHealth는 매출이 줄었지만 의료비율과 비용 통제로 연간 이익 전망을 높였습니다. 다음 분기에는 6억1천만달러 준비금 효과를 빼고도 개선이 이어지는지가 핵심입니다.\n#미국주식 #헬스케어 #실적",
+    "instagram_caption": "기름값이 물가를 밀어 올렸지만, 기름값만 내려가면 끝나는 이야기는 아닙니다.\n주식시장에는 근원물가와 실제 금리가 함께 중요합니다.\n#미국물가 #금리 #미국주식",
     "editorial_review": {
-      "improvement": "전망 상향과 매출 감소를 함께 비교",
-      "reason": "이익 개선을 단순 회복으로 오해하지 않도록",
-      "application": "의료비율·준비금 효과·가입자 감소를 연결하고 다음 분기 확인 조건을 제시",
-      "avoided_repetition": "최근 물가·제재 이슈와 달리 보험사의 의료비 통제와 가입자 구조에 집중"
+      "improvement": "첫 장에서 전체·근원·월간 물가의 비교 기준을 즉시 제시",
+      "reason": "지엽적인 기업 숫자보다 시장 전체의 금리 판단을 바꾸는 새 사실에 집중",
+      "application": "전년비와 전월비를 분리하고, 기업 비용에 전달되는 조건·약화 변수·다음 확인 수치를 연결",
+      "avoided_repetition": "최근 인도 물가의 식품 가격 이야기와 달리 미국 근원물가·기업 재조달 금리의 경로를 설명"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "전망은 올랐는데,\n매출은 왜 줄었나?",
-        "body": "UnitedHealth는 연간 조정 EPS 전망을 최소 20.50달러로 높였습니다. 2분기 전망 상단보다 0.50달러 높습니다.",
+        "title": "美 9월 물가 3.7%,\n휘발유만의 문제는 아니다",
+        "body": "미국 9월 CPI는 전년 대비 3.7%로 8월 3.4%보다 높아졌습니다. 근원물가도 2.4%에서 2.6%로 상승했습니다.",
         "source_ids": [
-          "unh-q3-2026",
-          "unh-q2-2026"
+          "cpi"
         ],
         "items": [
           {
-            "label": "이익 전망 상향",
-            "text": "기존 19.50~20.00달러에서 최소 20.50달러로 바뀌었습니다.",
+            "label": "월간 상승도 가속",
+            "text": "계절조정 전월비는 8월 +0.4%에서 9월 +0.6%로 높아졌습니다.",
             "type": "fact",
             "source_ids": [
-              "unh-q3-2026",
-              "unh-q2-2026"
+              "cpi"
             ]
           },
           {
-            "label": "매출은 소폭 감소",
-            "text": "3분기 매출은 1,127억달러로 전년 동기 1,132억달러보다 줄었습니다.",
+            "label": "휘발유 +9.1%",
+            "text": "전월비 상승입니다. 전체 월간 물가 상승의 절반 이상을 차지했습니다.",
             "type": "fact",
             "source_ids": [
-              "unh-q3-2026"
+              "cpi"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "보험료보다\n비용 관리가 움직였다",
-        "body": "매출 성장보다 의료비와 운영비 통제가 이익을 끌어올렸습니다. 다만 개선분을 그대로 반복된다고 볼 수는 없습니다.",
+        "title": "성장주는 금리,\n소비주는 지갑이 변수",
+        "body": "이번 물가는 에너지·식품을 빼도 상승했습니다. 금리가 높게 유지되면 기업의 차입과 소비에 부담이 될 수 있습니다.",
         "source_ids": [
-          "unh-q3-2026"
+          "cpi",
+          "fed-path"
         ],
         "items": [
           {
-            "label": "의료비율 88.4%",
-            "text": "전년 89.9%보다 1.5%포인트 낮아져 보험료 중 의료비 부담이 줄었습니다.",
-            "type": "fact",
+            "label": "차입 많은 기업",
+            "text": "재조달 금리가 높아지면 이자비용이 늘 수 있습니다. 고정금리·만기 구조가 충격을 가릅니다.",
+            "type": "analysis",
             "source_ids": [
-              "unh-q3-2026"
+              "fed-path"
             ]
           },
           {
-            "label": "준비금 효과 포함",
-            "text": "의료비율에는 과거 기간 준비금 6억1천만달러의 유리한 조정이 반영됐습니다.",
-            "type": "fact",
+            "label": "소비재·성장주",
+            "text": "소비 둔화는 매출에, 높은 할인율은 미래 이익의 현재 가치에 부담이 될 수 있습니다.",
+            "type": "analysis",
             "source_ids": [
-              "unh-q3-2026"
+              "fed-path",
+              "cpi"
             ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "회복인가,\n일회성인가?",
-        "body": "다음 분기에는 준비금 효과를 제외한 의료비율과 줄어든 가입자 기반을 함께 봐야 합니다.",
+        "title": "기름값이 내려도\n금리 부담이 끝날까?",
+        "body": "근원·주거비까지 둔화해야 물가 압력이 약해졌다고 볼 근거가 늘어납니다. 이번 수치만으로 추가 인상을 단정할 수 없습니다.",
         "source_ids": [
-          "unh-q3-2026"
+          "cpi",
+          "fed-path"
         ],
         "items": [
           {
-            "label": "확인 ① 의료비율",
-            "text": "6억1천만달러 조정 없이도 의료비율이 전년보다 낮게 유지되는지 확인합니다.",
+            "label": "확인 ① 근원·주거비",
+            "text": "9월 전월비는 각각 +0.3%·+0.4%. 다음 발표에서 함께 낮아지는지 봅니다.",
             "type": "watch",
             "source_ids": [
-              "unh-q3-2026"
+              "cpi"
             ]
           },
           {
-            "label": "확인 ② 가입자",
-            "text": "메디케어 어드밴티지 가입자는 2025년 말보다 93만5천명 줄었습니다.",
+            "label": "확인 ② 실제 금리",
+            "text": "정책·기업 조달금리가 높아지면 비용 부담 해석이 강해지고, 내려가면 약해집니다.",
             "type": "watch",
             "source_ids": [
-              "unh-q3-2026"
+              "fed-path"
             ]
           }
         ]
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 38421101199,
-    "image_sha256": [
-      "84c37961c824de5a6a00b190ada85b4952cd2fe049b9f7cc11a94c5f25800ed8",
-      "90dbd74a600ce9f49b7d70b23348be08ff302d7a1f8bf64f373aaf2a14271dd2",
-      "9db843e44231fa684fdd91115ca3d2404557ba11bcba3fc7464fd7a54aad4fe5"
     ]
   }
 }
