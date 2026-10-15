@@ -1,144 +1,141 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-14T18:47:42Z",
-  "snapshot_at": "2026-10-14T18:46:41Z",
-  "publication_date_kst": "2026-10-15",
+  "created_at": "2026-10-15T15:52:35Z",
+  "snapshot_at": "2026-10-15T15:51:46Z",
+  "publication_date_kst": "2026-10-16",
   "event": {
-    "issuer": "us-fed",
-    "release_id": "2026-10-14-beige-book",
-    "occurred_at": "2026-10-14T14:00:00-04:00",
-    "category": "inflation",
+    "issuer": "tsmc",
+    "release_id": "tsm-2026-q3-earnings",
+    "time_precision": "date",
+    "occurred_date": "2026-10-15",
+    "source_timezone": "Asia/Taipei",
+    "category": "major_earnings",
     "status": "confirmed",
-    "market_scope": "broad_market",
-    "primary_source_id": "beige",
-    "materiality": "새 베이지북에서 4개 지역의 가격 상승 속도가 빨라졌고, 소비대면 기업은 고객의 가격 저항으로 이익률이 압박받는다고 보고했습니다. 미국 소비재·외식·유통·운송업의 원가 전가와 판매량 판단을 바꾸는 근거이며, 물가 상승을 기업 이익 증가와 동일시할 수 없음을 보여줍니다."
+    "market_scope": "major_sector",
+    "primary_source_id": "release",
+    "materiality": "3분기 매출이 회사 전망 상단을 넘었고 4분기 매출 전망 중간값은 전분기보다 14.1% 높습니다. 첨단공정 수요가 이어진다는 새 근거로 미국 칩설계사와 국내 반도체 공급망을 판단하되, HPC 매출을 AI로 동일시하거나 국내 업체 납품 증가를 확정하지 않습니다."
   },
   "sources": [
     {
-      "id": "beige",
+      "id": "release",
       "kind": "primary",
-      "title": "연준 · 2026년 10월 베이지북 전국 요약",
-      "url": "https://www.federalreserve.gov/monetarypolicy/beigebook202610-summary.htm",
-      "as_of": "2026-10-14 발표 · 공식 일정 14:00 ET; 10월 5일까지 수집한 기업·지역 의견, 금리 결정 아님",
-      "published_at": "2026-10-14T14:00:00-04:00",
-      "retrieved_at": "2026-10-14T18:46:41Z"
+      "title": "TSMC · 2026년 3분기 실적 및 4분기 전망 공식 발표",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/526b65af7305df2dde6b9ece6812b1fdf1e49f9b/3Q26%20EarningsRelease.pdf",
+      "as_of": "2026-10-15 발표일 확인 · 정확한 공개 시각 미기재; 3분기 실적과 4분기 회사 전망",
+      "published_date": "2026-10-15",
+      "retrieved_at": "2026-10-15T15:51:46Z"
     },
     {
-      "id": "calendar",
+      "id": "management",
       "kind": "primary",
-      "title": "연준 · 2026년 10월 공식 발표 일정",
-      "url": "https://www.federalreserve.gov/newsevents/2026-october.htm",
-      "as_of": "10월 14일 베이지북 공개 일정 14:00 ET · 결과 내용은 전국 요약에서 확인",
-      "retrieved_at": "2026-10-14T18:46:41Z"
+      "title": "TSMC · 2026년 3분기 관리보고서",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/f83780000ddc0c3b48e57a87eab6814c4ab35058/3Q26%20ManagementReport.pdf",
+      "as_of": "2026-10-15 보고서 · HPC 성장률·플랫폼 비중·2나노 초기 양산의 이익률 희석",
+      "published_date": "2026-10-15",
+      "retrieved_at": "2026-10-15T15:51:46Z"
     },
     {
-      "id": "cpi",
+      "id": "guidance",
       "kind": "primary",
-      "title": "BLS · 미국 2026년 9월 소비자물가지수",
-      "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm",
-      "as_of": "2026-10-14 08:30 EDT 발표 · 9월 전년비 CPI 비계절조정; 베이지북과 별개 조사",
-      "published_at": "2026-10-14T08:30:00-04:00",
-      "retrieved_at": "2026-10-14T18:46:41Z"
+      "title": "TSMC · 3분기 실제 실적과 기존 전망 비교",
+      "url": "https://investor.tsmc.com/english/quarterly-results/2026/q3",
+      "as_of": "3분기 달러 매출 실제 467.2억, 기존 회사 전망 446~458억 · 시장 컨센서스 아님",
+      "retrieved_at": "2026-10-15T15:51:46Z"
     }
   ],
   "summary": {
-    "instagram_caption": "물가가 오른다고 기업에 남는 돈까지 늘어나는 건 아닙니다.\n연료비를 고객에게 얼마나 넘길 수 있는지가 이익을 가릅니다.\n#미국경제 #물가 #기업실적",
+    "instagram_caption": "TSMC는 다음 분기에도 첨단칩 수요가 이어진다고 봤습니다.\n매출 성장과 2나노 초기 양산의 수익성은 따로 봐야 합니다.\n#TSMC #반도체 #미국주식",
     "editorial_review": {
-      "improvement": "물가 지표를 기업의 원가 전가·판매량·이익률로 연결",
-      "reason": "물가 상승과 기업 이익 증가를 혼동하지 않도록 실제 기업 의견을 추가",
-      "application": "4개 지역의 전기 대비 변화, 소비자의 가격 저항, 계약 갱신 조건과 다음 실적 확인 기준 제시",
-      "avoided_repetition": "미게시 CPI 원고의 금리·성장주 가치 설명을 반복하지 않고 새 베이지북의 기업 마진 근거로 초점 이동"
+      "improvement": "다음 분기 전망을 기존 회사 전망·전분기 실적과 비교하고 공급망 수혜의 조건을 구분",
+      "reason": "정례 실적 나열 대신 첨단공정 수요와 2나노 양산 수익성의 차이를 투자 판단으로 연결",
+      "application": "4분기 중간값 성장률 계산 기준, HPC와 AI의 차이, 국내 소재·장비사 실제 납품 조건과 다음 매출·이익률 확인 지표 제시",
+      "avoided_repetition": "전일 베이지북의 물가·소비기업 마진이나 최근 개별 인수·보험 실적 결론을 반복하지 않음"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "연준 조사, 연료비 뛰자\n소비기업 이익률 압박",
-        "body": "10월 14일 베이지북에서 4개 지역의 가격 상승 속도가 전기보다 빨라졌습니다. 소비대면 기업들은 고객의 가격 저항과 이익률 압박을 보고했습니다.",
+        "title": "TSMC, 4분기 매출도\n14% 성장 전망",
+        "body": "10월 15일 제시한 4분기 매출은 523~543억달러입니다. 중간값은 3분기 실제 매출보다 14.1% 높아 첨단공정 수요의 지속을 예고했습니다.",
         "source_ids": [
-          "beige"
+          "release",
+          "guidance"
         ],
         "items": [
           {
-            "label": "CPI는 3.7%",
-            "text": "같은 날 발표한 9월 전년비 물가입니다. 8월 3.4%보다 높지만 기업 이익 증가율은 아닙니다.",
+            "label": "3분기, 회사 예상도 넘었다",
+            "text": "달러 매출 467.2억으로 기존 회사 전망 상단 458억을 웃돌았습니다. 시장 컨센서스와의 비교는 아닙니다.",
             "type": "fact",
             "source_ids": [
-              "cpi"
+              "guidance"
             ]
           },
           {
-            "label": "언제 모은 이야기인가",
-            "text": "10월 5일까지 수집한 기업·지역 의견입니다. 오늘 주가 반응이나 연준의 금리 결정은 아닙니다.",
+            "label": "성장의 중심은 HPC",
+            "text": "고성능컴퓨팅 매출은 전분기보다 22% 늘어 전체의 68%를 차지했습니다. HPC 전체가 AI 매출은 아닙니다.",
             "type": "fact",
             "source_ids": [
-              "beige"
+              "management"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "유통·외식은 원가,\n운송은 계약이 가른다",
-        "body": "연료 할증료가 공급망 곳곳으로 비용을 전하고 있습니다. 가격을 올려도 판매량이 줄면 매출·이익 방어는 어려워질 수 있습니다.",
+        "title": "미국 칩설계사는 수요,\n국내 장비사는 납품을 본다",
+        "body": "위탁생산 성장 전망은 첨단칩 수요를 점검할 근거입니다. 다만 TSMC 매출 증가가 고객사 판매나 국내 공급업체 이익 증가를 보장하지는 않습니다.",
         "source_ids": [
-          "beige"
+          "release",
+          "management"
         ],
         "items": [
           {
-            "label": "유통·외식 등 소비기업",
-            "text": "판매가격을 원가만큼 올리지 못하면 마진이 줄 수 있습니다. 고객의 가격 저항이 변수입니다.",
+            "label": "칩설계사에 전해지는 경로",
+            "text": "첨단공정 양산 확대는 신제품 공급을 뒷받침할 수 있습니다. 최종 고객의 구매가 따라야 설계사 매출로 이어집니다.",
             "type": "analysis",
             "source_ids": [
-              "beige"
+              "release"
             ]
           },
           {
-            "label": "운송·납품 계약",
-            "text": "비용을 고객에게 넘기는 조건과 연료비 헤지가 충격을 가릅니다. 계약 갱신 때 부담이 달라질 수 있습니다.",
+            "label": "국내 공급망은 납품 확인",
+            "text": "3분기 설비투자는 138.4억달러입니다. 국내 소재·장비사의 수혜는 실제 납품 계약이 늘어야 한다는 조건이 붙습니다.",
             "type": "analysis",
             "source_ids": [
-              "beige"
+              "management"
             ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "가격 인상보다\n판매량·마진을 함께 본다",
-        "body": "물가 상승만으로 소비기업 이익을 낙관하기 어렵습니다. 다만 지역 기업 의견이므로 모든 상장사의 이익 감소를 뜻하지는 않습니다.",
+        "title": "매출은 커져도\n2나노 초기 비용은 남는다",
+        "body": "3분기 매출총이익률은 67.7%에서 66.4%로 낮아졌습니다. 회사는 주원인을 2나노 초기 양산의 이익률 희석으로 설명했습니다.",
         "source_ids": [
-          "beige"
+          "management"
         ],
         "items": [
           {
-            "label": "확인 ① 가격과 판매량",
-            "text": "다음 실적에서 가격 인상 뒤 판매량이 유지되는지 봅니다. 수량이 버텨야 매출 방어 근거가 강해집니다.",
+            "label": "확인 ① 성장의 이행",
+            "text": "4분기 실제 매출이 523~543억달러에 닿는지 봅니다. 고객 주문 축소나 생산 차질은 현재 전망을 약하게 만듭니다.",
             "type": "watch",
             "source_ids": [
-              "beige"
+              "release"
             ]
           },
           {
-            "label": "확인 ② 마진과 계약",
-            "text": "매출총이익률과 운송·연료 계약 갱신 비용을 봅니다. 원가가 내려가거나 전가가 되면 부담은 약해집니다.",
+            "label": "확인 ② 양산의 수익성",
+            "text": "4분기 매출총이익률 전망은 65~67%입니다. 실제 이익률이 이를 벗어나면 매출 성장의 이익 효과도 다시 봐야 합니다.",
             "type": "watch",
             "source_ids": [
-              "beige"
+              "release",
+              "management"
             ]
           }
         ]
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 38618309093,
-    "image_sha256": [
-      "8542b7a59c8077e472c970cfaf91389a62ad2b760f536cdc1cb7c70aa68d84eb",
-      "a2094e34fa6f69958cf1dc67237230109781d779e523659d3a206142fc0fcba7",
-      "d0c95f904514b644168dcbdd34b3360d0e279d5c325752ff746442dcd154941e"
     ]
   }
 }
