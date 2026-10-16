@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "kind": "breaking_news",
+  "intent": "preview",
+  "is_test": true,
+  "created_at": "2026-10-15T15:52:35Z",
+  "snapshot_at": "2026-10-15T15:51:46Z",
+  "publication_date_kst": "2026-10-16",
+  "event": {
+    "issuer": "tsmc",
+    "release_id": "tsm-2026-q3-earnings",
+    "time_precision": "date",
+    "occurred_date": "2026-10-15",
+    "source_timezone": "Asia/Taipei",
+    "category": "major_earnings",
+    "status": "confirmed",
+    "market_scope": "major_sector",
+    "primary_source_id": "release",
+    "materiality": "이미 게시한 TSMC 실적의 편집 검토용 예시입니다. 첨단칩 수요와 2나노 초기 양산이 매출·이익률에 주는 서로 다른 영향을 설명하며 재게시하지 않습니다."
+  },
+  "sources": [
+    {
+      "id": "release",
+      "kind": "primary",
+      "title": "TSMC · 2026년 3분기 실적 및 4분기 전망 공식 발표",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/526b65af7305df2dde6b9ece6812b1fdf1e49f9b/3Q26%20EarningsRelease.pdf",
+      "as_of": "2026-10-15 발표일 확인 · 정확한 공개 시각 미기재; 3분기 실적과 4분기 회사 전망",
+      "published_date": "2026-10-15",
+      "retrieved_at": "2026-10-15T15:51:46Z"
+    },
+    {
+      "id": "management",
+      "kind": "primary",
+      "title": "TSMC · 2026년 3분기 관리보고서",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/f83780000ddc0c3b48e57a87eab6814c4ab35058/3Q26%20ManagementReport.pdf",
+      "as_of": "2026-10-15 보고서 · HPC 성장률·플랫폼 비중·2나노 초기 양산의 이익률 희석",
+      "published_date": "2026-10-15",
+      "retrieved_at": "2026-10-15T15:51:46Z"
+    },
+    {
+      "id": "guidance",
+      "kind": "primary",
+      "title": "TSMC · 3분기 실제 실적과 기존 전망 비교",
+      "url": "https://investor.tsmc.com/english/quarterly-results/2026/q3",
+      "as_of": "3분기 달러 매출 실제 467.2억, 기존 회사 전망 446~458억 · 시장 컨센서스 아님",
+      "retrieved_at": "2026-10-15T15:51:46Z"
+    }
+  ],
+  "summary": {
+    "instagram_caption": "TSMC는 더 팔았지만, 매출에서 남기는 비율은 낮아졌습니다.\n회사가 짚은 이유는 2나노 생산을 늘리는 초기 부담입니다.\n#TSMC #반도체 #기업실적",
+    "editorial_review": {
+      "improvement": "표지 질문과 2나노 초기 양산 원인을 연결하고 장당 읽을 분량 축소",
+      "reason": "핵심 주장은 매출 성장과 이익률 부담의 분리",
+      "application": "HPC·국내 공급망 추정 삭제, 마지막 장에 현재 해석과 4분기 이익률 기준만 남김",
+      "avoided_repetition": "이미 공개한 사건의 편집 예시이며 새 게시나 재게시용이 아님"
+    },
+    "visual_story": [
+      {
+        "layout": "headline",
+        "title": "TSMC, 더 팔았는데\n이익률은 왜 낮아졌나",
+        "body": "첨단칩 수요는 강했습니다. 다만 2나노 생산을 늘리는 초기 부담이 매출총이익률을 낮췄습니다.",
+        "source_ids": [
+          "release",
+          "management"
+        ],
+        "items": [
+          {
+            "label": "3분기 매출 +16.2%",
+            "text": "달러 기준 · 전분기 대비 증가율입니다.",
+            "type": "fact",
+            "source_ids": [
+              "release"
+            ]
+          },
+          {
+            "label": "매출총이익률 −1.3%p",
+            "text": "2분기 67.7%에서 3분기 66.4%로 낮아졌습니다.",
+            "type": "fact",
+            "source_ids": [
+              "management"
+            ]
+          }
+        ]
+      },
+      {
+        "layout": "impact",
+        "title": "매출이 늘어도\n남기는 비율은 다르다",
+        "body": "회사는 이익률 하락의 주원인으로 2나노 초기 양산을 꼽았습니다. 첨단칩 판매 증가와 생산 확대 부담이 함께 나타난 셈입니다.",
+        "source_ids": [
+          "management"
+        ],
+        "items": [
+          {
+            "label": "매출총이익률이란",
+            "text": "매출에서 매출원가를 뺀 이익의 비율입니다.",
+            "type": "analysis",
+            "source_ids": [
+              "management"
+            ]
+          },
+          {
+            "label": "이익 감소와는 다르다",
+            "text": "3분기 순이익은 전분기보다 8.0% 늘었습니다.",
+            "type": "fact",
+            "source_ids": [
+              "release",
+              "management"
+            ]
+          }
+        ]
+      },
+      {
+        "layout": "watch",
+        "title": "수요는 강하다.\n다음 쟁점은 생산 수익성",
+        "body": "이번 실적은 첨단칩 수요의 강세를 뒷받침합니다. 다음 분기에는 늘어난 매출에서 얼마를 남기는지가 쟁점입니다.",
+        "source_ids": [
+          "release",
+          "management"
+        ],
+        "items": [
+          {
+            "label": "회사 전망 · 4분기 매출",
+            "text": "523~543억달러로 성장 지속을 예상했습니다.",
+            "type": "fact",
+            "source_ids": [
+              "release"
+            ]
+          },
+          {
+            "label": "기준 · 매출총이익률 65~67%",
+            "text": "실제가 하단을 밑돌면 부담이 커진 원인을 다시 따져야 합니다.",
+            "type": "watch",
+            "source_ids": [
+              "release"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

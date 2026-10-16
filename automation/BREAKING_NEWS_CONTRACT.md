@@ -1,10 +1,10 @@
 # 시장 핵심 속보 — 3장 자동 게시
 
-## 최우선 게시 선별 기준 (2026-10-05)
+## 최우선 게시 선별·원고 기준 (2026-10-16)
 
-`automation/EDITORIAL_GUIDE.md`의 「하루 핵심 이슈 1~2편」 기준을 이 문서의 과거 게시 빈도·즉시 게시 지침보다 우선한다. 오전·오후·속보를 합쳐 한국 날짜별 최대 2편이며, 기본은 가장 좋은 1편이다. 두 번째는 핵심 주제와 독자에게 주는 결론이 다른 중요한 이슈일 때만 허용한다. 적격 소재가 없으면 건너뛴다. 예약 실행은 게시 의무가 아니라 선별 기회다.
+`automation/EDITORIAL_GUIDE.md`의 통합 하루 최대 1편 기준과 `automation/CONTENT_PLAYBOOK.md`의 원고 편집 판정을 우선한다. 오전·오후·속보를 합쳐 한국 날짜별 최대 1편이며 적격 소재가 없으면 0편이다. 예약 실행은 게시 의무가 아니라 선별 기회다. 속보도 한도 예외가 아니며, 정기 선별까지 기다릴 때 정보 가치가 크게 줄어드는 이유를 별도로 입증한다. 자정 이후 정례 발표로 새 슬롯을 먼저 채우지 않는다.
 
-모든 시리즈의 journal `published_at`을 Asia/Seoul로 환산해 실제 공개일 기준으로 합산한다. 같은 `media_id`는 한 번만 세며, 시작 및 제출 직전 전체 게시 기록·세 inbox·진행 중 Actions를 재확인한다. 오늘 2편 이상이면 추가 제출하지 않는다. 진행 중 publish 원고가 있으면 새 제출을 보류하고, reserved/전송 결과 불명확이면 재시도하지 않고 확인 필요를 알린다. 기록을 읽지 못했을 때 한도 충족 여부를 추정하지 않는다.
+모든 시리즈의 journal `published_at`을 Asia/Seoul로 환산해 실제 공개일 기준으로 합산한다. 같은 `media_id`는 한 번만 세며, 시작 및 제출 직전 전체 게시 기록·세 inbox·진행 중 Actions를 재확인한다. 오늘 1편 이상이면 추가 제출하지 않는다. 진행 중 publish 원고가 있으면 새 제출을 보류하고, reserved/전송 결과 불명확이면 재시도하지 않고 확인 필요를 알린다. 기록을 읽지 못했을 때 한도 충족 여부를 추정하지 않는다.
 
 최근 48시간과 최근 5편 중 더 넓은 범위를 대조한다. 같은 원인·영향 경로·결론의 후속 기사는 한 이야기로 묶고, 같은 날 같은 주제로 두 편을 만들지 않는다. 날짜·제목·발표기관·release_id가 다르다는 것만으로 새 콘텐츠로 보지 않는다. 기존 글을 삭제하거나 재게시하지 않는다. 카드 장수·검증·불변 식별자·중복 방지·필수 출처는 유지한다. 이 기준은 원고 제출 전 운영 지침이며 코드에 일일 총량 제한이 구현됐다는 뜻은 아니다.
 
@@ -26,9 +26,11 @@
 
 event.issuer와 release_id는 같은 공식 발표의 불변 식별자다. 예: us-fed / 2026-09-16-fomc-decision, us-bls / 2026-09-employment, us-bls / 2026-09-cpi. 기업 실적은 ticker·회계연도·분기·earnings를 포함한다. 같은 사건의 매체/제목/작성일을 바꿔 ID를 새로 만들지 않는다. `publication_key(packet)`은 두 ID의 SHA256 앞 24자로 `market-news-...`를 만들며 날짜가 달라도 같은 키다. 해당 journal이 published면 종료, reserved면 절대 재게시하지 않고 확인 필요를 알린다. 오전/오후 원고에 이미 동일 사건과 결론이 충분히 담겨 있으면 별도 속보를 반복하지 않는다. 기존 기사를 새 기사처럼 올리지 않는다.
 
-실질적으로 새로운 공식 결정·정정·수치가 나온 경우에만 별도 후속 발표로 취급한다. 표현 변화만으로 새 release_id를 쓰지 않는다. 여러 후보를 비교해 오전·오후·속보 합계 하루 최대 2편만 선정한다. 관련 소식은 하나의 핵심 이야기로 묶고 대표가 되는 실제 새 공식 발표의 불변 event ID를 유지한다. 같은 날 같은 주제는 한 편만 게시하며 숫자를 채우기 위한 게시를 하지 않는다.
+실질적으로 새로운 공식 결정·정정·수치가 나온 경우에만 별도 후속 발표로 취급한다. 표현 변화만으로 새 release_id를 쓰지 않는다. 여러 후보를 비교해 오전·오후·속보 합계 하루 최대 1편만 선정한다. 관련 소식은 하나의 핵심 이야기로 묶고 대표가 되는 실제 새 공식 발표의 불변 event ID를 유지한다. 같은 날 같은 주제는 한 편만 게시하며 숫자를 채우기 위한 게시를 하지 않는다.
 
 ## JSON과 실제 게시
+
+새 실게시 원고도 처음에는 `intent=preview, is_test=false`로 제출한다. 성공한 해당 preview의 원고·상태·JPEG 전체를 직접 검수한 다음, 같은 원고에 `intent=publish`와 실제 검수한 `reviewed_preview`를 추가해 전환한다. 아래 publish 표기는 이 두 번째 단계만 뜻한다. 내용·시각이 바뀌면 새 preview부터 검수한다.
 
 - schema_version=1, kind=breaking_news, intent=publish, is_test=false, created_at/snapshot_at=timezone 포함 ISO8601, publication_date_kst=작성일 한국 날짜.
 - event: issuer/release_id(영문 소문자·숫자·하이픈 3~80자), occurred_at(실제 공식 발표 시각; 아래 날짜 전용 규격에서는 생략), category(rates/inflation/employment/policy/geopolitics/systemic/major_earnings), status=confirmed, market_scope(broad_market/major_sector/systemic), primary_source_id, materiality(시장에 중요한 구체적 이유 25~300자).
