@@ -1,149 +1,131 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-15T15:52:35Z",
-  "snapshot_at": "2026-10-15T15:51:46Z",
-  "publication_date_kst": "2026-10-16",
+  "created_at": "2026-10-17T01:32:18Z",
+  "snapshot_at": "2026-10-17T01:32:18Z",
+  "publication_date_kst": "2026-10-17",
   "event": {
-    "issuer": "tsmc",
-    "release_id": "tsm-2026-q3-earnings",
+    "issuer": "us-white-house",
+    "release_id": "2026-10-16-graham-act-implementation",
     "time_precision": "date",
-    "occurred_date": "2026-10-15",
-    "source_timezone": "Asia/Taipei",
-    "category": "major_earnings",
+    "occurred_date": "2026-10-16",
+    "source_timezone": "America/New_York",
+    "category": "policy",
     "status": "confirmed",
-    "market_scope": "major_sector",
-    "primary_source_id": "release",
-    "materiality": "3분기 매출이 회사 전망 상단을 넘었고 4분기 매출 전망 중간값은 전분기보다 14.1% 높습니다. 첨단공정 수요가 이어진다는 새 근거로 미국 칩설계사와 국내 반도체 공급망을 판단하되, HPC 매출을 AI로 동일시하거나 국내 업체 납품 증가를 확정하지 않습니다."
+    "market_scope": "broad_market",
+    "primary_source_id": "order",
+    "materiality": "러시아산 에너지 주요 수입국 상품에 추가관세를 적용하는 조건을 공식 면제해 미국 수입기업의 원가 노출과 해당국 수출기업의 거래 위험을 바꿉니다. 10월18일 이후 신규 에너지 구매 조건의 적용 판단이 달라져 계약·통관 검토에 즉시 필요하며, 기존 러시아 제재 해제로 확대하지 않습니다."
   },
   "sources": [
     {
-      "id": "release",
+      "id": "order",
       "kind": "primary",
-      "title": "TSMC · 2026년 3분기 실적 및 4분기 전망 공식 발표",
-      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/526b65af7305df2dde6b9ece6812b1fdf1e49f9b/3Q26%20EarningsRelease.pdf",
-      "as_of": "2026-10-15 발표일 확인 · 정확한 공개 시각 미기재; 3분기 실적과 4분기 회사 전망",
-      "published_date": "2026-10-15",
-      "retrieved_at": "2026-10-15T15:51:46Z"
+      "title": "백악관 · 새 러시아·이란 제재법 이행 행정명령",
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/",
+      "as_of": "2026-10-16 발표일; 정확한 공개 시각 미기재 · 2조 관세, 4조 면제·기존 제재 유지",
+      "published_date": "2026-10-16",
+      "retrieved_at": "2026-10-17T01:32:18Z"
     },
     {
-      "id": "management",
-      "kind": "primary",
-      "title": "TSMC · 2026년 3분기 관리보고서",
-      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/f83780000ddc0c3b48e57a87eab6814c4ab35058/3Q26%20ManagementReport.pdf",
-      "as_of": "2026-10-15 보고서 · HPC 성장률·플랫폼 비중·2나노 초기 양산의 이익률 희석",
-      "published_date": "2026-10-15",
-      "retrieved_at": "2026-10-15T15:51:46Z"
-    },
-    {
-      "id": "guidance",
-      "kind": "primary",
-      "title": "TSMC · 3분기 실제 실적과 기존 전망 비교",
-      "url": "https://investor.tsmc.com/english/quarterly-results/2026/q3",
-      "as_of": "3분기 달러 매출 실제 467.2억, 기존 회사 전망 446~458억 · 시장 컨센서스 아님",
-      "retrieved_at": "2026-10-15T15:51:46Z"
+      "id": "report",
+      "kind": "secondary",
+      "title": "Reuters · 트럼프, 새 법의 러시아 연계 제재·관세 다수 면제",
+      "url": "https://www.reuters.com/world/europe/trump-waives-many-russia-related-sanctions-tariffs-before-they-were-take-effect-2026-10-17/",
+      "as_of": "2026-10-17 01:17 UTC 보도 · 10월16일 행정명령과 기존 법 배경",
+      "published_at": "2026-10-17T01:17:00Z",
+      "retrieved_at": "2026-10-17T01:32:18Z"
     }
   ],
   "summary": {
-    "instagram_caption": "TSMC는 다음 분기에도 첨단칩 수요가 이어진다고 봤습니다.\n매출 성장과 2나노 초기 양산의 수익성은 따로 봐야 합니다.\n#TSMC #반도체 #미국주식",
+    "instagram_caption": "러시아 원유를 사는 나라의 상품에 붙을 새 관세가 면제됐습니다.\n기존 러시아 제재나 다른 관세까지 사라진 결정은 아닙니다.\n#미국관세 #시장뉴스 #미국주식",
     "editorial_review": {
-      "improvement": "다음 분기 전망을 기존 회사 전망·전분기 실적과 비교하고 공급망 수혜의 조건을 구분",
-      "reason": "정례 실적 나열 대신 첨단공정 수요와 2나노 양산 수익성의 차이를 투자 판단으로 연결",
-      "application": "4분기 중간값 성장률 계산 기준, HPC와 AI의 차이, 국내 소재·장비사 실제 납품 조건과 다음 매출·이익률 확인 지표 제시",
-      "avoided_repetition": "전일 베이지북의 물가·소비기업 마진이나 최근 개별 인수·보험 실적 결론을 반복하지 않음"
+      "improvement": "숫자 하나와 정확한 면제 범위에 집중하고 정책 변경을 수입기업 비용으로 연결",
+      "reason": "새 관세 적용 면제를 기존 제재 전체 해제나 유가 하락 확정으로 오해하지 않게 함",
+      "application": "남긴 핵심은 신규 추가관세 적용 면제. 러시아산 상품500%·조항번호 나열·국가 추정·수혜주·주가 반응을 버림. 1장은 결정,2장은 비용 노출,3장은 면제의 경계와 변경 조건을 맡겨 반복 축소",
+      "avoided_repetition": "최근 베이지북의 가격전가 상식과 TSMC 공급망 문구, 실패한 엑슨모빌 실적 원고를 재활용하지 않음"
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "TSMC, 4분기 매출도\n14% 성장 전망",
-        "body": "10월 15일 제시한 4분기 매출은 523~543억달러입니다. 중간값은 3분기 실제 매출보다 14.1% 높아 첨단공정 수요의 지속을 예고했습니다.",
+        "title": "트럼프, 러시아 연계\n신규 100% 관세 적용 면제",
+        "body": "10월 16일 행정명령으로 러시아산 원유·가스 상위 5개 수입국 상품의 추가관세 조항도 면제했습니다. 새 법에 따른 조치입니다.",
         "source_ids": [
-          "release",
-          "guidance"
+          "order",
+          "report"
         ],
         "items": [
           {
-            "label": "3분기, 회사 예상도 넘었다",
-            "text": "달러 매출 467.2억으로 기존 회사 전망 상단 458억을 웃돌았습니다. 시장 컨센서스와의 비교는 아닙니다.",
+            "label": "적용 조건",
+            "text": "10월 18일 이후 신규 구매 시 100%를 더 매기는 조항입니다.",
             "type": "fact",
             "source_ids": [
-              "guidance"
+              "order"
             ]
           },
           {
-            "label": "성장의 중심은 HPC",
-            "text": "고성능컴퓨팅 매출은 전분기보다 22% 늘어 전체의 68%를 차지했습니다. HPC 전체가 AI 매출은 아닙니다.",
+            "label": "면제 범위",
+            "text": "새 법의 관세는 면제하지만 기존 러시아 제재는 유지합니다.",
             "type": "fact",
             "source_ids": [
-              "management"
+              "order"
             ]
           }
         ]
       },
       {
         "layout": "impact",
-        "title": "미국 칩설계사는 수요,\n국내 장비사는 납품을 본다",
-        "body": "위탁생산 성장 전망은 첨단칩 수요를 점검할 근거입니다. 다만 TSMC 매출 증가가 고객사 판매나 국내 공급업체 이익 증가를 보장하지는 않습니다.",
+        "title": "미국 수입기업은\n새 관세 부담을 피합니다",
+        "body": "해당 추가관세가 붙지 않으면 미국 수입기업의 원가 상승 압력이 줄어듭니다. 기존 관세까지 낮춘 결정은 아닙니다.",
         "source_ids": [
-          "release",
-          "management"
+          "order"
         ],
         "items": [
           {
-            "label": "칩설계사에 전해지는 경로",
-            "text": "첨단공정 양산 확대는 신제품 공급을 뒷받침할 수 있습니다. 최종 고객의 구매가 따라야 설계사 매출로 이어집니다.",
-            "type": "analysis",
+            "label": "에너지만의 문제는 아닙니다",
+            "text": "해당국에서 미국으로 들여오는 상품의 관세 조항입니다.",
+            "type": "fact",
             "source_ids": [
-              "release"
+              "order"
             ]
           },
           {
-            "label": "국내 공급망은 납품 확인",
-            "text": "3분기 설비투자는 138.4억달러입니다. 국내 소재·장비사의 수혜는 실제 납품 계약이 늘어야 한다는 조건이 붙습니다.",
+            "label": "이익에 반영되는 조건",
+            "text": "실제 효과는 수입 비중과 계약상 관세 부담 주체에 달렸습니다.",
             "type": "analysis",
             "source_ids": [
-              "management"
+              "order"
             ]
           }
         ]
       },
       {
         "layout": "watch",
-        "title": "매출은 커져도\n2나노 초기 비용은 남는다",
-        "body": "3분기 매출총이익률은 67.7%에서 66.4%로 낮아졌습니다. 회사는 주원인을 2나노 초기 양산의 이익률 희석으로 설명했습니다.",
+        "title": "새 장벽은 면제됐지만\n기존 제재는 남습니다",
+        "body": "현재 확인된 변화는 새 무역장벽의 적용 면제입니다. 러시아산 원유 공급 확대나 유가 하락을 확정한 조치는 아닙니다.",
         "source_ids": [
-          "management"
+          "order"
         ],
         "items": [
           {
-            "label": "확인 ① 성장의 이행",
-            "text": "4분기 실제 매출이 523~543억달러에 닿는지 봅니다. 고객 주문 축소나 생산 차질은 현재 전망을 약하게 만듭니다.",
+            "label": "판단을 바꿀 조건",
+            "text": "대통령·국무장관의 추가 결정으로 면제가 바뀔 수 있습니다.",
             "type": "watch",
             "source_ids": [
-              "release"
+              "order"
             ]
           },
           {
-            "label": "확인 ② 양산의 수익성",
-            "text": "4분기 매출총이익률 전망은 65~67%입니다. 실제 이익률이 이를 벗어나면 매출 성장의 이익 효과도 다시 봐야 합니다.",
+            "label": "다음 확인",
+            "text": "미 무역대표부의 적용 지침과 면제 변경 공고를 확인합니다.",
             "type": "watch",
             "source_ids": [
-              "release",
-              "management"
+              "order"
             ]
           }
         ]
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 38764226511,
-    "image_sha256": [
-      "8c472c95b2baa28c28bc7519e0cc4debff15f93fd950665e80cea0d23a7366ab",
-      "f81f95d9c4ab6dcf47882b3f51d339b4c77ee08c52f3efb0dd43edef46a1937d",
-      "f424efa2d5bb4c873e2a1331d6249e9bc2e2b55288d515df9b4062be61d6bb8f"
     ]
   }
 }
