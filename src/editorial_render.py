@@ -38,8 +38,10 @@ def render_cards(packet, summary, docs_cards_dir, slug):
     fonts = card_fonts(Path(cfg.OUT_DIR) / 'font-cache')
     pages = summary['visual_story']
     count = len(pages)
-    source_map = {s['id']:s for s in packet['sources']}
     date_label = packet['publication_date_kst'] + ' · 자료 출처는 상세 링크'
+    if packet.get('kind') == 'breaking_news':
+        from breaking_packet import release_label
+        date_label = '발표 ' + release_label(packet) + ' · 확인 ' + timestamp(packet['snapshot_at'], 'snapshot_at').astimezone(KST).strftime('%m.%d %H:%M') + ' KST'
     paths = []
     with sync_playwright() as p:
         options = {'headless': True}

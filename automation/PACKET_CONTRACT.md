@@ -1,5 +1,9 @@
 # ChatGPT → GitHub 카드뉴스 인계 규약
 
+## 신규 원고의 이미지 제작 경로 (2026-10-20 구현)
+
+새 원고는 `VISUAL_ASSET_CONTRACT.md`와 현재 `src/editorial_visuals.py`, `src/editorial_render.py`를 읽고 `summary.design="editorial-v2"` 및 장마다 다른 `visual`을 사용한다. 해당 계약의 내용 해시 경로에 새 이미지 파일을 추가하는 것이 승인된 제작 범위다. 기존 이미지·게시물은 덮어쓰지 않는다. 시리즈별 inbox 외 원고 변경 금지는 유지하며, 이 새 이미지 추가 경로가 명시적 예외다. 기존 코드·settings·권한·journal을 일상 제작에서 임의 변경하지 않는다. 정상 preview의 실제 전체 이미지를 검수하고 같은 바이트를 게시한다.
+
 ## 최우선 게시 선별·원고 기준 (2026-10-20)
 
 `automation/EDITORIAL_GUIDE.md`의 통합 하루 최대 2편 기준과 `automation/CONTENT_PLAYBOOK.md`의 원고 편집 판정을 우선한다. 오전·오후·속보를 합쳐 한국 날짜별 최대 2편이며 적격 소재가 없으면 0편이다. 예약 실행은 게시 의무가 아니라 선별 기회다. 속보도 한도 예외가 아니며, 정기 선별까지 기다릴 때 정보 가치가 크게 줄어드는 이유를 별도로 입증한다. 자정 이후 정례 발표로 새 슬롯을 먼저 채우지 않는다.
@@ -120,3 +124,4 @@ design_preview=true는 automation/examples/visual-variety-preview.json의 고정
 2026-10-02 사용자가 확인한 새 MU 디자인을 오늘 다시 게시하도록 명시적으로 승인했습니다. 이 한 건은 automation/repost_approvals의 정확한 원고 해시, 기존 게시 ID, 검토 완료 이미지 7개 해시, 승인·만료 시각이 모두 일치할 때만 별도 `us-stock-거래일-repost-원고해시앞12자리` 기록으로 게시합니다. 재실행 시 이 별도 기록으로도 중복을 막습니다. 기존 게시 기록은 보존합니다. 예약 작업은 승인 파일을 만들거나 수정하지 않으며, 평소 거래일당 한 게시물 규칙을 계속 지킵니다.
 
 매일 원고 개선 절차는 EDITORIAL_GUIDE.md의 '매일 한 가지씩 개선하기'를 따릅니다. summary.editorial_review는 선택적인 내부 편집 메모이며, 독자용 카드·캡션에 그대로 출력하지 않습니다.
+
