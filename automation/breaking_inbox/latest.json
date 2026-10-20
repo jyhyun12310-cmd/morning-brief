@@ -1,139 +1,156 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-17T01:32:18Z",
-  "snapshot_at": "2026-10-17T01:32:18Z",
-  "publication_date_kst": "2026-10-17",
+  "created_at": "2026-10-20T13:04:07Z",
+  "snapshot_at": "2026-10-20T13:04:07Z",
+  "publication_date_kst": "2026-10-20",
   "event": {
-    "issuer": "us-white-house",
-    "release_id": "2026-10-16-graham-act-implementation",
-    "time_precision": "date",
-    "occurred_date": "2026-10-16",
-    "source_timezone": "America/New_York",
-    "category": "policy",
+    "issuer": "general-motors",
+    "release_id": "gm-fy2026-q3-earnings",
+    "occurred_at": "2026-10-20T06:30:00-04:00",
+    "category": "major_earnings",
     "status": "confirmed",
-    "market_scope": "broad_market",
-    "primary_source_id": "order",
-    "materiality": "러시아산 에너지 주요 수입국 상품에 추가관세를 적용하는 조건을 공식 면제해 미국 수입기업의 원가 노출과 해당국 수출기업의 거래 위험을 바꿉니다. 10월18일 이후 신규 에너지 구매 조건의 적용 판단이 달라져 계약·통관 검토에 즉시 필요하며, 기존 러시아 제재 해제로 확대하지 않습니다."
+    "market_scope": "major_sector",
+    "primary_source_id": "gm-release",
+    "materiality": "미국 주요 완성차 GM이 기존 60억달러 매입을 완료하고 새 200억달러 자사주 매입을 승인했습니다. 정례 실적 수치만의 변화가 아니라 자본 배분 결정입니다. 연간 영업이익 중간값 유지와 현금흐름 전망 상향을 구분해야 하므로, 다음 정기 선별까지 기다려 미국 거래일을 넘기면 새 결정의 의미를 판단할 적시성이 줄어듭니다."
   },
   "sources": [
     {
-      "id": "order",
+      "id": "gm-release",
       "kind": "primary",
-      "title": "백악관 · 새 러시아·이란 제재법 이행 행정명령",
-      "url": "https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/",
-      "as_of": "2026-10-16 발표일; 정확한 공개 시각 미기재 · 2조 관세, 4조 면제·기존 제재 유지",
-      "published_date": "2026-10-16",
-      "retrieved_at": "2026-10-17T01:32:18Z"
+      "title": "GM Q3 2026 Press Release and Financial Highlights",
+      "url": "https://investor.gm.com/static-files/c79ce1e6-c1f9-41cc-b503-1b98e1dbdfb2",
+      "as_of": "2026-10-20 발표 · 2026년 3분기(9월 30일 종료) 실적 및 연간 회사 전망",
+      "retrieved_at": "2026-10-20T13:01:34Z",
+      "published_at": "2026-10-20T06:30:00-04:00"
     },
     {
-      "id": "report",
-      "kind": "secondary",
-      "title": "Reuters · 트럼프, 새 법의 러시아 연계 제재·관세 다수 면제",
-      "url": "https://www.reuters.com/world/europe/trump-waives-many-russia-related-sanctions-tariffs-before-they-were-take-effect-2026-10-17/",
-      "as_of": "2026-10-17 01:17 UTC 보도 · 10월16일 행정명령과 기존 법 배경",
-      "published_at": "2026-10-17T01:17:00Z",
-      "retrieved_at": "2026-10-17T01:32:18Z"
+      "id": "gm-deck",
+      "kind": "primary",
+      "title": "General Motors Q3 2026 Earnings presentation, pp. 4–5, 11, 13, 17",
+      "url": "https://investor.gm.com/static-files/65b797d0-a099-4994-8dfb-44f806b36263",
+      "as_of": "2026-10-20 발표 · 2026년 3분기 실적·원가와 현금흐름 설명",
+      "retrieved_at": "2026-10-20T13:01:34Z",
+      "published_date": "2026-10-20"
     }
   ],
   "summary": {
-    "instagram_caption": "러시아 원유를 사는 나라의 상품에 붙을 새 관세가 면제됐습니다.\n기존 러시아 제재나 다른 관세까지 사라진 결정은 아닙니다.\n#미국관세 #시장뉴스 #미국주식",
+    "design": "editorial-v2",
+    "instagram_caption": "GM이 새로 승인한 200억달러의 목적지는 자기주식입니다. 커진 매입 한도 뒤에서 실제 집행을 뒷받침할 현금과 원가 부담을 짚습니다. #GM #미국주식 #자사주매입",
     "editorial_review": {
-      "improvement": "숫자 하나와 정확한 면제 범위에 집중하고 정책 변경을 수입기업 비용으로 연결",
-      "reason": "새 관세 적용 면제를 기존 제재 전체 해제나 유가 하락 확정으로 오해하지 않게 함",
-      "application": "남긴 핵심은 신규 추가관세 적용 면제. 러시아산 상품500%·조항번호 나열·국가 추정·수혜주·주가 반응을 버림. 1장은 결정,2장은 비용 노출,3장은 면제의 경계와 변경 조건을 맡겨 반복 축소",
-      "avoided_repetition": "최근 베이지북의 가격전가 상식과 TSMC 공급망 문구, 실패한 엑슨모빌 실적 원고를 재활용하지 않음"
+      "improvement": "10월 17일 관세·16일 TSMC·15일 베이지북·14일 UnitedHealth·Bumble 상세 원고와 표지를 비교했습니다. 글자만 이어지는 화면과 내용에 맞지 않는 사진을 줄이고 장마다 결정·비용·현금의 다른 이미지를 연결했습니다.",
+      "reason": "관세 글의 반복되는 단서와 TSMC 표지의 숫자 밀도를 줄이는 것이 목표입니다. GM은 새 매입 승인, 이익 유지, 현금 전망의 차이가 핵심이라 매출·EPS·배당·국내 수혜주 나열을 버렸습니다.",
+      "application": "표지는 '목적지'로 자사주 매입을 바로 설명하고, 2장은 실적과 비용, 3장은 현금 전망과 실제 집행 조건으로 전진합니다. 제목 후보 'GM, 200억달러의 목적지는 자기주식', '트럭이 번 돈은 어디로 가나', '자사주 매입의 연료는 남는 현금' 중 가장 구체적인 첫 안을 선택했습니다.",
+      "avoided_repetition": "200억달러는 표지에만, 영업이익 중간값은 첫 근거에만 두었습니다. 2장에는 비용, 3장에는 현금과 관세 시점 효과를 남겼습니다. 최근 5편과 같은 사건이 아니며 다음 편은 또 다른 비유·주장을 고릅니다."
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "트럼프, 러시아 연계\n신규 100% 관세 적용 면제",
-        "body": "10월 16일 행정명령으로 러시아산 원유·가스 상위 5개 수입국 상품의 추가관세 조항도 면제했습니다. 새 법에 따른 조치입니다.",
+        "title": "GM, 200억달러의\n목적지는 자기주식",
+        "body": "새 자사주 매입을 승인했습니다. 한꺼번에 쓰는 돈이 아니라 여러 해에 걸쳐 쓸 한도입니다.",
         "source_ids": [
-          "order",
-          "report"
+          "gm-release",
+          "gm-deck"
         ],
         "items": [
           {
-            "label": "적용 조건",
-            "text": "10월 18일 이후 신규 구매 시 100%를 더 매기는 조항입니다.",
+            "label": "이전 매입 완료",
+            "text": "올해 승인했던 60억달러 프로그램을 마쳤습니다.",
             "type": "fact",
             "source_ids": [
-              "order"
+              "gm-release"
             ]
           },
           {
-            "label": "면제 범위",
-            "text": "새 법의 관세는 면제하지만 기존 러시아 제재는 유지합니다.",
+            "label": "이익 눈높이는 유지",
+            "text": "연간 조정 영업이익 전망의 중간값은 150억달러로 같습니다.",
             "type": "fact",
             "source_ids": [
-              "order"
+              "gm-release"
             ]
           }
-        ]
+        ],
+        "visual": {
+          "path": "automation/visual_assets/d8b3b27918ca51c902faf737fcd1f0fbfa258f58e30114ff00e8564fe91f0a93.jpg",
+          "sha256": "d8b3b27918ca51c902faf737fcd1f0fbfa258f58e30114ff00e8564fe91f0a93",
+          "alt": "금속 고리 길 위에서 무표기 주식 증서를 싣는 코발트 트럭의 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "제작 지시 요약: 오프화이트 배경, 코발트색 무상표 픽업과 무표기 증서, 금속 순환 도로로 자사주 매입을 표현한 편집 개념 이미지. 글자·숫자·공식 로고 없이 가로 구도."
+        }
       },
       {
         "layout": "impact",
-        "title": "미국 수입기업은\n새 관세 부담을 피합니다",
-        "body": "해당 추가관세가 붙지 않으면 미국 수입기업의 원가 상승 압력이 줄어듭니다. 기존 관세까지 낮춘 결정은 아닙니다.",
+        "title": "잘 팔리는 트럭에\n원가가 따라붙는다",
+        "body": "3분기 조정 영업이익은 전년보다 21.6% 늘었습니다. 회사는 올해 비용 부담 예상도 높였습니다.",
         "source_ids": [
-          "order"
+          "gm-release",
+          "gm-deck"
         ],
         "items": [
           {
-            "label": "에너지만의 문제는 아닙니다",
-            "text": "해당국에서 미국으로 들여오는 상품의 관세 조항입니다.",
+            "label": "북미 이익률",
+            "text": "전년 동기 6.2% → 이번 분기 8.7%. 조정 기준입니다.",
             "type": "fact",
             "source_ids": [
-              "order"
+              "gm-release"
             ]
           },
           {
-            "label": "이익에 반영되는 조건",
-            "text": "실제 효과는 수입 비중과 계약상 관세 부담 주체에 달렸습니다.",
-            "type": "analysis",
+            "label": "원가 부담 예상",
+            "text": "원자재·물류·DRAM 비용 증가 부담: 15~20억 → 약 20억달러.",
+            "type": "fact",
             "source_ids": [
-              "order"
+              "gm-deck"
             ]
           }
-        ]
+        ],
+        "visual": {
+          "path": "automation/visual_assets/e651e4eb9f3a90ede724871fa9bcf5aaa4c643ff806191566cb4d6b544f9639b.jpg",
+          "sha256": "e651e4eb9f3a90ede724871fa9bcf5aaa4c643ff806191566cb4d6b544f9639b",
+          "alt": "검정 배경의 픽업 바퀴와 구리 코일·메모리 부품으로 자동차 원가를 표현한 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "제작 지시 요약: 짙은 검정 배경의 자동차 바퀴, 구리 코일, 메모리 모듈과 파란 운반 벨트. 자동차 제조 비용을 설명하는 정물 개념 이미지. 실제 기계 구조나 제품 사진이 아니며 글자·숫자·로고 없이 가로 구도."
+        }
       },
       {
         "layout": "watch",
-        "title": "새 장벽은 면제됐지만\n기존 제재는 남습니다",
-        "body": "현재 확인된 변화는 새 무역장벽의 적용 면제입니다. 러시아산 원유 공급 확대나 유가 하락을 확정한 조치는 아닙니다.",
+        "title": "주식 매입의 연료는\n남는 현금입니다",
+        "body": "영업이익 눈높이보다 주주환원 여력이 커진 발표입니다. 다만 3분기 현금 증가에는 관세 관련 시점 효과도 섞였습니다.",
         "source_ids": [
-          "order"
+          "gm-release",
+          "gm-deck"
         ],
         "items": [
           {
-            "label": "판단을 바꿀 조건",
-            "text": "대통령·국무장관의 추가 결정으로 면제가 바뀔 수 있습니다.",
-            "type": "watch",
+            "label": "연간 현금 전망",
+            "text": "자동차 부문 조정 잉여현금: 95~115억 → 115~125억달러.",
+            "type": "fact",
             "source_ids": [
-              "order"
+              "gm-release"
             ]
           },
           {
-            "label": "다음 확인",
-            "text": "미 무역대표부의 적용 지침과 면제 변경 공고를 확인합니다.",
-            "type": "watch",
+            "label": "판단을 바꿀 기준",
+            "text": "현금이 새 전망에 못 미치면, 실제 매입 속도도 다시 봐야 합니다.",
+            "type": "analysis",
             "source_ids": [
-              "order"
+              "gm-deck"
             ]
           }
-        ]
+        ],
+        "visual": {
+          "path": "automation/visual_assets/9c0b18816ee9c56ebbea27deda15ec643cff9ea7b6c83c22ea859f6d6e010c1b.jpg",
+          "sha256": "9c0b18816ee9c56ebbea27deda15ec643cff9ea7b6c83c22ea859f6d6e010c1b",
+          "alt": "투명 저장조의 은색 토큰에 액체를 붓는 연료 노즐로 현금 여력을 표현한 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "제작 지시 요약: 오프화이트 배경, 크롬 연료 노즐이 투명 액체를 유리 저장조에 붓고 저장조에 은색 무표기 토큰과 빈 증서가 놓인 편집 개념 이미지. 현금이 주식 매입의 연료라는 비유이며 실제 돈·계약이나 사건 사진이 아니다."
+        }
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 38991327653,
-    "image_sha256": [
-      "8a4c51882e3715a9d9d5c2dc7b43479e198c3821815c1a1d119946b4cbe95677",
-      "4a42e4f932e181f59b74040afb56632b33d40a08ad5d0e817f285d3e15b5d7dd",
-      "53cc3c26b2642f16019804f1ea75031aab5ebd6f693c5e39b217aad35a4981be"
     ]
   }
 }
