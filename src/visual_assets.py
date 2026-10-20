@@ -120,8 +120,16 @@ def _raster(blob: bytes) -> tuple[str, int, int]:
     raise ValueError('정상 PNG/JPEG/WebP 사진이 아닙니다')
 
 
+def _event_photo(text: str) -> bool:
+    return bool(re.search(r'\b(protests?|protesters?|activists?|activism|demonstrations?|'
+                          r'rall(?:y|ies)|blockades?|extinction rebellion)\b', text, re.I))
+
+
 def _validate_local(item) -> dict | None:
     if not isinstance(item, dict) or not all(item.get(k) for k in ('path', 'caption', 'credit')):
+        return None
+    if item.get('kind') in {'company_photo', 'industry_reference'} and _event_photo(
+            ' '.join(str(item.get(k) or '') for k in ('title', 'description', 'categories'))):
         return None
     path = Path(str(item['path']))
     path = path if path.is_absolute() else ROOT / path
@@ -223,6 +231,11 @@ def _candidate(page, markers):
     description = meta.get('ImageDescription', '')
     text = ' '.join((title, description, meta.get('Categories', ''))).lower().replace('_', ' ')
     if not any(re.search(r'(?<!\w)' + re.escape(m.lower()) + r'(?!\w)', text) for m in markers):
+        return None
+    # A company name in protest/event metadata does not make the photograph
+    # a facility/product image. These automated photos are business context,
+    # not verified illustrations of a particular news event.
+    if _event_photo(text):
         return None
     if re.search(r'\b(svg|logo|icon|diagram|chart|illustration|drawing|screenshot|map|flag|rendering|artwork|infographic)\b', title.lower()):
         return None
@@ -371,3 +384,4 @@ def prepare_visual_assets(data: dict) -> dict:
     (folder / 'credits.json').write_text(json.dumps(assets, ensure_ascii=False, indent=2), encoding='utf-8')
     data['visual_assets'] = assets
     return data
+

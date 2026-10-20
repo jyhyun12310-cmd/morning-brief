@@ -6,6 +6,7 @@ on:
       - 'automation/examples/visual-variety-preview.json'
       - 'automation/examples/design-*-preview.json'
       - 'src/reviewed_preview.py'
+      - 'src/visual_assets.py'
       - 'src/card.html'
       - 'src/editorial_theme.css'
       - 'src/market_render.py'

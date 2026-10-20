@@ -40,3 +40,49 @@ def test_layout_runner_rejects_production_inputs(tmp_path, monkeypatch, intent, 
         runner.main()
     assert not calls
     assert not (tmp_path / 'out').exists()
+
+
+def commons_photo():
+    return {'title': 'File:ExxonMobil refinery.jpg', 'imageinfo': [{
+        'mime': 'image/jpeg',
+        'url': 'https://upload.wikimedia.org/test.jpg',
+        'descriptionurl': 'https://commons.wikimedia.org/wiki/File:Test.jpg',
+        'extmetadata': {
+            'ImageDescription': {'value': 'ExxonMobil refinery'},
+            'Artist': {'value': 'Test photographer'},
+            'LicenseShortName': {'value': 'CC BY-SA 4.0'},
+            'LicenseUrl': {'value': 'https://creativecommons.org/licenses/by-sa/4.0/'},
+        },
+    }]}
+
+
+@pytest.mark.parametrize('field,value', [
+    ('title', 'File:Extinction Rebellion ExxonMobil Blockade.jpg'),
+    ('ImageDescription', 'Protesters outside ExxonMobil headquarters'),
+    ('Categories', 'ExxonMobil|Climate protests'),
+    ('ImageDescription', 'Environmental activists at ExxonMobil'),
+    ('ImageDescription', 'Demonstration at ExxonMobil'),
+])
+def test_company_name_does_not_turn_event_into_facility_photo(field, value):
+    from visual_assets import _candidate
+    page = commons_photo()
+    if field == 'title':
+        page[field] = value
+    else:
+        page['imageinfo'][0]['extmetadata'][field] = {'value': value}
+    assert _candidate(page, ['ExxonMobil']) is None
+
+
+def test_legitimate_company_facility_still_allowed():
+    from visual_assets import _candidate
+    assert _candidate(commons_photo(), ['ExxonMobil']) is not None
+
+
+def test_cached_automated_event_photo_is_rejected(tmp_path):
+    from PIL import Image
+    from visual_assets import _validate_local
+    path = tmp_path / 'photo.jpg'
+    Image.new('RGB', (800, 600), 'white').save(path)
+    item = dict(path=str(path), caption='Company facility', credit='Test author',
+                kind='company_photo', title='Extinction Rebellion ExxonMobil Blockade')
+    assert _validate_local(item) is None
