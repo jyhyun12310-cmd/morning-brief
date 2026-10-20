@@ -50,7 +50,12 @@ def build_packet(packet, *, out_dir='out', docs_dir='docs', pages_base='',
         import config as cfg
         cfg.DOCS_DIR = str(docs_dir)
         cfg.OUT_DIR = str(out_dir)
-        if packet.get('kind') in ('market_brief', 'breaking_news'):
+        if packet.get('summary', {}).get('design') == 'editorial-v2':
+            from editorial_render import render_cards as editorial_cards, render_detail_page as editorial_detail
+            render_cards = lambda data, summary, folder, slug: editorial_cards(packet, summary, folder, slug)
+            render_detail_page = lambda data, summary, slug: editorial_detail(packet, summary, slug)
+            prepare_visual_assets = lambda data: data
+        elif packet.get('kind') in ('market_brief', 'breaking_news'):
             from market_render import render_cards, render_detail_page
             prepare_visual_assets = lambda data: data
         else:
@@ -127,3 +132,4 @@ if __name__ == '__main__':
     except Exception as exc:
         log.error('Build stopped: %s', str(exc))
         raise SystemExit(1)
+
