@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "intent": "preview",
+  "is_test": true,
+  "created_at": "2026-10-16T23:40:43Z",
+  "publication_date_kst": "2026-10-17",
+  "market": {
+    "ticker": "XOM",
+    "name": "ExxonMobil",
+    "session_date": "2026-10-16",
+    "session_close_at": "2026-10-16T16:00:00-04:00",
+    "price_basis": "regular_close",
+    "currency": "USD",
+    "close": 178.98,
+    "previous_close": 174.68,
+    "change_pct": 2.46,
+    "source_id": "price"
+  },
+  "sources": [
+    {
+      "id": "update",
+      "title": "ExxonMobil · 3Q 2026 Market and Planned Impacts to Earnings",
+      "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/f8k3q991101626.htm",
+      "as_of": "2026-10-16 8-K 첨부; 3분기 대 2분기 선택 요인의 회사 추정·확정 실적 아님",
+      "retrieved_at": "2026-10-16T23:40:43Z"
+    },
+    {
+      "id": "filing",
+      "title": "ExxonMobil · 2026-10-16 Form 8-K",
+      "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/xom-20261016.htm",
+      "as_of": "2026-10-16 사건·공시일; 정확한 공개 시각은 본문 미기재",
+      "retrieved_at": "2026-10-16T23:40:43Z"
+    },
+    {
+      "id": "schedule",
+      "title": "ExxonMobil · 3분기 실적 발표 일정",
+      "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1212/exxonmobil-to-release-third-quarter-2026-financial-results",
+      "as_of": "2026-10-16 공지; 결과 10월30일 05:30 CT, 설명회 08:30 CT 예정",
+      "retrieved_at": "2026-10-16T23:40:43Z"
+    },
+    {
+      "id": "price",
+      "title": "Stock Analysis / S&P Global · XOM 정규장 종가",
+      "url": "https://stockanalysis.com/stocks/xom/history/",
+      "as_of": "2026-10-16 $178.98, 10-15 $174.68; split-adjusted Close, USD; 시간외 제외",
+      "retrieved_at": "2026-10-16T23:40:36Z"
+    },
+    {
+      "id": "nyse",
+      "title": "NYSE · 2026 거래 달력과 정규장 시간",
+      "url": "https://www.nyse.com/trade/hours-calendars",
+      "as_of": "2026-10-16 정상 거래일·16:00 America/New_York 폐장",
+      "retrieved_at": "2026-10-16T23:40:36Z"
+    },
+    {
+      "id": "nasdaq",
+      "title": "Nasdaq · 2026 휴장·조기폐장 달력",
+      "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
+      "as_of": "2026-10-16 휴장·조기폐장 없음; 정상 16:00 ET",
+      "retrieved_at": "2026-10-16T23:40:36Z"
+    }
+  ],
+  "metrics": [],
+  "summary": {
+    "market_basis": {
+      "ticker": "XOM",
+      "session_date": "2026-10-16",
+      "price_basis": "regular_close",
+      "currency": "USD",
+      "close": 178.98,
+      "previous_close": 174.68,
+      "change_pct": 2.46
+    },
+    "central_question": "엑슨모빌의 정제마진 효과 45억달러는 어디서 오는 이익일까요?",
+    "thesis": "엑슨모빌은 정제 제품 마진 변화가 3분기 이익을 전분기보다 45억달러 높이는 요인이라고 추정했습니다. 원유 가격 효과는 반대였고, 이 공시는 전체 이익 전망이 아닌 일부 요인의 추정입니다.",
+    "edition": "미장, 한 겹 더. · 10월 17일",
+    "instagram_caption": "엑슨모빌의 새 공시는 원유를 파는 이익과 연료로 가공하는 이익을 갈라 보여줍니다.\n45억달러는 분기 순이익이 아니라 정제마진 변화의 추정 효과입니다.\n#엑슨모빌 #에너지 #미국주식",
+    "sources": [
+      {
+        "id": "update",
+        "title": "ExxonMobil · 3Q 2026 Market and Planned Impacts to Earnings",
+        "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/f8k3q991101626.htm",
+        "as_of": "2026-10-16 8-K 첨부; 3분기 대 2분기 선택 요인의 회사 추정·확정 실적 아님"
+      },
+      {
+        "id": "filing",
+        "title": "ExxonMobil · 2026-10-16 Form 8-K",
+        "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/xom-20261016.htm",
+        "as_of": "2026-10-16 사건·공시일; 정확한 공개 시각은 본문 미기재"
+      },
+      {
+        "id": "schedule",
+        "title": "ExxonMobil · 3분기 실적 발표 일정",
+        "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1212/exxonmobil-to-release-third-quarter-2026-financial-results",
+        "as_of": "2026-10-16 공지; 결과 10월30일 05:30 CT, 설명회 08:30 CT 예정"
+      },
+      {
+        "id": "price",
+        "title": "Stock Analysis / S&P Global · XOM 정규장 종가",
+        "url": "https://stockanalysis.com/stocks/xom/history/",
+        "as_of": "2026-10-16 $178.98, 10-15 $174.68; split-adjusted Close, USD; 시간외 제외"
+      },
+      {
+        "id": "nyse",
+        "title": "NYSE · 2026 거래 달력과 정규장 시간",
+        "url": "https://www.nyse.com/trade/hours-calendars",
+        "as_of": "2026-10-16 정상 거래일·16:00 America/New_York 폐장"
+      },
+      {
+        "id": "nasdaq",
+        "title": "Nasdaq · 2026 휴장·조기폐장 달력",
+        "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
+        "as_of": "2026-10-16 휴장·조기폐장 없음; 정상 16:00 ET"
+      }
+    ],
+    "evidence_notes": [
+      {
+        "id": "ev_new",
+        "claim": "10월16일 Form 8-K EX99.1은 3Q26 대 2Q26 선택된 시장·예정 요인의 이익 영향을 회사 추정으로 제시한다. Energy Products 마진 변화 +45억달러이며 전체 분기 이익 전망이 아니다.",
+        "source_ids": [
+          "filing",
+          "update"
+        ]
+      },
+      {
+        "id": "ev_price",
+        "claim": "같은 S&P Global 제공·분할조정 정규장 Close 기준 XOM 10월16일178.98달러,15일174.68달러, 변동률(178.98/174.68-1)*100=2.46165%로 표시2.46%. 공시가 등락 전체 원인이라고 단정하지 않는다.",
+        "source_ids": [
+          "price"
+        ]
+      },
+      {
+        "id": "ev_segments",
+        "claim": "공시의 동일한 전분기 대비 요인 비교에서 Upstream 액체가격 -13억달러, 가스가격 +3억달러, Energy Products 마진 +45억달러, Chemical Products 마진 -6억달러다. 이전 분기 물량을 적용한 시장 효과이며 확정 부문 순이익이 아니다.",
+        "source_ids": [
+          "update"
+        ]
+      },
+      {
+        "id": "ev_timing",
+        "claim": "실물·파생상품의 손익 반영 시점 차이 추정은 3분기 합계 -25억달러, Energy Products -19억달러다. 회사 조정이익(non-GAAP)은 이 효과를 제외하며 미국회계기준 순이익의 대체물이 아니다.",
+        "source_ids": [
+          "update"
+        ]
+      },
+      {
+        "id": "ev_limits",
+        "claim": "공시는 운영 성과·개선 활동·일부 비예정 중단 등을 포함하지 않으며 이 요인들이 시장·예정 요인보다 클 수 있다고 밝힌다. 45억달러를 기존 이익에 더해 최종 분기이익을 계산하지 않는다.",
+        "source_ids": [
+          "update"
+        ]
+      },
+      {
+        "id": "ev_next",
+        "claim": "10월16일 회사 일정 공지는 3분기 확정실적을 10월30일 오전5:30 미국 중부시간, 설명회를 오전8:30으로 제시한다. 아직 발표된 결과가 아니다.",
+        "source_ids": [
+          "schedule"
+        ]
+      }
+    ],
+    "editorial_review": {
+      "improvement": "원유·정유를 하나로 묶지 않고 새 공시의 사업별 이익 요인을 같은 전분기 기준으로 분리",
+      "reason": "유가 상승 기사와 회사 이익을 곧바로 연결하는 대신 실제 정제마진 효과가 의미하는 범위를 설명",
+      "application": "남긴 주장은 정제마진이 현재 추정의 중심이라는 점. 컨센서스·유가 예언·국내 수혜주·전체 이익 합산을 버리고 4장에서 화학의 반대 효과, 5장에서 회계 시점 차이를 추가",
+      "avoided_repetition": "베이지북의 가격 전가 상식과 TSMC 공급망 조건을 재사용하지 않음. 45억달러는 표지에서 제시하고 이후 본문에서는 사업 구조·공시 범위로 전진",
+      "checks": "첫 두 장이 추정 효과와 전체 이익의 차이를 답함. 3장은 사업 구조, 4장은 화학 차이, 5장은 회계 시점 차이, 6장은 생산·가동 조건, 7장은 실제 실적과의 대조. 수치 원문 확인 완료; 이미지 판정은 새 preview 전체를 직접 연 뒤 수행"
+    },
+    "visual_story": [
+      {
+        "layout": "cover",
+        "title": "엑슨모빌, 정제마진 효과\n이익에 45억달러 보탠다",
+        "body": "10월 16일 공시한 3분기 추정입니다. 전분기보다 원유 등 액체가격 효과는 나빴지만, 정제 제품 마진은 이익을 더하는 쪽이었습니다.",
+        "takeaway": "원유 가격 하나로는 종합 석유기업의 이익을 읽기 어렵습니다.",
+        "bridge": "먼저 이 숫자가 어떤 추정인지 구분하겠습니다.",
+        "evidence_ids": [
+          "ev_new",
+          "ev_segments"
+        ],
+        "labels": [
+          {
+            "label": "정제마진 변화 효과",
+            "text": "+45억달러"
+          },
+          {
+            "label": "비교 기준",
+            "text": "3분기 대 2분기"
+          }
+        ],
+        "source_line": "ExxonMobil · 10월16일 8-K, 회사 추정"
+      },
+      {
+        "layout": "photo",
+        "title": "45억달러는 순이익이 아닌\n마진 변화의 효과입니다",
+        "body": "회사는 일부 시장·예정 요인만 제시했습니다. 생산 성과와 비예정 가동 중단 등은 빠져 있어 최종 분기 이익을 뜻하지 않습니다.",
+        "takeaway": "추정의 범위를 알면 큰 숫자를 분기 실적으로 오해하지 않습니다.",
+        "bridge": "같은 회사 안에서 왜 이익 효과가 갈렸을까요?",
+        "evidence_ids": [
+          "ev_new",
+          "ev_limits"
+        ],
+        "labels": [
+          {
+            "label": "이번 자료",
+            "text": "일부 요인의 전분기 대비 추정"
+          },
+          {
+            "label": "아직 남은 항목",
+            "text": "운영 성과·비예정 중단 등"
+          }
+        ],
+        "source_line": "ExxonMobil · 3Q26 이익 영향 공시"
+      },
+      {
+        "layout": "annotated",
+        "title": "원유를 파는 일과\n연료로 가공하는 일의 차이",
+        "body": "엑슨모빌은 원유·가스를 생산하고 연료로 가공해 판매합니다. 정유에서는 원유 값뿐 아니라 제품 판매가격과 원료비 사이의 차이가 중요합니다.",
+        "takeaway": "같은 에너지기업에서도 판매하는 단계에 따라 이익 경로가 달라집니다.",
+        "bridge": "실제 공시에서 정유와 화학의 차이를 짚겠습니다.",
+        "evidence_ids": [
+          "ev_segments"
+        ],
+        "labels": [
+          {
+            "label": "생산 부문",
+            "text": "원유·가스 판매가격이 이익에 영향"
+          },
+          {
+            "label": "정유 부문",
+            "text": "제품과 원료의 가격 차이가 핵심"
+          },
+          {
+            "label": "공시의 마진 효과",
+            "text": "제품 가격 차이와 거래의 시장 효과 포함"
+          }
+        ],
+        "source_line": "ExxonMobil · 3Q26 공시, 표와 각주"
+      },
+      {
+        "layout": "comparison",
+        "title": "정유의 마진 개선이\n화학까지 번진 건 아닙니다",
+        "body": "같은 전분기 대비 마진 변화인데도 화학 부문은 이익을 줄이는 쪽입니다. 에너지 가격을 보고 정유·석유화학을 같은 수혜로 묶으면 놓치는 차이입니다.",
+        "takeaway": "제품별 공급과 수요가 달라지면 같은 원료를 써도 결과가 갈립니다.",
+        "bridge": "그런데 사업이 좋아져도 장부 이익은 다를 수 있습니다.",
+        "evidence_ids": [
+          "ev_segments"
+        ],
+        "labels": [
+          {
+            "label": "화학제품 마진 효과",
+            "text": "−6억달러"
+          },
+          {
+            "label": "비교 범위",
+            "text": "3분기 대 2분기 · 회사 추정"
+          }
+        ],
+        "source_line": "ExxonMobil · 10월16일 공시, 마진 변화"
+      },
+      {
+        "layout": "explain",
+        "title": "실물과 헤지의 시간차,\n장부 이익도 갈라놓습니다",
+        "body": "회사는 실물 거래와 위험을 줄이는 파생상품의 손익 반영 시점이 다르다고 설명했습니다. 이 차이는 나중 분기에 되돌려 반영될 수 있습니다.",
+        "takeaway": "영업의 흐름과 손익 인식 시점을 나눠야 분기 숫자를 해석할 수 있습니다.",
+        "bridge": "그럼 이번 정유 개선 판단은 무엇이 바꿀까요?",
+        "evidence_ids": [
+          "ev_timing"
+        ],
+        "labels": [
+          {
+            "label": "3분기 시점 차이 추정",
+            "text": "전체 이익에 −25억달러"
+          },
+          {
+            "label": "회사 조정이익",
+            "text": "시점 차이 제외 · 미국회계기준과 구분"
+          }
+        ],
+        "source_line": "ExxonMobil · 3Q26 공시, timing effects"
+      },
+      {
+        "layout": "conditions",
+        "title": "좋은 마진도 설비가\n돌아가야 이익이 됩니다",
+        "body": "이번 마진 추정은 이전 분기 물량을 기준으로 했습니다. 실제 처리량과 가동 중단이 달라지면 마진 개선이 이익으로 이어지는 폭도 바뀝니다.",
+        "takeaway": "가격 차이의 개선과 실제 생산 성과를 함께 확인해야 합니다.",
+        "bridge": "마지막으로 이번 공시가 지지하는 판단을 남깁니다.",
+        "evidence_ids": [
+          "ev_segments",
+          "ev_limits"
+        ],
+        "labels": [],
+        "origin": "현재 판단: 정제마진이 이익을 뒷받침",
+        "branches": [
+          {
+            "label": "판단이 이어질 조건",
+            "text": "개선된 마진이 실제 판매와 가동으로 이어질 때",
+            "check": "확정 정유 실적의 이익 증가와 처리량 대조"
+          },
+          {
+            "label": "다시 볼 조건",
+            "text": "비예정 중단이나 운영 비용이 효과를 깎을 때",
+            "check": "회사 설명의 가동·비용 요인과 추정 차이 확인"
+          }
+        ],
+        "source_line": "ExxonMobil · 공시 범위 및 이전 분기 물량 기준"
+      },
+      {
+        "layout": "closing",
+        "title": "이번 엑슨모빌의 핵심은\n유가보다 정유의 가격 차이",
+        "body": "새 공시는 정제 제품 마진이 이익을 받친다는 해석을 지지합니다. 다만 10월 30일 실제 정유 실적이 이를 얼마나 구현했는지가 최종 판단을 가릅니다.",
+        "takeaway": "이 회사는 유가 한 줄보다 사업별 이익 요인을 나눠 읽어야 합니다.",
+        "bridge": "저장해 두고 확정 실적의 정유 이익과 대조하십시오.",
+        "evidence_ids": [
+          "ev_new",
+          "ev_limits",
+          "ev_next"
+        ],
+        "labels": [
+          {
+            "label": "다음 결과",
+            "text": "10월30일 · 회사 공식 실적"
+          },
+          {
+            "label": "판단 기준",
+            "text": "정유 이익 개선과 가동·회계 조정의 차이"
+          }
+        ],
+        "source_line": "ExxonMobil · 10월16일 공시와 실적 일정"
+      }
+    ]
+  }
+}
+

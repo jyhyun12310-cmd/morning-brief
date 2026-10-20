@@ -6,6 +6,7 @@ on:
       - 'automation/examples/visual-variety-preview.json'
       - 'automation/examples/design-*-preview.json'
       - 'src/reviewed_preview.py'
+      - 'src/visual_assets.py'
       - 'src/card.html'
       - 'src/editorial_theme.css'
       - 'src/market_render.py'
@@ -13,6 +14,9 @@ on:
       - 'src/market_card.html'
       - 'src/market_style.css'
       - 'tests/test_reviewed_preview.py'
+      - 'tests/test_stock_layout.py'
+      - 'tests/fixtures/*-layout.json'
+      - 'scripts/check_stock_layout.py'
       - '.github/workflows/*packet.yml'
       - '.github/workflows/reviewed-preview-test.yml'
 permissions:
@@ -50,9 +54,17 @@ jobs:
         env:
           PYTHONPATH: src
         run: python src/build.py --input automation/examples/visual-variety-preview.json --out qa-stock-out --docs qa/stock
+      - name: Regress historical XOM seven-card layout without publishing
+        env:
+          PYTHONPATH: src
+        run: python scripts/check_stock_layout.py tests/fixtures/xom-layout.json --out qa-xom-out --docs qa/xom
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: layout-review-only-do-not-publish
-          path: qa/
+          path: |
+            qa/
+            qa-xom-out/*.failure.jpg
           retention-days: 7
+
 
