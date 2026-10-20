@@ -1,5 +1,9 @@
 # 오후 두시 시장 뉴스 — 클라우드 원고 계약
 
+## 충분한 설명과 한 편의 핵심 (2026-10-20)
+
+원고의 전개는 CONTENT_PLAYBOOK.md의 최신 「한 편을 관통하는 핵심과 충분한 설명」을 적용한다. 새 사실에서 독자에게 생기는 의미까지 필요한 작동 방식·이유를 body와 items/labels로 연결한다. 180자 합계 목표나 본문 두 줄 목표를 적용하지 않는다. 아래 JSON 필드별 최소·최대 길이와 장수는 그대로 준수하며, 짧다는 이유로 설명이 빠진 원고를 통과시키지 않는다. 실제 전체 이미지 검수로 모바일 가독성과 충분한 설명을 함께 확인한다.
+
 ## 신규 원고의 이미지 제작 경로 (2026-10-20 구현)
 
 새 원고는 `VISUAL_ASSET_CONTRACT.md`와 현재 `src/editorial_visuals.py`, `src/editorial_render.py`를 읽고 `summary.design="editorial-v2"` 및 장마다 다른 `visual`을 사용한다. 해당 계약의 내용 해시 경로에 새 이미지 파일을 추가하는 것이 승인된 제작 범위다. 기존 이미지·게시물은 덮어쓰지 않는다. 시리즈별 inbox 외 원고 변경 금지는 유지하며, 이 새 이미지 추가 경로가 명시적 예외다. 기존 코드·settings·권한·journal을 일상 제작에서 임의 변경하지 않는다. 정상 preview의 실제 전체 이미지를 검수하고 같은 바이트를 게시한다.
@@ -37,7 +41,7 @@
 - quotes: KOSPI,KOSDAQ 각 1개. {id,name,value,previous_close,change_pct,basis:'intraday',as_of,source_id}. 등락률은 이전 종가 대비 퍼센트. 공개 게시 시 두 관측값 모두 35분 이내이고 기준일이 오늘이어야 한다.
 - events: 0~3개 {title,at,note,source_id}; snapshot 이후 36시간 이내 확인된 일정. at에는 -04:00/-05:00 등 실제 시간대를 정확하게 기록한다.
 - summary.instagram_caption: 20~400자, 목표 2문장+2~3개 해시태그. 전체 수치/출처를 나열하지 않는다. 상세 출처 링크는 자동 추가된다.
-- summary.visual_story: 정확히 5개, layout 순서 headline/drivers/sectors/calendar/watch. 각 {layout,title,body,source_ids,items}. title 5~38자(두 줄 권장), body 15~110자(40~65자 목표). drivers/sectors/watch에는 items 2~3개, 각 {label(2~25자),text(5~85자),type(fact/analysis/watch),source_ids}. 근거 ID 필수. 카드마다 새 정보/관점을 하나씩 제공한다.
+- summary.visual_story: 정확히 5개, layout 순서 headline/drivers/sectors/calendar/watch. 각 {layout,title,body,source_ids,items}. title 5~38자(두 줄 권장), body 15~110자. drivers/sectors/watch에는 items 2~3개, 각 {label(2~25자),text(5~85자),type(fact/analysis/watch),source_ids}. 근거 ID 필수. 카드마다 새 정보/관점을 하나씩 제공한다.
 - summary.editorial_review: {improvement,reason,application,avoided_repetition}; 사용자 결과 보고용이며 Instagram 설명에 길게 넣지 않는다.
 - 실제 게시 시각 13:45~14:40 KST, 원고와 시세 35분 이내. 클라우드 예약은 평일 14:00 시작하며 자료 확인과 카드 제작이 끝나는 대로 게시한다. 시작 시각이 게시 완료 시각은 아니다. 지연되면 오래된 자료를 강행하지 않는다.
 
