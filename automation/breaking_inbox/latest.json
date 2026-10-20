@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-10-20T13:04:07Z",
   "snapshot_at": "2026-10-20T13:04:07Z",
@@ -151,6 +151,14 @@
           "prompt": "제작 지시 요약: 오프화이트 배경, 크롬 연료 노즐이 투명 액체를 유리 저장조에 붓고 저장조에 은색 무표기 토큰과 빈 증서가 놓인 편집 개념 이미지. 현금이 주식 매입의 연료라는 비유이며 실제 돈·계약이나 사건 사진이 아니다."
         }
       }
+    ]
+  },
+  "reviewed_preview": {
+    "run_id": 39427406957,
+    "image_sha256": [
+      "20dde961aeca7de998cb0a769998d5825c22dc668d68ce81ee9da0d2758918b3",
+      "11dcde49b514f54d736bb8d95aae166f2a97879d658f529d7f133e756891114b",
+      "32759f5940c174f55a1357d858d6e31f28f6b6516949ffb1ccf8d03430415df6"
     ]
   }
 }
