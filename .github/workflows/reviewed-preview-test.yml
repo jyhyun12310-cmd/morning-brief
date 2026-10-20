@@ -3,6 +3,10 @@ on:
   push:
     branches: [main, 'chatgpt/editorial-design-*']
     paths:
+      - 'src/editorial_*'
+      - 'src/build.py'
+      - 'tests/test_editorial_visuals.py'
+      - 'scripts/check_editorial_layout.py'
       - 'automation/examples/visual-variety-preview.json'
       - 'automation/examples/design-*-preview.json'
       - 'src/reviewed_preview.py'
@@ -50,6 +54,10 @@ jobs:
               # No publish/build call: historical content is only a layout fixture.
               render_cards({'market_brief': packet}, packet['summary'], f'qa/{kind}', kind)
           PY
+      - name: Validate editorial artwork layouts for all three series (never publish)
+        env:
+          PYTHONPATH: src
+        run: python scripts/check_editorial_layout.py
       - name: Render seven-card historical stock layout without publishing
         env:
           PYTHONPATH: src
@@ -66,5 +74,6 @@ jobs:
             qa/
             qa-xom-out/*.failure.jpg
           retention-days: 7
+
 
 

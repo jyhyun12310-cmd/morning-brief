@@ -1,5 +1,9 @@
 # 시장 핵심 속보 — 3장 자동 게시
 
+## 신규 원고의 이미지 제작 경로 (2026-10-20 구현)
+
+새 원고는 `VISUAL_ASSET_CONTRACT.md`와 현재 `src/editorial_visuals.py`, `src/editorial_render.py`를 읽고 `summary.design="editorial-v2"` 및 장마다 다른 `visual`을 사용한다. 해당 계약의 내용 해시 경로에 새 이미지 파일을 추가하는 것이 승인된 제작 범위다. 기존 이미지·게시물은 덮어쓰지 않는다. 시리즈별 inbox 외 원고 변경 금지는 유지하며, 이 새 이미지 추가 경로가 명시적 예외다. 기존 코드·settings·권한·journal을 일상 제작에서 임의 변경하지 않는다. 정상 preview의 실제 전체 이미지를 검수하고 같은 바이트를 게시한다.
+
 ## 최우선 게시 선별·원고 기준 (2026-10-20)
 
 `automation/EDITORIAL_GUIDE.md`의 통합 하루 최대 2편 기준과 `automation/CONTENT_PLAYBOOK.md`의 원고 편집 판정을 우선한다. 오전·오후·속보를 합쳐 한국 날짜별 최대 2편이며 적격 소재가 없으면 0편이다. 예약 실행은 게시 의무가 아니라 선별 기회다. 속보도 한도 예외가 아니며, 정기 선별까지 기다릴 때 정보 가치가 크게 줄어드는 이유를 별도로 입증한다. 자정 이후 정례 발표로 새 슬롯을 먼저 채우지 않는다.
@@ -42,5 +46,6 @@ event.issuer와 release_id는 같은 공식 발표의 불변 식별자다. 예: 
 새 원고는 `automation/breaking_inbox/latest.json`만 수정한다. 오전/오후 inbox, 설정, 코드, 워크플로, 권한, 비밀키, journal은 편집하지 않는다. 현재 파일 SHA와 관련 journal, Actions 진행 상태를 제출 직전 재조회한다. 처리 중 원고를 덮어쓰지 않는다. 동시 진행이 있으면 완료를 확인한 뒤 제출하거나 다음 점검으로 넘긴다. push가 breaking-packet.yml을 실행한다. 실행이 없음을 확인한 경우에만 해당 workflow live=true로 실행한다.
 
 원고 검증·3장 렌더링·실제 공개 이미지 hash검증·영구 journal 예약·Instagram 전송·image_count=3과 permalink 확인을 순서대로 수행한다. 전송 전 명확한 원고 오류만 고친다. reserved/published 또는 전송 결과 불명확 상태에서는 재실행·잠금 삭제·ID 변경으로 중복 전송하지 않는다. 오류나 권한 차단을 우회하지 않고 알린다. 사용자에게 게시 링크, 핵심 변화 1문장, 개선 적용 1줄만 보고한다. 새 소식 없음/중복은 조용히 종료한다. 이 채팅 결과만 사용하며 외부 메시지를 별도로 보내지 않는다.
+
 
 

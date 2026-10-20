@@ -1,0 +1,16 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><style>{% include 'editorial_card.css' %}</style>
+<body class="{{ story.visual.tone }} {{ 'stock' if count == 7 else 'news' }}"><main>
+<header><b>돈의 뒷이야기.</b><span>{{ '미장, 한 겹 더' if count == 7 else '오늘의 시장' if count == 5 else '지금 달라진 것' }}</span></header>
+<div class="chapter">{{ '%02d'|format(n) }} <i></i> {{ 'MONEY FOR CHICKEN' }}</div>
+<h1 data-fit>{% for part,accent in title_parts %}<span class="{{ 'accent' if accent else '' }}">{{ part }}</span>{% endfor %}</h1>
+<p class="body" data-fit>{{ story.body }}</p>
+<figure data-fit><img src="{{ image }}" alt="{{ story.visual.alt }}"><figcaption>{{ 'AI 개념 일러스트' if story.visual.kind == 'concept' else story.visual.credit }}</figcaption></figure>
+<div class="evidence" data-fit>
+{% if story.origin %}<div class="origin">{{ story.origin }}</div>{% endif %}
+{% for row in rows %}<div class="row"><b>{{ row.label }}{% if row.type %}<small>{{ {'fact':'사실','analysis':'해석','watch':'조건'}[row.type] }}</small>{% endif %}</b><p>{{ row.text }}</p></div>{% endfor %}
+{% if story.chart %}<div class="chart-note">단위 {{ story.chart.unit }} · {{ story.chart.note }}<br>{{ story.chart.source }}</div>{% endif %}
+</div>
+{% if story.takeaway %}<p class="takeaway" data-fit>{{ story.takeaway }}</p>{% endif %}
+{% if story.bridge %}<p class="bridge" data-fit>{{ story.bridge }}</p>{% endif %}
+<footer><div><b>@making_money_for_chicken</b><span>{{ date_label }}</span></div><strong>{{ '%02d'|format(n) }}<em>/{{ '%02d'|format(count) }}</em></strong></footer>
+</main></body></html>

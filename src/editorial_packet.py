@@ -73,6 +73,9 @@ def digest(value):
     return hashlib.sha256(canonical(value).encode('utf-8')).hexdigest()
 
 def validate_packet(packet, *, live=False, now=None):
+    if isinstance(packet, dict):
+        from editorial_visuals import validate_visuals
+        validate_visuals(packet)
     if isinstance(packet, dict) and packet.get('kind') == 'breaking_news':
         from breaking_packet import validate_breaking_packet
         return validate_breaking_packet(packet, live=live, now=now)
@@ -233,3 +236,4 @@ def packet_summary(packet, data):
         return copy.deepcopy(packet['summary'])
     from summarize import summarize
     return summarize(data, packet['summary'])
+
