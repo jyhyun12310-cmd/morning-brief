@@ -70,6 +70,7 @@ def render_cards(packet, summary, docs_cards_dir, slug):
                 return errors;
             }''')
             if errors:
+                page.screenshot(path=str(folder / f'{slug}-{n}.failure.jpg'), type='jpeg', quality=95)
                 raise ValueError(f'editorial card {n}: overflow {errors}; shorten copy, never shrink text')
             path = folder / f'{slug}-{n}.jpg'
             page.screenshot(path=str(path), type='jpeg', quality=95)
