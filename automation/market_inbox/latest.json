@@ -195,7 +195,7 @@
       {
         "layout": "watch",
         "title": "반등의 다음 답은\n잠정치가 아니라 최종치",
-        "body": "AI 서버 주문이 매출과 마진으로 이어졌다는 기대가 반등을 만들었습니다. 11월 3일 확정 실적이 답을 가릅니다.",
+        "body": "반등은 AI 서버 수요가 매출과 마진으로 이어졌다는 기대입니다. 11월 3일 최종 실적이 확인합니다.",
         "source_ids": ["smci-release", "korea-chips"],
         "items": [
           {
@@ -209,12 +209,6 @@
             "text": "대형 반도체의 상승이 장비·소재주로 넓어지는지 확인합니다.",
             "type": "watch",
             "source_ids": ["kospi-live", "korea-chips"]
-          },
-          {
-            "label": "AI 투자 회수",
-            "text": "메타의 AI 지출이 광고 이익으로 연결되는지가 다음 시험입니다.",
-            "type": "analysis",
-            "source_ids": ["meta-ir"]
           }
         ],
         "accent": "최종치",
