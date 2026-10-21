@@ -1,207 +1,231 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-02T05:14:25Z",
-  "publication_date_kst": "2026-10-02",
-  "snapshot_at": "2026-10-02T13:58:30+09:00",
+  "created_at": "2026-10-21T14:09:00+09:00",
+  "publication_date_kst": "2026-10-21",
+  "snapshot_at": "2026-10-21T13:57:20+09:00",
   "kr_session": {
-    "date": "2026-10-02",
+    "date": "2026-10-21",
     "status": "open",
-    "source_id": "kosdaq",
-    "evidence": "10월 2일 당일 일중 데이터와 13:58:30 KST 실시간 지수 표시를 대조해 한국 증시 거래 중임을 확인."
+    "source_id": "kospi-live",
+    "evidence": "코스피 제공 화면에 2026년 10월 21일 13:57:20 KST 실시간 지수와 당일 거래 범위가 표시돼 정규장 거래 중임을 확인했습니다."
   },
   "sources": [
     {
-      "id": "kospi",
-      "title": "Investing.com · 코스피 장중 지수와 전일 종가",
+      "id": "kospi-live",
+      "title": "Investing.com · 코스피 실시간 지수",
       "url": "https://kr.investing.com/indices/kospi",
-      "as_of": "2026-10-02 13:57:40 KST; 전일 종가 2026-10-01",
-      "retrieved_at": "2026-10-02T14:12:46+09:00"
+      "as_of": "2026-10-21 13:57:20 KST; 전일 종가 5,552.74",
+      "retrieved_at": "2026-10-21T14:07:00+09:00"
     },
     {
-      "id": "kosdaq",
-      "title": "Investing.com · 코스닥 장중 값과 날짜별 지수",
+      "id": "kosdaq-live",
+      "title": "Investing.com · 코스닥 실시간 지수와 과거 데이터",
       "url": "https://kr.investing.com/indices/kosdaq-historical-data",
-      "as_of": "2026-10-02 13:58:30 KST; 전일 종가 2026-10-01",
-      "retrieved_at": "2026-10-02T14:12:46+09:00"
+      "as_of": "2026-10-21 13:56:50 KST; 전일 종가 781.97",
+      "retrieved_at": "2026-10-21T14:07:00+09:00"
     },
     {
-      "id": "cpi",
-      "title": "국가데이터처 · 2026년 9월 소비자물가동향",
-      "url": "https://mods.go.kr/board.es?act=view&bid=213&list_no=447322&mainXml=Y&mid=a10301010000",
-      "as_of": "2026년 9월 통계; 2026-10-02 발표",
-      "retrieved_at": "2026-10-02T14:09:30+09:00"
+      "id": "smci-release",
+      "title": "Supermicro · FY2027 1분기 잠정 사업 업데이트",
+      "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2027-Preliminary-Business-Update/default.aspx",
+      "as_of": "2026-10-20 발표; 2026-09-30 종료 분기 잠정치",
+      "retrieved_at": "2026-10-21T14:07:00+09:00"
     },
     {
-      "id": "bonds",
-      "title": "머니투데이 · 재정경제부 10월 국고채 발행계획 보도",
-      "url": "https://www.mt.co.kr/economy/2026/10/01/2026100118074522617",
-      "as_of": "2026-10-01 18:12 KST 보도; 2026년 10월 발행계획",
-      "retrieved_at": "2026-10-02T14:12:46+09:00"
+      "id": "korea-chips",
+      "title": "서울경제 · Supermicro 발표 뒤 국내 반도체주 장중 반등",
+      "url": "https://en.sedaily.com/finance/2026/10/21/samsung-sk-hynix-rebound-4-5-percent-on-super-micros-strong",
+      "as_of": "2026-10-21 09:18 KST 보도; 한국거래소 09:15 수치 포함",
+      "retrieved_at": "2026-10-21T14:07:00+09:00"
     },
     {
-      "id": "stocks",
-      "title": "매일경제 마켓 · 13:51 인기종목 표의 대한광통신·아시아나항공",
-      "url": "https://stock.mk.co.kr/price/home/KR7000660001",
-      "as_of": "2026-10-02 13:51 KST 종목 표; 상단 SK하이닉스 시각과 별개",
-      "retrieved_at": "2026-10-02T14:12:46+09:00"
+      "id": "meta-ir",
+      "title": "Meta · 2026년 3분기 실적 발표 일정",
+      "url": "https://investor.atmeta.com/investor-events/event-details/2026/Q3-2026-Earnings-Call/default.aspx",
+      "as_of": "2026-10-21 13:30 PT 실적 발표 콜",
+      "retrieved_at": "2026-10-21T14:07:00+09:00"
     },
     {
-      "id": "bls",
-      "title": "미국 BLS · 2026년 10월 공식 통계 발표 일정",
-      "url": "https://www.bls.gov/schedule/2026/10_sched.htm",
-      "as_of": "9월 고용보고서 2026-10-02 08:30 미국 동부시간(EDT)",
-      "retrieved_at": "2026-10-02T14:12:46+09:00"
+      "id": "tesla-ir",
+      "title": "Tesla · 2026년 3분기 실적 및 질의응답 일정",
+      "url": "https://ir.tesla.com/press-release/tesla-third-quarter-2026-production-deliveries-and-deployments",
+      "as_of": "2026-10-21 미국장 마감 후 실적; 17:30 ET 질의응답",
+      "retrieved_at": "2026-10-21T14:07:00+09:00"
     }
   ],
   "quotes": [
     {
       "id": "KOSPI",
       "name": "코스피",
-      "value": 6985.01,
-      "previous_close": 6971.35,
-      "change_pct": 0.2,
+      "value": 5700.19,
+      "previous_close": 5552.74,
+      "change_pct": 2.66,
       "basis": "intraday",
-      "as_of": "2026-10-02T13:57:40+09:00",
-      "source_id": "kospi"
+      "as_of": "2026-10-21T13:57:20+09:00",
+      "source_id": "kospi-live"
     },
     {
       "id": "KOSDAQ",
       "name": "코스닥",
-      "value": 892.39,
-      "previous_close": 894.29,
-      "change_pct": -0.21,
+      "value": 791.81,
+      "previous_close": 781.97,
+      "change_pct": 1.26,
       "basis": "intraday",
-      "as_of": "2026-10-02T13:58:30+09:00",
-      "source_id": "kosdaq"
+      "as_of": "2026-10-21T13:56:50+09:00",
+      "source_id": "kosdaq-live"
     }
   ],
   "events": [
     {
-      "title": "미국 9월 고용보고서",
-      "at": "2026-10-02T08:30:00-04:00",
-      "note": "한국 21:30 예정 · 신규 고용, 실업률, 임금과 이전 달 수정치 확인",
-      "source_id": "bls"
+      "title": "Meta 3분기 실적 발표 콜",
+      "at": "2026-10-21T13:30:00-07:00",
+      "note": "광고 성장과 AI 투자비, 연간 지출 전망을 확인",
+      "source_id": "meta-ir"
+    },
+    {
+      "title": "Tesla 3분기 실적 질의응답",
+      "at": "2026-10-21T17:30:00-04:00",
+      "note": "가격·원가·현금흐름이 판매량과 함께 움직였는지 확인",
+      "source_id": "tesla-ir"
     }
   ],
   "summary": {
-    "instagram_caption": "10월 2일 오후, 코스피는 올랐지만 코스닥과 개별 종목의 표정은 달랐어요. 국내 물가·국채 공급과 오늘 밤 9시 30분 미국 고용 발표를 함께 보고, 지수 상승이 내 종목까지 번지는지 확인해 보세요. #시장뉴스 #코스피 #미국고용",
+    "design": "editorial-v2",
+    "instagram_caption": "AI 서버 주문이 매출과 이익률로 바뀌자 한국 반도체주도 반등했습니다. 오늘 밤 메타와 테슬라 실적이 AI 투자와 이익의 연결을 다시 시험합니다. #코스피 #반도체 #미국실적",
     "editorial_review": {
-      "improvement": "관전 조건을 전일 종가와 공식 발표 항목으로 구체화",
-      "reason": "최근 게시물의 기업 실적 설명보다 장중에 다시 확인할 기준을 빠르게 찾게 하기",
-      "application": "마지막 장에 코스피 6971.35·코스닥 894.29와 고용·임금·수정치를 제시",
-      "avoided_repetition": "최근 5개 공개 상세 페이지를 비교해 JBL·MU 실적 문구와 반도체 사진 반복을 피하고 5개 전용 레이아웃 사용"
+      "improvement": "최근 GM·관세·TSMC·베이지북·UnitedHealth 글의 짧은 결론과 반복 단서를 비교해, 이번에는 AI 서버 주문이 매출·마진·국내 대형주로 전달되는 이유를 각 장에 한 단계씩 보강했습니다.",
+      "reason": "최근 글은 숫자 다음의 작동 방식이 생략되거나 마지막 장이 일반적인 확인 문구로 끝났습니다. 오늘 반등은 매출과 매출총이익률이 함께 상향된 점이 핵심이라 단순 급등 종목 나열을 버렸습니다.",
+      "application": "제목 후보 'AI 서버 매출이 튀자 코스피 반도체가 뛰었다', '슈퍼마이크로의 주문이 한국 반도체를 깨웠다', '매출과 마진이 같이 뛰자 반도체 반등이 번졌다' 중 첫 안을 선택했습니다. 2장에서 매출총이익률 뜻을 풀고 3장에서 코스피·코스닥 차이를 대형 반도체 집중도로 연결했습니다.",
+      "avoided_repetition": "매출 상향은 1~2장, 국내 확산은 3장, 미국 검증 일정은 4장, 잠정치를 뒤집을 조건은 5장에만 배치했습니다. GM의 현금·자사주 비유와 TSMC의 공정 숫자 나열은 반복하지 않았고 다음 편은 최종 실적의 고객 구성을 보완합니다."
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "코스피는 플러스,\n내 종목도 괜찮을까?",
-        "body": "코스피는 소폭 올랐지만 코스닥은 내렸어요. 지수의 색깔만 보면 놓치는 차이를 짚어봅니다.",
-        "source_ids": [
-          "kospi",
-          "kosdaq"
-        ],
-        "items": []
+        "title": "AI 서버 매출이 튀자\n코스피 반도체가 뛰었다",
+        "body": "슈퍼마이크로가 AI 플랫폼 수요로 분기 매출 전망을 크게 올렸습니다. 13시 57분 코스피는 2.66%, 코스닥은 1.26% 상승했습니다.",
+        "source_ids": ["smci-release", "kospi-live", "kosdaq-live", "korea-chips"],
+        "items": [],
+        "accent": "코스피 반도체",
+        "visual": {
+          "path": "automation/visual_assets/8098ce1b6c9bc6cbc0b48b243a232aa5b985963f72d324f5c8d98adaec07e340.png",
+          "sha256": "8098ce1b6c9bc6cbc0b48b243a232aa5b985963f72d324f5c8d98adaec07e340",
+          "alt": "푸른 데이터센터 통로가 실리콘 웨이퍼와 상승하는 반도체 블록으로 이어지는 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "오프화이트 가장자리와 검정 기술 공간에서 코발트 데이터센터 통로가 실리콘 웨이퍼와 상승 블록으로 변하는 편집용 3D 개념 이미지. 사람·회사 로고·주가 차트·숫자·문자·워터마크 없이 제작."
+        }
       },
       {
         "layout": "drivers",
-        "title": "물가와 국채 공급,\n금리로 연결되는 두 재료",
-        "body": "물가 상승은 남아 있고, 국채 공급 부담은 줄어들 예정이에요. 오늘 지수의 원인으로 단정하진 않아요.",
-        "source_ids": [
-          "cpi",
-          "bonds"
-        ],
+        "title": "매출만 아니라\n남기는 비율도 올랐다",
+        "body": "잠정 매출 범위는 기존 전망보다 약 40억달러 높아졌고, 매출총이익률 전망도 함께 올라 단순 물량 증가 이상의 신호를 줬습니다.",
+        "source_ids": ["smci-release"],
         "items": [
           {
-            "label": "국내 물가 +2.9%",
-            "text": "9월 소비자물가는 전년 동월보다 2.9% 상승, 식료품·에너지를 뺀 지수는 2.8% 올랐어요.",
+            "label": "매출 전망",
+            "text": "145~155억달러 → 185~195억달러. 회사는 AI 플랫폼 수요 증가를 이유로 들었습니다.",
             "type": "fact",
-            "source_ids": [
-              "cpi"
-            ]
+            "source_ids": ["smci-release"]
           },
           {
-            "label": "10월 국고채 5조원 축소",
-            "text": "1일 발표된 계획은 당초보다 5조원 감축이에요. 채권을 소화할 부담을 덜 수 있다는 해석입니다.",
+            "label": "매출총이익률",
+            "text": "제품 원가를 뺀 뒤 남는 비율입니다. 10.4~10.8% → 12.0~12.5%로 높아졌습니다.",
             "type": "analysis",
-            "source_ids": [
-              "bonds"
-            ]
+            "source_ids": ["smci-release"]
           }
-        ]
+        ],
+        "accent": "남기는 비율",
+        "visual": {
+          "path": "automation/visual_assets/8fd11c622668d9bb6fca7c7058daa7995e5ffb0cbb86c226693aff94555cc2fc.png",
+          "sha256": "8fd11c622668d9bb6fca7c7058daa7995e5ffb0cbb86c226693aff94555cc2fc",
+          "alt": "서버 부품이 투명 조립 구간을 지나 완성 서버 묶음으로 나오는 컨베이어 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "따뜻한 오프화이트 스튜디오에서 모듈형 서버 트레이가 정밀 컨베이어를 따라 조립되고 완성 서버 묶음으로 나오는 편집용 3D 정물. 글자·숫자·로고·차트·워터마크 없이 제작."
+        }
       },
       {
         "layout": "sectors",
-        "title": "지수보다 선명한\n종목 사이 온도차",
-        "body": "13:51 기준, 광통신주와 항공주의 방향이 갈렸어요. 개별 종목 사례이지 업종 전체 등락은 아니에요.",
-        "source_ids": [
-          "stocks"
-        ],
+        "title": "반등은 코스닥보다\n대형 반도체에 더 셌다",
+        "body": "같은 시간 코스피 상승폭이 코스닥보다 컸습니다. 삼성전자와 SK하이닉스가 올라 지수 반등의 무게가 대형 반도체에 실렸습니다.",
+        "source_ids": ["kospi-live", "kosdaq-live", "korea-chips"],
         "items": [
           {
-            "label": "광통신 · 대한광통신",
-            "text": "17,740원, 전일 대비 +4.35%를 기록했어요.",
+            "label": "삼성전자",
+            "text": "13시 57분 무렵 22만1천원, 전일 대비 4.49% 상승했습니다.",
             "type": "fact",
-            "source_ids": [
-              "stocks"
-            ]
+            "source_ids": ["kospi-live"]
           },
           {
-            "label": "항공 · 아시아나항공",
-            "text": "8,150원, 전일 대비 -3.32%를 기록했어요.",
+            "label": "SK하이닉스",
+            "text": "같은 화면에서 126만5천원, 전일 대비 3.43% 상승했습니다.",
             "type": "fact",
-            "source_ids": [
-              "stocks"
-            ]
+            "source_ids": ["kospi-live"]
           }
-        ]
+        ],
+        "accent": "대형 반도체",
+        "visual": {
+          "path": "automation/visual_assets/608c8e2d0acf329cd25d696b305fe53d613abfc0e61419c2ddc9d3241ded777e.png",
+          "sha256": "608c8e2d0acf329cd25d696b305fe53d613abfc0e61419c2ddc9d3241ded777e",
+          "alt": "큰 반도체 두 개와 웨이퍼가 작은 중립 타일보다 높이 솟은 선택적 반등 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "옅은 오프화이트 바닥에서 큰 메모리칩 두 개와 실리콘 웨이퍼가 전경에 높이 솟고 작은 중립 타일은 낮게 퍼진 편집용 3D 개념 이미지. 브랜드·문자·숫자·실제 주가 차트·워터마크 없이 제작."
+        }
       },
       {
         "layout": "calendar",
-        "title": "밤 9시 30분,\n고용 숫자 하나로 끝내지 마세요",
-        "body": "미국 9월 고용보고서가 나올 예정이에요. 일자리뿐 아니라 임금과 이전 달 수정치도 함께 봅니다.",
-        "source_ids": [
-          "bls"
-        ],
-        "items": []
+        "title": "오늘 밤, AI 투자비를\n두 회사가 다시 답한다",
+        "body": "메타는 AI 지출이 광고 이익으로 이어지는지, 테슬라는 판매량이 이익과 현금으로 남는지를 실적으로 보여줄 차례입니다.",
+        "source_ids": ["meta-ir", "tesla-ir"],
+        "items": [],
+        "accent": "두 회사",
+        "visual": {
+          "path": "automation/visual_assets/f752a8baa4f684fd2faadd8f1b889b980b58efabe808eb7536a8be17aad40ba2.png",
+          "sha256": "f752a8baa4f684fd2faadd8f1b889b980b58efabe808eb7536a8be17aad40ba2",
+          "alt": "연결망 구름과 전기차 배터리 실루엣이 하나의 시계 빛을 마주하는 실적 일정 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "검정 저녁 무대의 두 구역에 추상 연결망 데이터 구름과 무상표 전기차 배터리·바퀴 실루엣이 하나의 시계 같은 빛을 마주하는 편집용 3D 이미지. 로고·이름·숫자·문자·워터마크 없이 제작."
+        }
       },
       {
         "layout": "watch",
-        "title": "지수의 온기가\n내 종목까지 번질까요?",
-        "body": "지수 상승만으로는 아직 답하기 어려워요. 마감 때 두 지수의 기준선, 밤에는 고용의 내용을 다시 확인해요.",
-        "source_ids": [
-          "kospi",
-          "kosdaq",
-          "bls"
-        ],
+        "title": "반등의 다음 답은\n잠정치가 아니라 최종치",
+        "body": "오늘 반등은 AI 서버 주문이 실제 매출과 이익률로 이어졌다는 기대를 반영했습니다. 11월 3일 확정 실적이 이 해석을 가릅니다.",
+        "source_ids": ["smci-release", "korea-chips"],
         "items": [
           {
-            "label": "코스피의 상승 유지",
-            "text": "전일 종가 6,971.35 위에서 마치는지 보세요. 장중 플러스와 종가 플러스는 달라요.",
+            "label": "최종 수치",
+            "text": "잠정 수치는 감사·검토 전입니다. 최종 매출과 매출총이익률이 유지되는지 봅니다.",
             "type": "watch",
-            "source_ids": [
-              "kospi"
-            ]
+            "source_ids": ["smci-release"]
           },
           {
-            "label": "코스닥의 회복 여부",
-            "text": "전일 종가 894.29를 되찾는지 확인해요. 두 시장의 방향이 다시 같아지는 기준이에요.",
+            "label": "국내 확산",
+            "text": "대형 반도체 상승이 장비·소재주로 이어지는지 확인합니다.",
             "type": "watch",
-            "source_ids": [
-              "kosdaq"
-            ]
+            "source_ids": ["kospi-live", "korea-chips"]
           },
           {
-            "label": "고용·임금·수정치",
-            "text": "고용 증가와 임금 상승이 함께 강한지, 이전 달 수치가 바뀌었는지 비교해요.",
-            "type": "watch",
-            "source_ids": [
-              "bls"
-            ]
+            "label": "AI 투자 회수",
+            "text": "메타의 AI 투자비와 수익 연결이 약하면 오늘의 낙관도 다시 흔들릴 수 있습니다.",
+            "type": "analysis",
+            "source_ids": ["meta-ir"]
           }
-        ]
+        ],
+        "accent": "최종치",
+        "visual": {
+          "path": "automation/visual_assets/32d47dcb034e8c25070f15d0d311471b2151e6ed1cf7a8a0fc52c246449762a6.png",
+          "sha256": "32d47dcb034e8c25070f15d0d311471b2151e6ed1cf7a8a0fc52c246449762a6",
+          "alt": "확대경이 투명층과 코발트 금속층으로 된 서버 모듈을 점검하는 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "따뜻한 오프화이트 점검대에서 확대경이 투명 유리층과 코발트 금속층으로 된 서버 모듈을 살피는 편집용 3D 매크로 정물. 사람·문자·숫자·로고·가짜 차트·워터마크 없이 제작."
+        }
       }
     ]
   }
