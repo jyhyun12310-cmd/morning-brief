@@ -3,8 +3,8 @@
   "kind": "breaking_news",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-21T08:27:22Z",
-  "snapshot_at": "2026-10-21T08:27:22Z",
+  "created_at": "2026-10-21T08:29:37Z",
+  "snapshot_at": "2026-10-21T08:29:37Z",
   "publication_date_kst": "2026-10-21",
   "event": {
     "issuer": "bank-indonesia",
@@ -23,7 +23,7 @@
       "title": "BI-Rate Tetap 5,75%: Memperkuat Stabilitas, Mendorong Pertumbuhan Ekonomi",
       "url": "https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_2823326.aspx",
       "as_of": "2026-10-21 발표 · 2026년 10월 20~21일 통화정책회의 결정",
-      "retrieved_at": "2026-10-21T08:27:22Z",
+      "retrieved_at": "2026-10-21T08:29:37Z",
       "published_at": "2026-10-21T14:10:00+07:00"
     },
     {
@@ -32,7 +32,7 @@
       "title": "MSCI Launches Consultation on Proposal to Reclassify Indonesia",
       "url": "https://ir.msci.com/news-releases/news-release-details/msci-launches-consultation-proposal-reclassify-indonesia",
       "as_of": "2026-10-15 발표 · 인도네시아 신흥국→Standalone 재분류 협의",
-      "retrieved_at": "2026-10-21T08:27:22Z",
+      "retrieved_at": "2026-10-21T08:29:37Z",
       "published_date": "2026-10-15"
     },
     {
@@ -41,7 +41,7 @@
       "title": "Indonesia's central bank keeps main rate unchanged, hikes deposit facility rate",
       "url": "https://www.reuters.com/world/asia-pacific/indonesias-central-bank-keeps-main-rate-unchanged-hikes-deposit-facility-rate-2026-10-21/",
       "as_of": "2026-10-21 · 금리 결정과 증시·루피아 반응",
-      "retrieved_at": "2026-10-21T08:27:22Z",
+      "retrieved_at": "2026-10-21T08:29:37Z",
       "published_at": "2026-10-21T07:00:51Z"
     },
     {
@@ -50,7 +50,7 @@
       "title": "Indonesia battles to stabilise market after MSCI expulsion threat",
       "url": "https://www.reuters.com/world/asia-pacific/indonesian-markets-inch-up-after-authorities-move-stem-rout-msci-expulsion-fears-2026-10-20/",
       "as_of": "2026-10-20 · MSCI 경고 뒤 이틀 급락과 자금 유출 추정",
-      "retrieved_at": "2026-10-21T08:27:22Z",
+      "retrieved_at": "2026-10-21T08:29:37Z",
       "published_at": "2026-10-20T03:36:00Z"
     }
   ],
@@ -60,7 +60,7 @@
     "editorial_review": {
       "improvement": "최근 5편의 서버·GM·관세·반도체·경기 원고에서 숫자 뒤의 전달 경로가 짧았던 약점을 보완했습니다. 세 장을 금리 결정→은행 자금 이동→지수 자금 이탈의 순서로 연결하고 장마다 다른 이미지를 배치했습니다.",
       "reason": "핵심은 25bp 자체가 아니라 기준금리 동결과 예치금리 인상의 분리입니다. GDP·물가·대출성장률과 세부 외환 인센티브는 중심 결론을 흐려 덜었습니다.",
-      "application": "제목 후보 '기준금리는 멈췄지만 돈 묶는 금리는 올렸다', '인도네시아가 전면 인상 대신 고른 카드', '25bp보다 큰 위험은 신흥국 지수 이탈' 중 결정과 작동 방식을 함께 드러낸 첫 안을 선택했습니다. 2장에 예치금리의 자금 이동 경로를 보강하고, 실제 이미지 검수 뒤 3장의 결론과 확인 기준을 압축했습니다.",
+      "application": "제목 후보 '기준금리는 멈췄지만 돈 묶는 금리는 올렸다', '인도네시아가 전면 인상 대신 고른 카드', '25bp보다 큰 위험은 신흥국 지수 이탈' 중 결정과 작동 방식을 함께 드러낸 첫 안을 선택했습니다. 2장에 자금 이동 경로를 보강하고, 실제 이미지 검수에서 과밀했던 3장은 결론과 세 확인 기준만 남겼습니다.",
       "avoided_repetition": "5.75%와 5.00%는 1장, 14.8%와 820억달러는 2장, MSCI 잔류 조건은 3장에만 뒀습니다. 오늘 오후의 AI 서버·반도체 이슈와 주체·원인·영향·결론이 겹치지 않으며, 최근 표지의 기업명+숫자 문형도 피했습니다."
     },
     "visual_story": [
@@ -139,8 +139,8 @@
       },
       {
         "layout": "watch",
-        "title": "25bp보다 큰 변수\n신흥국 지수 잔류",
-        "body": "부분 긴축은 시간을 벌 뿐입니다. 외국인 자금은 시장 투명성 개선과 MSCI의 최종 분류에 달렸습니다.",
+        "title": "금리보다 큰 변수\nMSCI 잔류",
+        "body": "부분 긴축은 시간을 벌 뿐입니다. 자금 방향은 시장 투명성 회복에 달렸습니다.",
         "source_ids": [
           "msci-consultation",
           "reuters-market-rout"
@@ -148,7 +148,7 @@
         "items": [
           {
             "label": "지수 위험",
-            "text": "Standalone이 되면 주요 신흥국 지수 추종 자금에서 빠질 수 있습니다.",
+            "text": "Standalone 전환 시 신흥국 지수 추종 자금에서 제외될 수 있습니다.",
             "type": "analysis",
             "source_ids": [
               "msci-consultation",
@@ -157,7 +157,7 @@
           },
           {
             "label": "판단 기준",
-            "text": "소유구조 공개·단속, 편입 동결 해제, 루피아와 외국인 순매수를 봅니다.",
+            "text": "소유구조 공개·편입 동결 해제·루피아 반등을 확인합니다.",
             "type": "analysis",
             "source_ids": [
               "bi-october-decision",
