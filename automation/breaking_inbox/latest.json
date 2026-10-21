@@ -3,8 +3,8 @@
   "kind": "breaking_news",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-21T08:32:04Z",
-  "snapshot_at": "2026-10-21T08:32:04Z",
+  "created_at": "2026-10-21T08:35:25Z",
+  "snapshot_at": "2026-10-21T08:35:25Z",
   "publication_date_kst": "2026-10-21",
   "event": {
     "issuer": "bank-indonesia",
@@ -23,7 +23,7 @@
       "title": "BI-Rate Tetap 5,75%: Memperkuat Stabilitas, Mendorong Pertumbuhan Ekonomi",
       "url": "https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_2823326.aspx",
       "as_of": "2026-10-21 발표 · 2026년 10월 20~21일 통화정책회의 결정",
-      "retrieved_at": "2026-10-21T08:32:04Z",
+      "retrieved_at": "2026-10-21T08:35:25Z",
       "published_at": "2026-10-21T14:10:00+07:00"
     },
     {
@@ -32,7 +32,7 @@
       "title": "MSCI Launches Consultation on Proposal to Reclassify Indonesia",
       "url": "https://ir.msci.com/news-releases/news-release-details/msci-launches-consultation-proposal-reclassify-indonesia",
       "as_of": "2026-10-15 발표 · 인도네시아 신흥국→Standalone 재분류 협의",
-      "retrieved_at": "2026-10-21T08:32:04Z",
+      "retrieved_at": "2026-10-21T08:35:25Z",
       "published_date": "2026-10-15"
     },
     {
@@ -41,7 +41,7 @@
       "title": "Indonesia's central bank keeps main rate unchanged, hikes deposit facility rate",
       "url": "https://www.reuters.com/world/asia-pacific/indonesias-central-bank-keeps-main-rate-unchanged-hikes-deposit-facility-rate-2026-10-21/",
       "as_of": "2026-10-21 · 금리 결정과 증시·루피아 반응",
-      "retrieved_at": "2026-10-21T08:32:04Z",
+      "retrieved_at": "2026-10-21T08:35:25Z",
       "published_at": "2026-10-21T07:00:51Z"
     },
     {
@@ -50,7 +50,7 @@
       "title": "Indonesia battles to stabilise market after MSCI expulsion threat",
       "url": "https://www.reuters.com/world/asia-pacific/indonesian-markets-inch-up-after-authorities-move-stem-rout-msci-expulsion-fears-2026-10-20/",
       "as_of": "2026-10-20 · MSCI 경고 뒤 이틀 급락과 자금 유출 추정",
-      "retrieved_at": "2026-10-21T08:32:04Z",
+      "retrieved_at": "2026-10-21T08:35:25Z",
       "published_at": "2026-10-20T03:36:00Z"
     }
   ],
@@ -140,7 +140,7 @@
       {
         "layout": "watch",
         "title": "MSCI 잔류가 관건",
-        "body": "부분 긴축은 시간을 벌 뿐입니다. 외국인 자금은 시장 투명성 회복을 봅니다.",
+        "body": "금리보다 투명성이 외국인 자금의 방향을 가릅니다.",
         "source_ids": [
           "msci-consultation",
           "reuters-market-rout"
@@ -148,7 +148,7 @@
         "items": [
           {
             "label": "지수 위험",
-            "text": "Standalone 전환 시 신흥국 지수 자금에서 제외될 수 있습니다.",
+            "text": "독립시장 전환은 지수 자금 이탈을 부릅니다.",
             "type": "analysis",
             "source_ids": [
               "msci-consultation",
@@ -157,7 +157,7 @@
           },
           {
             "label": "판단 기준",
-            "text": "소유구조 공개·편입 동결 해제·루피아 반등을 봅니다.",
+            "text": "소유구조 공개와 편입 동결 해제를 봅니다.",
             "type": "analysis",
             "source_ids": [
               "bi-october-decision",
