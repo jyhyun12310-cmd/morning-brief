@@ -3,7 +3,7 @@
   "kind": "market_brief",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-21T14:09:00+09:00",
+  "created_at": "2026-10-21T14:12:00+09:00",
   "publication_date_kst": "2026-10-21",
   "snapshot_at": "2026-10-21T13:57:20+09:00",
   "kr_session": {
@@ -195,24 +195,24 @@
       {
         "layout": "watch",
         "title": "반등의 다음 답은\n잠정치가 아니라 최종치",
-        "body": "오늘 반등은 AI 서버 주문이 실제 매출과 이익률로 이어졌다는 기대를 반영했습니다. 11월 3일 확정 실적이 이 해석을 가릅니다.",
+        "body": "AI 서버 주문이 매출과 마진으로 이어졌다는 기대가 반등을 만들었습니다. 11월 3일 확정 실적이 답을 가릅니다.",
         "source_ids": ["smci-release", "korea-chips"],
         "items": [
           {
             "label": "최종 수치",
-            "text": "잠정 수치는 감사·검토 전입니다. 최종 매출과 매출총이익률이 유지되는지 봅니다.",
+            "text": "잠정치입니다. 최종 매출과 매출총이익률이 유지되는지 봅니다.",
             "type": "watch",
             "source_ids": ["smci-release"]
           },
           {
             "label": "국내 확산",
-            "text": "대형 반도체 상승이 장비·소재주로 이어지는지 확인합니다.",
+            "text": "대형 반도체의 상승이 장비·소재주로 넓어지는지 확인합니다.",
             "type": "watch",
             "source_ids": ["kospi-live", "korea-chips"]
           },
           {
             "label": "AI 투자 회수",
-            "text": "메타의 AI 투자비와 수익 연결이 약하면 오늘의 낙관도 다시 흔들릴 수 있습니다.",
+            "text": "메타의 AI 지출이 광고 이익으로 연결되는지가 다음 시험입니다.",
             "type": "analysis",
             "source_ids": ["meta-ir"]
           }
