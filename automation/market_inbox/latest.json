@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-10-21T14:12:00+09:00",
   "publication_date_kst": "2026-10-21",
@@ -106,7 +106,12 @@
         "layout": "headline",
         "title": "AI 서버 매출이 튀자\n코스피 반도체가 뛰었다",
         "body": "슈퍼마이크로가 AI 플랫폼 수요로 분기 매출 전망을 크게 올렸습니다. 13시 57분 코스피는 2.66%, 코스닥은 1.26% 상승했습니다.",
-        "source_ids": ["smci-release", "kospi-live", "kosdaq-live", "korea-chips"],
+        "source_ids": [
+          "smci-release",
+          "kospi-live",
+          "kosdaq-live",
+          "korea-chips"
+        ],
         "items": [],
         "accent": "코스피 반도체",
         "visual": {
@@ -122,19 +127,25 @@
         "layout": "drivers",
         "title": "매출만 아니라\n남기는 비율도 올랐다",
         "body": "잠정 매출 범위는 기존 전망보다 약 40억달러 높아졌고, 매출총이익률 전망도 함께 올라 단순 물량 증가 이상의 신호를 줬습니다.",
-        "source_ids": ["smci-release"],
+        "source_ids": [
+          "smci-release"
+        ],
         "items": [
           {
             "label": "매출 전망",
             "text": "145~155억달러 → 185~195억달러. 회사는 AI 플랫폼 수요 증가를 이유로 들었습니다.",
             "type": "fact",
-            "source_ids": ["smci-release"]
+            "source_ids": [
+              "smci-release"
+            ]
           },
           {
             "label": "매출총이익률",
             "text": "제품 원가를 뺀 뒤 남는 비율입니다. 10.4~10.8% → 12.0~12.5%로 높아졌습니다.",
             "type": "analysis",
-            "source_ids": ["smci-release"]
+            "source_ids": [
+              "smci-release"
+            ]
           }
         ],
         "accent": "남기는 비율",
@@ -151,19 +162,27 @@
         "layout": "sectors",
         "title": "반등은 코스닥보다\n대형 반도체에 더 셌다",
         "body": "같은 시간 코스피 상승폭이 코스닥보다 컸습니다. 삼성전자와 SK하이닉스가 올라 지수 반등의 무게가 대형 반도체에 실렸습니다.",
-        "source_ids": ["kospi-live", "kosdaq-live", "korea-chips"],
+        "source_ids": [
+          "kospi-live",
+          "kosdaq-live",
+          "korea-chips"
+        ],
         "items": [
           {
             "label": "삼성전자",
             "text": "13시 57분 무렵 22만1천원, 전일 대비 4.49% 상승했습니다.",
             "type": "fact",
-            "source_ids": ["kospi-live"]
+            "source_ids": [
+              "kospi-live"
+            ]
           },
           {
             "label": "SK하이닉스",
             "text": "같은 화면에서 126만5천원, 전일 대비 3.43% 상승했습니다.",
             "type": "fact",
-            "source_ids": ["kospi-live"]
+            "source_ids": [
+              "kospi-live"
+            ]
           }
         ],
         "accent": "대형 반도체",
@@ -180,7 +199,10 @@
         "layout": "calendar",
         "title": "오늘 밤, AI 투자비를\n두 회사가 다시 답한다",
         "body": "메타는 AI 지출이 광고 이익으로 이어지는지, 테슬라는 판매량이 이익과 현금으로 남는지를 실적으로 보여줄 차례입니다.",
-        "source_ids": ["meta-ir", "tesla-ir"],
+        "source_ids": [
+          "meta-ir",
+          "tesla-ir"
+        ],
         "items": [],
         "accent": "두 회사",
         "visual": {
@@ -196,19 +218,27 @@
         "layout": "watch",
         "title": "반등의 다음 답은\n잠정치가 아니라 최종치",
         "body": "반등은 AI 서버 수요가 매출과 마진으로 이어졌다는 기대입니다. 11월 3일 최종 실적이 확인합니다.",
-        "source_ids": ["smci-release", "korea-chips"],
+        "source_ids": [
+          "smci-release",
+          "korea-chips"
+        ],
         "items": [
           {
             "label": "최종 수치",
             "text": "잠정치입니다. 최종 매출과 매출총이익률이 유지되는지 봅니다.",
             "type": "watch",
-            "source_ids": ["smci-release"]
+            "source_ids": [
+              "smci-release"
+            ]
           },
           {
             "label": "국내 확산",
             "text": "대형 반도체의 상승이 장비·소재주로 넓어지는지 확인합니다.",
             "type": "watch",
-            "source_ids": ["kospi-live", "korea-chips"]
+            "source_ids": [
+              "kospi-live",
+              "korea-chips"
+            ]
           }
         ],
         "accent": "최종치",
@@ -221,6 +251,16 @@
           "prompt": "따뜻한 오프화이트 점검대에서 확대경이 투명 유리층과 코발트 금속층으로 된 서버 모듈을 살피는 편집용 3D 매크로 정물. 사람·문자·숫자·로고·가짜 차트·워터마크 없이 제작."
         }
       }
+    ]
+  },
+  "reviewed_preview": {
+    "run_id": 39548221055,
+    "image_sha256": [
+      "e22b7d5572f7f73cad038c88e2456add594eb5bd89e3629e87da19ddfedbb38b",
+      "38ddb391220264fba8df3dab6ec5090d016196abe4b5e4cb4d60550bf11df1d5",
+      "59dc81b2ef5a5984a8c359282241f06a74a3a3ea7bf40c3a9c75b747ceb4a258",
+      "f6a6c67e3922629c7e41318a30225494027f01163d67b1e533371ad22658c29e",
+      "5107c916b3e16bfc9da4bee0bbf39aaba0143b6f1a0fbdab4cb0dd217bb9c162"
     ]
   }
 }
