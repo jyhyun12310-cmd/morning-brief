@@ -2,330 +2,410 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-16T23:40:43Z",
-  "publication_date_kst": "2026-10-17",
+  "created_at": "2026-10-21T23:39:32Z",
+  "publication_date_kst": "2026-10-22",
   "market": {
-    "ticker": "XOM",
-    "name": "ExxonMobil",
-    "session_date": "2026-10-16",
-    "session_close_at": "2026-10-16T16:00:00-04:00",
+    "ticker": "META",
+    "name": "Meta Platforms",
+    "session_date": "2026-10-21",
+    "session_close_at": "2026-10-21T16:00:00-04:00",
     "price_basis": "regular_close",
     "currency": "USD",
-    "close": 178.98,
-    "previous_close": 174.68,
-    "change_pct": 2.46,
-    "source_id": "price"
+    "close": 697.52,
+    "previous_close": 694.25,
+    "change_pct": 0.47,
+    "source_id": "prices"
   },
   "sources": [
     {
-      "id": "update",
-      "title": "ExxonMobil · 3Q 2026 Market and Planned Impacts to Earnings",
-      "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/f8k3q991101626.htm",
-      "as_of": "2026-10-16 8-K 첨부; 3분기 대 2분기 선택 요인의 회사 추정·확정 실적 아님",
-      "retrieved_at": "2026-10-16T23:40:43Z"
+      "id": "meta-q3",
+      "title": "Meta Reports Third Quarter 2026 Results",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+      "as_of": "2026-10-21 발표 · 2026-09-30 종료 분기",
+      "retrieved_at": "2026-10-21T23:38:00Z"
     },
     {
-      "id": "filing",
-      "title": "ExxonMobil · 2026-10-16 Form 8-K",
-      "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/xom-20261016.htm",
-      "as_of": "2026-10-16 사건·공시일; 정확한 공개 시각은 본문 미기재",
-      "retrieved_at": "2026-10-16T23:40:43Z"
+      "id": "prices",
+      "title": "Stock Analysis / S&P Global — META regular-session historical closes",
+      "url": "https://stockanalysis.com/stocks/meta/history/",
+      "as_of": "2026-10-21·2026-10-20 정규장 Close, 동일 주식분할 조정 기준",
+      "retrieved_at": "2026-10-21T23:31:00Z"
     },
     {
-      "id": "schedule",
-      "title": "ExxonMobil · 3분기 실적 발표 일정",
-      "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1212/exxonmobil-to-release-third-quarter-2026-financial-results",
-      "as_of": "2026-10-16 공지; 결과 10월30일 05:30 CT, 설명회 08:30 CT 예정",
-      "retrieved_at": "2026-10-16T23:40:43Z"
-    },
-    {
-      "id": "price",
-      "title": "Stock Analysis / S&P Global · XOM 정규장 종가",
-      "url": "https://stockanalysis.com/stocks/xom/history/",
-      "as_of": "2026-10-16 $178.98, 10-15 $174.68; split-adjusted Close, USD; 시간외 제외",
-      "retrieved_at": "2026-10-16T23:40:36Z"
+      "id": "release-time",
+      "title": "Meta to Announce Third Quarter 2026 Results",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-to-Announce-Third-Quarter-2026-Results/default.aspx",
+      "as_of": "2026-10-12 공고 · 10월 21일 정규장 마감 후 발표",
+      "retrieved_at": "2026-10-21T23:37:00Z"
     },
     {
       "id": "nyse",
-      "title": "NYSE · 2026 거래 달력과 정규장 시간",
+      "title": "NYSE Holidays & Trading Hours",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026-10-16 정상 거래일·16:00 America/New_York 폐장",
-      "retrieved_at": "2026-10-16T23:40:36Z"
+      "as_of": "2026 거래일·휴장·조기폐장 달력",
+      "retrieved_at": "2026-10-21T23:30:00Z"
     },
     {
       "id": "nasdaq",
-      "title": "Nasdaq · 2026 휴장·조기폐장 달력",
+      "title": "Nasdaq 2026 U.S. Stock Market Holiday Schedule",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026-10-16 휴장·조기폐장 없음; 정상 16:00 ET",
-      "retrieved_at": "2026-10-16T23:40:36Z"
+      "as_of": "2026 거래일·정규장 09:30–16:00 ET",
+      "retrieved_at": "2026-10-21T23:30:00Z"
     }
   ],
-  "metrics": [],
+  "metrics": [
+    {
+      "id": "ocf",
+      "value": 327.86,
+      "unit": "억달러",
+      "period": "2026Q3",
+      "basis": "현금흐름·금융리스 원금 포함",
+      "source_id": "meta-q3"
+    },
+    {
+      "id": "capex",
+      "value": 349.06,
+      "unit": "억달러",
+      "period": "2026Q3",
+      "basis": "현금흐름·금융리스 원금 포함",
+      "source_id": "meta-q3"
+    }
+  ],
   "summary": {
+    "design": "editorial-v2",
     "market_basis": {
-      "ticker": "XOM",
-      "session_date": "2026-10-16",
+      "ticker": "META",
+      "session_date": "2026-10-21",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 178.98,
-      "previous_close": 174.68,
-      "change_pct": 2.46
+      "close": 697.52,
+      "previous_close": 694.25,
+      "change_pct": 0.47
     },
-    "central_question": "엑슨모빌의 정제마진 효과 45억달러는 어디서 오는 이익일까요?",
-    "thesis": "엑슨모빌은 정제 제품 마진 변화가 3분기 이익을 전분기보다 45억달러 높이는 요인이라고 추정했습니다. 원유 가격 효과는 반대였고, 이 공시는 전체 이익 전망이 아닌 일부 요인의 추정입니다.",
-    "edition": "미장, 한 겹 더. · 10월 17일",
-    "instagram_caption": "엑슨모빌의 새 공시는 원유를 파는 이익과 연료로 가공하는 이익을 갈라 보여줍니다.\n45억달러는 분기 순이익이 아니라 정제마진 변화의 추정 효과입니다.\n#엑슨모빌 #에너지 #미국주식",
+    "central_question": "메타의 무의결권 C주 신설은 회사와 기존 주주에게 무엇을 바꾸나?",
+    "thesis": "메타는 무의결권 C주로 투자금 조달·보상·인수의 선택지를 넓히면서 기존 의결권을 유지하려 합니다. 주식배당 자체는 현금 조달이 아니며, 이후 추가 발행의 대가는 투자 성과와 주당 몫을 함께 봐야 판단할 수 있습니다.",
+    "edition": "2026.10.22 미국주식",
+    "instagram_caption": "메타가 나눠 줄 새 주식에는 투표권이 없습니다. 주식배당으로 받는 한 주와, 앞으로 AI 투자 재원으로 발행할 주식의 대가는 다릅니다.\n#메타 #미국주식 #AI투자",
     "sources": [
       {
-        "id": "update",
-        "title": "ExxonMobil · 3Q 2026 Market and Planned Impacts to Earnings",
-        "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/f8k3q991101626.htm",
-        "as_of": "2026-10-16 8-K 첨부; 3분기 대 2분기 선택 요인의 회사 추정·확정 실적 아님"
+        "id": "meta-q3",
+        "title": "Meta Reports Third Quarter 2026 Results",
+        "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+        "as_of": "2026-10-21 발표 · 2026-09-30 종료 분기"
       },
       {
-        "id": "filing",
-        "title": "ExxonMobil · 2026-10-16 Form 8-K",
-        "url": "https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000013/xom-20261016.htm",
-        "as_of": "2026-10-16 사건·공시일; 정확한 공개 시각은 본문 미기재"
+        "id": "prices",
+        "title": "Stock Analysis / S&P Global — META regular-session historical closes",
+        "url": "https://stockanalysis.com/stocks/meta/history/",
+        "as_of": "2026-10-21·2026-10-20 정규장 Close, 동일 주식분할 조정 기준"
       },
       {
-        "id": "schedule",
-        "title": "ExxonMobil · 3분기 실적 발표 일정",
-        "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1212/exxonmobil-to-release-third-quarter-2026-financial-results",
-        "as_of": "2026-10-16 공지; 결과 10월30일 05:30 CT, 설명회 08:30 CT 예정"
-      },
-      {
-        "id": "price",
-        "title": "Stock Analysis / S&P Global · XOM 정규장 종가",
-        "url": "https://stockanalysis.com/stocks/xom/history/",
-        "as_of": "2026-10-16 $178.98, 10-15 $174.68; split-adjusted Close, USD; 시간외 제외"
+        "id": "release-time",
+        "title": "Meta to Announce Third Quarter 2026 Results",
+        "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-to-Announce-Third-Quarter-2026-Results/default.aspx",
+        "as_of": "2026-10-12 공고 · 10월 21일 정규장 마감 후 발표"
       },
       {
         "id": "nyse",
-        "title": "NYSE · 2026 거래 달력과 정규장 시간",
+        "title": "NYSE Holidays & Trading Hours",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026-10-16 정상 거래일·16:00 America/New_York 폐장"
+        "as_of": "2026 거래일·휴장·조기폐장 달력"
       },
       {
         "id": "nasdaq",
-        "title": "Nasdaq · 2026 휴장·조기폐장 달력",
+        "title": "Nasdaq 2026 U.S. Stock Market Holiday Schedule",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026-10-16 휴장·조기폐장 없음; 정상 16:00 ET"
+        "as_of": "2026 거래일·정규장 09:30–16:00 ET"
       }
     ],
     "evidence_notes": [
       {
-        "id": "ev_new",
-        "claim": "10월16일 Form 8-K EX99.1은 3Q26 대 2Q26 선택된 시장·예정 요인의 이익 영향을 회사 추정으로 제시한다. Energy Products 마진 변화 +45억달러이며 전체 분기 이익 전망이 아니다.",
+        "id": "decision",
+        "claim": "10월 21일 이사회는 상장 무의결권 Class C 신설을 승인했다. 회사가 명시한 용도는 자금조달·직원 보상·인수 등이다. 발표는 실제 증자 완료 공시가 아니다.",
         "source_ids": [
-          "filing",
-          "update"
+          "meta-q3"
         ]
       },
       {
-        "id": "ev_price",
-        "claim": "같은 S&P Global 제공·분할조정 정규장 Close 기준 XOM 10월16일178.98달러,15일174.68달러, 변동률(178.98/174.68-1)*100=2.46165%로 표시2.46%. 공시가 등락 전체 원인이라고 단정하지 않는다.",
+        "id": "dividend",
+        "claim": "Class A·B 1주마다 C 1주를 주는 주식배당은 정관 변경 효력 발생을 조건으로 한다. 배당 자체에 신규 투자금 납입은 없으며 모든 기존 주주의 의결권은 변하지 않는다.",
         "source_ids": [
-          "price"
+          "meta-q3"
         ]
       },
       {
-        "id": "ev_segments",
-        "claim": "공시의 동일한 전분기 대비 요인 비교에서 Upstream 액체가격 -13억달러, 가스가격 +3억달러, Energy Products 마진 +45억달러, Chemical Products 마진 -6억달러다. 이전 분기 물량을 적용한 시장 효과이며 확정 부문 순이익이 아니다.",
+        "id": "advertising",
+        "claim": "2026년 3분기 광고 노출량은 전년 동기 대비 10%, 광고당 평균 가격은 14% 증가했다. 총매출은 646.01억달러로 26% 증가했다. 물량·단가가 함께 늘어 광고 수익 기반이 확대됐다는 해석이다.",
         "source_ids": [
-          "update"
+          "meta-q3"
         ]
       },
       {
-        "id": "ev_timing",
-        "claim": "실물·파생상품의 손익 반영 시점 차이 추정은 3분기 합계 -25억달러, Energy Products -19억달러다. 회사 조정이익(non-GAAP)은 이 효과를 제외하며 미국회계기준 순이익의 대체물이 아니다.",
+        "id": "cash",
+        "claim": "같은 분기 영업현금 327.86억달러에서 유형자산 구매 339.42억과 금융리스 원금 9.64억을 차감한 회사 정의 잉여현금은 -21.20억달러다. 설비지출 합계349.06억을 소수점 한 자리349.1억으로 표시한다.",
         "source_ids": [
-          "update"
+          "meta-q3"
         ]
       },
       {
-        "id": "ev_limits",
-        "claim": "공시는 운영 성과·개선 활동·일부 비예정 중단 등을 포함하지 않으며 이 요인들이 시장·예정 요인보다 클 수 있다고 밝힌다. 45억달러를 기존 이익에 더해 최종 분기이익을 계산하지 않는다.",
+        "id": "legal",
+        "claim": "분기 영업이익 129.88억달러에는 8월 주 법무장관 합의 관련 비용 98.9억이 반영됐다. 회사가 제시한 이를 제외한 영업이익은 228.8억달러다. 회계상 비용과 설비 현금지출은 다른 항목이며 두 압력을 구분한다.",
         "source_ids": [
-          "update"
+          "meta-q3"
         ]
       },
       {
-        "id": "ev_next",
-        "claim": "10월16일 회사 일정 공지는 3분기 확정실적을 10월30일 오전5:30 미국 중부시간, 설명회를 오전8:30으로 제시한다. 아직 발표된 결과가 아니다.",
+        "id": "dilution",
+        "claim": "향후 C주를 외부에 추가 발행하면 기존 주주가 가진 경제적 지분은 희석될 수 있다. 의결권이 없으므로 투표권 수는 늘지 않는다. 얻은 자금·인재·인수가 주당 이익을 늘리는지가 비용 대비 가치의 판단 기준이라는 작성자 해석이다.",
         "source_ids": [
-          "schedule"
+          "meta-q3"
+        ]
+      },
+      {
+        "id": "timing",
+        "claim": "정관 변경의 예정 효력일은 2027-01-19다. 주식배당 기준일·지급일은 추후 결정이며 C주 나스닥 상장도 추진 계획이다. 1월19일을 배당·상장 확정일로 쓰지 않는다.",
+        "source_ids": [
+          "meta-q3"
+        ]
+      },
+      {
+        "id": "session",
+        "claim": "NYSE와 Nasdaq 공식 달력상 2026-10-21은 정상 거래일. EDT16:00=UTC20:00=KST10월22일05:00 폐장. META 종가697.52/직전10월20일694.25-1=0.4710%이다. 장후 실적을 당일 정규장 상승의 원인으로 연결하지 않는다.",
+        "source_ids": [
+          "prices",
+          "release-time",
+          "nyse",
+          "nasdaq"
         ]
       }
     ],
-    "editorial_review": {
-      "improvement": "원유·정유를 하나로 묶지 않고 새 공시의 사업별 이익 요인을 같은 전분기 기준으로 분리",
-      "reason": "유가 상승 기사와 회사 이익을 곧바로 연결하는 대신 실제 정제마진 효과가 의미하는 범위를 설명",
-      "application": "남긴 주장은 정제마진이 현재 추정의 중심이라는 점. 컨센서스·유가 예언·국내 수혜주·전체 이익 합산을 버리고 4장에서 화학의 반대 효과, 5장에서 회계 시점 차이를 추가",
-      "avoided_repetition": "베이지북의 가격 전가 상식과 TSMC 공급망 조건을 재사용하지 않음. 45억달러는 표지에서 제시하고 이후 본문에서는 사업 구조·공시 범위로 전진",
-      "checks": "첫 두 장이 추정 효과와 전체 이익의 차이를 답함. 3장은 사업 구조, 4장은 화학 차이, 5장은 회계 시점 차이, 6장은 생산·가동 조건, 7장은 실제 실적과의 대조. 수치 원문 확인 완료; 이미지 판정은 새 preview 전체를 직접 연 뒤 수행"
-    },
     "visual_story": [
       {
         "layout": "cover",
-        "title": "엑슨모빌, 정제마진 효과\n이익에 45억달러 보탠다",
-        "body": "10월 16일 공시한 3분기 추정입니다. 전분기보다 원유 등 액체가격 효과는 나빴지만, 정제 제품 마진은 이익을 더하는 쪽이었습니다.",
-        "takeaway": "원유 가격 하나로는 종합 석유기업의 이익을 읽기 어렵습니다.",
-        "bridge": "먼저 이 숫자가 어떤 추정인지 구분하겠습니다.",
+        "title": "메타, 주식은 나누고\n의결권은 지킵니다",
+        "body": "메타가 10월 21일 투표권 없는 C주 신설을 발표했습니다. AI 투자에 쓸 주식을 늘려도 기존 주주의 의결권은 유지하는 구조입니다.",
+        "takeaway": "주주가 받을 새 주식과 회사가 나중에 발행할 주식은 구분해야 합니다.",
+        "bridge": "주식을 나눠 주면 투자금도 생길까요?",
         "evidence_ids": [
-          "ev_new",
-          "ev_segments"
+          "decision",
+          "dividend",
+          "session"
         ],
         "labels": [
           {
-            "label": "정제마진 변화 효과",
-            "text": "+45억달러"
+            "label": "새 주식의 용도",
+            "text": "자금조달·직원 보상·인수에 활용할 수 있습니다."
           },
           {
-            "label": "비교 기준",
-            "text": "3분기 대 2분기"
+            "label": "발표 전 정규장",
+            "text": "10/21 종가 697.52달러 · 전일 대비 +0.47%"
           }
         ],
-        "source_line": "ExxonMobil · 10월16일 8-K, 회사 추정"
+        "visual": {
+          "path": "automation/visual_assets/3202be2e30b0a9eaacbe5c6f023c7ec081ed53b0e6135623533f52bb1946c47d.png",
+          "sha256": "3202be2e30b0a9eaacbe5c6f023c7ec081ed53b0e6135623533f52bb1946c47d",
+          "alt": "의결권을 상징하는 고정된 의자와 주변으로 펼쳐진 주식 증서 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration for a Korean finance card explaining Meta's new nonvoting Class C stock and continued founder control. A striking minimalist black executive chair stands firmly on an off-white stage while translucent cobalt equity certificates fan out into the foreground. No real person, no logo, no words, no numbers, no chart. The contrast is ownership instruments spreading while the decision-making seat stays fixed. Sophisticated tactile 3D editorial sculpture, clean studio light, strong black and cobalt on warm off-white. Very wide horizontal 3:1 composition, entire subjects in central band, substantial breathing room, minimum height 640 pixels."
+        }
       },
       {
         "layout": "photo",
-        "title": "45억달러는 순이익이 아닌\n마진 변화의 효과입니다",
-        "body": "회사는 일부 시장·예정 요인만 제시했습니다. 생산 성과와 비예정 가동 중단 등은 빠져 있어 최종 분기 이익을 뜻하지 않습니다.",
-        "takeaway": "추정의 범위를 알면 큰 숫자를 분기 실적으로 오해하지 않습니다.",
-        "bridge": "같은 회사 안에서 왜 이익 효과가 갈렸을까요?",
+        "title": "주식은 늘지만\n현금은 안 들어옵니다",
+        "body": "기존 A·B주 한 주마다 C주 한 주를 주는 주식배당입니다. 기존 주주에게 같은 비율로 나눠 주므로, 이 배당 자체가 회사에 새 현금을 넣는 거래는 아닙니다.",
+        "takeaway": "보유 주식 수가 두 배가 된다고 투자 가치까지 두 배가 되지는 않습니다.",
+        "bridge": "그런데 메타는 왜 새 조달 수단을 열었을까요?",
         "evidence_ids": [
-          "ev_new",
-          "ev_limits"
+          "dividend",
+          "timing"
         ],
         "labels": [
           {
-            "label": "이번 자료",
-            "text": "일부 요인의 전분기 대비 추정"
+            "label": "주주가 받는 것",
+            "text": "보유한 기존 주식에 무의결권 C주가 더해집니다."
           },
           {
-            "label": "아직 남은 항목",
-            "text": "운영 성과·비예정 중단 등"
+            "label": "가격의 변화",
+            "text": "회사는 A주 가격에 2대1 분할 효과가 반영될 것으로 봤습니다."
           }
         ],
-        "source_line": "ExxonMobil · 3Q26 이익 영향 공시"
+        "visual": {
+          "path": "automation/visual_assets/225e2142498a17cbfb17efe0efc0bb5beaed03767b3ed75995bc8e1ce0a2c45f.png",
+          "sha256": "225e2142498a17cbfb17efe0efc0bb5beaed03767b3ed75995bc8e1ce0a2c45f",
+          "alt": "기존 주주에게 나누어 줄 서로 다른 종류의 증서를 표현한 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration explaining a stock dividend is redistribution of claims, not cash entering a company. Overhead still-life of an elegant ivory document folio opened into paired black and cobalt abstract certificate leaves, a simple ceramic corporate building model behind it. No cash, no arrows, no logos, no text or numbers, no quantitative chart. Clearly conceptual, refined paper texture, warm off-white background, soft directional lighting. Wide horizontal 3:1 composition with the objects across the center, minimum height 640 pixels."
+        }
       },
       {
         "layout": "annotated",
-        "title": "원유를 파는 일과\n연료로 가공하는 일의 차이",
-        "body": "엑슨모빌은 원유·가스를 생산하고 연료로 가공해 판매합니다. 정유에서는 원유 값뿐 아니라 제품 판매가격과 원료비 사이의 차이가 중요합니다.",
-        "takeaway": "같은 에너지기업에서도 판매하는 단계에 따라 이익 경로가 달라집니다.",
-        "bridge": "실제 공시에서 정유와 화학의 차이를 짚겠습니다.",
+        "title": "광고가 버는 돈이\nAI 투자의 출발점",
+        "body": "3분기에는 광고가 더 많이 노출됐고, 광고 한 건당 가격도 올랐습니다. 두 요인이 함께 매출을 키웠습니다. 이 본업에서 벌어들이는 돈이 AI 투자의 재원입니다.",
+        "takeaway": "광고 사업은 성장했지만, 매출 증가만으로 투자 여력을 다 설명할 수 없습니다.",
+        "bridge": "현금으로 들어온 돈과 나간 돈을 비교합니다.",
         "evidence_ids": [
-          "ev_segments"
+          "advertising",
+          "cash"
         ],
         "labels": [
           {
-            "label": "생산 부문",
-            "text": "원유·가스 판매가격이 이익에 영향"
+            "label": "광고 노출량",
+            "text": "전년 동기 대비 +10% · 광고를 보여 준 횟수입니다."
           },
           {
-            "label": "정유 부문",
-            "text": "제품과 원료의 가격 차이가 핵심"
-          },
-          {
-            "label": "공시의 마진 효과",
-            "text": "제품 가격 차이와 거래의 시장 효과 포함"
+            "label": "광고당 가격",
+            "text": "전년 동기 대비 +14% · 건당 받는 평균 금액입니다."
           }
         ],
-        "source_line": "ExxonMobil · 3Q26 공시, 표와 각주"
+        "visual": {
+          "path": "automation/visual_assets/f71b10e4e14f1201da2600302be47d99abaa725f8f1dc76db2c0ab86a3a5c4da.png",
+          "sha256": "f71b10e4e14f1201da2600302be47d99abaa725f8f1dc76db2c0ab86a3a5c4da",
+          "alt": "광고 노출과 제품 홍보를 표현한 휴대전화·광고 소재 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration for Meta's advertising business funding AI investment. Close low-angle composition of a smartphone showing a purely abstract cobalt advertising tile, beside a sculptural camera lens and small carefully arranged product display, suggesting advertisers paying to reach users. No real app UI, no logos, no legible words, no numbers, no coins, no charts. Sophisticated realistic 3D editorial still life, dark charcoal background, bright cobalt and ivory focal objects. Wide horizontal 3:1, minimum height 640 pixels, objects fully visible."
+        }
       },
       {
         "layout": "comparison",
-        "title": "정유의 마진 개선이\n화학까지 번진 건 아닙니다",
-        "body": "같은 전분기 대비 마진 변화인데도 화학 부문은 이익을 줄이는 쪽입니다. 에너지 가격을 보고 정유·석유화학을 같은 수혜로 묶으면 놓치는 차이입니다.",
-        "takeaway": "제품별 공급과 수요가 달라지면 같은 원료를 써도 결과가 갈립니다.",
-        "bridge": "그런데 사업이 좋아져도 장부 이익은 다를 수 있습니다.",
+        "title": "들어온 현금보다\n설비에 더 썼습니다",
+        "body": "사업에서 들어온 현금보다 설비에 쓴 돈이 많았습니다. 둘의 차이인 잉여현금이 마이너스여서, 광고 성장만으로 이번 분기 투자 지출을 충당하지는 못했습니다.",
+        "takeaway": "새 주식은 투자 재원을 넓히는 수단이지만, 투자 수익까지 만들어 주지는 않습니다.",
+        "bridge": "현금 부족과 회계상 이익 감소는 구분합니다.",
         "evidence_ids": [
-          "ev_segments"
+          "cash",
+          "decision"
         ],
-        "labels": [
-          {
-            "label": "화학제품 마진 효과",
-            "text": "−6억달러"
-          },
-          {
-            "label": "비교 범위",
-            "text": "3분기 대 2분기 · 회사 추정"
-          }
-        ],
-        "source_line": "ExxonMobil · 10월16일 공시, 마진 변화"
+        "labels": [],
+        "chart": {
+          "source": "Meta 2026년 3분기 현금흐름 조정표",
+          "note": "동일 분기 현금 기준 · 설비지출에 금융리스 원금 포함",
+          "unit": "억달러",
+          "rows": [
+            {
+              "metric_id": "ocf",
+              "value": 327.86,
+              "label": "영업에서 들어온 현금",
+              "display": "327.9억달러"
+            },
+            {
+              "metric_id": "capex",
+              "value": 349.06,
+              "label": "설비에 쓴 현금",
+              "display": "349.1억달러"
+            }
+          ]
+        },
+        "visual": {
+          "path": "automation/visual_assets/c82687d15eec0a34bcaad2190b472a45fe9eaf49e6e7c4615e0e90be27ff33a7.png",
+          "sha256": "c82687d15eec0a34bcaad2190b472a45fe9eaf49e6e7c4615e0e90be27ff33a7",
+          "alt": "사업 현금이 설비 구축에 쓰이는 모습을 표현한 서버 건설 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration about data-center investment consuming operating cash. An unfinished row of server racks under a small architectural construction crane, sleek silver cables and a blank ivory receipt ribbon feeding into the construction zone. Not an exact flow diagram or chart; editorial conceptual art. Warm off-white backdrop, black metal racks and cobalt crane, carefully detailed industrial materials. No text, digits, logos, currency symbols or piles of coins. Wide horizontal 3:1 with a lateral composition, minimum height 640 pixels."
+        }
       },
       {
         "layout": "explain",
-        "title": "실물과 헤지의 시간차,\n장부 이익도 갈라놓습니다",
-        "body": "회사는 실물 거래와 위험을 줄이는 파생상품의 손익 반영 시점이 다르다고 설명했습니다. 이 차이는 나중 분기에 되돌려 반영될 수 있습니다.",
-        "takeaway": "영업의 흐름과 손익 인식 시점을 나눠야 분기 숫자를 해석할 수 있습니다.",
-        "bridge": "그럼 이번 정유 개선 판단은 무엇이 바꿀까요?",
+        "title": "줄어든 이익에는\n소송 비용도 있습니다",
+        "body": "분기 영업이익 감소를 전부 AI 투자 탓으로 읽으면 틀립니다. 소송 합의 비용이 이익을 크게 낮췄습니다. 이 회계상 비용은 앞 장의 설비 현금지출과 다른 항목입니다.",
+        "takeaway": "본업의 수익력과 대규모 투자에 필요한 현금은 각각 따져야 합니다.",
+        "bridge": "투자 재원을 새 주식으로 마련하면 누가 부담할까요?",
         "evidence_ids": [
-          "ev_timing"
+          "legal",
+          "cash"
         ],
         "labels": [
           {
-            "label": "3분기 시점 차이 추정",
-            "text": "전체 이익에 −25억달러"
+            "label": "보고 영업이익",
+            "text": "129.9억달러 · 소송 합의 비용 98.9억달러 반영"
           },
           {
-            "label": "회사 조정이익",
-            "text": "시점 차이 제외 · 미국회계기준과 구분"
+            "label": "합의 비용 제외",
+            "text": "회사 제시 영업이익 228.8억달러 · 별도 조정치"
           }
         ],
-        "source_line": "ExxonMobil · 3Q26 공시, timing effects"
+        "visual": {
+          "path": "automation/visual_assets/586e084196e5d3daf7a526b7bf0925b914e802abfade1bbed0b7f75ea2456bfc.png",
+          "sha256": "586e084196e5d3daf7a526b7bf0925b914e802abfade1bbed0b7f75ea2456bfc",
+          "alt": "회계상 소송 비용과 광고 사업을 분리해서 읽는 법률 서류 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration separating legal settlement charges from core advertising profits. A substantial legal file with a black binding rests beside a clear glass pane, through which a small cobalt advertising screen is visible. Separate foreground and background, clean sharp material contrast, no gavel cliché, no scales, no text, no numbers, no logos, no graph. Dark charcoal studio backdrop with ivory paper and cobalt accents, conceptual not an actual case document. Wide horizontal 3:1, minimum height 640 pixels."
+        }
       },
       {
         "layout": "conditions",
-        "title": "좋은 마진도 설비가\n돌아가야 이익이 됩니다",
-        "body": "이번 마진 추정은 이전 분기 물량을 기준으로 했습니다. 실제 처리량과 가동 중단이 달라지면 마진 개선이 이익으로 이어지는 폭도 바뀝니다.",
-        "takeaway": "가격 차이의 개선과 실제 생산 성과를 함께 확인해야 합니다.",
-        "bridge": "마지막으로 이번 공시가 지지하는 판단을 남깁니다.",
+        "title": "새 주식을 더 쓰면\n주당 몫을 따져야 합니다",
+        "body": "앞으로 C주를 새로 발행해 자금이나 인재를 얻으면 나눌 주식 수도 늘어납니다. 투표권을 더 주지 않아도 기존 주주의 경제적 지분은 줄어들 수 있습니다.",
+        "takeaway": "창업자 중심의 의결권을 유지하는 것과 기존 주주 가치를 지키는 것은 다릅니다.",
+        "bridge": "지금 확정된 일정과 아직 남은 조건을 가릅니다.",
         "evidence_ids": [
-          "ev_segments",
-          "ev_limits"
+          "decision",
+          "dilution"
         ],
         "labels": [],
-        "origin": "현재 판단: 정제마진이 이익을 뒷받침",
+        "origin": "추가 발행 이후, 얻는 가치와 늘어난 주식 수를 비교",
         "branches": [
           {
-            "label": "판단이 이어질 조건",
-            "text": "개선된 마진이 실제 판매와 가동으로 이어질 때",
-            "check": "확정 정유 실적의 이익 증가와 처리량 대조"
+            "label": "가치가 커질 조건",
+            "text": "새 투자·인수가 주당 이익 증가로 이어집니다.",
+            "check": "전체 이익과 희석 주식 수를 함께 비교합니다."
           },
           {
-            "label": "다시 볼 조건",
-            "text": "비예정 중단이나 운영 비용이 효과를 깎을 때",
-            "check": "회사 설명의 가동·비용 요인과 추정 차이 확인"
+            "label": "부담이 커질 조건",
+            "text": "투자 성과보다 주식 수가 더 빠르게 늘어납니다.",
+            "check": "주당 이익이 정체하면 조달의 대가를 재평가합니다."
           }
         ],
-        "source_line": "ExxonMobil · 공시 범위 및 이전 분기 물량 기준"
+        "visual": {
+          "path": "automation/visual_assets/5070c56b48321837108ad446d13052ccee1126605b35c7a2e05ee1b181301848.png",
+          "sha256": "5070c56b48321837108ad446d13052ccee1126605b35c7a2e05ee1b181301848",
+          "alt": "투자 성과와 주식 발행의 대가를 점검하는 검사용 조명과 설비 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration about whether new investment earns enough to offset increased shares. An industrial inspection bench with a luminous cobalt silicon module under an adjustable precision inspection lamp, surrounded by sparse abstract ivory share-certificate slips. Not a quantitative diagram, no scales, arrows, words, digits, logos or money. Sophisticated tactile 3D art on warm off-white, deliberate asymmetrical wide 3:1 composition, central subjects fully visible, minimum height 640 pixels."
+        }
       },
       {
         "layout": "closing",
-        "title": "이번 엑슨모빌의 핵심은\n유가보다 정유의 가격 차이",
-        "body": "새 공시는 정제 제품 마진이 이익을 받친다는 해석을 지지합니다. 다만 10월 30일 실제 정유 실적이 이를 얼마나 구현했는지가 최종 판단을 가릅니다.",
-        "takeaway": "이 회사는 유가 한 줄보다 사업별 이익 요인을 나눠 읽어야 합니다.",
-        "bridge": "저장해 두고 확정 실적의 정유 이익과 대조하십시오.",
+        "title": "메타가 넓힌 것은\n투자금 마련의 선택지",
+        "body": "현재 판단은 ‘투자 재원은 넓히되 지배구조는 유지한다’입니다. 투자 성공을 확인한 발표는 아닙니다. 영업현금이 설비지출을 다시 넘는지가 다음 실적의 핵심입니다.",
+        "takeaway": "현금 격차가 줄지 않은 채 추가 발행까지 커지면 주주 부담을 더 무겁게 봅니다.",
+        "bridge": "주식 수보다, 한 주에 돌아오는 성과를 봅니다.",
         "evidence_ids": [
-          "ev_new",
-          "ev_limits",
-          "ev_next"
+          "decision",
+          "cash",
+          "timing",
+          "dilution"
         ],
         "labels": [
           {
-            "label": "다음 결과",
-            "text": "10월30일 · 회사 공식 실적"
+            "label": "정관 효력 예정",
+            "text": "2027년 1월 19일 · C주를 만들기 위한 정관 변경"
           },
           {
-            "label": "판단 기준",
-            "text": "정유 이익 개선과 가동·회계 조정의 차이"
+            "label": "아직 미정",
+            "text": "주식배당 기준일·지급일은 추후 결정합니다."
           }
         ],
-        "source_line": "ExxonMobil · 10월16일 공시와 실적 일정"
+        "visual": {
+          "path": "automation/visual_assets/36949b213acb07b2cd143ec3a33dc6dcd7d76005f6ae26fe472bce1ba66f4f43.png",
+          "sha256": "36949b213acb07b2cd143ec3a33dc6dcd7d76005f6ae26fe472bce1ba66f4f43",
+          "alt": "새 주식의 발행 조건과 미정 일정을 확인하는 문서·펜 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration for evaluating Meta's future Class C issuance terms. A close editorial still-life of a fountain pen poised above a blank white securities document, with a cobalt translucent certificate casting a crisp shadow beside it and a small sculptural architectural doorway in the background. Convey terms yet to be read, no signatures, real documents, readable text, numbers, brand marks, checkmarks or charts. Sophisticated warm off-white and black with cobalt, broad horizontal 3:1 composition, minimum height 640 pixels."
+        }
       }
-    ]
+    ],
+    "editorial_review": {
+      "improvement": "핵심은 C주가 투자 재원과 의결권을 분리한다는 점. GM의 숫자에서 주주 의미로 넘어가는 설명 부족을 보완해 2장에서 배당·현금, 6장에서 추가 발행·주당 몫의 연결을 풀었다.",
+      "reason": "최근 5편의 원고·카드·편집 기록 확인. 관세 편은 면제 범위를 반복했고 TSMC는 주변 공급망으로 퍼졌다. 인도네시아 마지막 장은 판단 이유가 짧았다. 이번에는 첫 두 장에서 답하고 이후 광고→현금→이익→지분으로 근거를 더했다.",
+      "application": "제목 후보 ‘메타, 주식은 나누고 의결권은 지킵니다’를 채택. ‘광고 호황에도 현금 적자’는 주식 구조를 늦게 설명하고 ‘AI에 쓸 새 주식’은 조달 완료로 오해하기 쉬워 제외. 3·4장에 영업 재원, 5장에 합의 비용, 6장에 희석 경로를 배치.",
+      "avoided_repetition": "Supermicro 매출·반도체 수혜와 구분해 자본구조를 중심으로 삼았다. AI 이용자·Reality Labs·시장 예상·시간외 등락·소송 판결 별건은 덜었다. 기존 금고·동전·돋보기 대신 문서·광고·시설의 서로 다른 구도를 사용. 다음에는 실제 발행 조건을 근거로 판단을 보완한다."
+    }
   }
 }
