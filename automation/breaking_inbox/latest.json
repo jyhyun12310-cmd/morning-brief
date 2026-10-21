@@ -1,164 +1,179 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-20T13:04:07Z",
-  "snapshot_at": "2026-10-20T13:04:07Z",
-  "publication_date_kst": "2026-10-20",
+  "created_at": "2026-10-21T08:20:43Z",
+  "snapshot_at": "2026-10-21T08:20:43Z",
+  "publication_date_kst": "2026-10-21",
   "event": {
-    "issuer": "general-motors",
-    "release_id": "gm-fy2026-q3-earnings",
-    "occurred_at": "2026-10-20T06:30:00-04:00",
-    "category": "major_earnings",
+    "issuer": "bank-indonesia",
+    "release_id": "sp-28-233-dkom",
+    "occurred_at": "2026-10-21T14:10:00+07:00",
+    "category": "rates",
     "status": "confirmed",
-    "market_scope": "major_sector",
-    "primary_source_id": "gm-release",
-    "materiality": "미국 주요 완성차 GM이 기존 60억달러 매입을 완료하고 새 200억달러 자사주 매입을 승인했습니다. 정례 실적 수치만의 변화가 아니라 자본 배분 결정입니다. 연간 영업이익 중간값 유지와 현금흐름 전망 상향을 구분해야 하므로, 다음 정기 선별까지 기다려 미국 거래일을 넘기면 새 결정의 의미를 판단할 적시성이 줄어듭니다."
+    "market_scope": "broad_market",
+    "primary_source_id": "bi-october-decision",
+    "materiality": "MSCI의 신흥국 지수 퇴출 검토로 인도네시아 증시가 기록적인 급락을 겪고 루피아가 사상 최저치 부근으로 밀린 가운데, 중앙은행이 기준금리는 동결하고 예치금리만 올렸습니다. 외국인 자금 이탈을 막되 대출 충격은 제한하려는 즉시 대응입니다. 결정 직후 시장이 열려 있어 다음 정기 선별까지 기다리면 자금 흐름을 판단할 정보 가치가 크게 줄어듭니다."
   },
   "sources": [
     {
-      "id": "gm-release",
+      "id": "bi-october-decision",
       "kind": "primary",
-      "title": "GM Q3 2026 Press Release and Financial Highlights",
-      "url": "https://investor.gm.com/static-files/c79ce1e6-c1f9-41cc-b503-1b98e1dbdfb2",
-      "as_of": "2026-10-20 발표 · 2026년 3분기(9월 30일 종료) 실적 및 연간 회사 전망",
-      "retrieved_at": "2026-10-20T13:01:34Z",
-      "published_at": "2026-10-20T06:30:00-04:00"
+      "title": "BI-Rate Tetap 5,75%: Memperkuat Stabilitas, Mendorong Pertumbuhan Ekonomi",
+      "url": "https://www.bi.go.id/id/publikasi/ruang-media/news-release/Pages/sp_2823326.aspx",
+      "as_of": "2026-10-21 발표 · 2026년 10월 20~21일 통화정책회의 결정",
+      "retrieved_at": "2026-10-21T08:20:43Z",
+      "published_at": "2026-10-21T14:10:00+07:00"
     },
     {
-      "id": "gm-deck",
+      "id": "msci-consultation",
       "kind": "primary",
-      "title": "General Motors Q3 2026 Earnings presentation, pp. 4–5, 11, 13, 17",
-      "url": "https://investor.gm.com/static-files/65b797d0-a099-4994-8dfb-44f806b36263",
-      "as_of": "2026-10-20 발표 · 2026년 3분기 실적·원가와 현금흐름 설명",
-      "retrieved_at": "2026-10-20T13:01:34Z",
-      "published_date": "2026-10-20"
+      "title": "MSCI Launches Consultation on Proposal to Reclassify Indonesia",
+      "url": "https://ir.msci.com/news-releases/news-release-details/msci-launches-consultation-proposal-reclassify-indonesia",
+      "as_of": "2026-10-15 발표 · 인도네시아 신흥국→Standalone 재분류 협의",
+      "retrieved_at": "2026-10-21T08:20:43Z",
+      "published_date": "2026-10-15"
+    },
+    {
+      "id": "reuters-bi-decision",
+      "kind": "secondary",
+      "title": "Indonesia's central bank keeps main rate unchanged, hikes deposit facility rate",
+      "url": "https://www.reuters.com/world/asia-pacific/indonesias-central-bank-keeps-main-rate-unchanged-hikes-deposit-facility-rate-2026-10-21/",
+      "as_of": "2026-10-21 · 금리 결정과 증시·루피아 반응",
+      "retrieved_at": "2026-10-21T08:20:43Z",
+      "published_at": "2026-10-21T07:00:51Z"
+    },
+    {
+      "id": "reuters-market-rout",
+      "kind": "secondary",
+      "title": "Indonesia battles to stabilise market after MSCI expulsion threat",
+      "url": "https://www.reuters.com/world/asia-pacific/indonesian-markets-inch-up-after-authorities-move-stem-rout-msci-expulsion-fears-2026-10-20/",
+      "as_of": "2026-10-20 · MSCI 경고 뒤 이틀 급락과 자금 유출 추정",
+      "retrieved_at": "2026-10-21T08:20:43Z",
+      "published_at": "2026-10-20T03:36:00Z"
     }
   ],
   "summary": {
     "design": "editorial-v2",
-    "instagram_caption": "GM이 새로 승인한 200억달러의 목적지는 자기주식입니다. 커진 매입 한도 뒤에서 실제 집행을 뒷받침할 현금과 원가 부담을 짚습니다. #GM #미국주식 #자사주매입",
+    "instagram_caption": "인도네시아는 기준금리를 올리지 않고 은행의 하루 예치금리만 높였습니다. 급락장의 급한 불은 끄되, 자금 흐름을 바꿀 열쇠는 MSCI 잔류 조건인 시장 투명성입니다. #인도네시아 #금리 #신흥국",
     "editorial_review": {
-      "improvement": "10월 17일 관세·16일 TSMC·15일 베이지북·14일 UnitedHealth·Bumble 상세 원고와 표지를 비교했습니다. 글자만 이어지는 화면과 내용에 맞지 않는 사진을 줄이고 장마다 결정·비용·현금의 다른 이미지를 연결했습니다.",
-      "reason": "관세 글의 반복되는 단서와 TSMC 표지의 숫자 밀도를 줄이는 것이 목표입니다. GM은 새 매입 승인, 이익 유지, 현금 전망의 차이가 핵심이라 매출·EPS·배당·국내 수혜주 나열을 버렸습니다.",
-      "application": "표지는 '목적지'로 자사주 매입을 바로 설명하고, 2장은 실적과 비용, 3장은 현금 전망과 실제 집행 조건으로 전진합니다. 제목 후보 'GM, 200억달러의 목적지는 자기주식', '트럭이 번 돈은 어디로 가나', '자사주 매입의 연료는 남는 현금' 중 가장 구체적인 첫 안을 선택했습니다.",
-      "avoided_repetition": "200억달러는 표지에만, 영업이익 중간값은 첫 근거에만 두었습니다. 2장에는 비용, 3장에는 현금과 관세 시점 효과를 남겼습니다. 최근 5편과 같은 사건이 아니며 다음 편은 또 다른 비유·주장을 고릅니다."
+      "improvement": "최근 5편의 서버·GM·관세·반도체·경기 원고에서 숫자 뒤의 전달 경로가 짧았던 약점을 보완했습니다. 세 장을 금리 결정→은행 자금 이동→지수 자금 이탈의 순서로 연결하고 장마다 다른 이미지를 배치했습니다.",
+      "reason": "핵심은 25bp 자체가 아니라 기준금리 동결과 예치금리 인상의 분리입니다. GDP·물가·대출성장률과 세부 외환 인센티브는 중심 결론을 흐려 덜었습니다.",
+      "application": "제목 후보 '기준금리는 멈췄지만 돈 묶는 금리는 올렸다', '인도네시아가 전면 인상 대신 고른 카드', '25bp보다 큰 위험은 신흥국 지수 이탈' 중 결정과 작동 방식을 함께 드러낸 첫 안을 선택했습니다. 2장에 예치금리의 자금 이동 경로, 3장에 판단을 바꿀 조건을 보강했습니다.",
+      "avoided_repetition": "5.75%와 5.00%는 1장, 14.8%와 820억달러는 2장, MSCI 잔류 조건은 3장에만 뒀습니다. 오늘 오후의 AI 서버·반도체 이슈와 주체·원인·영향·결론이 겹치지 않으며, 최근 표지의 기업명+숫자 문형도 피했습니다."
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "GM, 200억달러의\n목적지는 자기주식",
-        "body": "새 자사주 매입을 승인했습니다. 한꺼번에 쓰는 돈이 아니라 여러 해에 걸쳐 쓸 한도입니다.",
+        "title": "기준금리는 멈췄지만\n돈 묶는 금리는 올렸다",
+        "body": "인도네시아 중앙은행은 BI금리를 5.75%로 두고, 은행의 하루 예치금리는 5.00%로 0.25%포인트 올렸습니다.",
         "source_ids": [
-          "gm-release",
-          "gm-deck"
+          "bi-october-decision",
+          "reuters-bi-decision"
         ],
         "items": [
           {
-            "label": "이전 매입 완료",
-            "text": "올해 승인했던 60억달러 프로그램을 마쳤습니다.",
+            "label": "기준금리",
+            "text": "대출·시장금리 전반의 기준인 BI금리는 네 회 연속 동결했습니다.",
             "type": "fact",
             "source_ids": [
-              "gm-release"
+              "bi-october-decision"
             ]
           },
           {
-            "label": "이익 눈높이는 유지",
-            "text": "연간 조정 영업이익 전망의 중간값은 150억달러로 같습니다.",
+            "label": "예치금리",
+            "text": "은행이 중앙은행에 하루 자금을 맡길 때 받는 금리는 4.75%에서 5.00%가 됐습니다.",
             "type": "fact",
             "source_ids": [
-              "gm-release"
+              "bi-october-decision",
+              "reuters-bi-decision"
             ]
           }
         ],
         "visual": {
-          "path": "automation/visual_assets/d8b3b27918ca51c902faf737fcd1f0fbfa258f58e30114ff00e8564fe91f0a93.jpg",
-          "sha256": "d8b3b27918ca51c902faf737fcd1f0fbfa258f58e30114ff00e8564fe91f0a93",
-          "alt": "금속 고리 길 위에서 무표기 주식 증서를 싣는 코발트 트럭의 개념 이미지",
+          "path": "automation/visual_assets/fac7cfa53fd8ce5232b16a36ed19a94b186e94bf1b64bb5778d352537cf50414.png",
+          "sha256": "fac7cfa53fd8ce5232b16a36ed19a94b186e94bf1b64bb5778d352537cf50414",
+          "alt": "기준금리 다이얼은 고정하고 별도 예치 밸브만 조정하는 통화정책 개념 이미지",
           "tone": "light",
           "kind": "concept",
-          "prompt": "제작 지시 요약: 오프화이트 배경, 코발트색 무상표 픽업과 무표기 증서, 금속 순환 도로로 자사주 매입을 표현한 편집 개념 이미지. 글자·숫자·공식 로고 없이 가로 구도."
+          "prompt": "오프화이트 배경의 무표기 통화정책 제어판. 큰 검정 다이얼은 잠겨 있고 작은 코발트 밸브만 조정되는 모습으로 기준금리 동결과 예치금리 인상을 표현했습니다. 글자·숫자·로고 없는 편집 개념 이미지입니다."
         }
       },
       {
         "layout": "impact",
-        "title": "잘 팔리는 트럭에\n원가가 따라붙는다",
-        "body": "3분기 조정 영업이익은 전년보다 21.6% 늘었습니다. 회사는 올해 비용 부담 예상도 높였습니다.",
+        "title": "전면 인상 대신\n루피아 방어를 골랐다",
+        "body": "모든 금리를 올리기보다 은행 자금을 중앙은행에 더 묶어, 대출 충격은 제한하면서 시중 루피아 유동성을 줄이는 선택입니다.",
         "source_ids": [
-          "gm-release",
-          "gm-deck"
+          "bi-october-decision",
+          "reuters-bi-decision",
+          "reuters-market-rout"
         ],
         "items": [
           {
-            "label": "북미 이익률",
-            "text": "전년 동기 6.2% → 이번 분기 8.7%. 조정 기준입니다.",
+            "label": "시장 충격",
+            "text": "MSCI 경고 뒤 증시는 두 거래일에 14.8%, 시가총액 820억달러가 줄었습니다.",
             "type": "fact",
             "source_ids": [
-              "gm-release"
+              "reuters-market-rout"
             ]
           },
           {
-            "label": "원가 부담 예상",
-            "text": "원자재·물류·DRAM 비용 증가 부담: 15~20억 → 약 20억달러.",
-            "type": "fact",
+            "label": "전달 경로",
+            "text": "예치 보상이 커지면 일부 은행 자금이 중앙은행으로 이동해 환율 방어에 힘을 보탭니다.",
+            "type": "analysis",
             "source_ids": [
-              "gm-deck"
+              "bi-october-decision",
+              "reuters-bi-decision"
             ]
           }
         ],
         "visual": {
-          "path": "automation/visual_assets/e651e4eb9f3a90ede724871fa9bcf5aaa4c643ff806191566cb4d6b544f9639b.jpg",
-          "sha256": "e651e4eb9f3a90ede724871fa9bcf5aaa4c643ff806191566cb4d6b544f9639b",
-          "alt": "검정 배경의 픽업 바퀴와 구리 코일·메모리 부품으로 자동차 원가를 표현한 개념 이미지",
+          "path": "automation/visual_assets/ad6f069644e60ee32ba1f3f5da4719c677967d4166d54b03bf7ece323b00440e.png",
+          "sha256": "ad6f069644e60ee32ba1f3f5da4719c677967d4166d54b03bf7ece323b00440e",
+          "alt": "균열 난 시장 타워에서 자금 토큰이 빠져나가는 급락장 개념 이미지",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "제작 지시 요약: 짙은 검정 배경의 자동차 바퀴, 구리 코일, 메모리 모듈과 파란 운반 벨트. 자동차 제조 비용을 설명하는 정물 개념 이미지. 실제 기계 구조나 제품 사진이 아니며 글자·숫자·로고 없이 가로 구도."
+          "prompt": "짙은 검정과 코발트의 시장 타워에 균열이 생기고 은색 무표기 토큰이 빠져나가는 장면으로 증시 급락과 자금 이탈을 표현했습니다. 글자·숫자·로고 없는 편집 개념 이미지입니다."
         }
       },
       {
         "layout": "watch",
-        "title": "주식 매입의 연료는\n남는 현금입니다",
-        "body": "영업이익 눈높이보다 주주환원 여력이 커진 발표입니다. 다만 3분기 현금 증가에는 관세 관련 시점 효과도 섞였습니다.",
+        "title": "25bp보다 큰 변수는\n신흥국 지수 잔류",
+        "body": "부분 긴축은 시간을 벌 수 있지만, 외국인 자금의 방향은 시장 투명성 개선과 MSCI의 최종 분류가 결정합니다.",
         "source_ids": [
-          "gm-release",
-          "gm-deck"
+          "msci-consultation",
+          "reuters-market-rout"
         ],
         "items": [
           {
-            "label": "연간 현금 전망",
-            "text": "자동차 부문 조정 잉여현금: 95~115억 → 115~125억달러.",
-            "type": "fact",
+            "label": "지수 위험",
+            "text": "Standalone으로 내려가면 주요 신흥국 지수를 추종하는 자금에서 빠질 수 있습니다.",
+            "type": "analysis",
             "source_ids": [
-              "gm-release"
+              "msci-consultation",
+              "reuters-market-rout"
             ]
           },
           {
-            "label": "판단을 바꿀 기준",
-            "text": "현금이 새 전망에 못 미치면, 실제 매입 속도도 다시 봐야 합니다.",
+            "label": "판단 기준",
+            "text": "소유구조 공개와 단속의 실제 개선, 편입 동결 해제, 루피아와 외국인 순매수를 확인합니다.",
             "type": "analysis",
             "source_ids": [
-              "gm-deck"
+              "bi-october-decision",
+              "msci-consultation"
             ]
           }
         ],
         "visual": {
-          "path": "automation/visual_assets/9c0b18816ee9c56ebbea27deda15ec643cff9ea7b6c83c22ea859f6d6e010c1b.jpg",
-          "sha256": "9c0b18816ee9c56ebbea27deda15ec643cff9ea7b6c83c22ea859f6d6e010c1b",
-          "alt": "투명 저장조의 은색 토큰에 액체를 붓는 연료 노즐로 현금 여력을 표현한 개념 이미지",
-          "tone": "light",
+          "path": "automation/visual_assets/c9497f0bfe5a0405cef3a2535ecb3b1148be21e8004d8d30091d96c9d2e5256a.png",
+          "sha256": "c9497f0bfe5a0405cef3a2535ecb3b1148be21e8004d8d30091d96c9d2e5256a",
+          "alt": "연결된 시장 도시와 고립된 상자로 갈라지는 지수 편입 경로 개념 이미지",
+          "tone": "dark",
           "kind": "concept",
-          "prompt": "제작 지시 요약: 오프화이트 배경, 크롬 연료 노즐이 투명 액체를 유리 저장조에 붓고 저장조에 은색 무표기 토큰과 빈 증서가 놓인 편집 개념 이미지. 현금이 주식 매입의 연료라는 비유이며 실제 돈·계약이나 사건 사진이 아니다."
+          "prompt": "검정 배경의 데이터 다리가 두 갈래로 갈라져 한쪽은 연결된 코발트 시장 도시, 다른 쪽은 고립된 상자로 이어집니다. 신흥국 지수 잔류와 Standalone 전환을 표현한 글자·숫자·로고 없는 개념 이미지입니다."
         }
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 39427406957,
-    "image_sha256": [
-      "20dde961aeca7de998cb0a769998d5825c22dc668d68ce81ee9da0d2758918b3",
-      "11dcde49b514f54d736bb8d95aae166f2a97879d658f529d7f133e756891114b",
-      "32759f5940c174f55a1357d858d6e31f28f6b6516949ffb1ccf8d03430415df6"
     ]
   }
 }
