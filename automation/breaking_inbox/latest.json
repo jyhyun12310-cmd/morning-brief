@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "breaking_news",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-10-22T01:43:41Z",
   "snapshot_at": "2026-10-22T01:43:41Z",
@@ -160,6 +160,14 @@
           "prompt": "Use case: stylized-concept. One premium editorial 3D concept image for inflation conditions that determine future Korean interest rate hikes. Ultra-wide landscape approximately 2172x724 pixels. Close-up still life of a matte cobalt unmarked oil barrel and an ivory grocery basket with simple unbranded food packages, with a narrow warm light revealing their shadows falling toward a small neutral house silhouette in the distance. Communicate energy costs spreading to household prices, without showing a real attack or actual data. Warm off-white background, sculptural black shadows, tactile materials, clean art-direction and spacious composition, no text, digits, labels, logos, charts, arrows, people, currency marks, or watermark. Single scene, not panels."
         }
       }
+    ]
+  },
+  "reviewed_preview": {
+    "run_id": 39707510623,
+    "image_sha256": [
+      "4342925db83a47f11eda743bcfe2ef7f287a623ac86a8394735802fe9a25511c",
+      "90354feef3fff94e812e0e9890abadfa6c04a655ad7e46b7703d025f92efb158",
+      "2027619d3ad7ecf5d7a77521568aaafacd0797edd2f3027b11bc6d6a1acdea24"
     ]
   }
 }
