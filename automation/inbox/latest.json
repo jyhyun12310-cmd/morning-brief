@@ -2,7 +2,7 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-22T23:43:35+00:00",
+  "created_at": "2026-10-22T23:51:00+00:00",
   "publication_date_kst": "2026-10-23",
   "market": {
     "ticker": "BE",
@@ -22,42 +22,42 @@
       "title": "Bloom Energy Q3 2026 earnings release and financial statements",
       "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Third-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
       "as_of": "2026-10-22 발표; 2026-09-30 종료 분기; 현금흐름표는 분기별",
-      "retrieved_at": "2026-10-22T23:43:35+00:00"
+      "retrieved_at": "2026-10-22T23:51:00+00:00"
     },
     {
       "id": "be-10q",
       "title": "Bloom Energy Form 10-Q, quarter ended September 30, 2026",
       "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
       "as_of": "2026-10-22 제출; Note 3 계약자산·현금흐름·유동성",
-      "retrieved_at": "2026-10-22T23:43:35+00:00"
+      "retrieved_at": "2026-10-22T23:51:00+00:00"
     },
     {
       "id": "be-price",
       "title": "Stock Analysis BE historical prices, same unadjusted Close column",
       "url": "https://stockanalysis.com/stocks/be/history/",
       "as_of": "2026-10-22·10-21 뉴욕 정규장 종가 USD; 시간외 제외",
-      "retrieved_at": "2026-10-22T23:43:35+00:00"
+      "retrieved_at": "2026-10-22T23:50:43+00:00"
     },
     {
       "id": "be-timing",
       "title": "Bloom Energy Q3 results scheduled after October 22 market close",
       "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-to-Announce-Third-Quarter-2026-Financial-Results-on-October-22-2026/default.aspx",
       "as_of": "2026-10-12 공지; 10-22 폐장 후 발표·17:00 EDT 설명회",
-      "retrieved_at": "2026-10-22T23:43:35+00:00"
+      "retrieved_at": "2026-10-22T23:50:43+00:00"
     },
     {
       "id": "nyse-calendar",
       "title": "NYSE market hours and 2026 holiday calendar",
       "url": "https://www.nyse.com/trade/hours-calendars",
       "as_of": "2026-10-22 정상 거래일; 16:00 EDT 폐장",
-      "retrieved_at": "2026-10-22T23:32:00+00:00"
+      "retrieved_at": "2026-10-22T23:50:43+00:00"
     },
     {
       "id": "nasdaq-calendar",
       "title": "Nasdaq 2026 stock market holiday schedule",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
       "as_of": "2026년 휴장·조기폐장 교차 확인",
-      "retrieved_at": "2026-10-22T23:32:00+00:00"
+      "retrieved_at": "2026-10-22T23:50:43+00:00"
     }
   ],
   "metrics": [
