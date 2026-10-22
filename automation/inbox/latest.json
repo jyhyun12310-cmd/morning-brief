@@ -2,410 +2,426 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-21T23:39:32Z",
-  "publication_date_kst": "2026-10-22",
+  "created_at": "2026-10-22T23:43:35+00:00",
+  "publication_date_kst": "2026-10-23",
   "market": {
-    "ticker": "META",
-    "name": "Meta Platforms",
-    "session_date": "2026-10-21",
-    "session_close_at": "2026-10-21T16:00:00-04:00",
+    "ticker": "BE",
+    "name": "Bloom Energy",
+    "session_date": "2026-10-22",
+    "session_close_at": "2026-10-22T16:00:00-04:00",
     "price_basis": "regular_close",
     "currency": "USD",
-    "close": 697.52,
-    "previous_close": 694.25,
-    "change_pct": 0.47,
-    "source_id": "prices"
+    "close": 217.77,
+    "previous_close": 238.53,
+    "change_pct": -8.7,
+    "source_id": "be-price"
   },
   "sources": [
     {
-      "id": "meta-q3",
-      "title": "Meta Reports Third Quarter 2026 Results",
-      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
-      "as_of": "2026-10-21 발표 · 2026-09-30 종료 분기",
-      "retrieved_at": "2026-10-21T23:38:00Z"
+      "id": "be-q3",
+      "title": "Bloom Energy Q3 2026 earnings release and financial statements",
+      "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Third-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+      "as_of": "2026-10-22 발표; 2026-09-30 종료 분기; 현금흐름표는 분기별",
+      "retrieved_at": "2026-10-22T23:43:35+00:00"
     },
     {
-      "id": "prices",
-      "title": "Stock Analysis / S&P Global — META regular-session historical closes",
-      "url": "https://stockanalysis.com/stocks/meta/history/",
-      "as_of": "2026-10-21·2026-10-20 정규장 Close, 동일 주식분할 조정 기준",
-      "retrieved_at": "2026-10-21T23:31:00Z"
+      "id": "be-10q",
+      "title": "Bloom Energy Form 10-Q, quarter ended September 30, 2026",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+      "as_of": "2026-10-22 제출; Note 3 계약자산·현금흐름·유동성",
+      "retrieved_at": "2026-10-22T23:43:35+00:00"
     },
     {
-      "id": "release-time",
-      "title": "Meta to Announce Third Quarter 2026 Results",
-      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-to-Announce-Third-Quarter-2026-Results/default.aspx",
-      "as_of": "2026-10-12 공고 · 10월 21일 정규장 마감 후 발표",
-      "retrieved_at": "2026-10-21T23:37:00Z"
+      "id": "be-price",
+      "title": "Stock Analysis BE historical prices, same unadjusted Close column",
+      "url": "https://stockanalysis.com/stocks/be/history/",
+      "as_of": "2026-10-22·10-21 뉴욕 정규장 종가 USD; 시간외 제외",
+      "retrieved_at": "2026-10-22T23:43:35+00:00"
     },
     {
-      "id": "nyse",
-      "title": "NYSE Holidays & Trading Hours",
+      "id": "be-timing",
+      "title": "Bloom Energy Q3 results scheduled after October 22 market close",
+      "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-to-Announce-Third-Quarter-2026-Financial-Results-on-October-22-2026/default.aspx",
+      "as_of": "2026-10-12 공지; 10-22 폐장 후 발표·17:00 EDT 설명회",
+      "retrieved_at": "2026-10-22T23:43:35+00:00"
+    },
+    {
+      "id": "nyse-calendar",
+      "title": "NYSE market hours and 2026 holiday calendar",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026 거래일·휴장·조기폐장 달력",
-      "retrieved_at": "2026-10-21T23:30:00Z"
+      "as_of": "2026-10-22 정상 거래일; 16:00 EDT 폐장",
+      "retrieved_at": "2026-10-22T23:32:00+00:00"
     },
     {
-      "id": "nasdaq",
-      "title": "Nasdaq 2026 U.S. Stock Market Holiday Schedule",
+      "id": "nasdaq-calendar",
+      "title": "Nasdaq 2026 stock market holiday schedule",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026 거래일·정규장 09:30–16:00 ET",
-      "retrieved_at": "2026-10-21T23:30:00Z"
+      "as_of": "2026년 휴장·조기폐장 교차 확인",
+      "retrieved_at": "2026-10-22T23:32:00+00:00"
     }
   ],
   "metrics": [
     {
-      "id": "ocf",
-      "value": 327.86,
-      "unit": "억달러",
-      "period": "2026Q3",
-      "basis": "현금흐름·금융리스 원금 포함",
-      "source_id": "meta-q3"
+      "id": "net-income",
+      "value": 248.976,
+      "unit": "백만달러",
+      "period": "2026 Q3 (7~9월)",
+      "basis": "US GAAP consolidated",
+      "source_id": "be-q3"
     },
     {
-      "id": "capex",
-      "value": 349.06,
-      "unit": "억달러",
-      "period": "2026Q3",
-      "basis": "현금흐름·금융리스 원금 포함",
-      "source_id": "meta-q3"
+      "id": "operating-cash",
+      "value": -27.147,
+      "unit": "백만달러",
+      "period": "2026 Q3 (7~9월)",
+      "basis": "US GAAP consolidated",
+      "source_id": "be-q3"
     }
   ],
   "summary": {
     "design": "editorial-v2",
     "market_basis": {
-      "ticker": "META",
-      "session_date": "2026-10-21",
+      "ticker": "BE",
+      "session_date": "2026-10-22",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 697.52,
-      "previous_close": 694.25,
-      "change_pct": 0.47
+      "close": 217.77,
+      "previous_close": 238.53,
+      "change_pct": -8.7
     },
-    "central_question": "메타의 무의결권 C주 신설은 회사와 기존 주주에게 무엇을 바꾸나?",
-    "thesis": "메타는 무의결권 C주로 투자금 조달·보상·인수의 선택지를 넓히면서 기존 의결권을 유지하려 합니다. 주식배당 자체는 현금 조달이 아니며, 이후 추가 발행의 대가는 투자 성과와 주당 몫을 함께 봐야 판단할 수 있습니다.",
-    "edition": "2026.10.22 미국주식",
-    "instagram_caption": "메타가 나눠 줄 새 주식에는 투표권이 없습니다. 주식배당으로 받는 한 주와, 앞으로 AI 투자 재원으로 발행할 주식의 대가는 다릅니다.\n#메타 #미국주식 #AI투자",
+    "central_question": "블룸에너지의 매출 급성장이 공장 투자에 쓸 현금으로도 이어졌는가?",
+    "thesis": "블룸에너지의 제품 수요와 수익성 개선은 확인됐지만 청구·수금 시차와 운전자금 증가로 3분기 영업현금은 순유출이었다. 보유 현금은 충분히 남아 있으므로 위기보다 성장의 자체 투자재원 확보 여부를 평가해야 한다.",
+    "edition": "미장, 한 겹 더 · 10.23",
+    "instagram_caption": "블룸에너지의 매출 신기록을 읽을 때는 아직 청구하지 않은 돈과 실제 영업현금을 함께 봐야 합니다. 이번 성장의 다음 시험은 공장 투자비를 스스로 벌어내는가입니다. #블룸에너지 #미국주식 #기업실적",
     "sources": [
       {
-        "id": "meta-q3",
-        "title": "Meta Reports Third Quarter 2026 Results",
-        "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
-        "as_of": "2026-10-21 발표 · 2026-09-30 종료 분기"
+        "id": "be-q3",
+        "title": "Bloom Energy Q3 2026 earnings release and financial statements",
+        "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Third-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+        "as_of": "2026-10-22 발표; 2026-09-30 종료 분기; 현금흐름표는 분기별"
       },
       {
-        "id": "prices",
-        "title": "Stock Analysis / S&P Global — META regular-session historical closes",
-        "url": "https://stockanalysis.com/stocks/meta/history/",
-        "as_of": "2026-10-21·2026-10-20 정규장 Close, 동일 주식분할 조정 기준"
+        "id": "be-10q",
+        "title": "Bloom Energy Form 10-Q, quarter ended September 30, 2026",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+        "as_of": "2026-10-22 제출; Note 3 계약자산·현금흐름·유동성"
       },
       {
-        "id": "release-time",
-        "title": "Meta to Announce Third Quarter 2026 Results",
-        "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-to-Announce-Third-Quarter-2026-Results/default.aspx",
-        "as_of": "2026-10-12 공고 · 10월 21일 정규장 마감 후 발표"
+        "id": "be-price",
+        "title": "Stock Analysis BE historical prices, same unadjusted Close column",
+        "url": "https://stockanalysis.com/stocks/be/history/",
+        "as_of": "2026-10-22·10-21 뉴욕 정규장 종가 USD; 시간외 제외"
       },
       {
-        "id": "nyse",
-        "title": "NYSE Holidays & Trading Hours",
+        "id": "be-timing",
+        "title": "Bloom Energy Q3 results scheduled after October 22 market close",
+        "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-to-Announce-Third-Quarter-2026-Financial-Results-on-October-22-2026/default.aspx",
+        "as_of": "2026-10-12 공지; 10-22 폐장 후 발표·17:00 EDT 설명회"
+      },
+      {
+        "id": "nyse-calendar",
+        "title": "NYSE market hours and 2026 holiday calendar",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026 거래일·휴장·조기폐장 달력"
+        "as_of": "2026-10-22 정상 거래일; 16:00 EDT 폐장"
       },
       {
-        "id": "nasdaq",
-        "title": "Nasdaq 2026 U.S. Stock Market Holiday Schedule",
+        "id": "nasdaq-calendar",
+        "title": "Nasdaq 2026 stock market holiday schedule",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026 거래일·정규장 09:30–16:00 ET"
+        "as_of": "2026년 휴장·조기폐장 교차 확인"
       }
     ],
     "evidence_notes": [
       {
-        "id": "decision",
-        "claim": "10월 21일 이사회는 상장 무의결권 Class C 신설을 승인했다. 회사가 명시한 용도는 자금조달·직원 보상·인수 등이다. 발표는 실제 증자 완료 공시가 아니다.",
+        "id": "growth",
+        "claim": "10월 22일 발표한 9월 종료 3분기 매출은 1,235.837백만달러, 전년 519.048백만달러 대비 138.1% 증가. 제품매출은 1,073.610백만달러로 179.4% 증가. GAAP 매출총이익률은 29.2%에서 33.8%로 상승했다.",
         "source_ids": [
-          "meta-q3"
+          "be-q3"
         ]
       },
       {
-        "id": "dividend",
-        "claim": "Class A·B 1주마다 C 1주를 주는 주식배당은 정관 변경 효력 발생을 조건으로 한다. 배당 자체에 신규 투자금 납입은 없으며 모든 기존 주주의 의결권은 변하지 않는다.",
+        "id": "billing",
+        "claim": "10-Q Note 3: 계약자산은 3분기초 428.298백만달러에서 말 858.646백만달러. 해당 분기에 인식했으나 기말 미청구인 매출 463.887백만달러, 기초 계약자산 중 매출채권 전환 33.539백만달러. 성장과 청구 단계 시차가 설명되며, 연체·부실채권으로 단정하지 않는다.",
         "source_ids": [
-          "meta-q3"
+          "be-10q"
         ]
       },
       {
-        "id": "advertising",
-        "claim": "2026년 3분기 광고 노출량은 전년 동기 대비 10%, 광고당 평균 가격은 14% 증가했다. 총매출은 646.01억달러로 26% 증가했다. 물량·단가가 함께 늘어 광고 수익 기반이 확대됐다는 해석이다.",
+        "id": "cash-gap",
+        "claim": "분기별 GAAP 현금흐름표의 Q3 연결 순이익 248.976백만달러와 영업현금흐름 -27.147백만달러를 구분한다. 계약자산 변동 -430.348, 매출채권 -175.235, 재고 -170.401백만달러 등은 현금 전환을 낮췄다. 선수금·미지급금 증가는 일부 상쇄했으며 선택 항목만으로 전체 차액을 설명하지 않는다.",
         "source_ids": [
-          "meta-q3"
+          "be-q3"
         ]
       },
       {
-        "id": "cash",
-        "claim": "같은 분기 영업현금 327.86억달러에서 유형자산 구매 339.42억과 금융리스 원금 9.64억을 차감한 회사 정의 잉여현금은 -21.20억달러다. 설비지출 합계349.06억을 소수점 한 자리349.1억으로 표시한다.",
+        "id": "product",
+        "claim": "회사는 데이터센터 등 고객 현장에서 전기를 생산하는 고체산화물 연료전지 시스템을 공급한다. 경영진은 수요에 대응한 생산능력 투자를 설명했고, Q3 유형자산 취득 현금지출은 153.487백만달러다.",
         "source_ids": [
-          "meta-q3"
-        ]
-      },
-      {
-        "id": "legal",
-        "claim": "분기 영업이익 129.88억달러에는 8월 주 법무장관 합의 관련 비용 98.9억이 반영됐다. 회사가 제시한 이를 제외한 영업이익은 228.8억달러다. 회계상 비용과 설비 현금지출은 다른 항목이며 두 압력을 구분한다.",
-        "source_ids": [
-          "meta-q3"
-        ]
-      },
-      {
-        "id": "dilution",
-        "claim": "향후 C주를 외부에 추가 발행하면 기존 주주가 가진 경제적 지분은 희석될 수 있다. 의결권이 없으므로 투표권 수는 늘지 않는다. 얻은 자금·인재·인수가 주당 이익을 늘리는지가 비용 대비 가치의 판단 기준이라는 작성자 해석이다.",
-        "source_ids": [
-          "meta-q3"
+          "be-q3",
+          "be-10q"
         ]
       },
       {
         "id": "timing",
-        "claim": "정관 변경의 예정 효력일은 2027-01-19다. 주식배당 기준일·지급일은 추후 결정이며 C주 나스닥 상장도 추진 계획이다. 1월19일을 배당·상장 확정일로 쓰지 않는다.",
+        "claim": "동일 Stock Analysis Close 열의 10월21일 238.53달러와 22일 217.77달러로 -8.7033%를 계산. 정규장 16:00 EDT 폐장 뒤 실적 발표이므로 이 종가 하락을 새 실적의 결과로 단정하지 않는다.",
         "source_ids": [
-          "meta-q3"
+          "be-price",
+          "be-timing",
+          "nyse-calendar",
+          "nasdaq-calendar"
         ]
       },
       {
-        "id": "session",
-        "claim": "NYSE와 Nasdaq 공식 달력상 2026-10-21은 정상 거래일. EDT16:00=UTC20:00=KST10월22일05:00 폐장. META 종가697.52/직전10월20일694.25-1=0.4710%이다. 장후 실적을 당일 정규장 상승의 원인으로 연결하지 않는다.",
+        "id": "liquidity",
+        "claim": "9월말 현금및현금성자산 2,486.702백만달러, 1~9월 영업현금흐름 +272.895백만달러. 회사는 보유현금과 예상 영업현금으로 향후 최소12개월 수요 충족을 예상한다. Q3 현금 유출 하나로 즉각적 자금위기나 증자를 예고할 근거는 없다.",
         "source_ids": [
-          "prices",
-          "release-time",
-          "nyse",
-          "nasdaq"
+          "be-q3",
+          "be-10q"
+        ]
+      },
+      {
+        "id": "judgment",
+        "claim": "작성자 판단: 매출·마진 성장은 확인됐으나 Q3 영업현금으로 당분기 유형자산 취득 지출을 충당하지 못했다. 다음 비교 기준은 같은 분기의 영업현금과 설비 지출이며, 영업현금이 설비 지출을 지속적으로 충당하면 성장의 자체 조달 능력에 대한 판단을 높일 수 있다. 이는 투자 권유나 회사 가이던스가 아니다.",
+        "source_ids": [
+          "be-q3",
+          "be-10q"
         ]
       }
     ],
     "visual_story": [
       {
         "layout": "cover",
-        "title": "메타, 주식은 나누고\n의결권은 지킵니다",
-        "body": "메타가 10월 21일 투표권 없는 C주 신설을 발표했습니다. AI 투자에 쓸 주식을 늘려도 기존 주주의 의결권은 유지하는 구조입니다.",
-        "takeaway": "주주가 받을 새 주식과 회사가 나중에 발행할 주식은 구분해야 합니다.",
-        "bridge": "주식을 나눠 주면 투자금도 생길까요?",
-        "evidence_ids": [
-          "decision",
-          "dividend",
-          "session"
-        ],
+        "title": "블룸에너지 급성장\n현금 회수가 숙제",
+        "accent": "현금 회수가 숙제",
+        "body": "전기를 만드는 연료전지 회사 블룸에너지가 3분기 매출 신기록을 냈습니다. 하지만 매출을 기록하는 때와 고객에게 돈을 받는 때는 달랐습니다.",
         "labels": [
           {
-            "label": "새 주식의 용도",
-            "text": "자금조달·직원 보상·인수에 활용할 수 있습니다."
+            "label": "이번 실적",
+            "text": "매출 12.36억달러, 전년 동기보다 138.1% 증가."
           },
           {
-            "label": "발표 전 정규장",
-            "text": "10/21 종가 697.52달러 · 전일 대비 +0.47%"
+            "label": "주주에게 남는 질문",
+            "text": "늘어난 매출이 공장 투자를 감당할 현금으로 바뀌는가."
           }
         ],
+        "takeaway": "성장은 확인됐습니다. 자체 투자 여력은 현금 회수가 결정합니다.",
+        "bridge": "이미 올린 매출 중 아직 청구하지 않은 돈이 있습니다.",
+        "evidence_ids": [
+          "growth",
+          "billing",
+          "judgment"
+        ],
         "visual": {
-          "path": "automation/visual_assets/3202be2e30b0a9eaacbe5c6f023c7ec081ed53b0e6135623533f52bb1946c47d.png",
-          "sha256": "3202be2e30b0a9eaacbe5c6f023c7ec081ed53b0e6135623533f52bb1946c47d",
-          "alt": "의결권을 상징하는 고정된 의자와 주변으로 펼쳐진 주식 증서 개념 이미지",
+          "path": "automation/visual_assets/893dbaf846a95389f7bebcd6ceeae086791cc88b5084307c0f116532f945f854.png",
+          "sha256": "893dbaf846a95389f7bebcd6ceeae086791cc88b5084307c0f116532f945f854",
+          "alt": "고객 현장 발전설비와 데이터센터를 연결한 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration for a Korean finance card explaining Meta's new nonvoting Class C stock and continued founder control. A striking minimalist black executive chair stands firmly on an off-white stage while translucent cobalt equity certificates fan out into the foreground. No real person, no logo, no words, no numbers, no chart. The contrast is ownership instruments spreading while the decision-making seat stays fixed. Sophisticated tactile 3D editorial sculpture, clean studio light, strong black and cobalt on warm off-white. Very wide horizontal 3:1 composition, entire subjects in central band, substantial breathing room, minimum height 640 pixels."
+          "prompt": "Create one premium editorial concept illustration for a Korean financial news card about Bloom Energy selling onsite fuel-cell power equipment to data centers. Wide horizontal panoramic composition, target 1536 by 640 pixels, all important objects in central horizontal strip. A crisp cutaway miniature industrial fuel-cell power installation in the left foreground, a modest data center building on the right connected by cobalt electrical conduits. Equipment is generic, no logos, no brand-identical product claims. Warm off-white background, black steel, one cobalt blue accent, realistic materials with a deliberate sculptural editorial style, studio lighting. Show actual economic activity, not stock charts or money metaphors. NO typography, NO numbers, NO lettering, NO watermark. This is a conceptual illustration, not a documentary event photograph."
         }
       },
       {
         "layout": "photo",
-        "title": "주식은 늘지만\n현금은 안 들어옵니다",
-        "body": "기존 A·B주 한 주마다 C주 한 주를 주는 주식배당입니다. 기존 주주에게 같은 비율로 나눠 주므로, 이 배당 자체가 회사에 새 현금을 넣는 거래는 아닙니다.",
-        "takeaway": "보유 주식 수가 두 배가 된다고 투자 가치까지 두 배가 되지는 않습니다.",
-        "bridge": "그런데 메타는 왜 새 조달 수단을 열었을까요?",
-        "evidence_ids": [
-          "dividend",
-          "timing"
-        ],
+        "title": "매출에 잡힌 돈,\n아직 청구 전입니다",
+        "accent": "아직 청구 전입니다",
+        "body": "10월 22일 공시는 매출로 인식했지만 아직 청구하지 않은 계약자산이 늘었음을 보여줍니다. 고객 검수·청구 단계가 남으면 이익은 잡혀도 현금은 늦게 들어옵니다.",
         "labels": [
           {
-            "label": "주주가 받는 것",
-            "text": "보유한 기존 주식에 무의결권 C주가 더해집니다."
+            "label": "계약자산 잔액",
+            "text": "6월말 4.28억 → 9월말 8.59억달러. 청구 전 받을 권리입니다."
           },
           {
-            "label": "가격의 변화",
-            "text": "회사는 A주 가격에 2대1 분할 효과가 반영될 것으로 봤습니다."
+            "label": "회사에 생기는 부담",
+            "text": "회수 전에도 재료비·공장 투자비는 필요해 보유 현금을 쓰게 됩니다."
           }
         ],
+        "takeaway": "이 시차가 길어질수록 급성장을 떠받칠 자금이 더 필요합니다.",
+        "bridge": "그렇다고 이번 성장이 숫자뿐이었다는 뜻은 아닙니다.",
+        "evidence_ids": [
+          "billing",
+          "product",
+          "judgment"
+        ],
         "visual": {
-          "path": "automation/visual_assets/225e2142498a17cbfb17efe0efc0bb5beaed03767b3ed75995bc8e1ce0a2c45f.png",
-          "sha256": "225e2142498a17cbfb17efe0efc0bb5beaed03767b3ed75995bc8e1ce0a2c45f",
-          "alt": "기존 주주에게 나누어 줄 서로 다른 종류의 증서를 표현한 개념 이미지",
+          "path": "automation/visual_assets/3535a8dbc9db23a824677c5c181c8fe55e14cec14e5ea78b77c771460c1d2ca2.png",
+          "sha256": "3535a8dbc9db23a824677c5c181c8fe55e14cec14e5ea78b77c771460c1d2ca2",
+          "alt": "장비 납품 기록과 아직 비어 있는 결제함의 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration explaining a stock dividend is redistribution of claims, not cash entering a company. Overhead still-life of an elegant ivory document folio opened into paired black and cobalt abstract certificate leaves, a simple ceramic corporate building model behind it. No cash, no arrows, no logos, no text or numbers, no quantitative chart. Clearly conceptual, refined paper texture, warm off-white background, soft directional lighting. Wide horizontal 3:1 composition with the objects across the center, minimum height 640 pixels."
+          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Close-up editorial still life of completed industrial equipment delivery paperwork, a plain blank invoice folder remaining closed beside a hand reaching toward an open but empty payment tray. Clearly show work done and paperwork waiting, not default or theft. One generic miniature fuel-cell cabinet in background. Off-white desk, cobalt binding, natural side lighting. No letters or numbers. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
         }
       },
       {
         "layout": "annotated",
-        "title": "광고가 버는 돈이\nAI 투자의 출발점",
-        "body": "3분기에는 광고가 더 많이 노출됐고, 광고 한 건당 가격도 올랐습니다. 두 요인이 함께 매출을 키웠습니다. 이 본업에서 벌어들이는 돈이 AI 투자의 재원입니다.",
-        "takeaway": "광고 사업은 성장했지만, 매출 증가만으로 투자 여력을 다 설명할 수 없습니다.",
-        "bridge": "현금으로 들어온 돈과 나간 돈을 비교합니다.",
-        "evidence_ids": [
-          "advertising",
-          "cash"
-        ],
+        "title": "현장 전력 수요가\n제품 매출로 왔습니다",
+        "accent": "제품 매출로",
+        "body": "블룸은 데이터센터 등 고객 현장에서 전기를 만드는 장비를 팝니다. 이번 분기는 제품 판매가 커졌고, 매출에서 제품 원가 등을 뺀 이익의 비율도 높아졌습니다.",
         "labels": [
           {
-            "label": "광고 노출량",
-            "text": "전년 동기 대비 +10% · 광고를 보여 준 횟수입니다."
+            "label": "제품 매출",
+            "text": "10.74억달러로 전년 동기 대비 179.4% 증가했습니다."
           },
           {
-            "label": "광고당 가격",
-            "text": "전년 동기 대비 +14% · 건당 받는 평균 금액입니다."
+            "label": "매출총이익률",
+            "text": "29.2% → 33.8%. 미국 회계기준, 전년 같은 분기 비교입니다."
           }
         ],
+        "takeaway": "수요와 수익성 개선은 확인됩니다. 수금 속도는 별개의 성적입니다.",
+        "bridge": "같은 분기의 순이익과 영업현금을 나란히 놓으면 보입니다.",
+        "evidence_ids": [
+          "growth",
+          "product"
+        ],
         "visual": {
-          "path": "automation/visual_assets/f71b10e4e14f1201da2600302be47d99abaa725f8f1dc76db2c0ab86a3a5c4da.png",
-          "sha256": "f71b10e4e14f1201da2600302be47d99abaa725f8f1dc76db2c0ab86a3a5c4da",
-          "alt": "광고 노출과 제품 홍보를 표현한 휴대전화·광고 소재 개념 이미지",
+          "path": "automation/visual_assets/42cb175c231f20f729508679d315d0fd3ddcda1734ff5b027a105fd657bf3915.png",
+          "sha256": "42cb175c231f20f729508679d315d0fd3ddcda1734ff5b027a105fd657bf3915",
+          "alt": "연료전지 장비의 생산 작업을 보여주는 공장 개념 일러스트",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration for Meta's advertising business funding AI investment. Close low-angle composition of a smartphone showing a purely abstract cobalt advertising tile, beside a sculptural camera lens and small carefully arranged product display, suggesting advertisers paying to reach users. No real app UI, no logos, no legible words, no numbers, no coins, no charts. Sophisticated realistic 3D editorial still life, dark charcoal background, bright cobalt and ivory focal objects. Wide horizontal 3:1, minimum height 640 pixels, objects fully visible."
+          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. A dramatic wide side view inside a generic clean manufacturing workshop assembling industrial solid-oxide fuel-cell cabinets. Several finished compact metal power modules and a technician silhouette, orderly production activity and spare components. Charcoal background, cobalt work lights, no logos. NOT batteries, not chip servers. Conceptual miniature diorama, not documentary. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
         }
       },
       {
         "layout": "comparison",
-        "title": "들어온 현금보다\n설비에 더 썼습니다",
-        "body": "사업에서 들어온 현금보다 설비에 쓴 돈이 많았습니다. 둘의 차이인 잉여현금이 마이너스여서, 광고 성장만으로 이번 분기 투자 지출을 충당하지는 못했습니다.",
-        "takeaway": "새 주식은 투자 재원을 넓히는 수단이지만, 투자 수익까지 만들어 주지는 않습니다.",
-        "bridge": "현금 부족과 회계상 이익 감소는 구분합니다.",
-        "evidence_ids": [
-          "cash",
-          "decision"
-        ],
+        "title": "이익은 플러스,\n영업현금은 마이너스",
+        "accent": "영업현금은 마이너스",
+        "body": "영업현금은 장사 과정에서 실제 들어오고 나간 돈의 차이입니다. 청구 전 금액·외상값·재고가 늘면서, 3분기 이익이 그대로 현금으로 남지는 않았습니다.",
         "labels": [],
         "chart": {
-          "source": "Meta 2026년 3분기 현금흐름 조정표",
-          "note": "동일 분기 현금 기준 · 설비지출에 금융리스 원금 포함",
-          "unit": "억달러",
+          "source": "Bloom Energy 2026 Q3 실적발표 현금흐름표",
+          "unit": "백만달러",
+          "note": "7~9월 연결 기준. 순이익과 현금은 서로 다른 지표입니다.",
           "rows": [
             {
-              "metric_id": "ocf",
-              "value": 327.86,
-              "label": "영업에서 들어온 현금",
-              "display": "327.9억달러"
+              "metric_id": "net-income",
+              "value": 248.976,
+              "label": "연결 순이익",
+              "display": "+249.0"
             },
             {
-              "metric_id": "capex",
-              "value": 349.06,
-              "label": "설비에 쓴 현금",
-              "display": "349.1억달러"
+              "metric_id": "operating-cash",
+              "value": -27.147,
+              "label": "영업현금흐름",
+              "display": "−27.1"
             }
           ]
         },
+        "takeaway": "고객 선수금과 미지급금 증가도 일부 상쇄했지만 현금 순유출입니다.",
+        "bridge": "이 새 공시로 그날 정규장 하락을 설명하면 순서가 틀립니다.",
+        "evidence_ids": [
+          "cash-gap"
+        ],
         "visual": {
-          "path": "automation/visual_assets/c82687d15eec0a34bcaad2190b472a45fe9eaf49e6e7c4615e0e90be27ff33a7.png",
-          "sha256": "c82687d15eec0a34bcaad2190b472a45fe9eaf49e6e7c4615e0e90be27ff33a7",
-          "alt": "사업 현금이 설비 구축에 쓰이는 모습을 표현한 서버 건설 개념 이미지",
+          "path": "automation/visual_assets/afda40c69cf1709330c3122414046e2b0e6c3aec68971cbf2c81a0507185247f.png",
+          "sha256": "afda40c69cf1709330c3122414046e2b0e6c3aec68971cbf2c81a0507185247f",
+          "alt": "회계 장부와 실제 현금을 구분하는 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration about data-center investment consuming operating cash. An unfinished row of server racks under a small architectural construction crane, sleek silver cables and a blank ivory receipt ribbon feeding into the construction zone. Not an exact flow diagram or chart; editorial conceptual art. Warm off-white backdrop, black metal racks and cobalt crane, carefully detailed industrial materials. No text, digits, logos, currency symbols or piles of coins. Wide horizontal 3:1 with a lateral composition, minimum height 640 pixels."
+          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Conceptual editorial still life about accounting profit versus received cash: an open plain ledger with entirely blank pages on the left, a separate modest cash payment tray on the right, visually separated by a clean strip of desk. No numerical comparison encoded in sizes. Matte ivory paper, brushed black metal, restrained cobalt accent. No graphs, no bars, no text or symbols. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
         }
       },
       {
         "layout": "explain",
-        "title": "줄어든 이익에는\n소송 비용도 있습니다",
-        "body": "분기 영업이익 감소를 전부 AI 투자 탓으로 읽으면 틀립니다. 소송 합의 비용이 이익을 크게 낮췄습니다. 이 회계상 비용은 앞 장의 설비 현금지출과 다른 항목입니다.",
-        "takeaway": "본업의 수익력과 대규모 투자에 필요한 현금은 각각 따져야 합니다.",
-        "bridge": "투자 재원을 새 주식으로 마련하면 누가 부담할까요?",
-        "evidence_ids": [
-          "legal",
-          "cash"
-        ],
+        "title": "주가 하락은 먼저,\n실적 발표는 폐장 뒤",
+        "accent": "실적 발표는 폐장 뒤",
+        "body": "10월 22일 블룸 주가는 정규장에서 8.70% 내렸습니다. 이번 실적은 폐장 후 나왔으므로, 그 종가 하락을 영업현금 유출에 대한 반응으로 붙일 수는 없습니다.",
         "labels": [
           {
-            "label": "보고 영업이익",
-            "text": "129.9억달러 · 소송 합의 비용 98.9억달러 반영"
+            "label": "같은 종가 기준",
+            "text": "10월 21일 238.53달러 → 22일 217.77달러. 시간외 제외."
           },
           {
-            "label": "합의 비용 제외",
-            "text": "회사 제시 영업이익 228.8억달러 · 별도 조정치"
+            "label": "판단할 범위",
+            "text": "확인한 것은 성장과 현금의 차이입니다. 주가 원인은 별도 근거가 필요합니다."
           }
         ],
+        "takeaway": "가격의 방향보다 새 재무제표가 보여준 자금 부담을 구분합니다.",
+        "bridge": "한 분기의 현금 유출이 당장 자금 위기라는 뜻도 아닙니다.",
+        "evidence_ids": [
+          "timing",
+          "cash-gap"
+        ],
         "visual": {
-          "path": "automation/visual_assets/586e084196e5d3daf7a526b7bf0925b914e802abfade1bbed0b7f75ea2456bfc.png",
-          "sha256": "586e084196e5d3daf7a526b7bf0925b914e802abfade1bbed0b7f75ea2456bfc",
-          "alt": "회계상 소송 비용과 광고 사업을 분리해서 읽는 법률 서류 개념 이미지",
+          "path": "automation/visual_assets/5f521f66c7febbea7198c7f9d510b055abe7be67ec70c7e0240d8b0a10c3c5b5.png",
+          "sha256": "5f521f66c7febbea7198c7f9d510b055abe7be67ec70c7e0240d8b0a10c3c5b5",
+          "alt": "폐장 종과 뒤에 공개되는 실적 보고서를 분리한 개념 일러스트",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration separating legal settlement charges from core advertising profits. A substantial legal file with a black binding rests beside a clear glass pane, through which a small cobalt advertising screen is visible. Separate foreground and background, clean sharp material contrast, no gavel cliché, no scales, no text, no numbers, no logos, no graph. Dark charcoal studio backdrop with ivory paper and cobalt accents, conceptual not an actual case document. Wide horizontal 3:1, minimum height 640 pixels."
+          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Editorial wide still life about distinguishing two successive moments: a plain metallic market closing bell on the left, a sealed corporate report folder illuminated separately on the right. No clock face, no dates, no numbers, no arrows. Black studio background with precise cobalt rim lighting. Minimal, realistic sculptural objects; no stock chart. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
         }
       },
       {
         "layout": "conditions",
-        "title": "새 주식을 더 쓰면\n주당 몫을 따져야 합니다",
-        "body": "앞으로 C주를 새로 발행해 자금이나 인재를 얻으면 나눌 주식 수도 늘어납니다. 투표권을 더 주지 않아도 기존 주주의 경제적 지분은 줄어들 수 있습니다.",
-        "takeaway": "창업자 중심의 의결권을 유지하는 것과 기존 주주 가치를 지키는 것은 다릅니다.",
-        "bridge": "지금 확정된 일정과 아직 남은 조건을 가릅니다.",
-        "evidence_ids": [
-          "decision",
-          "dilution"
-        ],
+        "title": "당장 쓸 돈은 있습니다\n관건은 회수 속도",
+        "accent": "관건은 회수 속도",
+        "body": "9월말 현금·현금성자산은 24.87억달러이고, 올해 1~9월 영업현금은 2.73억달러 유입입니다. 한 분기의 마이너스로 당장 증자나 자금 위기를 예고할 근거는 부족합니다.",
         "labels": [],
-        "origin": "추가 발행 이후, 얻는 가치와 늘어난 주식 수를 비교",
+        "origin": "생산 확대를 계속할 때 갈리는 조건",
         "branches": [
           {
-            "label": "가치가 커질 조건",
-            "text": "새 투자·인수가 주당 이익 증가로 이어집니다.",
-            "check": "전체 이익과 희석 주식 수를 함께 비교합니다."
+            "label": "부담이 줄려면",
+            "text": "청구·수금 진행으로 영업현금이 개선됩니다.",
+            "check": "계약자산·매출채권 증가세 둔화를 함께 봅니다."
           },
           {
-            "label": "부담이 커질 조건",
-            "text": "투자 성과보다 주식 수가 더 빠르게 늘어납니다.",
-            "check": "주당 이익이 정체하면 조달의 대가를 재평가합니다."
+            "label": "부담이 커지면",
+            "text": "회수가 늦고 투자가 계속되면 현금 의존이 커집니다.",
+            "check": "보유 현금 감소와 조달 필요성을 봅니다."
           }
         ],
+        "takeaway": "지금은 지급능력 위기보다 성장에 필요한 현금의 시차가 쟁점입니다.",
+        "bridge": "다음 실적에서도 쓸 비교 기준은 투자비를 벌어내는지입니다.",
+        "evidence_ids": [
+          "liquidity",
+          "billing",
+          "judgment"
+        ],
         "visual": {
-          "path": "automation/visual_assets/5070c56b48321837108ad446d13052ccee1126605b35c7a2e05ee1b181301848.png",
-          "sha256": "5070c56b48321837108ad446d13052ccee1126605b35c7a2e05ee1b181301848",
-          "alt": "투자 성과와 주식 발행의 대가를 점검하는 검사용 조명과 설비 개념 이미지",
+          "path": "automation/visual_assets/67af89c3d49019c9ffed73cccdf7793b9b71779fa1cb89d891d7b7d8548aadcb.png",
+          "sha256": "67af89c3d49019c9ffed73cccdf7793b9b71779fa1cb89d891d7b7d8548aadcb",
+          "alt": "가동 중인 공장과 증설 중인 작업장을 보여주는 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration about whether new investment earns enough to offset increased shares. An industrial inspection bench with a luminous cobalt silicon module under an adjustable precision inspection lamp, surrounded by sparse abstract ivory share-certificate slips. Not a quantitative diagram, no scales, arrows, words, digits, logos or money. Sophisticated tactile 3D art on warm off-white, deliberate asymmetrical wide 3:1 composition, central subjects fully visible, minimum height 640 pixels."
+          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. A wide panoramic cutaway of an industrial equipment company expanding a workshop: existing functioning production bay on left, an adjacent partially installed assembly line on right with one worker examining a new machine. Warm neutral concrete, steel, cobalt safety detail. Deliberately conceptual miniature illustration, not a real factory photograph. No text, logos or signs. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
         }
       },
       {
         "layout": "closing",
-        "title": "메타가 넓힌 것은\n투자금 마련의 선택지",
-        "body": "현재 판단은 ‘투자 재원은 넓히되 지배구조는 유지한다’입니다. 투자 성공을 확인한 발표는 아닙니다. 영업현금이 설비지출을 다시 넘는지가 다음 실적의 핵심입니다.",
-        "takeaway": "현금 격차가 줄지 않은 채 추가 발행까지 커지면 주주 부담을 더 무겁게 봅니다.",
-        "bridge": "주식 수보다, 한 주에 돌아오는 성과를 봅니다.",
-        "evidence_ids": [
-          "decision",
-          "cash",
-          "timing",
-          "dilution"
-        ],
+        "title": "성장은 입증됐습니다\n투자비도 벌어야 합니다",
+        "accent": "투자비도 벌어야 합니다",
+        "body": "이번 실적은 장비 수요 확대를 뒷받침합니다. 다만 3분기 영업현금으로 설비 지출을 충당하지 못해, 성장 자체가 투자 재원을 만들어냈다고 보기는 이릅니다.",
         "labels": [
           {
-            "label": "정관 효력 예정",
-            "text": "2027년 1월 19일 · C주를 만들기 위한 정관 변경"
+            "label": "이번 기준점",
+            "text": "영업현금 −2,715만달러 / 유형자산 취득 지출 1억5,349만달러."
           },
           {
-            "label": "아직 미정",
-            "text": "주식배당 기준일·지급일은 추후 결정합니다."
+            "label": "판단이 좋아질 조건",
+            "text": "같은 분기의 영업현금이 설비 지출을 지속적으로 충당할 때입니다."
           }
         ],
+        "takeaway": "블룸의 다음 성적은 매출 규모와 함께 성장비용을 스스로 버는지입니다.",
+        "bridge": "청구·수금이 따라오면 보유 현금에 기대는 정도가 줄어듭니다.",
+        "evidence_ids": [
+          "judgment",
+          "product",
+          "cash-gap"
+        ],
         "visual": {
-          "path": "automation/visual_assets/36949b213acb07b2cd143ec3a33dc6dcd7d76005f6ae26fe472bce1ba66f4f43.png",
-          "sha256": "36949b213acb07b2cd143ec3a33dc6dcd7d76005f6ae26fe472bce1ba66f4f43",
-          "alt": "새 주식의 발행 조건과 미정 일정을 확인하는 문서·펜 개념 이미지",
+          "path": "automation/visual_assets/c6d927bb71d0d04236e4804bf4062a8599d7b0ab2c6f69ecb8011ef397925c5f.png",
+          "sha256": "c6d927bb71d0d04236e4804bf4062a8599d7b0ab2c6f69ecb8011ef397925c5f",
+          "alt": "산업 장비 거래의 대금 전달을 나타내는 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset: wide editorial illustration for evaluating Meta's future Class C issuance terms. A close editorial still-life of a fountain pen poised above a blank white securities document, with a cobalt translucent certificate casting a crisp shadow beside it and a small sculptural architectural doorway in the background. Convey terms yet to be read, no signatures, real documents, readable text, numbers, brand marks, checkmarks or charts. Sophisticated warm off-white and black with cobalt, broad horizontal 3:1 composition, minimum height 640 pixels."
+          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Wide editorial macro image of a real-world business payment clearing: one anonymous hand slides a plain payment envelope into another hand beside an industrial metal component on a clean off-white desk. No banknotes, no currency symbols, no numbers, no words. Crisp natural materials, cobalt cuff detail, confident daylight. Emphasize money collection completing a sale, not gifts or bribery. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
         }
       }
     ],
     "editorial_review": {
-      "improvement": "핵심은 C주가 투자 재원과 의결권을 분리한다는 점. GM의 숫자에서 주주 의미로 넘어가는 설명 부족을 보완해 2장에서 배당·현금, 6장에서 추가 발행·주당 몫의 연결을 풀었다.",
-      "reason": "최근 5편의 원고·카드·편집 기록 확인. 관세 편은 면제 범위를 반복했고 TSMC는 주변 공급망으로 퍼졌다. 인도네시아 마지막 장은 판단 이유가 짧았다. 이번에는 첫 두 장에서 답하고 이후 광고→현금→이익→지분으로 근거를 더했다.",
-      "application": "제목 후보 ‘메타, 주식은 나누고 의결권은 지킵니다’를 채택. ‘광고 호황에도 현금 적자’는 주식 구조를 늦게 설명하고 ‘AI에 쓸 새 주식’은 조달 완료로 오해하기 쉬워 제외. 3·4장에 영업 재원, 5장에 합의 비용, 6장에 희석 경로를 배치.",
-      "avoided_repetition": "Supermicro 매출·반도체 수혜와 구분해 자본구조를 중심으로 삼았다. AI 이용자·Reality Labs·시장 예상·시간외 등락·소송 판결 별건은 덜었다. 기존 금고·동전·돋보기 대신 문서·광고·시설의 서로 다른 구도를 사용. 다음에는 실제 발행 조건을 근거로 판단을 보완한다."
+      "improvement": "남길 결론은 '블룸의 성장은 확인됐지만 자체 투자재원은 수금이 결정한다'. 개선 한 가지는 숫자 사이의 현금 전달 설명이다. 제목은 현금 회수 숙제를 채택; '138% 성장'은 숫자만 남고 '현금 위기'는 근거 부족이라 제외했다.",
+      "reason": "Morning Brew Shorty18 제작 설명(명확성·맥락)과 Bloomberg 9/5 AI 가격 선택 재현 캡션(imginn.com/p/Dc6jiDuoxro/) 비교. 전 장 미열람. Socialpruf Instagram 10/23 KST 조회: 각각 228만·652만(화면 10/22). 사례는 편집 참고만.",
+      "application": "최근 5편 GM·SMCI·인도네시아·한은·이란의 원고/실제17장/기록을 비교했다. 1~2장에 매출→청구→수금→투자비 연결, 4장에 순이익·현금 구분, 7장에 영업현금/설비지출 기준을 넣었다. 원고만 재설명해 중심 결론과 대조; 실제 독자 실험 아님.",
+      "avoided_repetition": "SMCI의 타기업 일정 확장, GM의 현금=연료 비유와 이란의 일반적 확인 마무리를 피했다. EPS·연간 전망·타기업 수혜는 덜었다. 인사이트 미확보로 독해·가독성만 평가. 다음 보완은 같은 형식·경과 시간의 저장/도달·공유/도달 확보 후 비교."
     }
   }
 }
