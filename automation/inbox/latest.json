@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-10-23T00:47:17.990Z",
   "publication_date_kst": "2026-10-23",
@@ -423,5 +423,17 @@
       "application": "최근 GM·SMCI·인도네시아·한은·이란의 상세 원고·실제 17장·편집 기록을 대조했다. 1~2장 매출→청구→수금→투자비, 4장 순이익과 현금, 6장 주주 영향, 7장 자체 투자재원으로 이어진다. 재검수에서 검수 지연을 사실로 추정하지 않고 계약상 청구 조건으로 고쳤다.",
       "avoided_repetition": "SMCI의 타기업 일정 확장, GM의 현금=연료 비유와 이란의 일반적 확인 마무리를 피했다. EPS·연간 전망·타기업 수혜는 덜었다. 인사이트 미확보로 독해·가독성만 평가. 다음 보완은 같은 형식·경과 시간의 저장/도달·공유/도달 확보 후 비교."
     }
+  },
+  "reviewed_preview": {
+    "run_id": 39880190668,
+    "image_sha256": [
+      "231a6e921cd15a482c490553ddea77cec94ddab56dde0ab92cfda34ee0f2b2de",
+      "5e1d699782157a9f4ff943530f9ba3aed8c30fd79c9ff91a491ad71f9d46fe12",
+      "8bb23f3f8d120a00c14559cb8d0b9eb073304928065e75c3dfe82014ca74e334",
+      "b7cfdcbd485a6656d65ce74b3c435fa785387c13762a979ea50af47136ddd322",
+      "e9d7e04df014f0c13fdf3222eda784f2a91b70ef97ab1c7f64d7de99c1aecac3",
+      "f7894f37c3f126377b4627824ee8116d4e1930c144fb1ccc823df3dbf92c3572",
+      "248d4f8f043f492c376677929af04c5944c76fab27e3d71754b159e008e11339"
+    ]
   }
 }
