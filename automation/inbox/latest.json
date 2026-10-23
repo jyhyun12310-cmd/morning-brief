@@ -2,7 +2,7 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-22T23:51:00+00:00",
+  "created_at": "2026-10-23T00:47:17.990Z",
   "publication_date_kst": "2026-10-23",
   "market": {
     "ticker": "BE",
@@ -19,17 +19,17 @@
   "sources": [
     {
       "id": "be-q3",
-      "title": "Bloom Energy Q3 2026 earnings release and financial statements",
-      "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Third-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+      "title": "Bloom Energy Q3 2026 earnings release, SEC 8-K Exhibit 99.1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
       "as_of": "2026-10-22 발표; 2026-09-30 종료 분기; 현금흐름표는 분기별",
-      "retrieved_at": "2026-10-22T23:51:00+00:00"
+      "retrieved_at": "2026-10-23T00:46:16.812945+00:00"
     },
     {
       "id": "be-10q",
       "title": "Bloom Energy Form 10-Q, quarter ended September 30, 2026",
       "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
       "as_of": "2026-10-22 제출; Note 3 계약자산·현금흐름·유동성",
-      "retrieved_at": "2026-10-22T23:51:00+00:00"
+      "retrieved_at": "2026-10-23T00:44:44.737636+00:00"
     },
     {
       "id": "be-price",
@@ -96,8 +96,8 @@
     "sources": [
       {
         "id": "be-q3",
-        "title": "Bloom Energy Q3 2026 earnings release and financial statements",
-        "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Third-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+        "title": "Bloom Energy Q3 2026 earnings release, SEC 8-K Exhibit 99.1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
         "as_of": "2026-10-22 발표; 2026-09-30 종료 분기; 현금흐름표는 분기별"
       },
       {
@@ -173,7 +173,7 @@
       },
       {
         "id": "liquidity",
-        "claim": "9월말 현금및현금성자산 2,486.702백만달러, 1~9월 영업현금흐름 +272.895백만달러. 회사는 보유현금과 예상 영업현금으로 향후 최소12개월 수요 충족을 예상한다. Q3 현금 유출 하나로 즉각적 자금위기나 증자를 예고할 근거는 없다.",
+        "claim": "9월말 현금및현금성자산 2,486.702백만달러, 1~9월 영업현금흐름 +272.895백만달러. 회사는 보유현금과 예상 영업현금으로 향후 최소12개월 수요 충족을 예상한다. Q3 현금 유출 하나로 즉각적 자금위기나 증자를 예고할 근거는 없다. 회사는 추가 주식 발행 시 기존 주주의 지분 희석 가능성도 명시한다. 이는 조건부 위험이며 현재 증자를 결정했다는 뜻이 아니다.",
         "source_ids": [
           "be-q3",
           "be-10q"
@@ -224,7 +224,7 @@
         "layout": "photo",
         "title": "매출에 잡힌 돈,\n아직 청구 전입니다",
         "accent": "아직 청구 전입니다",
-        "body": "10월 22일 공시는 매출로 인식했지만 아직 청구하지 않은 계약자산이 늘었음을 보여줍니다. 고객 검수·청구 단계가 남으면 이익은 잡혀도 현금은 늦게 들어옵니다.",
+        "body": "10월 22일 공시는 매출로 인식했지만 아직 청구하지 않은 계약자산이 늘었음을 보여줍니다. 계약상 청구 조건을 채우는 시점이 늦으면 매출보다 현금이 나중에 들어옵니다.",
         "labels": [
           {
             "label": "계약자산 잔액",
@@ -232,7 +232,7 @@
           },
           {
             "label": "회사에 생기는 부담",
-            "text": "회수 전에도 재료비·공장 투자비는 필요해 보유 현금을 쓰게 됩니다."
+            "text": "수금 전에도 재료비와 공장 투자비를 지급해야 하므로 이를 먼저 댈 자금이 필요합니다."
           }
         ],
         "takeaway": "이 시차가 길어질수록 급성장을 떠받칠 자금이 더 필요합니다.",
@@ -306,7 +306,7 @@
             }
           ]
         },
-        "takeaway": "고객 선수금과 미지급금 증가도 일부 상쇄했지만 현금 순유출입니다.",
+        "takeaway": "고객이 미리 준 돈과 지급을 미룬 비용이 일부 메웠지만 현금은 순유출입니다.",
         "bridge": "이 새 공시로 그날 정규장 하락을 설명하면 순서가 틀립니다.",
         "evidence_ids": [
           "cash-gap"
@@ -365,8 +365,8 @@
           },
           {
             "label": "부담이 커지면",
-            "text": "회수가 늦고 투자가 계속되면 현금 의존이 커집니다.",
-            "check": "보유 현금 감소와 조달 필요성을 봅니다."
+            "text": "회수가 늦고 투자가 이어지면 외부 조달이 필요할 수 있습니다.",
+            "check": "증자라면 기존 주주의 지분 비율이 낮아집니다."
           }
         ],
         "takeaway": "지금은 지급능력 위기보다 성장에 필요한 현금의 시차가 쟁점입니다.",
@@ -418,9 +418,9 @@
       }
     ],
     "editorial_review": {
-      "improvement": "남길 결론은 '블룸의 성장은 확인됐지만 자체 투자재원은 수금이 결정한다'. 개선 한 가지는 숫자 사이의 현금 전달 설명이다. 제목은 현금 회수 숙제를 채택; '138% 성장'은 숫자만 남고 '현금 위기'는 근거 부족이라 제외했다.",
+      "improvement": "핵심은 '성장은 확인됐지만 수금이 따라와야 투자비를 스스로 댈 수 있다'. 2장에 청구 조건과 선지출의 연결, 6장에 외부 조달이 주주에게 전달되는 조건부 지분 희석을 보강했다. 제목은 현금 회수 숙제를 채택; 숫자만 남는 성장률 제목과 근거 없는 현금 위기 제목은 제외했다.",
       "reason": "Morning Brew Shorty18 제작 설명(명확성·맥락)과 Bloomberg 9/5 AI 가격 선택 재현 캡션(imginn.com/p/Dc6jiDuoxro/) 비교. 전 장 미열람. Socialpruf Instagram 10/23 KST 조회: 각각 228만·652만(화면 10/22). 사례는 편집 참고만.",
-      "application": "최근 5편 GM·SMCI·인도네시아·한은·이란의 원고/실제17장/기록을 비교했다. 1~2장에 매출→청구→수금→투자비 연결, 4장에 순이익·현금 구분, 7장에 영업현금/설비지출 기준을 넣었다. 원고만 재설명해 중심 결론과 대조; 실제 독자 실험 아님.",
+      "application": "최근 GM·SMCI·인도네시아·한은·이란의 상세 원고·실제 17장·편집 기록을 대조했다. 1~2장 매출→청구→수금→투자비, 4장 순이익과 현금, 6장 주주 영향, 7장 자체 투자재원으로 이어진다. 재검수에서 검수 지연을 사실로 추정하지 않고 계약상 청구 조건으로 고쳤다.",
       "avoided_repetition": "SMCI의 타기업 일정 확장, GM의 현금=연료 비유와 이란의 일반적 확인 마무리를 피했다. EPS·연간 전망·타기업 수혜는 덜었다. 인사이트 미확보로 독해·가독성만 평가. 다음 보완은 같은 형식·경과 시간의 저장/도달·공유/도달 확보 후 비교."
     }
   }
