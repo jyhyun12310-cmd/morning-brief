@@ -1,266 +1,212 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-21T14:12:00+09:00",
-  "publication_date_kst": "2026-10-21",
-  "snapshot_at": "2026-10-21T13:57:20+09:00",
+  "created_at": "2026-10-26T14:09:33+09:00",
+  "publication_date_kst": "2026-10-26",
+  "snapshot_at": "2026-10-26T13:57:58+09:00",
   "kr_session": {
-    "date": "2026-10-21",
+    "date": "2026-10-26",
     "status": "open",
-    "source_id": "kospi-live",
-    "evidence": "코스피 제공 화면에 2026년 10월 21일 13:57:20 KST 실시간 지수와 당일 거래 범위가 표시돼 정규장 거래 중임을 확인했습니다."
+    "source_id": "naver-live",
+    "evidence": "네이버 금융 실시간 API가 2026년 10월 26일 13:57:58 KST에 코스피·코스닥을 모두 OPEN으로 표시했습니다."
   },
   "sources": [
     {
-      "id": "kospi-live",
-      "title": "Investing.com · 코스피 실시간 지수",
-      "url": "https://kr.investing.com/indices/kospi",
-      "as_of": "2026-10-21 13:57:20 KST; 전일 종가 5,552.74",
-      "retrieved_at": "2026-10-21T14:07:00+09:00"
+      "id": "naver-live",
+      "title": "네이버 금융 · 코스피·코스닥 실시간 지수 API",
+      "url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ",
+      "as_of": "2026-10-26 13:57:58 KST; 코스피 5,525.20, 코스닥 737.00",
+      "retrieved_at": "2026-10-26T14:08:37+09:00"
     },
     {
-      "id": "kosdaq-live",
-      "title": "Investing.com · 코스닥 실시간 지수와 과거 데이터",
-      "url": "https://kr.investing.com/indices/kosdaq-historical-data",
-      "as_of": "2026-10-21 13:56:50 KST; 전일 종가 781.97",
-      "retrieved_at": "2026-10-21T14:07:00+09:00"
+      "id": "reuters-global",
+      "title": "Reuters · Stocks trade warily in Asia, Brent off six-month top",
+      "url": "https://www.reuters.com/world/asia-pacific/global-markets-pix-2026-10-26/",
+      "as_of": "2026-10-26 00:46 UTC 보도; 한국 증시·유가·연준·빅테크 실적 주간",
+      "retrieved_at": "2026-10-26T14:09:00+09:00"
     },
     {
-      "id": "smci-release",
-      "title": "Supermicro · FY2027 1분기 잠정 사업 업데이트",
-      "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2027-Preliminary-Business-Update/default.aspx",
-      "as_of": "2026-10-20 발표; 2026-09-30 종료 분기 잠정치",
-      "retrieved_at": "2026-10-21T14:07:00+09:00"
+      "id": "reuters-hynix",
+      "title": "Reuters · SK Hynix to announce steps to boost shareholder returns",
+      "url": "https://www.reuters.com/world/asia-pacific/sk-hynix-announce-steps-boost-shareholder-returns-wednesday-2026-10-26/",
+      "as_of": "2026-10-26 02:42 UTC 보도; 수요일 주주환원책 발표 예고",
+      "retrieved_at": "2026-10-26T14:09:00+09:00"
     },
     {
-      "id": "korea-chips",
-      "title": "서울경제 · Supermicro 발표 뒤 국내 반도체주 장중 반등",
-      "url": "https://en.sedaily.com/finance/2026/10/21/samsung-sk-hynix-rebound-4-5-percent-on-super-micros-strong",
-      "as_of": "2026-10-21 09:18 KST 보도; 한국거래소 09:15 수치 포함",
-      "retrieved_at": "2026-10-21T14:07:00+09:00"
+      "id": "bullstory",
+      "title": "불스토리 · 반도체 ETF 제대로 고르는 방법",
+      "url": "https://bullstory.io/blog/%EC%A3%BC%EC%8B%9D%ED%95%98%EB%A9%B4-%EB%AC%B4%EC%A1%B0%EA%B1%B4-%EC%99%B8%EC%9A%B0%EC%84%B8%EC%9A%94-%EB%B0%98%EB%8F%84%EC%B2%B4-etf-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EA%B3%A0%EB%A5%B4%EB%8A%94-%EB%B0%A9%EB%B2%95-3",
+      "as_of": "2026-10-26 공식 사이트 공개 본문 전체 열람; Instagram 카드는 열람하지 않음",
+      "retrieved_at": "2026-10-26T14:09:00+09:00"
     },
     {
-      "id": "meta-ir",
-      "title": "Meta · 2026년 3분기 실적 발표 일정",
-      "url": "https://investor.atmeta.com/investor-events/event-details/2026/Q3-2026-Earnings-Call/default.aspx",
-      "as_of": "2026-10-21 13:30 PT 실적 발표 콜",
-      "retrieved_at": "2026-10-21T14:07:00+09:00"
-    },
-    {
-      "id": "tesla-ir",
-      "title": "Tesla · 2026년 3분기 실적 및 질의응답 일정",
-      "url": "https://ir.tesla.com/press-release/tesla-third-quarter-2026-production-deliveries-and-deployments",
-      "as_of": "2026-10-21 미국장 마감 후 실적; 17:30 ET 질의응답",
-      "retrieved_at": "2026-10-21T14:07:00+09:00"
+      "id": "hong-interview",
+      "title": "잘살아보세 · 홍춘욱이 말한 코스피 1만의 조건",
+      "url": "https://v.daum.net/v/7nEc8W2uNe?f=p",
+      "as_of": "2026-07 공개 인터뷰 기사 본문 열람; 원본 영상·전체 전사는 열람하지 않음",
+      "retrieved_at": "2026-10-26T14:09:00+09:00"
     }
   ],
   "quotes": [
     {
       "id": "KOSPI",
       "name": "코스피",
-      "value": 5700.19,
-      "previous_close": 5552.74,
-      "change_pct": 2.66,
+      "value": 5525.20,
+      "previous_close": 5550.30,
+      "change_pct": -0.45,
       "basis": "intraday",
-      "as_of": "2026-10-21T13:57:20+09:00",
-      "source_id": "kospi-live"
+      "as_of": "2026-10-26T13:57:58+09:00",
+      "source_id": "naver-live"
     },
     {
       "id": "KOSDAQ",
       "name": "코스닥",
-      "value": 791.81,
-      "previous_close": 781.97,
-      "change_pct": 1.26,
+      "value": 737.00,
+      "previous_close": 751.69,
+      "change_pct": -1.95,
       "basis": "intraday",
-      "as_of": "2026-10-21T13:56:50+09:00",
-      "source_id": "kosdaq-live"
+      "as_of": "2026-10-26T13:57:58+09:00",
+      "source_id": "naver-live"
     }
   ],
-  "events": [
-    {
-      "title": "Meta 3분기 실적 발표 콜",
-      "at": "2026-10-21T13:30:00-07:00",
-      "note": "광고 성장과 AI 투자비, 연간 지출 전망을 확인",
-      "source_id": "meta-ir"
-    },
-    {
-      "title": "Tesla 3분기 실적 질의응답",
-      "at": "2026-10-21T17:30:00-04:00",
-      "note": "가격·원가·현금흐름이 판매량과 함께 움직였는지 확인",
-      "source_id": "tesla-ir"
-    }
-  ],
+  "events": [],
   "summary": {
     "design": "editorial-v2",
-    "instagram_caption": "AI 서버 주문이 매출과 이익률로 바뀌자 한국 반도체주도 반등했습니다. 오늘 밤 메타와 테슬라 실적이 AI 투자와 이익의 연결을 다시 시험합니다. #코스피 #반도체 #미국실적",
+    "instagram_caption": "13시 57분 코스피는 0.45%, 코스닥은 1.95% 내렸습니다. 코스피 숫자 하나만 보면 놓치는 선택적 위험회피를 짚었습니다. #코스피 #코스닥 #시장뉴스",
     "editorial_review": {
-      "improvement": "최근 GM·관세·TSMC·베이지북·UnitedHealth 글의 짧은 결론과 반복 단서를 비교해, 이번에는 AI 서버 주문이 매출·마진·국내 대형주로 전달되는 이유를 각 장에 한 단계씩 보강했습니다.",
-      "reason": "최근 글은 숫자 다음의 작동 방식이 생략되거나 마지막 장이 일반적인 확인 문구로 끝났습니다. 오늘 반등은 매출과 매출총이익률이 함께 상향된 점이 핵심이라 단순 급등 종목 나열을 버렸습니다.",
-      "application": "제목 후보 'AI 서버 매출이 튀자 코스피 반도체가 뛰었다', '슈퍼마이크로의 주문이 한국 반도체를 깨웠다', '매출과 마진이 같이 뛰자 반도체 반등이 번졌다' 중 첫 안을 선택했습니다. 2장에서 매출총이익률 뜻을 풀고 3장에서 코스피·코스닥 차이를 대형 반도체 집중도로 연결했습니다.",
-      "avoided_repetition": "매출 상향은 1~2장, 국내 확산은 3장, 미국 검증 일정은 4장, 잠정치를 뒤집을 조건은 5장에만 배치했습니다. GM의 현금·자사주 비유와 TSMC의 공정 숫자 나열은 반복하지 않았고 다음 편은 최종 실적의 고객 구성을 보완합니다."
+      "improvement": "최근 5편은 표지가 완결형 보고 문장이고 본문과 결론을 되풀이했습니다. 이번 한 가지 개선은 첫 장 초안 '국내 증시 하락, 위험회피 확대'를 '코스피 -0.45% / 코스닥 -1.95%'로 바꿔 독자가 숫자 대비만으로 질문을 잡게 한 것입니다.",
+      "reason": "불스토리 공식 사이트의 반도체 ETF 글 본문 전체를 읽어 '같은 이름도 구성에 따라 결과가 다르다'는 설명 순서를 참고했습니다. Instagram 실제 카드는 보지 않았습니다. 보완 사례는 홍춘욱 인터뷰 기사 본문이며 원본 영상·전체 전사는 보지 않았습니다. 두 사례처럼 한국 독자의 '왜 내 체감은 다른가'를 먼저 받았습니다.",
+      "application": "2장 초안 '대외 불확실성에 양 지수가 약세입니다'를 '한 대형주가 버티면 코스피는 덜 빠져 보일 수 있습니다'로 고쳤고, 3장에서 지수 격차→대형주 방어→시장 폭 해석을 연결했습니다. 원유·연준 일정은 격차의 단일 원인으로 단정하지 않고 배경으로만 낮췄습니다.",
+      "avoided_repetition": "1장에는 두 지수의 사실, 2장에는 덜 빠진 이유, 3장에는 독자 판단의 대가, 4장에는 이번 주 확인 순서, 5장에는 판단을 바꿀 조건만 남겼습니다. '관건·여력·확인하자'와 같은 반복 결론을 버렸습니다. 다음 편은 실제 상승·하락 종목 수까지 확보해 시장 폭 설명을 더 정밀하게 보완합니다."
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "AI 서버 매출이 튀자\n코스피 반도체가 뛰었다",
-        "body": "슈퍼마이크로가 AI 플랫폼 수요로 분기 매출 전망을 크게 올렸습니다. 13시 57분 코스피는 2.66%, 코스닥은 1.26% 상승했습니다.",
-        "source_ids": [
-          "smci-release",
-          "kospi-live",
-          "kosdaq-live",
-          "korea-chips"
-        ],
+        "title": "코스피 -0.45%\n코스닥 -1.95%",
+        "body": "같은 하락장이지만 매도 압력은 코스닥 쪽이 훨씬 컸습니다. 코스피만 보면 시장이 버텼다고 오해하기 쉽습니다.",
+        "source_ids": ["naver-live"],
         "items": [],
-        "accent": "코스피 반도체",
+        "accent": "코스닥 -1.95%",
         "visual": {
-          "path": "automation/visual_assets/8098ce1b6c9bc6cbc0b48b243a232aa5b985963f72d324f5c8d98adaec07e340.png",
-          "sha256": "8098ce1b6c9bc6cbc0b48b243a232aa5b985963f72d324f5c8d98adaec07e340",
-          "alt": "푸른 데이터센터 통로가 실리콘 웨이퍼와 상승하는 반도체 블록으로 이어지는 개념 이미지",
+          "path": "automation/visual_assets/c5db164048b63d452d27d25b0873c2e10f46f58564a927faa678efdbced01855.jpg",
+          "sha256": "c5db164048b63d452d27d25b0873c2e10f46f58564a927faa678efdbced01855",
+          "alt": "푸른 대형 플랫폼은 버티고 검은 소형 플랫폼은 더 크게 무너지는 두 시장의 대비",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "오프화이트 가장자리와 검정 기술 공간에서 코발트 데이터센터 통로가 실리콘 웨이퍼와 상승 블록으로 변하는 편집용 3D 개념 이미지. 사람·회사 로고·주가 차트·숫자·문자·워터마크 없이 제작."
+          "prompt": "오프화이트와 검정, 코발트만 사용해 왼쪽의 크고 안정된 시장 플랫폼과 오른쪽의 잘게 부서지며 더 깊이 떨어지는 시장 플랫폼을 대비한 파노라마 금융 편집 이미지. 문자·숫자·로고·사람 없음."
         }
       },
       {
         "layout": "drivers",
-        "title": "매출만 아니라\n남기는 비율도 올랐다",
-        "body": "잠정 매출 범위는 기존 전망보다 약 40억달러 높아졌고, 매출총이익률 전망도 함께 올라 단순 물량 증가 이상의 신호를 줬습니다.",
-        "source_ids": [
-          "smci-release"
-        ],
+        "title": "왜 코스닥이\n더 깊이 빠졌나",
+        "body": "큰 반도체주가 버티면 코스피 낙폭은 작아 보일 수 있습니다. 반면 금리·유가 부담은 성장주가 많은 쪽의 경계심을 키웠습니다.",
+        "source_ids": ["naver-live", "reuters-global", "reuters-hynix"],
         "items": [
           {
-            "label": "매출 전망",
-            "text": "145~155억달러 → 185~195억달러. 회사는 AI 플랫폼 수요 증가를 이유로 들었습니다.",
+            "label": "대형주 방어",
+            "text": "오전 SK하이닉스는 0.5% 올랐지만 당시 코스피는 1.3% 내렸습니다.",
             "type": "fact",
-            "source_ids": [
-              "smci-release"
-            ]
+            "source_ids": ["reuters-hynix"]
           },
           {
-            "label": "매출총이익률",
-            "text": "제품 원가를 뺀 뒤 남는 비율입니다. 10.4~10.8% → 12.0~12.5%로 높아졌습니다.",
+            "label": "배경과 원인",
+            "text": "유가·연준 경계는 배경입니다. 지수 격차의 단일 원인으로 단정할 수는 없습니다.",
             "type": "analysis",
-            "source_ids": [
-              "smci-release"
-            ]
+            "source_ids": ["reuters-global", "naver-live"]
           }
         ],
-        "accent": "남기는 비율",
+        "accent": "코스닥",
         "visual": {
-          "path": "automation/visual_assets/8fd11c622668d9bb6fca7c7058daa7995e5ffb0cbb86c226693aff94555cc2fc.png",
-          "sha256": "8fd11c622668d9bb6fca7c7058daa7995e5ffb0cbb86c226693aff94555cc2fc",
-          "alt": "서버 부품이 투명 조립 구간을 지나 완성 서버 묶음으로 나오는 컨베이어 개념 이미지",
+          "path": "automation/visual_assets/0b662c23e6943dd6aab60af8996c6a386b3727f91204324c25efafc338be61a4.jpg",
+          "sha256": "0b662c23e6943dd6aab60af8996c6a386b3727f91204324c25efafc338be61a4",
+          "alt": "큰 웨이퍼와 대형 빌딩 한쪽, 작은 부품과 건물 여러 개가 다른 쪽에 놓인 저울",
           "tone": "light",
           "kind": "concept",
-          "prompt": "따뜻한 오프화이트 스튜디오에서 모듈형 서버 트레이가 정밀 컨베이어를 따라 조립되고 완성 서버 묶음으로 나오는 편집용 3D 정물. 글자·숫자·로고·차트·워터마크 없이 제작."
+          "prompt": "한쪽에는 거대한 코발트 웨이퍼와 대형 빌딩, 다른 쪽에는 여러 작은 부품과 건물을 올린 정밀 저울을 오프화이트 배경에 배치한 파노라마 금융 편집 이미지. 문자·숫자·로고·사람 없음."
         }
       },
       {
         "layout": "sectors",
-        "title": "반등은 코스닥보다\n대형 반도체에 더 셌다",
-        "body": "같은 시간 코스피 상승폭이 코스닥보다 컸습니다. 삼성전자와 SK하이닉스가 올라 지수 반등의 무게가 대형 반도체에 실렸습니다.",
-        "source_ids": [
-          "kospi-live",
-          "kosdaq-live",
-          "korea-chips"
-        ],
+        "title": "한 지수만 보면\n시장 체력을 놓친다",
+        "body": "코스피의 상대적 선방은 모든 종목의 회복이 아니라 돈이 큰 종목에 남았을 가능성을 뜻합니다. 코스닥 낙폭은 그 바깥의 약함을 보여줍니다.",
+        "source_ids": ["naver-live", "bullstory", "hong-interview"],
         "items": [
           {
-            "label": "삼성전자",
-            "text": "13시 57분 무렵 22만1천원, 전일 대비 4.49% 상승했습니다.",
-            "type": "fact",
-            "source_ids": [
-              "kospi-live"
-            ]
+            "label": "코스피 숫자",
+            "text": "대형 반도체가 버티면 지수 전체가 실제 체감보다 단단해 보일 수 있습니다.",
+            "type": "analysis",
+            "source_ids": ["hong-interview", "naver-live"]
           },
           {
-            "label": "SK하이닉스",
-            "text": "같은 화면에서 126만5천원, 전일 대비 3.43% 상승했습니다.",
-            "type": "fact",
-            "source_ids": [
-              "kospi-live"
-            ]
+            "label": "코스닥 숫자",
+            "text": "같은 시장 이름보다 어떤 종목에 돈이 남았는지가 더 중요합니다.",
+            "type": "analysis",
+            "source_ids": ["bullstory", "naver-live"]
           }
         ],
-        "accent": "대형 반도체",
+        "accent": "시장 체력",
         "visual": {
-          "path": "automation/visual_assets/608c8e2d0acf329cd25d696b305fe53d613abfc0e61419c2ddc9d3241ded777e.png",
-          "sha256": "608c8e2d0acf329cd25d696b305fe53d613abfc0e61419c2ddc9d3241ded777e",
-          "alt": "큰 반도체 두 개와 웨이퍼가 작은 중립 타일보다 높이 솟은 선택적 반등 개념 이미지",
+          "path": "automation/visual_assets/bb082e4dc115c17258198a07ac4a72c673d566ab801e20bf5581e89388d97df8.jpg",
+          "sha256": "bb082e4dc115c17258198a07ac4a72c673d566ab801e20bf5581e89388d97df8",
+          "alt": "여러 작은 공장에서 나온 푸른 자금 흐름이 하나의 거대한 반도체 공장에 집중되는 장면",
           "tone": "light",
           "kind": "concept",
-          "prompt": "옅은 오프화이트 바닥에서 큰 메모리칩 두 개와 실리콘 웨이퍼가 전경에 높이 솟고 작은 중립 타일은 낮게 퍼진 편집용 3D 개념 이미지. 브랜드·문자·숫자·실제 주가 차트·워터마크 없이 제작."
+          "prompt": "어두운 여러 작은 작업장에서 나온 코발트 자금 흐름이 하나의 거대한 첨단 반도체 공장으로 집중되는 오프화이트 종이 질감의 파노라마 편집 이미지. 문자·숫자·로고·사람 없음."
         }
       },
       {
         "layout": "calendar",
-        "title": "오늘 밤, AI 투자비를\n두 회사가 다시 답한다",
-        "body": "메타는 AI 지출이 광고 이익으로 이어지는지, 테슬라는 판매량이 이익과 현금으로 남는지를 실적으로 보여줄 차례입니다.",
-        "source_ids": [
-          "meta-ir",
-          "tesla-ir"
-        ],
+        "title": "오늘 밤보다\n이번 주 확인할 것",
+        "body": "빅테크 실적과 중앙은행 회의가 이번 주에 몰렸습니다. 오늘의 지수 격차를 한밤 사이 끝날 신호로 보면 안 됩니다.",
+        "source_ids": ["reuters-global"],
         "items": [],
-        "accent": "두 회사",
+        "accent": "이번 주",
         "visual": {
-          "path": "automation/visual_assets/f752a8baa4f684fd2faadd8f1b889b980b58efabe808eb7536a8be17aad40ba2.png",
-          "sha256": "f752a8baa4f684fd2faadd8f1b889b980b58efabe808eb7536a8be17aad40ba2",
-          "alt": "연결망 구름과 전기차 배터리 실루엣이 하나의 시계 빛을 마주하는 실적 일정 개념 이미지",
+          "path": "automation/visual_assets/e8d51897e43434e24543a36667de78d3e513070711e20126e209db9da0bed46b.jpg",
+          "sha256": "e8d51897e43434e24543a36667de78d3e513070711e20126e209db9da0bed46b",
+          "alt": "빈 달력과 봉인된 검은 봉투, 발표를 기다리는 푸른 시계가 놓인 거래 책상",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "검정 저녁 무대의 두 구역에 추상 연결망 데이터 구름과 무상표 전기차 배터리·바퀴 실루엣이 하나의 시계 같은 빛을 마주하는 편집용 3D 이미지. 로고·이름·숫자·문자·워터마크 없이 제작."
+          "prompt": "빈 달력 종이와 봉인된 검은 봉투, 발표 시각에 다가가는 코발트 시계 바늘이 놓인 조용한 거래 책상의 파노라마 금융 정물. 화면 속 글자·숫자·로고·사람 없음."
         }
       },
       {
         "layout": "watch",
-        "title": "반등의 다음 답은\n잠정치가 아니라 최종치",
-        "body": "반등은 AI 서버 수요가 매출과 마진으로 이어졌다는 기대입니다. 11월 3일 최종 실적이 확인합니다.",
-        "source_ids": [
-          "smci-release",
-          "korea-chips"
-        ],
+        "title": "현재 판단\n지수 격차가 경고다",
+        "body": "코스피의 작은 하락보다 코스닥의 큰 낙폭을 먼저 봐야 합니다. 격차가 줄기 전에는 넓은 반등으로 보기 어렵습니다.",
+        "source_ids": ["naver-live", "reuters-global", "reuters-hynix"],
         "items": [
           {
-            "label": "최종 수치",
-            "text": "잠정치입니다. 최종 매출과 매출총이익률이 유지되는지 봅니다.",
+            "label": "격차가 줄면",
+            "text": "코스닥이 따라오면 돈이 큰 종목 밖으로 다시 퍼지는 신호가 됩니다.",
             "type": "watch",
-            "source_ids": [
-              "smci-release"
-            ]
+            "source_ids": ["naver-live"]
           },
           {
-            "label": "국내 확산",
-            "text": "대형 반도체의 상승이 장비·소재주로 넓어지는지 확인합니다.",
+            "label": "격차가 벌어지면",
+            "text": "코스피 선방만으로 시장 전체가 회복했다고 판단하기 더 어려워집니다.",
             "type": "watch",
-            "source_ids": [
-              "kospi-live",
-              "korea-chips"
-            ]
+            "source_ids": ["naver-live"]
+          },
+          {
+            "label": "실적이 바꾸면",
+            "text": "이번 주 반도체 실적과 주주환원이 기대를 못 채우면 대형주 방어도 약해질 수 있습니다.",
+            "type": "watch",
+            "source_ids": ["reuters-global", "reuters-hynix"]
           }
         ],
-        "accent": "최종치",
+        "accent": "지수 격차",
         "visual": {
-          "path": "automation/visual_assets/32d47dcb034e8c25070f15d0d311471b2151e6ed1cf7a8a0fc52c246449762a6.png",
-          "sha256": "32d47dcb034e8c25070f15d0d311471b2151e6ed1cf7a8a0fc52c246449762a6",
-          "alt": "확대경이 투명층과 코발트 금속층으로 된 서버 모듈을 점검하는 개념 이미지",
+          "path": "automation/visual_assets/0def0c64557e3b4dae1ee23dd5b676dacce984f1a3539e0bfa569a17e0b36d42.jpg",
+          "sha256": "0def0c64557e3b4dae1ee23dd5b676dacce984f1a3539e0bfa569a17e0b36d42",
+          "alt": "여러 기업이 있는 길과 거대한 반도체 타워로 향하는 길이 갈라진 두 갈래 다리",
           "tone": "light",
           "kind": "concept",
-          "prompt": "따뜻한 오프화이트 점검대에서 확대경이 투명 유리층과 코발트 금속층으로 된 서버 모듈을 살피는 편집용 3D 매크로 정물. 사람·문자·숫자·로고·가짜 차트·워터마크 없이 제작."
+          "prompt": "어두운 물 위에서 여러 중소형 건물로 향하는 길과 하나의 거대한 코발트 반도체 타워로 향하는 길이 갈라진 파노라마 편집 이미지. 문자·숫자·로고·사람 없음."
         }
       }
-    ]
-  },
-  "reviewed_preview": {
-    "run_id": 39548221055,
-    "image_sha256": [
-      "e22b7d5572f7f73cad038c88e2456add594eb5bd89e3629e87da19ddfedbb38b",
-      "38ddb391220264fba8df3dab6ec5090d016196abe4b5e4cb4d60550bf11df1d5",
-      "59dc81b2ef5a5984a8c359282241f06a74a3a3ea7bf40c3a9c75b747ceb4a258",
-      "f6a6c67e3922629c7e41318a30225494027f01163d67b1e533371ad22658c29e",
-      "5107c916b3e16bfc9da4bee0bbf39aaba0143b6f1a0fbdab4cb0dd217bb9c162"
     ]
   }
 }
