@@ -3,208 +3,297 @@
   "kind": "market_brief",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-26T14:09:33+09:00",
-  "publication_date_kst": "2026-10-26",
-  "snapshot_at": "2026-10-26T13:57:58+09:00",
+  "created_at": "2026-10-27T14:04:11+09:00",
+  "publication_date_kst": "2026-10-27",
+  "snapshot_at": "2026-10-27T14:03:34+09:00",
   "kr_session": {
-    "date": "2026-10-26",
+    "date": "2026-10-27",
     "status": "open",
-    "source_id": "naver-live",
-    "evidence": "네이버 금융 실시간 API가 2026년 10월 26일 13:57:58 KST에 코스피·코스닥을 모두 OPEN으로 표시했습니다."
+    "source_id": "naver-index",
+    "evidence": "네이버 금융 실시간 API가 2026년 10월 27일 14:03:28 KST에 코스피·코스닥을 모두 OPEN으로 표시했습니다."
   },
   "sources": [
     {
-      "id": "naver-live",
+      "id": "naver-index",
       "title": "네이버 금융 · 코스피·코스닥 실시간 지수 API",
       "url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ",
-      "as_of": "2026-10-26 13:57:58 KST; 코스피 5,525.20, 코스닥 737.00",
-      "retrieved_at": "2026-10-26T14:08:37+09:00"
+      "as_of": "2026-10-27 14:03:28 KST; 코스피 5,681.39, 코스닥 748.46",
+      "retrieved_at": "2026-10-27T14:03:28+09:00"
     },
     {
-      "id": "reuters-global",
-      "title": "Reuters · Stocks trade warily in Asia, Brent off six-month top",
-      "url": "https://www.reuters.com/world/asia-pacific/global-markets-pix-2026-10-26/",
-      "as_of": "2026-10-26 00:46 UTC 보도; 한국 증시·유가·연준·빅테크 실적 주간",
-      "retrieved_at": "2026-10-26T14:09:00+09:00"
+      "id": "naver-chip",
+      "title": "네이버 금융 · 삼성전자·SK하이닉스 실시간 시세 API",
+      "url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
+      "as_of": "2026-10-27 14:03:34 KST; 삼성전자 +4.69%, SK하이닉스 +6.67%",
+      "retrieved_at": "2026-10-27T14:03:34+09:00"
     },
     {
-      "id": "reuters-hynix",
-      "title": "Reuters · SK Hynix to announce steps to boost shareholder returns",
-      "url": "https://www.reuters.com/world/asia-pacific/sk-hynix-announce-steps-boost-shareholder-returns-wednesday-2026-10-26/",
-      "as_of": "2026-10-26 02:42 UTC 보도; 수요일 주주환원책 발표 예고",
-      "retrieved_at": "2026-10-26T14:09:00+09:00"
+      "id": "reuters-ai",
+      "title": "Reuters · Asian stocks surge as Anthropic IPO lifts sentiment",
+      "url": "https://www.reuters.com/world/china/global-markets-global-markets-2026-10-27/",
+      "as_of": "2026-10-27 01:46 UTC; 아시아 증시·AI 자금조달·중앙은행 전망",
+      "retrieved_at": "2026-10-27T14:00:00+09:00"
+    },
+    {
+      "id": "anthropic-s1",
+      "title": "Anthropic · SEC Form S-1",
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "as_of": "2026-10-26 제출; 2026년 상반기 매출·컴퓨팅비·영업손실",
+      "retrieved_at": "2026-10-27T14:01:00+09:00"
+    },
+    {
+      "id": "meta-finance",
+      "title": "Meta · AI 인프라 투자용 주식 조달 계획",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Announces-Launch-of-Offering-of-Depositary-Shares-Representing-Series-A-Mandatory-Convertible-Preferred-Stock-and-Offering-of-Class-A-Common-Stock-in-Connection-with-Forward-Sale-Agreements/default.aspx",
+      "as_of": "2026-10-26 발표; 공모 350억달러와 향후 ATM 약 600억달러 계획",
+      "retrieved_at": "2026-10-27T14:01:00+09:00"
+    },
+    {
+      "id": "fed-calendar",
+      "title": "Federal Reserve · 2026 FOMC 일정",
+      "url": "https://www.federalreserve.gov/monetarypolicy.htm",
+      "as_of": "2026-10-27~28 FOMC 회의; 결과·기자회견은 10월 28일 미국 동부시간",
+      "retrieved_at": "2026-10-27T14:01:30+09:00"
+    },
+    {
+      "id": "msft-ir",
+      "title": "Microsoft Investor Relations · FY27 Q1 실적 일정",
+      "url": "https://www.microsoft.com/en-us/investor/default",
+      "as_of": "2026-10-28 실적 발표 예정",
+      "retrieved_at": "2026-10-27T14:02:00+09:00"
     },
     {
       "id": "bullstory",
-      "title": "불스토리 · 반도체 ETF 제대로 고르는 방법",
-      "url": "https://bullstory.io/blog/%EC%A3%BC%EC%8B%9D%ED%95%98%EB%A9%B4-%EB%AC%B4%EC%A1%B0%EA%B1%B4-%EC%99%B8%EC%9A%B0%EC%84%B8%EC%9A%94-%EB%B0%98%EB%8F%84%EC%B2%B4-etf-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EA%B3%A0%EB%A5%B4%EB%8A%94-%EB%B0%A9%EB%B2%95-3",
-      "as_of": "2026-10-26 공식 사이트 공개 본문 전체 열람; Instagram 카드는 열람하지 않음",
-      "retrieved_at": "2026-10-26T14:09:00+09:00"
+      "title": "불스토리 · 앗 SK, 하이닉스보다 싸다!",
+      "url": "https://bullstory.io/blog/%EC%95%97-sk-%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4%EB%B3%B4%EB%8B%A4-%EC%8B%B8%EB%8B%A4",
+      "as_of": "2026-10-27 공식 사이트 본문 전체 열람; Instagram 카드 미열람",
+      "retrieved_at": "2026-10-27T14:00:30+09:00"
     },
     {
-      "id": "hong-interview",
-      "title": "잘살아보세 · 홍춘욱이 말한 코스피 1만의 조건",
-      "url": "https://v.daum.net/v/7nEc8W2uNe?f=p",
-      "as_of": "2026-07 공개 인터뷰 기사 본문 열람; 원본 영상·전체 전사는 열람하지 않음",
-      "retrieved_at": "2026-10-26T14:09:00+09:00"
+      "id": "hong-frism",
+      "title": "홍춘욱 · 왜 자산배분인가?",
+      "url": "https://www.frism.io/wae-jasanbaebuninga/",
+      "as_of": "2026-07-31 프리즘 공식 사이트 작성자 원문 전체 열람",
+      "retrieved_at": "2026-10-27T14:00:45+09:00"
     }
   ],
   "quotes": [
     {
       "id": "KOSPI",
       "name": "코스피",
-      "value": 5525.20,
-      "previous_close": 5550.30,
-      "change_pct": -0.45,
+      "value": 5681.39,
+      "previous_close": 5469.47,
+      "change_pct": 3.87,
       "basis": "intraday",
-      "as_of": "2026-10-26T13:57:58+09:00",
-      "source_id": "naver-live"
+      "as_of": "2026-10-27T14:03:28+09:00",
+      "source_id": "naver-index"
     },
     {
       "id": "KOSDAQ",
       "name": "코스닥",
-      "value": 737.00,
-      "previous_close": 751.69,
-      "change_pct": -1.95,
+      "value": 748.46,
+      "previous_close": 727.21,
+      "change_pct": 2.92,
       "basis": "intraday",
-      "as_of": "2026-10-26T13:57:58+09:00",
-      "source_id": "naver-live"
+      "as_of": "2026-10-27T14:03:28+09:00",
+      "source_id": "naver-index"
     }
   ],
   "events": [],
   "summary": {
     "design": "editorial-v2",
-    "instagram_caption": "13시 57분 코스피는 0.45%, 코스닥은 1.95% 내렸습니다. 코스피 숫자 하나만 보면 놓치는 선택적 위험회피를 짚었습니다. #코스피 #코스닥 #시장뉴스",
+    "instagram_caption": "14시 03분 코스피는 3.87%, 코스닥은 2.92% 올랐습니다. 반도체 대형주가 만든 반등이 시장 전체로 넓어질지는 AI 고객의 자금조달 비용과 실적에서 갈립니다. #코스피 #반도체 #AI투자",
     "editorial_review": {
-      "improvement": "최근 5편은 표지가 완결형 보고 문장이고 본문과 결론을 되풀이했습니다. 이번 한 가지 개선은 첫 장 초안 '국내 증시 하락, 위험회피 확대'를 '코스피 -0.45% / 코스닥 -1.95%'로 바꿔 독자가 숫자 대비만으로 질문을 잡게 한 것입니다.",
-      "reason": "불스토리 공식 사이트의 반도체 ETF 글 본문 전체를 읽어 '같은 이름도 구성에 따라 결과가 다르다'는 설명 순서를 참고했습니다. Instagram 실제 카드는 보지 않았습니다. 보완 사례는 홍춘욱 인터뷰 기사 본문이며 원본 영상·전체 전사는 보지 않았습니다. 두 사례처럼 한국 독자의 '왜 내 체감은 다른가'를 먼저 받았습니다.",
-      "application": "2장 초안 '대외 불확실성에 양 지수가 약세입니다'를 '한 대형주가 버티면 코스피는 덜 빠져 보일 수 있습니다'로 고쳤고, 3장에서 지수 격차→대형주 방어→시장 폭 해석을 연결했습니다. 원유·연준 일정은 격차의 단일 원인으로 단정하지 않고 배경으로만 낮췄습니다.",
-      "avoided_repetition": "1장에는 두 지수의 사실, 2장에는 덜 빠진 이유, 3장에는 독자 판단의 대가, 4장에는 이번 주 확인 순서, 5장에는 판단을 바꿀 조건만 남겼습니다. '관건·여력·확인하자'와 같은 반복 결론을 버렸습니다. 다음 편은 실제 상승·하락 종목 수까지 확보해 시장 폭 설명을 더 정밀하게 보완합니다."
+      "improvement": "최근 5편은 결론을 표지·본문·마지막 장에서 되풀이하는 경향이 있었습니다. 이번 한 가지 개선은 첫 장에서 지수 차이를 답하고, 2~3장에서 AI 기업의 자금조달이 한국 반도체 주문으로 이어지는 돈의 경로를 새 근거로 연결한 것입니다.",
+      "reason": "불스토리의 SK 지주사 글은 공식 사이트 본문 전체만 읽고 Instagram 카드는 보지 않았습니다. 복잡한 구조를 지분→현금→주주 선택으로 푼 순서를 참고하되 목표주가·확정 수익 표현은 버렸습니다. 보완 사례는 홍춘욱의 프리즘 공식 원문 전체이며 급등락을 예측이 아니라 조건으로 읽는 방식을 참고했습니다.",
+      "application": "초안 'AI 기대에 국내 증시 반등'을 '코스피 +3.87% / 반도체가 만든 반등'으로 고쳤습니다. 2장에는 Anthropic 컴퓨팅 비용과 Meta의 950억달러 조달 계획, 3장에는 조달→증설→메모리 주문을 넣어 첫 두 장의 답에 새 이유를 더했습니다.",
+      "avoided_repetition": "전날 원고의 위험회피·코스피와 코스닥 낙폭 격차를 반복하지 않았습니다. '관건·여력·확인하자' 대신 넓이·비용·실적 세 조건을 남겼고, 불스토리의 목표주가·상승 확신은 가져오지 않았습니다. 다음 편은 확인 가능한 상승·하락 종목 수로 시장 폭을 더 정밀하게 보완합니다."
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "코스피 -0.45%\n코스닥 -1.95%",
-        "body": "같은 하락장이지만 매도 압력은 코스닥 쪽이 훨씬 컸습니다. 코스피만 보면 시장이 버텼다고 오해하기 쉽습니다.",
-        "source_ids": ["naver-live"],
+        "title": "코스피 +3.87%\n반도체가 만든 반등",
+        "accent": "반도체가 만든 반등",
+        "body": "14시 03분 코스피는 3.87%, 코스닥은 2.92% 올랐습니다. 전날 급락을 되돌렸지만 코스피가 더 강한 이유는 대형 반도체주에 있습니다.",
+        "source_ids": [
+          "naver-index",
+          "naver-chip",
+          "reuters-ai"
+        ],
         "items": [],
-        "accent": "코스닥 -1.95%",
         "visual": {
-          "path": "automation/visual_assets/c5db164048b63d452d27d25b0873c2e10f46f58564a927faa678efdbced01855.jpg",
-          "sha256": "c5db164048b63d452d27d25b0873c2e10f46f58564a927faa678efdbced01855",
-          "alt": "푸른 대형 플랫폼은 버티고 검은 소형 플랫폼은 더 크게 무너지는 두 시장의 대비",
+          "sha": "ca266747b11edf8e063d3f8c87dcde35eeb481dd99014dcd74ec95afea9c6c04",
+          "alt": "거대한 코발트 반도체 타워와 여러 작은 기업 건물이 서로 다른 폭으로 상승하는 개념 이미지",
           "tone": "dark",
+          "path": "automation/visual_assets/ca266747b11edf8e063d3f8c87dcde35eeb481dd99014dcd74ec95afea9c6c04.png",
           "kind": "concept",
-          "prompt": "오프화이트와 검정, 코발트만 사용해 왼쪽의 크고 안정된 시장 플랫폼과 오른쪽의 잘게 부서지며 더 깊이 떨어지는 시장 플랫폼을 대비한 파노라마 금융 편집 이미지. 문자·숫자·로고·사람 없음."
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: explain a sharp Korean stock-market rebound led more strongly by giant AI semiconductor companies than by the broader growth-stock market\nScene/backdrop: two rising architectural market platforms after a recent drop; the left platform is lifted by one enormous unbranded cobalt semiconductor tower, while the right platform with many smaller generic growth-company buildings rises less\nStyle/medium: premium editorial 3D still life, realistic sculptural materials\nComposition/framing: one continuous wide scene, all objects fully visible, strong central contrast, generous negative space\nLighting/mood: confident daylight after a storm, not euphoric\nColor palette: warm off-white, charcoal black, cobalt blue\nConstraints: no text, letters, numbers, logos, arrows, stock charts, currencies, people, watermark, border, or multi-panel collage; conceptual art, not evidence photography"
         }
       },
       {
         "layout": "drivers",
-        "title": "왜 코스닥이\n더 깊이 빠졌나",
-        "body": "큰 반도체주가 버티면 코스피 낙폭은 작아 보일 수 있습니다. 반면 금리·유가 부담은 성장주가 많은 쪽의 경계심을 키웠습니다.",
-        "source_ids": ["naver-live", "reuters-global", "reuters-hynix"],
+        "title": "AI가 다시 올랐지만\n돈의 조건이 달라졌다",
+        "accent": "돈의 조건이 달라졌다",
+        "body": "Anthropic은 상장으로 컴퓨팅 투자 재원을 찾고, Meta는 최대 950억달러 규모의 주식 조달 계획을 내놨습니다. AI 수요 기대가 자금시장으로 옮겨왔습니다.",
+        "source_ids": [
+          "anthropic-s1",
+          "meta-finance",
+          "reuters-ai"
+        ],
         "items": [
           {
-            "label": "대형주 방어",
-            "text": "오전 SK하이닉스는 0.5% 올랐지만 당시 코스피는 1.3% 내렸습니다.",
+            "label": "Anthropic",
+            "text": "상반기 매출 162.86억달러에 컴퓨팅·인프라 비용 89.45억달러, 영업손실 6.93억달러.",
             "type": "fact",
-            "source_ids": ["reuters-hynix"]
+            "source_ids": [
+              "anthropic-s1"
+            ]
           },
           {
-            "label": "배경과 원인",
-            "text": "유가·연준 경계는 배경입니다. 지수 격차의 단일 원인으로 단정할 수는 없습니다.",
+            "label": "Meta",
+            "text": "공모 약 350억달러와 향후 ATM 약 600억달러를 AI 인프라 투자 재원으로 제시했습니다.",
+            "type": "fact",
+            "source_ids": [
+              "meta-finance"
+            ]
+          },
+          {
+            "label": "남은 질문",
+            "text": "돈을 구할 수 있다는 안도와 투자가 이익으로 돌아온다는 증명은 서로 다른 문제입니다.",
             "type": "analysis",
-            "source_ids": ["reuters-global", "naver-live"]
+            "source_ids": [
+              "reuters-ai",
+              "anthropic-s1",
+              "meta-finance"
+            ]
           }
         ],
-        "accent": "코스닥",
         "visual": {
-          "path": "automation/visual_assets/0b662c23e6943dd6aab60af8996c6a386b3727f91204324c25efafc338be61a4.jpg",
-          "sha256": "0b662c23e6943dd6aab60af8996c6a386b3727f91204324c25efafc338be61a4",
-          "alt": "큰 웨이퍼와 대형 빌딩 한쪽, 작은 부품과 건물 여러 개가 다른 쪽에 놓인 저울",
+          "sha": "a182d8cd15d282f03b648b434f12b81d00d233f2fde274a8ada4b07717867228",
+          "alt": "빈 자금조달 서류철이 투명한 통로를 지나 데이터센터 서버 증설로 이어지는 개념 이미지",
           "tone": "light",
+          "path": "automation/visual_assets/a182d8cd15d282f03b648b434f12b81d00d233f2fde274a8ada4b07717867228.png",
           "kind": "concept",
-          "prompt": "한쪽에는 거대한 코발트 웨이퍼와 대형 빌딩, 다른 쪽에는 여러 작은 부품과 건물을 올린 정밀 저울을 오프화이트 배경에 배치한 파노라마 금융 편집 이미지. 문자·숫자·로고·사람 없음."
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: show how enormous equity financing keeps AI infrastructure spending possible while transferring part of the cost to investors\nScene/backdrop: a clean data-center server hall miniature receiving thick blank cobalt and silver capital folders through a transparent funding conduit; new server racks are being installed beyond it\nStyle/medium: premium editorial 3D still life with tactile metal, glass and paper\nComposition/framing: single wide scene, servers on one side and blank financing folders on the other, fully visible\nLighting/mood: precise, high-stakes corporate finance, neither celebratory nor distressed\nColor palette: warm off-white, charcoal, cobalt\nConstraints: folders completely blank; no text, letters, numbers, logos, currency symbols, charts, arrows, hands, people, watermark, border, or collage; conceptual art only"
         }
       },
       {
         "layout": "sectors",
-        "title": "한 지수만 보면\n시장 체력을 놓친다",
-        "body": "코스피의 상대적 선방은 모든 종목의 회복이 아니라 돈이 큰 종목에 남았을 가능성을 뜻합니다. 코스닥 낙폭은 그 바깥의 약함을 보여줍니다.",
-        "source_ids": ["naver-live", "bullstory", "hong-interview"],
+        "title": "한국 반도체에는\n고객의 자금이 먼저",
+        "accent": "고객의 자금이 먼저",
+        "body": "삼성전자와 SK하이닉스가 코스피를 끌었습니다. AI 고객이 자금을 조달해야 서버가 늘고, 그 다음에 메모리 주문이 이어집니다.",
+        "source_ids": [
+          "naver-chip",
+          "reuters-ai",
+          "meta-finance",
+          "anthropic-s1"
+        ],
         "items": [
           {
-            "label": "코스피 숫자",
-            "text": "대형 반도체가 버티면 지수 전체가 실제 체감보다 단단해 보일 수 있습니다.",
-            "type": "analysis",
-            "source_ids": ["hong-interview", "naver-live"]
+            "label": "대형주 반등",
+            "text": "14시 03분 삼성전자 +4.69%, SK하이닉스 +6.67%. 코스피보다 더 강했습니다.",
+            "type": "fact",
+            "source_ids": [
+              "naver-chip",
+              "naver-index"
+            ]
           },
           {
-            "label": "코스닥 숫자",
-            "text": "같은 시장 이름보다 어떤 종목에 돈이 남았는지가 더 중요합니다.",
+            "label": "지수의 무게",
+            "text": "시가총액이 큰 반도체주 상승은 코스피에 크게 반영됩니다. 시장 전체가 같은 폭으로 오른 뜻은 아닙니다.",
             "type": "analysis",
-            "source_ids": ["bullstory", "naver-live"]
+            "source_ids": [
+              "naver-chip",
+              "naver-index"
+            ]
+          },
+          {
+            "label": "돈의 경로",
+            "text": "AI 기업의 자본 조달 → 컴퓨팅 증설 → 서버·메모리 주문 순서로 한국 반도체에 전달됩니다.",
+            "type": "analysis",
+            "source_ids": [
+              "anthropic-s1",
+              "meta-finance"
+            ]
           }
         ],
-        "accent": "시장 체력",
         "visual": {
-          "path": "automation/visual_assets/bb082e4dc115c17258198a07ac4a72c673d566ab801e20bf5581e89388d97df8.jpg",
-          "sha256": "bb082e4dc115c17258198a07ac4a72c673d566ab801e20bf5581e89388d97df8",
-          "alt": "여러 작은 공장에서 나온 푸른 자금 흐름이 하나의 거대한 반도체 공장에 집중되는 장면",
+          "sha": "3daf471e5d836ee17f5334a51494d9b7aef67f2b5ba9024e6982cb80fd5e4a62",
+          "alt": "두 개의 거대한 웨이퍼와 여러 산업 부품의 무게 차이를 보여주는 정밀 저울 개념 이미지",
           "tone": "light",
+          "path": "automation/visual_assets/3daf471e5d836ee17f5334a51494d9b7aef67f2b5ba9024e6982cb80fd5e4a62.png",
           "kind": "concept",
-          "prompt": "어두운 여러 작은 작업장에서 나온 코발트 자금 흐름이 하나의 거대한 첨단 반도체 공장으로 집중되는 오프화이트 종이 질감의 파노라마 편집 이미지. 문자·숫자·로고·사람 없음."
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: explain that a market-cap-weighted index can rise more when two giant semiconductor companies surge even if the whole market is not equally strong\nScene/backdrop: a precision balance mechanism where two very large generic silicon wafers lift a massive market platform while a separate field of many small varied industrial components rises more modestly\nStyle/medium: premium editorial macro sculpture, realistic metal and silicon textures\nComposition/framing: one continuous wide composition, clear weight contrast, all objects in frame\nLighting/mood: analytical and calm\nColor palette: ivory, charcoal, cobalt accents, subtle iridescent silicon\nConstraints: no text, numbers, company logos, ticker symbols, arrows, fake charts, people, watermark, border, or collage; no implication that every stock rose"
         }
       },
       {
         "layout": "calendar",
-        "title": "오늘 밤보다\n이번 주 확인할 것",
-        "body": "빅테크 실적과 중앙은행 회의가 이번 주에 몰렸습니다. 오늘의 지수 격차를 한밤 사이 끝날 신호로 보면 안 됩니다.",
-        "source_ids": ["reuters-global"],
+        "title": "오늘 밤 시장은\n자금의 가격을 묻는다",
+        "accent": "자금의 가격",
+        "body": "미국은 FOMC 회의에 들어가고 Microsoft는 28일 실적 발표를 앞뒀습니다. 높은 금리와 AI 투자수익이 동시에 시험대에 오릅니다.",
+        "source_ids": [
+          "fed-calendar",
+          "msft-ir",
+          "reuters-ai"
+        ],
         "items": [],
-        "accent": "이번 주",
         "visual": {
-          "path": "automation/visual_assets/e8d51897e43434e24543a36667de78d3e513070711e20126e209db9da0bed46b.jpg",
-          "sha256": "e8d51897e43434e24543a36667de78d3e513070711e20126e209db9da0bed46b",
-          "alt": "빈 달력과 봉인된 검은 봉투, 발표를 기다리는 푸른 시계가 놓인 거래 책상",
+          "sha": "aa9a9ea12e75de1a950a200d9fa27ea544f2249dd398b69ceeb7408ca2a07ae1",
+          "alt": "봉인된 실적 서류와 클라우드 장비, 멀리 중앙은행 건물이 함께 놓인 개념 이미지",
           "tone": "dark",
+          "path": "automation/visual_assets/aa9a9ea12e75de1a950a200d9fa27ea544f2249dd398b69ceeb7408ca2a07ae1.png",
           "kind": "concept",
-          "prompt": "빈 달력 종이와 봉인된 검은 봉투, 발표 시각에 다가가는 코발트 시계 바늘이 놓인 조용한 거래 책상의 파노라마 금융 정물. 화면 속 글자·숫자·로고·사람 없음."
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: depict the next test for the AI rally: big-tech earnings and a central-bank decision\nScene/backdrop: an elegant trading desk with two sealed blank earnings folders beside generic cloud-computing hardware, and in the distance a classical central-bank facade with a single unmarked decision light\nStyle/medium: cinematic premium editorial still life, realistic 3D\nComposition/framing: one wide scene with foreground earnings materials and distant policy building, all objects fully visible\nLighting/mood: anticipation, disciplined caution\nColor palette: warm off-white paper, deep charcoal, cobalt rim light\nConstraints: absolutely no text, numbers, dates, logos, company marks, stock charts, clocks, currency, people, watermark, border, or collage; conceptual art only"
         }
       },
       {
         "layout": "watch",
-        "title": "현재 판단\n지수 격차가 경고다",
-        "body": "코스피의 작은 하락보다 코스닥의 큰 낙폭을 먼저 봐야 합니다. 격차가 줄기 전에는 넓은 반등으로 보기 어렵습니다.",
-        "source_ids": ["naver-live", "reuters-global", "reuters-hynix"],
+        "title": "반등의 진짜 시험\n넓이·비용·실적",
+        "accent": "넓이·비용·실적",
+        "body": "오늘 반등은 분명합니다. 다만 대형주 밖으로 돈이 퍼지는지, 자금조달 비용을 버틸지, AI 투자가 실제 이익으로 돌아오는지는 더 확인해야 합니다.",
+        "source_ids": [
+          "naver-index",
+          "naver-chip",
+          "anthropic-s1",
+          "meta-finance",
+          "msft-ir"
+        ],
         "items": [
           {
-            "label": "격차가 줄면",
-            "text": "코스닥이 따라오면 돈이 큰 종목 밖으로 다시 퍼지는 신호가 됩니다.",
+            "label": "넓이",
+            "text": "코스닥이 따라붙고 반도체 밖의 업종까지 상승이 퍼지면 지수 반등의 폭이 넓어집니다.",
             "type": "watch",
-            "source_ids": ["naver-live"]
+            "source_ids": [
+              "naver-index",
+              "naver-chip"
+            ]
           },
           {
-            "label": "격차가 벌어지면",
-            "text": "코스피 선방만으로 시장 전체가 회복했다고 판단하기 더 어려워집니다.",
+            "label": "비용",
+            "text": "신주 발행은 투자금을 주지만 기존 주주의 몫을 나눕니다. 금리와 조달조건을 함께 봐야 합니다.",
             "type": "watch",
-            "source_ids": ["naver-live"]
+            "source_ids": [
+              "meta-finance",
+              "fed-calendar"
+            ]
           },
           {
-            "label": "실적이 바꾸면",
-            "text": "이번 주 반도체 실적과 주주환원이 기대를 못 채우면 대형주 방어도 약해질 수 있습니다.",
+            "label": "실적",
+            "text": "Microsoft 실적에서 클라우드 성장과 AI 설비투자 대비 수익이 함께 늘었는지 확인합니다.",
             "type": "watch",
-            "source_ids": ["reuters-global", "reuters-hynix"]
+            "source_ids": [
+              "msft-ir",
+              "reuters-ai"
+            ]
           }
         ],
-        "accent": "지수 격차",
         "visual": {
-          "path": "automation/visual_assets/0def0c64557e3b4dae1ee23dd5b676dacce984f1a3539e0bfa569a17e0b36d42.jpg",
-          "sha256": "0def0c64557e3b4dae1ee23dd5b676dacce984f1a3539e0bfa569a17e0b36d42",
-          "alt": "여러 기업이 있는 길과 거대한 반도체 타워로 향하는 길이 갈라진 두 갈래 다리",
+          "sha": "d92aa9dab179a4e55911e58cff437481e781fb69a172897959d97928b42a8b3f",
+          "alt": "웨이퍼를 살피는 확대경과 빈 자금 서류, 넓게 켜지는 작은 기업 블록의 개념 이미지",
           "tone": "light",
+          "path": "automation/visual_assets/d92aa9dab179a4e55911e58cff437481e781fb69a172897959d97928b42a8b3f.png",
           "kind": "concept",
-          "prompt": "어두운 물 위에서 여러 중소형 건물로 향하는 길과 하나의 거대한 코발트 반도체 타워로 향하는 길이 갈라진 파노라마 편집 이미지. 문자·숫자·로고·사람 없음."
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic closing image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: show three concrete conditions for judging whether an AI-chip-led rebound is broadening: semiconductor strength, funding cost, and wider participation\nScene/backdrop: a magnifying lens above a generic silicon wafer at center; beside it a blank financing folder and a wider field of small illuminated company blocks gradually joining the same light\nStyle/medium: refined editorial top-down still life, tactile realistic materials\nComposition/framing: single asymmetric wide scene, three connected objects without arrows, ample negative space\nLighting/mood: measured confirmation rather than prediction\nColor palette: off-white, charcoal, cobalt blue\nConstraints: no text, letters, numbers, logos, currency symbols, charts, gauges, arrows, people, watermark, border, or collage; conceptual art only"
         }
       }
     ]
