@@ -122,12 +122,12 @@
         ],
         "items": [],
         "visual": {
-          "sha": "ca266747b11edf8e063d3f8c87dcde35eeb481dd99014dcd74ec95afea9c6c04",
           "alt": "거대한 코발트 반도체 타워와 여러 작은 기업 건물이 서로 다른 폭으로 상승하는 개념 이미지",
           "tone": "dark",
           "path": "automation/visual_assets/ca266747b11edf8e063d3f8c87dcde35eeb481dd99014dcd74ec95afea9c6c04.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: explain a sharp Korean stock-market rebound led more strongly by giant AI semiconductor companies than by the broader growth-stock market\nScene/backdrop: two rising architectural market platforms after a recent drop; the left platform is lifted by one enormous unbranded cobalt semiconductor tower, while the right platform with many smaller generic growth-company buildings rises less\nStyle/medium: premium editorial 3D still life, realistic sculptural materials\nComposition/framing: one continuous wide scene, all objects fully visible, strong central contrast, generous negative space\nLighting/mood: confident daylight after a storm, not euphoric\nColor palette: warm off-white, charcoal black, cobalt blue\nConstraints: no text, letters, numbers, logos, arrows, stock charts, currencies, people, watermark, border, or multi-panel collage; conceptual art, not evidence photography"
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: explain a sharp Korean stock-market rebound led more strongly by giant AI semiconductor companies than by the broader growth-stock market\nScene/backdrop: two rising architectural market platforms after a recent drop; the left platform is lifted by one enormous unbranded cobalt semiconductor tower, while the right platform with many smaller generic growth-company buildings rises less\nStyle/medium: premium editorial 3D still life, realistic sculptural materials\nComposition/framing: one continuous wide scene, all objects fully visible, strong central contrast, generous negative space\nLighting/mood: confident daylight after a storm, not euphoric\nColor palette: warm off-white, charcoal black, cobalt blue\nConstraints: no text, letters, numbers, logos, arrows, stock charts, currencies, people, watermark, border, or multi-panel collage; conceptual art, not evidence photography",
+          "sha256": "ca266747b11edf8e063d3f8c87dcde35eeb481dd99014dcd74ec95afea9c6c04"
         }
       },
       {
@@ -169,12 +169,12 @@
           }
         ],
         "visual": {
-          "sha": "a182d8cd15d282f03b648b434f12b81d00d233f2fde274a8ada4b07717867228",
           "alt": "빈 자금조달 서류철이 투명한 통로를 지나 데이터센터 서버 증설로 이어지는 개념 이미지",
           "tone": "light",
           "path": "automation/visual_assets/a182d8cd15d282f03b648b434f12b81d00d233f2fde274a8ada4b07717867228.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: show how enormous equity financing keeps AI infrastructure spending possible while transferring part of the cost to investors\nScene/backdrop: a clean data-center server hall miniature receiving thick blank cobalt and silver capital folders through a transparent funding conduit; new server racks are being installed beyond it\nStyle/medium: premium editorial 3D still life with tactile metal, glass and paper\nComposition/framing: single wide scene, servers on one side and blank financing folders on the other, fully visible\nLighting/mood: precise, high-stakes corporate finance, neither celebratory nor distressed\nColor palette: warm off-white, charcoal, cobalt\nConstraints: folders completely blank; no text, letters, numbers, logos, currency symbols, charts, arrows, hands, people, watermark, border, or collage; conceptual art only"
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: show how enormous equity financing keeps AI infrastructure spending possible while transferring part of the cost to investors\nScene/backdrop: a clean data-center server hall miniature receiving thick blank cobalt and silver capital folders through a transparent funding conduit; new server racks are being installed beyond it\nStyle/medium: premium editorial 3D still life with tactile metal, glass and paper\nComposition/framing: single wide scene, servers on one side and blank financing folders on the other, fully visible\nLighting/mood: precise, high-stakes corporate finance, neither celebratory nor distressed\nColor palette: warm off-white, charcoal, cobalt\nConstraints: folders completely blank; no text, letters, numbers, logos, currency symbols, charts, arrows, hands, people, watermark, border, or collage; conceptual art only",
+          "sha256": "a182d8cd15d282f03b648b434f12b81d00d233f2fde274a8ada4b07717867228"
         }
       },
       {
@@ -218,12 +218,12 @@
           }
         ],
         "visual": {
-          "sha": "3daf471e5d836ee17f5334a51494d9b7aef67f2b5ba9024e6982cb80fd5e4a62",
           "alt": "두 개의 거대한 웨이퍼와 여러 산업 부품의 무게 차이를 보여주는 정밀 저울 개념 이미지",
           "tone": "light",
           "path": "automation/visual_assets/3daf471e5d836ee17f5334a51494d9b7aef67f2b5ba9024e6982cb80fd5e4a62.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: explain that a market-cap-weighted index can rise more when two giant semiconductor companies surge even if the whole market is not equally strong\nScene/backdrop: a precision balance mechanism where two very large generic silicon wafers lift a massive market platform while a separate field of many small varied industrial components rises more modestly\nStyle/medium: premium editorial macro sculpture, realistic metal and silicon textures\nComposition/framing: one continuous wide composition, clear weight contrast, all objects in frame\nLighting/mood: analytical and calm\nColor palette: ivory, charcoal, cobalt accents, subtle iridescent silicon\nConstraints: no text, numbers, company logos, ticker symbols, arrows, fake charts, people, watermark, border, or collage; no implication that every stock rose"
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: explain that a market-cap-weighted index can rise more when two giant semiconductor companies surge even if the whole market is not equally strong\nScene/backdrop: a precision balance mechanism where two very large generic silicon wafers lift a massive market platform while a separate field of many small varied industrial components rises more modestly\nStyle/medium: premium editorial macro sculpture, realistic metal and silicon textures\nComposition/framing: one continuous wide composition, clear weight contrast, all objects in frame\nLighting/mood: analytical and calm\nColor palette: ivory, charcoal, cobalt accents, subtle iridescent silicon\nConstraints: no text, numbers, company logos, ticker symbols, arrows, fake charts, people, watermark, border, or collage; no implication that every stock rose",
+          "sha256": "3daf471e5d836ee17f5334a51494d9b7aef67f2b5ba9024e6982cb80fd5e4a62"
         }
       },
       {
@@ -238,12 +238,12 @@
         ],
         "items": [],
         "visual": {
-          "sha": "aa9a9ea12e75de1a950a200d9fa27ea544f2249dd398b69ceeb7408ca2a07ae1",
           "alt": "봉인된 실적 서류와 클라우드 장비, 멀리 중앙은행 건물이 함께 놓인 개념 이미지",
           "tone": "dark",
           "path": "automation/visual_assets/aa9a9ea12e75de1a950a200d9fa27ea544f2249dd398b69ceeb7408ca2a07ae1.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: depict the next test for the AI rally: big-tech earnings and a central-bank decision\nScene/backdrop: an elegant trading desk with two sealed blank earnings folders beside generic cloud-computing hardware, and in the distance a classical central-bank facade with a single unmarked decision light\nStyle/medium: cinematic premium editorial still life, realistic 3D\nComposition/framing: one wide scene with foreground earnings materials and distant policy building, all objects fully visible\nLighting/mood: anticipation, disciplined caution\nColor palette: warm off-white paper, deep charcoal, cobalt rim light\nConstraints: absolutely no text, numbers, dates, logos, company marks, stock charts, clocks, currency, people, watermark, border, or collage; conceptual art only"
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: depict the next test for the AI rally: big-tech earnings and a central-bank decision\nScene/backdrop: an elegant trading desk with two sealed blank earnings folders beside generic cloud-computing hardware, and in the distance a classical central-bank facade with a single unmarked decision light\nStyle/medium: cinematic premium editorial still life, realistic 3D\nComposition/framing: one wide scene with foreground earnings materials and distant policy building, all objects fully visible\nLighting/mood: anticipation, disciplined caution\nColor palette: warm off-white paper, deep charcoal, cobalt rim light\nConstraints: absolutely no text, numbers, dates, logos, company marks, stock charts, clocks, currency, people, watermark, border, or collage; conceptual art only",
+          "sha256": "aa9a9ea12e75de1a950a200d9fa27ea544f2249dd398b69ceeb7408ca2a07ae1"
         }
       },
       {
@@ -288,12 +288,12 @@
           }
         ],
         "visual": {
-          "sha": "d92aa9dab179a4e55911e58cff437481e781fb69a172897959d97928b42a8b3f",
           "alt": "웨이퍼를 살피는 확대경과 빈 자금 서류, 넓게 켜지는 작은 기업 블록의 개념 이미지",
           "tone": "light",
           "path": "automation/visual_assets/d92aa9dab179a4e55911e58cff437481e781fb69a172897959d97928b42a8b3f.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic closing image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: show three concrete conditions for judging whether an AI-chip-led rebound is broadening: semiconductor strength, funding cost, and wider participation\nScene/backdrop: a magnifying lens above a generic silicon wafer at center; beside it a blank financing folder and a wider field of small illuminated company blocks gradually joining the same light\nStyle/medium: refined editorial top-down still life, tactile realistic materials\nComposition/framing: single asymmetric wide scene, three connected objects without arrows, ample negative space\nLighting/mood: measured confirmation rather than prediction\nColor palette: off-white, charcoal, cobalt blue\nConstraints: no text, letters, numbers, logos, currency symbols, charts, gauges, arrows, people, watermark, border, or collage; conceptual art only"
+          "prompt": "Use case: stylized-concept\nAsset type: ultra-wide panoramic closing image strip for a Korean financial Instagram card, target about 1536x640\nPrimary request: show three concrete conditions for judging whether an AI-chip-led rebound is broadening: semiconductor strength, funding cost, and wider participation\nScene/backdrop: a magnifying lens above a generic silicon wafer at center; beside it a blank financing folder and a wider field of small illuminated company blocks gradually joining the same light\nStyle/medium: refined editorial top-down still life, tactile realistic materials\nComposition/framing: single asymmetric wide scene, three connected objects without arrows, ample negative space\nLighting/mood: measured confirmation rather than prediction\nColor palette: off-white, charcoal, cobalt blue\nConstraints: no text, letters, numbers, logos, currency symbols, charts, gauges, arrows, people, watermark, border, or collage; conceptual art only",
+          "sha256": "d92aa9dab179a4e55911e58cff437481e781fb69a172897959d97928b42a8b3f"
         }
       }
     ]
