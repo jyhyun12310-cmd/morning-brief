@@ -1,439 +1,444 @@
 {
   "schema_version": 1,
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-23T00:47:17.990Z",
-  "publication_date_kst": "2026-10-23",
+  "created_at": "2026-10-28T23:49:30Z",
+  "publication_date_kst": "2026-10-29",
   "market": {
-    "ticker": "BE",
-    "name": "Bloom Energy",
-    "session_date": "2026-10-22",
-    "session_close_at": "2026-10-22T16:00:00-04:00",
+    "ticker": "MSFT",
+    "name": "마이크로소프트",
+    "session_date": "2026-10-28",
+    "session_close_at": "2026-10-28T16:00:00-04:00",
     "price_basis": "regular_close",
     "currency": "USD",
-    "close": 217.77,
-    "previous_close": 238.53,
-    "change_pct": -8.7,
-    "source_id": "be-price"
+    "close": 531.01,
+    "previous_close": 531.33,
+    "change_pct": -0.06,
+    "source_id": "prices"
   },
   "sources": [
     {
-      "id": "be-q3",
-      "title": "Bloom Energy Q3 2026 earnings release, SEC 8-K Exhibit 99.1",
-      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
-      "as_of": "2026-10-22 발표; 2026-09-30 종료 분기; 현금흐름표는 분기별",
-      "retrieved_at": "2026-10-23T00:46:16.812945+00:00"
+      "id": "earnings",
+      "title": "Microsoft FY27 Q1 earnings release and financial statements",
+      "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2027-Q1/press-release-webcast",
+      "as_of": "2026-10-28 발표; 2026-09-30 종료 3개월; 미감사; 전년 동기 비교",
+      "retrieved_at": "2026-10-28T23:49:28Z"
     },
     {
-      "id": "be-10q",
-      "title": "Bloom Energy Form 10-Q, quarter ended September 30, 2026",
-      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
-      "as_of": "2026-10-22 제출; Note 3 계약자산·현금흐름·유동성",
-      "retrieved_at": "2026-10-23T00:44:44.737636+00:00"
+      "id": "prices",
+      "title": "Stock Analysis MSFT historical prices — same unadjusted Close column",
+      "url": "https://stockanalysis.com/stocks/msft/history/",
+      "as_of": "2026-10-28·10-27 정규장 종가 USD; 시간외 제외",
+      "retrieved_at": "2026-10-28T23:49:28Z"
     },
     {
-      "id": "be-price",
-      "title": "Stock Analysis BE historical prices, same unadjusted Close column",
-      "url": "https://stockanalysis.com/stocks/be/history/",
-      "as_of": "2026-10-22·10-21 뉴욕 정규장 종가 USD; 시간외 제외",
-      "retrieved_at": "2026-10-22T23:50:43+00:00"
+      "id": "timing",
+      "title": "Microsoft quarterly earnings release date announcement",
+      "url": "https://news.microsoft.com/source/2026/10/07/microsoft-announces-quarterly-earnings-release-date-69/",
+      "as_of": "2026-10-07 공지; 10-28 정규장 폐장 후 실적 발표",
+      "retrieved_at": "2026-10-28T23:49:28Z"
     },
     {
-      "id": "be-timing",
-      "title": "Bloom Energy Q3 results scheduled after October 22 market close",
-      "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-to-Announce-Third-Quarter-2026-Financial-Results-on-October-22-2026/default.aspx",
-      "as_of": "2026-10-12 공지; 10-22 폐장 후 발표·17:00 EDT 설명회",
-      "retrieved_at": "2026-10-22T23:50:43+00:00"
+      "id": "azure",
+      "title": "Microsoft Azure — What is Azure?",
+      "url": "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-azure",
+      "as_of": "상시 사업 설명; 데이터센터·기업용 연산·저장 서비스와 사용량 요금",
+      "retrieved_at": "2026-10-28T23:49:28Z"
     },
     {
-      "id": "nyse-calendar",
-      "title": "NYSE market hours and 2026 holiday calendar",
+      "id": "nyse",
+      "title": "NYSE official holidays and trading hours",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026-10-22 정상 거래일; 16:00 EDT 폐장",
-      "retrieved_at": "2026-10-22T23:50:43+00:00"
+      "as_of": "2026년 휴장·조기폐장; 10-28 정상 정규장 16:00 EDT 종료",
+      "retrieved_at": "2026-10-28T23:49:28Z"
     },
     {
-      "id": "nasdaq-calendar",
-      "title": "Nasdaq 2026 stock market holiday schedule",
+      "id": "nasdaq",
+      "title": "Nasdaq official 2026 trading schedule",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026년 휴장·조기폐장 교차 확인",
-      "retrieved_at": "2026-10-22T23:50:43+00:00"
+      "as_of": "2026년 휴장·조기폐장; 정규장 09:30~16:00 ET",
+      "retrieved_at": "2026-10-28T23:49:28Z"
+    },
+    {
+      "id": "bullstory",
+      "title": "불스토리 · 앗 SK, 하이닉스보다 싸다! (편집 참고)",
+      "url": "https://bullstory.io/blog/앗-sk-하이닉스보다-싸다",
+      "as_of": "공식 웹 글 도입·지분구조·EPS 계산 도입 구간; Instagram 카드 미열람",
+      "retrieved_at": "2026-10-28T23:49:28Z"
+    },
+    {
+      "id": "frism",
+      "title": "홍춘욱 · 미국 경제의 질주 2023년 3분기에도 이어져 (편집 참고)",
+      "url": "https://www.frism.io/migug-gyeongjeyi-jilju-2023nyeon-3bungiedo-ieojyeo/",
+      "as_of": "2023-10-30 글 본문 열람; 현재 금융 사실의 출처 아님",
+      "retrieved_at": "2026-10-28T23:49:28Z"
     }
   ],
   "metrics": [
     {
-      "id": "net-income",
-      "value": 248.976,
-      "unit": "백만달러",
-      "period": "2026 Q3 (7~9월)",
-      "basis": "US GAAP consolidated",
-      "source_id": "be-q3"
+      "id": "op25",
+      "value": 379.61,
+      "unit": "억달러",
+      "period": "2025-07-01/2025-09-30",
+      "basis": "연결 GAAP 영업이익",
+      "source_id": "earnings"
     },
     {
-      "id": "operating-cash",
-      "value": -27.147,
-      "unit": "백만달러",
-      "period": "2026 Q3 (7~9월)",
-      "basis": "US GAAP consolidated",
-      "source_id": "be-q3"
+      "id": "op26",
+      "value": 459.15,
+      "unit": "억달러",
+      "period": "2026-07-01/2026-09-30",
+      "basis": "연결 GAAP 영업이익",
+      "source_id": "earnings"
     }
   ],
   "summary": {
     "design": "editorial-v2",
     "market_basis": {
-      "ticker": "BE",
-      "session_date": "2026-10-22",
+      "ticker": "MSFT",
+      "session_date": "2026-10-28",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 217.77,
-      "previous_close": 238.53,
-      "change_pct": -8.7
+      "close": 531.01,
+      "previous_close": 531.33,
+      "change_pct": -0.06
     },
-    "central_question": "블룸에너지의 매출 급성장이 공장 투자에 쓸 현금으로도 이어졌는가?",
-    "thesis": "블룸에너지의 제품 수요와 수익성 개선은 확인됐지만 청구·수금 시차와 운전자금 증가로 3분기 영업현금은 순유출이었다. 보유 현금은 충분히 남아 있으므로 위기보다 성장의 자체 투자재원 확보 여부를 평가해야 한다.",
-    "edition": "미장, 한 겹 더 · 10.23",
-    "instagram_caption": "블룸에너지의 매출 신기록을 읽을 때는 아직 청구하지 않은 돈과 실제 영업현금을 함께 봐야 합니다. 이번 성장의 다음 시험은 공장 투자비를 스스로 벌어내는가입니다. #블룸에너지 #미국주식 #기업실적",
+    "central_question": "순이익 32% 증가를 본업의 성장 속도로 읽어도 될까?",
+    "thesis": "마이크로소프트는 클라우드 매출과 영업이익이 늘었다. 다만 순이익 32% 증가에는 전년 OpenAI 투자손실의 낮은 기저도 작용했다. 투자손익과 서비스 판매의 성적을 나눠 읽어야 한다.",
+    "edition": "미장, 한 겹 더",
+    "instagram_caption": "순이익의 큰 증가율에는 올해 잘 판 성적과 지난해 손실이 함께 들어갑니다. 클라우드 판매로 번 이익을 따로 읽어야 다음 실적과 비교할 기준이 남습니다.\n마이크로소프트(MSFT)\n#마이크로소프트 #미국주식 #기업실적",
     "sources": [
       {
-        "id": "be-q3",
-        "title": "Bloom Energy Q3 2026 earnings release, SEC 8-K Exhibit 99.1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
-        "as_of": "2026-10-22 발표; 2026-09-30 종료 분기; 현금흐름표는 분기별"
+        "id": "earnings",
+        "title": "Microsoft FY27 Q1 earnings release and financial statements",
+        "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2027-Q1/press-release-webcast",
+        "as_of": "2026-10-28 발표; 2026-09-30 종료 3개월; 미감사; 전년 동기 비교"
       },
       {
-        "id": "be-10q",
-        "title": "Bloom Energy Form 10-Q, quarter ended September 30, 2026",
-        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
-        "as_of": "2026-10-22 제출; Note 3 계약자산·현금흐름·유동성"
+        "id": "prices",
+        "title": "Stock Analysis MSFT historical prices — same unadjusted Close column",
+        "url": "https://stockanalysis.com/stocks/msft/history/",
+        "as_of": "2026-10-28·10-27 정규장 종가 USD; 시간외 제외"
       },
       {
-        "id": "be-price",
-        "title": "Stock Analysis BE historical prices, same unadjusted Close column",
-        "url": "https://stockanalysis.com/stocks/be/history/",
-        "as_of": "2026-10-22·10-21 뉴욕 정규장 종가 USD; 시간외 제외"
+        "id": "timing",
+        "title": "Microsoft quarterly earnings release date announcement",
+        "url": "https://news.microsoft.com/source/2026/10/07/microsoft-announces-quarterly-earnings-release-date-69/",
+        "as_of": "2026-10-07 공지; 10-28 정규장 폐장 후 실적 발표"
       },
       {
-        "id": "be-timing",
-        "title": "Bloom Energy Q3 results scheduled after October 22 market close",
-        "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-to-Announce-Third-Quarter-2026-Financial-Results-on-October-22-2026/default.aspx",
-        "as_of": "2026-10-12 공지; 10-22 폐장 후 발표·17:00 EDT 설명회"
+        "id": "azure",
+        "title": "Microsoft Azure — What is Azure?",
+        "url": "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-azure",
+        "as_of": "상시 사업 설명; 데이터센터·기업용 연산·저장 서비스와 사용량 요금"
       },
       {
-        "id": "nyse-calendar",
-        "title": "NYSE market hours and 2026 holiday calendar",
+        "id": "nyse",
+        "title": "NYSE official holidays and trading hours",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026-10-22 정상 거래일; 16:00 EDT 폐장"
+        "as_of": "2026년 휴장·조기폐장; 10-28 정상 정규장 16:00 EDT 종료"
       },
       {
-        "id": "nasdaq-calendar",
-        "title": "Nasdaq 2026 stock market holiday schedule",
+        "id": "nasdaq",
+        "title": "Nasdaq official 2026 trading schedule",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026년 휴장·조기폐장 교차 확인"
+        "as_of": "2026년 휴장·조기폐장; 정규장 09:30~16:00 ET"
+      },
+      {
+        "id": "bullstory",
+        "title": "불스토리 · 앗 SK, 하이닉스보다 싸다! (편집 참고)",
+        "url": "https://bullstory.io/blog/앗-sk-하이닉스보다-싸다",
+        "as_of": "공식 웹 글 도입·지분구조·EPS 계산 도입 구간; Instagram 카드 미열람"
+      },
+      {
+        "id": "frism",
+        "title": "홍춘욱 · 미국 경제의 질주 2023년 3분기에도 이어져 (편집 참고)",
+        "url": "https://www.frism.io/migug-gyeongjeyi-jilju-2023nyeon-3bungiedo-ieojyeo/",
+        "as_of": "2023-10-30 글 본문 열람; 현재 금융 사실의 출처 아님"
       }
     ],
     "evidence_notes": [
       {
-        "id": "growth",
-        "claim": "10월 22일 발표한 9월 종료 3분기 매출은 1,235.837백만달러, 전년 519.048백만달러 대비 138.1% 증가. 제품매출은 1,073.610백만달러로 179.4% 증가. GAAP 매출총이익률은 29.2%에서 33.8%로 상승했다.",
+        "id": "profit",
+        "claim": "2026년 7~9월 연결 GAAP 순이익 36,629백만달러, 전년 27,747백만달러로 32% 증가. OpenAI 투자 영향을 제외한 회사 조정 순이익은 각각 36,422·30,833백만달러로 18% 증가. 이는 본업만의 순이익이나 투자손익 전부를 뺀 수치가 아니다.",
         "source_ids": [
-          "be-q3"
+          "earnings"
         ]
       },
       {
-        "id": "billing",
-        "claim": "10-Q Note 3: 계약자산은 3분기초 428.298백만달러에서 말 858.646백만달러. 해당 분기에 인식했으나 기말 미청구인 매출 463.887백만달러, 기초 계약자산 중 매출채권 전환 33.539백만달러. 성장과 청구 단계 시차가 설명되며, 연체·부실채권으로 단정하지 않는다.",
+        "id": "openai",
+        "claim": "OpenAI 투자는 이번 분기 순이익을 207백만달러 늘렸고 전년 동기에는 3,086백만달러 줄였다. 양 기간의 조정표를 비교하면 전년 손실 기저가 GAAP 증가율을 높였음을 알 수 있다. 투자손익을 현금 수령액 또는 클라우드 이용료로 보지 않는다.",
         "source_ids": [
-          "be-10q"
+          "earnings"
         ]
       },
       {
-        "id": "cash-gap",
-        "claim": "분기별 GAAP 현금흐름표의 Q3 연결 순이익 248.976백만달러와 영업현금흐름 -27.147백만달러를 구분한다. 계약자산 변동 -430.348, 매출채권 -175.235, 재고 -170.401백만달러 등은 현금 전환을 낮췄다. 선수금·미지급금 증가는 일부 상쇄했으며 선택 항목만으로 전체 차액을 설명하지 않는다.",
+        "id": "business",
+        "claim": "Azure는 회사가 관리하는 데이터센터에서 연산·저장·AI 등의 서비스를 제공하고 기업은 사용에 따라 비용을 낸다. 이번 Azure 매출은 33,165백만달러, 전년 22,384백만달러로 48% 증가. 매출 증가율을 고객 수나 사용량 증가율로 바꾸지 않는다.",
         "source_ids": [
-          "be-q3"
+          "azure",
+          "earnings"
         ]
       },
       {
-        "id": "product",
-        "claim": "회사는 데이터센터 등 고객 현장에서 전기를 생산하는 고체산화물 연료전지 시스템을 공급한다. 경영진은 수요에 대응한 생산능력 투자를 설명했고, Q3 유형자산 취득 현금지출은 153.487백만달러다.",
+        "id": "operating",
+        "claim": "같은 7~9월 GAAP 연결 영업이익은 2025년 37,961백만달러에서 2026년 45,915백만달러로 21% 증가. 매출 77,673→92,279백만달러. 투자손익 기저만으로 성장을 설명할 수 없으며 영업이익은 현금흐름과 다르다.",
         "source_ids": [
-          "be-q3",
-          "be-10q"
+          "earnings"
         ]
       },
       {
-        "id": "timing",
-        "claim": "동일 Stock Analysis Close 열의 10월21일 238.53달러와 22일 217.77달러로 -8.7033%를 계산. 정규장 16:00 EDT 폐장 뒤 실적 발표이므로 이 종가 하락을 새 실적의 결과로 단정하지 않는다.",
+        "id": "mixed",
+        "claim": "Microsoft Cloud 매출은 30% 증가했으나 Windows OEM and devices 매출은 22% 감소했다. 이는 마이크로소프트 전체 사업이 같은 속도로 성장한 것은 아니라는 근거다. 상품·부문 비교 수치는 2026년 9월 조직 변경에 맞춰 재작성된 전년 수치다.",
         "source_ids": [
-          "be-price",
-          "be-timing",
-          "nyse-calendar",
-          "nasdaq-calendar"
+          "earnings"
         ]
       },
       {
-        "id": "liquidity",
-        "claim": "9월말 현금및현금성자산 2,486.702백만달러, 1~9월 영업현금흐름 +272.895백만달러. 회사는 보유현금과 예상 영업현금으로 향후 최소12개월 수요 충족을 예상한다. Q3 현금 유출 하나로 즉각적 자금위기나 증자를 예고할 근거는 없다. 회사는 추가 주식 발행 시 기존 주주의 지분 희석 가능성도 명시한다. 이는 조건부 위험이며 현재 증자를 결정했다는 뜻이 아니다.",
+        "id": "capital",
+        "claim": "7~9월 영업현금흐름은 58,000백만달러, 유형자산 취득 현금지출은 39,367백만달러(전년 19,394백만달러). 회사 전체 금액이며 AI만의 투자액·리스 포함 총설비투자액이 아니다. 현금지출 전액을 이번 분기 영업비용으로 빼지 않는다.",
         "source_ids": [
-          "be-q3",
-          "be-10q"
+          "earnings"
         ]
       },
       {
-        "id": "judgment",
-        "claim": "작성자 판단: 매출·마진 성장은 확인됐으나 Q3 영업현금으로 당분기 유형자산 취득 지출을 충당하지 못했다. 다음 비교 기준은 같은 분기의 영업현금과 설비 지출이며, 영업현금이 설비 지출을 지속적으로 충당하면 성장의 자체 조달 능력에 대한 판단을 높일 수 있다. 이는 투자 권유나 회사 가이던스가 아니다.",
+        "id": "market",
+        "claim": "Stock Analysis의 동일 미조정 Close 열: 10월27일 531.33달러, 28일 531.01달러. (531.01/531.33-1)*100=-0.0602%. 발표가 정규장 폐장 뒤이므로 이 등락을 해당 실적 반응으로 단정하지 않는다.",
         "source_ids": [
-          "be-q3",
-          "be-10q"
+          "prices",
+          "timing"
+        ]
+      },
+      {
+        "id": "calendar",
+        "claim": "공식 NYSE·Nasdaq 2026 휴장과 조기폐장 목록에 10월28일은 없고 정규장 마감은16:00 ET. 뉴욕2026-10-28 16:00 EDT는 UTC20:00, 한국29일05:00이며 가장 최근 완료 거래일이다.",
+        "source_ids": [
+          "nyse",
+          "nasdaq"
         ]
       }
     ],
     "visual_story": [
       {
         "layout": "cover",
-        "title": "블룸에너지 급성장\n현금 회수가 숙제",
-        "accent": "현금 회수가 숙제",
-        "body": "전기를 만드는 연료전지 회사 블룸에너지가 3분기 매출 신기록을 냈습니다. 하지만 매출을 기록하는 때와 고객에게 돈을 받는 때는 달랐습니다.",
+        "title": "순이익 32% 증가\n장사만의 성적은 아니다",
+        "body": "10월 28일 공개된 7~9월 실적. 순이익은 크게 늘었지만, 지난해 이익을 깎았던 OpenAI 투자손실도 비교에 영향을 줬습니다.",
+        "takeaway": "큰 성장률에는 올해 실적뿐 아니라 지난해 손실도 들어갑니다.",
+        "bridge": "두 해의 투자손익을 빼면 성장률이 달라집니다.",
         "labels": [
           {
-            "label": "이번 실적",
-            "text": "매출 12.36억달러, 전년 동기보다 138.1% 증가."
+            "label": "미국 회계기준",
+            "text": "GAAP 순이익 전년 동기 대비 +32%"
           },
           {
-            "label": "주주에게 남는 질문",
-            "text": "늘어난 매출이 공장 투자를 감당할 현금으로 바뀌는가."
+            "label": "OpenAI 영향 제외",
+            "text": "회사 조정 순이익 증가율 +18%"
           }
         ],
-        "takeaway": "성장은 확인됐습니다. 자체 투자 여력은 현금 회수가 결정합니다.",
-        "bridge": "이미 올린 매출 중 아직 청구하지 않은 돈이 있습니다.",
         "evidence_ids": [
-          "growth",
-          "billing",
-          "judgment"
+          "profit",
+          "openai"
         ],
         "visual": {
-          "path": "automation/visual_assets/893dbaf846a95389f7bebcd6ceeae086791cc88b5084307c0f116532f945f854.png",
-          "sha256": "893dbaf846a95389f7bebcd6ceeae086791cc88b5084307c0f116532f945f854",
-          "alt": "고객 현장 발전설비와 데이터센터를 연결한 개념 일러스트",
-          "tone": "light",
+          "path": "automation/visual_assets/4c908797162f63c2453f0412d0de81e76dd3ffe1ce30bfbfda394c87fd0201fa.png",
+          "sha256": "4c908797162f63c2453f0412d0de81e76dd3ffe1ce30bfbfda394c87fd0201fa",
+          "alt": "서버 사업과 투자 문서를 다른 칸에 놓은 개념 이미지",
+          "tone": "dark",
           "kind": "concept",
-          "prompt": "Create one premium editorial concept illustration for a Korean financial news card about Bloom Energy selling onsite fuel-cell power equipment to data centers. Wide horizontal panoramic composition, target 1536 by 640 pixels, all important objects in central horizontal strip. A crisp cutaway miniature industrial fuel-cell power installation in the left foreground, a modest data center building on the right connected by cobalt electrical conduits. Equipment is generic, no logos, no brand-identical product claims. Warm off-white background, black steel, one cobalt blue accent, realistic materials with a deliberate sculptural editorial style, studio lighting. Show actual economic activity, not stock charts or money metaphors. NO typography, NO numbers, NO lettering, NO watermark. This is a conceptual illustration, not a documentary event photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial illustration for a Korean finance card, landscape 1536x1024. Concept: business operating results and investment accounting belong in separate compartments. A refined architectural cutaway of a charcoal archival cabinet holding two distinct objects: a small cobalt server module in one compartment and a translucent investment document folio in the other. Warm off-white studio background, tactile paper and brushed metal, crisp editorial realism, clean broad horizontal composition. No logos, no lettering, no numbers, no charts, no arrows, no recognizable company products, no coins pouring, no stock price motifs. This is a conceptual still life, not a real event or official photograph."
         }
       },
       {
         "layout": "photo",
-        "title": "매출에 잡힌 돈,\n아직 청구 전입니다",
-        "accent": "아직 청구 전입니다",
-        "body": "10월 22일 공시는 매출로 인식했지만 아직 청구하지 않은 계약자산이 늘었음을 보여줍니다. 계약상 청구 조건을 채우는 시점이 늦으면 매출보다 현금이 나중에 들어옵니다.",
+        "title": "작년의 투자손실\n올해는 소폭 이익",
+        "body": "지난해 같은 분기에는 OpenAI 투자로 순이익이 줄었습니다. 올해는 반대로 늘었습니다. 비교 출발점이 낮았던 만큼, 보고된 증가율도 더 커진 셈입니다.",
+        "takeaway": "이 차이는 고객이 낸 클라우드 사용료와 구분해야 합니다.",
+        "bridge": "그렇다면 실제 고객 매출은 얼마나 늘었을까요?",
         "labels": [
           {
-            "label": "계약자산 잔액",
-            "text": "6월말 4.28억 → 9월말 8.59억달러. 청구 전 받을 권리입니다."
+            "label": "2025년 7~9월",
+            "text": "순이익에 미친 영향 −30.86억달러"
           },
           {
-            "label": "회사에 생기는 부담",
-            "text": "수금 전에도 재료비와 공장 투자비를 지급해야 하므로 이를 먼저 댈 자금이 필요합니다."
+            "label": "2026년 7~9월",
+            "text": "순이익에 미친 영향 +2.07억달러"
           }
         ],
-        "takeaway": "이 시차가 길어질수록 급성장을 떠받칠 자금이 더 필요합니다.",
-        "bridge": "그렇다고 이번 성장이 숫자뿐이었다는 뜻은 아닙니다.",
         "evidence_ids": [
-          "billing",
-          "product",
-          "judgment"
+          "openai"
         ],
         "visual": {
-          "path": "automation/visual_assets/3535a8dbc9db23a824677c5c181c8fe55e14cec14e5ea78b77c771460c1d2ca2.png",
-          "sha256": "3535a8dbc9db23a824677c5c181c8fe55e14cec14e5ea78b77c771460c1d2ca2",
-          "alt": "장비 납품 기록과 아직 비어 있는 결제함의 개념 일러스트",
+          "path": "automation/visual_assets/97feb231a5d2eb1528ec810463608c246b39f79c4f35c81ee34068b4b0cb9a07.png",
+          "sha256": "97feb231a5d2eb1528ec810463608c246b39f79c4f35c81ee34068b4b0cb9a07",
+          "alt": "지난 투자손실의 무게를 회계 서류와 돌로 표현한 개념 이미지",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Close-up editorial still life of completed industrial equipment delivery paperwork, a plain blank invoice folder remaining closed beside a hand reaching toward an open but empty payment tray. Clearly show work done and paperwork waiting, not default or theft. One generic miniature fuel-cell cabinet in background. Off-white desk, cobalt binding, natural side lighting. No letters or numbers. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
+          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. Overhead editorial still life of a single cobalt accounting folder with a dark heavy stone lifted off its corner by a small metal desk clamp. Concept: a past investment loss no longer weighing on the comparison. No hands or money. Off-white background, tactile materials, asymmetrical airy composition. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
         }
       },
       {
         "layout": "annotated",
-        "title": "현장 전력 수요가\n제품 매출로 왔습니다",
-        "accent": "제품 매출로",
-        "body": "블룸은 데이터센터 등 고객 현장에서 전기를 만드는 장비를 팝니다. 이번 분기는 제품 판매가 커졌고, 매출에서 제품 원가 등을 뺀 이익의 비율도 높아졌습니다.",
+        "title": "서버를 사는 대신\n쓴 만큼 내는 고객",
+        "body": "기업은 직접 서버를 갖추는 대신 외부 데이터센터의 연산·저장 기능을 이용할 수 있습니다. 고객이 낸 서비스 이용료는 클라우드 회사의 매출이 됩니다.",
+        "takeaway": "투자손익과 별개로, 서버 서비스를 파는 사업도 커졌습니다.",
+        "bridge": "더 팔았다는 사실만으로 이익 증가까지 끝나진 않습니다.",
         "labels": [
           {
-            "label": "제품 매출",
-            "text": "10.74억달러로 전년 동기 대비 179.4% 증가했습니다."
+            "label": "클라우드 매출",
+            "text": "Azure: 223.84억 → 331.65억달러, +48%"
           },
           {
-            "label": "매출총이익률",
-            "text": "29.2% → 33.8%. 미국 회계기준, 전년 같은 분기 비교입니다."
+            "label": "비교의 범위",
+            "text": "2025·2026년 7~9월. 고객 수·사용량 증가율은 아닙니다."
           }
         ],
-        "takeaway": "수요와 수익성 개선은 확인됩니다. 수금 속도는 별개의 성적입니다.",
-        "bridge": "같은 분기의 순이익과 영업현금을 나란히 놓으면 보입니다.",
         "evidence_ids": [
-          "growth",
-          "product"
+          "business"
         ],
         "visual": {
-          "path": "automation/visual_assets/42cb175c231f20f729508679d315d0fd3ddcda1734ff5b027a105fd657bf3915.png",
-          "sha256": "42cb175c231f20f729508679d315d0fd3ddcda1734ff5b027a105fd657bf3915",
-          "alt": "연료전지 장비의 생산 작업을 보여주는 공장 개념 일러스트",
+          "path": "automation/visual_assets/2af59e51f93ea1f9d49893ab21af571516d52081e59e1f39b4a2128df5c5b125.png",
+          "sha256": "2af59e51f93ea1f9d49893ab21af571516d52081e59e1f39b4a2128df5c5b125",
+          "alt": "사무실 이용자가 외부 서버 서비스를 쓰는 사업 구조 개념 이미지",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. A dramatic wide side view inside a generic clean manufacturing workshop assembling industrial solid-oxide fuel-cell cabinets. Several finished compact metal power modules and a technician silhouette, orderly production activity and spare components. Charcoal background, cobalt work lights, no logos. NOT batteries, not chip servers. Conceptual miniature diorama, not documentary. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
+          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. A cutaway miniature office workspace with anonymous laptops connected by elegant cables to one rented server cabinet, modest architecture model rather than technical diagram. Concept: companies pay for remote computing instead of owning all hardware. Cobalt server, cream desks, charcoal backdrop, side-on panoramic angle. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
         }
       },
       {
         "layout": "comparison",
-        "title": "이익은 플러스,\n영업현금은 마이너스",
-        "accent": "영업현금은 마이너스",
-        "body": "영업현금은 장사 과정에서 실제 들어오고 나간 돈의 차이입니다. 청구 전 금액·외상값·재고가 늘면서, 3분기 이익이 그대로 현금으로 남지는 않았습니다.",
+        "title": "운영비를 빼고도\n영업이익 21% 증가",
+        "body": "매출에서 서비스 원가와 연구·판매·관리비를 뺀 영업이익도 늘었습니다. 투자손익이 좋아진 효과만으로 이번 성장을 설명할 수 없는 이유입니다.",
+        "takeaway": "영업이익 증가는 본업의 개선을 뒷받침하는 별도 근거입니다.",
+        "bridge": "다만 이 회사의 모든 사업이 함께 자란 건 아닙니다.",
         "labels": [],
+        "evidence_ids": [
+          "operating"
+        ],
         "chart": {
-          "source": "Bloom Energy 2026 Q3 실적발표 현금흐름표",
-          "unit": "백만달러",
-          "note": "7~9월 연결 기준. 순이익과 현금은 서로 다른 지표입니다.",
+          "unit": "억달러",
+          "source": "Microsoft FY27 Q1 실적발표 · 미감사",
+          "note": "각 연도 7~9월 연결 GAAP 영업이익. 전년 비교 수치 재작성.",
           "rows": [
             {
-              "metric_id": "net-income",
-              "value": 248.976,
-              "label": "연결 순이익",
-              "display": "+249.0"
+              "metric_id": "op25",
+              "label": "2025년 7~9월",
+              "value": 379.61,
+              "display": "379.61"
             },
             {
-              "metric_id": "operating-cash",
-              "value": -27.147,
-              "label": "영업현금흐름",
-              "display": "−27.1"
+              "metric_id": "op26",
+              "label": "2026년 7~9월",
+              "value": 459.15,
+              "display": "459.15"
             }
           ]
         },
-        "takeaway": "고객이 미리 준 돈과 지급을 미룬 비용이 일부 메웠지만 현금은 순유출입니다.",
-        "bridge": "이 새 공시로 그날 정규장 하락을 설명하면 순서가 틀립니다.",
-        "evidence_ids": [
-          "cash-gap"
-        ],
         "visual": {
-          "path": "automation/visual_assets/afda40c69cf1709330c3122414046e2b0e6c3aec68971cbf2c81a0507185247f.png",
-          "sha256": "afda40c69cf1709330c3122414046e2b0e6c3aec68971cbf2c81a0507185247f",
-          "alt": "회계 장부와 실제 현금을 구분하는 개념 일러스트",
+          "path": "automation/visual_assets/26498c166594baab8c73fc8feade363a54bf86005e2414843544d5f37066fcfb.png",
+          "sha256": "26498c166594baab8c73fc8feade363a54bf86005e2414843544d5f37066fcfb",
+          "alt": "서비스 원가와 운영 비용을 서버 정비 장면으로 표현한 개념 이미지",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Conceptual editorial still life about accounting profit versus received cash: an open plain ledger with entirely blank pages on the left, a separate modest cash payment tray on the right, visually separated by a clean strip of desk. No numerical comparison encoded in sizes. Matte ivory paper, brushed black metal, restrained cobalt accent. No graphs, no bars, no text or symbols. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
+          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. Close-up of an anonymous software operations workshop, blue server trays being serviced beside a neat tray of silver components and a closed cream invoice folder. Concept: revenue-producing operations still generate profit after operating costs. No coins or charts. Offwhite studio, tactile editorial photographic miniature. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
         }
       },
       {
         "layout": "explain",
-        "title": "주가 하락은 먼저,\n실적 발표는 폐장 뒤",
-        "accent": "실적 발표는 폐장 뒤",
-        "body": "10월 22일 블룸 주가는 정규장에서 8.70% 내렸습니다. 이번 실적은 폐장 후 나왔으므로, 그 종가 하락을 영업현금 유출에 대한 반응으로 붙일 수는 없습니다.",
+        "title": "마이크로소프트\n클라우드와 PC의 차이",
+        "body": "서버 서비스와 업무용 소프트웨어를 파는 마이크로소프트입니다. 클라우드 매출은 30% 늘었지만 PC 제조사용 윈도·기기 매출은 22% 줄었습니다.",
+        "takeaway": "전체 성장률 아래에는 서로 다른 사업의 성적이 섞여 있습니다.",
+        "bridge": "클라우드 확대에는 회사가 먼저 낼 비용도 있습니다.",
         "labels": [
           {
-            "label": "같은 종가 기준",
-            "text": "10월 21일 238.53달러 → 22일 217.77달러. 시간외 제외."
+            "label": "10/28 정규장",
+            "text": "531.01달러, 전일 531.33달러 대비 −0.06%"
           },
           {
-            "label": "판단할 범위",
-            "text": "확인한 것은 성장과 현금의 차이입니다. 주가 원인은 별도 근거가 필요합니다."
+            "label": "가격 해석의 선",
+            "text": "실적은 폐장 뒤 발표. 이 종가 등락은 실적 반응이 아닙니다."
           }
         ],
-        "takeaway": "가격의 방향보다 새 재무제표가 보여준 자금 부담을 구분합니다.",
-        "bridge": "한 분기의 현금 유출이 당장 자금 위기라는 뜻도 아닙니다.",
         "evidence_ids": [
-          "timing",
-          "cash-gap"
+          "mixed",
+          "market"
         ],
         "visual": {
-          "path": "automation/visual_assets/5f521f66c7febbea7198c7f9d510b055abe7be67ec70c7e0240d8b0a10c3c5b5.png",
-          "sha256": "5f521f66c7febbea7198c7f9d510b055abe7be67ec70c7e0240d8b0a10c3c5b5",
-          "alt": "폐장 종과 뒤에 공개되는 실적 보고서를 분리한 개념 일러스트",
+          "path": "automation/visual_assets/9f000e9723b61868592294c0591a9ede5d29bc841fad6f2c3cdf17e535e07111.png",
+          "sha256": "9f000e9723b61868592294c0591a9ede5d29bc841fad6f2c3cdf17e535e07111",
+          "alt": "클라우드 서버와 개인용 기기의 다른 사업을 나란히 놓은 개념 이미지",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Editorial wide still life about distinguishing two successive moments: a plain metallic market closing bell on the left, a sealed corporate report folder illuminated separately on the right. No clock face, no dates, no numbers, no arrows. Black studio background with precise cobalt rim lighting. Minimal, realistic sculptural objects; no stock chart. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
+          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. One cobalt server rack and one slim unbranded closed laptop in a charcoal studio, deliberately distinct business objects, soft beam lighting and a horizontal composition. Concept: cloud services and personal-device businesses can perform differently. No symbols or letters, no comparison chart, no changing heights. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
         }
       },
       {
         "layout": "conditions",
-        "title": "당장 쓸 돈은 있습니다\n관건은 회수 속도",
-        "accent": "관건은 회수 속도",
-        "body": "9월말 현금·현금성자산은 24.87억달러이고, 올해 1~9월 영업현금은 2.73억달러 유입입니다. 한 분기의 마이너스로 당장 증자나 자금 위기를 예고할 근거는 부족합니다.",
+        "title": "설비에 나간 현금\n1년 전의 두 배",
+        "body": "7~9월 유형자산 취득에 쓴 현금은 393.67억달러로 전년 193.94억달러보다 늘었습니다. 영업에서 들어온 순현금 580억달러보다는 적습니다.",
+        "takeaway": "현금은 벌고 있지만, 성장에 필요한 설비 지출도 빠릅니다.",
+        "bridge": "이 부담까지 놓고 나면 이번 실적의 평가가 선명해집니다.",
         "labels": [],
-        "origin": "생산 확대를 계속할 때 갈리는 조건",
+        "evidence_ids": [
+          "capital"
+        ],
+        "origin": "영업이익과 현금 지출은 같은 숫자가 아닙니다",
         "branches": [
           {
-            "label": "부담이 줄려면",
-            "text": "청구·수금 진행으로 영업현금이 개선됩니다.",
-            "check": "계약자산·매출채권 증가세 둔화를 함께 봅니다."
+            "label": "감당할 조건",
+            "text": "고객 매출과 영업현금이 함께 늘어납니다.",
+            "check": "영업현금과 유형자산 취득 지출을 같은 분기로 비교."
           },
           {
-            "label": "부담이 커지면",
-            "text": "회수가 늦고 투자가 이어지면 외부 조달이 필요할 수 있습니다.",
-            "check": "증자라면 기존 주주의 지분 비율이 낮아집니다."
+            "label": "부담이 커질 조건",
+            "text": "설비 지출이 늘지만 현금 유입은 둔화됩니다.",
+            "check": "영업현금 대비 설비 취득 지출 비중이 계속 높아지는지."
           }
         ],
-        "takeaway": "지금은 지급능력 위기보다 성장에 필요한 현금의 시차가 쟁점입니다.",
-        "bridge": "다음 실적에서도 쓸 비교 기준은 투자비를 벌어내는지입니다.",
-        "evidence_ids": [
-          "liquidity",
-          "billing",
-          "judgment"
-        ],
         "visual": {
-          "path": "automation/visual_assets/67af89c3d49019c9ffed73cccdf7793b9b71779fa1cb89d891d7b7d8548aadcb.png",
-          "sha256": "67af89c3d49019c9ffed73cccdf7793b9b71779fa1cb89d891d7b7d8548aadcb",
-          "alt": "가동 중인 공장과 증설 중인 작업장을 보여주는 개념 일러스트",
+          "path": "automation/visual_assets/58090eb5905a50f3391e32f0b41f8691a587281b073cdb9e7091282903a59886.png",
+          "sha256": "58090eb5905a50f3391e32f0b41f8691a587281b073cdb9e7091282903a59886",
+          "alt": "데이터센터 설비를 설치하는 비용을 보여주는 축소 모형 개념 이미지",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. A wide panoramic cutaway of an industrial equipment company expanding a workshop: existing functioning production bay on left, an adjacent partially installed assembly line on right with one worker examining a new machine. Warm neutral concrete, steel, cobalt safety detail. Deliberately conceptual miniature illustration, not a real factory photograph. No text, logos or signs. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
+          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. Architectural scale model of a partly built data center, a crane fitting a server module into the building, on a warm offwhite worktable. Concept: serving more computing demand requires paying for equipment. A spare metal component in foreground, clean diagonal composition, no coins, no city towers. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
         }
       },
       {
         "layout": "closing",
-        "title": "성장은 입증됐습니다\n투자비도 벌어야 합니다",
-        "accent": "투자비도 벌어야 합니다",
-        "body": "이번 실적은 장비 수요 확대를 뒷받침합니다. 다만 3분기 영업현금으로 설비 지출을 충당하지 못해, 성장 자체가 투자 재원을 만들어냈다고 보기는 이릅니다.",
+        "title": "본업도 성장\n투자손익과는 따로",
+        "body": "이번 실적은 클라우드 판매와 영업이익 증가를 보여줍니다. 다만 투자손실이 줄어 커진 순이익 증가율을, 앞으로의 사업 성장 속도로 그대로 쓰긴 어렵습니다.",
+        "takeaway": "지금은 성장이 없는 회사가 아니라, 성장의 출처를 나눠 볼 회사입니다.",
+        "bridge": "다음 분기는 투자손익보다 영업이익의 증가를 먼저 비교합니다.",
         "labels": [
           {
-            "label": "이번 기준점",
-            "text": "영업현금 −2,715만달러 / 유형자산 취득 지출 1억5,349만달러."
+            "label": "더 강해질 근거",
+            "text": "클라우드 매출 증가가 비용을 웃돌아 영업이익 증가로 이어질 때."
           },
           {
-            "label": "판단이 좋아질 조건",
-            "text": "같은 분기의 영업현금이 설비 지출을 지속적으로 충당할 때입니다."
+            "label": "평가를 낮출 조건",
+            "text": "매출은 늘어도 원가·운영비 부담으로 영업이익 증가가 꺾일 때."
           }
         ],
-        "takeaway": "블룸의 다음 성적은 매출 규모와 함께 성장비용을 스스로 버는지입니다.",
-        "bridge": "청구·수금이 따라오면 보유 현금에 기대는 정도가 줄어듭니다.",
         "evidence_ids": [
-          "judgment",
-          "product",
-          "cash-gap"
+          "profit",
+          "operating",
+          "capital"
         ],
         "visual": {
-          "path": "automation/visual_assets/c6d927bb71d0d04236e4804bf4062a8599d7b0ab2c6f69ecb8011ef397925c5f.png",
-          "sha256": "c6d927bb71d0d04236e4804bf4062a8599d7b0ab2c6f69ecb8011ef397925c5f",
-          "alt": "산업 장비 거래의 대금 전달을 나타내는 개념 일러스트",
-          "tone": "light",
+          "path": "automation/visual_assets/7ec9bbc7b77d15b48ecb2fc3230f766edc2334d19b6decdd58e9a0b6e4bd64ea.png",
+          "sha256": "7ec9bbc7b77d15b48ecb2fc3230f766edc2334d19b6decdd58e9a0b6e4bd64ea",
+          "alt": "실제 서비스 사업과 재무 기록을 함께 검토하는 개념 이미지",
+          "tone": "dark",
           "kind": "concept",
-          "prompt": "Create one original premium editorial concept illustration, target extremely wide panoramic 1536x640 composition for the image strip of a Korean financial card. Wide editorial macro image of a real-world business payment clearing: one anonymous hand slides a plain payment envelope into another hand beside an industrial metal component on a clean off-white desk. No banknotes, no currency symbols, no numbers, no words. Crisp natural materials, cobalt cuff detail, confident daylight. Emphasize money collection completing a sale, not gifts or bribery. All objects entirely visible, restrained warm off-white / charcoal / cobalt palette. NO lettering, NO typography, NO watermark, no borders, no multi-panel collage. A single scene. This is a concept illustration, not evidence of an actual event."
+          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. A refined open black document case holding a cobalt server component and plain cream financial paper sheets, seen from a low oblique angle on a cream tabletop, soft morning light. Concept: judging an investment with both real business operations and financial statements. No magnifier, no logos, no words, no diagrams. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
         }
       }
     ],
     "editorial_review": {
-      "improvement": "핵심은 '성장은 확인됐지만 수금이 따라와야 투자비를 스스로 댈 수 있다'. 2장에 청구 조건과 선지출의 연결, 6장에 외부 조달이 주주에게 전달되는 조건부 지분 희석을 보강했다. 제목은 현금 회수 숙제를 채택; 숫자만 남는 성장률 제목과 근거 없는 현금 위기 제목은 제외했다.",
-      "reason": "Morning Brew Shorty18 제작 설명(명확성·맥락)과 Bloomberg 9/5 AI 가격 선택 재현 캡션(imginn.com/p/Dc6jiDuoxro/) 비교. 전 장 미열람. Socialpruf Instagram 10/23 KST 조회: 각각 228만·652만(화면 10/22). 사례는 편집 참고만.",
-      "application": "최근 GM·SMCI·인도네시아·한은·이란의 상세 원고·실제 17장·편집 기록을 대조했다. 1~2장 매출→청구→수금→투자비, 4장 순이익과 현금, 6장 주주 영향, 7장 자체 투자재원으로 이어진다. 재검수에서 검수 지연을 사실로 추정하지 않고 계약상 청구 조건으로 고쳤다.",
-      "avoided_repetition": "SMCI의 타기업 일정 확장, GM의 현금=연료 비유와 이란의 일반적 확인 마무리를 피했다. EPS·연간 전망·타기업 수혜는 덜었다. 인사이트 미확보로 독해·가독성만 평가. 다음 보완은 같은 형식·경과 시간의 저장/도달·공유/도달 확보 후 비교."
+      "improvement": "최근 하이닉스·BE·이란·한은·인도네시아 원고와 실제 21장을 비교. 이번 개선은 성장률의 원인을 먼저 풀고 결론을 현재 판단으로 끝내기. '순이익32% 증가' 채택; '가짜 성장'은 영업이익21% 증가에 반하고 'Azure48%'만의 제목은 핵심 차이를 놓쳐 제외.",
+      "reason": "불스토리 공식 웹 「앗 SK, 하이닉스보다 싸다!」 도입·지분구조·EPS 도입 구간과 홍춘욱 「미국 경제의 질주 2023년3분기에도 이어져」 본문 비교. 수치 뒤 구성요소를 푸는 순서 참고. Instagram 전 장 미열람. 권유·목표가·인과 단정은 가져오지 않음.",
+      "application": "초안 '기저효과로 순이익 성장률 확대'를 2장 '비교 출발점이 낮았던 만큼, 보고된 증가율도 더 커진 셈입니다'로 퇴고. 3장 고객의 사용료, 4장 비용을 뺀 영업이익, 6장 설비 현금지출을 연결. 회사명은5장에 공개, 7장은 현재 판단부터 답함.",
+      "avoided_repetition": "BE처럼 가격 인과 주의만으로 한 장을 채우지 않고5장 근거로 묶음. 최근의 '관건·여력·입증'과 '다음에 확인' 반복, 주주환원·예약매출·EPS 주변 숫자는 제외. 직전 시장 폭 보완은 종목편에 억지 적용하지 않음. 인사이트 미확보. 다음은 부문별 이익률 설명 강화."
     }
-  },
-  "reviewed_preview": {
-    "run_id": 39880190668,
-    "image_sha256": [
-      "231a6e921cd15a482c490553ddea77cec94ddab56dde0ab92cfda34ee0f2b2de",
-      "5e1d699782157a9f4ff943530f9ba3aed8c30fd79c9ff91a491ad71f9d46fe12",
-      "8bb23f3f8d120a00c14559cb8d0b9eb073304928065e75c3dfe82014ca74e334",
-      "b7cfdcbd485a6656d65ce74b3c435fa785387c13762a979ea50af47136ddd322",
-      "e9d7e04df014f0c13fdf3222eda784f2a91b70ef97ab1c7f64d7de99c1aecac3",
-      "f7894f37c3f126377b4627824ee8116d4e1930c144fb1ccc823df3dbf92c3572",
-      "248d4f8f043f492c376677929af04c5944c76fab27e3d71754b159e008e11339"
-    ]
   }
 }
