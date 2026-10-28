@@ -165,12 +165,12 @@
         "layout": "sectors",
         "title": "같은 100조라도\n주당 효과는 다르다",
         "accent": "주당 효과는 다르다",
-        "body": "현금배당과 소각은 주주 몫, 직원 보상용 자사주는 다릅니다. 오늘 20조원 매입 중 소각은 10조원입니다.",
+        "body": "배당과 소각은 주주 몫입니다. 직원 보상용 자사주는 다릅니다.",
         "source_ids": ["skhynix-results", "ian-blog"],
         "items": [
           {
             "label": "현금배당",
-            "text": "주당 2만원입니다. 정기 1만원에 키옥시아 특별배당 1만원을 더했습니다.",
+            "text": "주당 2만원: 정기 1만원과 특별배당 1만원입니다.",
             "type": "fact",
             "source_ids": ["skhynix-results"]
           },
@@ -182,7 +182,7 @@
           },
           {
             "label": "직원 보상",
-            "text": "나머지 약 10조원은 임직원 보상용이라 환원 총액에서 빠집니다.",
+            "text": "나머지 약 10조원은 직원 보상용입니다.",
             "type": "analysis",
             "source_ids": ["skhynix-results", "ian-blog"]
           }
@@ -216,24 +216,24 @@
         "layout": "watch",
         "title": "반등이 이어지려면\n세 숫자를 봅니다",
         "accent": "세 숫자를 봅니다",
-        "body": "오늘 반등의 이유는 선명합니다. 다음 판단은 장기계약이 실제 출하로 이어지는지, 증설비가 얼마나 드는지, 환원 약속이 지켜지는지에 달렸습니다.",
+        "body": "다음 판단은 계약이 출하로 이어지는지, 증설비와 환원 약속이 함께 지켜지는지에 달렸습니다.",
         "source_ids": ["skhynix-results", "naver-index", "reuters-market", "fed-calendar"],
         "items": [
           {
             "label": "계약 실행",
-            "text": "생산능력 절반 이상을 묶은 14개 고객 계약이 실제 매출과 출하로 이어지는지 봅니다.",
+            "text": "14개 고객 장기계약의 실제 출하를 봅니다.",
             "type": "watch",
             "source_ids": ["skhynix-results"]
           },
           {
             "label": "투자 부담",
-            "text": "내년 설비투자 증가분이 현금흐름과 추가 주주환원에 얼마나 부담을 주는지 봅니다.",
+            "text": "내년 설비투자 증가분을 봅니다.",
             "type": "watch",
             "source_ids": ["skhynix-results"]
           },
           {
             "label": "정책 가격",
-            "text": "29일 새벽 FOMC 뒤 금리 경로가 AI 설비투자의 자금 비용을 바꾸는지 봅니다.",
+            "text": "FOMC 뒤 AI 투자 자금비용을 봅니다.",
             "type": "watch",
             "source_ids": ["fed-calendar", "reuters-market"]
           }
