@@ -3,7 +3,7 @@
   "kind": "market_brief",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-29T14:05:49+09:00",
+  "created_at": "2026-10-29T14:07:40+09:00",
   "publication_date_kst": "2026-10-29",
   "snapshot_at": "2026-10-29T13:59:19+09:00",
   "kr_session": {
@@ -197,7 +197,7 @@
         "layout": "sectors",
         "title": "같은 반도체인데\n주가는 반대로 갔다",
         "accent": "주가는 반대로 갔다",
-        "body": "삼성전자는 4.75% 내렸지만 SK하이닉스는 3.36% 올랐습니다. AI 수요 붕괴 하나로만 설명하기 어려운 흐름입니다.",
+        "body": "삼성전자 -4.75%, SK하이닉스 +3.36%. 같은 AI 수요 안에서도 주가는 갈렸습니다.",
         "source_ids": [
           "naver-chip",
           "reuters-market"
@@ -205,7 +205,7 @@
         "items": [
           {
             "label": "삼성전자",
-            "text": "확정 실적 발표 뒤 23만500원, 전일보다 4.75% 하락했습니다.",
+            "text": "최대 이익 발표 뒤 23만500원으로 내렸습니다.",
             "type": "fact",
             "source_ids": [
               "naver-chip",
@@ -214,7 +214,7 @@
           },
           {
             "label": "SK하이닉스",
-            "text": "같은 시각 153만7천원, 전일보다 3.36% 상승했습니다.",
+            "text": "153만7천원으로 올랐습니다.",
             "type": "fact",
             "source_ids": [
               "naver-chip"
@@ -222,7 +222,7 @@
           },
           {
             "label": "시장 해석",
-            "text": "현재 실적보다 다음 이익 속도와 기대 차이가 종목별로 갈렸습니다.",
+            "text": "업종 수요보다 종목별 기대 차이가 더 크게 반영됐습니다.",
             "type": "analysis",
             "source_ids": [
               "reuters-market",
