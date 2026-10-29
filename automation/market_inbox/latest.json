@@ -3,7 +3,7 @@
   "kind": "market_brief",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-29T14:08:45+09:00",
+  "created_at": "2026-10-29T14:09:53+09:00",
   "publication_date_kst": "2026-10-29",
   "snapshot_at": "2026-10-29T13:59:19+09:00",
   "kr_session": {
@@ -263,7 +263,7 @@
         "layout": "watch",
         "title": "좋은 실적보다\n다음 증가 속도를 본다",
         "accent": "다음 증가 속도를 본다",
-        "body": "지금은 반도체 수요 소멸보다 기대 재조정에 가깝습니다. 세 조건이 약해지면 해석을 낮춥니다.",
+        "body": "현재는 수요 소멸보다 기대 재조정에 가깝습니다. 세 숫자가 약해지면 해석을 낮춥니다.",
         "source_ids": [
           "samsung-results",
           "naver-chip",
@@ -273,7 +273,7 @@
         "items": [
           {
             "label": "이익 속도",
-            "text": "다음 분기 DS 영업이익 증가율이 둔화하는지 봅니다.",
+            "text": "다음 DS 영업이익 증가율을 봅니다.",
             "type": "watch",
             "source_ids": [
               "samsung-results",
@@ -282,7 +282,7 @@
           },
           {
             "label": "투자 회수",
-            "text": "84.4조원 투자가 출하와 현금으로 이어지는지 봅니다.",
+            "text": "84.4조원 투자가 매출로 바뀌는지 봅니다.",
             "type": "watch",
             "source_ids": [
               "samsung-results"
@@ -290,7 +290,7 @@
           },
           {
             "label": "시장 폭",
-            "text": "코스닥 낙폭과 삼성·하이닉스의 방향 차이가 줄어드는지 봅니다.",
+            "text": "코스닥과 두 반도체주의 방향 차이를 봅니다.",
             "type": "watch",
             "source_ids": [
               "naver-index",
