@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-10-29T23:41:33Z",
   "publication_date_kst": "2026-10-30",
@@ -419,6 +419,18 @@
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
         "as_of": "2026년 공식 휴장·조기폐장 달력 · 10월 29일 정상 거래일"
       }
+    ]
+  },
+  "reviewed_preview": {
+    "run_id": 40975513332,
+    "image_sha256": [
+      "83ce625d23d8dddec919495527be45813d8b5a0ab3770b3a5049d8fdf3a52bfa",
+      "3aeb6252b59c0264d666b3878c40d57cc1a114fd44457eaf0957b37915b9c318",
+      "8791020073c76c3a94cc2ddc432d01339fa900c5a12da68fc053df0b1378ae5e",
+      "78a5c512b976e13abf378e14e5f7270948f4da9a03a88a021f62fe8acd84d88b",
+      "419b03b74bf16d24a829b3a40ef865b3d08f6b2e91bf722473bf98e4c5d22c3d",
+      "e3bc00f4e036730f5af6ef4f9a50c0d13cbdc64f7ad153cb0dcfafd3693d64fd",
+      "fca4572336d43be611aba63602ae0b1879cc98a1d4ca2e6812751686a9edc45d"
     ]
   }
 }
