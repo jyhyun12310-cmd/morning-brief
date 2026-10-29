@@ -1,218 +1,153 @@
 {
   "schema_version": 1,
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-28T23:49:30Z",
-  "publication_date_kst": "2026-10-29",
+  "created_at": "2026-10-29T23:41:33Z",
+  "publication_date_kst": "2026-10-30",
   "market": {
-    "ticker": "MSFT",
-    "name": "마이크로소프트",
-    "session_date": "2026-10-28",
-    "session_close_at": "2026-10-28T16:00:00-04:00",
+    "ticker": "INTC",
+    "name": "Intel",
+    "session_date": "2026-10-29",
+    "session_close_at": "2026-10-29T16:00:00-04:00",
     "price_basis": "regular_close",
     "currency": "USD",
-    "close": 531.01,
-    "previous_close": 531.33,
-    "change_pct": -0.06,
+    "close": 92.07,
+    "previous_close": 95.53,
+    "change_pct": -3.62,
     "source_id": "prices"
   },
   "sources": [
     {
-      "id": "earnings",
-      "title": "Microsoft FY27 Q1 earnings release and financial statements",
-      "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2027-Q1/press-release-webcast",
-      "as_of": "2026-10-28 발표; 2026-09-30 종료 3개월; 미감사; 전년 동기 비교",
-      "retrieved_at": "2026-10-28T23:49:28Z"
+      "id": "release",
+      "title": "Intel Q3 2026 financial results",
+      "url": "https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results",
+      "as_of": "2026-10-29 16:01 EDT 발표 · Q3 종료 2026-09-26 · Q4는 회사 전망",
+      "retrieved_at": "2026-10-29T23:38:25Z"
+    },
+    {
+      "id": "remarks",
+      "title": "Intel Q3 2026 CEO/CFO prepared remarks",
+      "url": "https://d1io3yog0oux5.cloudfront.net/_47986fe477a6ac84fe34efbcbf38dd13/intel/db/887/9273/prepared_remarks/Q3%2726_Prepared_Remarks.pdf",
+      "as_of": "2026-10-29 14:00 PDT 실적설명회 준비 원고 · 회사 설명과 전망",
+      "retrieved_at": "2026-10-29T23:38:25Z"
+    },
+    {
+      "id": "deck",
+      "title": "Intel Q3 2026 earnings presentation",
+      "url": "https://d1io3yog0oux5.cloudfront.net/_47986fe477a6ac84fe34efbcbf38dd13/intel/db/887/9273/earnings_presentation/Q3_2026_Earnings_Deck.pdf",
+      "as_of": "2026-10-29 발표 · 2026 Q3 부문 실적 · 슬라이드 7·8",
+      "retrieved_at": "2026-10-29T23:38:13Z"
     },
     {
       "id": "prices",
-      "title": "Stock Analysis MSFT historical prices — same unadjusted Close column",
-      "url": "https://stockanalysis.com/stocks/msft/history/",
-      "as_of": "2026-10-28·10-27 정규장 종가 USD; 시간외 제외",
-      "retrieved_at": "2026-10-28T23:49:28Z"
-    },
-    {
-      "id": "timing",
-      "title": "Microsoft quarterly earnings release date announcement",
-      "url": "https://news.microsoft.com/source/2026/10/07/microsoft-announces-quarterly-earnings-release-date-69/",
-      "as_of": "2026-10-07 공지; 10-28 정규장 폐장 후 실적 발표",
-      "retrieved_at": "2026-10-28T23:49:28Z"
-    },
-    {
-      "id": "azure",
-      "title": "Microsoft Azure — What is Azure?",
-      "url": "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-azure",
-      "as_of": "상시 사업 설명; 데이터센터·기업용 연산·저장 서비스와 사용량 요금",
-      "retrieved_at": "2026-10-28T23:49:28Z"
+      "title": "Stock Analysis INTC historical prices · S&P Global",
+      "url": "https://stockanalysis.com/stocks/intc/history/",
+      "as_of": "2026-10-29·10-28 정규장 Close 열 · 동일 주식분할 조정 기준 USD",
+      "retrieved_at": "2026-10-29T23:38:13Z"
     },
     {
       "id": "nyse",
-      "title": "NYSE official holidays and trading hours",
+      "title": "NYSE hours and calendars",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026년 휴장·조기폐장; 10-28 정상 정규장 16:00 EDT 종료",
-      "retrieved_at": "2026-10-28T23:49:28Z"
+      "as_of": "2026년 공식 휴장·조기폐장 달력 · 정규장 09:30–16:00 ET",
+      "retrieved_at": "2026-10-29T23:41:33Z"
     },
     {
       "id": "nasdaq",
-      "title": "Nasdaq official 2026 trading schedule",
+      "title": "Nasdaq stock market holiday schedule",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026년 휴장·조기폐장; 정규장 09:30~16:00 ET",
-      "retrieved_at": "2026-10-28T23:49:28Z"
-    },
-    {
-      "id": "bullstory",
-      "title": "불스토리 · 앗 SK, 하이닉스보다 싸다! (편집 참고)",
-      "url": "https://bullstory.io/blog/앗-sk-하이닉스보다-싸다",
-      "as_of": "공식 웹 글 도입·지분구조·EPS 계산 도입 구간; Instagram 카드 미열람",
-      "retrieved_at": "2026-10-28T23:49:28Z"
-    },
-    {
-      "id": "frism",
-      "title": "홍춘욱 · 미국 경제의 질주 2023년 3분기에도 이어져 (편집 참고)",
-      "url": "https://www.frism.io/migug-gyeongjeyi-jilju-2023nyeon-3bungiedo-ieojyeo/",
-      "as_of": "2023-10-30 글 본문 열람; 현재 금융 사실의 출처 아님",
-      "retrieved_at": "2026-10-28T23:49:28Z"
+      "as_of": "2026년 공식 휴장·조기폐장 달력 · 10월 29일 정상 거래일",
+      "retrieved_at": "2026-10-29T23:41:33Z"
     }
   ],
   "metrics": [
     {
-      "id": "op25",
-      "value": 379.61,
-      "unit": "억달러",
-      "period": "2025-07-01/2025-09-30",
-      "basis": "연결 GAAP 영업이익",
-      "source_id": "earnings"
+      "id": "dc_margin",
+      "value": 41.5,
+      "unit": "%",
+      "period": "2026 Q3",
+      "basis": "회사 공시 부문 영업이익률",
+      "source_id": "deck"
     },
     {
-      "id": "op26",
-      "value": 459.15,
-      "unit": "억달러",
-      "period": "2026-07-01/2026-09-30",
-      "basis": "연결 GAAP 영업이익",
-      "source_id": "earnings"
+      "id": "pc_margin",
+      "value": 28.2,
+      "unit": "%",
+      "period": "2026 Q3",
+      "basis": "회사 공시 부문 영업이익률",
+      "source_id": "deck"
     }
   ],
   "summary": {
     "design": "editorial-v2",
-    "market_basis": {
-      "ticker": "MSFT",
-      "session_date": "2026-10-28",
-      "price_basis": "regular_close",
-      "currency": "USD",
-      "close": 531.01,
-      "previous_close": 531.33,
-      "change_pct": -0.06
+    "central_question": "서버 CPU가 부족한 회사는 왜 다음 분기 매출 감소를 예상했을까?",
+    "thesis": "인텔은 서버 수요가 강하지만 포장 부품과 공장 사고가 출하를 제한하고, PC 제조사는 비싼 메모리와 판매 둔화 때문에 칩 구매를 줄입니다. PC 감산에 따른 고정비 부담까지 겹쳐 4분기 매출과 매출총이익률 하락을 전망했습니다.",
+    "edition": "10월 30일 미국주식",
+    "instagram_caption": "서버용 칩은 부족한데, PC용은 생산을 줄일 계획입니다. 고객이 덜 사는 문제와 주문을 제때 못 채우는 문제를 나누면 다음 분기 전망이 읽힙니다.\n\n인텔(INTC) #미국주식 #인텔 #반도체",
+    "editorial_review": {
+      "improvement": "최근 5편(MSFT·SK하이닉스·BE·이란 해운·한은)의 원고·25장 실제 카드와 review를 비교. 직전 MSFT의 다음 과제인 부문 이익률 설명을 이어받아, 이번 개선은 고객의 구매→부문 이익→공장 비용의 연결. 1장 발견은 서버 부족과 PC 감산의 공존, 기업명은 5장 공개(4장 필수 출처 Intel은 보존). 반응 지표는 미확보.",
+      "reason": "불스토리(국내 브랜드) 「99% 투자자가 Intel 을 잘못 투자하고 있습니다.」 공식 사이트 본문 전체: 제품 수요만 보고 제조 비용을 빠뜨리는 질문 구성 참고. 홍춘욱 「반도체 호황인데 왜 고용은 얼어붙었을까?」(frism.io, 10/29) 공식 인터뷰 전사 전체: 총량 대신 부문별 전달 경로 참고. Instagram 카드·영상은 미열람; 비교 글의 투자 결론·수치·고유 문구는 미사용.",
+      "application": "2장 초안 ‘PC 수요 둔화로 실적 부담’→‘메모리가 비싸지면 완제품 PC 가격도 오릅니다. 예산이 늘지 않은 고객은 구매를 줄이고, PC 제조사는 남은 재고부터 소진합니다.’ 4장은 동일 분기 영업이익률, 6장은 감산→고정비 설명 보강. 제목 후보 서버 부족/AI 붕괴/공장 비용 중 첫째 선택; DCAI 성장 전망이 AI 붕괴를 반박해 탈락.",
+      "avoided_repetition": "‘성장 입증·회복 관건’을 장마다 반복하지 않고 3장 공급 부품, 5장 제조 손실, 7장 판단 기준으로 분리. 현금·순이익 조정은 MSFT·BE와 겹쳐 제외; 무관한 인수·한국 수혜주·목표가도 제외. 회사의 사고 영향은 초기 추정, 종가는 발표 전으로 분리. 다음 편은 제품 이름보다 구매자가 비용을 줄이는 선택부터 설명."
     },
-    "central_question": "순이익 32% 증가를 본업의 성장 속도로 읽어도 될까?",
-    "thesis": "마이크로소프트는 클라우드 매출과 영업이익이 늘었다. 다만 순이익 32% 증가에는 전년 OpenAI 투자손실의 낮은 기저도 작용했다. 투자손익과 서비스 판매의 성적을 나눠 읽어야 한다.",
-    "edition": "미장, 한 겹 더",
-    "instagram_caption": "순이익의 큰 증가율에는 올해 잘 판 성적과 지난해 손실이 함께 들어갑니다. 클라우드 판매로 번 이익을 따로 읽어야 다음 실적과 비교할 기준이 남습니다.\n마이크로소프트(MSFT)\n#마이크로소프트 #미국주식 #기업실적",
-    "sources": [
-      {
-        "id": "earnings",
-        "title": "Microsoft FY27 Q1 earnings release and financial statements",
-        "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2027-Q1/press-release-webcast",
-        "as_of": "2026-10-28 발표; 2026-09-30 종료 3개월; 미감사; 전년 동기 비교"
-      },
-      {
-        "id": "prices",
-        "title": "Stock Analysis MSFT historical prices — same unadjusted Close column",
-        "url": "https://stockanalysis.com/stocks/msft/history/",
-        "as_of": "2026-10-28·10-27 정규장 종가 USD; 시간외 제외"
-      },
-      {
-        "id": "timing",
-        "title": "Microsoft quarterly earnings release date announcement",
-        "url": "https://news.microsoft.com/source/2026/10/07/microsoft-announces-quarterly-earnings-release-date-69/",
-        "as_of": "2026-10-07 공지; 10-28 정규장 폐장 후 실적 발표"
-      },
-      {
-        "id": "azure",
-        "title": "Microsoft Azure — What is Azure?",
-        "url": "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-azure",
-        "as_of": "상시 사업 설명; 데이터센터·기업용 연산·저장 서비스와 사용량 요금"
-      },
-      {
-        "id": "nyse",
-        "title": "NYSE official holidays and trading hours",
-        "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026년 휴장·조기폐장; 10-28 정상 정규장 16:00 EDT 종료"
-      },
-      {
-        "id": "nasdaq",
-        "title": "Nasdaq official 2026 trading schedule",
-        "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026년 휴장·조기폐장; 정규장 09:30~16:00 ET"
-      },
-      {
-        "id": "bullstory",
-        "title": "불스토리 · 앗 SK, 하이닉스보다 싸다! (편집 참고)",
-        "url": "https://bullstory.io/blog/앗-sk-하이닉스보다-싸다",
-        "as_of": "공식 웹 글 도입·지분구조·EPS 계산 도입 구간; Instagram 카드 미열람"
-      },
-      {
-        "id": "frism",
-        "title": "홍춘욱 · 미국 경제의 질주 2023년 3분기에도 이어져 (편집 참고)",
-        "url": "https://www.frism.io/migug-gyeongjeyi-jilju-2023nyeon-3bungiedo-ieojyeo/",
-        "as_of": "2023-10-30 글 본문 열람; 현재 금융 사실의 출처 아님"
-      }
-    ],
     "evidence_notes": [
       {
-        "id": "profit",
-        "claim": "2026년 7~9월 연결 GAAP 순이익 36,629백만달러, 전년 27,747백만달러로 32% 증가. OpenAI 투자 영향을 제외한 회사 조정 순이익은 각각 36,422·30,833백만달러로 18% 증가. 이는 본업만의 순이익이나 투자손익 전부를 뺀 수치가 아니다.",
+        "id": "results",
+        "claim": "10월 29일 발표한 Q3(9월 26일 종료) 매출은 165.13억 달러. 회사의 Q4 매출 전망은 150~160억 달러로 Q3보다 낮다. 전망은 확정 실적이나 시장 예상치가 아니다.",
         "source_ids": [
-          "earnings"
+          "release"
         ]
       },
       {
-        "id": "openai",
-        "claim": "OpenAI 투자는 이번 분기 순이익을 207백만달러 늘렸고 전년 동기에는 3,086백만달러 줄였다. 양 기간의 조정표를 비교하면 전년 손실 기저가 GAAP 증가율을 높였음을 알 수 있다. 투자손익을 현금 수령액 또는 클라우드 이용료로 보지 않는다.",
+        "id": "pc",
+        "claim": "공식 준비 원고는 메모리 가격·가용성과 제한된 IT 예산이 PC 판매를 약화시키고 OEM이 재고를 줄인다고 설명한다. Q4 CCPG 매출은 전분기보다 20% 넘게 감소할 것으로 회사가 예상한다.",
         "source_ids": [
-          "earnings"
+          "remarks"
         ]
       },
       {
-        "id": "business",
-        "claim": "Azure는 회사가 관리하는 데이터센터에서 연산·저장·AI 등의 서비스를 제공하고 기업은 사용에 따라 비용을 낸다. 이번 Azure 매출은 33,165백만달러, 전년 22,384백만달러로 48% 증가. 매출 증가율을 고객 수나 사용량 증가율로 바꾸지 않는다.",
+        "id": "supply",
+        "claim": "서버 CPU 수요에 비해 공급이 부족하며 EMIB 첨단 유기 기판 부족이 생산 확대를 제약한다. 10월 이스라엘 공장 사고로 Q4 10nm 서버 출하가 영향받고 매출 약 3억 달러 차질은 회사의 초기 추정이다.",
         "source_ids": [
-          "azure",
-          "earnings"
+          "remarks"
         ]
       },
       {
-        "id": "operating",
-        "claim": "같은 7~9월 GAAP 연결 영업이익은 2025년 37,961백만달러에서 2026년 45,915백만달러로 21% 증가. 매출 77,673→92,279백만달러. 투자손익 기저만으로 성장을 설명할 수 없으며 영업이익은 현금흐름과 다르다.",
+        "id": "segments",
+        "claim": "Q3 DCAI 매출 전년 대비 +78%, CCPG -5%. 같은 Q3 회사 보고 부문 영업이익률은 41.5%와 28.2%. 부문 성과이며 연결회사 순이익률·매출총이익률과 다르고 내부거래 등이 연결에서 조정된다.",
         "source_ids": [
-          "earnings"
+          "release",
+          "deck"
         ]
       },
       {
-        "id": "mixed",
-        "claim": "Microsoft Cloud 매출은 30% 증가했으나 Windows OEM and devices 매출은 22% 감소했다. 이는 마이크로소프트 전체 사업이 같은 속도로 성장한 것은 아니라는 근거다. 상품·부문 비교 수치는 2026년 9월 조직 변경에 맞춰 재작성된 전년 수치다.",
+        "id": "factory",
+        "claim": "인텔은 반도체 설계·제조를 하며 Q3 Foundry 부문 영업손실은 약19억 달러(정확히18.53억). 내부거래 포함 부문 매출을 합쳐 외부 매출로 보면 안 된다. 제조부문 손실이 제품부문 이익과 함께 연결 실적에 반영된다.",
         "source_ids": [
-          "earnings"
+          "release"
         ]
       },
       {
-        "id": "capital",
-        "claim": "7~9월 영업현금흐름은 58,000백만달러, 유형자산 취득 현금지출은 39,367백만달러(전년 19,394백만달러). 회사 전체 금액이며 AI만의 투자액·리스 포함 총설비투자액이 아니다. 현금지출 전액을 이번 분기 영업비용으로 빼지 않는다.",
+        "id": "outlook",
+        "claim": "Q4 GAAP 매출총이익률 전망37.1%는 Q3실적43.0%보다 낮다. 회사는 PC 웨이퍼 투입량 조정 속 고정비 대비 전체 매출 감소와 제품 구성 변화를 이유로 들며 수율·비용 개선은 일부 상쇄 요인으로 설명한다.",
         "source_ids": [
-          "earnings"
+          "release",
+          "remarks"
         ]
       },
       {
-        "id": "market",
-        "claim": "Stock Analysis의 동일 미조정 Close 열: 10월27일 531.33달러, 28일 531.01달러. (531.01/531.33-1)*100=-0.0602%. 발표가 정규장 폐장 뒤이므로 이 등락을 해당 실적 반응으로 단정하지 않는다.",
+        "id": "counter",
+        "claim": "회사는 Q4 DCAI 매출이 전분기 대비10%대 중반 성장할 것으로 전망한다. 따라서 전체 전망 약화를 서버 수요 붕괴로 단정할 수 없다. 출하 제약과 PC 재고 조정이 해소되는지는 후속 실적에서 검증할 조건이다.",
+        "source_ids": [
+          "remarks"
+        ]
+      },
+      {
+        "id": "close",
+        "claim": "동일 제공자 정규장 Close 열의 10/29 92.07달러·10/28 95.53달러를 비교하면 약 -3.62%로 반올림 -3.62%. 16:00 EDT 종가 뒤16:01에 실적이 발표되어 이 종가 하락은 실적 발표 반응이 아니다.",
         "source_ids": [
           "prices",
-          "timing"
-        ]
-      },
-      {
-        "id": "calendar",
-        "claim": "공식 NYSE·Nasdaq 2026 휴장과 조기폐장 목록에 10월28일은 없고 정규장 마감은16:00 ET. 뉴욕2026-10-28 16:00 EDT는 UTC20:00, 한국29일05:00이며 가장 최근 완료 거래일이다.",
-        "source_ids": [
+          "release",
           "nyse",
           "nasdaq"
         ]
@@ -221,236 +156,269 @@
     "visual_story": [
       {
         "layout": "cover",
-        "title": "순이익 32% 증가\n장사만의 성적은 아니다",
-        "body": "10월 28일 공개된 7~9월 실적. 순이익은 크게 늘었지만, 지난해 이익을 깎았던 OpenAI 투자손실도 비교에 영향을 줬습니다.",
-        "takeaway": "큰 성장률에는 올해 실적뿐 아니라 지난해 손실도 들어갑니다.",
-        "bridge": "두 해의 투자손익을 빼면 성장률이 달라집니다.",
+        "title": "서버칩은 부족\nPC용은 감산 계획",
+        "body": "서버용 CPU는 공급이 모자라지만 PC용은 생산을 줄일 계획입니다. 이 회사가 4분기 매출 감소를 예상한 이유입니다.",
         "labels": [
           {
-            "label": "미국 회계기준",
-            "text": "GAAP 순이익 전년 동기 대비 +32%"
+            "label": "3분기 매출",
+            "text": "165.1억 달러 · 9월 26일 종료 분기 실적"
           },
           {
-            "label": "OpenAI 영향 제외",
-            "text": "회사 조정 순이익 증가율 +18%"
+            "label": "4분기 전망",
+            "text": "150~160억 달러 · 10월 29일 회사 발표"
           }
         ],
+        "takeaway": "같은 회사에서도 고객과 제품에 따라 팔리는 방향이 갈립니다.",
+        "bridge": "문제는 CPU가 아니라 PC 전체의 구매 비용에서 시작됩니다.",
         "evidence_ids": [
-          "profit",
-          "openai"
+          "results",
+          "pc",
+          "supply"
         ],
         "visual": {
-          "path": "automation/visual_assets/4c908797162f63c2453f0412d0de81e76dd3ffe1ce30bfbfda394c87fd0201fa.png",
-          "sha256": "4c908797162f63c2453f0412d0de81e76dd3ffe1ce30bfbfda394c87fd0201fa",
-          "alt": "서버 사업과 투자 문서를 다른 칸에 놓은 개념 이미지",
+          "path": "automation/visual_assets/e4653ed7faa197153cb4865ca822ea3a46bac1bb25701c94a24d539bab9d3e58.png",
+          "sha256": "e4653ed7faa197153cb4865ca822ea3a46bac1bb25701c94a24d539bab9d3e58",
+          "alt": "서버 장비와 조용한 PC 조립대를 대비한 개념 일러스트",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide editorial illustration for a Korean finance card, landscape 1536x1024. Concept: business operating results and investment accounting belong in separate compartments. A refined architectural cutaway of a charcoal archival cabinet holding two distinct objects: a small cobalt server module in one compartment and a translucent investment document folio in the other. Warm off-white studio background, tactile paper and brushed metal, crisp editorial realism, clean broad horizontal composition. No logos, no lettering, no numbers, no charts, no arrows, no recognizable company products, no coins pouring, no stock price motifs. This is a conceptual still life, not a real event or official photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for Korean finance card. Output landscape 1920x768, minimum height 640. Premium tactile 3D sculptural realism in warm off-white, charcoal black and cobalt. Fill the wide frame with readable main subject, no large empty margins. No text, letters, digits, logos, brands, watermarks, arrows, charts or financial symbols. Not a real facility or official product photograph. Subject: contrast an actively illuminated generic server chassis with several chip trays waiting beside it, and a quiet closed laptop assembly station on the same wide industrial workbench. Side-on panoramic view, dark charcoal backdrop. Communicate server chip demand versus soft PC demand without depicting measured quantities or literal stock prices."
         }
       },
       {
         "layout": "photo",
-        "title": "작년의 투자손실\n올해는 소폭 이익",
-        "body": "지난해 같은 분기에는 OpenAI 투자로 순이익이 줄었습니다. 올해는 반대로 늘었습니다. 비교 출발점이 낮았던 만큼, 보고된 증가율도 더 커진 셈입니다.",
-        "takeaway": "이 차이는 고객이 낸 클라우드 사용료와 구분해야 합니다.",
-        "bridge": "그렇다면 실제 고객 매출은 얼마나 늘었을까요?",
+        "title": "메모리 가격 상승\nCPU 구매까지 축소",
+        "body": "메모리가 비싸지면 완제품 PC 가격도 오릅니다. 예산이 늘지 않은 고객은 구매를 줄이고, PC 제조사는 남은 재고부터 소진합니다.",
         "labels": [
           {
-            "label": "2025년 7~9월",
-            "text": "순이익에 미친 영향 −30.86억달러"
+            "label": "돈을 쓰는 쪽",
+            "text": "PC 제조사가 새 CPU 주문을 줄여 재고 부담을 낮춥니다."
           },
           {
-            "label": "2026년 7~9월",
-            "text": "순이익에 미친 영향 +2.07억달러"
+            "label": "돈을 받는 쪽",
+            "text": "칩 회사는 판매 감소에 맞춰 PC용 웨이퍼 투입을 조정합니다."
           }
         ],
+        "takeaway": "CPU만의 성능 문제가 아니라, PC 한 대를 살 비용의 문제입니다.",
+        "bridge": "반대로 서버용 칩은 주문을 채울 부품이 부족합니다.",
         "evidence_ids": [
-          "openai"
+          "pc",
+          "outlook"
         ],
         "visual": {
-          "path": "automation/visual_assets/97feb231a5d2eb1528ec810463608c246b39f79c4f35c81ee34068b4b0cb9a07.png",
-          "sha256": "97feb231a5d2eb1528ec810463608c246b39f79c4f35c81ee34068b4b0cb9a07",
-          "alt": "지난 투자손실의 무게를 회계 서류와 돌로 표현한 개념 이미지",
+          "path": "automation/visual_assets/9f1fb136ac0e717c49ace8bceb53b1ed7b12f1f8a1c89a0e007f06ac4e03c8cd.png",
+          "sha256": "9f1fb136ac0e717c49ace8bceb53b1ed7b12f1f8a1c89a0e007f06ac4e03c8cd",
+          "alt": "노트북과 메모리 부품, 빈 가격표를 배치한 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. Overhead editorial still life of a single cobalt accounting folder with a dark heavy stone lifted off its corner by a small metal desk clamp. Concept: a past investment loss no longer weighing on the comparison. No hands or money. Off-white background, tactile materials, asymmetrical airy composition. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for Korean finance card. Output landscape 1920x768, minimum height 640. Premium tactile 3D sculptural realism in warm off-white, charcoal black and cobalt. Fill the wide frame with readable main subject, no large empty margins. No text, letters, digits, logos, brands, watermarks, arrows, charts or financial symbols. Not a real facility or official product photograph. Subject: an open unbranded laptop seen in a wide overhead close-up, removable memory module isolated prominently above its socket with a blank expensive-looking price tag, while a closed purchase folder lies beside the device. Off-white background. Explain that memory component cost affects the purchase of a complete computer. No amounts on the tag."
         }
       },
       {
         "layout": "annotated",
-        "title": "서버를 사는 대신\n쓴 만큼 내는 고객",
-        "body": "기업은 직접 서버를 갖추는 대신 외부 데이터센터의 연산·저장 기능을 이용할 수 있습니다. 고객이 낸 서비스 이용료는 클라우드 회사의 매출이 됩니다.",
-        "takeaway": "투자손익과 별개로, 서버 서비스를 파는 사업도 커졌습니다.",
-        "bridge": "더 팔았다는 사실만으로 이익 증가까지 끝나진 않습니다.",
+        "title": "주문이 있어도\n출하를 막는 부품",
+        "body": "CPU를 만들었다고 바로 납품할 수는 없습니다. 칩을 연결·지지하는 포장용 기판이 부족해 생산 확대가 제한되고 있습니다.",
         "labels": [
           {
-            "label": "클라우드 매출",
-            "text": "Azure: 223.84억 → 331.65억달러, +48%"
+            "label": "포장 단계",
+            "text": "첨단 유기 기판 부족이 EMIB 포장 물량 확대를 제약합니다."
           },
           {
-            "label": "비교의 범위",
-            "text": "2025·2026년 7~9월. 고객 수·사용량 증가율은 아닙니다."
+            "label": "공장 사고",
+            "text": "이스라엘 공장 중단으로 4분기 매출 약 3억 달러 차질 예상"
           }
         ],
+        "takeaway": "사고 영향은 회사의 초기 추정이며, 대부분 10nm 서버 제품입니다.",
+        "bridge": "서버 출하가 중요한 이유는 부문별 이익에도 드러납니다.",
         "evidence_ids": [
-          "business"
+          "supply"
         ],
         "visual": {
-          "path": "automation/visual_assets/2af59e51f93ea1f9d49893ab21af571516d52081e59e1f39b4a2128df5c5b125.png",
-          "sha256": "2af59e51f93ea1f9d49893ab21af571516d52081e59e1f39b4a2128df5c5b125",
-          "alt": "사무실 이용자가 외부 서버 서비스를 쓰는 사업 구조 개념 이미지",
+          "path": "automation/visual_assets/f6310587968b2f7619f0edfd98cfe06358f491fab56d65e17449ebd435841275.png",
+          "sha256": "f6310587968b2f7619f0edfd98cfe06358f491fab56d65e17449ebd435841275",
+          "alt": "칩과 기판 사이 빈 공간으로 포장 부품 부족을 표현한 개념도",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. A cutaway miniature office workspace with anonymous laptops connected by elegant cables to one rented server cabinet, modest architecture model rather than technical diagram. Concept: companies pay for remote computing instead of owning all hardware. Cobalt server, cream desks, charcoal backdrop, side-on panoramic angle. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for Korean finance card. Output landscape 1920x768, minimum height 640. Premium tactile 3D sculptural realism in warm off-white, charcoal black and cobalt. Fill the wide frame with readable main subject, no large empty margins. No text, letters, digits, logos, brands, watermarks, arrows, charts or financial symbols. Not a real facility or official product photograph. Subject: close low-angle exploded view of one generic semiconductor package: a silicon die separated by a conspicuous empty gap from its supporting cobalt substrate, with several unfinished packages waiting behind. Dark backdrop, crisp material detail. Symbolic bottleneck from a missing packaging component, not an exact engineering diagram."
         }
       },
       {
         "layout": "comparison",
-        "title": "운영비를 빼고도\n영업이익 21% 증가",
-        "body": "매출에서 제품·서비스 원가와 연구·판매·관리비를 뺀 영업이익도 늘었습니다. 투자손익이 좋아진 효과만으로 이번 성장을 설명할 수 없는 이유입니다.",
-        "takeaway": "영업이익 증가는 본업의 개선을 뒷받침하는 별도 근거입니다.",
-        "bridge": "다만 이 회사의 모든 사업이 함께 자란 건 아닙니다.",
+        "title": "성장도 이익률도\n서버 쪽으로",
+        "body": "3분기 데이터센터·AI 부문 매출은 전년보다 78% 늘고, PC 중심 부문은 5% 줄었습니다. 같은 매출에서도 남는 영업이익 비율이 달랐습니다.",
         "labels": [],
-        "evidence_ids": [
-          "operating"
-        ],
         "chart": {
-          "unit": "억달러",
-          "source": "Microsoft FY27 Q1 실적발표 · 미감사",
-          "note": "각 연도 7~9월 연결 GAAP 영업이익. 전년 비교 수치 재작성.",
+          "unit": "%",
+          "source": "Intel Q3 2026 Earnings Presentation · 7~8쪽",
+          "note": "같은 3분기 부문 영업이익률 · 연결 순이익률 아님",
           "rows": [
             {
-              "metric_id": "op25",
-              "label": "2025년 7~9월",
-              "value": 379.61,
-              "display": "379.61"
+              "metric_id": "dc_margin",
+              "value": 41.5,
+              "label": "데이터센터·AI",
+              "display": "영업이익률 41.5%"
             },
             {
-              "metric_id": "op26",
-              "label": "2026년 7~9월",
-              "value": 459.15,
-              "display": "459.15"
+              "metric_id": "pc_margin",
+              "value": 28.2,
+              "label": "PC 중심 CCPG",
+              "display": "영업이익률 28.2%"
             }
           ]
         },
+        "takeaway": "제품부문 이익만으로 회사 수익성을 판단하면 제조부문 손실이 빠집니다.",
+        "bridge": "칩을 직접 만드는 제조부문의 손익도 더해야 합니다.",
+        "evidence_ids": [
+          "segments",
+          "factory"
+        ],
         "visual": {
-          "path": "automation/visual_assets/26498c166594baab8c73fc8feade363a54bf86005e2414843544d5f37066fcfb.png",
-          "sha256": "26498c166594baab8c73fc8feade363a54bf86005e2414843544d5f37066fcfb",
-          "alt": "서비스 원가와 운영 비용을 서버 정비 장면으로 표현한 개념 이미지",
+          "path": "automation/visual_assets/442365b9e378ccddd36f4473310ccd83c57e811c3be521308cbb91f622c2154d.png",
+          "sha256": "442365b9e378ccddd36f4473310ccd83c57e811c3be521308cbb91f622c2154d",
+          "alt": "서버와 노트북 보드를 나란히 배치한 부문 비교 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. Close-up of an anonymous software operations workshop, blue server trays being serviced beside a neat tray of silver components and a closed cream invoice folder. Concept: revenue-producing operations still generate profit after operating costs. No coins or charts. Offwhite studio, tactile editorial photographic miniature. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for Korean finance card. Output landscape 1920x768, minimum height 640. Premium tactile 3D sculptural realism in warm off-white, charcoal black and cobalt. Fill the wide frame with readable main subject, no large empty margins. No text, letters, digits, logos, brands, watermarks, arrows, charts or financial symbols. Not a real facility or official product photograph. Subject: a server motherboard and a laptop motherboard displayed on two equally sized off-white museum plinths, both fully visible, unbranded. Oblique panoramic view with subtle cobalt edge lighting. Express two product businesses with different economics, no implied numeric ratio or bars, no currency objects."
         }
       },
       {
         "layout": "explain",
-        "title": "마이크로소프트\n클라우드와 PC의 차이",
-        "body": "서버 서비스와 업무용 소프트웨어를 파는 마이크로소프트입니다. 클라우드 매출은 30% 늘었지만 PC 제조사용 윈도와 기기 매출은 22% 줄었습니다.",
-        "takeaway": "전체 성장률 아래에는 서로 다른 사업의 성적이 섞여 있습니다.",
-        "bridge": "클라우드 확대에는 회사가 먼저 낼 비용도 있습니다.",
+        "title": "직접 만드는 인텔\n제조부문은 적자",
+        "body": "인텔(INTC)은 반도체를 설계하고 직접 생산합니다. 3분기 제조부문 영업손실 약 19억 달러가 제품부문의 이익을 깎았습니다.",
         "labels": [
           {
-            "label": "10/28 정규장",
-            "text": "531.01달러, 전일 531.33달러 대비 −0.06%"
+            "label": "10/29 정규장",
+            "text": "92.07달러 · 전일 95.53달러 대비 -3.62%"
           },
           {
-            "label": "가격 해석의 선",
-            "text": "실적은 폐장 뒤 발표. 이 종가 등락은 실적 반응이 아닙니다."
+            "label": "발표와 구분",
+            "text": "종가는 16:00 EDT, 실적 발표는 16:01 EDT입니다."
           }
         ],
+        "takeaway": "이 종가 하락을 폐장 뒤 나온 실적의 반응으로 해석할 수는 없습니다.",
+        "bridge": "다음 분기에는 공장 가동량도 이익률에 영향을 줍니다.",
         "evidence_ids": [
-          "mixed",
-          "market"
+          "factory",
+          "close"
         ],
         "visual": {
-          "path": "automation/visual_assets/9f000e9723b61868592294c0591a9ede5d29bc841fad6f2c3cdf17e535e07111.png",
-          "sha256": "9f000e9723b61868592294c0591a9ede5d29bc841fad6f2c3cdf17e535e07111",
-          "alt": "클라우드 서버와 개인용 기기의 다른 사업을 나란히 놓은 개념 이미지",
+          "path": "automation/visual_assets/d5ae2aee97eabb27c755240fa81b8038b748c3719d086115d0cddae74e0b835d.png",
+          "sha256": "d5ae2aee97eabb27c755240fa81b8038b748c3719d086115d0cddae74e0b835d",
+          "alt": "설계 도면과 웨이퍼 집게로 설계·제조 사업을 나타낸 개념 일러스트",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. One cobalt server rack and one slim unbranded closed laptop in a charcoal studio, deliberately distinct business objects, soft beam lighting and a horizontal composition. Concept: cloud services and personal-device businesses can perform differently. No symbols or letters, no comparison chart, no changing heights. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for Korean finance card. Output landscape 1920x768, minimum height 640. Premium tactile 3D sculptural realism in warm off-white, charcoal black and cobalt. Fill the wide frame with readable main subject, no large empty margins. No text, letters, digits, logos, brands, watermarks, arrows, charts or financial symbols. Not a real facility or official product photograph. Subject: semiconductor design and manufacturing within one company: a blank engineering drawing sheet beside a broad silicon wafer being held by a generic robotic wafer gripper. Wide close-up at an oblique angle, dark charcoal background and cobalt reflection. No printed drawing labels or precise circuitry claims."
         }
       },
       {
         "layout": "conditions",
-        "title": "설비에 나간 현금\n1년 전의 두 배",
-        "body": "7~9월 유형자산 취득에 쓴 현금은 393.67억달러로 전년 193.94억달러보다 늘었습니다. 영업에서 들어온 순현금 580억달러보다는 적습니다.",
-        "takeaway": "현금은 벌고 있지만, 성장에 필요한 설비 지출도 빠릅니다.",
-        "bridge": "설비 비용이 늘어도 영업이익이 자라는지가 다음 기준입니다.",
+        "title": "생산량을 줄여도\n공장 비용은 남는다",
+        "body": "PC용 칩을 덜 만들면 공장 고정비를 나눠 부담할 매출도 줄어듭니다. 인텔은 제품 구성 변화까지 겹쳐 4분기 매출총이익률이 낮아질 것으로 봅니다.",
+        "origin": "GAAP 매출총이익률: Q3 43.0% → Q4 전망 37.1%",
         "labels": [],
-        "evidence_ids": [
-          "capital"
-        ],
-        "origin": "서버 값은 사용 기간에 나눠 비용으로 반영합니다",
         "branches": [
           {
-            "label": "감당할 조건",
-            "text": "고객 매출과 영업현금이 함께 늘어납니다.",
-            "check": "영업현금과 유형자산 취득 지출을 같은 분기로 비교."
+            "label": "완충 요인",
+            "text": "불량을 줄이고 생산 시간을 단축하면 제조비가 낮아집니다.",
+            "check": "회사는 수율·비용 개선이 일부 상쇄할 것으로 설명"
           },
           {
-            "label": "부담이 커질 조건",
-            "text": "설비 지출이 늘지만 현금 유입은 둔화됩니다.",
-            "check": "영업현금 대비 설비 취득 지출 비중이 계속 높아지는지."
+            "label": "추가 부담",
+            "text": "PC 재고 조정이 길어지면 감산 부담도 이어질 수 있습니다.",
+            "check": "Q4 PC 부문 매출은 전분기 대비 20% 넘게 감소 전망"
           }
         ],
+        "takeaway": "서버 매출 증가만으로 전체 마진 하락을 막는다는 전망은 아닙니다.",
+        "bridge": "성장의 유무보다, 무엇이 매출과 이익을 막는지 구분해야 합니다.",
+        "evidence_ids": [
+          "outlook",
+          "pc"
+        ],
         "visual": {
-          "path": "automation/visual_assets/58090eb5905a50f3391e32f0b41f8691a587281b073cdb9e7091282903a59886.png",
-          "sha256": "58090eb5905a50f3391e32f0b41f8691a587281b073cdb9e7091282903a59886",
-          "alt": "데이터센터 설비를 설치하는 비용을 보여주는 축소 모형 개념 이미지",
+          "path": "automation/visual_assets/66d07b792cb8251fbdf4f3e6e2b3c01977e29a069aad0a0e7f882f59b88244ab.png",
+          "sha256": "66d07b792cb8251fbdf4f3e6e2b3c01977e29a069aad0a0e7f882f59b88244ab",
+          "alt": "일부 장비가 대기 중인 공장으로 감산을 표현한 개념 일러스트",
           "tone": "light",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. Architectural scale model of a partly built data center, a crane fitting a server module into the building, on a warm offwhite worktable. Concept: serving more computing demand requires paying for equipment. A spare metal component in foreground, clean diagonal composition, no coins, no city towers. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for Korean finance card. Output landscape 1920x768, minimum height 640. Premium tactile 3D sculptural realism in warm off-white, charcoal black and cobalt. Fill the wide frame with readable main subject, no large empty margins. No text, letters, digits, logos, brands, watermarks, arrows, charts or financial symbols. Not a real facility or official product photograph. Subject: a generic semiconductor cleanroom production bay with some processing modules illuminated and others in standby, an unprinted production scheduling board in the foreground. Wide frontal cross-section as a refined miniature, warm off-white. Explain reducing factory output while fixed facilities remain. No damaged machines, fire, people or actual factory likeness."
         }
       },
       {
         "layout": "closing",
-        "title": "본업도 성장\n투자손익과는 따로",
-        "body": "이번 실적은 클라우드 판매와 영업이익 증가를 보여줍니다. 다만 투자손실이 줄어 커진 순이익 증가율을, 앞으로의 사업 성장 속도로 그대로 쓰긴 어렵습니다.",
-        "takeaway": "지금은 성장이 없는 회사가 아니라, 성장의 출처를 나눠 볼 회사입니다.",
-        "bridge": "다음 분기는 투자손익보다 영업이익의 증가를 먼저 비교합니다.",
+        "title": "수요 붕괴보다\n출하와 PC의 문제",
+        "body": "지금 근거로는 서버 사업의 성장 종료보다, 팔 수 있는 물량과 PC 구매 둔화가 겹친 상황입니다. 인텔은 4분기에도 서버 부문 성장을 예상합니다.",
         "labels": [
           {
-            "label": "더 강해질 근거",
-            "text": "클라우드 매출 증가가 비용을 웃돌아 영업이익 증가로 이어질 때."
+            "label": "서버의 기준",
+            "text": "DCAI 전분기 대비 10%대 중반 성장 전망과 실제 매출을 비교"
           },
           {
-            "label": "평가를 낮출 조건",
-            "text": "매출은 늘어도 원가·운영비 부담으로 영업이익 증가가 꺾일 때."
+            "label": "PC의 기준",
+            "text": "메모리 가격·공급 안정 뒤 고객 재고와 칩 주문이 돌아오는지"
           }
         ],
+        "takeaway": "서버 출하나 PC 주문이 회복되면 매출 제약이 완화됐는지 재평가할 수 있습니다.",
+        "bridge": "다음 실적은 이 두 경로를 따로 비교할 자료입니다.",
         "evidence_ids": [
-          "profit",
-          "operating",
-          "capital"
+          "counter",
+          "pc",
+          "supply"
         ],
         "visual": {
-          "path": "automation/visual_assets/7ec9bbc7b77d15b48ecb2fc3230f766edc2334d19b6decdd58e9a0b6e4bd64ea.png",
-          "sha256": "7ec9bbc7b77d15b48ecb2fc3230f766edc2334d19b6decdd58e9a0b6e4bd64ea",
-          "alt": "실제 서비스 사업과 재무 기록을 함께 검토하는 개념 이미지",
+          "path": "automation/visual_assets/69cc0f38ebfcdd3f17843edbe152af586a8426a3d1ccd4b9dc278e05a3368bc5.png",
+          "sha256": "69cc0f38ebfcdd3f17843edbe152af586a8426a3d1ccd4b9dc278e05a3368bc5",
+          "alt": "칩 검사 렌즈와 출하용 트레이, 메모리 부품의 개념 일러스트",
           "tone": "dark",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide landscape1536x1024 illustration for Korean finance editorial. A refined open black document case holding a cobalt server component and plain cream financial paper sheets, seen from a low oblique angle on a cream tabletop, soft morning light. Concept: judging an investment with both real business operations and financial statements. No magnifier, no logos, no words, no diagrams. Crisp sophisticated physical miniature and material realism, off-white black cobalt palette. No text, numbers, logos, watermarks, financial charts, arrows, or recognizable products. Not a real event or official company photograph."
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for Korean finance card. Output landscape 1920x768, minimum height 640. Premium tactile 3D sculptural realism in warm off-white, charcoal black and cobalt. Fill the wide frame with readable main subject, no large empty margins. No text, letters, digits, logos, brands, watermarks, arrows, charts or financial symbols. Not a real facility or official product photograph. Subject: quality and readiness of semiconductor shipments: a pristine generic chip package under a large inspection lens, with an open empty shipping tray and a removable laptop memory module beside it. Wide macro composition, dark charcoal and cobalt, sharp visual focus. Symbolize two checks: chips ready to ship and availability of memory; no numbers, checkmarks or charts."
         }
       }
     ],
-    "editorial_review": {
-      "improvement": "최근 하이닉스·BE·이란·한은·인도네시아 원고와 실제 21장을 비교. 이번 개선은 성장률의 원인을 먼저 풀고 결론을 현재 판단으로 끝내기. '순이익32% 증가' 채택; '가짜 성장'은 영업이익21% 증가에 반하고 'Azure48%'만의 제목은 핵심 차이를 놓쳐 제외.",
-      "reason": "불스토리 공식 웹 「앗 SK, 하이닉스보다 싸다!」 도입·지분구조·EPS 도입 구간과 홍춘욱 「미국 경제의 질주 2023년3분기에도 이어져」 본문 비교. 수치 뒤 구성요소를 푸는 순서 참고. Instagram 전 장 미열람. 권유·목표가·인과 단정은 가져오지 않음.",
-      "application": "초안 '기저효과로 순이익 성장률 확대'를 2장 '비교 출발점이 낮았던 만큼, 보고된 증가율도 더 커진 셈입니다'로 퇴고. 3장 사용료→4장 영업이익→6장 설비 지출 연결. 첫 preview 7장 검수 후4장 제품 원가 누락과6장 서버 비용의 기간 배분을 보강. 이름은5장 제목, 4장 출처에도 표기.",
-      "avoided_repetition": "BE처럼 가격 인과 주의만으로 한 장을 채우지 않고5장 근거로 묶음. 최근의 '관건·여력·입증'과 '다음에 확인' 반복, 주주환원·예약매출·EPS 주변 숫자는 제외. 직전 시장 폭 보완은 종목편에 억지 적용하지 않음. 인사이트 미확보. 다음은 부문별 이익률 설명 강화."
-    }
-  },
-  "reviewed_preview": {
-    "run_id": 40790536228,
-    "image_sha256": [
-      "cd90eb51ebfe6e2601184754e9b4987218011aca4fdd8ecd3ad27694a79ddc07",
-      "ba0858cee5b87c295422517bbfdb6082b3889cc5e26968eb8da1f6b5dcc102e7",
-      "678c6eff905ffe65e1edcb27e6bb20f9feb14386f0514787cd1eaa130d8e8b23",
-      "76d793b01b5340c7edcd401c6ba0cfaafb5f878fa4f54e9e1723512a351075fb",
-      "d1c05063761fa395e2455078b376f6ea8ac24a599c73b80f1f1230f690e75322",
-      "1c337fa3111c522201a495d4f80e028c1c7fa7174107929221890d3d584c903f",
-      "95e5671d75f923549e9a0219468a5a7b9493245d1913101c8e0118ee8745e86f"
+    "market_basis": {
+      "ticker": "INTC",
+      "session_date": "2026-10-29",
+      "price_basis": "regular_close",
+      "currency": "USD",
+      "close": 92.07,
+      "previous_close": 95.53,
+      "change_pct": -3.62
+    },
+    "sources": [
+      {
+        "id": "release",
+        "title": "Intel Q3 2026 financial results",
+        "url": "https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results",
+        "as_of": "2026-10-29 16:01 EDT 발표 · Q3 종료 2026-09-26 · Q4는 회사 전망"
+      },
+      {
+        "id": "remarks",
+        "title": "Intel Q3 2026 CEO/CFO prepared remarks",
+        "url": "https://d1io3yog0oux5.cloudfront.net/_47986fe477a6ac84fe34efbcbf38dd13/intel/db/887/9273/prepared_remarks/Q3%2726_Prepared_Remarks.pdf",
+        "as_of": "2026-10-29 14:00 PDT 실적설명회 준비 원고 · 회사 설명과 전망"
+      },
+      {
+        "id": "deck",
+        "title": "Intel Q3 2026 earnings presentation",
+        "url": "https://d1io3yog0oux5.cloudfront.net/_47986fe477a6ac84fe34efbcbf38dd13/intel/db/887/9273/earnings_presentation/Q3_2026_Earnings_Deck.pdf",
+        "as_of": "2026-10-29 발표 · 2026 Q3 부문 실적 · 슬라이드 7·8"
+      },
+      {
+        "id": "prices",
+        "title": "Stock Analysis INTC historical prices · S&P Global",
+        "url": "https://stockanalysis.com/stocks/intc/history/",
+        "as_of": "2026-10-29·10-28 정규장 Close 열 · 동일 주식분할 조정 기준 USD"
+      },
+      {
+        "id": "nyse",
+        "title": "NYSE hours and calendars",
+        "url": "https://www.nyse.com/trade/hours-calendars",
+        "as_of": "2026년 공식 휴장·조기폐장 달력 · 정규장 09:30–16:00 ET"
+      },
+      {
+        "id": "nasdaq",
+        "title": "Nasdaq stock market holiday schedule",
+        "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
+        "as_of": "2026년 공식 휴장·조기폐장 달력 · 10월 29일 정상 거래일"
+      }
     ]
   }
 }
