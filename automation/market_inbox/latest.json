@@ -3,308 +3,241 @@
   "kind": "market_brief",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-10-29T14:09:53+09:00",
-  "publication_date_kst": "2026-10-29",
-  "snapshot_at": "2026-10-29T13:59:19+09:00",
+  "created_at": "2026-10-30T14:07:17+09:00",
+  "publication_date_kst": "2026-10-30",
+  "snapshot_at": "2026-10-30T14:00:39+09:00",
   "kr_session": {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "status": "open",
     "source_id": "naver-index",
-    "evidence": "13:59:19 KST 코스피·코스닥 모두 marketStatus=OPEN으로 확인했습니다."
+    "evidence": "14:00:39 KST 코스피·코스닥 모두 marketStatus=OPEN으로 확인했습니다."
   },
   "sources": [
     {
       "id": "naver-index",
       "title": "네이버 금융 · 코스피·코스닥 실시간 지수 API",
       "url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ",
-      "as_of": "2026-10-29 13:59:19 KST; 코스피 5,940.78, 코스닥 753.60",
-      "retrieved_at": "2026-10-29T13:59:19+09:00"
+      "as_of": "2026-10-30 14:00:39 KST; 코스피 5,746.10, 코스닥 725.09",
+      "retrieved_at": "2026-10-30T14:00:40+09:00"
     },
     {
       "id": "naver-chip",
       "title": "네이버 금융 · 삼성전자·SK하이닉스 실시간 시세 API",
       "url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
-      "as_of": "2026-10-29 13:59:09 KST; 삼성전자 -4.75%, SK하이닉스 +3.36%",
-      "retrieved_at": "2026-10-29T13:59:09+09:00"
-    },
-    {
-      "id": "samsung-results",
-      "title": "삼성전자 뉴스룸 · 2026년 3분기 실적",
-      "url": "https://news.samsung.com/kr/삼성전자-2026년-3분기-실적-발표",
-      "as_of": "2026-10-29 발표; 전사·DS 실적, 주주환원, 설비투자",
-      "retrieved_at": "2026-10-29T13:52:00+09:00"
+      "as_of": "2026-10-30 14:01:09 KST; 삼성전자 -2.69%, SK하이닉스 -5.83%",
+      "retrieved_at": "2026-10-30T14:01:10+09:00"
     },
     {
       "id": "reuters-market",
-      "title": "Reuters · 2026년 10월 29일 아시아 시장",
-      "url": "https://www.reuters.com/world/china/global-markets-global-markets-2026-10-29/",
-      "as_of": "2026-10-29 11:28 KST 보도; 혼재된 AI 실적 반응과 한국 증시",
-      "retrieved_at": "2026-10-29T13:48:00+09:00"
+      "title": "Reuters · AI 투자 회수 우려와 10월 30일 글로벌 시장",
+      "url": "https://www.reuters.com/legal/transactional/global-markets-global-markets-2026-10-30/",
+      "as_of": "2026-10-30 02:45 UTC 보도; AI 투자 회수 우려·아시아 기술주·미 국채",
+      "retrieved_at": "2026-10-30T14:02:00+09:00"
     },
     {
-      "id": "bea-calendar",
-      "title": "미국 경제분석국 · 2026년 발표 일정",
-      "url": "https://www.bea.gov/news/schedule/",
-      "as_of": "2026-10-29 08:30 EDT; 3분기 GDP 속보치·9월 개인소득지출",
-      "retrieved_at": "2026-10-29T13:50:00+09:00"
+      "id": "alphabet-results",
+      "title": "Alphabet · 2026년 3분기 실적 발표(Form 8-K 공개본)",
+      "url": "https://www.publicnow.com/view/ED018F4AAE12FB3B1BD1E9649EA9BF381E69B00F",
+      "as_of": "2026-10-28 발표; 매출·영업현금·설비투자·잉여현금흐름",
+      "retrieved_at": "2026-10-30T14:03:00+09:00"
     },
     {
-      "id": "amazon-ir",
-      "title": "Amazon · 2026년 3분기 실적발표 일정",
-      "url": "https://press.aboutamazon.com/2026/10/amazon-com-to-webcast-third-quarter-2026-financial-results-conference-call",
-      "as_of": "2026-10-29 17:00 EDT 실적 컨퍼런스콜",
-      "retrieved_at": "2026-10-29T13:51:00+09:00"
+      "id": "bls-calendar",
+      "title": "미국 노동통계국 · 2026년 10월 발표 일정",
+      "url": "https://www.bls.gov/schedule/2026/10_sched_list.htm",
+      "as_of": "2026-10-30 08:30 EDT; 2026년 3분기 고용비용지수",
+      "retrieved_at": "2026-10-30T14:04:00+09:00"
     },
     {
-      "id": "intel-ir",
-      "title": "Intel IR · 2026년 3분기 실적발표 일정",
-      "url": "https://www.intc.com/news-events/press-releases/detail/1782/intel-to-report-third-quarter-2026-financial-results",
-      "as_of": "2026-10-29 장 마감 직후 발표; 14:00 PDT 컨퍼런스콜",
-      "retrieved_at": "2026-10-29T13:51:00+09:00"
+      "id": "bullstory-memory",
+      "title": "불스토리 · 반도체 주식 이때 떡상한다",
+      "url": "https://bullstory.io/blog/반도체-주식-이때-떡상한다",
+      "as_of": "2026-10-17 공식 사이트 본문 전체·설명 이미지 2장 열람; Instagram 미열람",
+      "retrieved_at": "2026-10-30T14:05:00+09:00"
     },
     {
-      "id": "bullstory",
-      "title": "불스토리 · 삼성전자 호실적 뒤 주가 하락 배경",
-      "url": "https://bullstory.io/blog/삼성전자-주가-하락-이유-89조-영업이익에도-18-급락한-진짜-배경과-8월-최신-상황",
-      "as_of": "검색 결과에 공개된 본문 구간 열람; 전체 페이지 타임아웃·Instagram 카드 미열람",
-      "retrieved_at": "2026-10-29T13:46:00+09:00"
-    },
-    {
-      "id": "frism-hmm",
-      "title": "프리즘 · 실적 최고인데 주가 폭락? HMM이 주는 조언",
-      "url": "https://www.frism.io/siljeog-coegoinde-juga-pograg-hmmi-juneun-joeon/",
-      "as_of": "2026-10-13 홍춘욱 CEO·인턴 인터뷰 공식 전사 전체 열람",
-      "retrieved_at": "2026-10-29T13:47:00+09:00"
+      "id": "frism-power",
+      "title": "프리즘 · 전력은 AI의 병목인가 장애물인가",
+      "url": "https://www.frism.io/jeonryeogeun-aiyi-byeongmoginga-jangaemulinga/",
+      "as_of": "2026-10-08 배재현 CIO 공식 공개 스크립트 전체 열람",
+      "retrieved_at": "2026-10-30T14:06:00+09:00"
     }
   ],
   "quotes": [
     {
       "id": "KOSPI",
       "name": "코스피",
-      "value": 5940.78,
-      "previous_close": 6012.44,
-      "change_pct": -1.19,
+      "value": 5746.1,
+      "previous_close": 5937.66,
+      "change_pct": -3.23,
       "basis": "intraday",
-      "as_of": "2026-10-29T13:59:19+09:00",
+      "as_of": "2026-10-30T14:00:39+09:00",
       "source_id": "naver-index"
     },
     {
       "id": "KOSDAQ",
       "name": "코스닥",
-      "value": 753.6,
-      "previous_close": 771.28,
-      "change_pct": -2.29,
+      "value": 725.09,
+      "previous_close": 753.23,
+      "change_pct": -3.74,
       "basis": "intraday",
-      "as_of": "2026-10-29T13:59:19+09:00",
+      "as_of": "2026-10-30T14:00:39+09:00",
       "source_id": "naver-index"
     }
   ],
   "events": [
     {
-      "title": "미 GDP·PCE",
-      "at": "2026-10-29T08:30:00-04:00",
-      "note": "3분기 성장률과 9월 소비·물가",
-      "source_id": "bea-calendar"
-    },
-    {
-      "title": "Amazon 실적",
-      "at": "2026-10-29T17:00:00-04:00",
-      "note": "클라우드 투자 흐름",
-      "source_id": "amazon-ir"
-    },
-    {
-      "title": "Intel 실적",
-      "at": "2026-10-29T14:00:00-07:00",
-      "note": "데이터센터 전망",
-      "source_id": "intel-ir"
+      "title": "미 고용비용지수",
+      "at": "2026-10-30T08:30:00-04:00",
+      "note": "3분기 임금·복리후생 비용 변화",
+      "source_id": "bls-calendar"
     }
   ],
   "summary": {
     "design": "editorial-v2",
-    "instagram_caption": "삼성전자는 분기 영업이익 107.4조원을 냈지만 주가는 4.75% 내렸습니다. 지금 시장은 이익의 크기보다 다음 증가 속도와 투자 부담을 함께 가격에 넣고 있습니다. #코스피 #삼성전자 #반도체",
+    "instagram_caption": "AI 투자는 계속되지만, 오늘 시장은 더 쓰는 속도보다 현금으로 돌아오는 속도를 물었습니다. 국내 반도체도 이제 빅테크의 투자액과 회수력을 함께 봐야 합니다. #코스피 #AI투자 #반도체",
     "editorial_review": {
-      "improvement": "최근 5편은 표지 결론을 뒤에서 반복했고, 직전 오후편은 시장 폭을 충분히 보여주지 못했습니다. 이번에는 최대 이익·설비투자·두 반도체주의 반대 방향을 분리해, 지수 하락을 한 종목 이야기로 축소하지 않았습니다.",
-      "reason": "불스토리는 검색 결과에 공개된 본문 구간만 확인했고 전체 페이지와 Instagram 카드는 열지 못했습니다. 프리즘의 홍춘욱 공식 전사 전체에서 이익 규모보다 증가 속도가 먼저 꺾일 수 있다는 설명 순서를 참고했습니다.",
-      "application": "초안 '삼성전자 최대 이익에도 하락'을 '107조 벌고도 -4.75% / 코스피 다시 6천 아래'로 고쳤습니다. 2장에서 이익과 84.4조원 설비투자를 나누고, 3장에서 삼성전자↓·SK하이닉스↑를 붙여 업종 전체 붕괴와 구분했습니다.",
-      "avoided_repetition": "어제 SK하이닉스의 배당·소각 구성과 오늘 아침 마이크로소프트의 투자손익 조정은 반복하지 않았습니다. '관건·여력·입증'과 목표주가·매수 판단을 버렸습니다. 다음 편은 실제 상승·하락 종목 수를 확보해 시장 폭을 더 직접 보여줍니다."
+      "improvement": "최근 5편은 기업 실적·한 종목의 선택을 설명했고 직전 인텔편은 제품별 수요와 공장비용을 연결했습니다. 이번에는 국내 지수 하락을 ‘반도체 약세’로 끝내지 않고 빅테크 영업현금→설비투자→한국 공급사 주문의 돈 이동으로 설명한 한 가지를 개선했습니다.",
+      "reason": "불스토리(국내 브랜드) 10/17 공식 글 본문 전체·설명 이미지 2장은 투자 상향 자체보다 기대 초과와 HBM 협상을 나눴습니다. 프리즘 배재현 CIO 10/8 공식 스크립트 전체는 데이터센터 수요가 비용·전력 제약을 통과해야 한다고 설명했습니다. 두 곳의 Instagram 카드는 미열람했고 고유 문구·전망은 가져오지 않았습니다.",
+      "application": "초안 ‘AI 우려로 반도체 급락’→퇴고 ‘AI 투자는 계속되지만, 시장은 그 돈이 현금으로 돌아오는 속도를 다시 물었습니다.’ 2장에 알파벳 영업현금 423억달러와 설비투자 514억달러를 붙이고, 3장에 삼성전자 -2.69%·SK하이닉스 -5.83%가 최종 구매자의 회수력과 연결되는 경로를 보강했습니다.",
+      "avoided_repetition": "인텔편의 서버 공급 부족·PC 감산·공장 사고는 제외하고, 전일 오후편의 삼성 최대이익·설비투자 반복도 버렸습니다. ‘AI 붕괴’는 클라우드 매출 +103%가 반박해 제목 후보에서 탈락했습니다. 다음 편은 현금 회수와 실제 신규 주문의 시차를 같은 기간으로 비교합니다. 반응 지표는 미확보입니다."
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "107조 벌고도 -4.75%\n코스피 다시 6천 아래",
-        "accent": "코스피 다시 6천 아래",
-        "body": "13시 59분 코스피는 5,940.78로 1.19%, 코스닥은 2.29% 내렸습니다. 삼성전자는 최대 이익 발표 뒤 4.75% 하락했습니다.",
-        "source_ids": [
-          "naver-index",
-          "naver-chip",
-          "samsung-results"
-        ],
+        "title": "AI 투자는 계속\n시장은 회수 속도를 물었다",
+        "accent": "회수 속도를 물었다",
+        "body": "코스피 -3.23%, 코스닥 -3.74%. AI 설비투자가 매출과 현금으로 돌아오는 속도를 의심하며 국내 주식도 함께 낮춰 가격을 매겼습니다.",
+        "source_ids": ["naver-index", "reuters-market"],
         "items": [],
         "visual": {
-          "alt": "빛나는 반도체 이익 탑과 아래로 미끄러지는 시장가치 블록을 분리한 개념 이미지",
+          "path": "automation/visual_assets/fab941f9e1d4149b7b9325aeb83fa9b5af2032ef62b4c9781265ec05e768f4b4.png",
+          "sha256": "fab941f9e1d4149b7b9325aeb83fa9b5af2032ef62b4c9781265ec05e768f4b4",
+          "alt": "거대한 데이터센터 건설과 작은 회수 상자를 대비한 AI 투자 개념 이미지",
           "tone": "dark",
-          "path": "automation/visual_assets/33116d0fb1cff5449b4cb316127854d05fb62104cab3201eda7beb6ad03f3631.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide editorial illustration for a Korean finance Instagram card, landscape 1536x1024. Primary request: visualize record corporate profit and a falling stock price existing at the same time. Scene: a tall luminous semiconductor stack on an upper platform and a separate heavy market-value block sliding down a short ramp below. Premium tactile 3D still life, charcoal black, warm off-white and cobalt, generous copy space. No text, numbers, logos, people, arrows, charts, candlesticks, watermark, border, or recognizable products. Concept image, not an official photo.",
-          "sha256": "33116d0fb1cff5449b4cb316127854d05fb62104cab3201eda7beb6ad03f3631"
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for a Korean finance Instagram card, landscape 1536x1024. Show an enormous AI data-center construction site where servers enter while a much smaller tray of finished value exits. Premium tactile miniature 3D realism, warm off-white, charcoal and cobalt. No text, digits, logos, people, arrows, charts, currency, watermark or border. Not a real facility or official product photograph."
         }
       },
       {
         "layout": "drivers",
-        "title": "최대 이익 옆에\n84.4조 투자비",
-        "accent": "84.4조 투자비",
-        "body": "삼성전자의 분기 영업이익은 107.4조원입니다. 올해 설비투자는 약 84.4조원으로 예상했습니다.",
-        "source_ids": [
-          "samsung-results"
-        ],
+        "title": "매출은 늘었지만\n현금보다 더 썼다",
+        "accent": "현금보다 더 썼다",
+        "body": "알파벳 매출은 25% 늘었습니다. 하지만 3분기 설비투자가 영업으로 번 현금을 넘어 잉여현금흐름은 마이너스였습니다.",
+        "source_ids": ["alphabet-results", "reuters-market"],
         "items": [
           {
-            "label": "번 돈",
-            "text": "DS부문 영업이익 106.5조원이 전사 이익 대부분입니다.",
+            "label": "영업으로 번 현금",
+            "text": "423억달러 · 3분기 영업활동현금흐름",
             "type": "fact",
-            "source_ids": [
-              "samsung-results"
-            ]
+            "source_ids": ["alphabet-results"]
           },
           {
-            "label": "먼저 쓸 돈",
-            "text": "3분기 설비투자 29조원, 전분기보다 12.2조원 늘었습니다.",
+            "label": "서버·센터에 쓴 돈",
+            "text": "514억달러 · 3분기 설비투자",
             "type": "fact",
-            "source_ids": [
-              "samsung-results"
-            ]
+            "source_ids": ["alphabet-results"]
           },
           {
-            "label": "구분할 점",
-            "text": "투자비가 당일 하락을 만들었다고 단정할 근거는 없습니다.",
+            "label": "남은 결과",
+            "text": "잉여현금흐름 -91억달러 · 투자비를 뺀 현금",
             "type": "analysis",
-            "source_ids": [
-              "samsung-results",
-              "reuters-market"
-            ]
+            "source_ids": ["alphabet-results"]
           }
         ],
         "visual": {
-          "alt": "반도체 생산 이익이 수익 상자와 새 공장 투자로 동시에 흘러가는 개념 이미지",
+          "path": "automation/visual_assets/a48ed6f4d0aacd25252b1e8034e3dc8be5e9b7447a499aa5d1e3be1cce63c613.png",
+          "sha256": "a48ed6f4d0aacd25252b1e8034e3dc8be5e9b7447a499aa5d1e3be1cce63c613",
+          "alt": "영업현금 저장고보다 큰 투자 배수관으로 서버 건설비가 빠지는 개념 이미지",
           "tone": "light",
-          "path": "automation/visual_assets/37fc237beda05f3b9a14e82ffc6f096e3102e2c257df8566d17076943251cf23.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide editorial illustration for a Korean finance Instagram card, landscape 1536x1024. Primary request: show a chip business earning a huge operating profit while sending a large share of cash into new factory investment. A fabrication machine produces metal discs; some collect in a profit tray while a larger flow feeds an unfinished cleanroom. Premium miniature 3D still life, warm off-white, charcoal and cobalt, wide copy space. No text, numbers, logos, people, arrows, charts, stock motifs, watermark or border. Do not depict real facilities.",
-          "sha256": "37fc237beda05f3b9a14e82ffc6f096e3102e2c257df8566d17076943251cf23"
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for a Korean finance Instagram card. Operating cash enters a reservoir while a larger cobalt pipe drains funds into unfinished servers and data-center structures. Premium tactile miniature 3D realism, warm off-white, charcoal and cobalt. No text, digits, logos, people, arrows, charts, currency, watermark or border."
         }
       },
       {
         "layout": "sectors",
-        "title": "같은 반도체인데\n주가는 반대로 갔다",
-        "accent": "주가는 반대로 갔다",
-        "body": "삼성전자 -4.75%, SK하이닉스 +3.36%. 같은 AI 수요 안에서도 주가는 갈렸습니다.",
-        "source_ids": [
-          "naver-chip",
-          "reuters-market"
-        ],
+        "title": "한국 반도체도\n구매자의 계산을 탄다",
+        "accent": "구매자의 계산을 탄다",
+        "body": "칩 회사가 잘 벌어도 최종 구매자가 투자 회수를 늦게 보면 주문 기대가 낮아집니다. 오늘 두 대표주도 함께 내렸습니다.",
+        "source_ids": ["naver-chip", "reuters-market", "bullstory-memory", "frism-power"],
         "items": [
           {
             "label": "삼성전자",
-            "text": "최대 이익 발표 뒤 23만500원으로 내렸습니다.",
+            "text": "22만5,750원 · 14:01 기준 -2.69%",
             "type": "fact",
-            "source_ids": [
-              "naver-chip",
-              "samsung-results"
-            ]
+            "source_ids": ["naver-chip"]
           },
           {
             "label": "SK하이닉스",
-            "text": "153만7천원으로 올랐습니다.",
+            "text": "143만7천원 · 14:01 기준 -5.83%",
             "type": "fact",
-            "source_ids": [
-              "naver-chip"
-            ]
+            "source_ids": ["naver-chip"]
           },
           {
-            "label": "시장 해석",
-            "text": "업종 수요보다 종목별 기대 차이가 더 크게 반영됐습니다.",
+            "label": "돈의 경로",
+            "text": "빅테크 투자 회수력→서버 주문→AI칩·메모리 수요",
             "type": "analysis",
-            "source_ids": [
-              "reuters-market",
-              "frism-hmm"
-            ]
+            "source_ids": ["reuters-market", "bullstory-memory", "frism-power"]
           }
         ],
         "visual": {
-          "alt": "하나의 웨이퍼에서 시작해 서로 다른 방향으로 갈라지는 두 반도체 경로의 개념 이미지",
+          "path": "automation/visual_assets/174cab3aa582b7a307fa620004c6f787fa1a76f8c39e1e9b1e7da6fce8cf6550.png",
+          "sha256": "174cab3aa582b7a307fa620004c6f787fa1a76f8c39e1e9b1e7da6fce8cf6550",
+          "alt": "두 반도체 공급선이 데이터센터 구매 관문 앞에서 멈춘 개념 이미지",
           "tone": "dark",
-          "path": "automation/visual_assets/5cca2783fb1c15a357a20efaca5c8344e4ef2bd643eba877a0f1150a9c903844.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide editorial illustration for a Korean finance Instagram card, landscape 1536x1024. Primary request: visualize two semiconductor companies moving in opposite directions in the same AI chip cycle. One cobalt wafer splits into two precision tracks; one climbs toward a lit data-center module while the other descends to a shadowed valuation platform. Sophisticated 3D installation, charcoal, cobalt and off-white. No text, numbers, logos, people, arrows, charts, candlesticks, watermark, border or recognizable products.",
-          "sha256": "5cca2783fb1c15a357a20efaca5c8344e4ef2bd643eba877a0f1150a9c903844"
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for a Korean finance Instagram card. One silicon wafer splits into two semiconductor supply chains leading to a closed data-center purchase gate and blank invoice tray. Premium tactile miniature 3D realism, dark charcoal, warm off-white and cobalt. No people, text, digits, logos, arrows, charts, currency, watermark or border."
         }
       },
       {
         "layout": "calendar",
-        "title": "오늘 밤에는\n미국 숫자를 본다",
-        "accent": "미국 숫자를 본다",
-        "body": "21시 30분 GDP·PCE, 다음 날 06시 Amazon·Intel 실적이 나옵니다.",
-        "source_ids": [
-          "bea-calendar",
-          "amazon-ir",
-          "intel-ir"
-        ],
+        "title": "오늘 밤 21시 30분\n미국 임금비용 확인",
+        "accent": "미국 임금비용 확인",
+        "body": "3분기 고용비용지수는 기업의 임금·복리후생 부담을 보여줍니다. 금리와 성장주 할인율에 연결될 수 있습니다.",
+        "source_ids": ["bls-calendar", "reuters-market"],
         "items": [],
         "visual": {
-          "alt": "서울의 저녁에서 미국 경제지표와 기술기업 실적 시간으로 이어지는 탁상 타임라인 개념 이미지",
+          "path": "automation/visual_assets/0ddf2623572c24e3c72faa487fe33b12f29a362d20fd8b8fe62c668b1d183aa2.png",
+          "sha256": "0ddf2623572c24e3c72faa487fe33b12f29a362d20fd8b8fe62c668b1d183aa2",
+          "alt": "시계와 빈 임금 장부, 서버 설비를 나란히 둔 미국 일정 개념 이미지",
           "tone": "light",
-          "path": "automation/visual_assets/f5a3e3eaa980b63f80006cbddc40f82a5cfcd285368da4acc8d30cdc194f28f5.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide editorial illustration for a Korean finance Instagram card, landscape 1536x1024. Primary request: connect an afternoon Seoul market to tonight's U.S. GDP, spending-inflation data and major technology earnings. A clean tabletop timeline with an unlabeled national-accounts ledger, household basket and server rack approaching an evening clock, fading city-market light behind. Premium editorial 3D still life, warm off-white to cobalt. No text, numbers, flags, logos, people, charts, arrows, watermark or border.",
-          "sha256": "f5a3e3eaa980b63f80006cbddc40f82a5cfcd285368da4acc8d30cdc194f28f5"
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for a Korean finance Instagram card. A clock beside a blank wage ledger, unprinted bond certificate and AI server rack. Premium tactile miniature 3D realism, warm off-white and cobalt. No banknotes, coins, currency symbols, flags, people, text, digits, logos, charts, watermark or border."
         }
       },
       {
         "layout": "watch",
-        "title": "좋은 실적보다\n다음 증가 속도를 본다",
-        "accent": "다음 증가 속도를 본다",
-        "body": "현재는 수요 소멸보다 기대 재조정에 가깝습니다. 세 숫자가 약해지면 해석을 낮춥니다.",
-        "source_ids": [
-          "samsung-results",
-          "naver-chip",
-          "bea-calendar",
-          "frism-hmm"
-        ],
+        "title": "투자액보다\n회수 속도를 함께 본다",
+        "accent": "회수 속도를 함께 본다",
+        "body": "지금은 AI 수요 소멸보다 투자 회수 의심에 가깝습니다. 매출·현금·주문이 함께 좋아져야 해석이 달라집니다.",
+        "source_ids": ["alphabet-results", "reuters-market", "bullstory-memory", "frism-power"],
         "items": [
           {
-            "label": "이익 속도",
-            "text": "다음 DS 영업이익 증가율을 봅니다.",
+            "label": "빅테크 현금",
+            "text": "영업현금이 설비투자를 다시 웃도는지 확인",
             "type": "watch",
-            "source_ids": [
-              "samsung-results",
-              "frism-hmm"
-            ]
+            "source_ids": ["alphabet-results"]
           },
           {
-            "label": "투자 회수",
-            "text": "84.4조원 투자가 매출로 바뀌는지 봅니다.",
+            "label": "AI 매출",
+            "text": "클라우드 성장과 투자 증가가 함께 이어지는지 확인",
             "type": "watch",
-            "source_ids": [
-              "samsung-results"
-            ]
+            "source_ids": ["alphabet-results", "reuters-market"]
           },
           {
-            "label": "시장 폭",
-            "text": "코스닥과 두 반도체주의 방향 차이를 봅니다.",
+            "label": "한국 공급사",
+            "text": "HBM 물량·가격 협상과 실제 신규 주문을 확인",
             "type": "watch",
-            "source_ids": [
-              "naver-index",
-              "naver-chip"
-            ]
+            "source_ids": ["bullstory-memory", "frism-power"]
           }
         ],
         "visual": {
-          "alt": "돋보기 아래 이익 증가 속도와 공장 투자, 시장 폭을 세 구역으로 살피는 개념 이미지",
+          "path": "automation/visual_assets/470e40752a7b2afc172fb80986f2776b693b06fce7c189bdb1366ef197fcfa08.png",
+          "sha256": "470e40752a7b2afc172fb80986f2776b693b06fce7c189bdb1366ef197fcfa08",
+          "alt": "확대경으로 서버 투자와 클라우드 매출, 현금 회수를 함께 살피는 개념 이미지",
           "tone": "dark",
-          "path": "automation/visual_assets/400db77c5033fd36ad5b2e26b8325b0059cf772f90cb3f6ff110b01d3e292940.png",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Asset type: wide editorial illustration for a Korean finance Instagram card, landscape 1536x1024. Primary request: show three checks that separate a temporary expectation reset from deeper deterioration. A large magnifying lens examines a stack with shrinking increments, a heavy factory-investment block and a broad tray of small market tiles. Premium tactile 3D still life, charcoal black, cobalt and warm off-white, ample copy space. No text, numbers, logos, people, arrows, charts, candlesticks, watermark or border.",
-          "sha256": "400db77c5033fd36ad5b2e26b8325b0059cf772f90cb3f6ff110b01d3e292940"
+          "prompt": "Use case: stylized-concept. Asset type: wide editorial conceptual illustration for a Korean finance Instagram card. A magnifying lens examines a server investment block, cloud-revenue box and free-cash reservoir. Premium tactile miniature 3D realism, charcoal, warm off-white and cobalt. No text, digits, logos, people, arrows, charts, currency, watermark or border."
         }
       }
     ]
