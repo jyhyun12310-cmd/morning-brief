@@ -1,8 +1,18 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
+  "reviewed_preview": {
+    "run_id": 41393398831,
+    "image_sha256": [
+      "fa7e190976e18010c3afb14a17830f9bb6a099b95cbfbf0e576386b425212ec3",
+      "c7b1a59adf542532d2d81c1d59683007e19db79bf2b45a4f87c48d23846e5914",
+      "55bbaf8d8ff8f894ae83866612e1855e537134333f54f47e69cf1b6652a71255",
+      "ae2af1126fe86409a1aec57a56b873df74b81e3d484c5e5533fe1fc77bdfc5ae",
+      "eb1227f432862529037ac5821d37988cb4fcdcd34425a2cb9c1386fcf3fdd922"
+    ]
+  },
   "created_at": "2026-11-02T14:13:00+09:00",
   "publication_date_kst": "2026-11-02",
   "snapshot_at": "2026-11-02T14:11:52+09:00",
