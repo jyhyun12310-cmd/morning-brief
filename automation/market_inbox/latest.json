@@ -3,29 +3,29 @@
   "kind": "market_brief",
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-11-04T14:10:00+09:00",
+  "created_at": "2026-11-04T14:18:00+09:00",
   "publication_date_kst": "2026-11-04",
-  "snapshot_at": "2026-11-04T14:09:31+09:00",
+  "snapshot_at": "2026-11-04T14:17:22+09:00",
   "kr_session": {
     "date": "2026-11-04",
     "status": "open",
     "source_id": "naver-index",
-    "evidence": "14:09:24 KST 코스피·코스닥 모두 marketStatus=OPEN으로 확인했습니다."
+    "evidence": "14:17 KST 코스피·코스닥 당일 장중 값과 삼성전자 marketStatus=OPEN을 확인했습니다."
   },
   "sources": [
     {
       "id": "naver-index",
       "title": "네이버 금융 · 코스피·코스닥 실시간 지수 API",
       "url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ",
-      "as_of": "2026-11-04 14:09:24 KST; 코스피 5,577.06, 코스닥 702.60",
-      "retrieved_at": "2026-11-04T14:09:25+09:00"
+      "as_of": "2026-11-04 14:17:15 KST; 코스피 5,607.23, 코스닥 705.66",
+      "retrieved_at": "2026-11-04T14:17:15+09:00"
     },
     {
       "id": "naver-chip",
       "title": "네이버 금융 · 삼성전자·SK하이닉스 실시간 시세 API",
       "url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
-      "as_of": "2026-11-04 14:09:31 KST; 삼성전자 -2.51%, SK하이닉스 -2.65%",
-      "retrieved_at": "2026-11-04T14:09:32+09:00"
+      "as_of": "2026-11-04 14:17 KST; 삼성전자 -2.05%, SK하이닉스 -2.00%",
+      "retrieved_at": "2026-11-04T14:17:38+09:00"
     },
     {
       "id": "reuters-market",
@@ -88,21 +88,21 @@
     {
       "id": "KOSPI",
       "name": "코스피",
-      "value": 5577.06,
+      "value": 5607.23,
       "previous_close": 5648.79,
-      "change_pct": -1.27,
+      "change_pct": -0.74,
       "basis": "intraday",
-      "as_of": "2026-11-04T14:09:24+09:00",
+      "as_of": "2026-11-04T14:17:15+09:00",
       "source_id": "naver-index"
     },
     {
       "id": "KOSDAQ",
       "name": "코스닥",
-      "value": 702.60,
+      "value": 705.66,
       "previous_close": 704.39,
-      "change_pct": -0.25,
+      "change_pct": 0.18,
       "basis": "intraday",
-      "as_of": "2026-11-04T14:09:24+09:00",
+      "as_of": "2026-11-04T14:17:15+09:00",
       "source_id": "naver-index"
     }
   ],
@@ -116,17 +116,17 @@
   ],
   "summary": {
     "design": "editorial-v2",
-    "instagram_caption": "코스피는 2.43% 상승 출발했지만 오후 2시 9분 1.27% 하락으로 뒤집혔습니다. 민주당 우세 전망과 실제 AI 규제·데이터센터 주문 사이에는 아직 절차와 시간이 남아 있습니다. #코스피 #미국중간선거 #반도체",
+    "instagram_caption": "코스피는 2.43% 상승 출발했지만 오후 2시 17분 0.74% 하락으로 뒤집혔습니다. 민주당 우세 전망과 실제 AI 규제·데이터센터 주문 사이에는 아직 절차와 시간이 남아 있습니다. #코스피 #미국중간선거 #반도체",
     "editorial_review": {
-      "improvement": "최근 5편(AMD·11/2·10/30 시장·INTC·MSFT)은 기업 숫자와 주문 경로가 중심이었습니다. 이번에는 장 초반 +2.43%→오후 -1.27%를 보여준 뒤, 선거 전망과 실제 매출 사이에 의회·허가·착공 절차가 있음을 한 축으로 설명했습니다.",
+      "improvement": "최근 5편(AMD·11/2·10/30 시장·INTC·MSFT)은 기업 숫자와 주문 경로가 중심이었습니다. 이번에는 장 초반 +2.43%→오후 -0.74%를 보여준 뒤, 선거 전망과 실제 매출 사이에 의회·허가·착공 절차가 있음을 한 축으로 설명했습니다.",
       "reason": "불스토리 공식 글 본문 전체는 선거→법·예산→지역 허가→기업 주문의 시간차와 비용 부담 주체를 나눴습니다. 홍춘욱 공식 글 전체는 AI 성장·투자 사이클·가격 기대를 구분했습니다. Morning Brew 11/3 글 전체는 의회 결과와 40개 넘는 지역 투표를 분리했고, Bloomberg는 검색 공개 제목·요약만 확인했으며 본문·Instagram 카드는 열람하지 못했습니다.",
-      "application": "초안 ‘민주당 압승에 반도체 급락’→퇴고 ‘아침 +2.43%, 오후 -1.27%’로 바꿨습니다. 2장에 개표 전망과 규제 확정을 분리하고, 3장에 지역 허가·전력비용→착공→서버·메모리 주문 연결을 넣었습니다. ‘선거가 AI 수요를 꺾었다’는 아직 확인되지 않아 제목 후보에서 제외했습니다.",
+      "application": "초안 ‘민주당 압승에 반도체 급락’→퇴고 ‘아침 +2.43%, 오후 -0.74%’로 바꿨습니다. 첫 preview에서 2장 과밀을 확인해 선물·금리 행을 덜고 전망·확정 두 행만 남겼습니다. 3장에는 지역 허가·전력비용→착공→서버·메모리 주문 연결을 넣었습니다.",
       "avoided_repetition": "11/2의 수출·반도체 수요, 10/30의 빅테크 투자 회수, 오늘 AMD의 마진 계산은 반복하지 않았습니다. ‘불확실성 확대’ 같은 추상어와 같은 결론 반복을 덜고, 4장은 미국장 첫 현물 반응, 5장은 의회 구도·지역 허가·실제 주문이라는 서로 다른 확인 기준으로 끝냈습니다. 반응 지표는 미확보이며 다음 편은 정책 발표 뒤 실제 발주 변화까지 비교합니다."
     },
     "visual_story": [
       {
         "layout": "headline",
-        "title": "아침 +2.43%\n오후 -1.27%",
+        "title": "아침 +2.43%\n오후 -0.74%",
         "body": "미국 반도체 반등을 따라 올랐지만, 민주당의 의회 장악 전망이 퍼지자 AI 규제 우려가 커지며 상승분을 반납했습니다.",
         "source_ids": ["naver-index", "reuters-market", "reuters-election"],
         "items": [],
@@ -142,7 +142,7 @@
       {
         "layout": "drivers",
         "title": "민주당 우세\n규제 확정은 아니다",
-        "body": "언론은 민주당의 상·하원 장악을 전망했습니다. 다만 개표 전망은 인증이 아니고, 법안은 의회 통과와 대통령 대응을 거쳐야 합니다.",
+        "body": "민주당의 상·하원 장악이 전망됐습니다. 그러나 개표 전망은 인증이 아니며, 규제는 법안 통과와 대통령 대응을 거쳐야 합니다.",
         "source_ids": ["reuters-election", "yna-scenarios", "bullstory-midterm"],
         "items": [
           {
@@ -150,12 +150,6 @@
             "text": "민주당의 상·하원 장악 전망 · 개표와 최종 인증은 진행 중",
             "type": "fact",
             "source_ids": ["reuters-election"]
-          },
-          {
-            "label": "시장이 먼저 반영",
-            "text": "나스닥 선물 2% 넘게 하락 · 미국 10년물 금리 4.906%",
-            "type": "fact",
-            "source_ids": ["reuters-market"]
           },
           {
             "label": "아직 아닌 것",
@@ -181,13 +175,13 @@
         "items": [
           {
             "label": "삼성전자",
-            "text": "21만4천원 · 14:09 기준 -2.51%",
+            "text": "21만5천원 · 14:17 기준 -2.05%",
             "type": "fact",
             "source_ids": ["naver-chip"]
           },
           {
             "label": "SK하이닉스",
-            "text": "136만1천원 · 14:09 기준 -2.65%",
+            "text": "137만원 · 14:17 기준 -2.00%",
             "type": "fact",
             "source_ids": ["naver-chip"]
           },
