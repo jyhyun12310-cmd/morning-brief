@@ -81,9 +81,11 @@ summary 필드:
 6. `conditions`: 기대가 성립하는 조건과 반론·위험
 7. `closing`: 첫 질문의 답, 다음에 확인할 지표와 일정
 
-모든 카드에 `layout`, `title`, `body`, `takeaway`, `bridge`, `evidence_ids`, `labels`를 작성합니다. 제목은 8–55자, 최대 2줄; body는 표지 40–85자, 나머지 40–170자; takeaway 25–70자; bridge 18–45자입니다. 제목과 본문은 7장 모두 달라야 합니다. labels는 최대 3개이며 각 `label` 1–24자, `text` 3–70자입니다. 2·3·5·7장 및 차트 없는 4장은 labels가 2개 이상 필요합니다.
+기존 표지와 2–7장에는 `layout`, `title`, `body`, `takeaway`, `bridge`, `evidence_ids`, `labels`를 작성합니다. 제목은 8–55자, 최대 2줄; body는 표지 40–85자, 나머지 40–170자; takeaway 25–70자; bridge 18–45자입니다. 제목과 본문은 7장 모두 달라야 합니다. labels는 최대 3개이며 각 `label` 1–24자, `text` 3–70자입니다. 2·3·5·7장 및 차트 없는 4장은 labels가 2개 이상 필요합니다.
 
 6장에는 `origin`(5–65자), `branches` 정확히 2개가 추가로 필요합니다. 각 branch는 `label`(3–24자), `text`(12–65자), `check`(10–65자)를 가집니다.
+
+새 `editorial-v2` 7장 원고는 짧은 표지를 우선한다. 표지의 `takeaway`와 `bridge` **두 키를 모두 생략**하고(빈 문자열 불가), `labels`는 생략하거나 빈 배열로 둔다. 제목은 8–32자·최대 두 줄, `body`는 8–55자의 비교·단서 한 줄로서 실제 화면에서도 한 줄이어야 한다. 단위·대상·실적/전망 여부는 그 줄에 둔다. 표지에 `items/chart/branches/origin`을 추가하지 않는다. `visual` 및 `evidence_ids`는 필수이며, 표지의 모든 근거 ID를 2–7장에서도 해당 설명에 연결한다. 긴 이유와 조건은 후속 장에서 설명한다. 기존 두 키를 모두 가진 표지와 2–7장 검증·표시는 그대로다.
 
 4장의 선택적 `chart`: `source`(3–120자), `note`(5–100자), `unit`(1–40자), `rows` 2–5개. 각 row는 `metric_id`, 숫자 `value`, `label`(1–34자), `display`(1–32자)를 가집니다. row의 value와 chart의 unit은 연결한 metric과 정확히 같아야 합니다. 근거 없는 숫자를 넣는 대신 차트를 생략하고 비교 설명 labels를 사용합니다.
 
@@ -128,4 +130,3 @@ design_preview=true는 automation/examples/visual-variety-preview.json의 고정
 2026-10-02 사용자가 확인한 새 MU 디자인을 오늘 다시 게시하도록 명시적으로 승인했습니다. 이 한 건은 automation/repost_approvals의 정확한 원고 해시, 기존 게시 ID, 검토 완료 이미지 7개 해시, 승인·만료 시각이 모두 일치할 때만 별도 `us-stock-거래일-repost-원고해시앞12자리` 기록으로 게시합니다. 재실행 시 이 별도 기록으로도 중복을 막습니다. 기존 게시 기록은 보존합니다. 예약 작업은 승인 파일을 만들거나 수정하지 않으며, 평소 거래일당 한 게시물 규칙을 계속 지킵니다.
 
 매일 원고 개선 절차는 EDITORIAL_GUIDE.md의 '매일 한 가지씩 개선하기'를 따릅니다. summary.editorial_review는 선택적인 내부 편집 메모이며, 독자용 카드·캡션에 그대로 출력하지 않습니다.
-

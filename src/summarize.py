@@ -47,16 +47,26 @@ def validate_summary(result, allowed_source_urls=None):
     if not isinstance(pages, list) or len(pages) != 7:
         raise SummaryGenerationError('exactly seven cards are required')
     titles, bodies = set(), set()
+    # Opt in by omitting both redundant blocks on the editorial-v2 cover only.
+    compact_cover = (result.get('design') == 'editorial-v2' and isinstance(pages[0], dict)
+                     and 'takeaway' not in pages[0] and 'bridge' not in pages[0])
     for i, page in enumerate(pages):
         if not isinstance(page, dict) or page.get('layout') != LAYOUTS[i]:
             raise SummaryGenerationError('incorrect layout order')
         title = text(page.get('title'), 'page.title', 8, 55)
         if title.count('\n') > 1:
             raise SummaryGenerationError('title exceeds two lines')
-        body = text(page.get('body'), 'page.body', 40, 85 if i == 0 else 170)
+        if compact_cover and i == 0:
+            body = text(page.get('body'), 'cover comparison', 8, 55)
+            if len(title) > 32 or len(body.splitlines()) != 1:
+                raise SummaryGenerationError('compact cover needs a short title and one comparison line')
+            if any(page.get(k) for k in ('labels', 'items', 'chart', 'branches', 'origin')):
+                raise SummaryGenerationError('move compact cover details onto a supporting card')
+        else:
+            body = text(page.get('body'), 'page.body', 40, 85 if i == 0 else 170)
+            text(page.get('takeaway'), 'page.takeaway', 25, 70)
+            text(page.get('bridge'), 'page.bridge', 18, 45)
         titles.add(title.replace('\n', ' ')); bodies.add(body)
-        text(page.get('takeaway'), 'page.takeaway', 25, 70)
-        text(page.get('bridge'), 'page.bridge', 18, 45)
         _ids(page.get('evidence_ids'), 'page.evidence_ids', evidence_ids)
         labels = page.get('labels', [])
         required = i in (1, 2, 4, 6) or (i == 3 and not page.get('chart'))
@@ -84,13 +94,17 @@ def validate_summary(result, allowed_source_urls=None):
             for branch in branches:
                 for field, low, high in [('label',3,24), ('text',12,65), ('check',10,65)]:
                     text(branch.get(field), 'branch.' + field, low, high)
+    if compact_cover:
+        supported = {ref for page in pages[1:] for ref in page['evidence_ids']}
+        if not set(pages[0]['evidence_ids']) <= supported:
+            raise SummaryGenerationError('support compact cover evidence on cards 2–7')
     if len(titles) != 7 or len(bodies) != 7:
         raise SummaryGenerationError('duplicate card text')
     return result
 
 def _compatibility_keys(result):
     pages = result['visual_story']
-    result.update(cover_title=pages[0]['title'], cover_sub=pages[0]['takeaway'],
+    result.update(cover_title=pages[0]['title'], cover_sub=pages[0].get('takeaway', pages[0]['body']),
                   conclusion=pages[6]['takeaway'], cover_qs=[pages[i]['title'] for i in (1,2,4)])
     for n in range(2, 7):
         page = pages[n-1]
