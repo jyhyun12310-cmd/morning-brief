@@ -1,5 +1,5 @@
 <!doctype html><html lang="ko"><meta charset="utf-8"><style>{% include 'editorial_card.css' %}</style>
-<body class="{{ story.visual.tone }} {{ 'stock' if count == 7 else 'news' }}"><main>
+<body class="{{ story.visual.tone }} {{ 'stock' if count == 7 else 'news' }}"><main{% if count == 7 and n == 1 and story.layout == "cover" %} class="stock-cover"{% endif %}>
 <header><b>돈의 뒷이야기.</b><span>{{ '미장, 한 겹 더' if count == 7 else '오늘의 시장' if count == 5 else '지금 달라진 것' }}</span></header>
 <div class="chapter">{{ '%02d'|format(n) }} <i></i> {{ 'MONEY FOR CHICKEN' }}</div>
 <h1 data-fit>{% for part,accent in title_parts %}<span class="{{ 'accent' if accent else '' }}">{{ part }}</span>{% endfor %}</h1>
