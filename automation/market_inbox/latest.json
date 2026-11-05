@@ -1,264 +1,72 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "reviewed_preview": {
-    "run_id": 41778492744,
-    "image_sha256": [
-      "80fdb575ebdc74a83edd35f13e8b1227c530e5ab1bcf206043c54f076082a3f9",
-      "af6b46641cda2500ebce70b9833c32a5e759a9ae4785cb2dd7377dec6db8311b",
-      "558d6a4ad0e800268831a3983838e6b62fbf76f5daa805c34e859cd106c307e2",
-      "f307e49b24847ce208b6de7f57b3b6f21b071b55aa502afc899f1b6c5872a96c",
-      "cecc14b27e0fa66a436bce9afdca1c6a5c31a7e8d2a90d95fc1d809b6fb98e6c"
-    ]
-  },
-  "created_at": "2026-11-04T14:18:00+09:00",
-  "publication_date_kst": "2026-11-04",
-  "snapshot_at": "2026-11-04T14:17:22+09:00",
-  "kr_session": {
-    "date": "2026-11-04",
-    "status": "open",
-    "source_id": "naver-index",
-    "evidence": "14:17 KST 코스피·코스닥 당일 장중 값과 삼성전자 marketStatus=OPEN을 확인했습니다."
-  },
+  "created_at": "2026-11-05T14:07:00+09:00",
+  "snapshot_at": "2026-11-05T14:05:17+09:00",
+  "publication_date_kst": "2026-11-05",
   "sources": [
-    {
-      "id": "naver-index",
-      "title": "네이버 금융 · 코스피·코스닥 실시간 지수 API",
-      "url": "https://polling.finance.naver.com/api/realtime/domestic/index/KOSPI,KOSDAQ",
-      "as_of": "2026-11-04 14:17:15 KST; 코스피 5,607.23, 코스닥 705.66",
-      "retrieved_at": "2026-11-04T14:17:15+09:00"
-    },
-    {
-      "id": "naver-chip",
-      "title": "네이버 금융 · 삼성전자·SK하이닉스 실시간 시세 API",
-      "url": "https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660",
-      "as_of": "2026-11-04 14:17 KST; 삼성전자 -2.05%, SK하이닉스 -2.00%",
-      "retrieved_at": "2026-11-04T14:17:38+09:00"
-    },
-    {
-      "id": "reuters-market",
-      "title": "Reuters · 민주당 우세 전망 뒤 글로벌 증시·국채·달러 반응",
-      "url": "https://www.reuters.com/world/china/global-markets-wrapup-1-2026-11-04/",
-      "as_of": "2026-11-04 10:06 KST 보도; 선거 중간결과와 미국 선물·아시아 증시 반응",
-      "retrieved_at": "2026-11-04T14:02:00+09:00"
-    },
-    {
-      "id": "reuters-election",
-      "title": "Reuters · 민주당의 의회 장악 전망과 시장 시나리오",
-      "url": "https://www.reuters.com/business/investors-ready-possible-shake-up-congress-election-day-arrives-2026-11-03/",
-      "as_of": "2026-11-04 조회; Decision Desk HQ의 민주당 상·하원 장악 전망, 개표·인증 전",
-      "retrieved_at": "2026-11-04T14:03:00+09:00"
-    },
-    {
-      "id": "yna-scenarios",
-      "title": "연합뉴스 · 미국 중간선거 시나리오와 국내 증시 영향",
-      "url": "https://www.yna.co.kr/view/AKR20261103085151008",
-      "as_of": "2026-11-03 15:39 KST 보도; 의회 구도·AI 규제·데이터센터 지방투표",
-      "retrieved_at": "2026-11-04T14:03:30+09:00"
-    },
-    {
-      "id": "bullstory-midterm",
-      "title": "불스토리 · 중간선거와 전력주 (편집 참고)",
-      "url": "https://bullstory.io/blog/%EC%A4%91%EA%B0%84%EC%84%A0%EA%B1%B0%EC%99%80-%EC%A0%84%EB%A0%A5%EC%A3%BC",
-      "as_of": "2026-10-13 공식 사이트 본문 전체 열람; Instagram 카드 미열람",
-      "retrieved_at": "2026-11-04T14:04:00+09:00"
-    },
-    {
-      "id": "frism-letter",
-      "title": "홍춘욱 · 2026년 프리즘투자자문 신년 CEO Letter (편집 참고)",
-      "url": "https://www.frism.io/2026nyeon-peurijeumtujajamun-sinnyeon-ceo-letter/",
-      "as_of": "2026-02-13 홍춘욱 대표 공식 글 본문 전체 열람",
-      "retrieved_at": "2026-11-04T14:04:30+09:00"
-    },
-    {
-      "id": "morningbrew-midterm",
-      "title": "Morning Brew · What you need to know about the 2026 midterms (편집 참고)",
-      "url": "https://www.morningbrew.com/stories/what-you-need-to-know-about-the-2026-midterms",
-      "as_of": "2026-11-03 공개 글 본문 전체 열람; 40개 넘는 데이터센터 투표와 개표 지연 설명",
-      "retrieved_at": "2026-11-04T14:05:00+09:00"
-    },
-    {
-      "id": "bloomberg-datacenter",
-      "title": "Bloomberg · AI Data Centers Become Flashpoint for 2026 Elections (편집 참고)",
-      "url": "https://www.bloomberg.com/news/articles/2026-09-05/trump-s-embrace-of-ai-data-centers-adds-to-gop-s-midterm-peril",
-      "as_of": "2026-09-05 공개 검색 결과의 제목·요약만 확인; 본문 직접 열람 실패",
-      "retrieved_at": "2026-11-04T14:05:30+09:00"
-    },
-    {
-      "id": "nyse-hours",
-      "title": "NYSE · 2026 거래일과 정규장 운영시간",
-      "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026-11-04 정상 거래일; 정규장 09:30~16:00 EST",
-      "retrieved_at": "2026-11-04T14:06:00+09:00"
-    }
+    {"id":"naver-index","title":"네이버 금융 · 코스피·코스닥 실시간 지수","url":"https://m.stock.naver.com/api/index/KOSPI/basic","as_of":"2026-11-05 14:04 KST; 코스피 5,402.25, 코스닥 682.02","retrieved_at":"2026-11-05T14:05:20+09:00"},
+    {"id":"naver-leaders","title":"네이버 금융 · 코스피 시총 상위·시장 폭 실시간 자료","url":"https://m.stock.naver.com/api/index/KOSPI/integration","as_of":"2026-11-05 14:05 KST; 삼성전자 -7.22%, SK하이닉스 -9.03%, 현대차 +3.88%","retrieved_at":"2026-11-05T14:05:27+09:00"},
+    {"id":"reuters-global","title":"Reuters · 미국 중간선거 뒤 유가·채권·주식시장 반응","url":"https://www.reuters.com/business/energy/global-markets-global-markets-2026-11-05/","as_of":"2026-11-05 보도; S&P500 +1.6%, 브렌트유 약 -9%, 아시아 기술주 약세","retrieved_at":"2026-11-05T14:00:30+09:00"},
+    {"id":"bullstory-breadth","title":"불스토리 · 미국 국채금리 하락과 반도체 강세, 코스피 투자 영향 (편집 참고)","url":"https://bullstory.io/blog/%EB%AF%B8%EA%B5%AD-%EA%B5%AD%EC%B1%84%EA%B8%88%EB%A6%AC-%ED%95%98%EB%9D%BD%EA%B3%BC-%EB%B0%98%EB%8F%84%EC%B2%B4-%EA%B0%95%EC%84%B8-%EC%BD%94%EC%8A%A4%ED%94%BC-%ED%88%AC%EC%9E%90-%EC%98%81%ED%96%A5","as_of":"2026-09 공식 사이트 본문 전체 열람; Instagram 카드는 미열람","retrieved_at":"2026-11-05T14:01:00+09:00"},
+    {"id":"frism-may","title":"홍춘욱 · 2026년 5월 프리즘투자자문 CEO Letter (편집 참고)","url":"https://www.frism.io/2026nyeon-5weol-peurijeumtujajamun-ceo-letter/","as_of":"2026-05-07 홍춘욱 대표 공식 글 본문 전체 열람","retrieved_at":"2026-11-05T14:01:30+09:00"},
+    {"id":"morningbrew-concentration","title":"Morning Brew · AI-adjacent stocks continue their historic tear (편집 참고)","url":"https://www.morningbrew.com/stories/ai-adjacent-stocks-continue-their-historic-tear","as_of":"2026-06 공개 글 본문 전체 열람; 코스피 반도체 집중도 설명","retrieved_at":"2026-11-05T14:02:00+09:00"},
+    {"id":"cnbc-sp500","title":"CNBC Select · S&P500의 시가총액 가중 구조 (편집 참고)","url":"https://www.cnbc.com/select/what-is-sp-500-how-to-invest/","as_of":"공개 글 본문 전체 열람; 약 500개 대형주와 시가총액 가중 방식 확인","retrieved_at":"2026-11-05T14:02:30+09:00"},
+    {"id":"bls-schedule","title":"미국 노동통계국 · 2026년 11월 발표 일정","url":"https://www.bls.gov/schedule/2026/11_sched_list.htm","as_of":"2026-11-05 08:30 EST 3분기 생산성·비용 잠정치","retrieved_at":"2026-11-05T14:03:00+09:00"},
+    {"id":"nyse-hours","title":"NYSE · 2026 거래일과 정규장 운영시간","url":"https://www.nyse.com/trade/hours-calendars","as_of":"2026-11-05 정상 거래일; 정규장 09:30~16:00 EST","retrieved_at":"2026-11-05T14:03:30+09:00"}
   ],
   "quotes": [
-    {
-      "id": "KOSPI",
-      "name": "코스피",
-      "value": 5607.23,
-      "previous_close": 5648.79,
-      "change_pct": -0.74,
-      "basis": "intraday",
-      "as_of": "2026-11-04T14:17:15+09:00",
-      "source_id": "naver-index"
-    },
-    {
-      "id": "KOSDAQ",
-      "name": "코스닥",
-      "value": 705.66,
-      "previous_close": 704.39,
-      "change_pct": 0.18,
-      "basis": "intraday",
-      "as_of": "2026-11-04T14:17:15+09:00",
-      "source_id": "naver-index"
-    }
+    {"id":"KOSPI","name":"코스피","value":5402.25,"previous_close":5683.80,"change_pct":-4.95,"basis":"intraday","as_of":"2026-11-05T14:04:00+09:00","source_id":"naver-index"},
+    {"id":"KOSDAQ","name":"코스닥","value":682.02,"previous_close":714.95,"change_pct":-4.61,"basis":"intraday","as_of":"2026-11-05T14:04:00+09:00","source_id":"naver-index"}
   ],
-  "events": [
-    {
-      "title": "미국 정규장 개장",
-      "at": "2026-11-04T09:30:00-05:00",
-      "note": "선거 전망 뒤 기술주·국채·달러의 현물시장 첫 반응",
-      "source_id": "nyse-hours"
-    }
+  "kr_session":{"date":"2026-11-05","status":"open","source_id":"naver-index","evidence":"14:04 KST 코스피·코스닥 당일 장중 값과 marketStatus=OPEN을 확인했습니다."},
+  "events":[
+    {"title":"미국 생산성·비용","at":"2026-11-05T08:30:00-05:00","note":"3분기 비농업 생산성과 단위노동비용 잠정치","source_id":"bls-schedule"},
+    {"title":"미국 정규장 개장","at":"2026-11-05T09:30:00-05:00","note":"반도체 약세와 저유가 수혜 업종의 두 번째 현물시장 반응","source_id":"nyse-hours"}
   ],
-  "summary": {
-    "design": "editorial-v2",
-    "instagram_caption": "코스피는 2.43% 상승 출발했지만 오후 2시 17분 0.74% 하락으로 뒤집혔습니다. 민주당 우세 전망과 실제 AI 규제·데이터센터 주문 사이에는 아직 절차와 시간이 남아 있습니다. #코스피 #미국중간선거 #반도체",
-    "editorial_review": {
-      "improvement": "최근 5편(AMD·11/2·10/30 시장·INTC·MSFT)은 기업 숫자와 주문 경로가 중심이었습니다. 이번에는 장 초반 +2.43%→오후 -0.74%를 보여준 뒤, 선거 전망과 실제 매출 사이에 의회·허가·착공 절차가 있음을 한 축으로 설명했습니다.",
-      "reason": "불스토리 공식 글 본문 전체는 선거→법·예산→지역 허가→기업 주문의 시간차와 비용 부담 주체를 나눴습니다. 홍춘욱 공식 글 전체는 AI 성장·투자 사이클·가격 기대를 구분했습니다. Morning Brew 11/3 글 전체는 의회 결과와 40개 넘는 지역 투표를 분리했고, Bloomberg는 검색 공개 제목·요약만 확인했으며 본문·Instagram 카드는 열람하지 못했습니다.",
-      "application": "초안 ‘민주당 압승에 반도체 급락’→퇴고 ‘아침 +2.43%, 오후 -0.74%’로 바꿨습니다. 첫 preview에서 2장 과밀을 확인해 선물·금리 행을 덜고 전망·확정 두 행만 남겼습니다. 3장에는 지역 허가·전력비용→착공→서버·메모리 주문 연결을 넣었습니다.",
-      "avoided_repetition": "11/2의 수출·반도체 수요, 10/30의 빅테크 투자 회수, 오늘 AMD의 마진 계산은 반복하지 않았습니다. ‘불확실성 확대’ 같은 추상어와 같은 결론 반복을 덜고, 4장은 미국장 첫 현물 반응, 5장은 의회 구도·지역 허가·실제 주문이라는 서로 다른 확인 기준으로 끝냈습니다. 반응 지표는 미확보이며 다음 편은 정책 발표 뒤 실제 발주 변화까지 비교합니다."
+  "summary":{
+    "design":"editorial-v2",
+    "instagram_caption":"미국 S&P500은 1.6% 올랐지만 코스피는 오후 2시 4분 4.95% 내렸습니다. 같은 뉴스도 지수 안에서 무게가 큰 업종에 따라 전혀 다르게 보입니다. #코스피 #반도체 #미국증시",
+    "editorial_review":{
+      "improvement":"최근 5편은 기업 실적·수출·AI 규제의 방향을 설명했지만 지수 안의 무게 차이는 비어 있었습니다. 이번에는 미국 +1.6%와 한국 -4.95%의 엇갈림을 먼저 보여주고, 두 반도체 대형주가 한국 지수에 더 큰 힘을 주는 구조를 한 축으로 설명했습니다.",
+      "reason":"불스토리 공식 글 본문 전체는 반도체 반등만 보지 말고 다른 업종으로 매수가 퍼지는지 묻는 순서를 썼고 Instagram 카드는 보지 못했습니다. 홍춘욱 공식 글 전체는 ‘지수는 오르는데 내 계좌는 왜 다른가’라는 독자 고민에서 쏠림 위험으로 이어갔습니다. Morning Brew 글 전체는 코스피의 반도체 집중을, CNBC 글 전체는 S&P500의 더 넓은 업종 구성을 설명했습니다.",
+      "application":"초안 ‘미국은 올랐는데 한국은 왜 폭락했나’→퇴고 ‘미국 +1.6%, 한국 -4.95%’로 답을 표지에 넣었습니다. 2장에 삼성전자 -7.22%·SK하이닉스 -9.03%를 배치하고, 3장에서는 유가 하락이 미국 채권·비기술주를 받친 경로와 현대차 +3.88%를 분리해 설명했습니다.",
+      "avoided_repetition":"11/4의 선거→규제→데이터센터 허가 설명과 주문 취소 여부는 반복하지 않았습니다. ‘불확실성 확대’ 대신 지수 구성·시장 폭·실제 주문이라는 구체 기준을 썼고, 같은 하락 결론을 title/body/items에서 되풀이하지 않았습니다. 반응 지표는 미확보이며 다음 편은 지수와 상승 종목 수의 엇갈림을 더 짧게 보여줍니다."
     },
-    "visual_story": [
+    "visual_story":[
       {
-        "layout": "headline",
-        "title": "아침 +2.43%\n오후 -0.74%",
-        "body": "미국 반도체 반등을 따라 올랐지만, 민주당의 의회 장악 전망이 퍼지자 AI 규제 우려가 커지며 상승분을 반납했습니다.",
-        "source_ids": ["naver-index", "reuters-market", "reuters-election"],
-        "items": [],
-        "visual": {
-          "path": "automation/visual_assets/8075742e65246ccb8d29207faa1d48914370154ebffc72fbe9c28ec67982a9ce.png",
-          "sha256": "8075742e65246ccb8d29207faa1d48914370154ebffc72fbe9c28ec67982a9ce",
-          "alt": "상승 출발 뒤 꺾인 장을 접힌 바닥과 반도체 웨이퍼로 표현한 개념 이미지",
-          "tone": "dark",
-          "kind": "concept",
-          "prompt": "Use case: stylized-concept. Horizontal Korean finance editorial illustration. A trading-floor platform rises then folds sharply lower while semiconductor wafers slide across it. Black, warm off-white and vivid red, restrained halftone. No text, numbers, logos, flags, people, arrows, charts, currency or gradients."
-        }
+        "layout":"headline","title":"미국 +1.6%\n한국 -4.95%","body":"같은 선거 결과 뒤 미국 대형주는 올랐지만 코스피는 급락했습니다. 지수가 담은 업종의 무게가 달랐습니다.","source_ids":["naver-index","reuters-global","cnbc-sp500"],"items":[],
+        "visual":{"path":"automation/visual_assets/174fe1638b43cce773cfeda2d82e1e6b0187021893f6934c7bbc39bc88553db4.png","sha256":"174fe1638b43cce773cfeda2d82e1e6b0187021893f6934c7bbc39bc88553db4","alt":"여러 업종으로 넓게 구성된 판과 두 반도체 웨이퍼가 무겁게 기운 판을 대비한 개념 이미지","tone":"dark","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition suitable for cropping. A broad platform made of many varied industry blocks rises gently on the left, while a platform dominated by two enormous semiconductor wafers tilts sharply downward on the right. Black, warm off-white and vivid red, restrained newspaper halftone, flat cut-paper shapes. No text, numbers, letters, logos, flags, people, arrows, charts, gradients, glow or 3D."}
       },
       {
-        "layout": "drivers",
-        "title": "민주당 우세\n규제 확정은 아니다",
-        "body": "민주당의 상·하원 장악이 전망됐습니다. 그러나 개표 전망은 인증이 아니며, 규제는 법안 통과와 대통령 대응을 거쳐야 합니다.",
-        "source_ids": ["reuters-election", "yna-scenarios", "bullstory-midterm"],
-        "items": [
-          {
-            "label": "현재 전망",
-            "text": "민주당의 상·하원 장악 전망 · 개표와 최종 인증은 진행 중",
-            "type": "fact",
-            "source_ids": ["reuters-election"]
-          },
-          {
-            "label": "아직 아닌 것",
-            "text": "AI 규제법 확정이나 전국 데이터센터 투자 취소는 확인되지 않음",
-            "type": "analysis",
-            "source_ids": ["yna-scenarios", "bullstory-midterm"]
-          }
+        "layout":"drivers","title":"두 반도체가\n지수를 눌렀다","body":"코스피 시가총액 1·2위가 함께 밀렸습니다. 종목 수보다 큰 회사의 움직임이 지수에 더 크게 반영됩니다.","source_ids":["naver-leaders","morningbrew-concentration"],"items":[
+          {"label":"삼성전자","text":"20만2,250원 · 14:05 기준 -7.22%","type":"fact","source_ids":["naver-leaders"]},
+          {"label":"SK하이닉스","text":"127만원 · 14:04 기준 -9.03%","type":"fact","source_ids":["naver-leaders"]},
+          {"label":"지수의 계산","text":"시가총액이 큰 종목일수록 같은 등락률의 영향이 큼","type":"analysis","source_ids":["morningbrew-concentration","cnbc-sp500"]}
         ],
-        "visual": {
-          "path": "automation/visual_assets/b15b6d0988fd3980a9cf2c8059bc6459ad7afc34d6b7e458d877cc02e041a8c0.png",
-          "sha256": "b15b6d0988fd3980a9cf2c8059bc6459ad7afc34d6b7e458d877cc02e041a8c0",
-          "alt": "선거 뒤에도 남은 입법 관문을 서류 문과 잠긴 문으로 표현한 개념 이미지",
-          "tone": "light",
-          "kind": "concept",
-          "prompt": "Use case: stylized-concept. Horizontal Korean finance editorial illustration. Generic civic building behind paper-dossier gates and one locked unsigned-law gate. Black, warm off-white and vivid red, restrained halftone. No text, numbers, logos, flags, party symbols, people, charts or gradients."
-        }
+        "visual":{"path":"automation/visual_assets/4744edc0833e5f0786e3c4d5342e2164ae5aed5dafaba0f9416f8b98c1344894.png","sha256":"4744edc0833e5f0786e3c4d5342e2164ae5aed5dafaba0f9416f8b98c1344894","alt":"두 개의 거대한 반도체 웨이퍼가 여러 작은 업종 토큰보다 저울을 더 기울이는 개념 이미지","tone":"light","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. A heavy balance scale is tipped by two oversized semiconductor wafers on one pan while dozens of smaller neutral industry tokens sit on the other pan, explaining market-cap concentration. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, gradients, glow or 3D."}
       },
       {
-        "layout": "sectors",
-        "title": "반도체 하락\n주문 취소는 미확인",
-        "body": "삼성전자와 SK하이닉스는 약세입니다. 그러나 선거 결과가 곧바로 데이터센터 계약·메모리 주문을 취소했다는 증거는 없습니다.",
-        "source_ids": ["naver-chip", "reuters-market", "bullstory-midterm"],
-        "items": [
-          {
-            "label": "삼성전자",
-            "text": "21만5천원 · 14:17 기준 -2.05%",
-            "type": "fact",
-            "source_ids": ["naver-chip"]
-          },
-          {
-            "label": "SK하이닉스",
-            "text": "137만원 · 14:17 기준 -2.00%",
-            "type": "fact",
-            "source_ids": ["naver-chip"]
-          },
-          {
-            "label": "실제 전달 경로",
-            "text": "지역 허가·전력비용 → 착공 일정 → 서버·메모리 주문",
-            "type": "analysis",
-            "source_ids": ["yna-scenarios", "bullstory-midterm", "morningbrew-midterm"]
-          }
+        "layout":"sectors","title":"돈은 사라지지 않고\n업종을 바꿨다","body":"브렌트유 급락은 미국 채권과 비기술주를 받쳤습니다. 한국에서도 반도체가 무너지는 동안 자동차 일부는 올랐습니다.","source_ids":["reuters-global","naver-leaders"],"items":[
+          {"label":"반도체","text":"AI 데이터센터 규제 우려로 시총 상위주 동반 급락","type":"fact","source_ids":["reuters-global","naver-leaders"]},
+          {"label":"유가·채권","text":"브렌트유 약 9% 하락 · 물가 부담 완화 기대로 채권 강세","type":"analysis","source_ids":["reuters-global"]},
+          {"label":"현대차","text":"29만4,500원 · 14:05 기준 +3.88%","type":"fact","source_ids":["naver-leaders"]}
         ],
-        "visual": {
-          "path": "automation/visual_assets/c4577ec69d28433a505df2cb6aabd1c5197dab17fbb2e6179aff4ae14ad48829.png",
-          "sha256": "c4577ec69d28433a505df2cb6aabd1c5197dab17fbb2e6179aff4ae14ad48829",
-          "alt": "데이터센터 허가와 전력 연결, 반도체 출하 사이의 순서를 표현한 개념 이미지",
-          "tone": "dark",
-          "kind": "concept",
-          "prompt": "Use case: stylized-concept. Horizontal Korean finance editorial illustration. An unfinished data center waits behind a permit stamp and disconnected power cable, with sealed chip trays beyond it. Black, warm off-white and vivid red, restrained halftone. No text, logos, people, arrows, charts or gradients."
-        }
+        "visual":{"path":"automation/visual_assets/02f97ed7a9d2408977c983f764dec1eb1285b523a06fc66bb964af221c54d02f.png","sha256":"02f97ed7a9d2408977c983f764dec1eb1285b523a06fc66bb964af221c54d02f","alt":"데이터센터 문 앞 반도체 상자와 가벼워진 유가 부담 아래 자동차와 공장을 나눈 개념 이미지","tone":"dark","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. One economic current splits: sealed chip trays queue behind a closed data-center construction gate, while transport wheels and a generic factory receive relief from a visibly lighter oil barrel suspended above them. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, currency, gradients, glow or 3D."}
       },
       {
-        "layout": "calendar",
-        "title": "밤 11시30분\n미국장 첫 반응",
-        "body": "선물은 불확실성을 먼저 반영합니다. 정규장에서는 남은 선거 결과와 실제 현금 매도가 겹치는지 확인해야 합니다.",
-        "source_ids": ["reuters-market", "reuters-election", "nyse-hours"],
-        "items": [],
-        "visual": {
-          "path": "automation/visual_assets/4d03089effc80c1dc24d091de6f98338dbe59c4c07006b9bd90cea96257f8c6f.png",
-          "sha256": "4d03089effc80c1dc24d091de6f98338dbe59c4c07006b9bd90cea96257f8c6f",
-          "alt": "미국 정규장 개장을 기계식 종과 올라가는 셔터로 표현한 개념 이미지",
-          "tone": "light",
-          "kind": "concept",
-          "prompt": "Use case: stylized-concept. Horizontal Korean finance editorial illustration. Generic market shutters begin to rise behind a mechanical opening bell, blank clock and neutral chip tokens. Black, warm off-white and vivid red, restrained halftone. No text, numbers, logos, flags, people, charts or gradients."
-        }
+        "layout":"calendar","title":"밤 10시30분\n생산성·비용 발표","body":"미국의 3분기 생산성과 단위노동비용이 나옵니다. 금리 기대가 바뀌면 업종 이동의 지속성도 다시 평가됩니다.","source_ids":["bls-schedule","nyse-hours"],"items":[],
+        "visual":{"path":"automation/visual_assets/0dd9b7c886671b5bd7519fbc502bf5accf6620250b9c769b3dd0e2540915a1fd.png","sha256":"0dd9b7c886671b5bd7519fbc502bf5accf6620250b9c769b3dd0e2540915a1fd","alt":"정부 통계 서류와 공장 기어, 작업 시계, 비용 블록을 함께 놓은 개념 이미지","tone":"light","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. A neutral government statistics folder opens beside factory gears, a work clock and stacked cost blocks, conveying productivity and labor-cost data before a market session. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, currency, gradients, glow or 3D."}
       },
       {
-        "layout": "watch",
-        "title": "정치 충격과\n실적을 나눠 볼 때",
-        "body": "현재 낙폭은 정책 불확실성의 가격입니다. 최종 의회 구도와 허가 결정, 실제 주문 변화가 이어질 때 장기 해석이 강해집니다.",
-        "source_ids": ["reuters-election", "yna-scenarios", "bullstory-midterm", "frism-letter"],
-        "items": [
-          {
-            "label": "의회 구도",
-            "text": "선거 전망·최종 인증·법안 추진을 각각 구분",
-            "type": "watch",
-            "source_ids": ["reuters-election", "bullstory-midterm"]
-          },
-          {
-            "label": "지역 허가",
-            "text": "데이터센터 투표와 전력 비용 부담의 실제 결정",
-            "type": "watch",
-            "source_ids": ["yna-scenarios", "morningbrew-midterm", "bloomberg-datacenter"]
-          },
-          {
-            "label": "주문 변화",
-            "text": "빅테크 설비투자와 서버·메모리 발주 감소 여부",
-            "type": "watch",
-            "source_ids": ["bullstory-midterm", "frism-letter"]
-          }
+        "layout":"watch","title":"지수 급락과\n시장 전체를 나눠 볼 때","body":"오늘 낙폭은 반도체 쏠림이 키웠습니다. 실제 주문 감소와 다른 업종까지의 하락 확산이 확인될 때 해석이 더 무거워집니다.","source_ids":["naver-index","naver-leaders","bullstory-breadth","frism-may"],"items":[
+          {"label":"실제 주문","text":"데이터센터 착공과 서버·메모리 발주 감소 여부","type":"watch","source_ids":["reuters-global","bullstory-breadth"]},
+          {"label":"시장 폭","text":"14:05 코스피 상승 328개·하락 553개","type":"watch","source_ids":["naver-leaders"]},
+          {"label":"업종 확산","text":"자동차·바이오 등 비반도체로 매수세가 이어지는지","type":"watch","source_ids":["naver-leaders","bullstory-breadth","frism-may"]}
         ],
-        "visual": {
-          "path": "automation/visual_assets/f8710990a8d2afbe91ad5827fbf02ffbff057b414da000c20a0702755355d4b1.png",
-          "sha256": "f8710990a8d2afbe91ad5827fbf02ffbff057b414da000c20a0702755355d4b1",
-          "alt": "선거함과 데이터센터 허가, 반도체 주문을 확대경으로 따로 확인하는 개념 이미지",
-          "tone": "dark",
-          "kind": "concept",
-          "prompt": "Use case: stylized-concept. Horizontal Korean finance editorial still life. One magnifying lens inspects a sealed generic ballot box, a data-center permit folder with power connector, and a semiconductor order tray. Black, warm off-white and vivid red, restrained halftone. No text, logos, flags, people, arrows, charts or gradients."
-        }
+        "visual":{"path":"automation/visual_assets/ca6e1966bda2511593dd3539a176c0d97cd6297bcd664df7b2d7281df8f48e35.png","sha256":"ca6e1966bda2511593dd3539a176c0d97cd6297bcd664df7b2d7281df8f48e35","alt":"반도체 주문 상자와 원유 통, 다양한 업종 토큰을 돋보기로 따로 확인하는 개념 이미지","tone":"dark","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. A single magnifying lens inspects three separate physical clues on a desk: sealed semiconductor order trays, a generic oil barrel, and a field of many small industry tokens spreading beyond two large wafers. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, currency, gradients, glow or 3D."}
       }
     ]
   }
