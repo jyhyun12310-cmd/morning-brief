@@ -1,82 +1,253 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "reviewed_preview": {
-    "run_id": 41972548517,
-    "image_sha256": [
-      "1f0d653110bda4ad0b5e81a31b56f8d7019464baafa6f938862590c3252c0176",
-      "3cac36ec802a67e89912a07000cbe55b9953ae8a8abfe653baa0bc28d0cec797",
-      "9038595bb81c4e942dcd0410f85e7af8a55e4e81b04190664604087eb4775b7b",
-      "85b400c23162e2182cf9cce943be15950e518b1a4aee49153177680392efb2a2",
-      "cb8a74460206eb437998a6037514d4ce19befe94c583bfb0246b241a4bf0b0c0"
-    ]
-  },
-  "created_at": "2026-11-05T14:07:00+09:00",
-  "snapshot_at": "2026-11-05T14:05:17+09:00",
-  "publication_date_kst": "2026-11-05",
+  "created_at": "2026-11-06T14:11:00+09:00",
+  "snapshot_at": "2026-11-06T14:10:15+09:00",
+  "publication_date_kst": "2026-11-06",
   "sources": [
-    {"id":"naver-index","title":"네이버 금융 · 코스피·코스닥 실시간 지수","url":"https://m.stock.naver.com/api/index/KOSPI/basic","as_of":"2026-11-05 14:04 KST; 코스피 5,402.25, 코스닥 682.02","retrieved_at":"2026-11-05T14:05:20+09:00"},
-    {"id":"naver-leaders","title":"네이버 금융 · 코스피 시총 상위·시장 폭 실시간 자료","url":"https://m.stock.naver.com/api/index/KOSPI/integration","as_of":"2026-11-05 14:05 KST; 삼성전자 -7.22%, SK하이닉스 -9.03%, 현대차 +3.88%","retrieved_at":"2026-11-05T14:05:27+09:00"},
-    {"id":"reuters-global","title":"Reuters · 미국 중간선거 뒤 유가·채권·주식시장 반응","url":"https://www.reuters.com/business/energy/global-markets-global-markets-2026-11-05/","as_of":"2026-11-05 보도; S&P500 +1.6%, 브렌트유 약 -9%, 아시아 기술주 약세","retrieved_at":"2026-11-05T14:00:30+09:00"},
-    {"id":"bullstory-breadth","title":"불스토리 · 미국 국채금리 하락과 반도체 강세, 코스피 투자 영향 (편집 참고)","url":"https://bullstory.io/blog/%EB%AF%B8%EA%B5%AD-%EA%B5%AD%EC%B1%84%EA%B8%88%EB%A6%AC-%ED%95%98%EB%9D%BD%EA%B3%BC-%EB%B0%98%EB%8F%84%EC%B2%B4-%EA%B0%95%EC%84%B8-%EC%BD%94%EC%8A%A4%ED%94%BC-%ED%88%AC%EC%9E%90-%EC%98%81%ED%96%A5","as_of":"2026-09 공식 사이트 본문 전체 열람; Instagram 카드는 미열람","retrieved_at":"2026-11-05T14:01:00+09:00"},
-    {"id":"frism-may","title":"홍춘욱 · 2026년 5월 프리즘투자자문 CEO Letter (편집 참고)","url":"https://www.frism.io/2026nyeon-5weol-peurijeumtujajamun-ceo-letter/","as_of":"2026-05-07 홍춘욱 대표 공식 글 본문 전체 열람","retrieved_at":"2026-11-05T14:01:30+09:00"},
-    {"id":"morningbrew-concentration","title":"Morning Brew · AI-adjacent stocks continue their historic tear (편집 참고)","url":"https://www.morningbrew.com/stories/ai-adjacent-stocks-continue-their-historic-tear","as_of":"2026-06 공개 글 본문 전체 열람; 코스피 반도체 집중도 설명","retrieved_at":"2026-11-05T14:02:00+09:00"},
-    {"id":"cnbc-sp500","title":"CNBC Select · S&P500의 시가총액 가중 구조 (편집 참고)","url":"https://www.cnbc.com/select/what-is-sp-500-how-to-invest/","as_of":"공개 글 본문 전체 열람; 약 500개 대형주와 시가총액 가중 방식 확인","retrieved_at":"2026-11-05T14:02:30+09:00"},
-    {"id":"bls-schedule","title":"미국 노동통계국 · 2026년 11월 발표 일정","url":"https://www.bls.gov/schedule/2026/11_sched_list.htm","as_of":"2026-11-05 08:30 EST 3분기 생산성·비용 잠정치","retrieved_at":"2026-11-05T14:03:00+09:00"},
-    {"id":"nyse-hours","title":"NYSE · 2026 거래일과 정규장 운영시간","url":"https://www.nyse.com/trade/hours-calendars","as_of":"2026-11-05 정상 거래일; 정규장 09:30~16:00 EST","retrieved_at":"2026-11-05T14:03:30+09:00"}
+    {
+      "id": "naver-index",
+      "title": "네이버 금융 · 코스피·코스닥 실시간 지수",
+      "url": "https://m.stock.naver.com/api/index/KOSPI/basic",
+      "as_of": "2026-11-06 14:10 KST; 코스피 5,106.50, 코스닥 655.18",
+      "retrieved_at": "2026-11-06T14:10:20+09:00"
+    },
+    {
+      "id": "naver-flow",
+      "title": "네이버 금융 · 코스피 장중 저가·수급·시장 폭",
+      "url": "https://m.stock.naver.com/api/index/KOSPI/integration",
+      "as_of": "2026-11-06 14:10 KST; 저가 4,911.28, 외국인 -1조8,000억원, 상승 134·하락 759",
+      "retrieved_at": "2026-11-06T14:10:25+09:00"
+    },
+    {
+      "id": "krx-rule",
+      "title": "한국거래소 · 주식시장 매매거래중단제도",
+      "url": "https://regulation.krx.co.kr/contents/RGL/03/03010402/RGL03010402.jsp",
+      "as_of": "코스피 8% 하락 1분 지속 시 1단계 발동, 20분간 거래 중단",
+      "retrieved_at": "2026-11-06T14:06:00+09:00"
+    },
+    {
+      "id": "reuters-halt",
+      "title": "Reuters · 코스피 서킷브레이커와 변동성 완화 조치",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korea-stocks-plunge-8-circuit-breaker-triggered-chip-shares-tumble-2026-11-06/",
+      "as_of": "2026-11-06 10:01 KST 업데이트; 09:03 서킷브레이커·외국인 매도·레버리지 규칙 완화",
+      "retrieved_at": "2026-11-06T14:04:30+09:00"
+    },
+    {
+      "id": "bullstory-flow",
+      "title": "불스토리 · 외국인 9월 국내 주식 19조원 순매도, 수급과 변수는 (편집 참고)",
+      "url": "https://bullstory.io/blog/%EC%99%B8%EA%B5%AD%EC%9D%B8-9%EC%9B%94-%EA%B5%AD%EB%82%B4-%EC%A3%BC%EC%8B%9D-19%EC%A1%B0%EC%9B%90-%EC%88%9C%EB%A7%A4%EB%8F%84-%EC%88%98%EA%B8%89%EA%B3%BC-%EB%B3%80%EC%88%98%EB%8A%94",
+      "as_of": "2026-11-05 공식 사이트 본문 전체·도식 설명 열람; Instagram 카드는 미열람",
+      "retrieved_at": "2026-11-06T14:05:00+09:00"
+    },
+    {
+      "id": "lovefund-margin",
+      "title": "lovefund이성수 · 빚투 반대매매가 일단락되면 (편집 참고)",
+      "url": "https://kr.investing.com/analysis/article-200440234",
+      "as_of": "2022-06-23 국내 개인 설명자 공개 재현본 본문 전체 열람",
+      "retrieved_at": "2026-11-06T14:05:30+09:00"
+    },
+    {
+      "id": "morningbrew-cb",
+      "title": "Morning Brew · Circuit Breaker Triggered on Historically Bad Day (편집 참고)",
+      "url": "https://www.morningbrew.com/stories/2020/03/09/circuit-breaker-triggered-historically-bad-day-wall-street",
+      "as_of": "2020-03-09 공개 글 본문 전체 열람; 정지 장치와 시장 배관을 분리해 설명",
+      "retrieved_at": "2026-11-06T14:07:00+09:00"
+    },
+    {
+      "id": "bloomberg-margin",
+      "title": "Bloomberg · Schwab Warned Thousands at Risk of Margin Calls (편집 참고)",
+      "url": "https://www.bloomberg.com/news/articles/2025-05-01/schwab-phoned-thousands-nearing-margin-calls-as-volatility-rose",
+      "as_of": "2025-05-01 공개 검색 제목·요약만 확인; 본문 전체 미열람",
+      "retrieved_at": "2026-11-06T14:07:30+09:00"
+    },
+    {
+      "id": "bls-jobs",
+      "title": "미국 노동통계국 · 2026년 11월 발표 일정",
+      "url": "https://www.bls.gov/schedule/2026/11_sched_list.htm",
+      "as_of": "2026-11-06 08:30 EST; 10월 고용보고서 발표 예정",
+      "retrieved_at": "2026-11-06T14:08:00+09:00"
+    }
   ],
   "quotes": [
-    {"id":"KOSPI","name":"코스피","value":5402.25,"previous_close":5683.80,"change_pct":-4.95,"basis":"intraday","as_of":"2026-11-05T14:04:00+09:00","source_id":"naver-index"},
-    {"id":"KOSDAQ","name":"코스닥","value":682.02,"previous_close":714.95,"change_pct":-4.61,"basis":"intraday","as_of":"2026-11-05T14:04:00+09:00","source_id":"naver-index"}
-  ],
-  "kr_session":{"date":"2026-11-05","status":"open","source_id":"naver-index","evidence":"14:04 KST 코스피·코스닥 당일 장중 값과 marketStatus=OPEN을 확인했습니다."},
-  "events":[
-    {"title":"미국 생산성·비용","at":"2026-11-05T08:30:00-05:00","note":"3분기 비농업 생산성과 단위노동비용 잠정치","source_id":"bls-schedule"},
-    {"title":"미국 정규장 개장","at":"2026-11-05T09:30:00-05:00","note":"반도체 약세와 저유가 수혜 업종의 두 번째 현물시장 반응","source_id":"nyse-hours"}
-  ],
-  "summary":{
-    "design":"editorial-v2",
-    "instagram_caption":"미국 S&P500은 1.6% 올랐지만 코스피는 오후 2시 4분 4.95% 내렸습니다. 같은 뉴스도 지수 안에서 무게가 큰 업종에 따라 전혀 다르게 보입니다. #코스피 #반도체 #미국증시",
-    "editorial_review":{
-      "improvement":"최근 5편은 기업 실적·수출·AI 규제의 방향을 설명했지만 지수 안의 무게 차이는 비어 있었습니다. 이번에는 미국 +1.6%와 한국 -4.95%의 엇갈림을 먼저 보여주고, 두 반도체 대형주가 한국 지수에 더 큰 힘을 주는 구조를 한 축으로 설명했습니다.",
-      "reason":"불스토리 공식 글 본문 전체는 반도체 반등만 보지 말고 다른 업종으로 매수가 퍼지는지 묻는 순서를 썼고 Instagram 카드는 보지 못했습니다. 홍춘욱 공식 글 전체는 ‘지수는 오르는데 내 계좌는 왜 다른가’라는 독자 고민에서 쏠림 위험으로 이어갔습니다. Morning Brew 글 전체는 코스피의 반도체 집중을, CNBC 글 전체는 S&P500의 더 넓은 업종 구성을 설명했습니다.",
-      "application":"초안 ‘미국은 올랐는데 한국은 왜 폭락했나’→퇴고 ‘미국 +1.6%, 한국 -4.95%’로 답을 표지에 넣었습니다. 2장에 삼성전자 -7.22%·SK하이닉스 -9.03%를 배치하고, 3장에서는 유가 하락이 미국 채권·비기술주를 받친 경로와 현대차 +3.88%를 분리해 설명했습니다.",
-      "avoided_repetition":"11/4의 선거→규제→데이터센터 허가 설명과 주문 취소 여부는 반복하지 않았습니다. ‘불확실성 확대’ 대신 지수 구성·시장 폭·실제 주문이라는 구체 기준을 썼고, 같은 하락 결론을 title/body/items에서 되풀이하지 않았습니다. 반응 지표는 미확보이며 다음 편은 지수와 상승 종목 수의 엇갈림을 더 짧게 보여줍니다."
+    {
+      "id": "KOSPI",
+      "name": "코스피",
+      "value": 5106.50,
+      "previous_close": 5383.80,
+      "change_pct": -5.15,
+      "basis": "intraday",
+      "as_of": "2026-11-06T14:10:00+09:00",
+      "source_id": "naver-index"
     },
-    "visual_story":[
+    {
+      "id": "KOSDAQ",
+      "name": "코스닥",
+      "value": 655.18,
+      "previous_close": 678.41,
+      "change_pct": -3.42,
+      "basis": "intraday",
+      "as_of": "2026-11-06T14:09:00+09:00",
+      "source_id": "naver-index"
+    }
+  ],
+  "kr_session": {
+    "date": "2026-11-06",
+    "status": "open",
+    "source_id": "naver-index",
+    "evidence": "14:09~14:10 KST 코스피·코스닥 당일 장중 값과 marketStatus=OPEN을 확인했습니다."
+  },
+  "events": [
+    {
+      "title": "미국 10월 고용보고서",
+      "at": "2026-11-06T08:30:00-05:00",
+      "note": "고용·실업률·임금이 금리 기대를 바꿀 수 있는 정례 발표",
+      "source_id": "bls-jobs"
+    }
+  ],
+  "summary": {
+    "design": "editorial-v2",
+    "instagram_caption": "코스피는 오전 8% 넘게 밀려 20분 멈췄지만, 오후에도 5%대 하락입니다. 거래 정지와 신용 부담 완화가 무엇을 막고 무엇은 남기는지 나눠 봤습니다. #코스피 #서킷브레이커 #반대매매",
+    "editorial_review": {
+      "improvement": "최근 5편 중 직전 두 편은 선거·AI 규제와 반도체 쏠림을 설명했습니다. 이번에는 같은 하락 원인을 되풀이하지 않고, 거래 정지와 담보 부족·강제매도가 서로 다른 장치라는 점을 한 축으로 설명했습니다.",
+      "reason": "불스토리 공식 사이트 글 본문 전체·도식 설명은 큰 외국인 매도액을 시장·기간별로 나눴고 Instagram 카드는 보지 못했습니다. 개인 설명자 lovefund 공개 재현본 전체는 장 초반 강제매도 경로를 풀었습니다. Morning Brew는 공개 글 전체, Bloomberg는 공개 제목·요약만 확인했습니다.",
+      "application": "초안 ‘서킷브레이커 뒤 코스피 반등’→퇴고 ‘거래는 20분 멈췄지만, 빚은 그대로 남았다’. 2장에서 8%·1분·20분 규칙과 정지 뒤 주문 재개를, 3장에서 투자자 담보 부족→추가 입금 또는 증권사 강제매도 경로를 보강했습니다.",
+      "avoided_repetition": "11/4~5의 선거→AI 규제→반도체 주문 설명과 종목 등락 나열은 버렸습니다. ‘강제매도가 오늘 하락의 전부’는 확인되지 않아 제목에서 제외했습니다. 다음 편은 실제 반대매매 집계와 신용잔고를 같은 기준일로 비교합니다. 반응 지표는 미확보입니다."
+    },
+    "visual_story": [
       {
-        "layout":"headline","title":"미국 +1.6%\n한국 -4.95%","body":"같은 선거 결과 뒤 미국 대형주는 올랐지만 코스피는 급락했습니다. 지수가 담은 업종의 무게가 달랐습니다.","source_ids":["naver-index","reuters-global","cnbc-sp500"],"items":[],
-        "visual":{"path":"automation/visual_assets/174fe1638b43cce773cfeda2d82e1e6b0187021893f6934c7bbc39bc88553db4.png","sha256":"174fe1638b43cce773cfeda2d82e1e6b0187021893f6934c7bbc39bc88553db4","alt":"여러 업종으로 넓게 구성된 판과 두 반도체 웨이퍼가 무겁게 기운 판을 대비한 개념 이미지","tone":"dark","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition suitable for cropping. A broad platform made of many varied industry blocks rises gently on the left, while a platform dominated by two enormous semiconductor wafers tilts sharply downward on the right. Black, warm off-white and vivid red, restrained newspaper halftone, flat cut-paper shapes. No text, numbers, letters, logos, flags, people, arrows, charts, gradients, glow or 3D."}
+        "layout": "headline",
+        "title": "거래는 20분 멈췄지만\n빚은 그대로 남았다",
+        "body": "코스피는 오전 8% 넘게 밀려 멈췄습니다. 거래를 쉬게 한 조치이지 주가 하락과 빌린 돈을 없앤 조치는 아닙니다.",
+        "source_ids": ["krx-rule", "reuters-halt", "naver-index"],
+        "items": [],
+        "visual": {
+          "path": "automation/visual_assets/0bd1a9fe890dbc8d8e15344000d79e4adaed22d61fe00c1990ec92a77269d6b2.png",
+          "sha256": "0bd1a9fe890dbc8d8e15344000d79e4adaed22d61fe00c1990ec92a77269d6b2",
+          "alt": "급락한 거래소 앞에 비상 정지 레버와 일시정지 시계가 놓인 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "4:5 vertical editorial collage illustration, Korean financial news card background, no text, no letters, no numbers, no logos. A red emergency stop lever cutting across a black stock-exchange floor, with a frozen clock showing a pause through visual metaphor only. Off-white paper grain, deep black ink, vivid red accent, flat cut-paper screenprint style, strong negative space, sober and precise, no gradients, no 3D, no photorealism."
+        }
       },
       {
-        "layout":"drivers","title":"두 반도체가\n지수를 눌렀다","body":"코스피 시가총액 1·2위가 함께 밀렸습니다. 종목 수보다 큰 회사의 움직임이 지수에 더 크게 반영됩니다.","source_ids":["naver-leaders","morningbrew-concentration"],"items":[
-          {"label":"삼성전자","text":"20만2,250원 · 14:05 기준 -7.22%","type":"fact","source_ids":["naver-leaders"]},
-          {"label":"SK하이닉스","text":"127만원 · 14:04 기준 -9.03%","type":"fact","source_ids":["naver-leaders"]},
-          {"label":"지수의 계산","text":"시가총액이 큰 종목일수록 같은 등락률의 영향이 큼","type":"analysis","source_ids":["morningbrew-concentration","cnbc-sp500"]}
+        "layout": "drivers",
+        "title": "멈춘 건 거래\n손실은 지워지지 않는다",
+        "body": "서킷브레이커는 새 주문을 20분 멈춰 판단 시간을 줍니다. 다시 열리면 가격은 남은 매수·매도 주문으로 정해집니다.",
+        "source_ids": ["krx-rule", "reuters-halt", "morningbrew-cb"],
+        "items": [
+          {
+            "label": "1단계 조건",
+            "text": "코스피가 전일보다 8% 이상 낮은 상태를 1분 유지",
+            "type": "fact",
+            "source_ids": ["krx-rule"]
+          },
+          {
+            "label": "멈추는 범위",
+            "text": "20분간 신규 호가와 주식·연계 파생 거래를 중단",
+            "type": "fact",
+            "source_ids": ["krx-rule"]
+          },
+          {
+            "label": "재개 뒤",
+            "text": "거래는 다시 시작되며 손실·부채가 자동으로 사라지지 않음",
+            "type": "analysis",
+            "source_ids": ["krx-rule", "morningbrew-cb"]
+          }
         ],
-        "visual":{"path":"automation/visual_assets/4744edc0833e5f0786e3c4d5342e2164ae5aed5dafaba0f9416f8b98c1344894.png","sha256":"4744edc0833e5f0786e3c4d5342e2164ae5aed5dafaba0f9416f8b98c1344894","alt":"두 개의 거대한 반도체 웨이퍼가 여러 작은 업종 토큰보다 저울을 더 기울이는 개념 이미지","tone":"light","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. A heavy balance scale is tipped by two oversized semiconductor wafers on one pan while dozens of smaller neutral industry tokens sit on the other pan, explaining market-cap concentration. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, gradients, glow or 3D."}
+        "visual": {
+          "path": "automation/visual_assets/5bb126d75c3a3b88d60711641077999e0b2a39c5a786d65d453f81be1edff51d.png",
+          "sha256": "5bb126d75c3a3b88d60711641077999e0b2a39c5a786d65d453f81be1edff51d",
+          "alt": "거래소 앞 붉은 차단선 뒤로 하락 표식이 공중에 남아 있는 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "4:5 vertical editorial collage illustration, no text, no letters, no numbers, no logos. A market trading hall paused behind a horizontal red barrier while falling black price tiles remain suspended midair, showing that a pause does not erase losses. Off-white paper, black and red linocut collage, bold geometric composition, high contrast, ample empty space, no gradients, no 3D."
+        }
       },
       {
-        "layout":"sectors","title":"돈은 사라지지 않고\n업종을 바꿨다","body":"브렌트유 급락은 미국 채권과 비기술주를 받쳤습니다. 한국에서도 반도체가 무너지는 동안 자동차 일부는 올랐습니다.","source_ids":["reuters-global","naver-leaders"],"items":[
-          {"label":"반도체","text":"AI 데이터센터 규제 우려로 시총 상위주 동반 급락","type":"fact","source_ids":["reuters-global","naver-leaders"]},
-          {"label":"유가·채권","text":"브렌트유 약 9% 하락 · 물가 부담 완화 기대로 채권 강세","type":"analysis","source_ids":["reuters-global"]},
-          {"label":"현대차","text":"29만4,500원 · 14:05 기준 +3.88%","type":"fact","source_ids":["naver-leaders"]}
+        "layout": "sectors",
+        "title": "완화된 건 손실이 아니라\n강제매도의 압력",
+        "body": "당국은 반대매매를 줄이려 레버리지 규칙을 한시 완화했습니다. 증권사 돈으로 산 주식의 손실 자체를 대신 갚는 조치는 아닙니다.",
+        "source_ids": ["reuters-halt", "lovefund-margin", "bloomberg-margin"],
+        "items": [
+          {
+            "label": "투자자",
+            "text": "주가가 내려 담보가 부족하면 현금을 더 넣어야 함",
+            "type": "analysis",
+            "source_ids": ["lovefund-margin", "bloomberg-margin"]
+          },
+          {
+            "label": "증권사",
+            "text": "부족분이 채워지지 않으면 담보 주식을 강제로 팔 수 있음",
+            "type": "analysis",
+            "source_ids": ["lovefund-margin", "bloomberg-margin"]
+          },
+          {
+            "label": "오늘 조치",
+            "text": "규칙을 한시 완화해 급한 매도가 겹치는 위험을 낮춤",
+            "type": "fact",
+            "source_ids": ["reuters-halt"]
+          }
         ],
-        "visual":{"path":"automation/visual_assets/02f97ed7a9d2408977c983f764dec1eb1285b523a06fc66bb964af221c54d02f.png","sha256":"02f97ed7a9d2408977c983f764dec1eb1285b523a06fc66bb964af221c54d02f","alt":"데이터센터 문 앞 반도체 상자와 가벼워진 유가 부담 아래 자동차와 공장을 나눈 개념 이미지","tone":"dark","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. One economic current splits: sealed chip trays queue behind a closed data-center construction gate, while transport wheels and a generic factory receive relief from a visibly lighter oil barrel suspended above them. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, currency, gradients, glow or 3D."}
+        "visual": {
+          "path": "automation/visual_assets/f39b6a1225655f700d85c891f9f8fa1e445e6f33ee54f5f5333f39262d8a4fc6.png",
+          "sha256": "f39b6a1225655f700d85c891f9f8fa1e445e6f33ee54f5f5333f39262d8a4fc6",
+          "alt": "투자자와 담보 상자가 저울 위에서 기울고 붉은 추가납부 통지가 놓인 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "4:5 vertical editorial collage illustration, no text, no letters, no numbers, no logos. A leveraged investor at one end of a balance scale and a brokerage collateral box at the other; a falling stack of shares makes the collateral side collapse, while a red margin-call envelope appears. Off-white, deep black, vivid red, tactile paper texture, minimalist economic explainer, respectful, no caricature, no photorealism."
+        }
       },
       {
-        "layout":"calendar","title":"밤 10시30분\n생산성·비용 발표","body":"미국의 3분기 생산성과 단위노동비용이 나옵니다. 금리 기대가 바뀌면 업종 이동의 지속성도 다시 평가됩니다.","source_ids":["bls-schedule","nyse-hours"],"items":[],
-        "visual":{"path":"automation/visual_assets/0dd9b7c886671b5bd7519fbc502bf5accf6620250b9c769b3dd0e2540915a1fd.png","sha256":"0dd9b7c886671b5bd7519fbc502bf5accf6620250b9c769b3dd0e2540915a1fd","alt":"정부 통계 서류와 공장 기어, 작업 시계, 비용 블록을 함께 놓은 개념 이미지","tone":"light","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. A neutral government statistics folder opens beside factory gears, a work clock and stacked cost blocks, conveying productivity and labor-cost data before a market session. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, currency, gradients, glow or 3D."}
+        "layout": "calendar",
+        "title": "오늘 밤 10시30분\n미국 고용을 확인",
+        "body": "10월 고용·실업률·임금이 나옵니다. 금리 기대가 다시 움직이면 다음 한국장의 매도 압력과 위험 선호도 달라질 수 있습니다.",
+        "source_ids": ["bls-jobs"],
+        "items": [],
+        "visual": {
+          "path": "automation/visual_assets/d4f8c31a0a762be64fd67cab94c80e06cbe7bde79162bf8ddb6ccca9a32fdec6.png",
+          "sha256": "d4f8c31a0a762be64fd67cab94c80e06cbe7bde79162bf8ddb6ccca9a32fdec6",
+          "alt": "미국 공장과 작업자, 시계, 달력, 고용 통계판을 연결한 개념 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "4:5 vertical editorial collage illustration, no text, no letters, no numbers, no logos. A calendar page and an American factory time clock beside a jobs board silhouette, with a red pulse line connecting employment data to bond yields, concept only. Off-white paper collage, black shapes and vivid red accent, modern newspaper infographic aesthetic, generous negative space, no gradients, no 3D."
+        }
       },
       {
-        "layout":"watch","title":"지수 급락과\n시장 전체를 나눠 볼 때","body":"오늘 낙폭은 반도체 쏠림이 키웠습니다. 실제 주문 감소와 다른 업종까지의 하락 확산이 확인될 때 해석이 더 무거워집니다.","source_ids":["naver-index","naver-leaders","bullstory-breadth","frism-may"],"items":[
-          {"label":"실제 주문","text":"데이터센터 착공과 서버·메모리 발주 감소 여부","type":"watch","source_ids":["reuters-global","bullstory-breadth"]},
-          {"label":"시장 폭","text":"14:05 코스피 상승 328개·하락 553개","type":"watch","source_ids":["naver-leaders"]},
-          {"label":"업종 확산","text":"자동차·바이오 등 비반도체로 매수세가 이어지는지","type":"watch","source_ids":["naver-leaders","bullstory-breadth","frism-may"]}
+        "layout": "watch",
+        "title": "멈췄다는 사실보다\n다시 쏟아질 매물을 본다",
+        "body": "거래 정지는 혼란을 늦췄지만 하락 원인을 없애지 못했습니다. 외국인 매도와 신용 매물이 줄어드는지가 다음 판단을 가릅니다.",
+        "source_ids": ["naver-flow", "reuters-halt", "bullstory-flow"],
+        "items": [
+          {
+            "label": "외국인 매도",
+            "text": "14:10 코스피에서 1조8,000억원 순매도",
+            "type": "watch",
+            "source_ids": ["naver-flow"]
+          },
+          {
+            "label": "강제매도",
+            "text": "다음 집계에서 반대매매와 신용잔고 감소를 함께 확인",
+            "type": "watch",
+            "source_ids": ["lovefund-margin", "reuters-halt"]
+          },
+          {
+            "label": "시장 폭",
+            "text": "14:10 코스피 상승 134개·하락 759개",
+            "type": "watch",
+            "source_ids": ["naver-flow", "bullstory-flow"]
+          }
         ],
-        "visual":{"path":"automation/visual_assets/ca6e1966bda2511593dd3539a176c0d97cd6297bcd664df7b2d7281df8f48e35.png","sha256":"ca6e1966bda2511593dd3539a176c0d97cd6297bcd664df7b2d7281df8f48e35","alt":"반도체 주문 상자와 원유 통, 다양한 업종 토큰을 돋보기로 따로 확인하는 개념 이미지","tone":"dark","kind":"concept","prompt":"Use case: stylized-concept. Horizontal Korean finance editorial illustration, 3:1 wide composition. A single magnifying lens inspects three separate physical clues on a desk: sealed semiconductor order trays, a generic oil barrel, and a field of many small industry tokens spreading beyond two large wafers. Black, warm off-white and vivid red, restrained newspaper halftone, flat graphic print. No text, numbers, letters, logos, flags, people, arrows, charts, currency, gradients, glow or 3D."}
+        "visual": {
+          "path": "automation/visual_assets/1299b72206272b3880b51ea1a865ff5ea621c2fe19aeb7a82e015cdb23df4f1e.png",
+          "sha256": "1299b72206272b3880b51ea1a865ff5ea621c2fe19aeb7a82e015cdb23df4f1e",
+          "alt": "외국인 자금, 강제매도, 데이터센터 투자를 세 갈래 점검선으로 연결한 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "4:5 vertical editorial collage illustration, no text, no letters, no numbers, no logos. Three checkpoints on a circular market dashboard: foreign capital leaving, forced-sale pressure, and a data-center construction crane still waiting. Use distinct symbolic objects connected by a red route. Off-white paper grain, black ink, vivid red highlight, flat editorial cut-paper composition, restrained and analytical, no charts with data, no photorealism."
+        }
       }
     ]
   }
