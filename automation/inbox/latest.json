@@ -1,457 +1,452 @@
 {
   "schema_version": 1,
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-11-03T23:40:00Z",
-  "publication_date_kst": "2026-11-04",
+  "created_at": "2026-11-07T08:47:17+09:00",
+  "publication_date_kst": "2026-11-07",
   "market": {
-    "ticker": "AMD",
-    "name": "Advanced Micro Devices",
-    "session_date": "2026-11-03",
-    "session_close_at": "2026-11-03T16:00:00-05:00",
+    "ticker": "CHTR",
+    "name": "차터 커뮤니케이션스",
+    "session_date": "2026-11-06",
+    "session_close_at": "2026-11-06T16:00:00-05:00",
     "price_basis": "regular_close",
     "currency": "USD",
-    "close": 483.9,
-    "previous_close": 466.84,
-    "change_pct": 3.65,
-    "source_id": "prices"
+    "close": 118.05,
+    "previous_close": 125.86,
+    "change_pct": -6.21,
+    "source_id": "chtr-close"
   },
   "sources": [
     {
-      "id": "amd",
-      "title": "AMD Q3 2026 financial results",
-      "url": "https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results",
-      "as_of": "2026-11-03 발표; 9/26 종료 3분기 실적·4분기 회사 전망",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "id": "chtr-release",
+      "title": "Charter · 2026년 3분기 실적과 새 운영 모델",
+      "url": "https://ir.charter.com/news-releases/news-release-details/charter-announces-third-quarter-2026-results-and-launches-new",
+      "as_of": "2026-11-06 발표; 9월 말 분기; 실제·pro forma 비교 구분",
+      "retrieved_at": "2026-11-07T08:35:00+09:00"
     },
     {
-      "id": "slides",
-      "title": "AMD Q3 2026 earnings slides",
-      "url": "https://d1io3yog0oux5.cloudfront.net/_1dcf6819c1566fb2bab40c24e6158009/amd/db/841/9247/presentation/AMD_Q3_2026_Earnings_Slides_FINAL.pdf",
-      "as_of": "2026-11-03 발표; 11·14·17쪽; 조정 실적·사업·4분기 전망",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "id": "chtr-10q",
+      "title": "Charter · 2026년 3분기 Form 10-Q",
+      "url": "https://ir.charter.com/static-files/a7c0bb0c-c20d-446c-936a-9ed2f96e4825",
+      "as_of": "2026-11-06 제출; 원문 PDF 21~22쪽 운영 모델·절감 계획·인수 영향 직접 확인",
+      "retrieved_at": "2026-11-07T08:47:17+09:00"
     },
     {
-      "id": "tables",
-      "title": "AMD Q3 2026 financial tables",
-      "url": "https://d1io3yog0oux5.cloudfront.net/_1dcf6819c1566fb2bab40c24e6158009/amd/db/841/9247/financial_tables_pdf/Q3_2026_GAAP_and_Non-GAAP_Earnings_Tables.pdf",
-      "as_of": "2026-09-26 종료 분기; 미감사; GAAP·비GAAP 조정표",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "id": "spectrum-day",
+      "title": "Charter · 옛 Cox 지역의 Spectrum 상품 도입",
+      "url": "https://corporate.charter.com/newsroom/spectrum-says-hi-to-11-million-homes-and-businesses",
+      "as_of": "2026-09-16 발표; 인터넷·모바일 결합과 무료 회선 자격 조건",
+      "retrieved_at": "2026-11-07T08:40:00+09:00"
     },
     {
-      "id": "prices",
-      "title": "Stock Analysis AMD historical prices — S&P Global",
-      "url": "https://stockanalysis.com/stocks/amd/history/",
-      "as_of": "2026-11-03·11-02 정규장 Close 열; 동일 주식분할 조정 기준 USD; 시간외 제외",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "id": "cox-close",
+      "title": "Charter · Cox 인수 완료와 대가",
+      "url": "https://corporate.charter.com/newsroom/charter-and-cox-communications-complete-transaction",
+      "as_of": "2026-08-20 발표; 현금·지분·남는 부채와 거래 위험",
+      "retrieved_at": "2026-11-07T08:44:00+09:00"
     },
     {
-      "id": "release_time",
-      "title": "AMD official press-release listing",
-      "url": "https://ir.amd.com/news-events/press-releases",
-      "as_of": "2026-11-03 16:15 EST 실적 발표",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "id": "chtr-close",
+      "title": "Stock Analysis / S&P Global · CHTR 일별 종가",
+      "url": "https://stockanalysis.com/stocks/chtr/history/",
+      "as_of": "Close 열·주식분할 조정 동일 기준; 11/6 118.05·11/5 125.86달러; 16:00 EST",
+      "retrieved_at": "2026-11-07T08:38:00+09:00"
     },
     {
-      "id": "nyse",
-      "title": "NYSE official holidays and trading hours",
+      "id": "nyse-calendar",
+      "title": "NYSE · 정규 거래시간과 2026 휴장 달력",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026년 휴장·조기폐장; 11/03 정상 정규장 16:00 EST 종료",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "as_of": "11/6 정상 거래일; 16:00 EST 폐장; 한국 11/7 06:00",
+      "retrieved_at": "2026-11-07T08:32:00+09:00"
     },
     {
-      "id": "nasdaq",
-      "title": "Nasdaq official trading schedule",
+      "id": "nasdaq-calendar",
+      "title": "Nasdaq · 2026 주식시장 휴장 달력",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026년 휴장·조기폐장; 정규장 09:30~16:00 ET",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "as_of": "11/6 휴장·조기폐장 없음; 뉴욕 표준시 적용",
+      "retrieved_at": "2026-11-07T08:32:00+09:00"
     },
     {
       "id": "bullstory",
-      "title": "불스토리 · 미국 반도체 주가 전망 2026 (편집 참고)",
-      "url": "https://bullstory.io/blog/2026-us-market-outlook-ai-semiconductor",
-      "as_of": "2026-08-03 업데이트 공식 웹 본문·FAQ 열람; Instagram 카드 미열람",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "title": "불스토리 · 미국 중간선거 수혜주 5종목 (편집 참고)",
+      "url": "https://bullstory.io/blog/midterms-2026-five-stocks",
+      "as_of": "공식 사이트 공개 도입·오스카헬스 본문 열람; 나머지 4종목·Instagram 전체 카드 미열람",
+      "retrieved_at": "2026-11-07T08:38:00+09:00"
     },
     {
-      "id": "frism",
-      "title": "프리즘 배재현 · 미 국채 이자 1조 달러, 받는 쪽은 누구일까 (편집 참고)",
-      "url": "https://www.frism.io/mi-gugcae-ija-1jo-dalreo-badneun-jjogeun-nuguilgga/",
-      "as_of": "2026-11-02 공식 전사 전체 열람; 영상 재생·Instagram 카드 미열람",
-      "retrieved_at": "2026-11-03T23:38:58Z"
+      "id": "hong-column",
+      "title": "홍춘욱 · 실적회복, 인수합병…한국 조선업의 앞날은? (편집 참고)",
+      "url": "https://bizhankook.com/articles/17108.html",
+      "as_of": "2019-02-03 비즈한국 기고 원문 전체; 인용된 책 전체·영상은 미열람",
+      "retrieved_at": "2026-11-07T08:39:00+09:00"
     }
   ],
-  "metrics": [],
+  "metrics": [
+    {
+      "id": "internet-delta",
+      "value": -2.69,
+      "unit": "억달러",
+      "period": "2026Q3 vs 2025Q3",
+      "basis": "Residential pro forma revenue change",
+      "source_id": "chtr-release"
+    },
+    {
+      "id": "mobile-delta",
+      "value": 1.71,
+      "unit": "억달러",
+      "period": "2026Q3 vs 2025Q3",
+      "basis": "Residential pro forma revenue change",
+      "source_id": "chtr-release"
+    }
+  ],
   "summary": {
     "design": "editorial-v2",
+    "central_question": "매출이 늘었는데 차터가 고객을 붙잡고 비용까지 줄이려는 이유는 무엇일까요?",
+    "thesis": "차터의 보고 매출 증가는 Cox 인수 편입의 영향입니다. 같은 사업 범위에서는 인터넷 고객과 매출이 줄었고 모바일 증가도 이를 다 메우지 못했습니다. 새 절감 계획은 고객 회복과 별개이며, 인터넷 순감 축소와 결합 매출 개선이 함께 나와야 회복 해석이 강해집니다.",
+    "edition": "미장, 한 겹 더",
+    "instagram_caption": "회사를 사서 커진 매출과 고객이 계속 내는 돈은 다릅니다. 이번 성적표의 주인공은 차터(CHTR)입니다. #미국주식 #차터 #기업실적",
     "market_basis": {
-      "ticker": "AMD",
-      "session_date": "2026-11-03",
+      "ticker": "CHTR",
+      "session_date": "2026-11-06",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 483.9,
-      "previous_close": 466.84,
-      "change_pct": 3.65
+      "close": 118.05,
+      "previous_close": 125.86,
+      "change_pct": -6.21
     },
-    "central_question": "매출총이익률을 낮춰 전망했는데도 AMD 영업이익은 왜 늘 수 있을까?",
-    "thesis": "AMD의 4분기 매출·조정 마진·운영비 전망을 함께 계산하면 조정 영업이익은 약56억달러로 3분기보다 커진다. 서버 CPU·AI GPU 공급 확대가 매출로 이어지고 비용이 전망 범위에 머물러야 성립하며, 확정 실적이나 주가 예측은 아니다.",
-    "edition": "미장, 한 겹 더",
-    "instagram_caption": "마진이 내려간다고 버는 이익까지 줄어드는 건 아닙니다. 더 팔아서 남기는 금액에서 운영비까지 빼면, AMD의 다음 분기 전망이 다르게 읽힙니다.\nAMD(AMD)\n#미국주식 #AMD #기업실적",
     "sources": [
       {
-        "id": "amd",
-        "title": "AMD Q3 2026 financial results",
-        "url": "https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results",
-        "as_of": "2026-11-03 발표; 9/26 종료 3분기 실적·4분기 회사 전망"
+        "id": "chtr-release",
+        "title": "Charter · 2026년 3분기 실적과 새 운영 모델",
+        "url": "https://ir.charter.com/news-releases/news-release-details/charter-announces-third-quarter-2026-results-and-launches-new",
+        "as_of": "2026-11-06 발표; 9월 말 분기; 실제·pro forma 비교 구분"
       },
       {
-        "id": "slides",
-        "title": "AMD Q3 2026 earnings slides",
-        "url": "https://d1io3yog0oux5.cloudfront.net/_1dcf6819c1566fb2bab40c24e6158009/amd/db/841/9247/presentation/AMD_Q3_2026_Earnings_Slides_FINAL.pdf",
-        "as_of": "2026-11-03 발표; 11·14·17쪽; 조정 실적·사업·4분기 전망"
+        "id": "chtr-10q",
+        "title": "Charter · 2026년 3분기 Form 10-Q",
+        "url": "https://ir.charter.com/static-files/a7c0bb0c-c20d-446c-936a-9ed2f96e4825",
+        "as_of": "2026-11-06 제출; 원문 PDF 21~22쪽 운영 모델·절감 계획·인수 영향 직접 확인"
       },
       {
-        "id": "tables",
-        "title": "AMD Q3 2026 financial tables",
-        "url": "https://d1io3yog0oux5.cloudfront.net/_1dcf6819c1566fb2bab40c24e6158009/amd/db/841/9247/financial_tables_pdf/Q3_2026_GAAP_and_Non-GAAP_Earnings_Tables.pdf",
-        "as_of": "2026-09-26 종료 분기; 미감사; GAAP·비GAAP 조정표"
+        "id": "spectrum-day",
+        "title": "Charter · 옛 Cox 지역의 Spectrum 상품 도입",
+        "url": "https://corporate.charter.com/newsroom/spectrum-says-hi-to-11-million-homes-and-businesses",
+        "as_of": "2026-09-16 발표; 인터넷·모바일 결합과 무료 회선 자격 조건"
       },
       {
-        "id": "prices",
-        "title": "Stock Analysis AMD historical prices — S&P Global",
-        "url": "https://stockanalysis.com/stocks/amd/history/",
-        "as_of": "2026-11-03·11-02 정규장 Close 열; 동일 주식분할 조정 기준 USD; 시간외 제외"
+        "id": "cox-close",
+        "title": "Charter · Cox 인수 완료와 대가",
+        "url": "https://corporate.charter.com/newsroom/charter-and-cox-communications-complete-transaction",
+        "as_of": "2026-08-20 발표; 현금·지분·남는 부채와 거래 위험"
       },
       {
-        "id": "release_time",
-        "title": "AMD official press-release listing",
-        "url": "https://ir.amd.com/news-events/press-releases",
-        "as_of": "2026-11-03 16:15 EST 실적 발표"
+        "id": "chtr-close",
+        "title": "Stock Analysis / S&P Global · CHTR 일별 종가",
+        "url": "https://stockanalysis.com/stocks/chtr/history/",
+        "as_of": "Close 열·주식분할 조정 동일 기준; 11/6 118.05·11/5 125.86달러; 16:00 EST"
       },
       {
-        "id": "nyse",
-        "title": "NYSE official holidays and trading hours",
+        "id": "nyse-calendar",
+        "title": "NYSE · 정규 거래시간과 2026 휴장 달력",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026년 휴장·조기폐장; 11/03 정상 정규장 16:00 EST 종료"
+        "as_of": "11/6 정상 거래일; 16:00 EST 폐장; 한국 11/7 06:00"
       },
       {
-        "id": "nasdaq",
-        "title": "Nasdaq official trading schedule",
+        "id": "nasdaq-calendar",
+        "title": "Nasdaq · 2026 주식시장 휴장 달력",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026년 휴장·조기폐장; 정규장 09:30~16:00 ET"
+        "as_of": "11/6 휴장·조기폐장 없음; 뉴욕 표준시 적용"
       },
       {
         "id": "bullstory",
-        "title": "불스토리 · 미국 반도체 주가 전망 2026 (편집 참고)",
-        "url": "https://bullstory.io/blog/2026-us-market-outlook-ai-semiconductor",
-        "as_of": "2026-08-03 업데이트 공식 웹 본문·FAQ 열람; Instagram 카드 미열람"
+        "title": "불스토리 · 미국 중간선거 수혜주 5종목 (편집 참고)",
+        "url": "https://bullstory.io/blog/midterms-2026-five-stocks",
+        "as_of": "공식 사이트 공개 도입·오스카헬스 본문 열람; 나머지 4종목·Instagram 전체 카드 미열람"
       },
       {
-        "id": "frism",
-        "title": "프리즘 배재현 · 미 국채 이자 1조 달러, 받는 쪽은 누구일까 (편집 참고)",
-        "url": "https://www.frism.io/mi-gugcae-ija-1jo-dalreo-badneun-jjogeun-nuguilgga/",
-        "as_of": "2026-11-02 공식 전사 전체 열람; 영상 재생·Instagram 카드 미열람"
+        "id": "hong-column",
+        "title": "홍춘욱 · 실적회복, 인수합병…한국 조선업의 앞날은? (편집 참고)",
+        "url": "https://bizhankook.com/articles/17108.html",
+        "as_of": "2019-02-03 비즈한국 기고 원문 전체; 인용된 책 전체·영상은 미열람"
       }
     ],
     "evidence_notes": [
       {
-        "id": "outlook",
-        "claim": "2026 Q4 매출 전망 $17B ±3%, 중간값 QoQ 약27%·YoY 약66%, non-GAAP gross margin 약55%, operating expenses 약$3.75B. Q3 non-GAAP GM56%. 모든 Q4 값은 회사 전망이며 실적 아님.",
+        "id": "scope",
+        "claim": "보고 매출 +9.1%는 Cox 인수 편입을 포함한다. 두 회사의 전체 분기를 모두 합친 pro forma 매출은 전년 동기보다 1.5% 감소했다. 실제 편입 기간은 8월 20일~9월 30일이다.",
         "source_ids": [
-          "amd",
-          "slides"
+          "chtr-release",
+          "chtr-10q"
         ]
       },
       {
-        "id": "calc",
-        "claim": "작성자 단순 계산: 170억달러×55%−37.5억달러=56억달러의 Q4 non-GAAP 영업이익. Q3 실적39.23억달러 대비 약42.75% 증가. 매출·마진·운영비 전망이 동시에 성립한다는 조건부 계산이며 별도 공시된 확정 영업이익이 아님.",
+        "id": "customers",
+        "claim": "3분기 pro forma 인터넷 고객은 23만3천 순감했다. 옛 Charter 15만6천·Cox 7만7천 감소의 합이다. 전체 해지 건수나 인수로 더해진 고객 수와 다르다.",
         "source_ids": [
-          "slides",
-          "tables"
+          "chtr-release"
         ]
       },
       {
-        "id": "products",
-        "claim": "11/3 AMD 발표: Anthropic·Meta·Microsoft·OpenAI·OCI가 첫 Helios rackscale solutions에서 모델·작업 실행. MI450 Series GPU와6세대 EPYC CPU 기반. 고객별 매출·유료 구매액·양산 완료를 뜻한다고 확대하지 않음.",
+        "id": "bundle",
+        "claim": "9월 16일 옛 Cox 지역에 Spectrum 상품이 도입됐다. Cox Mobile 미가입 인터넷 고객에게 모바일 한 회선을 1년 무료로 제공한다. 인터넷 요금까지 무료라는 뜻은 아니다.",
         "source_ids": [
-          "amd"
+          "spectrum-day",
+          "cox-close"
         ]
       },
       {
-        "id": "segments",
-        "claim": "Q3 FY2026(9/26 종료) 데이터센터 매출8546M USD vs4341M, +97%; CPU 수요와MI450 출시가 원인. Client/Gaming3722M vs4048M,-8%. 데이터센터 매출 전체를 AI GPU 매출로 부르지 않음.",
+        "id": "revenue-mix",
+        "claim": "주거용 pro forma 인터넷 매출은 7,366→7,097백만달러, 모바일 서비스는 987→1,158백만달러다. 전년 동기 대비 각각 -269·+171백만달러로 두 항목 합계는 98백만달러 감소했다.",
         "source_ids": [
-          "slides",
-          "amd"
+          "chtr-release"
         ]
       },
       {
-        "id": "operating",
-        "claim": "미감사 non-GAAP Q3: gross profit7483M vs4992M(+50%), operating expenses3560M vs2754M(+29%), operating income3923M vs2238M(+75%). 단위억달러로 나눔:74.83−35.60=39.23;49.92−27.54=22.38. 다른 회계기준끼리 비교하지 않음.",
+        "id": "savings",
+        "claim": "10-Q 21~22쪽: 기존 Cox 통합 연간 절감 예상 10억달러 초과 외에, 향후 18개월에 걸쳐 추가 연간 환산 운영비 20억달러 절감을 목표로 한다. 비핵심 프로젝트·관리 계층·공급업체 수와 조건을 조정한다. 달성 보장은 없다.",
         "source_ids": [
-          "tables",
-          "slides"
+          "chtr-10q"
         ]
       },
       {
-        "id": "prices",
-        "claim": "Stock Analysis의 동일 Close 열:11/3 483.90USD,11/2 466.84USD. (483.9/466.84−1)×100=3.65436%, 표기3.65%. 시간외521달러 제외.11/3 정규장16:00EST=11/4 06:00KST, 휴장·조기폐장 아님.",
+        "id": "counter",
+        "claim": "회사는 9월 16일 상품 도입 이후 옛 Cox 지역의 수요와 고객 흐름이 개선됐다고 밝혔다. 이는 전체 3분기 인터넷 고객 순감과 함께 읽어야 하며, 다음 분기 회복 확정으로 볼 수 없다.",
         "source_ids": [
-          "prices",
-          "nyse",
-          "nasdaq"
+          "chtr-release",
+          "spectrum-day"
         ]
       },
       {
-        "id": "release",
-        "claim": "AMD 공식 보도자료 목록의 발표시각11/3 16:15EST=11/4 06:15KST. 정규장 종가 확정15분 뒤이므로 당일 종가 상승 원인을 실적발표로 연결하지 않음.",
+        "id": "ownership",
+        "claim": "Cox 매도 측은 약 40억달러 현금과 지분성 대가를 받았다. 결합 회사의 완전희석·전환 가정 지분은 약 26%다. 인수는 기존 주주에게 공짜 매출 증가가 아니며 거래 위험에는 이자·통합 비용과 지분 변화가 포함된다.",
         "source_ids": [
-          "release_time",
-          "prices"
+          "cox-close"
         ]
       },
       {
-        "id": "risks",
-        "claim": "AMD CEO는 Q4 Helios·Venice 생산 확대에 따라 성장 가속 예상. 위험요인으로 제품 적기 출시·외주 생산능력·메모리 등 부품 공급·주문 및 출하 불확실성 명시. 공급차질이 실제 발생했다고 단정하지 않음. GM전망1%p하락의 구체적 원인은 이 자료만으로 단정하지 않음.",
+        "id": "price",
+        "claim": "동일 제공자 Close 열 11월 6일 118.05달러, 직전 11월 5일 125.86달러: (118.05/125.86-1)*100=-6.2053%, 반올림 -6.21%. 시간외 제외. 하락 전부를 단일 실적 항목 탓으로 단정하지 않는다.",
         "source_ids": [
-          "amd",
-          "slides"
-        ]
-      },
-      {
-        "id": "adjustment",
-        "claim": "Q3 GAAP operating income2832M와non-GAAP3923M의 차이는 주식보상523M·인수 무형자산 상각534M·인수 관련27M·법률7M 등 조정. non-GAAP을 GAAP 대체나 현금으로 부르지 않음.",
-        "source_ids": [
-          "tables",
-          "slides"
+          "chtr-close",
+          "nyse-calendar",
+          "nasdaq-calendar"
         ]
       }
     ],
     "visual_story": [
       {
         "layout": "cover",
-        "title": "마진이 낮아져도\n이익은 커질 계산",
-        "body": "4분기 전망을 대입하면 조정 영업이익은 늘어납니다. 주식보상 등 일부 비용을 뺀 기준으로, 더 팔아 남기는 금액이 운영비보다 빠르게 커지는 계산입니다.",
-        "labels": [
-          {
-            "label": "매출 전망",
-            "text": "170억달러 ±3% · 3분기보다 중간값 약 27% 증가"
-          },
-          {
-            "label": "조정 매출총이익률",
-            "text": "3분기 56% → 4분기 전망 55% · non-GAAP"
-          }
-        ],
-        "takeaway": "원가를 빼고 남기는 비율과, 남기는 금액은 다르게 움직일 수 있습니다.",
-        "bridge": "매출 확대의 근거는 고객이 쓰기 시작한 서버 장비입니다.",
+        "title": "인수로 커진 회사\n인터넷 고객은 순감",
+        "body": "미국 통신사 3분기 · 보고 매출 +9.1%",
         "evidence_ids": [
-          "outlook",
-          "calc"
+          "scope",
+          "customers"
         ],
+        "labels": [],
         "visual": {
-          "path": "automation/visual_assets/295b9777e5d7562925dfffce6001f7e99a1878136df2fccd146a30045aa19083.png",
-          "sha256": "295b9777e5d7562925dfffce6001f7e99a1878136df2fccd146a30045aa19083",
-          "kind": "concept",
+          "path": "automation/visual_assets/6406a70a583fda50666ff9a6ba2db1f710621d44787c5bf825285b9339c1f3ad.png",
+          "sha256": "6406a70a583fda50666ff9a6ba2db1f710621d44787c5bf825285b9339c1f3ad",
+          "alt": "커진 주거 단지와 앞에 놓인 빠진 인터넷 플러그의 개념 그림",
           "tone": "dark",
-          "alt": "반도체 보드를 운송 받침대에 놓아 판매 확대를 표현한 개념 콜라주",
-          "prompt": "Use case: stylized-concept. Asset type: horizontal editorial illustration inserted into a Korean finance card, no typography. Print editorial collage with grayscale photographic cutouts, restrained halftone, crisp silhouettes, warm off-white #F5F2EB, black #101010, vivid red #EA3027 accents. Landscape 1536x1024. Keep primary subject within middle horizontal half, generous negative space. Conceptual, not an official product or real event photo. No letters, numbers, logos, watermarks, charts, neon, glossy 3D, gradients, currency signs. Subject: a row of unbranded computing accelerator boards on a flat red loading tray, photographed low and side-on, black background. Suggest shipping more computing hardware, grounded editorial composition."
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Editorial artwork for a Korean investment explainer, no text. A large two-part miniature American residential apartment block newly connected by a black arch, contrasted with three unplugged broadband ethernet cables in the foreground. The plug ends are dominant, readable objects, not dramatic destruction. A conceptual illustration of a larger company footprint while individual customer connections are lost. Premium tactile paper collage with engraved architectural detail, halftone texture, offwhite paper, charcoal black and one vivid vermilion red cable, no blue. Landscape 3:2, centered spacious composition filling frame. No words, digits, logo, watermark, chart or graph. Not a real property or company photograph."
         }
       },
       {
         "layout": "photo",
-        "title": "새 AI 장비\n고객이 가동하기 시작",
-        "body": "11월 3일 발표에 따르면 대형 고객들이 새 랙 단위 시스템에서 모델과 작업을 실행 중입니다. CPU와 AI 연산용 GPU를 함께 공급하는 사업입니다.",
+        "title": "회사를 합친 숫자와\n장사가 나아진 숫자",
+        "body": "8월에 Cox를 인수한 미국 통신사의 11월 6일 실적입니다. 보고 매출은 늘었지만, 두 회사를 작년과 올해 모두 한 분기씩 합치면 매출은 줄었습니다. 고객을 더 모으는 일과 회사 몸집을 키우는 일은 달랐습니다.",
+        "evidence_ids": [
+          "scope",
+          "customers",
+          "ownership"
+        ],
         "labels": [
           {
-            "label": "실행 중인 고객",
-            "text": "마이크로소프트·오픈AI·오라클 클라우드 등"
+            "label": "같은 범위 비교",
+            "text": "pro forma 매출 165.05억달러 · 전년 동기보다 1.5% 감소"
           },
           {
-            "label": "무엇을 공급하나",
-            "text": "서버 CPU와 AI 가속기, 이를 묶은 Helios 시스템"
+            "label": "인터넷 고객",
+            "text": "3분기 두 회사 합계 23만3천 순감 · 신규 가입보다 이탈이 많음"
           }
         ],
-        "takeaway": "사용 사실은 확인됐지만, 고객별 매출 규모까지 공개된 것은 아닙니다.",
-        "bridge": "다만 데이터센터 매출 전체를 AI칩 매출로 읽으면 안 됩니다.",
-        "evidence_ids": [
-          "products"
-        ],
+        "takeaway": "인수로 들어온 매출을 빼고도 고객이 돈을 더 내는지 봐야 합니다.",
+        "bridge": "회사가 고객에게 내민 것은 인터넷과 휴대폰의 묶음입니다.",
         "visual": {
-          "path": "automation/visual_assets/15a213926886f77951732ded6abc920779166ceaf4669cb663f4a5a37bc44fec.png",
-          "sha256": "15a213926886f77951732ded6abc920779166ceaf4669cb663f4a5a37bc44fec",
-          "kind": "concept",
+          "path": "automation/visual_assets/89bb77cacb3eea99b34fd952bcd7e120dd83028fb102fa3a1cdf4ba4db96d1d9.png",
+          "sha256": "89bb77cacb3eea99b34fd952bcd7e120dd83028fb102fa3a1cdf4ba4db96d1d9",
+          "alt": "같은 범위의 두 주거 모형을 비교하고 추가 단지를 따로 둔 그림",
           "tone": "light",
-          "alt": "기술자가 서버 장비를 끼우는 동작을 그린 개념 일러스트",
-          "prompt": "Use case: stylized-concept. Asset type: horizontal editorial illustration inserted into a Korean finance card, no typography. Print editorial collage with grayscale photographic cutouts, restrained halftone, crisp silhouettes, warm off-white #F5F2EB, black #101010, vivid red #EA3027 accents. Landscape 1536x1024. Keep primary subject within middle horizontal half, generous negative space. Conceptual, not an official product or real event photo. No letters, numbers, logos, watermarks, charts, neon, glossy 3D, gradients, currency signs. Subject: a technician's gloved hands sliding a generic rectangular compute module into an open rack chassis, close-up horizontal composition, off-white backdrop, one matte red cable. Show the hardware customer's actual action."
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Editorial artwork only, no typography. Overhead still life: two equal-sized architectural tracing frames held over two matching miniature neighborhood models on a desk; a separate extra neighborhood tile rests beside them. Concept: compare the same business perimeter instead of merely adding an acquisition. Warm offwhite paper collage, graphite engraved detail, crisp vermilion red border on the two frames, high contrast black shadows. Wide landscape 3:2 with large clearly readable objects. No text, digits, logo, precise data chart, arrows or watermark."
         }
       },
       {
         "layout": "annotated",
-        "title": "데이터센터 성장\nAI칩만의 숫자는 아니다",
-        "body": "3분기 데이터센터 매출은 전년보다 97% 늘었습니다. 회사는 서버 CPU 수요와 새 GPU 출시를 함께 이유로 들었습니다. 두 제품의 매출을 따로 공개한 수치는 아닙니다.",
+        "title": "휴대폰 요금을 포기해\n인터넷 고객을 붙잡는다",
+        "body": "옛 Cox 지역의 인터넷 고객에게 모바일 한 회선을 1년 무료로 제공합니다. 고객은 통신비를 줄일 수 있고, 회사는 인터넷까지 함께 쓰는 고객을 늘리려는 선택입니다. 모바일 요금을 덜 받는 대신 결합 이용을 노립니다.",
+        "evidence_ids": [
+          "bundle",
+          "savings"
+        ],
         "labels": [
           {
-            "label": "성장의 중심",
-            "text": "데이터센터 85.46억달러 · CPU와 GPU가 함께 포함"
+            "label": "대상 조건",
+            "text": "Cox Mobile에 가입하지 않은 인터넷 고객 · 9월 도입"
           },
           {
-            "label": "반대쪽 사업",
-            "text": "PC·게임 합산 매출 37.22억달러 · 전년 대비 8% 감소"
+            "label": "고객의 선택",
+            "text": "인터넷 요금은 별도 · 무료 기간은 모바일 한 회선의 첫 1년"
           }
         ],
-        "takeaway": "모든 반도체가 잘 팔린 게 아니라, 데이터센터 쪽으로 성장이 쏠렸습니다.",
-        "bridge": "그 성장이 이익으로 남는지는 비용을 빼야 드러납니다.",
-        "evidence_ids": [
-          "segments"
-        ],
+        "takeaway": "무료 회선 수보다 인터넷까지 계속 쓰는 고객이 남는지가 중요합니다.",
+        "bridge": "실제로 모바일에서 늘어난 매출이 인터넷 감소를 메웠을까요?",
         "visual": {
-          "path": "automation/visual_assets/b6b727f7ee861dd3b2984b1e65a96623ead7650bb46bac11d852fd12d4e348e2.png",
-          "sha256": "b6b727f7ee861dd3b2984b1e65a96623ead7650bb46bac11d852fd12d4e348e2",
-          "kind": "concept",
+          "path": "automation/visual_assets/e0b55cc3198d21cb9617d8437ca0e8c86a574b223305f368065013bf11efb105.png",
+          "sha256": "e0b55cc3198d21cb9617d8437ca0e8c86a574b223305f368065013bf11efb105",
+          "alt": "인터넷 공유기와 휴대폰을 한 묶음으로 건네는 손의 개념 그림",
           "tone": "dark",
-          "alt": "프로세서와 빈 장부로 제품별 실적 구분을 표현한 개념 콜라주",
-          "prompt": "Use case: stylized-concept. Asset type: horizontal editorial illustration inserted into a Korean finance card, no typography. Print editorial collage with grayscale photographic cutouts, restrained halftone, crisp silhouettes, warm off-white #F5F2EB, black #101010, vivid red #EA3027 accents. Landscape 1536x1024. Keep primary subject within middle horizontal half, generous negative space. Conceptual, not an official product or real event photo. No letters, numbers, logos, watermarks, charts, neon, glossy 3D, gradients, currency signs. Subject: overhead still life of one detailed unbranded processor and a simple open ledger with blank ruled pages and a red pencil. Tangible product and accounting, no actual text, offwhite background."
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Editorial artwork, a close-up of a hand offering a simple broadband router and a smartphone together wrapped with a single red paper band, on an offwhite tabletop. The smartphone screen is blank; router has simple unbranded antennas. Concept: customer chooses an internet and mobile bundle. Warm offwhite, ink-black engraved textures, vivid vermilion red band; tactile magazine paper collage, restrained human detail. Landscape 3:2, objects large and centered. No words, digits, logos, watermark, price tags, charts or graphs."
         }
       },
       {
         "layout": "comparison",
-        "title": "더 판 속도보다\n비용은 천천히 증가",
-        "body": "3분기에는 원가를 뺀 조정 매출총이익이 전년보다 50% 늘고, 연구·판매·관리 등에 쓰는 조정 운영비는 29% 늘었습니다. 차액인 조정 영업이익이 더 빠르게 커졌습니다.",
-        "labels": [
-          {
-            "label": "2025년 3분기",
-            "text": "49.92 − 27.54 = 22.38억달러"
-          },
-          {
-            "label": "2026년 3분기",
-            "text": "74.83 − 35.60 = 39.23억달러"
-          }
-        ],
-        "takeaway": "같은 non-GAAP 기준으로 비교한 영업이익은 전년보다 75% 늘었습니다.",
-        "bridge": "회사가 내놓은 다음 분기 숫자에도 같은 계산을 적용합니다.",
+        "title": "모바일에서 늘어난 돈\n인터넷 감소를 못 메웠다",
+        "body": "모바일 매출의 증가율이 더 높아도 출발 금액은 인터넷보다 작습니다. 두 사업을 같은 기간·범위로 계산하면, 모바일에서 더 번 돈보다 인터넷에서 줄어든 돈이 컸습니다.",
         "evidence_ids": [
-          "operating"
+          "revenue-mix"
         ],
+        "labels": [],
+        "chart": {
+          "unit": "억달러",
+          "source": "Charter 3Q26 주거용 pro forma 매출표 · 직접 차감",
+          "note": "2026년 3분기와 2025년 3분기 비교; 인터넷·모바일 서비스만 포함",
+          "rows": [
+            {
+              "label": "인터넷 매출 변화",
+              "value": -2.69,
+              "display": "73.66 → 70.97억달러",
+              "metric_id": "internet-delta"
+            },
+            {
+              "label": "모바일 매출 변화",
+              "value": 1.71,
+              "display": "9.87 → 11.58억달러",
+              "metric_id": "mobile-delta"
+            }
+          ]
+        },
+        "takeaway": "두 항목을 합치면 전년보다 9,800만달러 적은 매출입니다.",
+        "bridge": "고객 매출이 줄어드는 동안 회사는 나가는 돈도 줄이려 합니다.",
         "visual": {
-          "path": "automation/visual_assets/c1511bdb755c2906edbacae0f4e3c204da4bb4c716073448a62b7dc0cf5f7355.png",
-          "sha256": "c1511bdb755c2906edbacae0f4e3c204da4bb4c716073448a62b7dc0cf5f7355",
-          "kind": "concept",
+          "path": "automation/visual_assets/db190883b3f0aba69efc317640d7825c24a22b81e7f4e2dc6de0001e527179e1.png",
+          "sha256": "db190883b3f0aba69efc317640d7825c24a22b81e7f4e2dc6de0001e527179e1",
+          "alt": "인터넷 공유기와 휴대폰의 서로 다른 매출 흐름을 표현한 동전 접시",
           "tone": "light",
-          "alt": "빈 청구서와 계산기로 매출총이익에서 운영비를 빼는 과정을 표현",
-          "prompt": "Use case: stylized-concept. Asset type: horizontal editorial illustration inserted into a Korean finance card, no typography. Print editorial collage with grayscale photographic cutouts, restrained halftone, crisp silhouettes, warm off-white #F5F2EB, black #101010, vivid red #EA3027 accents. Landscape 1536x1024. Keep primary subject within middle horizontal half, generous negative space. Conceptual, not an official product or real event photo. No letters, numbers, logos, watermarks, charts, neon, glossy 3D, gradients, currency signs. Subject: a broad paper invoice sheet and a smaller layered expense receipt beside a mechanical adding machine with blank keys, overhead composition on warm white paper, red paper strip. No readable figures, not a quantitative chart."
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Editorial artwork, a wide desk still life with a large unbranded home router beside a worn shallow coin tray and a smaller upright smartphone beside another modest coin tray. A hand slides a few coins toward the phone tray while the router tray has a visible empty worn patch. Concept: mobile revenue gains do not automatically replace lost home broadband revenue. No exact quantitative ratio, no chart. Tactile offwhite paper collage, black engraved shading, vermilion red edge on router tray only, spacious landscape 3:2. No words, digits, brand, logo or watermark."
         }
       },
       {
         "layout": "explain",
-        "title": "AMD가 내놓은\n다음 분기 계산서",
-        "body": "이 회사는 AMD입니다. 4분기 매출 170억달러에 조정 매출총이익률 55%를 곱하고 조정 운영비 37.5억달러를 빼면, 조정 영업이익은 약 56억달러로 계산됩니다.",
+        "title": "20억달러 절감은\n아직 들어온 돈이 아니다",
+        "body": "이 회사는 차터(CHTR)입니다. 인터넷 성장과 무관한 프로젝트를 덜고, 관리 단계를 줄이며, 거래할 공급업체를 추려 조건을 개선하겠다고 했습니다. 공급업체 등에 덜 지급해 비용을 낮추는 계획이지, 고객 매출이 늘었다는 발표는 아닙니다.",
+        "evidence_ids": [
+          "savings"
+        ],
         "labels": [
           {
-            "label": "계산의 성격",
-            "text": "전망 중간값을 대입한 약 56억달러 · 확정 실적 아님"
+            "label": "새 절감 목표",
+            "text": "향후 18개월에 걸쳐 연간 환산 운영비 20억달러 절감"
           },
           {
-            "label": "11/3 정규장",
-            "text": "483.90달러 · 전일 466.84달러보다 +3.65%"
+            "label": "기존 계획과 구분",
+            "text": "Cox 통합의 연간 10억달러 초과 절감 예상에 추가되는 목표"
           }
         ],
-        "takeaway": "종가는 16:00 EST, 발표는 16:15 EST여서 이 상승을 실적 반응으로 볼 수 없습니다.",
-        "bridge": "더 많이 판다는 전제가 흔들리면 이 계산도 바뀝니다.",
-        "evidence_ids": [
-          "calc",
-          "prices",
-          "release"
-        ],
+        "takeaway": "연간 환산 목표이므로 이번 분기 이익에 통째로 더하면 안 됩니다.",
+        "bridge": "조직을 줄이면서도 고객이 체감하는 서비스는 좋아져야 합니다.",
         "visual": {
-          "path": "automation/visual_assets/70d7c20c3220f4aeebfcece4f5b37dea61660ccf33be9ff3f54f841f360b1017.png",
-          "sha256": "70d7c20c3220f4aeebfcece4f5b37dea61660ccf33be9ff3f54f841f360b1017",
-          "kind": "concept",
+          "path": "automation/visual_assets/52e38d6a5c6a691e77835f126fff5ec93026ff27d0e54275803a81420fa98ad0.png",
+          "sha256": "52e38d6a5c6a691e77835f126fff5ec93026ff27d0e54275803a81420fa98ad0",
+          "alt": "복잡한 연결선을 정리하는 손으로 운영 절차 단순화를 표현한 그림",
           "tone": "dark",
-          "alt": "서로 다른 연산 모듈을 연결한 CPU와 GPU 사업 개념 이미지",
-          "prompt": "Use case: stylized-concept. Asset type: horizontal editorial illustration inserted into a Korean finance card, no typography. Print editorial collage with grayscale photographic cutouts, restrained halftone, crisp silhouettes, warm off-white #F5F2EB, black #101010, vivid red #EA3027 accents. Landscape 1536x1024. Keep primary subject within middle horizontal half, generous negative space. Conceptual, not an official product or real event photo. No letters, numbers, logos, watermarks, charts, neon, glossy 3D, gradients, currency signs. Subject: two differently shaped computing modules connected by a single red fabric cable on a matte black workbench, no brands, sparse side-lit grayscale cutout editorial collage. Express processor and accelerator working together."
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Editorial artwork of an unbranded telecom operations workbench: a technician's hands sorting tangled loose cable loops into a simple organized patch panel, with unused loose loops set aside intact. All active cables remain connected; no cutting service or implying layoffs. Concept: simplifying operations and supplier processes to lower expenses. Detailed linocut and paper collage, offwhite, charcoal black, small vivid red patch-panel accents. Landscape 3:2, dramatic close-up of hands and cable organization filling frame. No text, numbers, brand, logo, watermark, graph."
         }
       },
       {
         "layout": "conditions",
-        "title": "양산이 매출로 이어져야\n계산도 현실이 된다",
-        "body": "AMD는 Helios와 차세대 서버 CPU의 생산 확대를 성장 근거로 제시했습니다. 주문이 있어도 필요한 부품을 구하지 못하거나 출하가 늦으면, 기대한 매출이 그 분기에 잡히지 않을 수 있습니다.",
+        "title": "새 상품의 초기 반응\n회복의 단서는 남아 있다",
+        "body": "회사는 상품을 바꾼 뒤 옛 Cox 지역의 고객 흐름이 좋아졌다고 밝혔습니다. 도입일은 9월 16일이라 3분기 전체에 적용된 결과는 아닙니다. 이번 고객 감소만으로 새 결합상품이 실패했다고 단정하기도 이릅니다.",
+        "evidence_ids": [
+          "counter",
+          "bundle"
+        ],
         "labels": [],
-        "origin": "전제는 4분기 회사 전망의 매출·마진·운영비",
+        "origin": "다음 실적에서 같은 사업 범위를 유지해 비교합니다.",
         "branches": [
           {
-            "label": "성장을 받칠 조건",
-            "text": "새 제품 출하가 늘고 조정 운영비가 전망 안에 머뭅니다.",
-            "check": "매출 170억달러 중간값과 운영비 37.5억달러를 비교"
+            "label": "고객 회복으로 연결",
+            "text": "인터넷 순감이 줄고 결합 서비스 매출도 나아집니다.",
+            "check": "가입자 수와 인터넷·모바일 합산 매출을 함께 비교"
           },
           {
-            "label": "계산이 약해질 조건",
-            "text": "출하 지연이나 원가 증가로 기대한 이익이 줄어듭니다.",
-            "check": "조정 매출총이익률 55% 전망과 실제 결과를 비교"
+            "label": "비용만 먼저 감소",
+            "text": "운영비는 줄어도 인터넷 고객과 관련 매출은 계속 줄어듭니다.",
+            "check": "이 경우 절감 성과를 수요 회복으로 해석하지 않기"
           }
         ],
-        "takeaway": "마진 하락의 원인을 양산 비용으로 단정할 근거는 이번 자료만으로 부족합니다.",
-        "bridge": "그래서 다음 성적표는 비율 하나보다 금액까지 읽어야 합니다.",
-        "evidence_ids": [
-          "risks",
-          "outlook"
-        ],
+        "takeaway": "초기 수요 개선과 분기 전체의 고객 회복은 아직 다른 단계입니다.",
+        "bridge": "주주에게는 절감액과 고객 매출을 나눠 읽을 이유가 생깁니다.",
         "visual": {
-          "path": "automation/visual_assets/19b9c64148036dca32dd64c180111706e4f8b1df30a1b49c376d346dc6843280.png",
-          "sha256": "19b9c64148036dca32dd64c180111706e4f8b1df30a1b49c376d346dc6843280",
-          "kind": "concept",
+          "path": "automation/visual_assets/312bf151df31d250e0fdd439376edb95da6a487edc4bf22a730be70d675ccec2.png",
+          "sha256": "312bf151df31d250e0fdd439376edb95da6a487edc4bf22a730be70d675ccec2",
+          "alt": "주민을 만나러 온 통신 기사로 고객 서비스 개선을 표현한 그림",
           "tone": "light",
-          "alt": "장비 운송 상자와 계량대로 출하와 비용을 점검하는 개념 콜라주",
-          "prompt": "Use case: stylized-concept. Asset type: horizontal editorial illustration inserted into a Korean finance card, no typography. Print editorial collage with grayscale photographic cutouts, restrained halftone, crisp silhouettes, warm off-white #F5F2EB, black #101010, vivid red #EA3027 accents. Landscape 1536x1024. Keep primary subject within middle horizontal half, generous negative space. Conceptual, not an official product or real event photo. No letters, numbers, logos, watermarks, charts, neon, glossy 3D, gradients, currency signs. Subject: a loading dock with an open equipment transport crate and a metal platform scale with a blank circular dial, side view, red wall and warm white floor. Conceptually more shipments and cost discipline, not literal financial quantities."
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Editorial artwork of a telecom service technician carrying a toolbox toward the front door of an ordinary American home, an unbranded service van in the background and a resident opening the door. Concept: keeping customers depends on useful service, not just acquiring the company. Warm offwhite textured paper collage, black engraved shading, a vermilion red toolbox, realistic calm interaction without cartoon facial exaggeration. Landscape 3:2, clear foreground figures, ample air, distinct from product still-life. No words, digits, brand, company uniform markings, logo or watermark."
         }
       },
       {
         "layout": "closing",
-        "title": "매출·마진·운영비\n세 숫자로 읽는 성장",
-        "body": "지금 AMD의 전망은 마진 하락보다 판매 확대의 힘이 큰 그림입니다. 다만 조정 이익은 주식보상 등 일부 비용을 제외하므로, 실제 회계상 이익과 같은 숫자는 아닙니다.",
+        "title": "덜 쓰는 회사와\n고객이 돌아오는 회사",
+        "body": "Cox를 판 쪽은 현금과 지분을 받았습니다. 기존 주주에게 인수는 공짜 매출 증가가 아닙니다. 지금 차터는 비용과 고객 이탈을 함께 고치려는 단계이며, 절감 목표만으로 사업 회복을 확정할 근거는 부족합니다.",
+        "evidence_ids": [
+          "ownership",
+          "savings",
+          "counter",
+          "price"
+        ],
         "labels": [
           {
-            "label": "본업의 비교",
-            "text": "매출 × 매출총이익률 − 운영비를 같은 회계 기준으로 비교"
+            "label": "인수의 대가",
+            "text": "Cox 측에 현금 약 40억달러와 지분성 대가 · 8월 완료"
           },
           {
-            "label": "빠진 비용 확인",
-            "text": "3분기 GAAP 영업이익은 28.32억달러 · 조정값과 구분"
+            "label": "11/6 정규장",
+            "text": "118.05달러 · 전일 125.86달러 대비 -6.21% · 16:00 EST"
           }
         ],
-        "takeaway": "다음 실적에서 출하가 매출로 이어지고 비용이 전망 안에 머물면 판단이 강해집니다.",
-        "bridge": "매출이 못 따라오거나 비용이 더 늘면 성장 해석을 낮춥니다.",
-        "evidence_ids": [
-          "calc",
-          "adjustment",
-          "risks"
-        ],
+        "takeaway": "인터넷 순감 축소와 결합 매출 개선이 함께 나와야 회복 해석이 강해집니다.",
+        "bridge": "다음 성적표는 절약한 돈과 고객이 낸 돈을 나눠 읽습니다.",
         "visual": {
-          "path": "automation/visual_assets/76624f4ebab4c1dc754812d25d89c863be0c56a7ba848dce03ebe12dcd178ef2.png",
-          "sha256": "76624f4ebab4c1dc754812d25d89c863be0c56a7ba848dce03ebe12dcd178ef2",
-          "kind": "concept",
+          "path": "automation/visual_assets/ba5d9fefe11b1146260dc34bf2bb3130899d2703b174e48d4eeba265322a5aa1.png",
+          "sha256": "ba5d9fefe11b1146260dc34bf2bb3130899d2703b174e48d4eeba265322a5aa1",
+          "alt": "운영비 서류와 인터넷 이용 가구를 나눠 담은 두 서랍의 개념 그림",
           "tone": "dark",
-          "alt": "기술자가 보드를 점검하는 모습으로 실적 확인을 표현한 개념 이미지",
-          "prompt": "Use case: stylized-concept. Asset type: horizontal editorial illustration inserted into a Korean finance card, no typography. Print editorial collage with grayscale photographic cutouts, restrained halftone, crisp silhouettes, warm off-white #F5F2EB, black #101010, vivid red #EA3027 accents. Landscape 1536x1024. Keep primary subject within middle horizontal half, generous negative space. Conceptual, not an official product or real event photo. No letters, numbers, logos, watermarks, charts, neon, glossy 3D, gradients, currency signs. Subject: a lab engineer's hand holding a plain red inspection card beside a single unbranded server motherboard under a small desk work light, black-and-white editorial cutout with warm paper background. Conclude with checking actual production quality, no magnifier, no charts."
+          "kind": "concept",
+          "prompt": "Use case: stylized-concept. Editorial artwork, two adjacent large open desk drawers seen from above: one contains neatly reduced stacks of blank supplier invoices with a closed black binder; the other contains a row of miniature occupied houses connected by a red cable to a router. Concept: two different sources of financial improvement, lower bills versus customers paying for service. An evocative still life, not a data visualization. Warm offwhite paper collage, black ink engraving, restrained vermilion red. Landscape 3:2, large legible objects, no text, numbers, charts, arrows, logos, watermark."
         }
       }
     ],
     "editorial_review": {
-      "improvement": "최근5편 원고·실제29장·review 비교: 결론 뒤 확인 항목이 반복됨. 이번 개선은 마진 비율→매출총이익 금액→운영비 차감의 연결. 1장에서 조정 기준을 풀고, 5장의 약56억달러를 회사 전망 대입 계산으로 구분. 직전의 외국인 수급 과제는 종목편에 억지 적용하지 않음.",
-      "reason": "불스토리(국내 브랜드) 「미국 반도체 주가 전망2026」(8/3업데이트) 공식 웹 본문·FAQ: 구매자 지출이 공급사 매출로 가는 순서. 배재현 「미 국채 이자1조달러, 받는 쪽은 누구일까」(프리즘11/2) 공식 전사 전체: 받는 돈 다음 지급 비용을 따로 설명. Instagram 카드·영상은 미열람, 고유 문구·추천은 미사용.",
-      "application": "초안 ‘영업레버리지로 수익성 개선’→4장 ‘원가를 뺀 조정 매출총이익은50%, 조정 운영비는29% 늘었습니다’. 정상7장 preview에서 5장 기업 공개·연결 확인 후 표지 ‘마진은 낮춰도’→‘마진이 낮아져도’로 의도 추측 제거. AI칩매출2배 후보는 CPU 포함, 이익폭증 후보는 전망을 실적으로 오인시켜 탈락.",
-      "avoided_repetition": "인텔의 공급부족·PC감산, MSFT의 투자손익, 최근 오후의 현금회수·한국수급 결론은 제외. 제품이름 나열·인수·목표주가·마진하락 원인 추측을 버림. 표지 결론을7장에서 반복하지 않고 GAAP과조정값 차이 보강. 다음 편은 비용 증가 원인을 공식 설명으로 더 구체화. 반응 지표 미확보."
+      "improvement": "최근 5편(11/5·11/4 시장, AMD, 11/2·10/30 시장)의 원고·실제 27장·편집 기록을 비교했습니다. 마지막 확인 항목을 늘리는 대신, 이번에는 비용 절감과 고객 매출 회복을 별개로 판정하는 한 가지 기준을 남겼습니다.",
+      "reason": "불스토리 「미국 중간선거 수혜주 5종목」은 공식 사이트의 공개 도입·오스카헬스 부분만 읽었습니다. 보험료 부담→고객 선택→보험사에 남는 돈의 순서를 참고했고 나머지 4종목·Instagram 카드는 못 봤습니다. 홍춘욱의 2019년 조선업 기고 원문 전체는 실적 회복을 기술과 비용 절감으로 나눴습니다. 인용된 책 전체는 읽지 않았고 고유 표현·추천 종목은 가져오지 않았습니다.",
+      "application": "초안 「차터, 비용 절감으로 회복 추진」→표지 「인수로 커진 회사 / 인터넷 고객은 순감」. 2장은 인수 편입과 동일 범위 비교를 분리했고, 3장은 무료 모바일의 자격·대가, 4장은 증가율 대신 -2.69억/+1.71억달러를 대조했습니다. 5장에서 차터 이름을 공개하고 절감을 이미 번 돈과 구분했습니다. 필수 출처명은 보존했습니다. 6장의 초기 고객 흐름 개선을 반대 근거로 넣어 「고객 이탈 못 막았다」라는 강한 제목은 버렸습니다.",
+      "avoided_repetition": "제목 후보 「인수로 커진 회사 / 인터넷 고객은 순감」·「20억달러 줄이는 통신사」·「휴대폰 무료로 고객을 붙잡을까」 중 범위 차이를 즉시 드러내는 첫 안을 택했습니다. 비용이 관건·확인이 필요하다는 반복과 선거·AI·배당·손상차손을 덜었습니다. 7장만으로 변화·인수 이유·현재 판단을 다시 설명해 기획과 대조했으며 실제 독자 실험은 아닙니다. 반응 지표 미확보. 다음 편은 실제 절감액과 고객 회복이 동반됐는지 이어받습니다."
     }
-  },
-  "reviewed_preview": {
-    "run_id": 41742069205,
-    "image_sha256": [
-      "c586f4d5d413256e1015a4e11303e6d332789e42fd6891fa077957eb461afbb3",
-      "eabdd95443b1abf6fcc2d65ca9e893516d529a1723b66335e6b3dd2eb13aea59",
-      "6382614309aae661f3c88bfd68a9baba65ae47faff819a2cc0e5d68dc3def3d4",
-      "885cfb2ce59edb3bd8c6600f09c3a219b5267d4e374c1ae4066ceeaba2e2f9cf",
-      "065696c3a29ac6bcda9c98315649a3365cd15df110e2c06587797d35ed789d71",
-      "7e8d72f0709243d3bae7498955de1141ff139250b327267785f0651145925cf1",
-      "1ba22fa9574061c3c118820e80f5778cca8a57099f47f906344b4dcae0b88d2d"
-    ]
   }
 }
