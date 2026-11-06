@@ -27,19 +27,22 @@ permissions:
   contents: read
 jobs:
   offline-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-      - run: python -m pip install 'requests>=2.32,<3' 'Pillow>=10,<13' 'Jinja2>=3.1,<4' 'playwright>=1.47,<2' 'pytest>=8,<10'
+      - run: python -m pip install 'requests>=2.32,<3' 'Pillow>=10,<13' 'Jinja2>=3.1,<4' 'playwright==1.64.1' 'pytest>=8,<10'
       - run: python -m pytest tests -q
         env:
           PYTHONPATH: src
 
-      - name: Install browser for non-publishing layout checks
-        run: python -m playwright install --with-deps chromium
+      - name: Install headless Chromium for embedded-font cards
+        timeout-minutes: 5
+        # Exercise the same apt-free browser setup as the production previews.
+        run: python -m playwright install chromium --only-shell
       - name: Render historical fixtures for layout review only
         env:
           PYTHONPATH: src
