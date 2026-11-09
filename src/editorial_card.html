@@ -1,12 +1,13 @@
 <!doctype html><html lang="ko"><meta charset="utf-8"><style>{% include 'editorial_card.css' %}</style>
 {% set compact_cover = count == 7 and n == 1 and story.layout == 'cover' and story.takeaway is undefined and story.bridge is undefined %}
-<body class="{{ story.visual.tone }} {{ 'stock' if count == 7 else 'news' }}"><main{% if count == 7 and n == 1 and story.layout == "cover" %} class="stock-cover{% if compact_cover %} compact-cover{% endif %}"{% endif %}>
-<header><b>돈의 뒷이야기.</b><span>{{ '미장, 한 겹 더' if count == 7 else '오늘의 시장' if count == 5 else '지금 달라진 것' }}</span></header>
-{% if not compact_cover %}<div class="chapter">{{ '%02d'|format(n) }} <i></i> {{ 'MONEY FOR CHICKEN' }}</div>{% endif %}
+{% set cover = n == 1 %}
+{% set quotes = packet.kind == 'market_brief' and story.layout == 'headline' %}
+<body class="{{ story.visual.tone }} {{ 'stock' if count == 7 else 'news' }}"><main class="layout-{{ story.layout }}{% if cover %} cover{% endif %}{% if compact_cover %} compact-cover{% endif %}">
+<header><b><i></i>돈의 뒷이야기.</b><span>{{ '미장, 한 겹 더' if count == 7 else '오늘의 시장' if count == 5 else '지금 달라진 것' }} <strong>{{ '%02d'|format(n) }}</strong></span></header>
 <h1 data-fit>{% for part,accent in title_parts %}<span class="{{ 'accent' if accent else '' }}">{{ part }}</span>{% endfor %}</h1>
 <p class="body" data-fit>{{ story.body }}</p>
 <figure data-fit><img src="{{ image }}" alt="{{ story.visual.alt }}"><figcaption>{{ 'AI 개념 일러스트' if story.visual.kind == 'concept' else story.visual.credit }}</figcaption></figure>
-{% if not compact_cover %}<div class="evidence" data-fit>
+{% if not compact_cover and (rows or story.origin or story.chart) %}<div class="evidence{% if quotes %} quotes{% endif %}" data-fit>
 {% if story.origin %}<div class="origin">{{ story.origin }}</div>{% endif %}
 {% for row in rows %}<div class="row"><b>{{ row.label }}{% if row.type %}<small>{{ {'fact':'사실','analysis':'해석','watch':'조건'}[row.type] }}</small>{% endif %}</b><p>{{ row.text }}</p></div>{% endfor %}
 {% if story.chart %}<div class="chart-note">단위 {{ story.chart.unit }} · {{ story.chart.note }}<br>{{ story.chart.source }}</div>{% endif %}

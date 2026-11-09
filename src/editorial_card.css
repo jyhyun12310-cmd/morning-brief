@@ -1,15 +1,64 @@
 @font-face{font-family:Editorial;src:url('{{ fonts.body }}') format('woff2');font-weight:100 900;font-display:block}
-*{box-sizing:border-box;margin:0}body{width:1080px;height:1350px;overflow:hidden;background:#F5F2EB;color:#101010;font-family:Editorial,sans-serif}body.dark{background:#101010;color:#F5F2EB;--line:#55585e}body.light{--line:#c9c7c1}main{height:1350px;padding:52px 64px 0}header{display:flex;justify-content:space-between;align-items:center;font-size:22px;letter-spacing:-.4px}header b{font-size:30px;font-weight:850}header span{font-weight:600}.chapter{margin-top:30px;display:flex;align-items:center;gap:16px;font-size:19px;font-weight:700;letter-spacing:1.5px}.chapter i{width:38px;height:3px;background:#EA3027}h1{margin-top:26px;font-size:90px;line-height:1.12;font-weight:850;letter-spacing:-4px;white-space:pre-line;word-break:keep-all;max-height:206px}.accent{color:#EA3027}.dark .accent{color:#EA3027}.body{margin-top:23px;font-size:34px;font-weight:550;line-height:1.4;letter-spacing:-.9px;word-break:keep-all;max-height:145px}figure{height:410px;margin-top:24px;position:relative;overflow:hidden}figure img{width:100%;height:100%;object-fit:contain}figcaption{position:absolute;bottom:5px;right:7px;font-size:17px;padding:5px 10px;color:#F5F2EB;background:#101010cc}.evidence{margin-top:24px;max-height:284px}.row{padding:14px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:220px 1fr;gap:24px}.row b{font-size:29px;line-height:1.25;font-weight:750;word-break:keep-all}.row small{display:block;font-size:17px;font-weight:500;opacity:.65;margin-top:5px}.row p{font-size:30px;line-height:1.35;font-weight:550;word-break:keep-all;letter-spacing:-.6px}.takeaway{font-size:30px;line-height:1.4;margin-top:18px;font-weight:750;word-break:keep-all}.bridge{font-size:23px;line-height:1.35;margin-top:12px;opacity:.8;word-break:keep-all}.origin{font-size:27px;font-weight:700;margin-bottom:8px}.chart-note{font-size:20px;line-height:1.35;margin-top:8px}footer{position:absolute;top:1240px;left:64px;right:64px;border-top:2px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;align-items:center}footer b{display:block;font-size:22px}footer span{display:block;font-size:18px;margin-top:7px}footer strong{font-size:40px;font-weight:850}footer em{font-size:23px;font-style:normal;opacity:.6;margin-left:8px}.stock h1{font-size:78px;max-height:180px}.stock .body{font-size:30px;max-height:132px}.stock figure{height:245px;margin-top:18px}.stock .evidence{margin-top:18px;max-height:300px}.stock .row{padding:8px 0;grid-template-columns:190px 1fr;gap:20px}.stock .row b{font-size:25px}.stock .row p{font-size:27px}.stock .takeaway{font-size:27px}.stock .bridge{font-size:22px}
-figure img{display:block}
-/* Seven-card company explainer cover: expand the artwork into available space,
-   while retaining every label, condition, source, and overflow check. */
-main.stock-cover{height:1224px;display:flex;flex-direction:column}
-.stock-cover > :not(footer){flex-shrink:0}
-.stock-cover figure{flex:1 0 245px;max-height:475px}
-.stock-cover .body{order:1}
-.stock-cover .evidence{order:2}
-.stock-cover .takeaway{order:3}
-.stock-cover .bridge{order:4}
-.compact-cover h1{margin-top:66px;font-size:84px;max-height:194px}
-.compact-cover figure{max-height:675px;margin-top:36px}
-.compact-cover .body{margin-top:32px;font-size:30px;font-weight:650;line-height:1.35;max-height:1.35em}
+*{box-sizing:border-box;margin:0}
+body{width:1080px;height:1350px;overflow:hidden;background:#F5F2EB;color:#101010;font-family:Editorial,sans-serif;--line:#ccc8bf;--muted:#5b5851}
+body.dark{background:#101010;color:#F5F2EB;--line:#484640;--muted:#c4bfb4}
+main{height:1218px;padding:48px 64px 0;display:flex;flex-direction:column}
+main>:not(figure){flex-shrink:0}
+header{display:flex;align-items:center;justify-content:space-between;height:38px;font-size:21px;letter-spacing:-.4px}
+header b{display:flex;align-items:center;gap:12px;font-size:28px;font-weight:800}
+header i{display:block;width:12px;height:24px;background:#EA3027}
+header span{display:flex;align-items:center;gap:22px;color:var(--muted);font-weight:600}
+header strong{font-size:22px;font-weight:800;color:inherit;border-left:1px solid var(--line);padding-left:22px}
+h1{margin-top:40px;font-size:90px;line-height:1.12;font-weight:850;letter-spacing:-4px;white-space:pre-line;word-break:keep-all;max-height:206px}
+.accent{color:#EA3027}
+.body{margin-top:24px;font-size:34px;line-height:1.4;letter-spacing:-.8px;font-weight:500;word-break:keep-all;max-height:145px}
+figure{flex:1 1 540px;min-height:300px;max-height:620px;margin-top:28px;position:relative;overflow:hidden}
+figure img{display:block;width:100%;height:100%;object-fit:contain}
+figcaption{position:absolute;bottom:0;right:0;font-size:17px;line-height:1.4;padding:5px 10px;color:#F5F2EB;background:#101010e8;max-width:100%}
+.evidence{margin-top:24px}
+.row{display:grid;grid-template-columns:190px 1fr;gap:24px;padding:15px 0;border-top:1px solid var(--line)}
+.row b{font-size:29px;line-height:1.3;font-weight:750;word-break:keep-all}
+.row small{font-size:17px;font-weight:500;display:block;color:var(--muted);margin-top:5px}
+.row p{font-size:30px;line-height:1.4;letter-spacing:-.5px;font-weight:550;word-break:keep-all}
+.takeaway{margin-top:18px;padding-left:18px;border-left:4px solid #EA3027;font-size:30px;line-height:1.4;font-weight:750;word-break:keep-all}
+.bridge{margin-top:12px;font-size:23px;line-height:1.35;word-break:keep-all;color:var(--muted)}
+.origin{font-size:27px;font-weight:700;margin-bottom:8px}
+.chart-note{font-size:20px;line-height:1.35;margin-top:8px;color:var(--muted)}
+footer{position:absolute;top:1250px;left:64px;right:64px;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;align-items:center}
+footer b{font-size:20px;font-weight:650;display:block}
+footer span{display:block;font-size:18px;margin-top:7px;color:var(--muted)}
+footer strong{font-size:36px;font-weight:800}
+footer em{font-size:22px;font-style:normal;color:var(--muted);margin-left:7px}
+/* A cover reads as a poster: headline, large artwork, explanation, exact quotes. */
+.cover h1{margin-top:48px}
+.cover figure{order:1;min-height:390px;max-height:670px;margin-top:30px}
+.cover .body{order:2;margin-top:28px}
+.cover .evidence{order:3}
+.cover .takeaway{order:4}
+.cover .bridge{order:5}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid var(--line);padding-top:18px}
+.quotes .row{display:block;padding:0;border:0}
+.quotes .row b{font-size:29px;color:var(--muted);font-weight:600}
+.quotes .row p{font-size:30px;line-height:1.45;margin-top:5px;font-weight:650}
+/* The closing card leads with criteria, then gives the artwork room below. */
+.news .layout-watch .evidence{order:1;margin-top:32px;counter-reset:criteria}
+.news .layout-watch .row{grid-template-columns:44px 190px 1fr;gap:20px;padding:20px 0}
+.news .layout-watch .row:before{counter-increment:criteria;content:counter(criteria,decimal-leading-zero);color:#EA3027;font-size:23px;font-weight:800;padding-top:3px}
+.news .layout-watch figure{order:2;min-height:260px;margin-top:26px}
+.stock h1{font-size:78px;max-height:180px;margin-top:30px}
+.stock .body{font-size:30px;max-height:132px;margin-top:20px}
+.stock figure{min-height:245px;margin-top:22px}
+.stock .evidence{margin-top:20px}
+.stock .row{grid-template-columns:190px 1fr;gap:20px;padding:9px 0}
+.stock .row b{font-size:25px}
+.stock .row p{font-size:27px;line-height:1.35}
+.stock .takeaway{font-size:27px}
+.stock .bridge{font-size:22px}
+.stock.cover figure{min-height:245px}
+.stock.compact-cover h1{margin-top:62px;font-size:84px;max-height:194px}
+.stock.compact-cover figure{max-height:720px;margin-top:36px}
+.stock.compact-cover .body{font-size:30px;font-weight:650;line-height:1.35;max-height:1.35em;margin-top:32px}
+
+/* Short investor-flow facts get a stronger value hierarchy. */
+.news .layout-drivers .row{grid-template-columns:170px 1fr;padding:17px 0}
+.news .layout-drivers .row p{font-size:36px;font-weight:700}
