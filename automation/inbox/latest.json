@@ -2,451 +2,473 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-11-07T08:47:17+09:00",
-  "publication_date_kst": "2026-11-07",
+  "created_at": "2026-11-09T23:50:00+00:00",
+  "publication_date_kst": "2026-11-10",
   "market": {
-    "ticker": "CHTR",
-    "name": "차터 커뮤니케이션스",
-    "session_date": "2026-11-06",
-    "session_close_at": "2026-11-06T16:00:00-05:00",
-    "price_basis": "regular_close",
+    "ticker": "TTWO",
+    "name": "Take-Two Interactive Software",
     "currency": "USD",
-    "close": 118.05,
-    "previous_close": 125.86,
-    "change_pct": -6.21,
-    "source_id": "chtr-close"
+    "price_basis": "regular_close",
+    "session_date": "2026-11-09",
+    "session_close_at": "2026-11-09T16:00:00-05:00",
+    "close": 207.4,
+    "previous_close": 214.87,
+    "change_pct": -3.48,
+    "source_id": "prices"
   },
   "sources": [
     {
-      "id": "chtr-release",
-      "title": "Charter · 2026년 3분기 실적과 새 운영 모델",
-      "url": "https://ir.charter.com/news-releases/news-release-details/charter-announces-third-quarter-2026-results-and-launches-new",
-      "as_of": "2026-11-06 발표; 9월 말 분기; 실제·pro forma 비교 구분",
-      "retrieved_at": "2026-11-07T08:35:00+09:00"
+      "id": "release",
+      "title": "Take-Two FY2027 Q2 official results",
+      "url": "https://www.take2games.com/ir/news/take-two-interactive-software-inc-reports-results-fiscal-4",
+      "as_of": "2026-11-09 발표; 9/30 종료 분기 잠정 실적; 2027/3/31 종료 연간 전망",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
-      "id": "chtr-10q",
-      "title": "Charter · 2026년 3분기 Form 10-Q",
-      "url": "https://ir.charter.com/static-files/a7c0bb0c-c20d-446c-936a-9ed2f96e4825",
-      "as_of": "2026-11-06 제출; 원문 PDF 21~22쪽 운영 모델·절감 계획·인수 영향 직접 확인",
-      "retrieved_at": "2026-11-07T08:47:17+09:00"
+      "id": "slides",
+      "title": "Take-Two FY2027 Q2 official earnings slides",
+      "url": "https://ir.take2games.com/static-files/01437b0a-6d3d-4f80-a2ac-5cecdb0c573f",
+      "as_of": "2026-11-09; Q2 실제·회사 예상 비교, 연간·Q3 전망, 출시 일정",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
-      "id": "spectrum-day",
-      "title": "Charter · 옛 Cox 지역의 Spectrum 상품 도입",
-      "url": "https://corporate.charter.com/newsroom/spectrum-says-hi-to-11-million-homes-and-businesses",
-      "as_of": "2026-09-16 발표; 인터넷·모바일 결합과 무료 회선 자격 조건",
-      "retrieved_at": "2026-11-07T08:40:00+09:00"
+      "id": "remarks",
+      "title": "Take-Two FY2027 Q2 official prepared remarks",
+      "url": "https://ir.take2games.com/static-files/a45ff316-72c4-4255-b123-aace2e41ad1a",
+      "as_of": "2026-11-09 공식 준비 발언문; 소비 경쟁·마케팅비·RCS 정의와 전망 전제",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
-      "id": "cox-close",
-      "title": "Charter · Cox 인수 완료와 대가",
-      "url": "https://corporate.charter.com/newsroom/charter-and-cox-communications-complete-transaction",
-      "as_of": "2026-08-20 발표; 현금·지분·남는 부채와 거래 위험",
-      "retrieved_at": "2026-11-07T08:44:00+09:00"
+      "id": "prices",
+      "title": "Investing.com TTWO historical daily prices",
+      "url": "https://www.investing.com/equities/take-two-interactive-historical-data",
+      "as_of": "11/09·11/06 정규장 일별 Price 열 동일 기준 USD; 시간외 제외",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
-      "id": "chtr-close",
-      "title": "Stock Analysis / S&P Global · CHTR 일별 종가",
-      "url": "https://stockanalysis.com/stocks/chtr/history/",
-      "as_of": "Close 열·주식분할 조정 동일 기준; 11/6 118.05·11/5 125.86달러; 16:00 EST",
-      "retrieved_at": "2026-11-07T08:38:00+09:00"
+      "id": "ir_quote",
+      "title": "Take-Two IR stock quote · Refinitiv",
+      "url": "https://www.take2games.com/ir?source=news_body_link",
+      "as_of": "2026-11-09 16:00 EST; 207.40달러·-3.48% 정규장 종가 교차 확인",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
-      "id": "nyse-calendar",
-      "title": "NYSE · 정규 거래시간과 2026 휴장 달력",
+      "id": "timing",
+      "title": "Take-Two official earnings announcement schedule",
+      "url": "https://taketwointeractivesoftwareinc.gcs-web.com/news-releases/news-release-details/take-two-interactive-software-inc-report-second-quarter-fiscal-8",
+      "as_of": "2026-10-13 공지: 11/09 장 마감 후 발표, 16:30 ET 설명회",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
+    },
+    {
+      "id": "nyse",
+      "title": "NYSE official hours and holidays",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "11/6 정상 거래일; 16:00 EST 폐장; 한국 11/7 06:00",
-      "retrieved_at": "2026-11-07T08:32:00+09:00"
+      "as_of": "2026년 공식 거래일·조기폐장; 11/09 정상 정규장 16:00 EST 종료",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
-      "id": "nasdaq-calendar",
-      "title": "Nasdaq · 2026 주식시장 휴장 달력",
+      "id": "nasdaq",
+      "title": "Nasdaq official market holiday schedule",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "11/6 휴장·조기폐장 없음; 뉴욕 표준시 적용",
-      "retrieved_at": "2026-11-07T08:32:00+09:00"
+      "as_of": "2026년 공식 휴장·조기폐장; 11/09 정상 거래일",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
       "id": "bullstory",
-      "title": "불스토리 · 미국 중간선거 수혜주 5종목 (편집 참고)",
-      "url": "https://bullstory.io/blog/midterms-2026-five-stocks",
-      "as_of": "공식 사이트 공개 도입·오스카헬스 본문 열람; 나머지 4종목·Instagram 전체 카드 미열람",
-      "retrieved_at": "2026-11-07T08:38:00+09:00"
+      "title": "불스토리 · Rheinmetall 전망 하향과 주가 급락, 매출 변수 (편집 참고)",
+      "url": "https://bullstory.io/blog/rheinmetall-전망-하향과-주가-급락-매출-변수",
+      "as_of": "11/10 조회; 공식 웹 본문·FAQ 직접 열람; Instagram 카드 미열람",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     },
     {
-      "id": "hong-column",
-      "title": "홍춘욱 · 실적회복, 인수합병…한국 조선업의 앞날은? (편집 참고)",
-      "url": "https://bizhankook.com/articles/17108.html",
-      "as_of": "2019-02-03 비즈한국 기고 원문 전체; 인용된 책 전체·영상은 미열람",
-      "retrieved_at": "2026-11-07T08:39:00+09:00"
+      "id": "hong",
+      "title": "홍춘욱 · 타잔 경제학 (편집 참고)",
+      "url": "https://brunch.co.kr/@hong8706/169",
+      "as_of": "2022-08-29 공식 Brunch 본문 전체·인용된 책 일부 열람; 책 전체·영상 미열람",
+      "retrieved_at": "2026-11-09T23:50:00+00:00"
     }
   ],
   "metrics": [
     {
-      "id": "internet-delta",
-      "value": -2.69,
-      "unit": "억달러",
-      "period": "2026Q3 vs 2025Q3",
-      "basis": "Residential pro forma revenue change",
-      "source_id": "chtr-release"
+      "id": "rcs_guidance",
+      "value": -5,
+      "unit": "%",
+      "period": "FY2027 Q2 2026-07-01~09-30",
+      "basis": "Net Bookings RCS YoY",
+      "source_id": "slides"
     },
     {
-      "id": "mobile-delta",
-      "value": 1.71,
-      "unit": "억달러",
-      "period": "2026Q3 vs 2025Q3",
-      "basis": "Residential pro forma revenue change",
-      "source_id": "chtr-release"
+      "id": "rcs_actual",
+      "value": -9,
+      "unit": "%",
+      "period": "FY2027 Q2 2026-07-01~09-30",
+      "basis": "Net Bookings RCS YoY",
+      "source_id": "slides"
     }
   ],
   "summary": {
     "design": "editorial-v2",
-    "central_question": "매출이 늘었는데 차터가 고객을 붙잡고 비용까지 줄이려는 이유는 무엇일까요?",
-    "thesis": "차터의 보고 매출 증가는 Cox 인수 편입의 영향입니다. 같은 사업 범위에서는 인터넷 고객과 매출이 줄었고 모바일 증가도 이를 다 메우지 못했습니다. 새 절감 계획은 고객 회복과 별개이며, 인터넷 순감 축소와 결합 매출 개선이 함께 나와야 회복 해석이 강해집니다.",
+    "central_question": "분기 판매가 줄었는데 GTA 회사가 연간 목표를 유지한 이유는 무엇인가?",
+    "thesis": "테이크투는 9월까지의 순판매액이 줄고 회사 예상에도 미달했지만 연간 순판매액 전망은 유지했다. 이는 기존 게임의 전면 회복이 아니라 GTA VI 출시와 NBA 2K 소비 회복으로 만회한다는 계획이며, 반복 소비 전망에도 신작의 추가 콘텐츠 포함 상품이 들어간다.",
     "edition": "미장, 한 겹 더",
-    "instagram_caption": "회사를 사서 커진 매출과 고객이 계속 내는 돈은 다릅니다. 이번 성적표의 주인공은 차터(CHTR)입니다. #미국주식 #차터 #기업실적",
+    "instagram_caption": "덜 팔렸는데도 연간 목표는 그대로입니다. GTA VI 출시가 들어간 전망과 이미 끝난 분기 실적을 나누면, 테이크투(TTWO)가 무엇으로 만회하려는지 보입니다. #미국주식 #테이크투 #게임산업",
     "market_basis": {
-      "ticker": "CHTR",
-      "session_date": "2026-11-06",
+      "ticker": "TTWO",
+      "session_date": "2026-11-09",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 118.05,
-      "previous_close": 125.86,
-      "change_pct": -6.21
+      "close": 207.4,
+      "previous_close": 214.87,
+      "change_pct": -3.48
     },
     "sources": [
       {
-        "id": "chtr-release",
-        "title": "Charter · 2026년 3분기 실적과 새 운영 모델",
-        "url": "https://ir.charter.com/news-releases/news-release-details/charter-announces-third-quarter-2026-results-and-launches-new",
-        "as_of": "2026-11-06 발표; 9월 말 분기; 실제·pro forma 비교 구분"
+        "id": "release",
+        "title": "Take-Two FY2027 Q2 official results",
+        "url": "https://www.take2games.com/ir/news/take-two-interactive-software-inc-reports-results-fiscal-4",
+        "as_of": "2026-11-09 발표; 9/30 종료 분기 잠정 실적; 2027/3/31 종료 연간 전망"
       },
       {
-        "id": "chtr-10q",
-        "title": "Charter · 2026년 3분기 Form 10-Q",
-        "url": "https://ir.charter.com/static-files/a7c0bb0c-c20d-446c-936a-9ed2f96e4825",
-        "as_of": "2026-11-06 제출; 원문 PDF 21~22쪽 운영 모델·절감 계획·인수 영향 직접 확인"
+        "id": "slides",
+        "title": "Take-Two FY2027 Q2 official earnings slides",
+        "url": "https://ir.take2games.com/static-files/01437b0a-6d3d-4f80-a2ac-5cecdb0c573f",
+        "as_of": "2026-11-09; Q2 실제·회사 예상 비교, 연간·Q3 전망, 출시 일정"
       },
       {
-        "id": "spectrum-day",
-        "title": "Charter · 옛 Cox 지역의 Spectrum 상품 도입",
-        "url": "https://corporate.charter.com/newsroom/spectrum-says-hi-to-11-million-homes-and-businesses",
-        "as_of": "2026-09-16 발표; 인터넷·모바일 결합과 무료 회선 자격 조건"
+        "id": "remarks",
+        "title": "Take-Two FY2027 Q2 official prepared remarks",
+        "url": "https://ir.take2games.com/static-files/a45ff316-72c4-4255-b123-aace2e41ad1a",
+        "as_of": "2026-11-09 공식 준비 발언문; 소비 경쟁·마케팅비·RCS 정의와 전망 전제"
       },
       {
-        "id": "cox-close",
-        "title": "Charter · Cox 인수 완료와 대가",
-        "url": "https://corporate.charter.com/newsroom/charter-and-cox-communications-complete-transaction",
-        "as_of": "2026-08-20 발표; 현금·지분·남는 부채와 거래 위험"
+        "id": "prices",
+        "title": "Investing.com TTWO historical daily prices",
+        "url": "https://www.investing.com/equities/take-two-interactive-historical-data",
+        "as_of": "11/09·11/06 정규장 일별 Price 열 동일 기준 USD; 시간외 제외"
       },
       {
-        "id": "chtr-close",
-        "title": "Stock Analysis / S&P Global · CHTR 일별 종가",
-        "url": "https://stockanalysis.com/stocks/chtr/history/",
-        "as_of": "Close 열·주식분할 조정 동일 기준; 11/6 118.05·11/5 125.86달러; 16:00 EST"
+        "id": "ir_quote",
+        "title": "Take-Two IR stock quote · Refinitiv",
+        "url": "https://www.take2games.com/ir?source=news_body_link",
+        "as_of": "2026-11-09 16:00 EST; 207.40달러·-3.48% 정규장 종가 교차 확인"
       },
       {
-        "id": "nyse-calendar",
-        "title": "NYSE · 정규 거래시간과 2026 휴장 달력",
+        "id": "timing",
+        "title": "Take-Two official earnings announcement schedule",
+        "url": "https://taketwointeractivesoftwareinc.gcs-web.com/news-releases/news-release-details/take-two-interactive-software-inc-report-second-quarter-fiscal-8",
+        "as_of": "2026-10-13 공지: 11/09 장 마감 후 발표, 16:30 ET 설명회"
+      },
+      {
+        "id": "nyse",
+        "title": "NYSE official hours and holidays",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "11/6 정상 거래일; 16:00 EST 폐장; 한국 11/7 06:00"
+        "as_of": "2026년 공식 거래일·조기폐장; 11/09 정상 정규장 16:00 EST 종료"
       },
       {
-        "id": "nasdaq-calendar",
-        "title": "Nasdaq · 2026 주식시장 휴장 달력",
+        "id": "nasdaq",
+        "title": "Nasdaq official market holiday schedule",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "11/6 휴장·조기폐장 없음; 뉴욕 표준시 적용"
+        "as_of": "2026년 공식 휴장·조기폐장; 11/09 정상 거래일"
       },
       {
         "id": "bullstory",
-        "title": "불스토리 · 미국 중간선거 수혜주 5종목 (편집 참고)",
-        "url": "https://bullstory.io/blog/midterms-2026-five-stocks",
-        "as_of": "공식 사이트 공개 도입·오스카헬스 본문 열람; 나머지 4종목·Instagram 전체 카드 미열람"
+        "title": "불스토리 · Rheinmetall 전망 하향과 주가 급락, 매출 변수 (편집 참고)",
+        "url": "https://bullstory.io/blog/rheinmetall-전망-하향과-주가-급락-매출-변수",
+        "as_of": "11/10 조회; 공식 웹 본문·FAQ 직접 열람; Instagram 카드 미열람"
       },
       {
-        "id": "hong-column",
-        "title": "홍춘욱 · 실적회복, 인수합병…한국 조선업의 앞날은? (편집 참고)",
-        "url": "https://bizhankook.com/articles/17108.html",
-        "as_of": "2019-02-03 비즈한국 기고 원문 전체; 인용된 책 전체·영상은 미열람"
+        "id": "hong",
+        "title": "홍춘욱 · 타잔 경제학 (편집 참고)",
+        "url": "https://brunch.co.kr/@hong8706/169",
+        "as_of": "2022-08-29 공식 Brunch 본문 전체·인용된 책 일부 열람; 책 전체·영상 미열람"
       }
     ],
     "evidence_notes": [
       {
-        "id": "scope",
-        "claim": "보고 매출 +9.1%는 Cox 인수 편입을 포함한다. 두 회사의 전체 분기를 모두 합친 pro forma 매출은 전년 동기보다 1.5% 감소했다. 실제 편입 기간은 8월 20일~9월 30일이다.",
+        "id": "quarter",
+        "claim": "9/30 종료 FY2027 Q2 Net Bookings는 16.01억달러로 전년 19.61억보다 18% 감소했다. 회사 직전 예상 16.2~16.7억에도 미달. Net Bookings는 판매한 제품·서비스 순액에 라이선스·광고 등을 포함한 운영 지표이며 회계 매출이나 현금 유입과 다르다.",
         "source_ids": [
-          "chtr-release",
-          "chtr-10q"
+          "release",
+          "slides"
         ]
       },
       {
-        "id": "customers",
-        "claim": "3분기 pro forma 인터넷 고객은 23만3천 순감했다. 옛 Charter 15만6천·Cox 7만7천 감소의 합이다. 전체 해지 건수나 인수로 더해진 고객 수와 다르다.",
+        "id": "annual",
+        "claim": "FY2027(2027/3/31 종료) Net Bookings 전망 80~82억달러를 유지했다. GTA VI 출시 예정일은 2026/11/19로 9월 종료 분기 이후다. GAAP 매출 등 모든 전망을 동결했다는 뜻은 아니다.",
         "source_ids": [
-          "chtr-release"
+          "release",
+          "slides"
+        ]
+      },
+      {
+        "id": "nba",
+        "claim": "NBA 2K27 출시의 순판매액 성과는 시리즈 역대 두 번째였으나 해당 분기 회사 예상에 미달했다. 회사는 여러 오락 상품이 이용자 관심을 다투는 바쁜 출시 시기를 이유로 설명했다. 시장 전체 원인을 확정한 독립 검증은 아니다.",
+        "source_ids": [
+          "slides",
+          "remarks"
+        ]
+      },
+      {
+        "id": "rcs",
+        "claim": "Q2 Net Bookings 기준 RCS는 전년 대비 -9%(종전 회사 예상 -5%), 전체 순판매액의 81%. 가상화폐·추가 콘텐츠·게임 내 구매와 광고를 포함한다. NBA 2K와 모바일은 감소, GTA 시리즈는 증가했다. GAAP 매출 기준 RCS -5%와 혼동하지 않는다.",
+        "source_ids": [
+          "release",
+          "slides"
+        ]
+      },
+      {
+        "id": "marketing",
+        "claim": "테이크투는 Rockstar Games·2K·Zynga를 통해 게임을 개발·출판한다. 10~12월 분기 관리 기준 운영비는 전년 대비 약21% 증가 예상이며 회사는 주된 이유로 GTA VI 출시 마케팅을 들었다. GAAP 운영비 증가율이 아니다.",
+        "source_ids": [
+          "timing",
+          "remarks"
         ]
       },
       {
         "id": "bundle",
-        "claim": "9월 16일 옛 Cox 지역에 Spectrum 상품이 도입됐다. Cox Mobile 미가입 인터넷 고객에게 모바일 한 회선을 1년 무료로 제공한다. 인터넷 요금까지 무료라는 뜻은 아니다.",
+        "claim": "회사의 다음 분기 RCS +12% 전망에는 추가 콘텐츠가 포함된 GTA VI Ultimate Edition 판매, NBA 2K 성장, 모바일 감소가 전제된다. 따라서 RCS 증가만으로 기존 게임 이용자의 재결제 회복이 입증되지는 않는다(작성자 해석).",
         "source_ids": [
-          "spectrum-day",
-          "cox-close"
+          "slides",
+          "remarks"
         ]
       },
       {
-        "id": "revenue-mix",
-        "claim": "주거용 pro forma 인터넷 매출은 7,366→7,097백만달러, 모바일 서비스는 987→1,158백만달러다. 전년 동기 대비 각각 -269·+171백만달러로 두 항목 합계는 98백만달러 감소했다.",
+        "id": "q3",
+        "claim": "2026년10~12월 FY2027 Q3 회사 Net Bookings 전망은33.5~35억달러. GTA VI 출시가 성장 이유이며 RCS는 전년 대비 약12% 증가 예상이다. 모두 전망으로 출시 실적·확정 매출·이익과 구분한다.",
         "source_ids": [
-          "chtr-release"
-        ]
-      },
-      {
-        "id": "savings",
-        "claim": "10-Q 21~22쪽: 기존 Cox 통합 연간 절감 예상 10억달러 초과 외에, 향후 18개월에 걸쳐 추가 연간 환산 운영비 20억달러 절감을 목표로 한다. 비핵심 프로젝트·관리 계층·공급업체 수와 조건을 조정한다. 달성 보장은 없다.",
-        "source_ids": [
-          "chtr-10q"
-        ]
-      },
-      {
-        "id": "counter",
-        "claim": "회사는 9월 16일 상품 도입 이후 옛 Cox 지역의 수요와 고객 흐름이 개선됐다고 밝혔다. 이는 전체 3분기 인터넷 고객 순감과 함께 읽어야 하며, 다음 분기 회복 확정으로 볼 수 없다.",
-        "source_ids": [
-          "chtr-release",
-          "spectrum-day"
-        ]
-      },
-      {
-        "id": "ownership",
-        "claim": "Cox 매도 측은 약 40억달러 현금과 지분성 대가를 받았다. 결합 회사의 완전희석·전환 가정 지분은 약 26%다. 인수는 기존 주주에게 공짜 매출 증가가 아니며 거래 위험에는 이자·통합 비용과 지분 변화가 포함된다.",
-        "source_ids": [
-          "cox-close"
+          "slides"
         ]
       },
       {
         "id": "price",
-        "claim": "동일 제공자 Close 열 11월 6일 118.05달러, 직전 11월 5일 125.86달러: (118.05/125.86-1)*100=-6.2053%, 반올림 -6.21%. 시간외 제외. 하락 전부를 단일 실적 항목 탓으로 단정하지 않는다.",
+        "claim": "Investing 일별 동일 Price 열에서11/9 207.40달러,11/6 214.87달러. 계산 -3.48%; 회사 IR Refinitiv의11/9 16:00 EST 종가와 일치. 다른 제공자의207.97은 불일치해 채택하지 않았다. 실적 발표는 장 마감 뒤여서 이 하락을 이번 실적 반응으로 단정하지 않는다.",
         "source_ids": [
-          "chtr-close",
-          "nyse-calendar",
-          "nasdaq-calendar"
+          "prices",
+          "ir_quote",
+          "timing"
+        ]
+      },
+      {
+        "id": "session",
+        "claim": "NYSE·Nasdaq 2026년 공식 달력상11/9는 정상 정규장 거래일. EST 16시는 UTC21시, 한국11/10 06시. 가장 최근 완료된 정규장이며 시간외 시세는 쓰지 않는다.",
+        "source_ids": [
+          "nyse",
+          "nasdaq"
         ]
       }
     ],
     "visual_story": [
       {
         "layout": "cover",
-        "title": "인수로 커진 회사\n인터넷 고객은 순감",
-        "body": "미국 통신사 3분기 · 보고 매출 +9.1%",
+        "title": "GTA 회사, 덜 팔고도\n연간 목표는 그대로",
+        "body": "7~9월 순판매액 -18% · 연간 순판매액 전망 유지",
         "evidence_ids": [
-          "scope",
-          "customers"
+          "quarter",
+          "annual"
         ],
         "labels": [],
         "visual": {
-          "path": "automation/visual_assets/6406a70a583fda50666ff9a6ba2db1f710621d44787c5bf825285b9339c1f3ad.png",
-          "sha256": "6406a70a583fda50666ff9a6ba2db1f710621d44787c5bf825285b9339c1f3ad",
-          "alt": "커진 주거 단지와 앞에 놓인 빠진 인터넷 플러그의 개념 그림",
-          "tone": "dark",
+          "path": "automation/visual_assets/5af43c1e747b53941c1897214d3f0da406ab4679e267e3fda71842c7ea0ae555.jpg",
+          "sha256": "5af43c1e747b53941c1897214d3f0da406ab4679e267e3fda71842c7ea0ae555",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Editorial artwork for a Korean investment explainer, no text. A large two-part miniature American residential apartment block newly connected by a black arch, contrasted with three unplugged broadband ethernet cables in the foreground. The plug ends are dominant, readable objects, not dramatic destruction. A conceptual illustration of a larger company footprint while individual customer connections are lost. Premium tactile paper collage with engraved architectural detail, halftone texture, offwhite paper, charcoal black and one vivid vermilion red cable, no blue. Landscape 3:2, centered spacious composition filling frame. No words, digits, logo, watermark, chart or graph. Not a real property or company photograph."
+          "prompt": "Editorial concept illustration for a Korean financial magazine, cover artwork only. A huge unopened red video-game case stands upright beside a small stack of well-worn black game cases, with a grayscale hand poised to open the new case. The contrast is between past sales and an anticipated new release, not a financial chart. Strong close crop, one dominant object, flat near-black background #101010, restrained warm ivory #F5F2EB and red #EA3027, tactile cut-paper collage and elegant grayscale print texture, minimal halftone, crisp silhouettes. Landscape 3:2 composition, image fills frame with no giant empty margins. No text, numbers, logos, game characters, arrows, chart, neon, gradients or official game artwork.",
+          "tone": "dark",
+          "alt": "기존 게임 케이스 옆 새 게임의 포장을 여는 손을 그린 개념 이미지"
         }
       },
       {
         "layout": "photo",
-        "title": "회사를 합친 숫자와\n장사가 나아진 숫자",
-        "body": "8월에 Cox를 인수한 미국 통신사의 11월 6일 실적입니다. 보고 매출은 늘었지만, 두 회사를 작년과 올해 모두 한 분기씩 합치면 매출은 줄었습니다. 고객을 더 모으는 일과 회사 몸집을 키우는 일은 달랐습니다.",
+        "title": "지난 분기 성적표엔\nGTA 신작이 없다",
+        "body": "11월 9일 발표한 실적은 9월까지의 판매입니다. 연간 목표에는 11월 19일 출시 예정인 GTA VI가 들어갑니다. 지난 분기의 부진을 신작 판매로 만회하겠다는 회사의 계획입니다.",
         "evidence_ids": [
-          "scope",
-          "customers",
-          "ownership"
+          "quarter",
+          "annual"
         ],
         "labels": [
           {
-            "label": "같은 범위 비교",
-            "text": "pro forma 매출 165.05억달러 · 전년 동기보다 1.5% 감소"
+            "label": "이번 실적",
+            "text": "7~9월 순판매액 16.01억달러 · 전년 대비 18% 감소"
           },
           {
-            "label": "인터넷 고객",
-            "text": "3분기 두 회사 합계 23만3천 순감 · 신규 가입보다 이탈이 많음"
+            "label": "유지한 전망",
+            "text": "2027년 3월 말까지 연간 순판매액 80~82억달러"
           }
         ],
-        "takeaway": "인수로 들어온 매출을 빼고도 고객이 돈을 더 내는지 봐야 합니다.",
-        "bridge": "회사가 고객에게 내민 것은 인터넷과 휴대폰의 묶음입니다.",
+        "takeaway": "순판매액은 게임·서비스 판매 등을 묶은 지표로, 회계 매출이나 현금과 다릅니다.",
+        "bridge": "그렇다면 신작 출시 전에는 어디서 기대에 못 미쳤을까?",
         "visual": {
-          "path": "automation/visual_assets/89bb77cacb3eea99b34fd952bcd7e120dd83028fb102fa3a1cdf4ba4db96d1d9.png",
-          "sha256": "89bb77cacb3eea99b34fd952bcd7e120dd83028fb102fa3a1cdf4ba4db96d1d9",
-          "alt": "같은 범위의 두 주거 모형을 비교하고 추가 단지를 따로 둔 그림",
-          "tone": "light",
+          "path": "automation/visual_assets/ca59845784f75f7cadc14527f07027fffc4387f4712da89d35f71bf7100600d4.jpg",
+          "sha256": "ca59845784f75f7cadc14527f07027fffc4387f4712da89d35f71bf7100600d4",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Editorial artwork only, no typography. Overhead still life: two equal-sized architectural tracing frames held over two matching miniature neighborhood models on a desk; a separate extra neighborhood tile rests beside them. Concept: compare the same business perimeter instead of merely adding an acquisition. Warm offwhite paper collage, graphite engraved detail, crisp vermilion red border on the two frames, high contrast black shadows. Wide landscape 3:2 with large clearly readable objects. No text, digits, logo, precise data chart, arrows or watermark."
+          "prompt": "Editorial concept illustration, artwork only: a tabletop with a used basketball-game case and a shut ledger on the left, while a red sealed game package on the right sits beyond a torn vertical paper edge suggesting a later time. No readable dates or numbers. Warm ivory background, black/ivory/red palette, refined editorial paper collage, subtle grayscale photographic grain. Wide 3:2 composition with two clearly separated physical still-life groups, both sizeable. No chart, labels, logos, characters, neon, gradients or fake product art. Edited right-hand cover to plain red, without basketball art.",
+          "tone": "light",
+          "alt": "과거 판매 장부와 아직 포장을 뜯지 않은 새 게임을 나눈 개념 이미지"
         }
       },
       {
         "layout": "annotated",
-        "title": "휴대폰 요금을 포기해\n인터넷 고객을 붙잡는다",
-        "body": "옛 Cox 지역의 인터넷 고객에게 모바일 한 회선을 1년 무료로 제공합니다. 고객은 통신비를 줄일 수 있고, 회사는 인터넷까지 함께 쓰는 고객을 늘리려는 선택입니다. 모바일 요금을 덜 받는 대신 결합 이용을 노립니다.",
+        "title": "역대 두 번째 기록도\n예상에는 못 미쳤다",
+        "body": "NBA 2K27은 시리즈 역대 두 번째로 높은 출시 순판매액을 냈지만 회사 예상에는 미달했습니다. 회사는 출시 시기에 여러 오락 상품이 이용자의 관심을 놓고 경쟁했다고 설명했습니다.",
         "evidence_ids": [
-          "bundle",
-          "savings"
+          "nba",
+          "quarter"
         ],
         "labels": [
           {
-            "label": "대상 조건",
-            "text": "Cox Mobile에 가입하지 않은 인터넷 고객 · 9월 도입"
+            "label": "회사 예상",
+            "text": "7~9월 전체 순판매액 16.2~16.7억달러"
           },
           {
-            "label": "고객의 선택",
-            "text": "인터넷 요금은 별도 · 무료 기간은 모바일 한 회선의 첫 1년"
+            "label": "회사 대응",
+            "text": "NBA 2K의 새 시즌·게임 내 콘텐츠로 하반기 소비 확대 기대"
           }
         ],
-        "takeaway": "무료 회선 수보다 인터넷까지 계속 쓰는 고객이 남는지가 중요합니다.",
-        "bridge": "실제로 모바일에서 늘어난 매출이 인터넷 감소를 메웠을까요?",
+        "takeaway": "많이 팔렸다는 기록과 회사가 기대한 만큼 팔렸다는 판단은 다릅니다.",
+        "bridge": "한 번 게임을 산 뒤의 추가 결제도 약했습니다.",
         "visual": {
-          "path": "automation/visual_assets/e0b55cc3198d21cb9617d8437ca0e8c86a574b223305f368065013bf11efb105.png",
-          "sha256": "e0b55cc3198d21cb9617d8437ca0e8c86a574b223305f368065013bf11efb105",
-          "alt": "인터넷 공유기와 휴대폰을 한 묶음으로 건네는 손의 개념 그림",
-          "tone": "dark",
+          "path": "automation/visual_assets/e9d7f0052f30197d7e4c9579c39b9e697a602087df381907c3d970d7d93694fd.jpg",
+          "sha256": "e9d7f0052f30197d7e4c9579c39b9e697a602087df381907c3d970d7d93694fd",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Editorial artwork, a close-up of a hand offering a simple broadband router and a smartphone together wrapped with a single red paper band, on an offwhite tabletop. The smartphone screen is blank; router has simple unbranded antennas. Concept: customer chooses an internet and mobile bundle. Warm offwhite, ink-black engraved textures, vivid vermilion red band; tactile magazine paper collage, restrained human detail. Landscape 3:2, objects large and centered. No words, digits, logos, watermark, price tags, charts or graphs."
+          "prompt": "Editorial concept illustration, artwork only: overhead close-up of a person's single hand choosing between a generic basketball game disc, cinema tickets with entirely blank faces, and a television remote on a desk. Show competing entertainment choices without a speech bubble or invented emotion. Warm ivory and grayscale paper collage, one sharply red ticket, sophisticated magazine print texture, high contrast, 3:2 landscape, fill frame. No text, digits, logos, charts, branded controllers or game screenshots.",
+          "tone": "light",
+          "alt": "게임·영화·텔레비전 사이에서 오락을 선택하는 손의 개념 이미지"
         }
       },
       {
         "layout": "comparison",
-        "title": "모바일에서 늘어난 돈\n인터넷 감소를 못 메웠다",
-        "body": "모바일 매출의 증가율이 더 높아도 출발 금액은 인터넷보다 작습니다. 두 사업을 같은 기간·범위로 계산하면, 모바일에서 더 번 돈보다 인터넷에서 줄어든 돈이 컸습니다.",
+        "title": "게임 안에서 쓰는 돈\n예상보다 더 줄었다",
+        "body": "가상화폐·추가 콘텐츠를 사는 돈과 게임 내 광고 등을 ‘반복 소비’로 묶습니다. 이번 분기 순판매액의 81%를 차지하지만, NBA 2K와 모바일의 감소로 회사 예상보다 더 줄었습니다.",
         "evidence_ids": [
-          "revenue-mix"
+          "rcs"
         ],
         "labels": [],
+        "takeaway": "GTA 시리즈의 반복 소비는 늘었습니다. 모든 게임이 함께 나빠진 건 아닙니다.",
+        "bridge": "출시를 앞둔 회사는 광고에도 더 쓸 계획입니다.",
         "chart": {
-          "unit": "억달러",
-          "source": "Charter 3Q26 주거용 pro forma 매출표 · 직접 차감",
-          "note": "2026년 3분기와 2025년 3분기 비교; 인터넷·모바일 서비스만 포함",
+          "source": "Take-Two FY2027 Q2 실적 자료",
+          "note": "7~9월 순판매액 기준 반복 소비의 전년 대비 증감률",
+          "unit": "%",
           "rows": [
             {
-              "label": "인터넷 매출 변화",
-              "value": -2.69,
-              "display": "73.66 → 70.97억달러",
-              "metric_id": "internet-delta"
+              "metric_id": "rcs_guidance",
+              "value": -5,
+              "label": "회사의 종전 예상",
+              "display": "전년 대비 -5%"
             },
             {
-              "label": "모바일 매출 변화",
-              "value": 1.71,
-              "display": "9.87 → 11.58억달러",
-              "metric_id": "mobile-delta"
+              "metric_id": "rcs_actual",
+              "value": -9,
+              "label": "이번 분기 실제",
+              "display": "전년 대비 -9%"
             }
           ]
         },
-        "takeaway": "두 항목을 합치면 전년보다 9,800만달러 적은 매출입니다.",
-        "bridge": "고객 매출이 줄어드는 동안 회사는 나가는 돈도 줄이려 합니다.",
         "visual": {
-          "path": "automation/visual_assets/db190883b3f0aba69efc317640d7825c24a22b81e7f4e2dc6de0001e527179e1.png",
-          "sha256": "db190883b3f0aba69efc317640d7825c24a22b81e7f4e2dc6de0001e527179e1",
-          "alt": "인터넷 공유기와 휴대폰의 서로 다른 매출 흐름을 표현한 동전 접시",
-          "tone": "light",
+          "path": "automation/visual_assets/d4ce88cac97f00a28e5657d9f317f111abe168b4149f526548e5a941057b15c3.jpg",
+          "sha256": "d4ce88cac97f00a28e5657d9f317f111abe168b4149f526548e5a941057b15c3",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Editorial artwork, a wide desk still life with a large unbranded home router beside a worn shallow coin tray and a smaller upright smartphone beside another modest coin tray. A hand slides a few coins toward the phone tray while the router tray has a visible empty worn patch. Concept: mobile revenue gains do not automatically replace lost home broadband revenue. No exact quantitative ratio, no chart. Tactile offwhite paper collage, black engraved shading, vermilion red edge on router tray only, spacious landscape 3:2. No words, digits, brand, logo or watermark."
+          "prompt": "Editorial concept illustration, artwork only: close crop of an unbranded smartphone with an abstract game inventory showing simple grayscale sports equipment objects, beside a hand holding a plain blank red payment card. Physical objects and fingers carefully drawn, no interface text, no currency amounts. Black background with ivory phone and grayscale hand, red payment-card accent. Elegant cut-paper photographic collage with subtle print grain, 3:2 landscape. No graph, arrows, logos, words, readable numbers, neon or gradients.",
+          "tone": "dark",
+          "alt": "게임 속 추가 상품과 결제 카드를 함께 보여주는 개념 이미지"
         }
       },
       {
         "layout": "explain",
-        "title": "20억달러 절감은\n아직 들어온 돈이 아니다",
-        "body": "이 회사는 차터(CHTR)입니다. 인터넷 성장과 무관한 프로젝트를 덜고, 관리 단계를 줄이며, 거래할 공급업체를 추려 조건을 개선하겠다고 했습니다. 공급업체 등에 덜 지급해 비용을 낮추는 계획이지, 고객 매출이 늘었다는 발표는 아닙니다.",
+        "title": "테이크투의 광고비도\nGTA 출시에 맞춰 증가",
+        "body": "GTA·NBA 2K를 내는 테이크투(TTWO)의 이야기입니다. 회사는 10~12월 관리 기준 운영비가 전년보다 약 21% 늘 것으로 예상하며, 주된 이유로 GTA VI 출시 마케팅을 들었습니다.",
         "evidence_ids": [
-          "savings"
-        ],
-        "labels": [
-          {
-            "label": "새 절감 목표",
-            "text": "향후 18개월에 걸쳐 연간 환산 운영비 20억달러 절감"
-          },
-          {
-            "label": "기존 계획과 구분",
-            "text": "Cox 통합의 연간 10억달러 초과 절감 예상에 추가되는 목표"
-          }
-        ],
-        "takeaway": "연간 환산 목표이므로 이번 분기 이익에 통째로 더하면 안 됩니다.",
-        "bridge": "조직을 줄이면서도 고객이 체감하는 서비스는 좋아져야 합니다.",
-        "visual": {
-          "path": "automation/visual_assets/52e38d6a5c6a691e77835f126fff5ec93026ff27d0e54275803a81420fa98ad0.png",
-          "sha256": "52e38d6a5c6a691e77835f126fff5ec93026ff27d0e54275803a81420fa98ad0",
-          "alt": "복잡한 연결선을 정리하는 손으로 운영 절차 단순화를 표현한 그림",
-          "tone": "dark",
-          "kind": "concept",
-          "prompt": "Use case: stylized-concept. Editorial artwork of an unbranded telecom operations workbench: a technician's hands sorting tangled loose cable loops into a simple organized patch panel, with unused loose loops set aside intact. All active cables remain connected; no cutting service or implying layoffs. Concept: simplifying operations and supplier processes to lower expenses. Detailed linocut and paper collage, offwhite, charcoal black, small vivid red patch-panel accents. Landscape 3:2, dramatic close-up of hands and cable organization filling frame. No text, numbers, brand, logo, watermark, graph."
-        }
-      },
-      {
-        "layout": "conditions",
-        "title": "새 상품의 초기 반응\n회복의 단서는 남아 있다",
-        "body": "회사는 상품을 바꾼 뒤 옛 Cox 지역의 고객 흐름이 좋아졌다고 밝혔습니다. 도입일은 9월 16일이라 3분기 전체에 적용된 결과는 아닙니다. 이번 고객 감소만으로 새 결합상품이 실패했다고 단정하기도 이릅니다.",
-        "evidence_ids": [
-          "counter",
-          "bundle"
-        ],
-        "labels": [],
-        "origin": "다음 실적에서 같은 사업 범위를 유지해 비교합니다.",
-        "branches": [
-          {
-            "label": "고객 회복으로 연결",
-            "text": "인터넷 순감이 줄고 결합 서비스 매출도 나아집니다.",
-            "check": "가입자 수와 인터넷·모바일 합산 매출을 함께 비교"
-          },
-          {
-            "label": "비용만 먼저 감소",
-            "text": "운영비는 줄어도 인터넷 고객과 관련 매출은 계속 줄어듭니다.",
-            "check": "이 경우 절감 성과를 수요 회복으로 해석하지 않기"
-          }
-        ],
-        "takeaway": "초기 수요 개선과 분기 전체의 고객 회복은 아직 다른 단계입니다.",
-        "bridge": "주주에게는 절감액과 고객 매출을 나눠 읽을 이유가 생깁니다.",
-        "visual": {
-          "path": "automation/visual_assets/312bf151df31d250e0fdd439376edb95da6a487edc4bf22a730be70d675ccec2.png",
-          "sha256": "312bf151df31d250e0fdd439376edb95da6a487edc4bf22a730be70d675ccec2",
-          "alt": "주민을 만나러 온 통신 기사로 고객 서비스 개선을 표현한 그림",
-          "tone": "light",
-          "kind": "concept",
-          "prompt": "Use case: stylized-concept. Editorial artwork of a telecom service technician carrying a toolbox toward the front door of an ordinary American home, an unbranded service van in the background and a resident opening the door. Concept: keeping customers depends on useful service, not just acquiring the company. Warm offwhite textured paper collage, black engraved shading, a vermilion red toolbox, realistic calm interaction without cartoon facial exaggeration. Landscape 3:2, clear foreground figures, ample air, distinct from product still-life. No words, digits, brand, company uniform markings, logo or watermark."
-        }
-      },
-      {
-        "layout": "closing",
-        "title": "덜 쓰는 회사와\n고객이 돌아오는 회사",
-        "body": "Cox를 판 쪽은 현금과 지분을 받았습니다. 기존 주주에게 인수는 공짜 매출 증가가 아닙니다. 지금 차터는 비용과 고객 이탈을 함께 고치려는 단계이며, 절감 목표만으로 사업 회복을 확정할 근거는 부족합니다.",
-        "evidence_ids": [
-          "ownership",
-          "savings",
-          "counter",
+          "marketing",
           "price"
         ],
         "labels": [
           {
-            "label": "인수의 대가",
-            "text": "Cox 측에 현금 약 40억달러와 지분성 대가 · 8월 완료"
+            "label": "비용의 기준",
+            "text": "관리 기준 회사 전망 · GAAP 운영비 증가율과 구분"
           },
           {
-            "label": "11/6 정규장",
-            "text": "118.05달러 · 전일 125.86달러 대비 -6.21% · 16:00 EST"
+            "label": "11/9 정규장",
+            "text": "207.40달러 · 직전 거래일 214.87달러 대비 -3.48%"
           }
         ],
-        "takeaway": "인터넷 순감 축소와 결합 매출 개선이 함께 나와야 회복 해석이 강해집니다.",
-        "bridge": "다음 성적표는 절약한 돈과 고객이 낸 돈을 나눠 읽습니다.",
+        "takeaway": "이 종가는 장 마감 뒤 실적 발표 전 가격입니다. 실적 반응으로 볼 수 없습니다.",
+        "bridge": "다음 전망의 ‘반복 소비’에도 신작이 섞여 있습니다.",
         "visual": {
-          "path": "automation/visual_assets/ba5d9fefe11b1146260dc34bf2bb3130899d2703b174e48d4eeba265322a5aa1.png",
-          "sha256": "ba5d9fefe11b1146260dc34bf2bb3130899d2703b174e48d4eeba265322a5aa1",
-          "alt": "운영비 서류와 인터넷 이용 가구를 나눠 담은 두 서랍의 개념 그림",
-          "tone": "dark",
+          "path": "automation/visual_assets/e2d4b12fbff1cc4e79bfc429dd41465377dd83ebcfe482fd15cdf80bedce0d03.jpg",
+          "sha256": "e2d4b12fbff1cc4e79bfc429dd41465377dd83ebcfe482fd15cdf80bedce0d03",
           "kind": "concept",
-          "prompt": "Use case: stylized-concept. Editorial artwork, two adjacent large open desk drawers seen from above: one contains neatly reduced stacks of blank supplier invoices with a closed black binder; the other contains a row of miniature occupied houses connected by a red cable to a router. Concept: two different sources of financial improvement, lower bills versus customers paying for service. An evocative still life, not a data visualization. Warm offwhite paper collage, black ink engraving, restrained vermilion red. Landscape 3:2, large legible objects, no text, numbers, charts, arrows, logos, watermark."
+          "prompt": "Editorial concept illustration, artwork only: workers on a ladder hanging a giant blank red entertainment launch poster on an urban building facade, as a delivery person carries a roll of matching posters below. Represents marketing spending before a game launch, not an actual company scene. Editorial grayscale paper collage with warm ivory sky and one vivid red poster plane, simple bold composition, 3:2 landscape, sophisticated print texture. No words, numbers, logos, cash stacks, charts, official game imagery or invented celebrity faces.",
+          "tone": "light",
+          "alt": "게임 출시를 앞두고 광고물을 설치하는 가상의 작업 장면"
+        }
+      },
+      {
+        "layout": "conditions",
+        "title": "신작 묶음 상품도\n반복 소비에 들어간다",
+        "body": "GTA VI의 Ultimate Edition에는 추가 콘텐츠가 포함됩니다. 회사는 이 상품의 판매도 반복 소비 증가 전망에 반영했습니다. 그 숫자가 오른다고 기존 이용자의 재결제가 모두 회복된 것은 아닙니다.",
+        "evidence_ids": [
+          "bundle"
+        ],
+        "labels": [],
+        "takeaway": "추가 콘텐츠 포함 상품의 판매와 기존 게임의 회복을 나눠 읽어야 합니다.",
+        "bridge": "마지막 기준은 출시 후 실제로 팔린 금액입니다.",
+        "origin": "다음 분기 반복 소비 증가에 포함된 두 경로",
+        "branches": [
+          {
+            "label": "회복 해석을 받칠 때",
+            "text": "NBA 2K의 게임 내 소비도 다시 늘어납니다.",
+            "check": "GTA 판매와 별도로 NBA 2K 증감을 비교"
+          },
+          {
+            "label": "신작 효과에 그칠 때",
+            "text": "GTA 묶음 상품만 잘 팔리고 다른 게임은 약합니다.",
+            "check": "모바일 감소와 NBA 2K 회복 여부를 구분"
+          }
+        ],
+        "visual": {
+          "path": "automation/visual_assets/465167f513c69d69c24c5d2e84a968982a6c2dad6ebe125efbe156104b8d7f84.jpg",
+          "sha256": "465167f513c69d69c24c5d2e84a968982a6c2dad6ebe125efbe156104b8d7f84",
+          "kind": "concept",
+          "prompt": "Editorial concept illustration, artwork only: a carefully opened physical game box containing a plain game disc and a separate red envelope with a small blank add-on voucher. Three tangible pieces, clearly legible at small size. Close-up still life on warm ivory paper, black disc and ivory packaging, red envelope only. Refined magazine paper collage and grayscale print grain, 3:2 landscape, generous but balanced composition. No text, digits, logos, game art, schematic arrows, charts, shine or gradients.",
+          "tone": "light",
+          "alt": "게임 본편과 추가 콘텐츠 이용권이 함께 든 상품의 개념 이미지"
+        }
+      },
+      {
+        "layout": "closing",
+        "title": "회복이 끝난 실적보다\n신작에 무게 둔 전망",
+        "body": "지금 테이크투의 연간 목표는 기존 게임의 부진이 끝났다는 증거가 아닙니다. GTA 출시와 NBA 2K의 소비 회복으로 만회한다는 계획입니다. 다음 성적표는 아래 회사 예상과 같은 기준으로 비교해야 합니다.",
+        "evidence_ids": [
+          "q3",
+          "bundle",
+          "annual"
+        ],
+        "labels": [
+          {
+            "label": "10~12월 판매",
+            "text": "순판매액 33.5~35억달러 · 회사 전망"
+          },
+          {
+            "label": "추가 소비",
+            "text": "반복 소비 전년 대비 약 +12% · 신작 묶음 상품 포함 전망"
+          }
+        ],
+        "takeaway": "판매가 예상에 못 미치거나 NBA 2K 소비가 회복되지 않으면 만회 계획이 약해집니다.",
+        "bridge": "게임 이름의 기대감과 실제 판매 성적을 구분할 때입니다.",
+        "visual": {
+          "path": "automation/visual_assets/c8ac875307e954cd18ec0d6447dd1ed427a5ddb0de6d720790878b99dd7da520.jpg",
+          "sha256": "c8ac875307e954cd18ec0d6447dd1ed427a5ddb0de6d720790878b99dd7da520",
+          "kind": "concept",
+          "prompt": "Editorial concept illustration, artwork only: close view of a game shop counter where a customer places a plain sealed red game package beside a receipt printer dispensing an entirely blank paper receipt; cashier's grayscale hands and counter, no faces. The scene depicts a purchase being recorded, not guaranteed future sales. Dark black and warm ivory magazine collage, red package as focal point, tactile print grain, realistic hands, 3:2 landscape. No text, digits, logos, charts, neon, official product artwork or decorative icons.",
+          "tone": "dark",
+          "alt": "게임 구매를 영수증으로 기록하는 가상의 판매 장면"
         }
       }
     ],
     "editorial_review": {
-      "improvement": "최근 5편(11/5·11/4 시장, AMD, 11/2·10/30 시장)의 원고·실제 27장·편집 기록을 비교했습니다. 마지막 확인 항목을 늘리는 대신, 이번에는 비용 절감과 고객 매출 회복을 별개로 판정하는 한 가지 기준을 남겼습니다.",
-      "reason": "불스토리 「미국 중간선거 수혜주 5종목」은 공식 사이트의 공개 도입·오스카헬스 부분만 읽었습니다. 보험료 부담→고객 선택→보험사에 남는 돈의 순서를 참고했고 나머지 4종목·Instagram 카드는 못 봤습니다. 홍춘욱의 2019년 조선업 기고 원문 전체는 실적 회복을 기술과 비용 절감으로 나눴습니다. 인용된 책 전체는 읽지 않았고 고유 표현·추천 종목은 가져오지 않았습니다.",
-      "application": "초안 「차터, 비용 절감으로 회복 추진」→표지 「인수로 커진 회사 / 인터넷 고객은 순감」. 2장은 인수 편입과 동일 범위 비교를 분리했고, 3장은 무료 모바일의 자격·대가, 4장은 증가율 대신 -2.69억/+1.71억달러를 대조했습니다. 5장에서 차터 이름을 공개하고 절감을 이미 번 돈과 구분했습니다. 필수 출처명은 보존했습니다. 6장의 초기 고객 흐름 개선을 반대 근거로 넣어 「고객 이탈 못 막았다」라는 강한 제목은 버렸습니다.",
-      "avoided_repetition": "제목 후보 「인수로 커진 회사 / 인터넷 고객은 순감」·「20억달러 줄이는 통신사」·「휴대폰 무료로 고객을 붙잡을까」 중 범위 차이를 즉시 드러내는 첫 안을 택했습니다. 비용이 관건·확인이 필요하다는 반복과 선거·AI·배당·손상차손을 덜었습니다. 7장만으로 변화·인수 이유·현재 판단을 다시 설명해 기획과 대조했으며 실제 독자 실험은 아닙니다. 반응 지표 미확보. 다음 편은 실제 절감액과 고객 회복이 동반됐는지 이어받습니다."
+      "improvement": "최근5편(11/9·11/5·11/4 시장·AMD·11/2 시장)의 원고·실제27장·review를 비교했습니다. 마지막의 추상적 판단·확인 항목 반복 대신 이번에는 소비자가 돈을 쓰는 시점과 대상을 한 축으로 구분합니다. 2장 과거 판매→3장 오락 선택→4장 추가 결제→6장 신작 묶음 상품으로 새 근거를 더했습니다.",
+      "reason": "불스토리(국내 브랜드) 「Rheinmetall 전망 하향과 주가 급락, 매출 변수」 공식 웹 본문·FAQ: 기대와 매출이 잡히는 시점을 분리. 홍춘욱 「타잔 경제학」(2022/8/29) 공식 Brunch 전체: 독자의 오락 선택을 경쟁 이유로 설명. 인용된 책 일부만 읽었고 책 전체·영상·Instagram 카드는 미열람. 문구·이미지·투자 권유는 가져오지 않았습니다.",
+      "application": "초안 ‘실적 부진에도 성장 가이던스 유지’→2장 ‘연간 목표에는 11월 19일 출시 예정인 GTA VI가 들어갑니다’. 초안 ‘RCS 회복이 관건’→6장 ‘그 숫자가 오른다고 기존 이용자의 재결제가 모두 회복된 것은 아닙니다’. 표지는 설명 목록을 비우고 큰 패키지 장면을 배치. ‘GTA 흥행 확정’ 후보는 출시 전, ‘게임 소비 회복’ 후보는 모바일 감소 전망 때문에 버렸습니다.",
+      "avoided_repetition": "표지 결론을 끝에서 되풀이하지 않고 7장에 실제와 비교할 분기 판매·추가 소비 전망을 남겼습니다. 임원 낙관 발언·개별 모바일 게임 나열·예약 판매량 추정·주가 목표는 삭제. 직전 시장 수급 과제는 억지 적용하지 않고 AMD의 비용 원인 보완은 5장 출시 마케팅 설명으로 반영. 다음 편은 신작 상품과 기존 이용자 소비의 분리 공시 여부를 우선 확인. 반응 지표 미확보."
     }
   }
 }
