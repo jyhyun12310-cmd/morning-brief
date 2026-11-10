@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-11-10T14:13:35+09:00",
   "snapshot_at": "2026-11-10T14:09:23+09:00",
@@ -299,6 +299,16 @@
           "prompt": "3:2 paper sculpture closing scene: a spring market platform after a pause with two counterweights and a level field of tiles; black, off-white and vermilion; no words, digits, logos, charts or arrows."
         }
       }
+    ]
+  },
+  "reviewed_preview": {
+    "run_id": 42761922768,
+    "image_sha256": [
+      "6a9fc5a1a6c58ef7953e210a9f52caaa91e572117d72c493dc2b1fdc1a175d45",
+      "0bdf27dd4c4d00088cd8fd77ae3b5a492aab87e5abf3ee4ecd56c7ce75947c83",
+      "6cc88130a51a3242c358bea490787ce38d704804f983aecbc2e752bc73b828ef",
+      "bd32f6b30e00c2e8c432333f7e72a4705201e38d8c9bdcd5e459fc11bc0f5f82",
+      "d5bf35eed8683598b108ae395c275e1c11a7cbb09ae8523a310f8344c72b71b9"
     ]
   }
 }
