@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-11-09T23:50:00+00:00",
   "publication_date_kst": "2026-11-10",
@@ -470,5 +470,17 @@
       "application": "초안 ‘실적 부진에도 성장 가이던스 유지’→2장 ‘연간 목표에는 11월 19일 출시 예정인 GTA VI가 들어갑니다’. ‘RCS 회복이 관건’→6장 신작 상품과 기존 게임 재결제 구분. 정상 preview 42724129898의 실제7장 확인 후 표지에 전년 비교를 보강하고, 4장 예상 미달 원인은 NBA 2K로 좁힘. 모바일은 회사 예상에 부합. 5장 관리 기준의 뜻도 풀어 새 preview 제출. 흥행 확정·소비 전면 회복 제목은 반대 근거로 폐기.",
       "avoided_repetition": "표지 결론을 끝에서 되풀이하지 않고 7장에 실제와 비교할 분기 판매·추가 소비 전망을 남겼습니다. 임원 낙관 발언·개별 모바일 게임 나열·예약 판매량 추정·주가 목표는 삭제. 직전 시장 수급 과제는 억지 적용하지 않고 AMD의 비용 원인 보완은 5장 출시 마케팅 설명으로 반영. 다음 편은 신작 상품과 기존 이용자 소비의 분리 공시 여부를 우선 확인. 반응 지표 미확보."
     }
+  },
+  "reviewed_preview": {
+    "run_id": 42724649900,
+    "image_sha256": [
+      "1b4a54f5f4329d6b47dedc025df459f2e2fd96958673961896b31f82edcd1f5e",
+      "4f9de72334f3baab78abed32cc7d80f316606b0c65870e6dc51607d1749b2ea1",
+      "2c289d7313f423e8d26c88da31d0541f0c6ff1c7e9d8bf279db77ef0f4919fac",
+      "9c9b2a2fccef509f403d8c4c534d380b4cfa32aa46205243c4609c8244aa48e6",
+      "6477e86a8cb31a14178f965c860f9daf6cecbba788ef04466bb13158d20de852",
+      "4a6a0e48e361257db17d5da5d277f2a43cca3ed8fdeb01eea6b02dbc360b1da8",
+      "89fd1f1b8e9b2ba64141f2e4fa493f89dded6d4b60ac66a343c9f940637eaeaf"
+    ]
   }
 }
