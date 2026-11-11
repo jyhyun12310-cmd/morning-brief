@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-11-11T14:11:13+09:00",
   "snapshot_at": "2026-11-11T14:10:00+09:00",
@@ -53,5 +53,15 @@
       "application": "초안 ‘미국 물가에도 증시 강세’→퇴고 ‘미국 물가는 셌는데 코스닥 +4.97%’. 2장에서 누가 돈을 넣었는지 시장별로 갈랐고, 3장에서 반도체 수익률과 상승 종목 수를 보태 몇 종목만 오른 장이 아님을 설명했습니다.",
       "avoided_repetition": "전날 사이드카 정의와 ‘반등 지속 확인’ 문장을 버렸습니다. 지수·수급·시장 폭을 같은 장에서 반복하지 않고 각 장의 새 근거로 분리했습니다. 다음 편은 장 마감 뒤 외국인·기관 매수가 남았는지와 상승 종목 수를 함께 비교합니다. 반응 지표는 미확보입니다."
     }
+  },
+  "reviewed_preview": {
+    "run_id": 42965236453,
+    "image_sha256": [
+      "f2a581ef259e4d91f4b35979d6b33427b4b4f39258240e4dff2618c8c3c33ad2",
+      "82850e113fb437b4def526b27a19bb2e2ce56092b9b3a380a52df4ed459e3e1e",
+      "1d3baf8aed11853445d838012988f8e3db7b135068bafe6baf1751a301875d77",
+      "1f7b151aaa4415b9fcd07fbaa810c57579ddbc036132b2fcc27c3220363c970c",
+      "e55a2f9542b7e3d741322acb1b09c2ded452c97218ca1cd260fad6d385414ed8"
+    ]
   }
 }
