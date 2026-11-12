@@ -1,67 +1,94 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-11-11T14:11:13+09:00",
-  "snapshot_at": "2026-11-11T14:10:00+09:00",
-  "publication_date_kst": "2026-11-11",
-  "kr_session": {"date": "2026-11-11", "status": "open", "source_id": "naver-kospi", "evidence": "14:10 KST 두 지수의 당일 값과 marketStatus=OPEN을 직접 확인했습니다."},
+  "created_at": "2026-11-12T14:18:30+09:00",
+  "snapshot_at": "2026-11-12T14:15:00+09:00",
+  "publication_date_kst": "2026-11-12",
+  "kr_session": {"date": "2026-11-12", "status": "open", "source_id": "naver-kospi", "evidence": "14:15 KST 두 지수의 당일 값과 marketStatus=OPEN을 직접 확인했습니다."},
   "sources": [
-    {"id": "naver-kospi", "title": "네이버 금융 · 코스피 실시간 지수", "url": "https://m.stock.naver.com/api/index/KOSPI/basic", "as_of": "2026-11-11 14:10 KST; 5,355.13, 전일 5,239.13 대비 +2.21%", "retrieved_at": "2026-11-11T14:11:00+09:00"},
-    {"id": "naver-kosdaq", "title": "네이버 금융 · 코스닥 실시간 지수", "url": "https://m.stock.naver.com/api/index/KOSDAQ/basic", "as_of": "2026-11-11 14:10 KST; 700.82, 전일 667.61 대비 +4.97%", "retrieved_at": "2026-11-11T14:11:00+09:00"},
-    {"id": "naver-kospi-flow", "title": "네이버 금융 · 코스피 장중 수급·시장 폭", "url": "https://m.stock.naver.com/api/index/KOSPI/integration", "as_of": "2026-11-11 14:10 확인; 외국인 +3,641억, 상승 495·하락 385", "retrieved_at": "2026-11-11T14:11:00+09:00"},
-    {"id": "naver-kosdaq-flow", "title": "네이버 금융 · 코스닥 장중 수급·시장 폭", "url": "https://m.stock.naver.com/api/index/KOSDAQ/integration", "as_of": "2026-11-11 14:10 확인; 기관 +2,224억, 상승 1,195·하락 485", "retrieved_at": "2026-11-11T14:11:00+09:00"},
-    {"id": "genews-market", "title": "글로벌이코노믹 · 코스피 5300선 회복·코스닥 강세", "url": "https://www.g-enews.com/article/Securities/2026/11/202611111308125506923c501012_1", "as_of": "2026-11-11 12:57 KST; 반도체 강세와 코스닥 상승 종목 우위", "retrieved_at": "2026-11-11T14:08:00+09:00"},
-    {"id": "bls-cpi", "title": "미국 노동통계국 · 2026년 10월 소비자물가", "url": "https://www.bls.gov/news.release/CPI.htm", "as_of": "2026-11-10 08:30 EST; 전월 대비 전체 +0.4%, 근원 +0.3%", "retrieved_at": "2026-11-11T14:09:00+09:00"},
-    {"id": "fed-calendar", "title": "미국 연방준비제도 · 2026년 11월 일정", "url": "https://www.federalreserve.gov/newsevents/calendar.htm", "as_of": "2026-11-12 10:00 EST; Michael S. Barr 이사 연설", "retrieved_at": "2026-11-11T14:09:00+09:00"},
-    {"id": "bullstory-flow", "title": "불스토리 · 국장 반등의 열쇠는 손바뀜 (편집 참고)", "url": "https://bullstory.io/blog/%EA%B5%AD%EC%9E%A5-%EB%B0%98%EB%93%B1%EC%9D%98-%EC%97%B4%EC%87%A0%EB%8A%94-%EC%99%B8%EA%B5%AD%EC%9D%B8-8%EC%9B%94-12%EC%9D%BC-%EC%88%98%EA%B8%89-%EA%B8%89%EB%B3%80%EA%B3%BC-%EB%B0%98%EB%8F%84%EC%B2%B4-per-%EC%A0%84%ED%99%98%EC%A0%90", "as_of": "공식 사이트 본문·이미지 설명·체크 조건 열람; Instagram 카드 미열람", "retrieved_at": "2026-11-11T14:08:30+09:00"},
-    {"id": "hong-kbs-flow", "title": "KBS 성공예감 · 홍춘욱 대표 공개 인터뷰 전사 (편집 참고)", "url": "https://v.daum.net/v/20250929151541748", "as_of": "KBS 공개 전사 본문 열람; 수급과 변동성 설명 순서만 참고", "retrieved_at": "2026-11-11T14:08:30+09:00"},
-    {"id": "morningbrew-cpi", "title": "Morning Brew · Having reservations (편집 참고)", "url": "https://www.morningbrew.com/issues/having-reservations", "as_of": "2026-11-09 공개 이슈의 시장·CPI 공개 본문 구간 확인; 카드 형식 아님", "retrieved_at": "2026-11-11T14:09:30+09:00"},
-    {"id": "cnbc-bulls", "title": "CNBC Daily Open · The AI bulls are back (편집 참고)", "url": "https://link.cnbc.com/public/47583575", "as_of": "2026-11-09 공개 뉴스레터 본문 확인; Instagram 카드 미열람", "retrieved_at": "2026-11-11T14:09:30+09:00"}
+    {"id": "naver-kospi", "title": "네이버 금융 · 코스피 실시간 지수", "url": "https://m.stock.naver.com/api/index/KOSPI/basic", "as_of": "2026-11-12 14:15 KST; 5,311.44, 전일 5,375.36 대비 -1.19%", "retrieved_at": "2026-11-12T14:16:30+09:00"},
+    {"id": "naver-kosdaq", "title": "네이버 금융 · 코스닥 실시간 지수", "url": "https://m.stock.naver.com/api/index/KOSDAQ/basic", "as_of": "2026-11-12 14:15 KST; 690.45, 전일 705.10 대비 -2.08%", "retrieved_at": "2026-11-12T14:16:30+09:00"},
+    {"id": "naver-kospi-flow", "title": "네이버 금융 · 코스피 장중 수급·시장 폭", "url": "https://m.stock.naver.com/api/index/KOSPI/integration", "as_of": "2026-11-12 14:16 KST 확인; 외국인 +2,025억, 기관 -6,419억, 프로그램 -1,478억, 상승 166·하락 709", "retrieved_at": "2026-11-12T14:16:40+09:00"},
+    {"id": "naver-kosdaq-flow", "title": "네이버 금융 · 코스닥 장중 수급·시장 폭", "url": "https://m.stock.naver.com/api/index/KOSDAQ/integration", "as_of": "2026-11-12 14:16 KST 확인; 개인 +3,385억, 외국인 -3,161억, 프로그램 -3,210억, 상승 394·하락 1,294", "retrieved_at": "2026-11-12T14:16:40+09:00"},
+    {"id": "krx-kospi200-options", "title": "한국거래소 · 코스피200 옵션 거래제도", "url": "https://open.krx.co.kr/contents/OPN/01/01040202/OPN01040202.jsp", "as_of": "월물 최종거래일은 두 번째 목요일, 최종거래일 거래시간은 08:45~15:20, 현금결제", "retrieved_at": "2026-11-12T14:10:00+09:00"},
+    {"id": "bls-ppi-calendar", "title": "미국 노동통계국 · 2026년 11월 발표 일정", "url": "https://www.bls.gov/schedule/2026/11_sched.htm", "as_of": "2026-11-13 08:30 EST; 2026년 10월 생산자물가지수 발표 예정", "retrieved_at": "2026-11-12T14:17:30+09:00"},
+    {"id": "bullstory-semiconductor", "title": "불스토리 · 미국 국채금리 하락과 반도체 강세, 코스피 투자 영향 (편집 참고)", "url": "https://bullstory.io/blog/%EB%AF%B8%EA%B5%AD-%EA%B5%AD%EC%B1%84%EA%B8%88%EB%A6%AC-%ED%95%98%EB%9D%BD%EA%B3%BC-%EB%B0%98%EB%8F%84%EC%B2%B4-%EA%B0%95%EC%84%B8-%EC%BD%94%EC%8A%A4%ED%94%BC-%ED%88%AC%EC%9E%90-%EC%98%81%ED%96%A5", "as_of": "공식 사이트 본문·이미지 설명·체크 조건 열람; Instagram 카드 미열람", "retrieved_at": "2026-11-12T14:13:00+09:00"},
+    {"id": "hong-ytn-transcript", "title": "YTN 생생경제 · 홍춘욱 인터뷰 공개 전사 (편집 참고)", "url": "https://radio.ytn.co.kr/program/?f=2&id=103320&page=&s_hcd=15&s_mcd=0206", "as_of": "YTN 공개 인터뷰 전사 본문 열람; 장중 변화와 판단 조건의 연결 순서만 참고", "retrieved_at": "2026-11-12T14:13:30+09:00"},
+    {"id": "morningbrew-market", "title": "Morning Brew · Rate hike for Xmas (편집 참고)", "url": "https://www.morningbrew.com/issues/rate-hike-for-xmas", "as_of": "2026-11-11 공개 뉴스레터의 시장 수치·핵심 기사 도입 구간 확인; Instagram 카드 미열람", "retrieved_at": "2026-11-12T14:14:00+09:00"},
+    {"id": "cnbc-dailyopen", "title": "CNBC Daily Open · 2026년 11월 12일판 (편집 참고)", "url": "https://link.cnbc.com/public/47756597", "as_of": "2026-11-12 공개 뉴스레터 본문 확인; Instagram 카드 미열람", "retrieved_at": "2026-11-12T14:14:00+09:00"}
   ],
   "quotes": [
-    {"id": "KOSPI", "name": "코스피", "value": 5355.13, "previous_close": 5239.13, "change_pct": 2.21, "basis": "intraday", "as_of": "2026-11-11T14:10:00+09:00", "source_id": "naver-kospi"},
-    {"id": "KOSDAQ", "name": "코스닥", "value": 700.82, "previous_close": 667.61, "change_pct": 4.97, "basis": "intraday", "as_of": "2026-11-11T14:10:00+09:00", "source_id": "naver-kosdaq"}
+    {"id": "KOSPI", "name": "코스피", "value": 5311.44, "previous_close": 5375.36, "change_pct": -1.19, "basis": "intraday", "as_of": "2026-11-12T14:15:00+09:00", "source_id": "naver-kospi"},
+    {"id": "KOSDAQ", "name": "코스닥", "value": 690.45, "previous_close": 705.10, "change_pct": -2.08, "basis": "intraday", "as_of": "2026-11-12T14:15:00+09:00", "source_id": "naver-kosdaq"}
   ],
-  "events": [{"title": "연준 Barr 이사 연설", "at": "2026-11-12T10:00:00-05:00", "note": "높아진 물가 뒤 금리 판단의 다음 단서를 확인할 공식 발언", "source_id": "fed-calendar"}],
+  "events": [
+    {"title": "코스피200 옵션 최종거래 종료", "at": "2026-11-12T15:20:00+09:00", "note": "현물 정규장보다 10분 먼저 종료", "source_id": "krx-kospi200-options"},
+    {"title": "미국 10월 생산자물가지수", "at": "2026-11-13T08:30:00-05:00", "note": "기업 단계 물가가 소비자물가 압력을 더하는지 확인", "source_id": "bls-ppi-calendar"}
+  ],
   "summary": {
     "design": "editorial-v2",
-    "instagram_caption": "미국 물가가 예상을 웃돌았는데도 두 시장은 올랐습니다. 같은 상승 안에서 코스피는 외국인, 코스닥은 기관이 돈을 넣었다는 차이가 더 중요합니다. #코스피 #코스닥 #수급",
+    "instagram_caption": "옵션은 오늘 15시20분, 주식은 15시30분에 끝납니다. 만기라는 이름보다 그 10분 뒤에도 매도와 하락 종목이 남는지가 더 중요합니다. #코스피 #옵션만기 #시장수급",
     "visual_story": [
-      {"layout": "headline", "title": "미국 물가는 셌는데\n코스닥 +4.97%", "body": "미국 10월 물가가 전월 대비 0.4% 올랐지만 한국 증시는 강했습니다. 악재 하나보다 실제로 누가 샀는지가 장을 갈랐습니다.", "source_ids": ["bls-cpi", "naver-kospi", "naver-kosdaq"], "items": [], "visual": {"path": "automation/visual_assets/dad283b731777d72774b1191c6278abc07c8bc6c957804fb07ab6677817168fd.jpg", "sha256": "dad283b731777d72774b1191c6278abc07c8bc6c957804fb07ab6677817168fd", "alt": "물가를 뜻하는 장바구니와 금리 추를 받치며 스프링 위 시장이 올라가는 편집 이미지", "tone": "dark", "kind": "concept", "prompt": "3:2 Korean newspaper linocut cover: a heavy grocery basket and interest-rate weight hang over a market floor, yet the floor rises on strong springs; black, warm off-white and vermilion; no text, digits, logos, flags, charts or watermark."}},
-      {"layout": "drivers", "title": "같은 상승,\n돈 넣은 쪽은 달랐다", "body": "코스피는 외국인이 샀고 기관이 팔았습니다. 코스닥은 반대로 기관이 사고 외국인이 팔았습니다.", "source_ids": ["naver-kospi-flow", "naver-kosdaq-flow"], "items": [
-        {"label": "코스피", "text": "외국인 +3,641억·기관 -3,045억", "type": "fact", "source_ids": ["naver-kospi-flow"]},
-        {"label": "코스닥", "text": "기관 +2,224억·외국인 -712억", "type": "fact", "source_ids": ["naver-kosdaq-flow"]},
-        {"label": "개인의 선택", "text": "두 시장 모두 개인은 순매도", "type": "analysis", "source_ids": ["naver-kospi-flow", "naver-kosdaq-flow"]}
-      ], "visual": {"path": "automation/visual_assets/20257771bb3714120bdcd0f5f50adb3bc449616c44b90fe1ddc95c4d79f11ee4.jpg", "sha256": "20257771bb3714120bdcd0f5f50adb3bc449616c44b90fe1ddc95c4d79f11ee4", "alt": "해외 자금 가방과 기관 금고에서 서로 다른 시장으로 동전이 흘러가는 편집 이미지", "tone": "light", "kind": "concept", "prompt": "3:2 editorial cut-paper split scene: separate coin streams enter adjacent market halls, one from overseas suitcases and one from an institutional vault; black, off-white and vermilion; no text, digits, logos, flags, charts, arrows or watermark."}},
-      {"layout": "sectors", "title": "반도체가 끌고\n상승 종목이 받쳤다", "body": "코스피는 대형 반도체가 앞섰고 코스닥은 상승 종목이 하락 종목의 두 배를 넘었습니다. 몇 종목만 오른 장은 아닙니다.", "source_ids": ["naver-kospi-flow", "naver-kosdaq-flow", "genews-market"], "items": [
-        {"label": "대형 반도체", "text": "삼성전자 +2.94%, SK하이닉스 +5.12%", "type": "fact", "source_ids": ["naver-kospi-flow"]},
-        {"label": "코스피 시장 폭", "text": "상승 495종목·하락 385종목", "type": "fact", "source_ids": ["naver-kospi-flow"]},
-        {"label": "코스닥 시장 폭", "text": "상승 1,195종목·하락 485종목", "type": "fact", "source_ids": ["naver-kosdaq-flow"]}
-      ], "visual": {"path": "automation/visual_assets/1f21e81def18094a4cd16298a55926038b9c78d61e651c1f14ee328a44dfc732.jpg", "sha256": "1f21e81def18094a4cd16298a55926038b9c78d61e651c1f14ee328a44dfc732", "alt": "웨이퍼와 배터리뿐 아니라 여러 업종 타일이 함께 올라가는 넓은 시장 편집 이미지", "tone": "dark", "kind": "concept", "prompt": "3:2 Korean newspaper linocut collage: a broad field of market tiles rises together, with wafer and battery silhouettes slightly taller but not dominating; black, off-white and vermilion; no words, digits, logos, exact charts or watermark."}},
-      {"layout": "calendar", "title": "13일 0시,\n연준의 다음 말", "body": "소비자물가 발표는 끝났습니다. 다음 공식 단서는 Barr 연준 이사의 연설이며, 높아진 물가를 금리 판단에 어떻게 연결하는지가 남았습니다.", "source_ids": ["bls-cpi", "fed-calendar"], "items": [], "visual": {"path": "automation/visual_assets/9435420d024cdce2cfd9d56e1f9c8fb336862f6311c34aef3a272f050e5e5e9c.jpg", "sha256": "9435420d024cdce2cfd9d56e1f9c8fb336862f6311c34aef3a272f050e5e5e9c", "alt": "봉인된 경제 보고서와 시계와 마이크가 연준의 다음 발언을 기다리는 편집 이미지", "tone": "light", "kind": "concept", "prompt": "3:2 economic editorial linocut still life: sealed report beside a simple clock and microphone on an empty central-bank lectern; black, off-white and vermilion; no text, digits, logos, flags, emblems or watermark."}},
-      {"layout": "watch", "title": "반등은 이어졌지만\n받친 돈은 다르다", "body": "현재 판단은 두 시장의 넓은 반등입니다. 다만 코스피 외국인·코스닥 기관 매수가 함께 사라지면 같은 결론을 유지하기 어렵습니다.", "source_ids": ["naver-kospi", "naver-kosdaq", "naver-kospi-flow", "naver-kosdaq-flow"], "items": [
-        {"label": "유지 조건", "text": "코스피 외국인 매수와 코스닥 기관 매수 지속", "type": "watch", "source_ids": ["naver-kospi-flow", "naver-kosdaq-flow"]},
-        {"label": "경계 조건", "text": "상승 종목 수가 줄며 지수만 버티는지", "type": "watch", "source_ids": ["naver-kospi-flow", "naver-kosdaq-flow"]},
-        {"label": "금리 조건", "text": "연준 발언 뒤 금리 기대가 더 높아지는지", "type": "watch", "source_ids": ["fed-calendar"]}
-      ], "visual": {"path": "automation/visual_assets/d5c5ee9f09a20f66b5735ac0e70cfb44d1ec6afba9a44da042c694f382c856c0.jpg", "sha256": "d5c5ee9f09a20f66b5735ac0e70cfb44d1ec6afba9a44da042c694f382c856c0", "alt": "서로 다른 자금 받침대 위 두 시장과 받침이 사라질 때 켜지는 경고등 편집 이미지", "tone": "dark", "kind": "concept", "prompt": "3:2 newspaper linocut closing scene: two market platforms rest on different supports, an overseas capital suitcase and an institutional vault, with a warning light watching the supports; black, off-white and vermilion; no text, digits, logos, flags, charts, arrows or watermark."}}
+      {
+        "layout": "headline",
+        "title": "옵션은 현물보다\n10분 먼저 끝난다",
+        "body": "11월 코스피200 옵션은 오늘 15시20분에 거래를 마칩니다. 주식 장은 15시30분까지라 마지막 10분의 수급을 따로 봐야 합니다.",
+        "source_ids": ["krx-kospi200-options", "naver-kospi", "naver-kosdaq"],
+        "items": [],
+        "visual": {"path": "automation/visual_assets/6f6276690f350a83064d25b0f3e3e32c1bbca8909343967e78b4adc39098c37b.png", "sha256": "6f6276690f350a83064d25b0f3e3e32c1bbca8909343967e78b4adc39098c37b", "alt": "큰 시계와 옵션 계약서, 서로 다른 두 종료선을 보여주는 편집 이미지", "tone": "dark", "kind": "concept", "prompt": "3:2 editorial still life for a Korean finance card: a large analog clock beside an options contract, with two distinct finish gates suggesting a ten-minute gap; warm off-white, deep black and cobalt blue only; generous empty space, no readable text, digits, logos, flags, charts or watermark."}
+      },
+      {
+        "layout": "drivers",
+        "title": "만기라고 주식 장이\n멈추는 건 아니다",
+        "body": "옵션 손익은 현금으로 확정되고 주식은 10분 더 거래됩니다. 그래서 15시20분 직전과 뒤의 수급을 나눠 봐야 합니다.",
+        "source_ids": ["krx-kospi200-options"],
+        "items": [
+          {"label": "옵션 최종거래", "text": "오늘 15시20분 종료", "type": "fact", "source_ids": ["krx-kospi200-options"]},
+          {"label": "현물 정규장", "text": "15시30분까지 계속", "type": "fact", "source_ids": ["krx-kospi200-options"]},
+          {"label": "결제 방식", "text": "옵션은 현금으로 최종결제", "type": "fact", "source_ids": ["krx-kospi200-options"]}
+        ],
+        "visual": {"path": "automation/visual_assets/2b6ce93d0a82b52b0aeb0780954e402b1e1c897de0bf110d9083102defe47a25.png", "sha256": "2b6ce93d0a82b52b0aeb0780954e402b1e1c897de0bf110d9083102defe47a25", "alt": "계약서와 동전, 균형 저울로 현금결제를 설명하는 편집 이미지", "tone": "light", "kind": "concept", "prompt": "3:2 editorial cut-paper scene explaining cash settlement: two hands hold a contract above a small stack of coins and a balanced scale; warm off-white, deep black and cobalt blue only; no text, digits, logos, flags, charts or watermark."}
+      },
+      {
+        "layout": "sectors",
+        "title": "기관은 팔고\n외국인은 샀다",
+        "body": "코스피의 돈 방향은 엇갈렸습니다. 지수 -1.19%보다 기관 매도와 프로그램 순매도 1,478억원이 겹친 점이 더 구체적입니다.",
+        "source_ids": ["naver-kospi", "naver-kospi-flow"],
+        "items": [
+          {"label": "기관", "text": "코스피 6,419억원 순매도", "type": "fact", "source_ids": ["naver-kospi-flow"]},
+          {"label": "외국인", "text": "코스피 2,025억원 순매수", "type": "fact", "source_ids": ["naver-kospi-flow"]},
+          {"label": "프로그램", "text": "코스피 1,478억원 순매도", "type": "fact", "source_ids": ["naver-kospi-flow"]}
+        ],
+        "visual": {"path": "automation/visual_assets/ed87649b4bd48b648d2a13188ecc7b7bb094e6db1a1d26395f48143098c265de.png", "sha256": "ed87649b4bd48b648d2a13188ecc7b7bb094e6db1a1d26395f48143098c265de", "alt": "기관 금고에서 빠지는 돈과 해외 가방에서 들어오는 돈을 대비한 편집 이미지", "tone": "dark", "kind": "concept", "prompt": "3:2 split editorial scene: coins flow out from a heavy institutional vault on one side while a foreign capital suitcase brings coins in on the other; warm off-white, deep black and cobalt blue only; no text, digits, logos, flags, charts, arrows or watermark."}
+      },
+      {
+        "layout": "calendar",
+        "title": "오늘 15시20분,\n내일 22시30분",
+        "body": "먼저 옵션 종료 뒤 한국 수급을 봅니다. 다음은 미국 10월 생산자물가입니다. 기업 단계 물가가 다시 세지면 미국장 금리 부담이 커질 수 있습니다.",
+        "source_ids": ["krx-kospi200-options", "bls-ppi-calendar"],
+        "items": [],
+        "visual": {"path": "automation/visual_assets/9b3bd34ee4f5c9b45fc9573a41fbe3814b2323800b8c2c3af032b3fe319fb3c7.png", "sha256": "9b3bd34ee4f5c9b45fc9573a41fbe3814b2323800b8c2c3af032b3fe319fb3c7", "alt": "큰 반도체 타일이 지수 받침을 지키는 동안 작은 종목 타일이 기울어진 편집 이미지", "tone": "light", "kind": "concept", "prompt": "3:2 editorial paper sculpture: one large generic semiconductor tile holds a market platform while many smaller stock tiles tilt and fall around it; warm off-white, deep black and cobalt blue only; no text, digits, logos, flags, exact charts or watermark."}
+      },
+      {
+        "layout": "watch",
+        "title": "만기 뒤에도\n매도가 남는가",
+        "body": "현재는 옵션 만기와 기관 매도가 겹친 약세입니다. 15시20분 뒤 프로그램 매도와 하락 종목 수가 줄어드는지가 만기 수급의 무게를 가릅니다.",
+        "source_ids": ["krx-kospi200-options", "naver-kospi-flow", "naver-kosdaq-flow"],
+        "items": [
+          {"label": "코스피 폭", "text": "상승 166종목·하락 709종목", "type": "fact", "source_ids": ["naver-kospi-flow"]},
+          {"label": "코스닥 폭", "text": "상승 394종목·하락 1,294종목", "type": "fact", "source_ids": ["naver-kosdaq-flow"]},
+          {"label": "판단을 바꿀 조건", "text": "15시20분 뒤 프로그램 매도와 하락 종목 감소", "type": "watch", "source_ids": ["krx-kospi200-options", "naver-kospi-flow", "naver-kosdaq-flow"]}
+        ],
+        "visual": {"path": "automation/visual_assets/7137e8641ce56e16f8be73ce9ecce852704deb9c90f83cf6d0813776fcd1781a.png", "sha256": "7137e8641ce56e16f8be73ce9ecce852704deb9c90f83cf6d0813776fcd1781a", "alt": "만기 종과 정돈되는 종목 타일, 흩어진 종목 타일을 비교한 편집 이미지", "tone": "dark", "kind": "concept", "prompt": "3:2 closing editorial scene: an expiry bell above market tiles, one cluster becoming orderly while another remains scattered, watched by a small warning lamp; warm off-white, deep black and cobalt blue only; no text, digits, logos, flags, charts or watermark."}
+      }
     ],
     "editorial_review": {
-      "improvement": "최근 5편은 변동성·사이드카·반등 결론을 되풀이했습니다. 이번에는 같은 상승 안에서도 코스피는 외국인, 코스닥은 기관이 돈을 넣었다는 차이를 한 축으로 삼고 장마다 새 근거를 더했습니다.",
-      "reason": "불스토리 공식 사이트 글은 본문·이미지 설명·체크 조건을 읽었고 Instagram 카드는 보지 못했습니다. 홍춘욱 KBS 공개 전사는 수급을 투자자의 실제 선택과 연결하는 순서를 참고했습니다. Morning Brew 공개 이슈와 CNBC 공개 뉴스레터는 악재와 시장 반응을 한 문단 안에서 대비하는 방식을 확인했습니다.",
-      "application": "초안 ‘미국 물가에도 증시 강세’→퇴고 ‘미국 물가는 셌는데 코스닥 +4.97%’. 2장에서 누가 돈을 넣었는지 시장별로 갈랐고, 3장에서 반도체 수익률과 상승 종목 수를 보태 몇 종목만 오른 장이 아님을 설명했습니다.",
-      "avoided_repetition": "전날 사이드카 정의와 ‘반등 지속 확인’ 문장을 버렸습니다. 지수·수급·시장 폭을 같은 장에서 반복하지 않고 각 장의 새 근거로 분리했습니다. 다음 편은 장 마감 뒤 외국인·기관 매수가 남았는지와 상승 종목 수를 함께 비교합니다. 반응 지표는 미확보입니다."
+      "improvement": "최근 5편은 수급과 시장 폭을 결론으로 반복했습니다. 이번에는 ‘옵션은 현물보다 10분 먼저 끝난다’는 오늘의 거래 조건을 중심축으로 잡고, 수급·시장 폭은 그 조건을 판정하는 근거로만 배치했습니다.",
+      "reason": "불스토리 공식 사이트 글의 본문·이미지 설명·체크 조건을 읽었고 Instagram 카드는 보지 못했습니다. 홍춘욱 YTN 공개 전사는 장중 변화에서 판단 조건으로 넘어가는 순서를 참고했습니다. Morning Brew와 CNBC는 공개 뉴스레터 본문만 확인해 수치 뒤에 의미를 바로 붙이는 방식을 골랐습니다.",
+      "application": "초안 ‘옵션 만기일에 기관 매도’→퇴고 ‘옵션은 현물보다 10분 먼저 끝난다’. 2장에서 현금결제와 현물 거래의 시간 차를 풀고, 3장에서 기관·외국인·프로그램을 원인 단정 없이 관측 사실로 분리했습니다.",
+      "avoided_repetition": "‘외국인은 샀는데 코스피 하락’과 ‘삼성전자는 올랐는데 709종목 하락’ 제목은 최근 5편과 겹쳐 버렸습니다. 만기가 하락을 만들었다는 문장도 삭제했습니다. 다음 편은 15시20분 전후 수급을 실제로 확보했을 때만 비교합니다. 반응 지표는 미확보입니다."
     }
-  },
-  "reviewed_preview": {
-    "run_id": 42965236453,
-    "image_sha256": [
-      "f2a581ef259e4d91f4b35979d6b33427b4b4f39258240e4dff2618c8c3c33ad2",
-      "82850e113fb437b4def526b27a19bb2e2ce56092b9b3a380a52df4ed459e3e1e",
-      "1d3baf8aed11853445d838012988f8e3db7b135068bafe6baf1751a301875d77",
-      "1f7b151aaa4415b9fcd07fbaa810c57579ddbc036132b2fcc27c3220363c970c",
-      "e55a2f9542b7e3d741322acb1b09c2ded452c97218ca1cd260fad6d385414ed8"
-    ]
   }
 }
