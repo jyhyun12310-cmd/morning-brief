@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-11-12T14:18:30+09:00",
   "snapshot_at": "2026-11-12T14:15:00+09:00",
@@ -90,5 +90,15 @@
       "application": "초안 ‘옵션 만기일에 기관 매도’→퇴고 ‘옵션은 현물보다 10분 먼저 끝난다’. 2장에서 현금결제와 현물 거래의 시간 차를 풀고, 3장에서 기관·외국인·프로그램을 원인 단정 없이 관측 사실로 분리했습니다.",
       "avoided_repetition": "‘외국인은 샀는데 코스피 하락’과 ‘삼성전자는 올랐는데 709종목 하락’ 제목은 최근 5편과 겹쳐 버렸습니다. 만기가 하락을 만들었다는 문장도 삭제했습니다. 다음 편은 15시20분 전후 수급을 실제로 확보했을 때만 비교합니다. 반응 지표는 미확보입니다."
     }
+  },
+  "reviewed_preview": {
+    "run_id": 43161199611,
+    "image_sha256": [
+      "d00e19ed8eabe50f41c74a5b3e840e3ccc4ad78fca8c2ba430cb50a2f82b39b9",
+      "8f38a13f2ea54c855e7e6a8b147b94b0b5f2f5279c293a2c6141c5edc4c11b33",
+      "4fc1293af3d24c256f411371da1249d35c4801d583f9d6da9bcc96fa11605b01",
+      "df6177bb9b33d1a633f38d82d491116d36dec9e9a53b3192e66648b7cb719e52",
+      "73052ad3784fd7dde82668044b2c60c219c3d3c0bb8745394241238b9f150e61"
+    ]
   }
 }
