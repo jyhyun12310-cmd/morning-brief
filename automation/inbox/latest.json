@@ -1,257 +1,189 @@
 {
   "schema_version": 1,
-  "intent": "publish",
+  "intent": "preview",
   "is_test": false,
-  "created_at": "2026-11-09T23:50:00+00:00",
-  "publication_date_kst": "2026-11-10",
+  "created_at": "2026-11-16T23:50:56Z",
+  "publication_date_kst": "2026-11-17",
   "market": {
-    "ticker": "TTWO",
-    "name": "Take-Two Interactive Software",
-    "currency": "USD",
+    "ticker": "AMZN",
+    "name": "Amazon.com, Inc.",
+    "session_date": "2026-11-16",
+    "session_close_at": "2026-11-16T16:00:00-05:00",
     "price_basis": "regular_close",
-    "session_date": "2026-11-09",
-    "session_close_at": "2026-11-09T16:00:00-05:00",
-    "close": 207.4,
-    "previous_close": 214.87,
-    "change_pct": -3.48,
-    "source_id": "prices"
+    "currency": "USD",
+    "close": 257.75,
+    "previous_close": 266.66,
+    "change_pct": -3.3413,
+    "source_id": "price"
   },
   "sources": [
     {
+      "id": "sec",
+      "title": "BXDC 8-K: Amazon 데이터센터 합작·임대·자금 조달",
+      "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778d8k.htm",
+      "as_of": "계약 2026-11-11 · 발표 2026-11-16 · 거래 완료 전",
+      "retrieved_at": "2026-11-16T23:44:12Z"
+    },
+    {
       "id": "release",
-      "title": "Take-Two FY2027 Q2 official results",
-      "url": "https://www.take2games.com/ir/news/take-two-interactive-software-inc-reports-results-fiscal-4",
-      "as_of": "2026-11-09 발표; 9/30 종료 분기 잠정 실적; 2027/3/31 종료 연간 전망",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
+      "title": "BXDC 공식 발표: AWS 데이터센터 자산 거래",
+      "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778dex991.htm",
+      "as_of": "2026-11-16 발표 · 2026년 4분기 완료 예상",
+      "retrieved_at": "2026-11-16T23:44:12Z"
     },
     {
-      "id": "slides",
-      "title": "Take-Two FY2027 Q2 official earnings slides",
-      "url": "https://ir.take2games.com/static-files/01437b0a-6d3d-4f80-a2ac-5cecdb0c573f",
-      "as_of": "2026-11-09; Q2 실제·회사 예상 비교, 연간·Q3 전망, 출시 일정",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
+      "id": "reuters",
+      "title": "Reuters: Blackstone REIT의 Amazon 데이터센터 지분 거래",
+      "url": "https://theedgemalaysia.com/node/826011",
+      "as_of": "2026-11-16 보도 · 지분·임대·조달액 별도 대조",
+      "retrieved_at": "2026-11-16T23:44:12Z"
     },
     {
-      "id": "remarks",
-      "title": "Take-Two FY2027 Q2 official prepared remarks",
-      "url": "https://ir.take2games.com/static-files/a45ff316-72c4-4255-b123-aace2e41ad1a",
-      "as_of": "2026-11-09 공식 준비 발언문; 소비 경쟁·마케팅비·RCS 정의와 전망 전제",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
-    },
-    {
-      "id": "prices",
-      "title": "Investing.com TTWO historical daily prices",
-      "url": "https://www.investing.com/equities/take-two-interactive-historical-data",
-      "as_of": "11/09·11/06 정규장 일별 Price 열 동일 기준 USD; 시간외 제외",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
-    },
-    {
-      "id": "ir_quote",
-      "title": "Take-Two IR stock quote · Refinitiv",
-      "url": "https://www.take2games.com/ir?source=news_body_link",
-      "as_of": "2026-11-09 16:00 EST; 207.40달러·-3.48% 정규장 종가 교차 확인",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
-    },
-    {
-      "id": "timing",
-      "title": "Take-Two official earnings announcement schedule",
-      "url": "https://taketwointeractivesoftwareinc.gcs-web.com/news-releases/news-release-details/take-two-interactive-software-inc-report-second-quarter-fiscal-8",
-      "as_of": "2026-10-13 공지: 11/09 장 마감 후 발표, 16:30 ET 설명회",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
+      "id": "price",
+      "title": "Stock Analysis / S&P Global: AMZN 정규장 종가",
+      "url": "https://stockanalysis.com/stocks/amzn/history/",
+      "as_of": "2026-11-16 / 11-13 Close 열 · 동일 주식분할 조정 기준",
+      "retrieved_at": "2026-11-16T23:44:12Z"
     },
     {
       "id": "nyse",
-      "title": "NYSE official hours and holidays",
+      "title": "NYSE 공식 거래시간·휴장 달력",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026년 공식 거래일·조기폐장; 11/09 정상 정규장 16:00 EST 종료",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
+      "as_of": "2026년 달력 · 11/16 정상 정규장 16:00 EST 종료",
+      "retrieved_at": "2026-11-16T23:44:12Z"
     },
     {
       "id": "nasdaq",
-      "title": "Nasdaq official market holiday schedule",
+      "title": "Nasdaq 공식 거래시간·휴장 달력",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026년 공식 휴장·조기폐장; 11/09 정상 거래일",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
+      "as_of": "2026년 달력 · 11/16 휴장·조기폐장 아님",
+      "retrieved_at": "2026-11-16T23:44:12Z"
     },
     {
-      "id": "bullstory",
-      "title": "불스토리 · Rheinmetall 전망 하향과 주가 급락, 매출 변수 (편집 참고)",
-      "url": "https://bullstory.io/blog/rheinmetall-전망-하향과-주가-급락-매출-변수",
-      "as_of": "11/10 조회; 공식 웹 본문·FAQ 직접 열람; Instagram 카드 미열람",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
-    },
-    {
-      "id": "hong",
-      "title": "홍춘욱 · 타잔 경제학 (편집 참고)",
-      "url": "https://brunch.co.kr/@hong8706/169",
-      "as_of": "2022-08-29 공식 Brunch 본문 전체·인용된 책 일부 열람; 책 전체·영상 미열람",
-      "retrieved_at": "2026-11-09T23:50:00+00:00"
+      "id": "shell",
+      "title": "Prince William County 공식 보고서: powered shell의 정의",
+      "url": "https://www.pwcva.gov/assets/2025-06/Prince%20William%20County%202024%20Data%20Center%20Revenue%20Report.pdf",
+      "as_of": "2024 Data Center Revenue Report · 2025년 공개 · 용어 정의만 사용",
+      "retrieved_at": "2026-11-16T23:50:56Z"
     }
   ],
-  "metrics": [
-    {
-      "id": "rcs_guidance",
-      "value": -5,
-      "unit": "%",
-      "period": "FY2027 Q2 2026-07-01~09-30",
-      "basis": "Net Bookings RCS YoY",
-      "source_id": "slides"
-    },
-    {
-      "id": "rcs_actual",
-      "value": -9,
-      "unit": "%",
-      "period": "FY2027 Q2 2026-07-01~09-30",
-      "basis": "Net Bookings RCS YoY",
-      "source_id": "slides"
-    }
-  ],
+  "metrics": [],
   "summary": {
     "design": "editorial-v2",
-    "central_question": "분기 판매가 줄었는데 GTA 회사가 연간 목표를 유지한 이유는 무엇인가?",
-    "thesis": "테이크투는 9월까지의 순판매액이 줄고 회사 예상에도 미달했지만 연간 순판매액 전망은 유지했다. 이는 기존 게임의 전면 회복이 아니라 GTA VI 출시와 NBA 2K 소비 회복으로 만회한다는 계획이며, 반복 소비 전망에도 신작의 추가 콘텐츠 포함 상품이 들어간다.",
-    "edition": "미장, 한 겹 더",
-    "instagram_caption": "덜 팔렸는데도 연간 목표는 그대로입니다. GTA VI 출시가 들어간 전망과 이미 끝난 분기 실적을 나누면, 테이크투(TTWO)가 무엇으로 만회하려는지 보입니다. #미국주식 #테이크투 #게임산업",
     "market_basis": {
-      "ticker": "TTWO",
-      "session_date": "2026-11-09",
+      "ticker": "AMZN",
+      "session_date": "2026-11-16",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 207.4,
-      "previous_close": 214.87,
-      "change_pct": -3.48
+      "close": 257.75,
+      "previous_close": 266.66,
+      "change_pct": -3.3413
     },
+    "central_question": "아마존은 데이터센터를 왜 팔고 다시 빌릴까?",
+    "thesis": "아마존은 데이터센터 부동산의 다수 지분을 넘겨 현금을 받으면서도 시설 전부를 임차해 사용할 계획입니다. 다만 장기 임대료와 지급보증이 남고 거래도 아직 완료 전이므로, 평가액을 현금이나 이익으로 읽으면 안 됩니다.",
+    "edition": "미국 기업 이야기",
+    "instagram_caption": "아마존은 데이터센터를 팔고도 그 공간을 계속 쓸 계획입니다. 건물에 묶인 돈을 받는 대신 무엇을 계속 내야 하는지, 50억 달러 거래의 조건을 살펴봅니다. #아마존 #데이터센터 #미국주식",
     "sources": [
       {
+        "id": "sec",
+        "title": "BXDC 8-K: Amazon 데이터센터 합작·임대·자금 조달",
+        "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778d8k.htm",
+        "as_of": "계약 2026-11-11 · 발표 2026-11-16 · 거래 완료 전"
+      },
+      {
         "id": "release",
-        "title": "Take-Two FY2027 Q2 official results",
-        "url": "https://www.take2games.com/ir/news/take-two-interactive-software-inc-reports-results-fiscal-4",
-        "as_of": "2026-11-09 발표; 9/30 종료 분기 잠정 실적; 2027/3/31 종료 연간 전망"
+        "title": "BXDC 공식 발표: AWS 데이터센터 자산 거래",
+        "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778dex991.htm",
+        "as_of": "2026-11-16 발표 · 2026년 4분기 완료 예상"
       },
       {
-        "id": "slides",
-        "title": "Take-Two FY2027 Q2 official earnings slides",
-        "url": "https://ir.take2games.com/static-files/01437b0a-6d3d-4f80-a2ac-5cecdb0c573f",
-        "as_of": "2026-11-09; Q2 실제·회사 예상 비교, 연간·Q3 전망, 출시 일정"
+        "id": "reuters",
+        "title": "Reuters: Blackstone REIT의 Amazon 데이터센터 지분 거래",
+        "url": "https://theedgemalaysia.com/node/826011",
+        "as_of": "2026-11-16 보도 · 지분·임대·조달액 별도 대조"
       },
       {
-        "id": "remarks",
-        "title": "Take-Two FY2027 Q2 official prepared remarks",
-        "url": "https://ir.take2games.com/static-files/a45ff316-72c4-4255-b123-aace2e41ad1a",
-        "as_of": "2026-11-09 공식 준비 발언문; 소비 경쟁·마케팅비·RCS 정의와 전망 전제"
-      },
-      {
-        "id": "prices",
-        "title": "Investing.com TTWO historical daily prices",
-        "url": "https://www.investing.com/equities/take-two-interactive-historical-data",
-        "as_of": "11/09·11/06 정규장 일별 Price 열 동일 기준 USD; 시간외 제외"
-      },
-      {
-        "id": "ir_quote",
-        "title": "Take-Two IR stock quote · Refinitiv",
-        "url": "https://www.take2games.com/ir?source=news_body_link",
-        "as_of": "2026-11-09 16:00 EST; 207.40달러·-3.48% 정규장 종가 교차 확인"
-      },
-      {
-        "id": "timing",
-        "title": "Take-Two official earnings announcement schedule",
-        "url": "https://taketwointeractivesoftwareinc.gcs-web.com/news-releases/news-release-details/take-two-interactive-software-inc-report-second-quarter-fiscal-8",
-        "as_of": "2026-10-13 공지: 11/09 장 마감 후 발표, 16:30 ET 설명회"
+        "id": "price",
+        "title": "Stock Analysis / S&P Global: AMZN 정규장 종가",
+        "url": "https://stockanalysis.com/stocks/amzn/history/",
+        "as_of": "2026-11-16 / 11-13 Close 열 · 동일 주식분할 조정 기준"
       },
       {
         "id": "nyse",
-        "title": "NYSE official hours and holidays",
+        "title": "NYSE 공식 거래시간·휴장 달력",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026년 공식 거래일·조기폐장; 11/09 정상 정규장 16:00 EST 종료"
+        "as_of": "2026년 달력 · 11/16 정상 정규장 16:00 EST 종료"
       },
       {
         "id": "nasdaq",
-        "title": "Nasdaq official market holiday schedule",
+        "title": "Nasdaq 공식 거래시간·휴장 달력",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026년 공식 휴장·조기폐장; 11/09 정상 거래일"
+        "as_of": "2026년 달력 · 11/16 휴장·조기폐장 아님"
       },
       {
-        "id": "bullstory",
-        "title": "불스토리 · Rheinmetall 전망 하향과 주가 급락, 매출 변수 (편집 참고)",
-        "url": "https://bullstory.io/blog/rheinmetall-전망-하향과-주가-급락-매출-변수",
-        "as_of": "11/10 조회; 공식 웹 본문·FAQ 직접 열람; Instagram 카드 미열람"
-      },
-      {
-        "id": "hong",
-        "title": "홍춘욱 · 타잔 경제학 (편집 참고)",
-        "url": "https://brunch.co.kr/@hong8706/169",
-        "as_of": "2022-08-29 공식 Brunch 본문 전체·인용된 책 일부 열람; 책 전체·영상 미열람"
+        "id": "shell",
+        "title": "Prince William County 공식 보고서: powered shell의 정의",
+        "url": "https://www.pwcva.gov/assets/2025-06/Prince%20William%20County%202024%20Data%20Center%20Revenue%20Report.pdf",
+        "as_of": "2024 Data Center Revenue Report · 2025년 공개 · 용어 정의만 사용"
       }
     ],
     "evidence_notes": [
       {
-        "id": "quarter",
-        "claim": "9/30 종료 FY2027 Q2 Net Bookings는 16.01억달러로 전년 19.61억보다 18% 감소했다. 회사 직전 예상 16.2~16.7억에도 미달. Net Bookings는 판매한 제품·서비스 순액에 라이선스·광고 등을 포함한 운영 지표이며 회계 매출이나 현금 유입과 다르다.",
+        "id": "n1",
+        "claim": "11월 16일 발표한 계약은 11월 11일 체결됐다. BXDC가 두 합작사의 지배지분 75.1%를 취득하고 Amazon 계열사는 24.9% 지분과 현금 배분을 받는다. 거래 완료 후 자산 전부를 AWS 측에 임대한다.",
+        "source_ids": [
+          "sec",
+          "release",
+          "reuters"
+        ]
+      },
+      {
+        "id": "n2",
+        "claim": "대상은 AWS 캠퍼스 두 곳의 신축 powered shell 13개다. 전력 인입을 갖춘 데이터센터 건물 거래이며 AWS 사업 지분 75.1%를 넘기는 거래가 아니다. 소유와 시설 사용을 분리한다.",
         "source_ids": [
           "release",
-          "slides"
+          "sec",
+          "reuters",
+          "shell"
         ]
       },
       {
-        "id": "annual",
-        "claim": "FY2027(2027/3/31 종료) Net Bookings 전망 80~82억달러를 유지했다. GTA VI 출시 예정일은 2026/11/19로 9월 종료 분기 이후다. GAAP 매출 등 모든 전망을 동결했다는 뜻은 아니다.",
+        "id": "n3",
+        "claim": "50억 달러는 부동산 총자산 가치다. 매수 측은 IPO 현금 19억 달러를 출자하고 합작사 자회사는 자산 담보 비소구 대출 약 25억 달러를 조달할 예정이다. Amazon 잔여 지분은 약 6억 달러다. 거래비용·조정을 빼야 하므로 50억 달러 또는 44억 달러를 확정 순수취액으로 쓰지 않는다.",
         "source_ids": [
+          "sec",
+          "reuters"
+        ]
+      },
+      {
+        "id": "n4",
+        "claim": "임대료는 연 2.75% 인상되며 가중평균 최초 임대기간은 12년, 연장권을 모두 사용한 가중평균 기간은 32년이다. 32년 전부를 확정 기간으로 쓰지 않는다.",
+        "source_ids": [
+          "sec",
+          "release"
+        ]
+      },
+      {
+        "id": "n5",
+        "claim": "Amazon.com은 임차인의 지급의무를 보증한다. 시설을 넘겨도 임대료 지급 약정이 남는다. 수요 둔화에도 계약상 지급부담이 있다는 설명은 이 사실에 기초한 해석이며 미래 수요 감소를 예측한 것은 아니다.",
+        "source_ids": [
+          "sec"
+        ]
+      },
+      {
+        "id": "n6",
+        "claim": "발표상 2026년 4분기 거래 완료 예상이며 조건이 남아 있다. 현금 배분은 매수 측 출자와 대출 순수입으로 조달한다. 현금 확보 구조와 AWS 이익 증가는 구별하며 실제 순수취액과 후속 임차 의무 공시로 평가해야 한다.",
+        "source_ids": [
+          "sec",
           "release",
-          "slides"
+          "reuters"
         ]
       },
       {
-        "id": "nba",
-        "claim": "NBA 2K27 출시의 순판매액 성과는 시리즈 역대 두 번째였으나 해당 분기 회사 예상에 미달했다. 회사는 여러 오락 상품이 이용자 관심을 다투는 바쁜 출시 시기를 이유로 설명했다. 시장 전체 원인을 확정한 독립 검증은 아니다.",
+        "id": "n7",
+        "claim": "AMZN은 11월 16일 257.75달러, 직전 11월 13일 266.66달러로 정규장을 마쳤다. 동일 제공자의 Close 열로 -3.3413%를 계산했다. 시간외 가격은 제외했고 당일 하락을 거래 발표 탓으로 단정하지 않는다.",
         "source_ids": [
-          "slides",
-          "remarks"
-        ]
-      },
-      {
-        "id": "rcs",
-        "claim": "Q2 Net Bookings 기준 RCS는 전년 대비 -9%(종전 회사 예상 -5%), 전체 순판매액의 81%. 가상화폐·추가 콘텐츠·게임 내 구매와 광고를 포함한다. NBA 2K와 모바일은 감소, GTA 시리즈는 증가했다. GAAP 매출 기준 RCS -5%와 혼동하지 않는다.",
-        "source_ids": [
-          "release",
-          "slides"
-        ]
-      },
-      {
-        "id": "marketing",
-        "claim": "테이크투는 Rockstar Games·2K·Zynga를 통해 게임을 개발·출판한다. 10~12월 분기 관리 기준 운영비는 전년 대비 약21% 증가 예상이며 회사는 주된 이유로 GTA VI 출시 마케팅을 들었다. GAAP 운영비 증가율이 아니다.",
-        "source_ids": [
-          "timing",
-          "remarks"
-        ]
-      },
-      {
-        "id": "bundle",
-        "claim": "회사의 다음 분기 RCS +12% 전망에는 추가 콘텐츠가 포함된 GTA VI Ultimate Edition 판매, NBA 2K 성장, 모바일 감소가 전제된다. 따라서 RCS 증가만으로 기존 게임 이용자의 재결제 회복이 입증되지는 않는다(작성자 해석).",
-        "source_ids": [
-          "slides",
-          "remarks"
-        ]
-      },
-      {
-        "id": "q3",
-        "claim": "2026년10~12월 FY2027 Q3 회사 Net Bookings 전망은33.5~35억달러. GTA VI 출시가 성장 이유이며 RCS는 전년 대비 약12% 증가 예상이다. 모두 전망으로 출시 실적·확정 매출·이익과 구분한다.",
-        "source_ids": [
-          "slides"
-        ]
-      },
-      {
-        "id": "price",
-        "claim": "Investing 일별 동일 Price 열에서11/9 207.40달러,11/6 214.87달러. 계산 -3.48%; 회사 IR Refinitiv의11/9 16:00 EST 종가와 일치. 다른 제공자의207.97은 불일치해 채택하지 않았다. 실적 발표는 장 마감 뒤여서 이 하락을 이번 실적 반응으로 단정하지 않는다.",
-        "source_ids": [
-          "prices",
-          "ir_quote",
-          "timing"
-        ]
-      },
-      {
-        "id": "session",
-        "claim": "NYSE·Nasdaq 2026년 공식 달력상11/9는 정상 정규장 거래일. EST 16시는 UTC21시, 한국11/10 06시. 가장 최근 완료된 정규장이며 시간외 시세는 쓰지 않는다.",
-        "source_ids": [
+          "price",
           "nyse",
           "nasdaq"
         ]
@@ -260,227 +192,206 @@
     "visual_story": [
       {
         "layout": "cover",
-        "title": "GTA 회사, 덜 팔고도\n연간 목표는 그대로",
-        "body": "7~9월 순판매액, 전년 대비 -18% · 연간 전망 유지",
+        "title": "아마존은 데이터센터를\n왜 팔고 다시 빌릴까?",
+        "body": "건물에 묶인 돈을 받는 대신, 임대료 약정은 남습니다.",
         "evidence_ids": [
-          "quarter",
-          "annual"
+          "n1",
+          "n4"
         ],
-        "labels": [],
+        "accent": "왜 팔고 다시 빌릴까?",
         "visual": {
-          "path": "automation/visual_assets/5af43c1e747b53941c1897214d3f0da406ab4679e267e3fda71842c7ea0ae555.jpg",
-          "sha256": "5af43c1e747b53941c1897214d3f0da406ab4679e267e3fda71842c7ea0ae555",
-          "kind": "concept",
-          "prompt": "Editorial concept illustration for a Korean financial magazine, cover artwork only. A huge unopened red video-game case stands upright beside a small stack of well-worn black game cases, with a grayscale hand poised to open the new case. The contrast is between past sales and an anticipated new release, not a financial chart. Strong close crop, one dominant object, flat near-black background #101010, restrained warm ivory #F5F2EB and red #EA3027, tactile cut-paper collage and elegant grayscale print texture, minimal halftone, crisp silhouettes. Landscape 3:2 composition, image fills frame with no giant empty margins. No text, numbers, logos, game characters, arrows, chart, neon, gradients or official game artwork.",
+          "path": "automation/visual_assets/9efa24c35bddbcb937269928e05232433d286ef55957abd779c3509b9a0e70ae.png",
+          "sha256": "9efa24c35bddbcb937269928e05232433d286ef55957abd779c3509b9a0e70ae",
+          "alt": "건물을 손에 올리고 사용 열쇠는 남긴 데이터센터 개념 이미지",
           "tone": "dark",
-          "alt": "기존 게임 케이스 옆 새 게임의 포장을 여는 손을 그린 개념 이미지"
+          "kind": "concept",
+          "prompt": "Create one landscape 3:2 editorial concept illustration for a Korean finance card about Amazon selling data center property while leasing it back. A striking architectural miniature of a modern low rectangular data center, its building shell held by a large open hand while a clearly separate red key remains beside operating server racks. One coherent still life, no arrows or charts. Dramatic matte black background, warm off-white architecture, one vivid red accent. Precise clean architectural illustration, sophisticated magazine art, quiet natural shadows, no dot texture, no retro paper, no text, no numbers, no logos. Not a photograph of any real site."
         }
       },
       {
         "layout": "photo",
-        "title": "지난 분기 성적표엔\nGTA 신작이 없다",
-        "body": "11월 9일 발표한 실적은 9월까지의 판매입니다. 연간 목표에는 11월 19일 출시 예정인 GTA VI가 들어갑니다. 지난 분기의 부진을 신작 판매로 만회하겠다는 회사의 계획입니다.",
+        "title": "건물을 넘겨도\n서버는 계속 돌아갑니다",
+        "body": "11월 16일 발표한 거래는 시설을 비우는 매각이 아닙니다. 아마존은 건물을 합작사에 넣고 현금을 받으며, AWS는 그 시설 전부를 빌려 계속 사용할 계획입니다.",
         "evidence_ids": [
-          "quarter",
-          "annual"
+          "n1"
         ],
+        "accent": "서버는 계속 돌아갑니다",
         "labels": [
           {
-            "label": "이번 실적",
-            "text": "7~9월 순판매액 16.01억달러 · 전년 대비 18% 감소"
+            "label": "새 대주주",
+            "text": "블랙스톤의 데이터센터 리츠 BXDC: 합작사 지분 75.1%"
           },
           {
-            "label": "유지한 전망",
-            "text": "2027년 3월 말까지 연간 순판매액 80~82억달러"
+            "label": "남는 지분",
+            "text": "아마존 계열사: 합작사 지분 24.9%"
           }
         ],
-        "takeaway": "순판매액은 게임·서비스 판매 등을 묶은 지표로, 회계 매출이나 현금과 다릅니다.",
-        "bridge": "그렇다면 신작 출시 전에는 어디서 기대에 못 미쳤을까?",
+        "takeaway": "시설 운영을 이어가면서 건물에 묶인 자금을 다른 용도로 쓸 수 있습니다.",
+        "bridge": "넘기는 건물과 남는 사업의 범위를 나눠 봅니다.",
         "visual": {
-          "path": "automation/visual_assets/ca59845784f75f7cadc14527f07027fffc4387f4712da89d35f71bf7100600d4.jpg",
-          "sha256": "ca59845784f75f7cadc14527f07027fffc4387f4712da89d35f71bf7100600d4",
-          "kind": "concept",
-          "prompt": "Editorial concept illustration, artwork only: a tabletop with a used basketball-game case and a shut ledger on the left, while a red sealed game package on the right sits beyond a torn vertical paper edge suggesting a later time. No readable dates or numbers. Warm ivory background, black/ivory/red palette, refined editorial paper collage, subtle grayscale photographic grain. Wide 3:2 composition with two clearly separated physical still-life groups, both sizeable. No chart, labels, logos, characters, neon, gradients or fake product art. Edited right-hand cover to plain red, without basketball art.",
+          "path": "automation/visual_assets/38c1c8a944226a411e9834b59ca5d53d1b28e871f4943760def3103c6e7465b7.png",
+          "sha256": "38c1c8a944226a411e9834b59ca5d53d1b28e871f4943760def3103c6e7465b7",
+          "alt": "시설 소유 서류를 든 사람과 내부 운영자를 구별한 개념 이미지",
           "tone": "light",
-          "alt": "과거 판매 장부와 아직 포장을 뜯지 않은 새 게임을 나눈 개념 이미지"
+          "kind": "concept",
+          "prompt": "Create one landscape 3:2 editorial concept illustration of property ownership versus continuing use: side view of an operating data center, an anonymous person outside holding a plain unmarked ownership folder, technicians working inside through an open cutaway wall. Warm off-white background, black geometry and vivid red door, no text numbers logos charts arrows. Sparse detailed architectural illustration, one scene, not a real site photograph. Emphasize that ownership outside and operations inside can be separate."
         }
       },
       {
         "layout": "annotated",
-        "title": "역대 두 번째 기록도\n예상에는 못 미쳤다",
-        "body": "NBA 2K27은 시리즈 역대 두 번째로 높은 출시 순판매액을 냈지만 회사 예상에는 미달했습니다. 회사는 출시 시기에 여러 오락 상품이 이용자의 관심을 놓고 경쟁했다고 설명했습니다.",
+        "title": "넘기는 것은 건물,\nAWS 사업 전체가 아닙니다",
+        "body": "대상은 두 캠퍼스의 신축 건물 13개입니다. 전력 인입을 갖춘 건물인 ‘파워드 셸’을 합작사가 소유할 예정입니다. 클라우드 사업을 통째로 넘기는 인수와는 다릅니다.",
         "evidence_ids": [
-          "nba",
-          "quarter"
+          "n2"
         ],
+        "accent": "AWS 사업 전체가 아닙니다",
         "labels": [
           {
-            "label": "회사 예상",
-            "text": "7~9월 전체 순판매액 16.2~16.7억달러"
+            "label": "부동산 소유",
+            "text": "합작사가 시설을 보유하고 임차인에게 임대"
           },
           {
-            "label": "회사 대응",
-            "text": "NBA 2K의 새 시즌·게임 내 콘텐츠로 하반기 소비 확대 기대"
+            "label": "시설 사용",
+            "text": "AWS가 대상 시설의 100%를 임차"
           }
         ],
-        "takeaway": "많이 팔렸다는 기록과 회사가 기대한 만큼 팔렸다는 판단은 다릅니다.",
-        "bridge": "한 번 게임을 산 뒤의 추가 결제도 약했습니다.",
+        "takeaway": "지분율은 부동산 합작사의 몫이며, AWS 사업의 매각 비율이 아닙니다.",
+        "bridge": "그 건물값을 마련하는 돈도 두 곳에서 나옵니다.",
         "visual": {
-          "path": "automation/visual_assets/e9d7f0052f30197d7e4c9579c39b9e697a602087df381907c3d970d7d93694fd.jpg",
-          "sha256": "e9d7f0052f30197d7e4c9579c39b9e697a602087df381907c3d970d7d93694fd",
+          "path": "automation/visual_assets/986f5195964477c6b4c1416cc4c00e821a8884e6a9aa46682b1ca7be269dead9.png",
+          "sha256": "986f5195964477c6b4c1416cc4c00e821a8884e6a9aa46682b1ca7be269dead9",
+          "alt": "전력 인입 건물 외피와 내부 서버를 나눈 개념 이미지",
+          "tone": "dark",
           "kind": "concept",
-          "prompt": "Editorial concept illustration, artwork only: overhead close-up of a person's single hand choosing between a generic basketball game disc, cinema tickets with entirely blank faces, and a television remote on a desk. Show competing entertainment choices without a speech bubble or invented emotion. Warm ivory and grayscale paper collage, one sharply red ticket, sophisticated magazine print texture, high contrast, 3:2 landscape, fill frame. No text, digits, logos, charts, branded controllers or game screenshots.",
-          "tone": "light",
-          "alt": "게임·영화·텔레비전 사이에서 오락을 선택하는 손의 개념 이미지"
+          "prompt": "Create one landscape 3:2 editorial concept illustration showing a data center powered building shell separated from the computing equipment: clean exploded architectural model with a plain building roof suspended just above the shell, electrical conduit along the shell, server cabinets clearly inside. No arrows labels text digits logos charts. Black background with off-white structure and tiny red connectors. Wide spacious modern magazine architectural art, not a real facility or product."
         }
       },
       {
         "layout": "comparison",
-        "title": "게임 안에서 쓰는 돈\n예상보다 더 줄었다",
-        "body": "가상화폐·추가 콘텐츠를 사는 돈과 게임 내 광고 등을 ‘반복 소비’로 묶습니다. 이번 분기 순판매액의 81%를 차지합니다. NBA 2K의 부진으로 회사 예상보다 더 줄었습니다.",
+        "title": "50억 달러는\n현금 수취액이 아닙니다",
+        "body": "50억 달러는 건물의 총자산 가치입니다. 아마존은 약 6억 달러 상당의 지분도 남깁니다. 아래 자금에서 거래비용과 정산을 거치므로 합계도 확정 순수취액은 아닙니다.",
         "evidence_ids": [
-          "rcs"
+          "n3"
         ],
-        "labels": [],
-        "takeaway": "GTA 시리즈의 반복 소비는 늘었습니다. 모든 게임이 함께 나빠진 건 아닙니다.",
-        "bridge": "출시를 앞둔 회사는 광고에도 더 쓸 계획입니다.",
-        "chart": {
-          "source": "Take-Two FY2027 Q2 실적 자료",
-          "note": "7~9월 순판매액 기준 반복 소비의 전년 대비 증감률",
-          "unit": "%",
-          "rows": [
-            {
-              "metric_id": "rcs_guidance",
-              "value": -5,
-              "label": "회사의 종전 예상",
-              "display": "전년 대비 -5%"
-            },
-            {
-              "metric_id": "rcs_actual",
-              "value": -9,
-              "label": "이번 분기 실제",
-              "display": "전년 대비 -9%"
-            }
-          ]
-        },
+        "accent": "현금 수취액이 아닙니다",
+        "labels": [
+          {
+            "label": "BXDC 출자",
+            "text": "약 19억 달러 · 주식 공모로 모은 현금"
+          },
+          {
+            "label": "합작사 측 차입",
+            "text": "약 25억 달러 · 해당 건물을 담보로 받는 대출"
+          }
+        ],
+        "takeaway": "아마존이 받을 배분금은 이 출자금과 대출 순수입으로 마련됩니다.",
+        "bridge": "현금을 받은 뒤에는 시설 사용료를 내야 합니다.",
         "visual": {
-          "path": "automation/visual_assets/d4ce88cac97f00a28e5657d9f317f111abe168b4149f526548e5a941057b15c3.jpg",
-          "sha256": "d4ce88cac97f00a28e5657d9f317f111abe168b4149f526548e5a941057b15c3",
+          "path": "automation/visual_assets/550d78fb4f046b66c74751c06decc10873a64bd921fe881d6b72c61ac4915f68.png",
+          "sha256": "550d78fb4f046b66c74751c06decc10873a64bd921fe881d6b72c61ac4915f68",
+          "alt": "출자자와 대출 은행의 자금이 한 건물로 모이는 개념 이미지",
+          "tone": "light",
           "kind": "concept",
-          "prompt": "Editorial concept illustration, artwork only: close crop of an unbranded smartphone with an abstract game inventory showing simple grayscale sports equipment objects, beside a hand holding a plain blank red payment card. Physical objects and fingers carefully drawn, no interface text, no currency amounts. Black background with ivory phone and grayscale hand, red payment-card accent. Elegant cut-paper photographic collage with subtle print grain, 3:2 landscape. No graph, arrows, logos, words, readable numbers, neon or gradients.",
-          "tone": "dark",
-          "alt": "게임 속 추가 상품과 결제 카드를 함께 보여주는 개념 이미지"
+          "prompt": "Create one landscape 3:2 editorial concept still life about two sources of property funding: two distinct paths of plain blank payment envelopes, one from a small shareholder document tray and one from a bank building miniature, arriving beside one data center architectural model. Do not draw arrows or financial chart, no text numbers currency glyphs logos. Warm off-white background, black ink-like architectural shading, red trays. Elegant sparse illustration with generous space, physically coherent scene."
         }
       },
       {
         "layout": "explain",
-        "title": "테이크투의 광고비도\nGTA 출시에 맞춰 증가",
-        "body": "GTA·NBA 2K를 내는 테이크투(TTWO)입니다. 회사는 일부 비용을 조정한 기준으로 10~12월 운영비가 전년보다 약 21% 늘 것으로 예상했습니다. 주된 이유는 GTA VI 출시 마케팅입니다.",
+        "title": "현금은 한 번 받고\n임대료는 매년 오릅니다",
+        "body": "소유를 줄여 당장 현금을 받아도, 앞으로 그 공간을 쓰는 비용이 사라지는 것은 아닙니다. 임대기간은 처음 약속한 기간과 연장권을 전부 쓴 경우로 구별해야 합니다.",
         "evidence_ids": [
-          "marketing",
-          "price"
+          "n4"
         ],
+        "accent": "임대료는 매년 오릅니다",
         "labels": [
           {
-            "label": "비용의 기준",
-            "text": "회사의 관리 기준 전망 · 회계상(GAAP) 운영비와 다름"
+            "label": "최초 계약",
+            "text": "가중평균 12년의 임대 약정"
           },
           {
-            "label": "11/9 정규장",
-            "text": "207.40달러 · 직전 거래일 214.87달러 대비 -3.48%"
+            "label": "연장권까지 사용",
+            "text": "가중평균 32년 · 모두 확정된 기간은 아님"
           }
         ],
-        "takeaway": "이 종가는 장 마감 뒤 실적 발표 전 가격입니다. 실적 반응으로 볼 수 없습니다.",
-        "bridge": "다음 전망의 ‘반복 소비’에도 신작이 섞여 있습니다.",
+        "takeaway": "계약상 임대료는 매년 2.75%씩 높아지도록 정했습니다.",
+        "bridge": "임대료 지급을 책임지는 주체도 계약에 남았습니다.",
         "visual": {
-          "path": "automation/visual_assets/e2d4b12fbff1cc4e79bfc429dd41465377dd83ebcfe482fd15cdf80bedce0d03.jpg",
-          "sha256": "e2d4b12fbff1cc4e79bfc429dd41465377dd83ebcfe482fd15cdf80bedce0d03",
+          "path": "automation/visual_assets/b4bb6ab2975f004037758f27a1c13d13b05fd00f637c6b426e88527cd0d89669.png",
+          "sha256": "b4bb6ab2975f004037758f27a1c13d13b05fd00f637c6b426e88527cd0d89669",
+          "alt": "시설 열쇠 곁으로 반복 청구서를 길게 펼친 개념 이미지",
+          "tone": "dark",
           "kind": "concept",
-          "prompt": "Editorial concept illustration, artwork only: workers on a ladder hanging a giant blank red entertainment launch poster on an urban building facade, as a delivery person carries a roll of matching posters below. Represents marketing spending before a game launch, not an actual company scene. Editorial grayscale paper collage with warm ivory sky and one vivid red poster plane, simple bold composition, 3:2 landscape, sophisticated print texture. No words, numbers, logos, cash stacks, charts, official game imagery or invented celebrity faces.",
-          "tone": "light",
-          "alt": "게임 출시를 앞두고 광고물을 설치하는 가상의 작업 장면"
+          "prompt": "Create one landscape 3:2 editorial concept image about repeated rent obligations: a long folded blank accordion paper invoice emerging beside the key to a modern data center, extending into distance in perspective. No writing digits symbols charts arrows logos. Matte black background, warm off-white paper, vivid red key tag. Clean tactile magazine still life, simple strong objects, no antique scales, no coins, no clocks."
         }
       },
       {
         "layout": "conditions",
-        "title": "신작 묶음 상품도\n반복 소비에 들어간다",
-        "body": "GTA VI의 Ultimate Edition에는 추가 콘텐츠가 포함됩니다. 회사는 이 상품의 판매도 반복 소비 증가 전망에 반영했습니다. 그 숫자가 오른다고 기존 이용자의 재결제가 모두 회복된 것은 아닙니다.",
+        "title": "사업이 느려져도\n지급 약정은 남습니다",
+        "body": "임차인의 지급의무는 모회사 아마존이 보증합니다. 그래서 이 거래의 유불리는 받은 현금뿐 아니라 시설을 얼마나 오래 잘 쓰는지에도 달려 있습니다.",
         "evidence_ids": [
-          "bundle"
+          "n5"
         ],
-        "labels": [],
-        "takeaway": "추가 콘텐츠 포함 상품의 판매와 기존 게임의 회복을 나눠 읽어야 합니다.",
-        "bridge": "마지막 기준은 출시 후 실제로 팔린 금액입니다.",
-        "origin": "반복 소비 증가를 해석하는 두 기준",
+        "origin": "수요에 관한 아래 두 경우는 확정 전망이 아닌 판단 조건입니다.",
         "branches": [
           {
-            "label": "회복 해석을 받칠 때",
-            "text": "NBA 2K의 게임 내 소비도 다시 늘어납니다.",
-            "check": "GTA 판매와 별도로 NBA 2K 증감을 비교"
+            "label": "사용이 늘면",
+            "text": "시설을 계속 활용하며 장기 사용권의 가치가 커집니다.",
+            "check": "해당 시설의 활용과 임차 비용을 함께 확인"
           },
           {
-            "label": "신작 효과에 그칠 때",
-            "text": "GTA 묶음 상품만 잘 팔리고 다른 게임은 약합니다.",
-            "check": "모바일 감소와 NBA 2K 회복 여부를 구분"
+            "label": "사용이 줄면",
+            "text": "사용량이 줄어도 계약상 임대료 지급 약정은 남습니다.",
+            "check": "유휴 시설과 임차 관련 부담 공시를 확인"
           }
         ],
+        "accent": "지급 약정은 남습니다",
+        "labels": [],
+        "takeaway": "이 보증은 임차인의 지급의무에 대한 것이며, 대출 보증과 구별됩니다.",
+        "bridge": "아직 발표 단계여서 실제 정산 결과도 남아 있습니다.",
         "visual": {
-          "path": "automation/visual_assets/465167f513c69d69c24c5d2e84a968982a6c2dad6ebe125efbe156104b8d7f84.jpg",
-          "sha256": "465167f513c69d69c24c5d2e84a968982a6c2dad6ebe125efbe156104b8d7f84",
-          "kind": "concept",
-          "prompt": "Editorial concept illustration, artwork only: a carefully opened physical game box containing a plain game disc and a separate red envelope with a small blank add-on voucher. Three tangible pieces, clearly legible at small size. Close-up still life on warm ivory paper, black disc and ivory packaging, red envelope only. Refined magazine paper collage and grayscale print grain, 3:2 landscape, generous but balanced composition. No text, digits, logos, game art, schematic arrows, charts, shine or gradients.",
+          "path": "automation/visual_assets/0058b0a1924ca2e09729338f1ed4aa17ab4d78455f3f0415d381ff953630ef84.png",
+          "sha256": "0058b0a1924ca2e09729338f1ed4aa17ab4d78455f3f0415d381ff953630ef84",
+          "alt": "사용 중인 서버와 빈 공간이 함께 있는 수요 조건 개념 이미지",
           "tone": "light",
-          "alt": "게임 본편과 추가 콘텐츠 이용권이 함께 든 상품의 개념 이미지"
+          "kind": "concept",
+          "prompt": "Create one landscape 3:2 editorial concept image about fixed building obligations despite uncertain equipment usage: interior of a data center with a few illuminated server racks and other empty cabinet spaces, a solid building wall continues uninterrupted across the scene. Quiet off-white background, black cabinet geometry and restrained red status lights. No text, numbers, graphs, logos or arrows. Architectural editorial illustration, not a real photograph, no dramatic disaster imagery."
         }
       },
       {
         "layout": "closing",
-        "title": "회복이 끝난 실적보다\n신작에 무게 둔 전망",
-        "body": "지금 테이크투의 연간 목표는 기존 게임의 부진이 끝났다는 증거가 아닙니다. GTA 출시와 NBA 2K의 소비 회복으로 만회한다는 계획입니다. 다음 성적표는 아래 회사 예상과 같은 기준으로 비교해야 합니다.",
+        "title": "이익 증가보다 먼저\n실제 현금 유입을 봅니다",
+        "body": "이번 거래는 시설을 계속 쓰면서 현금을 확보하는 선택입니다. 다만 발표상 완료 예상은 올해 4분기이고 조건이 남아 있습니다. 지금은 이미 돈을 받았다고 계산할 수 없습니다.",
         "evidence_ids": [
-          "q3",
-          "bundle",
-          "annual"
+          "n6"
         ],
+        "accent": "실제 현금 유입을 봅니다",
         "labels": [
           {
-            "label": "10~12월 판매",
-            "text": "순판매액 33.5~35억달러 · 회사 전망"
+            "label": "먼저 볼 공시",
+            "text": "거래 완료 여부와 비용·조정 뒤 실제 순수취액"
           },
           {
-            "label": "추가 소비",
-            "text": "반복 소비 전년 대비 약 +12% · 신작 묶음 상품 포함 전망"
+            "label": "함께 볼 공시",
+            "text": "새 임차 의무와 그 시설에서 발생하는 사업 성과"
           }
         ],
-        "takeaway": "판매가 예상에 못 미치거나 NBA 2K 소비가 회복되지 않으면 만회 계획이 약해집니다.",
-        "bridge": "게임 이름의 기대감과 실제 판매 성적을 구분할 때입니다.",
+        "takeaway": "실제 받은 돈과 이후 비용을 대조해야 자금 확보의 대가가 보입니다.",
+        "bridge": "현금 수취를 AWS의 매출·이익 증가로 읽지 않습니다.",
         "visual": {
-          "path": "automation/visual_assets/c8ac875307e954cd18ec0d6447dd1ed427a5ddb0de6d720790878b99dd7da520.jpg",
-          "sha256": "c8ac875307e954cd18ec0d6447dd1ed427a5ddb0de6d720790878b99dd7da520",
-          "kind": "concept",
-          "prompt": "Editorial concept illustration, artwork only: close view of a game shop counter where a customer places a plain sealed red game package beside a receipt printer dispensing an entirely blank paper receipt; cashier's grayscale hands and counter, no faces. The scene depicts a purchase being recorded, not guaranteed future sales. Dark black and warm ivory magazine collage, red package as focal point, tactile print grain, realistic hands, 3:2 landscape. No text, digits, logos, charts, neon, official product artwork or decorative icons.",
+          "path": "automation/visual_assets/4724df850eb603f8ce2447bceb1e1b5b5c4395f26d09640c45d781e00eb54f05.png",
+          "sha256": "4724df850eb603f8ce2447bceb1e1b5b5c4395f26d09640c45d781e00eb54f05",
+          "alt": "서명 전 서류와 보관 중인 열쇠로 거래 완료 전을 표현한 이미지",
           "tone": "dark",
-          "alt": "게임 구매를 영수증으로 기록하는 가상의 판매 장면"
+          "kind": "concept",
+          "prompt": "Create one landscape 3:2 editorial concept still life about an announced property sale awaiting completion: unsigned blank document lying beside a closed modern data center miniature, a pen resting above the blank signing area, key in a transparent escrow-style box. Matte black and warm off-white with a single red pen. No text digits symbols logos stamps charts arrows. Clear spacious modern magazine illustration, no imitation official document, not a real site."
         }
       }
     ],
     "editorial_review": {
-      "improvement": "최근5편(11/9·11/5·11/4 시장·AMD·11/2 시장)의 원고·실제27장·review를 비교했습니다. 마지막의 추상적 판단·확인 항목 반복 대신 이번에는 소비자가 돈을 쓰는 시점과 대상을 한 축으로 구분합니다. 2장 과거 판매→3장 오락 선택→4장 추가 결제→6장 신작 묶음 상품으로 새 근거를 더했습니다.",
-      "reason": "불스토리(국내 브랜드) 「Rheinmetall 전망 하향과 주가 급락, 매출 변수」 공식 웹 본문·FAQ: 기대와 매출이 잡히는 시점을 분리. 홍춘욱 「타잔 경제학」(2022/8/29) 공식 Brunch 전체: 독자의 오락 선택을 경쟁 이유로 설명. 인용된 책 일부만 읽었고 책 전체·영상·Instagram 카드는 미열람. 문구·이미지·투자 권유는 가져오지 않았습니다.",
-      "application": "초안 ‘실적 부진에도 성장 가이던스 유지’→2장 ‘연간 목표에는 11월 19일 출시 예정인 GTA VI가 들어갑니다’. ‘RCS 회복이 관건’→6장 신작 상품과 기존 게임 재결제 구분. 정상 preview 42724129898의 실제7장 확인 후 표지에 전년 비교를 보강하고, 4장 예상 미달 원인은 NBA 2K로 좁힘. 모바일은 회사 예상에 부합. 5장 관리 기준의 뜻도 풀어 새 preview 제출. 흥행 확정·소비 전면 회복 제목은 반대 근거로 폐기.",
-      "avoided_repetition": "표지 결론을 끝에서 되풀이하지 않고 7장에 실제와 비교할 분기 판매·추가 소비 전망을 남겼습니다. 임원 낙관 발언·개별 모바일 게임 나열·예약 판매량 추정·주가 목표는 삭제. 직전 시장 수급 과제는 억지 적용하지 않고 AMD의 비용 원인 보완은 5장 출시 마케팅 설명으로 반영. 다음 편은 신작 상품과 기존 이용자 소비의 분리 공시 여부를 우선 확인. 반응 지표 미확보."
+      "improvement": "최근 5편(11/9·10·11·12·16)의 상세 원고·review와 실제 25장을 읽었습니다. 11/12의 10분 차이, 11/16의 반도체 하락 결론 반복을 줄이는 과제를 이어받아 이번에는 소유권→현금 조달→장기 비용을 장별로 분리했습니다. 그림은 각 설명을 보조하며 설명을 줄이는 수단으로 쓰지 않습니다.",
+      "reason": "불스토리 DfGYd4OEvJR의 4·5장 실제 이미지와 캡션을 재열람했습니다. 미러 10/29~30 표본이며 최신 목록은 0개로 열려 계정 최신 전체는 미확인입니다. 4장의 아마존 매출·이익·투자현금 구분을 참고했습니다. 홍춘욱 Brunch /@hong8706/590(2023/6/18) 전체 원문은 질문에 먼저 답하고 선택별 이유를 붙입니다. 매매 권유·말버릇·이미지는 복제하지 않았습니다.",
+      "application": "3장 초안 ‘전력 인입을 갖춘 건물인 파워드 셸을 부동산 회사가 소유합니다’를 ‘합작사가 소유할 예정입니다’로 고쳐 거래 완료 전임을 일치시켰습니다. 4장에는 남는 지분과 비용·정산을 넣어 평가액과 수취액의 연결을 풀었습니다. 표지 후보 ‘AI 비용도 줄어들까’는 비용 절감액이 공시되지 않아 버렸고, ‘50억 달러 거래’는 금액만 남아 제외했습니다. 팔고 다시 빌리는 선택을 질문합니다. 5장 본문의 연 2.75%는 강조문 한 곳에만 남겨 반복을 뺐습니다.",
+      "avoided_repetition": "2장 100% 임차는 운영 지속, 3장은 부동산 지분과 AWS 사업의 구별에 연결했습니다. 4장 금액을 5~7장에 다시 쓰지 않았고, 6장에는 모회사 지급보증을 추가했습니다. 당일 주가 하락의 원인 추정·한국 수혜주·7% 수익률 홍보·임원 낙관 발언은 삭제했습니다. 다음 보완은 실제 순수취액과 임차 비용의 대조입니다. 반응 지표는 미확보입니다."
     }
-  },
-  "reviewed_preview": {
-    "run_id": 42724649900,
-    "image_sha256": [
-      "1b4a54f5f4329d6b47dedc025df459f2e2fd96958673961896b31f82edcd1f5e",
-      "4f9de72334f3baab78abed32cc7d80f316606b0c65870e6dc51607d1749b2ea1",
-      "2c289d7313f423e8d26c88da31d0541f0c6ff1c7e9d8bf279db77ef0f4919fac",
-      "9c9b2a2fccef509f403d8c4c534d380b4cfa32aa46205243c4609c8244aa48e6",
-      "6477e86a8cb31a14178f965c860f9daf6cecbba788ef04466bb13158d20de852",
-      "4a6a0e48e361257db17d5da5d277f2a43cca3ed8fdeb01eea6b02dbc360b1da8",
-      "89fd1f1b8e9b2ba64141f2e4fa493f89dded6d4b60ac66a343c9f940637eaeaf"
-    ]
   }
 }
