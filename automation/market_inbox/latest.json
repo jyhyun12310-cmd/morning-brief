@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "market_brief",
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-11-16T14:04:30+09:00",
   "snapshot_at": "2026-11-16T13:58:00+09:00",
@@ -319,5 +319,15 @@
       "application": "초안 ‘엔비디아 충격에 한국 증시 급락’→퇴고 ‘왜 반도체부터 더 세게 무너졌나’. 2장에 돈을 파는 외국인과 받는 개인의 대가, 3장에 같은 시각 대형주 비교를 넣고 중국 지표를 하락 원인에서 뺐습니다.",
       "avoided_repetition": "표지 등락률을 뒤에서 반복하지 않고, 4장은 금리 일정, 5장은 고객 주문·마진·전망으로 판단 조건을 바꿨습니다. 복귀 확정·AI 수요 붕괴·중국 지표가 한국장을 끌어내렸다는 미확인 결론은 폐기했습니다. 반응 지표 미확보."
     }
+  },
+  "reviewed_preview": {
+    "run_id": 43809240477,
+    "image_sha256": [
+      "39811ffa63474b98f7d491014011140c934c057d6c97e3274b81b682a08aa3bf",
+      "3209f86c1fb5077f55aaeb4ec1656da0c88eb031b48f71a476d578d61a67130b",
+      "637e6ec49a85d987f87b7866f9cc8fc303122df4055d265d4cc04afef566379a",
+      "2252c3e881d062cfa80f96e459ca478d4b723cc64bceab8eb45acb12a01a0360",
+      "731eb78507408ae853c5965a4d8efa87a7d62005c2531760f3bac100ef2bf959"
+    ]
   }
 }
