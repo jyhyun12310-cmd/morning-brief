@@ -203,7 +203,7 @@
             ]
           }
         ],
-        "accent": "1.7조원",
+        "accent": "외국인",
         "visual": {
           "path": "automation/visual_assets/f899f0bb4e24df565329caaacfcd70afcbb5a2f1929d8a5e6a04a30bae9a4946.png",
           "sha256": "f899f0bb4e24df565329caaacfcd70afcbb5a2f1929d8a5e6a04a30bae9a4946",
@@ -311,7 +311,7 @@
             ]
           }
         ],
-        "accent": "고객과 주문",
+        "accent": "주문",
         "visual": {
           "path": "automation/visual_assets/8583afa6a05972492d844cb7078d5906eac72f69361540b4fc5458372abc1d18.png",
           "sha256": "8583afa6a05972492d844cb7078d5906eac72f69361540b4fc5458372abc1d18",
