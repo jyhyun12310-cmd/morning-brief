@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "intent": "preview",
+  "intent": "publish",
   "is_test": false,
   "created_at": "2026-11-17T23:48:11.804284+00:00",
   "publication_date_kst": "2026-11-18",
@@ -415,6 +415,18 @@
           "prompt": "Create one editorial concept illustration, landscape 3:2. An unfinished small data-center room viewed from its entrance: one newly installed generic server rack, a clearly disconnected heavy power cable in foreground, a neatly closed cream financing document folder with a red fastener on a nearby commissioning desk. Convey that having equipment is only one stage before financing and power-up permit operation. Warm off-white architectural space, charcoal equipment, deep red small accent, cinematic precise still-life realism, spacious composition. Absolutely no letters, numbers, logos, charts, arrows or watermark."
         }
       }
+    ]
+  },
+  "reviewed_preview": {
+    "run_id": 44203399693,
+    "image_sha256": [
+      "6e44175d4b7d7e71af4ad1f372b986a280300d7f737f74eb38a710de2c042636",
+      "19b84850a65c963e1e7dc79d8a4fc82b0f451d8b25e0305fbf4be31c62a243c5",
+      "8c570b0e0440afd21333630334b346e5a26d86592e7a83dd1ddeb9bb0e41698f",
+      "f39ca1680bb88b7741b898a68e9c0d5a5b85338c357a03a641b4c9996beaf814",
+      "24fef8896656dfe2600dbfa979c3357111298bcf8ffa25399af6be17d6177afb",
+      "2e81784839c768382bda4c0097f6a172d58b139ffc281f4109886badf66dfaca",
+      "e0c9c9d794478a6582df8ecc161c941bf4cd31fd3b4156fcbbe17ba8441d0c06"
     ]
   }
 }
