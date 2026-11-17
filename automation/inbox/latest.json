@@ -2,396 +2,419 @@
   "schema_version": 1,
   "intent": "preview",
   "is_test": false,
-  "created_at": "2026-11-16T23:50:56Z",
-  "publication_date_kst": "2026-11-17",
+  "created_at": "2026-11-17T23:48:11.804284+00:00",
+  "publication_date_kst": "2026-11-18",
   "market": {
-    "ticker": "AMZN",
-    "name": "Amazon.com, Inc.",
-    "session_date": "2026-11-16",
-    "session_close_at": "2026-11-16T16:00:00-05:00",
+    "ticker": "NVDA",
+    "name": "NVIDIA Corporation",
+    "session_date": "2026-11-17",
+    "session_close_at": "2026-11-17T16:00:00-05:00",
     "price_basis": "regular_close",
     "currency": "USD",
-    "close": 257.75,
-    "previous_close": 266.66,
-    "change_pct": -3.3413,
+    "close": 155.46,
+    "previous_close": 156.14,
+    "change_pct": -0.4355,
     "source_id": "price"
   },
   "sources": [
     {
-      "id": "sec",
-      "title": "BXDC 8-K: Amazon 데이터센터 합작·임대·자금 조달",
-      "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778d8k.htm",
-      "as_of": "계약 2026-11-11 · 발표 2026-11-16 · 거래 완료 전",
-      "retrieved_at": "2026-11-16T23:44:12Z"
+      "id": "cfo",
+      "title": "NVIDIA SEC · FY2027 3분기 CFO 설명",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+      "as_of": "2026-11-17 발표 · 2026-10-25 분기말 · 공급·현금·거래 조건",
+      "retrieved_at": "2026-11-17T23:48:02.820577+00:00"
     },
     {
-      "id": "release",
-      "title": "BXDC 공식 발표: AWS 데이터센터 자산 거래",
-      "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778dex991.htm",
-      "as_of": "2026-11-16 발표 · 2026년 4분기 완료 예상",
-      "retrieved_at": "2026-11-16T23:44:12Z"
+      "id": "pr",
+      "title": "NVIDIA SEC · FY2027 3분기 실적 발표",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27pr.htm",
+      "as_of": "2026-11-17 정규장 후 발표 · FY2027 Q3 실적과 Q4 전망 구분",
+      "retrieved_at": "2026-11-17T23:48:06.840201+00:00"
     },
     {
-      "id": "reuters",
-      "title": "Reuters: Blackstone REIT의 Amazon 데이터센터 지분 거래",
-      "url": "https://theedgemalaysia.com/node/826011",
-      "as_of": "2026-11-16 보도 · 지분·임대·조달액 별도 대조",
-      "retrieved_at": "2026-11-16T23:44:12Z"
+      "id": "independent",
+      "title": "Shacknews · 공급 약정 증가와 회계연도별 일정 대조",
+      "url": "https://www.shacknews.com/article/151387/nvidia-nvda-390-billion-memory-supply-commitment-q3-fy27",
+      "as_of": "2026-11-17 · 390·69·203십억 달러 대조; 총액을 메모리만으로 읽지 않음",
+      "retrieved_at": "2026-11-17T23:48:11.804235+00:00"
     },
     {
       "id": "price",
-      "title": "Stock Analysis / S&P Global: AMZN 정규장 종가",
-      "url": "https://stockanalysis.com/stocks/amzn/history/",
-      "as_of": "2026-11-16 / 11-13 Close 열 · 동일 주식분할 조정 기준",
-      "retrieved_at": "2026-11-16T23:44:12Z"
+      "title": "Stock Analysis / S&P Global · NVDA 정규장 종가",
+      "url": "https://stockanalysis.com/stocks/nvda/history/",
+      "as_of": "2026-11-17 / 11-16 Close 열 · 동일 분할 조정 기준 · 시간외 제외",
+      "retrieved_at": "2026-11-17T23:46:00Z"
     },
     {
       "id": "nyse",
-      "title": "NYSE 공식 거래시간·휴장 달력",
+      "title": "NYSE · 공식 거래시간·휴장 달력",
       "url": "https://www.nyse.com/trade/hours-calendars",
-      "as_of": "2026년 달력 · 11/16 정상 정규장 16:00 EST 종료",
-      "retrieved_at": "2026-11-16T23:44:12Z"
+      "as_of": "2026-11-17 정상 거래 · 16:00 EST 폐장",
+      "retrieved_at": "2026-11-17T23:31:00Z"
     },
     {
       "id": "nasdaq",
-      "title": "Nasdaq 공식 거래시간·휴장 달력",
+      "title": "Nasdaq · 공식 거래시간·휴장 달력",
       "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-      "as_of": "2026년 달력 · 11/16 휴장·조기폐장 아님",
-      "retrieved_at": "2026-11-16T23:44:12Z"
+      "as_of": "2026-11-17 휴장·조기폐장 아님",
+      "retrieved_at": "2026-11-17T23:31:00Z"
     },
     {
-      "id": "shell",
-      "title": "Prince William County 공식 보고서: powered shell의 정의",
-      "url": "https://www.pwcva.gov/assets/2025-06/Prince%20William%20County%202024%20Data%20Center%20Revenue%20Report.pdf",
-      "as_of": "2024 Data Center Revenue Report · 2025년 공개 · 용어 정의만 사용",
-      "retrieved_at": "2026-11-16T23:50:56Z"
+      "id": "bullstory",
+      "title": "불스토리 · 엔비디아 실적 이후 세 시나리오 (편집 참고)",
+      "url": "https://bullstory.io/blog/엔비디아-실적-이후-주문과-주가를-가를-세-가지-시나리오",
+      "as_of": "11/18 웹 본문 전체 열람 · 가정과 실제 주문 구별 · Instagram 전체 카드 아님",
+      "retrieved_at": "2026-11-17T23:37:00Z"
+    },
+    {
+      "id": "hong",
+      "title": "홍춘욱 · 2026년 신년 CEO Letter (편집 참고)",
+      "url": "https://www.frism.io/2026nyeon-peurijeumtujajamun-sinnyeon-ceo-letter/",
+      "as_of": "2026-02-13 개인 서명 원문 · AI 성장과 투자 사이클을 구별한 단락 참고",
+      "retrieved_at": "2026-11-17T23:44:00Z"
     }
   ],
   "metrics": [],
   "summary": {
     "design": "editorial-v2",
+    "central_question": "엔비디아는 왜 메모리부터 확보하려 할까요?",
+    "thesis": "엔비디아는 커지는 서버 수요에 대비해 다년 공급 약정을 늘렸습니다. 이는 당장 쓴 현금과 다르며, 고객의 자금 조달과 대금 수취가 이어져야 먼저 확보한 부품이 성장의 밑바탕이 됩니다.",
+    "edition": "11월 18일 · 엔비디아",
     "market_basis": {
-      "ticker": "AMZN",
-      "session_date": "2026-11-16",
+      "ticker": "NVDA",
+      "session_date": "2026-11-17",
       "price_basis": "regular_close",
       "currency": "USD",
-      "close": 257.75,
-      "previous_close": 266.66,
-      "change_pct": -3.3413
+      "close": 155.46,
+      "previous_close": 156.14,
+      "change_pct": -0.4355
     },
-    "central_question": "아마존은 데이터센터를 왜 팔고 다시 빌릴까?",
-    "thesis": "아마존은 데이터센터 부동산의 다수 지분을 넘겨 현금을 받으면서도 시설 전부를 임차해 사용할 계획입니다. 다만 장기 임대료와 지급보증이 남고 거래도 아직 완료 전이므로, 평가액을 현금이나 이익으로 읽으면 안 됩니다.",
-    "edition": "미국 기업 이야기",
-    "instagram_caption": "아마존은 데이터센터를 팔고도 그 공간을 계속 쓸 계획입니다. 건물에 묶인 돈을 받는 대신 무엇을 계속 내야 하는지, 50억 달러 거래의 조건을 살펴봅니다. #아마존 #데이터센터 #미국주식",
+    "instagram_caption": "엔비디아의 공급 약정은 3,900억 달러로 늘었지만, 그 돈이 오늘 한꺼번에 나간 것은 아닙니다. 부품을 먼저 확보하는 선택이 성장으로 이어지려면 지급 일정과 고객의 대금 결제를 함께 봐야 합니다. #엔비디아 #미국주식 #AI반도체",
     "sources": [
       {
-        "id": "sec",
-        "title": "BXDC 8-K: Amazon 데이터센터 합작·임대·자금 조달",
-        "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778d8k.htm",
-        "as_of": "계약 2026-11-11 · 발표 2026-11-16 · 거래 완료 전"
+        "id": "cfo",
+        "title": "NVIDIA SEC · FY2027 3분기 CFO 설명",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+        "as_of": "2026-11-17 발표 · 2026-10-25 분기말 · 공급·현금·거래 조건"
       },
       {
-        "id": "release",
-        "title": "BXDC 공식 발표: AWS 데이터센터 자산 거래",
-        "url": "https://www.sec.gov/Archives/edgar/data/2100161/000119312526461954/d115778dex991.htm",
-        "as_of": "2026-11-16 발표 · 2026년 4분기 완료 예상"
+        "id": "pr",
+        "title": "NVIDIA SEC · FY2027 3분기 실적 발표",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27pr.htm",
+        "as_of": "2026-11-17 정규장 후 발표 · FY2027 Q3 실적과 Q4 전망 구분"
       },
       {
-        "id": "reuters",
-        "title": "Reuters: Blackstone REIT의 Amazon 데이터센터 지분 거래",
-        "url": "https://theedgemalaysia.com/node/826011",
-        "as_of": "2026-11-16 보도 · 지분·임대·조달액 별도 대조"
+        "id": "independent",
+        "title": "Shacknews · 공급 약정 증가와 회계연도별 일정 대조",
+        "url": "https://www.shacknews.com/article/151387/nvidia-nvda-390-billion-memory-supply-commitment-q3-fy27",
+        "as_of": "2026-11-17 · 390·69·203십억 달러 대조; 총액을 메모리만으로 읽지 않음"
       },
       {
         "id": "price",
-        "title": "Stock Analysis / S&P Global: AMZN 정규장 종가",
-        "url": "https://stockanalysis.com/stocks/amzn/history/",
-        "as_of": "2026-11-16 / 11-13 Close 열 · 동일 주식분할 조정 기준"
+        "title": "Stock Analysis / S&P Global · NVDA 정규장 종가",
+        "url": "https://stockanalysis.com/stocks/nvda/history/",
+        "as_of": "2026-11-17 / 11-16 Close 열 · 동일 분할 조정 기준 · 시간외 제외"
       },
       {
         "id": "nyse",
-        "title": "NYSE 공식 거래시간·휴장 달력",
+        "title": "NYSE · 공식 거래시간·휴장 달력",
         "url": "https://www.nyse.com/trade/hours-calendars",
-        "as_of": "2026년 달력 · 11/16 정상 정규장 16:00 EST 종료"
+        "as_of": "2026-11-17 정상 거래 · 16:00 EST 폐장"
       },
       {
         "id": "nasdaq",
-        "title": "Nasdaq 공식 거래시간·휴장 달력",
+        "title": "Nasdaq · 공식 거래시간·휴장 달력",
         "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule",
-        "as_of": "2026년 달력 · 11/16 휴장·조기폐장 아님"
+        "as_of": "2026-11-17 휴장·조기폐장 아님"
       },
       {
-        "id": "shell",
-        "title": "Prince William County 공식 보고서: powered shell의 정의",
-        "url": "https://www.pwcva.gov/assets/2025-06/Prince%20William%20County%202024%20Data%20Center%20Revenue%20Report.pdf",
-        "as_of": "2024 Data Center Revenue Report · 2025년 공개 · 용어 정의만 사용"
+        "id": "bullstory",
+        "title": "불스토리 · 엔비디아 실적 이후 세 시나리오 (편집 참고)",
+        "url": "https://bullstory.io/blog/엔비디아-실적-이후-주문과-주가를-가를-세-가지-시나리오",
+        "as_of": "11/18 웹 본문 전체 열람 · 가정과 실제 주문 구별 · Instagram 전체 카드 아님"
+      },
+      {
+        "id": "hong",
+        "title": "홍춘욱 · 2026년 신년 CEO Letter (편집 참고)",
+        "url": "https://www.frism.io/2026nyeon-peurijeumtujajamun-sinnyeon-ceo-letter/",
+        "as_of": "2026-02-13 개인 서명 원문 · AI 성장과 투자 사이클을 구별한 단락 참고"
       }
     ],
     "evidence_notes": [
       {
-        "id": "n1",
-        "claim": "11월 16일 발표한 계약은 11월 11일 체결됐다. BXDC가 두 합작사의 지배지분 75.1%를 취득하고 Amazon 계열사는 24.9% 지분과 현금 배분을 받는다. 거래 완료 후 자산 전부를 AWS 측에 임대한다.",
+        "id": "supply",
+        "claim": "10월25일 공급·생산능력 약정은 3,900억 달러로 직전 분기 2,790억보다 1,110억 증가. 증가분의 주된 원인은 다년 메모리 조달이며 총액 전체가 메모리만은 아니다. 회사는 향후 수년 수요에 필요한 부품 확보 목적을 설명했다.",
         "source_ids": [
-          "sec",
-          "release",
-          "reuters"
+          "cfo",
+          "independent"
         ]
       },
       {
-        "id": "n2",
-        "claim": "대상은 AWS 캠퍼스 두 곳의 신축 powered shell 13개다. 전력 인입을 갖춘 데이터센터 건물 거래이며 AWS 사업 지분 75.1%를 넘기는 거래가 아니다. 소유와 시설 사용을 분리한다.",
+        "id": "sales",
+        "claim": "FY2027 Q3(10월25일 마감) 매출 1,158억 달러는 전년비 103% 증가. 데이터센터 매출 1,076억 달러는 전분기비 21% 증가. 회사는 Rubin 인프라·Vera CPU 출하와 Blackwell Ultra 성장을 원인으로 설명했다.",
         "source_ids": [
-          "release",
-          "sec",
-          "reuters",
-          "shell"
+          "cfo",
+          "pr"
         ]
       },
       {
-        "id": "n3",
-        "claim": "50억 달러는 부동산 총자산 가치다. 매수 측은 IPO 현금 19억 달러를 출자하고 합작사 자회사는 자산 담보 비소구 대출 약 25억 달러를 조달할 예정이다. Amazon 잔여 지분은 약 6억 달러다. 거래비용·조정을 빼야 하므로 50억 달러 또는 44억 달러를 확정 순수취액으로 쓰지 않는다.",
+        "id": "schedule",
+        "claim": "공급·생산능력 약정의 회계연도별 일정은 FY2027 잔여 690억, FY2028 2,030억, FY2029 이후 합계 1,180억 달러. 미래 약정 총액을 당일 현금 지출·손실로 볼 수 없고 FY2028은 달력 2028년과 다르다.",
         "source_ids": [
-          "sec",
-          "reuters"
+          "cfo",
+          "independent"
         ]
       },
       {
-        "id": "n4",
-        "claim": "임대료는 연 2.75% 인상되며 가중평균 최초 임대기간은 12년, 연장권을 모두 사용한 가중평균 기간은 32년이다. 32년 전부를 확정 기간으로 쓰지 않는다.",
+        "id": "cash",
+        "claim": "FY2027 Q3 GAAP 순이익 652.87억 달러(반올림 653억), 영업 현금흐름 483억. 순이익은 현금 유입과 다른 지표다. 영업 현금의 전분기 증가에는 연방세 현금 납부 시점도 영향을 줬으므로 다음 분기 반복을 보장하지 않는다.",
         "source_ids": [
-          "sec",
-          "release"
+          "cfo",
+          "pr"
         ]
       },
       {
-        "id": "n5",
-        "claim": "Amazon.com은 임차인의 지급의무를 보증한다. 시설을 넘겨도 임대료 지급 약정이 남는다. 수요 둔화에도 계약상 지급부담이 있다는 설명은 이 사실에 기초한 해석이며 미래 수요 감소를 예측한 것은 아니다.",
+        "id": "receivable",
+        "claim": "매출채권 810억 달러, DSO 64일로 직전 분기 60일보다 4일 증가. 회사가 밝힌 원인은 Rubin 출하 시점 분포와 일부 투자등급 고객의 대규모 다분기 계약에서 결제기한 연장이다. 연체가 발생했다는 발표는 아니다.",
         "source_ids": [
-          "sec"
+          "cfo"
         ]
       },
       {
-        "id": "n6",
-        "claim": "발표상 2026년 4분기 거래 완료 예상이며 조건이 남아 있다. 현금 배분은 매수 측 출자와 대출 순수입으로 조달한다. 현금 확보 구조와 AWS 이익 증가는 구별하며 실제 순수취액과 후속 임차 의무 공시로 평가해야 한다.",
+        "id": "outlook",
+        "claim": "FY2027 Q4 매출 전망 1,300억 달러 ±3%, 추가 한 주 포함, 중국 데이터센터 컴퓨팅 매출 미가정. GAAP 매출총이익률 전망 71~72%, Q3 실제 74.8%. 전망은 확정 실적이 아니며 공급 약정 증가만으로 비용·수익성을 보장하지 않는다.",
         "source_ids": [
-          "sec",
-          "release",
-          "reuters"
+          "cfo",
+          "pr"
         ]
       },
       {
-        "id": "n7",
-        "claim": "AMZN은 11월 16일 257.75달러, 직전 11월 13일 266.66달러로 정규장을 마쳤다. 동일 제공자의 Close 열로 -3.3413%를 계산했다. 시간외 가격은 제외했고 당일 하락을 거래 발표 탓으로 단정하지 않는다.",
+        "id": "conditional",
+        "claim": "추가 네오클라우드 약정 최대 320억 달러는 공급 약정과 별도다. 고객의 인프라 구매자금 확보 및 연산설비 가동·NVIDIA 인수승인이 충족돼야 발효한다. 미충족 시 규모·시기가 변하거나 일부 약정이 줄거나 없어질 수 있다. 엔비디아는 초기 장비 판매에서 매출을 얻고 일정 요건 충족 시 고객사의 제3자 매출 일부를 나눠 받는다.",
+        "source_ids": [
+          "cfo"
+        ]
+      },
+      {
+        "id": "close",
+        "claim": "동일 제공자 Close 열의 NVDA 11월17일 155.46달러, 11월16일 156.14달러로 -0.4355%. 17일 정규장은 16:00 EST(18일06:00KST)에 종료. 실적은 정규장 이후 발표여서 당일 종가를 실적 반응으로 설명하지 않는다.",
         "source_ids": [
           "price",
           "nyse",
-          "nasdaq"
+          "nasdaq",
+          "pr"
         ]
       }
     ],
+    "editorial_review": {
+      "improvement": "11/10·11/11·11/12·11/16·11/17 원고·편집기록과 실제 25장을 비교했습니다. 11/10의 1·2장 및 3·5장 결론 반복을 피하고, 이번에는 공급 확보→지급 일정→현금→고객 결제를 매 장의 새 이유로 연결합니다. 유지할 핵심은 선제 조달이 성장 기회를 열지만 고객의 결제 능력을 대신하지 않는다는 점입니다.",
+      "reason": "불스토리 ‘엔비디아 실적 이후, 주가를 가를 세 가지 시나리오’ 웹 본문 전체에서 주문·평가·시차 구별을 참고했습니다. 최신 Instagram 목록은 비었고 DdSm9U9EuGm의 1·4·5장 이미지 접근은 403으로 실패해 전 장 디자인을 봤다고 기록하지 않습니다. 홍춘욱 2/13 CEO Letter 서명 원문의 AI 성장·투자 사이클 구별을 보완 참고했습니다.",
+      "application": "제목 ①왜 메모리부터 확보할까 ②매출 두 배, 공급 약정은 ③3,900억 달러의 부담 중 구체적 선택을 묻는 ①을 채택했습니다. 3장 초안 ‘현금 부담이 커집니다’를 ‘전액을 오늘 지출했거나 이번 분기 비용으로 처리했다는 뜻은 아닙니다’와 회계연도별 일정으로 바꿨습니다. 5장은 회수기간 증가의 두 원인을 모두 설명하고 연체로 단정하지 않았습니다.",
+      "avoided_repetition": "전망 총액과 메모리 구매만을 혼동하는 보도 제목, CEO 논란, 국내 수혜주 연결, 현금잔액 대비 다년 계약 비율을 뺐습니다. Morning Brew 3/21 본문은 주체별 거래 경로만 보조 참고했고 CNBC·Bloomberg 원문은 접근 실패했습니다. 반응 지표는 미확보입니다. 다음에는 지급 일정과 실제 집행의 차이를 새 공시로 검토하되 이번 편의 결론을 재게시하지 않습니다."
+    },
     "visual_story": [
       {
         "layout": "cover",
-        "title": "아마존은 데이터센터를\n왜 팔고 다시 빌릴까?",
-        "body": "건물에 묶인 돈을 받는 대신, 임대료 약정은 남습니다.",
+        "title": "엔비디아는 왜\n메모리부터 확보할까?",
+        "accent": "메모리부터",
+        "body": "공급 약정 2,790억 → 3,900억 달러",
         "evidence_ids": [
-          "n1",
-          "n4"
+          "supply"
         ],
-        "accent": "왜 팔고 다시 빌릴까?",
+        "labels": [],
         "visual": {
-          "path": "automation/visual_assets/9efa24c35bddbcb937269928e05232433d286ef55957abd779c3509b9a0e70ae.png",
-          "sha256": "9efa24c35bddbcb937269928e05232433d286ef55957abd779c3509b9a0e70ae",
-          "alt": "건물을 손에 올리고 사용 열쇠는 남긴 데이터센터 개념 이미지",
-          "tone": "dark",
+          "path": "automation/visual_assets/7e3727a3ddd8e30ce01516f7063e498dd1286ce1a20c01727199c01507ec4684.png",
+          "sha256": "7e3727a3ddd8e30ce01516f7063e498dd1286ce1a20c01727199c01507ec4684",
+          "alt": "미래 납품을 위해 붉은 띠로 확보해 둔 메모리 부품 개념 이미지",
           "kind": "concept",
-          "prompt": "Create one landscape 3:2 editorial concept illustration for a Korean finance card about Amazon selling data center property while leasing it back. A striking architectural miniature of a modern low rectangular data center, its building shell held by a large open hand while a clearly separate red key remains beside operating server racks. One coherent still life, no arrows or charts. Dramatic matte black background, warm off-white architecture, one vivid red accent. Precise clean architectural illustration, sophisticated magazine art, quiet natural shadows, no dot texture, no retro paper, no text, no numbers, no logos. Not a photograph of any real site."
+          "tone": "dark",
+          "prompt": "Create one editorial concept illustration, landscape 3:2. A single monumental black memory semiconductor package in the foreground of a clean off-white warehouse loading bay, carefully secured by one broad red reservation band with absolutely no writing. Small unbranded server racks wait in the distant background, conveying components reserved before future deliveries. Elegant cinematic studio photography mixed with tactile sculptural realism, black, warm off-white and one deep red accent, bold chiaroscuro, strong single focal subject, generous clear space. No people, logos, letters, numbers, charts, arrows, watermark or typography. This is a conceptual illustration, not an actual NVIDIA product or facility."
         }
       },
       {
         "layout": "photo",
-        "title": "건물을 넘겨도\n서버는 계속 돌아갑니다",
-        "body": "11월 16일 발표한 거래는 시설을 비우는 매각이 아닙니다. 아마존은 건물을 합작사에 넣고 현금을 받으며, AWS는 그 시설 전부를 빌려 계속 사용할 계획입니다.",
-        "evidence_ids": [
-          "n1"
-        ],
-        "accent": "서버는 계속 돌아갑니다",
+        "title": "더 팔려면\n부품부터 있어야 합니다",
+        "accent": "부품부터",
+        "body": "엔비디아는 향후 수년의 수요에 대비해 공급 약정을 늘렸습니다. 증가분의 중심은 여러 해에 걸친 메모리 구매입니다. 신제품 루빈 출하가 늘면서 완제품을 만들 부품도 필요해졌습니다.",
         "labels": [
           {
-            "label": "새 대주주",
-            "text": "블랙스톤의 데이터센터 리츠 BXDC: 합작사 지분 75.1%"
+            "label": "이번 분기 매출",
+            "text": "1,158억 달러 · 전년 동기보다 103% 증가"
           },
           {
-            "label": "남는 지분",
-            "text": "아마존 계열사: 합작사 지분 24.9%"
+            "label": "데이터센터",
+            "text": "1,076억 달러 · 직전 분기보다 21% 증가"
           }
         ],
-        "takeaway": "시설 운영을 이어가면서 건물에 묶인 자금을 다른 용도로 쓸 수 있습니다.",
-        "bridge": "넘기는 건물과 남는 사업의 범위를 나눠 봅니다.",
+        "takeaway": "고객은 서버 값을 내고, 엔비디아는 부품사에 납품 대금을 지급하는 구조입니다.",
+        "bridge": "늘어난 계약은 언제 돈을 내는 약속일까요?",
+        "evidence_ids": [
+          "supply",
+          "sales"
+        ],
         "visual": {
-          "path": "automation/visual_assets/38c1c8a944226a411e9834b59ca5d53d1b28e871f4943760def3103c6e7465b7.png",
-          "sha256": "38c1c8a944226a411e9834b59ca5d53d1b28e871f4943760def3103c6e7465b7",
-          "alt": "시설 소유 서류를 든 사람과 내부 운영자를 구별한 개념 이미지",
-          "tone": "light",
+          "path": "automation/visual_assets/0cb67709af7377bbefdcdee7eaa712a58b6650f9b902c1f384456924173c8c52.png",
+          "sha256": "0cb67709af7377bbefdcdee7eaa712a58b6650f9b902c1f384456924173c8c52",
+          "alt": "서버를 완성하기 위해 메모리 부품을 장착하는 개념 이미지",
           "kind": "concept",
-          "prompt": "Create one landscape 3:2 editorial concept illustration of property ownership versus continuing use: side view of an operating data center, an anonymous person outside holding a plain unmarked ownership folder, technicians working inside through an open cutaway wall. Warm off-white background, black geometry and vivid red door, no text numbers logos charts arrows. Sparse detailed architectural illustration, one scene, not a real site photograph. Emphasize that ownership outside and operations inside can be separate."
+          "tone": "light",
+          "prompt": "Create one editorial concept illustration, landscape 3:2. A server assembly workbench seen at a low diagonal angle: a plain black processor package and separate small memory packages precisely positioned beside an open server chassis, a technician's gloved hand about to fit a component. Show the physical necessity of components for delivering finished servers. Warm off-white surface, black hardware, one restrained red tool, premium still-life photography, crisp material detail, simple spacious composition. No brand identifiers, words, numbers, charts, arrows, text or watermark. Conceptual generic hardware, not actual NVIDIA products."
         }
       },
       {
         "layout": "annotated",
-        "title": "넘기는 것은 건물,\nAWS 사업 전체가 아닙니다",
-        "body": "대상은 두 캠퍼스의 신축 건물 13개입니다. 전력 인입을 갖춘 건물인 ‘파워드 셸’을 합작사가 소유할 예정입니다. 클라우드 사업을 통째로 넘기는 인수와는 다릅니다.",
-        "evidence_ids": [
-          "n2"
-        ],
-        "accent": "AWS 사업 전체가 아닙니다",
+        "title": "계약은 여러 해,\n지급 시점도 나뉩니다",
+        "accent": "지급 시점",
+        "body": "3,900억 달러는 앞으로 이행할 공급·생산능력 약정의 합계입니다. 전액을 오늘 지출했거나 이번 분기 비용으로 처리했다는 뜻은 아닙니다. 회사가 공개한 연도별 일정을 나눠 읽어야 합니다.",
         "labels": [
           {
-            "label": "부동산 소유",
-            "text": "합작사가 시설을 보유하고 임차인에게 임대"
+            "label": "FY2027 잔여",
+            "text": "690억 달러"
           },
           {
-            "label": "시설 사용",
-            "text": "AWS가 대상 시설의 100%를 임차"
+            "label": "FY2028",
+            "text": "2,030억 달러"
+          },
+          {
+            "label": "FY2029 이후",
+            "text": "1,180억 달러 · 위 금액은 모두 회사 회계연도 기준"
           }
         ],
-        "takeaway": "지분율은 부동산 합작사의 몫이며, AWS 사업의 매각 비율이 아닙니다.",
-        "bridge": "그 건물값을 마련하는 돈도 두 곳에서 나옵니다.",
+        "takeaway": "회계연도와 달력 연도는 달라, FY2028을 달력 2028년으로 읽으면 안 됩니다.",
+        "bridge": "공급사에 줄 돈을 벌어들이는 속도도 중요합니다.",
+        "evidence_ids": [
+          "schedule"
+        ],
         "visual": {
-          "path": "automation/visual_assets/986f5195964477c6b4c1416cc4c00e821a8884e6a9aa46682b1ca7be269dead9.png",
-          "sha256": "986f5195964477c6b4c1416cc4c00e821a8884e6a9aa46682b1ca7be269dead9",
-          "alt": "전력 인입 건물 외피와 내부 서버를 나눈 개념 이미지",
-          "tone": "dark",
+          "path": "automation/visual_assets/f156237d03bda8a713de55ae238c5a02d0fe44e0a8a164a218ab3583f12b039d.png",
+          "sha256": "f156237d03bda8a713de55ae238c5a02d0fe44e0a8a164a218ab3583f12b039d",
+          "alt": "서로 다른 시점의 납품을 나타내는 두 출하장 개념 이미지",
           "kind": "concept",
-          "prompt": "Create one landscape 3:2 editorial concept illustration showing a data center powered building shell separated from the computing equipment: clean exploded architectural model with a plain building roof suspended just above the shell, electrical conduit along the shell, server cabinets clearly inside. No arrows labels text digits logos charts. Black background with off-white structure and tiny red connectors. Wide spacious modern magazine architectural art, not a real facility or product."
+          "tone": "light",
+          "prompt": "Create one editorial concept illustration, landscape 3:2. Two distinct shipping stages in a minimalist warehouse: one closed black parts crate close to the camera, another further back on a second loading platform, a long blank cream packing paper linking the space between them. Convey supplies arriving across different future periods, not everything paid today. Warm off-white, black and a restrained red seal, architectural side view, refined realistic physical miniature. No clocks, calendars, numbers, words, chart, arrows, logos or watermark. A single cohesive illustration with no panels."
         }
       },
       {
         "layout": "comparison",
-        "title": "50억 달러는\n현금 수취액이 아닙니다",
-        "body": "50억 달러는 건물의 총자산 가치입니다. 아마존은 약 6억 달러 상당의 지분도 남깁니다. 아래 자금에서 거래비용과 정산을 거치므로 합계도 확정 순수취액은 아닙니다.",
-        "evidence_ids": [
-          "n3"
-        ],
-        "accent": "현금 수취액이 아닙니다",
+        "title": "이익과 현금은\n같은 숫자가 아닙니다",
+        "accent": "현금",
+        "body": "부품 대금은 현금으로 냅니다. 이번 분기의 이익이 커도 그만큼 현금이 바로 들어온 것은 아닙니다. 영업 현금흐름에는 고객의 결제와 세금 납부 같은 실제 돈의 출입이 반영됩니다.",
         "labels": [
           {
-            "label": "BXDC 출자",
-            "text": "약 19억 달러 · 주식 공모로 모은 현금"
+            "label": "순이익",
+            "text": "653억 달러 · FY2027 Q3 GAAP 실적"
           },
           {
-            "label": "합작사 측 차입",
-            "text": "약 25억 달러 · 해당 건물을 담보로 받는 대출"
+            "label": "영업 현금",
+            "text": "483억 달러 · 같은 분기 영업활동 현금흐름"
           }
         ],
-        "takeaway": "아마존이 받을 배분금은 이 출자금과 대출 순수입으로 마련됩니다.",
-        "bridge": "현금을 받은 뒤에는 시설 사용료를 내야 합니다.",
+        "takeaway": "현금 유입의 전분기 증가에는 세금 납부 시점도 영향을 줬습니다.",
+        "bridge": "팔린 장비의 대금이 아직 남아 있는지도 봅니다.",
+        "evidence_ids": [
+          "cash"
+        ],
         "visual": {
-          "path": "automation/visual_assets/550d78fb4f046b66c74751c06decc10873a64bd921fe881d6b72c61ac4915f68.png",
-          "sha256": "550d78fb4f046b66c74751c06decc10873a64bd921fe881d6b72c61ac4915f68",
-          "alt": "출자자와 대출 은행의 자금이 한 건물로 모이는 개념 이미지",
-          "tone": "light",
+          "path": "automation/visual_assets/ebfc0bd035d4f960488fa80a167adf855d9774184d77c290dce1eecc70217e1c.png",
+          "sha256": "ebfc0bd035d4f960488fa80a167adf855d9774184d77c290dce1eecc70217e1c",
+          "alt": "사업에서 실제 현금이 들어오는 모습을 나타낸 개념 이미지",
           "kind": "concept",
-          "prompt": "Create one landscape 3:2 editorial concept still life about two sources of property funding: two distinct paths of plain blank payment envelopes, one from a small shareholder document tray and one from a bank building miniature, arriving beside one data center architectural model. Do not draw arrows or financial chart, no text numbers currency glyphs logos. Warm off-white background, black ink-like architectural shading, red trays. Elegant sparse illustration with generous space, physically coherent scene."
+          "tone": "light",
+          "prompt": "Create one editorial concept illustration, landscape 3:2. High-end tabletop still life of a small unbranded server chassis beside a shallow brushed-metal cash tray receiving a modest stream of plain unmarked metal discs from a simple mechanical chute. Visual metaphor for cash generated by operating a business, not its accounting profit. Warm off-white backdrop, charcoal metal, single red lever, close crop, elegant realistic studio light with tactile materials. No currency symbols, numerals, banknotes, writing, labels, charts, arrows, branding or watermark."
         }
       },
       {
         "layout": "explain",
-        "title": "현금은 한 번 받고\n임대료는 매년 오릅니다",
-        "body": "소유를 줄여 당장 현금을 받아도, 앞으로 그 공간을 쓰는 비용이 사라지는 것은 아닙니다. 임대기간은 처음 약속한 기간과 연장권을 전부 쓴 경우로 구별해야 합니다.",
-        "evidence_ids": [
-          "n4"
-        ],
-        "accent": "임대료는 매년 오릅니다",
+        "title": "물건을 보낸 뒤,\n돈은 늦게 받을 수도",
+        "accent": "늦게 받을",
+        "body": "매출채권은 판매하고 아직 받지 못한 돈입니다. 회사는 루빈 출하 시점의 분포와 일부 우량 고객의 결제기한 연장 때문에 대금을 받기까지의 평균 기간이 늘었다고 설명했습니다.",
         "labels": [
           {
-            "label": "최초 계약",
-            "text": "가중평균 12년의 임대 약정"
+            "label": "매출채권",
+            "text": "분기말 810억 달러 · 이미 받은 현금과 구별"
           },
           {
-            "label": "연장권까지 사용",
-            "text": "가중평균 32년 · 모두 확정된 기간은 아님"
+            "label": "평균 회수기간",
+            "text": "직전 분기 60일 → 이번 분기 64일"
           }
         ],
-        "takeaway": "계약상 임대료는 매년 2.75%씩 높아지도록 정했습니다.",
-        "bridge": "임대료 지급을 책임지는 주체도 계약에 남았습니다.",
+        "takeaway": "기한을 더 준 거래가 포함됐다는 설명이지, 연체가 확인됐다는 뜻은 아닙니다.",
+        "bridge": "그렇다면 다음 분기의 판매와 이익률 전망은요?",
+        "evidence_ids": [
+          "receivable"
+        ],
         "visual": {
-          "path": "automation/visual_assets/b4bb6ab2975f004037758f27a1c13d13b05fd00f637c6b426e88527cd0d89669.png",
-          "sha256": "b4bb6ab2975f004037758f27a1c13d13b05fd00f637c6b426e88527cd0d89669",
-          "alt": "시설 열쇠 곁으로 반복 청구서를 길게 펼친 개념 이미지",
-          "tone": "dark",
+          "path": "automation/visual_assets/e4bcb1484e89924e34f2537bc370b4dea94834f305a60fa23a9fac5800d13d23.png",
+          "sha256": "e4bcb1484e89924e34f2537bc370b4dea94834f305a60fa23a9fac5800d13d23",
+          "alt": "장비는 인도됐지만 결제 서류가 남아 있는 개념 이미지",
           "kind": "concept",
-          "prompt": "Create one landscape 3:2 editorial concept image about repeated rent obligations: a long folded blank accordion paper invoice emerging beside the key to a modern data center, extending into distance in perspective. No writing digits symbols charts arrows logos. Matte black background, warm off-white paper, vivid red key tag. Clean tactile magazine still life, simple strong objects, no antique scales, no coins, no clocks."
+          "tone": "light",
+          "prompt": "Create one editorial concept illustration, landscape 3:2. A generic black server shipping carton on the left has already passed through an open receiving doorway; in the right foreground a clean blank white invoice folder waits on an unoccupied payment desk with a restrained red clip. A stretched distance between delivered equipment and waiting paperwork illustrates time before customer payment. Side-on architectural photographic composition, off-white walls, black and deep red details, clear separation and strong contrast. No letters, numbers, symbols, clocks, charts, arrows, logos or watermark."
         }
       },
       {
         "layout": "conditions",
-        "title": "사업이 느려져도\n지급 약정은 남습니다",
-        "body": "임차인의 지급의무는 모회사 아마존이 보증합니다. 그래서 이 거래의 유불리는 받은 현금뿐 아니라 시설을 얼마나 오래 잘 쓰는지에도 달려 있습니다.",
-        "evidence_ids": [
-          "n5"
-        ],
-        "origin": "수요에 관한 아래 두 경우는 확정 전망이 아닌 판단 조건입니다.",
+        "title": "매출은 늘어도\n이익률은 낮아질 전망",
+        "accent": "이익률",
+        "body": "다음 분기 매출 전망은 1,300억 달러 ±3%입니다. 다만 영업 기간이 한 주 더 길고, 중국 데이터센터 컴퓨팅 매출은 넣지 않았습니다. 매출총이익률은 이번 74.8%보다 낮은 71~72%를 예상합니다.",
+        "origin": "매출총이익률 = 매출에서 원가를 뺀 몫의 비율 · Q4 회사 전망",
         "branches": [
           {
-            "label": "사용이 늘면",
-            "text": "시설을 계속 활용하며 장기 사용권의 가치가 커집니다.",
-            "check": "해당 시설의 활용과 임차 비용을 함께 확인"
+            "label": "설명 유지",
+            "text": "납품이 전망에 맞게 늘고 원가 부담을 통제할 때",
+            "check": "실제 매출·매출총이익률을 함께 대조"
           },
           {
-            "label": "사용이 줄면",
-            "text": "사용량이 줄어도 계약상 임대료 지급 약정은 남습니다.",
-            "check": "유휴 시설과 임차 관련 부담 공시를 확인"
+            "label": "판단 변경",
+            "text": "납품이 밀리거나 예상보다 원가가 더 커질 때",
+            "check": "매출뿐 아니라 남기는 비율도 하락하는지"
           }
         ],
-        "accent": "지급 약정은 남습니다",
-        "labels": [],
-        "takeaway": "이 보증은 임차인의 지급의무에 대한 것이며, 대출 보증과 구별됩니다.",
-        "bridge": "아직 발표 단계여서 실제 정산 결과도 남아 있습니다.",
+        "takeaway": "부품 확보로 판매량을 늘려도 매출 한 달러당 이익은 줄 수 있습니다.",
+        "bridge": "고객이 장비를 살 자금을 마련하는 일도 남습니다.",
+        "evidence_ids": [
+          "outlook"
+        ],
         "visual": {
-          "path": "automation/visual_assets/0058b0a1924ca2e09729338f1ed4aa17ab4d78455f3f0415d381ff953630ef84.png",
-          "sha256": "0058b0a1924ca2e09729338f1ed4aa17ab4d78455f3f0415d381ff953630ef84",
-          "alt": "사용 중인 서버와 빈 공간이 함께 있는 수요 조건 개념 이미지",
-          "tone": "light",
+          "path": "automation/visual_assets/494ff268eb811cdb170540820c33b15796aca74ee07307d59f2e2fefdc298e92.png",
+          "sha256": "494ff268eb811cdb170540820c33b15796aca74ee07307d59f2e2fefdc298e92",
+          "alt": "새 서버에 필요한 부품과 냉각장치를 보여주는 개념 이미지",
           "kind": "concept",
-          "prompt": "Create one landscape 3:2 editorial concept image about fixed building obligations despite uncertain equipment usage: interior of a data center with a few illuminated server racks and other empty cabinet spaces, a solid building wall continues uninterrupted across the scene. Quiet off-white background, black cabinet geometry and restrained red status lights. No text, numbers, graphs, logos or arrows. Architectural editorial illustration, not a real photograph, no dramatic disaster imagery."
+          "tone": "dark",
+          "prompt": "Create one editorial concept illustration, landscape 3:2. A sophisticated generic black server rack on a dark matte workshop floor, its side open to reveal carefully arranged copper cooling tubes and memory modules. A red precision tool lies beside it, emphasizing the components and work needed for new equipment. Dramatic low-key studio lighting, tactile black metal, warm highlights, sober professional tone, simple single focal point. No people, company logos, letters, digits, diagrams, chart, arrows or watermark. Concept art, not an actual product photograph."
         }
       },
       {
         "layout": "closing",
-        "title": "이익 증가보다 먼저\n실제 현금 유입을 봅니다",
-        "body": "이번 거래는 시설을 계속 쓰면서 현금을 확보하는 선택입니다. 다만 발표상 완료 예상은 올해 4분기이고 조건이 남아 있습니다. 지금은 이미 돈을 받았다고 계산할 수 없습니다.",
-        "evidence_ids": [
-          "n6"
-        ],
-        "accent": "실제 현금 유입을 봅니다",
+        "title": "부품 확보 다음에는\n고객의 자금이 필요합니다",
+        "accent": "고객의 자금",
+        "body": "별도의 네오클라우드 약정 최대 320억 달러는 조건부입니다. AI 연산을 빌려주는 고객사가 장비 구매자금을 확보하고, 설비를 가동해 엔비디아의 인수 승인을 받아야 발효합니다.",
         "labels": [
           {
-            "label": "먼저 볼 공시",
-            "text": "거래 완료 여부와 비용·조정 뒤 실제 순수취액"
+            "label": "장비 판매",
+            "text": "엔비디아는 먼저 인프라를 팔아 매출을 얻습니다."
           },
           {
-            "label": "함께 볼 공시",
-            "text": "새 임차 의무와 그 시설에서 발생하는 사업 성과"
+            "label": "추가 수익",
+            "text": "일정 요건을 충족하면 고객사의 연산 임대 매출 일부도 나눠 받습니다."
           }
         ],
-        "takeaway": "실제 받은 돈과 이후 비용을 대조해야 자금 확보의 대가가 보입니다.",
-        "bridge": "현금 수취를 AWS의 매출·이익 증가로 읽지 않습니다.",
+        "takeaway": "지금은 부품을 먼저 확보하는 성장 전략입니다. 고객의 자금 조달·대금 수취가 막히면 부담으로 읽어야 합니다.",
+        "bridge": "10월 25일 마감 분기·11월 17일 발표 자료입니다.",
+        "evidence_ids": [
+          "conditional",
+          "supply",
+          "receivable"
+        ],
         "visual": {
-          "path": "automation/visual_assets/4724df850eb603f8ce2447bceb1e1b5b5c4395f26d09640c45d781e00eb54f05.png",
-          "sha256": "4724df850eb603f8ce2447bceb1e1b5b5c4395f26d09640c45d781e00eb54f05",
-          "alt": "서명 전 서류와 보관 중인 열쇠로 거래 완료 전을 표현한 이미지",
-          "tone": "dark",
+          "path": "automation/visual_assets/66de2f08a473afcf383c8e8edf07334707a8d79527530d216e06905ad846cf93.png",
+          "sha256": "66de2f08a473afcf383c8e8edf07334707a8d79527530d216e06905ad846cf93",
+          "alt": "자금 조달과 가동 절차가 남은 데이터센터 개념 이미지",
           "kind": "concept",
-          "prompt": "Create one landscape 3:2 editorial concept still life about an announced property sale awaiting completion: unsigned blank document lying beside a closed modern data center miniature, a pen resting above the blank signing area, key in a transparent escrow-style box. Matte black and warm off-white with a single red pen. No text digits symbols logos stamps charts arrows. Clear spacious modern magazine illustration, no imitation official document, not a real site."
+          "tone": "dark",
+          "prompt": "Create one editorial concept illustration, landscape 3:2. An unfinished small data-center room viewed from its entrance: one newly installed generic server rack, a clearly disconnected heavy power cable in foreground, a neatly closed cream financing document folder with a red fastener on a nearby commissioning desk. Convey that having equipment is only one stage before financing and power-up permit operation. Warm off-white architectural space, charcoal equipment, deep red small accent, cinematic precise still-life realism, spacious composition. Absolutely no letters, numbers, logos, charts, arrows or watermark."
         }
       }
-    ],
-    "editorial_review": {
-      "improvement": "최근 5편(11/9·10·11·12·16)의 상세 원고·review와 실제 25장을 읽었습니다. 11/12의 10분 차이, 11/16의 반도체 하락 결론 반복을 줄이는 과제를 이어받아 이번에는 소유권→현금 조달→장기 비용을 장별로 분리했습니다. 그림은 각 설명을 보조하며 설명을 줄이는 수단으로 쓰지 않습니다.",
-      "reason": "불스토리 DfGYd4OEvJR의 4·5장 실제 이미지와 캡션을 재열람했습니다. 미러 10/29~30 표본이며 최신 목록은 0개로 열려 계정 최신 전체는 미확인입니다. 4장의 아마존 매출·이익·투자현금 구분을 참고했습니다. 홍춘욱 Brunch /@hong8706/590(2023/6/18) 전체 원문은 질문에 먼저 답하고 선택별 이유를 붙입니다. 매매 권유·말버릇·이미지는 복제하지 않았습니다.",
-      "application": "3장 초안 ‘전력 인입을 갖춘 건물인 파워드 셸을 부동산 회사가 소유합니다’를 ‘합작사가 소유할 예정입니다’로 고쳐 거래 완료 전임을 일치시켰습니다. 4장에는 남는 지분과 비용·정산을 넣어 평가액과 수취액의 연결을 풀었습니다. 표지 후보 ‘AI 비용도 줄어들까’는 비용 절감액이 공시되지 않아 버렸고, ‘50억 달러 거래’는 금액만 남아 제외했습니다. 팔고 다시 빌리는 선택을 질문합니다. 5장 본문의 연 2.75%는 강조문 한 곳에만 남겨 반복을 뺐습니다.",
-      "avoided_repetition": "2장 100% 임차는 운영 지속, 3장은 부동산 지분과 AWS 사업의 구별에 연결했습니다. 4장 금액을 5~7장에 다시 쓰지 않았고, 6장에는 모회사 지급보증을 추가했습니다. 당일 주가 하락의 원인 추정·한국 수혜주·7% 수익률 홍보·임원 낙관 발언은 삭제했습니다. 다음 보완은 실제 순수취액과 임차 비용의 대조입니다. 반응 지표는 미확보입니다."
-    }
+    ]
   }
 }
