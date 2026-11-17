@@ -163,7 +163,7 @@
           "sha256": "4dd616559b2e9a87e52fc563a180602529b9f39a20f70646e417082a276b06af",
           "alt": "해외 항만의 서버 배송 심사와 미국계 본사의 보고 서류를 같은 기준으로 나눈 비교 이미지",
           "tone": "light",
-          "kind": "comparison",
+          "kind": "concept",
           "prompt": "Same-scale split comparison: overseas server shipment at a red license gate versus US-parent oversight with a reporting dossier; black, off-white and red; no text, numbers, logos or flags."
         }
       },
