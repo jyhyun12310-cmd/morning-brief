@@ -1,23 +1,297 @@
-{"schema_version":1,"kind":"market_brief","intent":"preview","is_test":false,
-"created_at":"2026-11-18T14:06:00+09:00","snapshot_at":"2026-11-18T14:01:00+09:00","publication_date_kst":"2026-11-18",
-"kr_session":{"date":"2026-11-18","status":"open","source_id":"naver-kospi","evidence":"14:01 KST 두 지수의 당일 값과 marketStatus=OPEN을 직접 확인했습니다."},
-"sources":[
-{"id":"naver-kospi","title":"네이버 금융 · 코스피 실시간 지수","url":"https://m.stock.naver.com/api/index/KOSPI/basic","as_of":"2026-11-18 14:01 KST; 5,021.88, 전일 4,968.48 대비 +1.07%, OPEN","retrieved_at":"2026-11-18T14:01:49+09:00"},
-{"id":"naver-kosdaq","title":"네이버 금융 · 코스닥 실시간 지수","url":"https://m.stock.naver.com/api/index/KOSDAQ/basic","as_of":"2026-11-18 14:01 KST; 656.89, 전일 650.06 대비 +1.05%, OPEN","retrieved_at":"2026-11-18T14:01:49+09:00"},
-{"id":"kdi-outlook","title":"KDI · 2026년 하반기 경제전망","url":"https://m.kdi.re.kr/research/economy","as_of":"2026-11-18; 2027 성장 3.9%, 소비 2.4%, 수출 8.1%, 전망 위험요인 확인","retrieved_at":"2026-11-18T14:00:00+09:00"},
-{"id":"yonhap-kdi","title":"연합뉴스 · KDI 성장률 상향과 반도체 기여 대조","url":"https://www.yna.co.kr/view/AKR20261118092700002","as_of":"2026-11-18 12:00; 성장률 수정폭·반도체 기여·2026 소비 하향 독립 대조","retrieved_at":"2026-11-18T14:03:00+09:00"},
-{"id":"yonhap-market","title":"연합뉴스 · 코스피 장중 상승폭 축소","url":"https://www.yna.co.kr/view/AKR20261118087600008","as_of":"2026-11-18 11:28; 2.62% 상승 출발·장중 3.31% 뒤 상승폭 축소 확인","retrieved_at":"2026-11-18T14:03:00+09:00"},
-{"id":"census-calendar","title":"미 Census Bureau · 2026 경제지표 발표 일정","url":"https://www.census.gov/economic-indicators/calendar-listview-2026.html","as_of":"2026-11-18 08:30 EST; 10월 신규주택 착공·허가 발표 예정","retrieved_at":"2026-11-18T14:00:00+09:00"},
-{"id":"bullstory-chip","title":"불스토리 · 반도체 수출 통계 실제 웹 글 (편집 참고)","url":"https://bullstory.io/blog/10%EC%9B%94-%EC%88%98%EC%B6%9C%EC%9E%85-%ED%86%B5%EA%B3%84%EB%A1%9C-%EB%B3%B8-%EB%B0%98%EB%8F%84%EC%B2%B4-feat-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%A0","as_of":"2026-10 공개 웹 본문 전체 열람; 큰 수치 뒤 공급 경로를 단계별로 설명한 배치 확인","retrieved_at":"2026-11-18T13:59:00+09:00"},
-{"id":"kim-explainer","title":"김광석 · 반도체 호황의 역설 개인 칼럼 (편집 참고)","url":"https://www4.ajunews.com/view/20260914101837577","as_of":"2026-09-18 개인 서명 칼럼 전체 열람; 총량 성장과 체감경제를 분리한 설명 확인","retrieved_at":"2026-11-18T14:00:00+09:00"},
-{"id":"bok-consumption","title":"한국은행 · 반도체 수혜지역 소비 파급효과","url":"https://www.bok.or.kr/portal/bbs/P0002353/view.do?depth=200433&menuNo=200433&nttId=11064279&oldMenuNo=201150&programType=newsData&relate=Y","as_of":"2026-08-31; 성과급 뒤 지역 소비와 GDP 파급 추정으로 전달 경로 대조","retrieved_at":"2026-11-18T14:00:00+09:00"}],
-"quotes":[{"id":"KOSPI","name":"코스피","value":5021.88,"previous_close":4968.48,"change_pct":1.07,"basis":"intraday","as_of":"2026-11-18T14:01:00+09:00","source_id":"naver-kospi"},{"id":"KOSDAQ","name":"코스닥","value":656.89,"previous_close":650.06,"change_pct":1.05,"basis":"intraday","as_of":"2026-11-18T14:01:00+09:00","source_id":"naver-kosdaq"}],
-"events":[{"title":"미국 10월 주택착공·허가","note":"금리 부담 속 건설경기의 비반도체 체력을 확인합니다.","at":"2026-11-18T22:30:00+09:00","source_id":"census-calendar"}],
-"summary":{"design":"editorial-v2","instagram_caption":"성장률 3.9%보다 더 중요한 건 그 돈이 누구에게, 언제 도착하느냐입니다. 반도체 수출에서 가계 소비까지의 좁은 길을 확인했습니다. #한국경제 #반도체 #민간소비",
-"visual_story":[
-{"layout":"headline","title":"3.9% 성장인데\n왜 내 지갑은 더딜까?","body":"코스피 +1.07%, 코스닥 +1.05%인 오후, KDI는 내년 성장률의 약 3분의 2를 반도체가 만들 것으로 봤습니다.","source_ids":["naver-kospi","naver-kosdaq","kdi-outlook","yonhap-kdi"],"items":[],"accent":"왜 내 지갑은 더딜까?","visual":{"path":"automation/visual_assets/d34b2f2eaa78f251ea06e1a942540d3ee07e4f984b525686aad3b6c2afdf7add.png","sha256":"d34b2f2eaa78f251ea06e1a942540d3ee07e4f984b525686aad3b6c2afdf7add","alt":"거대한 반도체 웨이퍼에서 작은 장바구니로 이어지는 좁은 적색 통로 개념 이미지","tone":"dark","kind":"concept","prompt":"Oversized semiconductor wafer feeding a narrow red channel into a much smaller household shopping basket; premium editorial still life, black, warm off-white and red; no text, numbers, logos or charts."}},
-{"layout":"drivers","title":"수출기업의 돈이\n가계까지 오는 길","body":"해외 AI 투자가 반도체 주문을 만들면 기업 매출과 이익이 먼저 늘고, 성과급·배당·고용을 거쳐야 가계소득과 소비로 번집니다.","source_ids":["kdi-outlook","bok-consumption"],"items":[{"label":"해외 고객","text":"AI 인프라에 돈을 쓰고 한국 반도체를 주문합니다.","type":"fact","source_ids":["kdi-outlook"]},{"label":"반도체 기업","text":"수출대금과 이익을 받고 설비·임금·배당에 배분합니다.","type":"analysis","source_ids":["kdi-outlook","bok-consumption"]},{"label":"가계·상점","text":"받은 소득이 실제 소비로 지출될 때 체감경기로 이어집니다.","type":"analysis","source_ids":["kdi-outlook","bok-consumption"]}],"accent":"가계까지 오는 길","visual":{"path":"automation/visual_assets/4523bedc78c60820aa0865b6f09f4d61844c88098d9a9f092a021ffb8ff7ebad.png","sha256":"4523bedc78c60820aa0865b6f09f4d61844c88098d9a9f092a021ffb8ff7ebad","alt":"AI 서버와 반도체 장비·성과급 봉투·지갑을 적색 선으로 연결한 돈의 이동 이미지","tone":"light","kind":"concept","prompt":"AI server rack to semiconductor machinery, sealed bonus envelope and household wallet, connected with deliberate gaps by a red thread; premium editorial still life; no text, numbers or logos."}},
-{"layout":"sectors","title":"같은 경제 안에서도\n속도가 다릅니다","body":"KDI는 올해 성장률을 올리면서도 민간소비 전망은 2.3%에서 1.8%로 낮췄습니다. 수출 호조가 곧바로 내수 회복은 아닙니다.","source_ids":["kdi-outlook","yonhap-kdi"],"items":[{"label":"수출","text":"2026년 +10.3% · 반도체·AI 품목이 주도","type":"fact","source_ids":["kdi-outlook"]},{"label":"설비투자","text":"2026년 +8.7% · 반도체 투자가 중심","type":"fact","source_ids":["kdi-outlook"]},{"label":"민간소비","text":"2026년 +1.8% · 기존 전망보다 0.5%p 하향","type":"fact","source_ids":["yonhap-kdi"]}],"accent":"속도가 다릅니다","visual":{"path":"automation/visual_assets/d0b87ac6c276913c53c501b06865828a01c5108a68a058c1da3583e9ef027877.png","sha256":"d0b87ac6c276913c53c501b06865828a01c5108a68a058c1da3583e9ef027877","alt":"같은 크기의 위아래 칸에 반도체 수출과 장보기·연료 부담을 대비한 비교 이미지","tone":"light","kind":"concept","prompt":"Same-scale split comparison: semiconductor wafer and export crate above, modest grocery basket and fuel canister below; warm off-white, black and red; no text, numbers, logos or charts."}},
-{"layout":"calendar","title":"오늘 밤 10시 30분\n미국 주택지표","body":"미 Census는 10월 주택착공과 건축허가를 발표합니다. AI 투자 밖 미국 건설경기의 체력을 보여줄 다음 정규 일정입니다.","source_ids":["census-calendar"],"items":[],"accent":"미국 주택지표","visual":{"path":"automation/visual_assets/3c6c3180f74bc4430650a2ce8b7306813c5b459d097ef39749376b73a9ea527d.png","sha256":"3c6c3180f74bc4430650a2ce8b7306813c5b459d097ef39749376b73a9ea527d","alt":"빈 달력과 건설 중인 주택 모형·허가 서류·줄자를 배치한 일정 이미지","tone":"dark","kind":"concept","prompt":"Blank calendar block beside a model house under construction, permit folder and measuring tape; black, warm off-white and red editorial still life; no text, dates, numbers or logos."}},
-{"layout":"watch","title":"3.9%가 체감으로 번질지\n세 가지로 확인","body":"지금은 높은 성장 전망입니다. AI 투자·기업 자금·가계소득 중 하나라도 막히면 소비 회복의 폭과 시점이 달라집니다.","source_ids":["kdi-outlook","yonhap-kdi","bok-consumption"],"items":[{"label":"AI 투자","text":"미국 데이터센터 건설이 지연·축소되는지","type":"watch","source_ids":["kdi-outlook"]},{"label":"기업 자금","text":"주요 AI 기업의 차입 여건과 수익성이 악화되는지","type":"watch","source_ids":["kdi-outlook"]},{"label":"가계소득","text":"비반도체 임금과 고용까지 개선이 넓어지는지","type":"watch","source_ids":["kdi-outlook","bok-consumption"]}],"accent":"세 가지로 확인","visual":{"path":"automation/visual_assets/6d7b3850989c832c4ae1e6aa84cd5803156edac9f450f3415da6dd6af13475b6.png","sha256":"6d7b3850989c832c4ae1e6aa84cd5803156edac9f450f3415da6dd6af13475b6","alt":"전력 연결부·급여 봉투·영수증 두루마리를 확대경으로 점검하는 조건 확인 이미지","tone":"dark","kind":"concept","prompt":"Magnifying lens over a data-center power connector, corporate payroll envelope and household receipt roll; black, warm off-white and red; no readable text, numbers or logos."}}],
-"editorial_review":{"improvement":"최근 5편은 정책·실적의 결론을 여러 장에서 반복하는 경향이 있었습니다. 이번에는 성장률 질문→돈의 이동→같은 기준 비교→미국 일정→판단 조건으로 장마다 역할을 분리했습니다.","reason":"불스토리 10월 웹 글 전체는 큰 수치 뒤 생산·공급 경로를 단계별로 풀었고, 김광석 개인 칼럼 전체는 총량과 체감경제를 분리했습니다. 실제 카드 전체를 본 것으로 과장하지 않고 웹 본문 배치만 참고했습니다.","application":"초안 ‘KDI, 내년 성장률 3.9%’→퇴고 ‘3.9% 성장인데 왜 내 지갑은 더딜까?’. 2장에 해외 고객→기업→가계의 돈 이동을 넣고, 3장은 수출·설비투자·소비를 같은 2026년 기준으로 비교했습니다.","avoided_repetition":"오전 엔비디아의 공급 약정·고객 자금 결론과 전날 원격 AI칩 규제 결론을 버렸습니다. 반도체 호황이 곧 내수주 상승이라는 단정과 장중 상승의 원인을 KDI 발표로 돌리는 문장도 제외했습니다. 다음 편은 임금·고용 확산 실측이 나올 때만 체감경기를 보완합니다. 반응 지표 미확보."}}}
+{
+  "schema_version": 1,
+  "kind": "market_brief",
+  "intent": "preview",
+  "is_test": false,
+  "created_at": "2026-11-18T14:06:00+09:00",
+  "snapshot_at": "2026-11-18T14:01:00+09:00",
+  "publication_date_kst": "2026-11-18",
+  "kr_session": {
+    "date": "2026-11-18",
+    "status": "open",
+    "source_id": "naver-kospi",
+    "evidence": "14:01 KST 두 지수의 당일 값과 marketStatus=OPEN을 직접 확인했습니다."
+  },
+  "sources": [
+    {
+      "id": "naver-kospi",
+      "title": "네이버 금융 · 코스피 실시간 지수",
+      "url": "https://m.stock.naver.com/api/index/KOSPI/basic",
+      "as_of": "2026-11-18 14:01 KST; 5,021.88, 전일 4,968.48 대비 +1.07%, OPEN",
+      "retrieved_at": "2026-11-18T14:01:49+09:00"
+    },
+    {
+      "id": "naver-kosdaq",
+      "title": "네이버 금융 · 코스닥 실시간 지수",
+      "url": "https://m.stock.naver.com/api/index/KOSDAQ/basic",
+      "as_of": "2026-11-18 14:01 KST; 656.89, 전일 650.06 대비 +1.05%, OPEN",
+      "retrieved_at": "2026-11-18T14:01:49+09:00"
+    },
+    {
+      "id": "kdi-outlook",
+      "title": "KDI · 2026년 하반기 경제전망",
+      "url": "https://m.kdi.re.kr/research/economy",
+      "as_of": "2026-11-18; 2027 성장 3.9%, 소비 2.4%, 수출 8.1%, 전망 위험요인 확인",
+      "retrieved_at": "2026-11-18T14:00:00+09:00"
+    },
+    {
+      "id": "yonhap-kdi",
+      "title": "연합뉴스 · KDI 성장률 상향과 반도체 기여 대조",
+      "url": "https://www.yna.co.kr/view/AKR20261118092700002",
+      "as_of": "2026-11-18 12:00; 성장률 수정폭·반도체 기여·2026 소비 하향 독립 대조",
+      "retrieved_at": "2026-11-18T14:03:00+09:00"
+    },
+    {
+      "id": "yonhap-market",
+      "title": "연합뉴스 · 코스피 장중 상승폭 축소",
+      "url": "https://www.yna.co.kr/view/AKR20261118087600008",
+      "as_of": "2026-11-18 11:28; 2.62% 상승 출발·장중 3.31% 뒤 상승폭 축소 확인",
+      "retrieved_at": "2026-11-18T14:03:00+09:00"
+    },
+    {
+      "id": "census-calendar",
+      "title": "미 Census Bureau · 2026 경제지표 발표 일정",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview-2026.html",
+      "as_of": "2026-11-18 08:30 EST; 10월 신규주택 착공·허가 발표 예정",
+      "retrieved_at": "2026-11-18T14:00:00+09:00"
+    },
+    {
+      "id": "bullstory-chip",
+      "title": "불스토리 · 반도체 수출 통계 실제 웹 글 (편집 참고)",
+      "url": "https://bullstory.io/blog/10%EC%9B%94-%EC%88%98%EC%B6%9C%EC%9E%85-%ED%86%B5%EA%B3%84%EB%A1%9C-%EB%B3%B8-%EB%B0%98%EB%8F%84%EC%B2%B4-feat-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%A0",
+      "as_of": "2026-10 공개 웹 본문 전체 열람; 큰 수치 뒤 공급 경로를 단계별로 설명한 배치 확인",
+      "retrieved_at": "2026-11-18T13:59:00+09:00"
+    },
+    {
+      "id": "kim-explainer",
+      "title": "김광석 · 반도체 호황의 역설 개인 칼럼 (편집 참고)",
+      "url": "https://www4.ajunews.com/view/20260914101837577",
+      "as_of": "2026-09-18 개인 서명 칼럼 전체 열람; 총량 성장과 체감경제를 분리한 설명 확인",
+      "retrieved_at": "2026-11-18T14:00:00+09:00"
+    },
+    {
+      "id": "bok-consumption",
+      "title": "한국은행 · 반도체 수혜지역 소비 파급효과",
+      "url": "https://www.bok.or.kr/portal/bbs/P0002353/view.do?depth=200433&menuNo=200433&nttId=11064279&oldMenuNo=201150&programType=newsData&relate=Y",
+      "as_of": "2026-08-31; 성과급 뒤 지역 소비와 GDP 파급 추정으로 전달 경로 대조",
+      "retrieved_at": "2026-11-18T14:00:00+09:00"
+    }
+  ],
+  "quotes": [
+    {
+      "id": "KOSPI",
+      "name": "코스피",
+      "value": 5021.88,
+      "previous_close": 4968.48,
+      "change_pct": 1.07,
+      "basis": "intraday",
+      "as_of": "2026-11-18T14:01:00+09:00",
+      "source_id": "naver-kospi"
+    },
+    {
+      "id": "KOSDAQ",
+      "name": "코스닥",
+      "value": 656.89,
+      "previous_close": 650.06,
+      "change_pct": 1.05,
+      "basis": "intraday",
+      "as_of": "2026-11-18T14:01:00+09:00",
+      "source_id": "naver-kosdaq"
+    }
+  ],
+  "events": [
+    {
+      "title": "미국 10월 주택착공·허가",
+      "note": "금리 부담 속 건설경기의 비반도체 체력을 확인합니다.",
+      "at": "2026-11-18T22:30:00+09:00",
+      "source_id": "census-calendar"
+    }
+  ],
+  "summary": {
+    "design": "editorial-v2",
+    "instagram_caption": "성장률 3.9%보다 더 중요한 건 그 돈이 누구에게, 언제 도착하느냐입니다. 반도체 수출에서 가계 소비까지의 좁은 길을 확인했습니다. #한국경제 #반도체 #민간소비",
+    "visual_story": [
+      {
+        "layout": "headline",
+        "title": "3.9% 성장인데\n왜 내 지갑은 더딜까?",
+        "body": "코스피 +1.07%, 코스닥 +1.05%인 오후, KDI는 내년 성장률의 약 3분의 2를 반도체가 만들 것으로 봤습니다.",
+        "source_ids": [
+          "naver-kospi",
+          "naver-kosdaq",
+          "kdi-outlook",
+          "yonhap-kdi"
+        ],
+        "items": [],
+        "accent": "왜 내 지갑은 더딜까?",
+        "visual": {
+          "path": "automation/visual_assets/522305efab2291f38b5cf5fb72bdf214a570a8928b294cb63ab1fa6bf25861dd.jpg",
+          "sha256": "522305efab2291f38b5cf5fb72bdf214a570a8928b294cb63ab1fa6bf25861dd",
+          "alt": "거대한 반도체 웨이퍼에서 작은 장바구니로 이어지는 좁은 적색 통로 개념 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "Oversized semiconductor wafer feeding a narrow red channel into a much smaller household shopping basket; premium editorial still life, black, warm off-white and red; no text, numbers, logos or charts."
+        }
+      },
+      {
+        "layout": "drivers",
+        "title": "수출기업의 돈이\n가계까지 오는 길",
+        "body": "해외 AI 투자가 반도체 주문을 만들면 기업 매출과 이익이 먼저 늘고, 성과급·배당·고용을 거쳐야 가계소득과 소비로 번집니다.",
+        "source_ids": [
+          "kdi-outlook",
+          "bok-consumption"
+        ],
+        "items": [
+          {
+            "label": "해외 고객",
+            "text": "AI 인프라에 돈을 쓰고 한국 반도체를 주문합니다.",
+            "type": "fact",
+            "source_ids": [
+              "kdi-outlook"
+            ]
+          },
+          {
+            "label": "반도체 기업",
+            "text": "수출대금과 이익을 받고 설비·임금·배당에 배분합니다.",
+            "type": "analysis",
+            "source_ids": [
+              "kdi-outlook",
+              "bok-consumption"
+            ]
+          },
+          {
+            "label": "가계·상점",
+            "text": "받은 소득이 실제 소비로 지출될 때 체감경기로 이어집니다.",
+            "type": "analysis",
+            "source_ids": [
+              "kdi-outlook",
+              "bok-consumption"
+            ]
+          }
+        ],
+        "accent": "가계까지 오는 길",
+        "visual": {
+          "path": "automation/visual_assets/b5028804acf3250212f0cd3de35b6c6236607bf599e4c5b46d3f7e849c8d9548.jpg",
+          "sha256": "b5028804acf3250212f0cd3de35b6c6236607bf599e4c5b46d3f7e849c8d9548",
+          "alt": "AI 서버와 반도체 장비·성과급 봉투·지갑을 적색 선으로 연결한 돈의 이동 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "AI server rack to semiconductor machinery, sealed bonus envelope and household wallet, connected with deliberate gaps by a red thread; premium editorial still life; no text, numbers or logos."
+        }
+      },
+      {
+        "layout": "sectors",
+        "title": "같은 경제 안에서도\n속도가 다릅니다",
+        "body": "KDI는 올해 성장률을 올리면서도 민간소비 전망은 2.3%에서 1.8%로 낮췄습니다. 수출 호조가 곧바로 내수 회복은 아닙니다.",
+        "source_ids": [
+          "kdi-outlook",
+          "yonhap-kdi"
+        ],
+        "items": [
+          {
+            "label": "수출",
+            "text": "2026년 +10.3% · 반도체·AI 품목이 주도",
+            "type": "fact",
+            "source_ids": [
+              "kdi-outlook"
+            ]
+          },
+          {
+            "label": "설비투자",
+            "text": "2026년 +8.7% · 반도체 투자가 중심",
+            "type": "fact",
+            "source_ids": [
+              "kdi-outlook"
+            ]
+          },
+          {
+            "label": "민간소비",
+            "text": "2026년 +1.8% · 기존 전망보다 0.5%p 하향",
+            "type": "fact",
+            "source_ids": [
+              "yonhap-kdi"
+            ]
+          }
+        ],
+        "accent": "속도가 다릅니다",
+        "visual": {
+          "path": "automation/visual_assets/eee3b10471481b125a353b6573308ecfd95f6a6add7979f034d9ab810ff4cecb.jpg",
+          "sha256": "eee3b10471481b125a353b6573308ecfd95f6a6add7979f034d9ab810ff4cecb",
+          "alt": "같은 크기의 위아래 칸에 반도체 수출과 장보기·연료 부담을 대비한 비교 이미지",
+          "tone": "light",
+          "kind": "concept",
+          "prompt": "Same-scale split comparison: semiconductor wafer and export crate above, modest grocery basket and fuel canister below; warm off-white, black and red; no text, numbers, logos or charts."
+        }
+      },
+      {
+        "layout": "calendar",
+        "title": "오늘 밤 10시 30분\n미국 주택지표",
+        "body": "미 Census는 10월 주택착공과 건축허가를 발표합니다. AI 투자 밖 미국 건설경기의 체력을 보여줄 다음 정규 일정입니다.",
+        "source_ids": [
+          "census-calendar"
+        ],
+        "items": [],
+        "accent": "미국 주택지표",
+        "visual": {
+          "path": "automation/visual_assets/006259cc3bbd74815fbd3a30504dd4f658759a3c197ba94e8fa90a207357ddd1.jpg",
+          "sha256": "006259cc3bbd74815fbd3a30504dd4f658759a3c197ba94e8fa90a207357ddd1",
+          "alt": "빈 달력과 건설 중인 주택 모형·허가 서류·줄자를 배치한 일정 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "Blank calendar block beside a model house under construction, permit folder and measuring tape; black, warm off-white and red editorial still life; no text, dates, numbers or logos."
+        }
+      },
+      {
+        "layout": "watch",
+        "title": "3.9%가 체감으로 번질지\n세 가지로 확인",
+        "body": "지금은 높은 성장 전망입니다. AI 투자·기업 자금·가계소득 중 하나라도 막히면 소비 회복의 폭과 시점이 달라집니다.",
+        "source_ids": [
+          "kdi-outlook",
+          "yonhap-kdi",
+          "bok-consumption"
+        ],
+        "items": [
+          {
+            "label": "AI 투자",
+            "text": "미국 데이터센터 건설이 지연·축소되는지",
+            "type": "watch",
+            "source_ids": [
+              "kdi-outlook"
+            ]
+          },
+          {
+            "label": "기업 자금",
+            "text": "주요 AI 기업의 차입 여건과 수익성이 악화되는지",
+            "type": "watch",
+            "source_ids": [
+              "kdi-outlook"
+            ]
+          },
+          {
+            "label": "가계소득",
+            "text": "비반도체 임금과 고용까지 개선이 넓어지는지",
+            "type": "watch",
+            "source_ids": [
+              "kdi-outlook",
+              "bok-consumption"
+            ]
+          }
+        ],
+        "accent": "세 가지로 확인",
+        "visual": {
+          "path": "automation/visual_assets/45bf3bbae8cfa6445d1a20904b827cb97e00534af5c4dfd979dfb74cdfc22343.jpg",
+          "sha256": "45bf3bbae8cfa6445d1a20904b827cb97e00534af5c4dfd979dfb74cdfc22343",
+          "alt": "전력 연결부·급여 봉투·영수증 두루마리를 확대경으로 점검하는 조건 확인 이미지",
+          "tone": "dark",
+          "kind": "concept",
+          "prompt": "Magnifying lens over a data-center power connector, corporate payroll envelope and household receipt roll; black, warm off-white and red; no readable text, numbers or logos."
+        }
+      }
+    ],
+    "editorial_review": {
+      "improvement": "최근 5편은 정책·실적의 결론을 여러 장에서 반복하는 경향이 있었습니다. 이번에는 성장률 질문→돈의 이동→같은 기준 비교→미국 일정→판단 조건으로 장마다 역할을 분리했습니다.",
+      "reason": "불스토리 10월 웹 글 전체는 큰 수치 뒤 생산·공급 경로를 단계별로 풀었고, 김광석 개인 칼럼 전체는 총량과 체감경제를 분리했습니다. 실제 카드 전체를 본 것으로 과장하지 않고 웹 본문 배치만 참고했습니다.",
+      "application": "초안 ‘KDI, 내년 성장률 3.9%’→퇴고 ‘3.9% 성장인데 왜 내 지갑은 더딜까?’. 2장에 해외 고객→기업→가계의 돈 이동을 넣고, 3장은 수출·설비투자·소비를 같은 2026년 기준으로 비교했습니다.",
+      "avoided_repetition": "오전 엔비디아의 공급 약정·고객 자금 결론과 전날 원격 AI칩 규제 결론을 버렸습니다. 반도체 호황이 곧 내수주 상승이라는 단정과 장중 상승의 원인을 KDI 발표로 돌리는 문장도 제외했습니다. 다음 편은 임금·고용 확산 실측이 나올 때만 체감경기를 보완합니다. 반응 지표 미확보."
+    }
+  }
+}
